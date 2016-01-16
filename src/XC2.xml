@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xml:id="combinatorics">
+<title>Combinatorics</title>
+<introduction  number="no" xml:id="GOALS-2">
+
+<p>Throughout this book we will be counting things. In this chapter we will outline some of the tools that will help us count.</p>
+<p>Counting occurs not only in highly sophisticated applications of mathematics to engineering and computer science but also in many basic applications. Like many other powerful and useful tools in mathematics, the concepts are simple; we only have to recognize when and how they can be applied.
+</p>
+</introduction>
+<section xml:id="the-rule-of-products">
+<title>Basic Counting Techniques - The Rule of Products</title>
+<subsection xml:id="What-is-Combinatorics">
+<p>
+ One of the first concepts our parents taught us was the <q>art of counting.</q> We were taught to raise three fingers to indicate that we were three years old. The question of <q>how many</q> is a natural and frequently asked question. Combinatorics is the <q>art of counting.</q> It is the study of techniques that will help us to count the number of objects in a set quickly. Highly sophisticated results can be obtained with this simple concept. The following examples will illustrate that many questions concerned with counting involve the same process.
+</p>
+
+<example xml:id="lunch-possibilies1"><title>How many lunches can you have?</title>A snack bar serves five different sandwiches and three different beverages. How many different lunches can a person order? One way of determining the number of possible lunches is by listing or enumerating all the possibilities. One systematic way of doing this is by means of a tree, as in the following figure.
+<p class='Figure' style='text-align: center;'>
+ <img src="HTMLFiles/XC2_2.gif" alt="XC2_2.gif" width="291" height="756" style="vertical-align:middle" />
+</p>
+<p class='Text' style='text-align: center;'>
+ <span style='font-weight: bold;'>FIGURE 2.1.1 </span>Tree solution for Example 2.1.1
+</p>
+<p>
+ Every path that begins at the position labeled START and goes to the right can be interpreted as a choice of one of the five sandwiches followed by a choice of one of the three beverages. Note that considerable work is required to arrive at the number fifteen this way; but we also get more than just a number. The result is a complete list of all possible lunches. If we need to answer a question that starts with <q>How many . . . ,</q> enumeration would be done only as a last resort. In a later chapter we will examine more enumeration techniques.
+</p>
+<p>
+ An alternative method of solution for this example is to make the simple observation that there are five different choices for sandwiches and three different choices for beverages, so there are <m>5 \cdot 3 = 15</m> different lunches that can be ordered.
+</p>
+<p>
+ A listing of possible lunches a person could have is: <span><span>{(BEEF, milk), (BEEF, juice), (BEEF, coffee), ..., (BOLOGNA, coffee)}</span></span>.
+</p>
+</example>
+<example xml:id="cartesian-cardinality">
+<title>Counting elements in a cartesion product</title> 
+<p>Let <m>A = \{a, b, c, d, e\}</m> and <m>B = \{1,2,3\}</m>. From Chapter 1 we know how to list the elements in <m>A \times B = \{(a, 1), (a, 2), (a, 3), ..., (e, 3)\}</m>. The reader is encouraged to compare Figure 2.1.1 for this example. Since the first entry of each pair can be any one of the five elements <m>a, b, c, d</m>, and <m>e</m>, and since the second can be any one of the three numbers 1, 2, and 3, it is quite clear there are 
+<m>5 \cdot 3 = 15</m> different elements in <m>A \times B</m>.
+</p>
+</example>
+<example xml:id="questionnaire"><title>A True-False Questionnaire</title><p>A person is to complete a true-false questionnaire consisting of ten questions. How many different ways are there to answer the questionnaire? Since each question can be answered either of two ways (true or false), and there are a total of ten questions, there are <me> 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 = 2^{10} = 1024</me> different ways of answering the questionnaire. The reader is encouraged to visualize the tree diagram of this example, but not to draw it!</p>
+</example>
+
+<p>
+ We formalize the procedures developed in the previous examples with the following rule and its extension.
+</p>
+</subsection>
+<subsection xml:id="rule-of-products">
+<title>The Rule Of Products:</title> 
+<p>If two operations must be performed, and If the first operation can always be performed <m>p_1</m> different ways and the second operation can always be performed <m>p_2</m> different ways, then there are <m>p_1 p_2</m> different ways that the two operations can be performed.
+</p>
+<p>
+Note: It is important that <m>p_2</m> does not depend on the option that is chosen in the first operation. Another way of saying this is that <m>p_2</m> is independent of the first operation. If <m>p_2</m> is dependent on the first operation, then the rule of products does not apply.
+</p>
+<example xml:id="lunch-possibilites2"><title>More Lunch Possibilities</title><statement><p>Assume in the previous example about lunches that coffee is not served with a beef or chicken sandwiches. Then by inspection of Figure 2.1.1 we see that there are only thirteen different choices for lunch. The rule of products does not apply, since the choice of beverage depends on one's choice of a sandwich.</p></statement>
+</example>
+<p><em>Extended Rule Of Products.</em> The rule of products can be extended to include sequences of more than two operations. If <m>n</m> operations must be performed, and the number of options for each operation is <m>p_1</m>, <m>p_2, \dots, p_n</m> respectively, with each <m>p_i</m>  independent of previous choices, then the <m>n</m> operations can be performed <m>p_1 \cdot p_2 \cdot \cdots \cdot p_n</m> different ways.
+</p>
+<example xml:id="another_questionnaire"><title>A Multiple Choice Questionnaire</title><p>A questionnaire contains four questions that have two possible answers and three questions with five possible answers. Since the answer to each question is independent of the answers to the other questions, the extended rule of products applies and there are
+<m>2 \cdot 2 \cdot 2 \cdot 2 \cdot 5 \cdot 5 \cdot 5 = 2^4 \cdot 5^3 = 2000 </m> different ways to answer the questionnaire.</p>
+</example>
+<p>
+ In Chapter 1 we introduced the power set of a set A, P(A), which is the set of all subsets of A. Can we predict how many elements are in <m>\mathcal{P}(A)</m> for a given finite set A? The answer is yes, and in fact if <m>|A| = n</m>, then <m>\mathcal{P}(A) = 2^{n}</m>.  The ease with which we can prove this fact demonstrates the power and usefulness of the rule of products. Do not underestimate the usefulness of simple ideas.
+</p>
+<theorem xml:id="power-set-cardinality-theorem">
+<statement>If <m>A</m> is a finite set, then <m>|\mathcal{P}(A) | = 2^{|A|}</m></statement>
+<proof>
+Proof: Consider how we might determine any <m>B \in \mathcal{P}(A)</m>, where <m> |A|=n</m>. For each element <m>x \in A</m> there are two choices, either <m>x \in B</m> or <m>x \notin B</m>.  Since there are <m>n</m>  elements of <m>A</m>  we have, by the rule of products, 
+  <me>\underset{n\backslash
+   \textrm{factors}}{\underline{2\cdot
+   2\backslash \cdot \backslash \cdots \cdot
+   2}}\right\backslash =\left\backslash
+   2^n</me>   different subsets of A. Therefore, <m>\textscr{P}(A)= 2^{n}</m>;
+</proof>
+</theorem>
+
+</subsection>
+<exercises xml:id="EXERCISES-FOR-SECTION-2-1">
+<exercisegroup><title>A Exercises</title>
+
+<exercise number="1"><statement> In horse racing, to bet the <q>daily double</q> is to select the winners of the first two races of the day. You win only if both selections are correct. In terms of the number of horses that are entered in the first two races, how many different daily double bets could be made?</statement></exercise>
+
+<exercise number="2"><statement> Professor Shortcut records his grades using only his students' first and last initials. What is the smallest class size that will definitely force Prof. S. to use a different system?</statement></exercise>
+
+<exercise number="3"><statement> A certain shirt comes in four sizes and six colors. One also has the choice of a dragon, an alligator, or no emblem on the pocket. How many different shirts could you order?</statement></exercise>
+
+<exercise number="4"><statement> A builder of modular homes would like to impress his potential customers with the variety of styles of his houses. For each house there are blueprints for three different living rooms, four different bedroom configurations, and two different garage styles. In addition, the outside can be finished in cedar shingles or brick. How many different houses can be designed from these plans?</statement></exercise>
+
+<exercise number="5"><statement> The Pi Mu Epsilon mathematics honorary society of Outstanding University wishes to have a picture taken of its six officers. There will be two rows of three people. How many different way can the six officers be arranged?</statement></exercise>
+
+<exercise number="6"><statement>  An automobile dealer has several options available for each of three different packages of a particular model car: a choice of two styles of seats in three different colors, a choice of four different radios, and five different exteriors. How many choices of automobile does a customer have?</statement></exercise>
+
+<exercise number="7"><statement> A clothing manufacturer has put out a mix-and-match collection consisting of two blouses, two pairs of pants, a skirt, and a blazer. How many outfits can you make? Did you consider that the blazer is optional? How many outfits can you make if the manufacturer adds a sweater to the collection?</statement></exercise>
+
+<exercise number="8"><statement> As a freshman, suppose you had to take two of four lab science courses, one of two literature courses, two of three math courses, and one of seven physical education courses. Disregarding possible time conflicts, how many different schedules do you have to choose from?</statement></exercise>
+<exercise number="9"><statement> (a) Suppose each single character stored in a computer uses eight bits. Then each character is represented by a different sequence of eight 0's and l's called a bit pattern. How many different bit patterns are there? (That is, how many different characters could be represented?)
+<p> (b) How many bit patterns are palindromes (the same backwards as forwards)?</p>
+<p> (c) How many different bit patterns have an even number of 1's?</p></statement></exercise>
+<exercise number="10"><statement> Automobile license plates in Massachusetts usually consist of three digits followed by three letters. The first digit is never zero. How many different plates of this type could be made?</statement></exercise>
+<exercise number="11"><statement> (a) Let <span><span>A = {a, b, c, d}</span></span>. Determine the number of different subsets of <m>A</m>. 
+<p> (b) Let <span><span>A = {1, 2, 3, 4, 5}</span></span>. Determine the number of proper subsets of <m>A</m> .
+</p></statement></exercise>
+<exercise number="12"><statement> How many integers from 100 to 999 can be written with no 7's?</statement></exercise>
+<exercise number="13"><statement> Consider three persons, A, B, and C, who are to be seated in a row of three chairs. Suppose A and B are identical twins. How many seating arrangements of these persons can there be
+<p> (a) If you are a total stranger?</p>
+<p>(b) If you are A and B's mother?</p>
+<p>This problem is designed to show you that different people can have different correct answers to the same problem.</p></statement></exercise>
+<exercise number="14"><statement> How many ways can a student do a ten-question true-false exam if he or she can choose not to answer any number of questions?</statement></exercise>
+<exercise number="15"><statement><p> Suppose you have a choice of fish, lamb, or beef for a main course, a choice of peas or carrots for a vegetable, and a choice of pie, cake, or ice cream for dessert. If you must order one item from each category, how many different dinners are possible?</p></statement></exercise>
+<exercise number="16"><statement> Suppose you have a choice of vanilla, chocolate, or strawberry for ice cream, a choice of peanuts or walnuts for chopped nuts, and a choice of hot fudge or marshmallow for topping. If you must order one item from each category, how many different sundaes are possible?</statement></exercise>
+</exercisegroup>
+<exercisegroup><title>B Exercises</title>
+<exercise number="17"><statement> A questionnaire contains six questions each having yes-no answers. For each yes response, there is a follow-up question with four possible responses.
+<ol>
+<li>
+   (a) Draw a tree diagram that illustrates how many ways a single question in the questionnaire can be answered.
+</li>
+<li>
+    (b) How many ways can the questionnaire be answered?
+</li>
+</ol>
+</statement></exercise>
+<exercise number="18"><statement> Ten people are invited to a dinner party. How many ways are there of seating them at a round table? If the ten people consist of five men and five women, how many ways are there of seating them if each man must be surrounded by two women around the table?</statement></exercise>
+<exercise number="19"><statement> How many ways can you separate a set with <m>n</m>  elements into two nonempty subsets if the order of the subsets is immaterial? What if the order of the subsets is important?</statement></exercise>
+<exercise number="20"><statement> A gardener has three flowering shrubs and four nonflowering shrubs. He must plant these shrubs in a row using an alternating pattern, that is, a shrub must be of a different type from that on either side. How many ways can he plant these shrubs? If he has to plant these shrubs in a circle using the same pattern, how many ways can he plant this circle? Note that one nonflowering shrub will be left out at the end.</statement></exercise>
+</exercisegroup>
+</exercises>
+</section>
+<section xml:id="permutations">
+<title>Permutations</title>
+<p>
+ A number of applications of the rule of products are of a specific type, and because of their frequent appearance they are given their own designation, permutations. Consider the following examples.
+</p>
+<example xml:id="ordering_a_set"><title>Ordering the elements of a set</title><p>How many different ways can we order the three different elements of the set <m>A = \{a, b, c\}</m>? Since we have three choices for position one, two choices for position two, and one choice for the third position, we have, by the rule of products, <m>3 \cdot 2 \cdot 1 = 6</m> different ways of ordering the three letters. We illustrate through a tree diagram.</p>
+
+<p>
+ <img src="HTMLFiles/XC2_3.gif" alt="XC2_3.gif" width="339" height="136" style="vertical-align:middle" />
+</p>
+<p>
+ Each of the six orderings is called a permutation of the set A.
+</p>
+</example>
+<example xml:id="ordering_a_schedule"><title>Ordering a schedule</title><p>A student is taking five courses in the fall semester. How many different ways can the five courses be listed? There are <m>5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 = 120</m> different permutations of the set of courses.</p>
+</example>
+<p>
+ In each of the above examples of the rule of products we observe that:
+<ol>
+<li>
+We are asked to order or arrange elements from a single set.</li>
+<li>
+Each element is listed exactly once in each list (permutation). So if there are n choices for position one in a list, there are n - 1 choices for position two, n - 2 choices for position three, etc.</li>
+</ol>
+</p>
+<example xml:id="some_orderings_of_a_baseball_team"><title>Some orderings of a baseball team</title><p>The alphabetical ordering of the players of a baseball team is one permutation of the set of players. Other orderings of the players' names might be done by batting average, age, or height. The information that determines the ordering is called the key. We would expect that each key would give a different permutation of the names. If there are twenty-five players on the team, there are <m>25 \cdot 24 \cdot 23 \cdot \cdots  \cdot 3 \cdot 2 \cdot 1</m> different permutations of the players.</p>
+<p>This number of permutations is huge. In fact it is 15511210043330985984000000, but writing it like this isn't all that instructive, while leaving it as a product as we originally had makes it easier to see where the number comes from.  We just need to find a more compact way of writing these products.</p>
+</example>
+<p>
+ We now develop notation that will be useful for permutation problems.
+</p>
+<definition xml:id="Definition-Factorial."><title>Factorial</title><statement><p> If <m>n</m> is a positive integer then <m>n</m> factorial is the product of the first <m>n</m> positive integers and is denoted <m>n!</m>. Additionally, we define zero factorial, <m>0!</m> to be 1.</p></statement>
+<notation><usage><m>n!</m></usage><description><m>n</m> factorial, the product of the first <m>n</m> postitive integers</description></notation>
+</definition>
+<p>The first few factorials are 
+<me>
+\begin{array}{ccccccccc}
+ \text{n} &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp;
+   7 \\
+ \text{n!} &amp; 1 &amp; 1 &amp; 2 &amp; 6 &amp; 24 &amp; 120 &amp;
+   720 &amp; 5040 \\
+\end{array}
+</me></p>
+<p>Note that <m>4!</m> is 4 times <m>3!</m>, or 24, and <m>5!</m> is 5 times <m>4!</m>, or 120. In addition, note that as n grows in size, <m>n!</m> grows extremely quickly. For example, <m>11! = 39916800</m>. If the answer to a problem happens to be <m>25!</m>, as in the previous example, you would never be expected to write that number out completely. However, a problem with an answer of <m>\frac{25!}{23!}</m> can be reduced to <m>25 \cdot 24</m>, or 600.</p>
+<p>
+ If <m>\lvert A \rvert = n </m>, there are <m>n!</m> ways of permuting all <m>n</m>  elements of <m>A</m> . We next consider the more general situation where we would like to permute <m>k</m> elements  out of a set of <m>n</m>  objects, where <m> k \leq n</m>.
+</p>
+<example xml:id="choosing-club-officers"><title>Choosing Club Officers</title><statement>A club of twenty-five members will hold an election for president, secretary, and treasurer in that order. Assume a person can hold only one position. How many ways are there of choosing these three officers? By the rule of products there are <m>25 \cdot 24 \cdot 23</m> ways of making a selection.</statement>
+</example>
+<definition xml:id="permutation"><title>Definition: Permutation</title><statement> An ordered arrangement of <m>k</m> elements selected from a set of <m>n</m> elements, <m>0 \leq k \leq  n</m>, where no two elements of the arrangement are the same, is called a permutation of <m>n</m> objects taken <m>k</m> at a time. The total number of such permutations is denoted by <m>P(n, k)</m>.
+</statement></definition>
+<theorem xml:id="permutations-counting-formula">
+ <title>Permutation Counting Formula</title>.<statement> The number of possible permutations of <m>k</m>  elements taken from a set of <m>n</m>  elements is
+ <me>P(n,k)=n \cdot (n-1) \cdot (n-2) \cdot  \cdots  \cdot (n-k+1) = \prod_{j=0}^{k-1} (n-j) = \frac{n!}{(n-k)!} </me>
+ </statement>
+<proof>
+<p>  Case I: If <m>k = m</m> we have <m>P(n,n)=n!=\frac{n!}{(n-n)!}</m>. </p>
+<p> Case II: If <m>0 \leq  k &lt; n</m>,then we have <m>k</m>  positions to fill using <m>n</m> elements and
+<ol>
+<li>
+ Position 1 can be filled by any one of <m>n-0=n</m>  elements
+</li>
+<li>
+ Position 2 can be filled by any one of <m>n-1</m>  elements
+</li>
+<li>
+ <m> \cdots </m>
+</li>
+<li>
+ Position k can be filled by any one of <m>n-(k-1)=n-k+1</m>  elements
+</li>
+</ol>
+</p>
+<p>Hence, by the rule of products, <me>P(n;k) = n \cdot(n - 1) \cdot (n - 2) \cdot \cdots \cdot (n - k + 1) = \frac{n!}{(n-k)!}</me>. </p>
+</proof>
+</theorem>
+<p>
+ It is important to note that the derivation of the permutation formula given above was done solely through the rule of products. This serves to reiterate our introductory remarks in this section that permutation problems are really rule-of-products problems.  We close this section with several examples.
+</p>
+<example xml:id="more_club_officers"><title>Another example of choosing officers</title><statement>
+<p>A club has eight members eligible to serve as president, vice-president, and treasurer. How many ways are there of choosing these officers?
+</p>
+<p>
+ Solution 1: Using the rule of products. There are eight possible choices for the presidency, seven for the vice-presidency, and six for the office of treasurer. By the rule of products there are <m>8 \cdot 7\cdot 6 = 336</m> ways of choosing these officers.
+</p>
+<p>
+ Solution 2: Using the permutation formula. We want the total number of permutations of eight objects taken three at a time:
+ 	<me>P(8,3)=\frac{8!}{(8-3)!}=8 \cdot 7 \cdot 6 = 336</me>
+</p>
+</statement>
+</example>
+<example xml:id="course-ordering-revisited">
+<title>Course ordering, revisited</title>
+<statement>To count the number of ways to order five courses, we can use the permutation formula. We want the number of permutations of five courses taken five at a time:
+<me>P(5,5)= \frac{5!}{(5-5)!}= 5!= 120</me>
+</statement></example>
+<example xml:id="ordering-digits"><title>Ordering of digits with and without repeats</title>
+<statement><p>Consider the digits 1, 2, 3, 4, and 5.
+<ol style='a'>
+<li> How many three-digit numbers can be formed if no repetition of digits can occur?</li>
+<li> How many three-digit numbers can be formed if repetition of digits is allowed?</li>
+</ol>
+</p>
+<p>
+ Solution to (a): Solution 1: Using the rule of products. We have any one of five choices for digit one, any one of four choices for digit two, and three choices for digit three. Hence, <m>5 \cdot 4 \cdot 3 = 60</m> different three-digit numbers can be formed.
+</p>
+<p>Solution 2; Using the permutation formula. We want the total number of permutations of five digits taken three at a time:
+ <me>P(5,3)=\frac{5!}{(5-3)!}=5 \cdot 4 \cdot 3 = 60</me></p>
+<p>Solution to (b): The definition of permutation indicates <q> ...no two elements in each list are the same.</q> Hence the permutation formula cannot be used. However, the rule of products still applies. We have any one of five choices for the first digit, five choices for the second, and five for the third. So there are <m>5 \cdot 5\cdot 5 = 125</m> possible different three-digit numbers if repetition is allowed.</p>
+</statement>
+</example>
+<exercises>
+<exercisegroup><title>A Exercises</title>
+<exercise number="1"><statement> If a raffle has three different prizes and there are 1,000 raffle tickets sold, how many different ways can the prizes be distributed?</statement></exercise>
+<exercise number="2"><statement> (a) How many three-digit numbers can be formed from the digits 1, 2, 3 if no repetition of digits is allowed? List the three-digit numbers.
+<p> (b) How many two-digit numbers can be formed if no repetition of digits is allowed? List them.</p>
+<p> (c) How many two-digit numbers can be obtained if repetition is allowed?</p>
+</statement></exercise>
+<exercise number="3"><statement> How many eight-letter words can be formed from the 26 letters in the alphabet? Even without concerning ourselves about whether the words make sense, there are two interpretations of this problem. Answer both.</statement></exercise>
+<exercise number="4"><statement><p> Let A be a set with <m> \lvert A \rvert = n </m>.
+Determine 
+<ol type="a">
+<li><m> \lvert A^3 \rvert </m></li>
+<li><m> \lvert \{ ( a, b, c) \mid \textrm{ each coordinate is different} \} \rvert </m></li>
+</ol>
+</p></statement></exercise>
+<exercise number="5"><statement> The state finals of a high school track meet involves fifteen schools. How many ways can these schools be listed in the program?</statement></exercise>
+<exercise number="6"><statement> Consider the three-digit numbers that can be formed from the digits 1, 2, 3, 4, and 5 with no repetition of digits allowed.
+   <p>(a) How many of these are even numbers?</p>
+   <p> (b) How many are greater than 250?</p>
+</statement></exercise>
+<exercise number="7"><statement>  (a) How many ways can the coach at Tall U. fill the five starting positions on a basketball team if each of his 15 players can play any position? (b) What is the answer if the center must be one of two players?</statement></exercise>
+<exercise number="8"><statement><ol type="a">
+<li>How many ways can a gardener plant five different species of shrubs in a circle?</li>
+<li>What is the answer if two of the shrubs are the same?</li>
+<li>What is the answer if all the shrubs are identical?</li>
+</ol>
+</statement></exercise>
+<exercise number="9"><statement> The president of the Math and Computer Club would like to arrange a meeting with six attendees, the president included. There will be three computer science majors and three math majors at the meeting. How many ways can the six people be seated at a circular table if the president does not want people with the same majors to sit next to one other?</statement></exercise>
+</exercisegroup>
+<exercisegroup><title>B Exercises</title>
+<exercise number="10"><statement> Six people apply for three identical jobs and all are qualified for the positions. Two will work in New York and the other one will work in San Diego. How many ways can the positions be filled?</statement></exercise>
+<exercise number="11"><statement>
+ Let <m>A = \{1, 2, 3, 4\} </m>. Determine the cardinality of
+ <ol type="a">
+<li><m>\{ (a_1,a_2) \mid a_1 \neq a_2 \}</m></li>
+<li>What is the answer to the previous part if <m>\lvert A \rvert = n</m></li>
+<li>If <m>\lvert A \rvert =n</m>, determine the number of <m>m</m>-tuples in <m>A</m>, <m>m \leq n</m>, where each coordinate is different from the other coordinates.</li>
+</ol>
+</statement></exercise>
+
+</exercisegroup>
+</exercises>
+</section>
+<section xml:id="Partitions-and-Law-of-Addition">
+<title>Partitions of Sets and the Law of Addition</title>
+<p>
+ One way of counting the number of students in your class would be to count the number in each row and to add these totals. Of course this problem is simple because there are no duplications, no person is sitting in two different rows. The basic counting technique that you used involves an extremely important first step, namely that of partitioning a set. The concept of a partition must be clearly understood before we proceed further.
+</p>
+<definition xml:id="partition">
+<title>Definition: Partition.</title><statement> A partition of set <m>A</m> is a set of one or more nonempty subsets of <m>A</m>: <m>A_1, A_2, A_3, \cdots</m>, such that every element of <m>A</m> is in exactly one set.  Symbolically, 
+<ol type="a">
+<li><m>A_1 \cup A_2 \cup A_3 \cup \cdots = A</m></li>
+<li>If  <m>i \neq j</m> then <m>A_i \cap A_j = \emptyset</m></li>
+</ol> 
+</statement></definition>
+<p>
+ The subsets in a partition are often referred to as blocks. Note how our definition allows us to partition infinite sets, and to partition a set into an infinite number of subsets. Of course, if <m>A</m>  is finite the number of subsets can be no larger than <m>|A|</m>.
+</p>
+<example xml:id="some-partitions-4"><title>Some partitions of a four element set</title>
+<statement>
+  Let <m>A = \{a, b, c, d\}</m>. Examples of partitions of <m>A</m>  are:
+<ul>
+<li> <m>\{\{a\}, \{b\}, \{c, d\}\}</m></li>
+<li> <m>\{\{a, b\}, \{c, d\}\}</m></li>
+<li> <m>\{\{a\}, \{b\}, \{c\}, \{d\}\}</m></li>
+</ul>
+<p>How many others are there, do you suppose?
+</p>
+<p>There are 15 different partitions.  The most efficient way to count them all is to classify them by the size of blocks.   For example, the partition <m>\{\{a\}, \{b\}, \{c, d\}\}</m> has block sizes 1, 1, and 2.
+</p> 
+</statement>
+</example>
+<example xml:id="some-integer-partitions"><title>Some Integer Partitions</title><statement><p>Two examples of partitions of set of integers <m>\mathbb{Z}</m> are 
+<ul>
+<li><m>\{\{n\} \mid n \in \mathbb{Z}\}</m> and</li>
+<li> <m>\{\{ n \in \mathbb{Z} \mid n &lt; 0\}, \{0\},\{ n \in \mathbb{Z} \mid 0 &lt; 0 \}\}</m>.</li>
+</ul></p>
+<p> The set of subsets <m>\{\{n \in \mathbb{Z} \mid n \geq 0\},\{n \in \mathbb{Z} \mid  n \leq 0\}\}</m> is not a partition because the two subsets have a nonempty intersection. A second example of a non-partition is 
+<m>\{\{n \in \mathbb{Z} \mid  \lvert n \rvert = k\} \mid k = -1, 0, 1, 2, \cdots\}</m> because one of the blocks, when <m>k=-1</m> is empty.</p></statement></example>
+<p>One could also think of the concept of partitioning a set as a <q>packaging problem.</q> How can one <q>package</q> a carton of, say, twenty-four cans? We could use: four six-packs, three eight-packs, two twelve-packs, etc. In all cases: (a) the sum of all cans in all packs must be twenty-four, and (b) a can must be in one and only one pack.
+</p>
+<subsection xml:id="basic-law-addition"><title>>Basic Law Of Addition:</title><p>If <m>A</m> is a finite set, and if <m>\{A_1,A_2,\ldots ,A_n\}</m> is a partition of <m>A</m> , then 
+<me>\lvert A \rvert = \lvert A_1 \rvert + \lvert A_2 \rvert + \cdots + \lvert A_n \rvert = \sum _{k=1}^n  \lvert A_k \rvert</me>
+</p>
+</subsection>
+<p>
+ The basic law of addition can be rephrased as follows: If <m>A</m>  is a finite set where <m>A_1 \cup A_2 \cup \cup \cdots \cup A_n = A</m> and where <m>A_i \cap A_j</m> whenever <m>i \neq j</m>, then
+ <me>\lvert A \rvert = \lvert A_1 \cup A_2 \cup \cup \cdots \cup A_n  \rvert = \lvert A_1 \rvert + \lvert A_2 \rvert + \cdots + \lvert A_n \rvert </me>
+</p>
+<example xml:id="counting-all-students"><title>Counting All Students</title><p>The number of students in a class could be determined by adding the numbers of students who are freshmen, sophomores, juniors, and seniors, and those who belong to none of these categories. However, you probably couldn't add the students by major, since some students may have double majors.
+</p></example>
+<example xml:id="student-counting-disjoint"><title>Counting Students in Disjoint Classes.</title>The sophomore computer science majors were told they must take one and only one of the following courses, Cryptography, Data Structures, or Javascript, in a given semester. The numbers in each course, respectively, for sophomore CS majors, were 75, 60, 55. How many sophomore C.S. majors are there? The Law of Addition applies here. There are exactly <m>75 + 60 + 55 = 190</m> CS majors since the rosters of the three courses listed above would be a partition of the CS majors
+</example>
+<example xml:id="student-counting-nondisjoint"><title>Counting Students in Non-disjoint Classes</title><p>It was determined that all junior computer science majors take at least one of the following courses: Algorithms, Logic Design, and Compiler Construction. Assume the number in each course was was 75, 60 and 55, respectively for the three courses listed. Further investigation indicated ten juniors took all three courses, twenty-five took Algorithms and Logic Design, twelve took Algorithms and Compiler Construction, and fifteen took Logic Design and Compiler Construction. How many junior C.S. majors are there?
+</p>
+<p><xref ref="student-counting-disjoint" /> was a simple application of the law of addition, however in this example some students are taking two or more courses, so a simple application of the law of addition would lead to double or triple counting. We rephrase information in the language of sets to describe the situation more explicitly.
+</p>
+<p>
+ <m>A</m> = the set of all junior computer science majors
+</p>
+<p>
+  <m>A_1</m> = the set of all junior computer science majors who took Algorithms
+</p>
+<p>
+  <m>A_2</m> = the set of all junior computer science majors who took Logic Design
+</p>
+<p>
+  <m>A_3</m> = the set of all junior computer science majors who took Compiler Construction
+</p>
+<p>
+ Since all sophomore CS majors must take at least one of the courses, the number we want is:
+ <me>\lvert A \rvert = \lvert A_1 \cup A_2 \cup A_3 \rvert = \lvert A_1 \rvert + \lvert A_2 \rvert + \lvert A_3 \rvert - \textrm{repeats}.</me>
+</p>
+<p>
+ A Venn diagram is helpful to visualize the problem. In this case the universal set <m>U</m>  can stand for any reasonable set, for example, the set of all students in the university.
+</p>
+           <figure xml:id="venn_diagram_CS_Students">
+                    <caption>Venn Diagram</caption>
+                    <image xml:id="sageplot-venn-CS_Students">
+                        <description>A three set Venn Diagram to solve the Junior CS student example.</description>
+                        <sageplot>
+								m=3
+								scale = 1.6
+								sx=3.5
+								sy=3.1
+								lfactor=2.9
+								cfactor=1.8
+								mfactor=1.2
+								centers = [(cos((n+1/4)*2*pi/m), sin((n+1/4)*2*pi/m)) for n in range(m)]
+								lcenters = [(lfactor*cos((n+1/4)*2*pi/m), lfactor*sin((n+1/4)*2*pi/m)) for n in range(m)]
+								ccenters = [(cfactor*cos((n+1/4)*2*pi/m), cfactor*sin((n+1/4)*2*pi/m)) for n in range(m)]
+								mcenters = [(mfactor*cos((n-1/6)*2*pi/m), mfactor*sin((n-1/6)*2*pi/m)) for n in range(m)]
+								clr = ['blue', 'blue', 'green']
+								G = Graphics()
+								for i in range(m):
+									G += circle(centers[i], scale)
+								for i in range(m):
+									G += circle(centers[i], scale)
+								G+=line([[-sx,-sy],[sx,-sy],[sx,sy],[-sx,sy],[-sx,-sy]],rgbcolor=(0,0,0))
+								G+=text('$A_2$',lcenters[0],fontsize='x-large')
+								G+=text('$A_1$',lcenters[1],fontsize='x-large')
+								G+=text('$A_3$',lcenters[2],fontsize='x-large')
+								G+=text('1',(0,0),fontsize='large')
+								G+=text('6',ccenters[1],fontsize='large')
+								G+=text('7',ccenters[0],fontsize='large')
+								G+=text('5',ccenters[2],fontsize='large')
+								G+=text('2',mcenters[2],fontsize='large')
+								G+=text('3',mcenters[1],fontsize='large')
+								G+=text('4',mcenters[0],fontsize='large')
+								G+=text('8',(-1.5*scale,-1.5*scale),fontsize='large')
+								G+=plot(0,(x,-0.00001,0.00001),axes=False)
+								G
+                        </sageplot>
+                    </image>
+                </figure>
+<p>
+ We see that the whole universal set is naturally partitioned into subsets that are labeled by the numbers 1 through 8, and the set <m>A</m>  is  partitioned into subsets labeled 1 through 7. The region labeled 8 represents all students who are not junior CS majors.  Note also that students in the subsets labeled 2,3, and 4 are double counted, and those in the subset labeled 1 are triple counted. To adjust, we must subtract the numbers in regions 2, 3 and 4.  This can be done by subtracting the numbers in the intersections of each pair of sets.  However, the individuals in region 1 will have been removed three times, just as they had been originally added three times.  Therefore, we must finally add the numbers in 
+</p>
+<p><me>\begin{split}
+ \lvert A \rvert &amp; =  \lvert A_1 \cup A_2 \cup A_3 \rvert \\ 
+ &amp; = \lvert A_1 \rvert + \lvert A_2 \rvert + \lvert A_3 \rvert - \textrm{repeats} \\
+ &amp; = \lvert A_1 \rvert + \lvert A_2 \rvert + \lvert A_3 \rvert - \textrm{duplicates} + \textrm{triplicates}  \\
+ &amp; = \lvert A_1 \rvert + \lvert A_2 \rvert + \lvert A_3 \rvert - (\lvert A_1 \cap A_2 \rvert + \lvert A_1 \cap A_3 \rvert+ \lvert A_2 \cap A_3 \rvert) + \lvert A_1 \cap A_2 \cap A_3 \rvert  \\
+ &amp; = 75 + 60 + 55 - 25 - 12 - 15 + 10 = 148 \\
+\end{split}
+</me>
+</p></example>
+<p>
+The ideas used in this latest example gives rise to a basic counting technique:
+</p>
+<subsection xml:id="inclusion-exclusion">
+ <title>Laws of Inclusion-Exclusion</title>
+<p>Given finite sets <m>A_1, A_2, A_3</m>, then
+<ol>
+<li><m> \lvert A_1 \cup A_2 \rvert =\lvert A_1 \rvert + \lvert A_2 \rvert - \lvert A_1 \cap A_2 \rvert  </m></li>
+<li><m>  \lvert A_1 \cup A_2 \cup A_3 \rvert =\lvert A_1 \rvert + \lvert A_2 \rvert + \lvert A_3 \rvert - (\lvert A_1 \cap A_2 \rvert + \lvert A_1 \cap A_3 \rvert+ \lvert A_2 \cap A_3 \rvert) + \lvert A_1 \cap A_2 \cap A_3 \rvert </m></li>
+</ol> 
+</p>
+</subsection>
+<p>
+ In this section we saw that being able to partition a set into disjoint subsets gives rise to a handy counting technique. Given a set, there are many ways to partition depending on what one would wish to accomplish. One natural partitioning of sets is apparent when one draws a Venn diagram. This particular partitioning of a set will be discussed further in Chapters 4 and 13.
+</p>
+<exercises xml:id="exercises-2-3">
+<title>Exercises for Section 2.3</title>
+<exercisegroup>
+<title>A Exercises</title>
+<exercise number="1"><statement> List all partitions of the set <m>A =\{a, b, c\}</m>.
+ </statement></exercise>
+<exercise number="2"><statement>Which of the following collections of subsets of the plane, <m> \mathbb{R}^2</m>, are partitions?
+<ol type="a">
+<li><m> \{ \{(x, y) \mid x + y = c \} \mid c \in \mathbb{R} \}</m></li>
+<li> The set of all circles in <m> \mathbb{R}^2 </m></li>
+<li> The set of all circles in <m>\mathbb{R}^2</m> centered at the origin together with the set <m>\{(0,0)\}</m></li>
+<li><m>\{\{(x, y)\} \mid (x, y) \in \mathbb{R}^2  \} </m></li>
+</ol></statement></exercise>
+<exercise number="3"><statement>A student, on an exam paper, defined the term partition the following way: &quot;Let <m>A</m>  be a set. A partition of <m>A</m> is any set of nonempty subsets <m>A_1, A_2, A_3, \dots</m>  of <m>A</m> such that each element of A is in one of the subsets.&quot;  Is this definition correct? Why?
+</statement>
+</exercise>
+<exercise number="4"><statement> Let <m>A_1</m> and <m>A_2</m> be subsets of a set <m>U</m>.   Draw a Venn diagram of this situation and shade in the subsets <m>A_1 \cap A_2</m>, <m>A_1^c \cap A_2</m>,<m>A_1 \cap A_2^c</m>,and <m>A_1^c \cap A_2^c</m> . Use the resulting diagram and the definition of partition to convince yourself that the subset of these four subsets that are nonempty form a partition of <m>U</m>.
+</statement></exercise>
+<exercise number="5">
+<statement> Show that <m>\{\{2 n | n \in \mathbb{Z}}, \{2 n + 1 | n \in \mathbb{Z}\}\}</m> is a partition of <m>\mathbb{Z}</m>. Describe this partition using only words.</statement></exercise>
+<exercise number="6"><statement> (a) A group of 30 students were surveyed and it was found that 18 of them took Calculus and 12 took Physics. If all students took at least one course, how many took both Calculus and Physics? Illustrate using a Venn diagram.\\
+ (b) What is the answer to the question in part (a) if five students did not take either of the two courses? Illustrate using a Venn diagram.
+</statement></exercise>
+<exercise number="7"><statement>
+ <p>A survey of 90 people, 47 of them played tennis and 42 of them swam. If 17 of the them participated in both activities, how many of them participated in neither.</p></statement></exercise>
+<exercise number="8"><statement>A survey of 300 people found that 60 owned an iPhone 75 owned an Blackberry, and 30 owned an Android. Furthermore, 40 owned both an iPhone and Blackberry, 12 owned both an iPhone and Android, and 8 owned a Blackberry and an Android. Finally, 3 owned all three phones.\\
+ (a) How many people surveyed owned none of the three phones?\\
+ (b) How many people owned an Blackberry but not an iPhone?\\
+ (c) How many owned a Blackberry but not an Android?\\
+</statement></exercise>
+</exercisegroup>
+<exercisegroup>
+<title>B Exercises</title>
+
+<exercise number="9"><statement> 
+ (a) Use Inclusion-exclusion Law 1 to derive Law 2. Note: a knowledge of basic set laws is needed for this exercise. \\
+ (b) State and derive the Inclusion-exclusion law for four sets.
+ </statement></exercise>
+<exercise number="10"><statement> To complete your spring schedule, you must add Calculus and Physics. At 9:30, there are three Calculus sections and two Physics sections; while at 11:30, there are two Calculus sections and three Physics sections.  How many ways can you complete your schedule if your only open periods are 9:30 and 11:30?</statement></exercise>
+</exercisegroup>
+<exercisegroup><title>C Exercise</title>
+<exercise number="11"><statement>The definition of <m>\mathbb{Q}  = \{a/b \mid a, b \in \mathbb{Z}, b \neq 0\}</m> given in Chapter 1 is  awkward. If we use the definition to list elements in <m>\mathbb{Q}</m>, we will have duplications such as <m>\frac{1}{2}</m>, <m>\frac{-2}{-4}</m> and <m>\frac{300}{600}</m>   Try to write a more precise definition of the rational numbers so that there is no duplication of elements.
+</statement></exercise>
+</exercisegroup>
+</exercises>
+</section>
+<section xml:id="combinations-and-the-binomial-theorem">
+<title>Combinations and the Binomial Theorem</title>
+<subsection xml:id="combinations">
+<title>Combinations</title>
+<p> In Section 2.1 we investigated the most basic concept in combinatorics, namely, the rule of products. Even though in this section we investigate other counting formulas, it is of paramount importance to keep this fundamental process in mind. In Section 2.2 we saw that a subclass of rule-of-products problems appears so frequently that we gave them a special designation, namely, permutations, and we derived a formula as a computational aid to assist us. In this section we will investigate another counting formula that are used to count combinations, which are subsets of a certain size..</p>
+<p>In many rule-of-products applications the permutation or order is important, as in the situation of the order of putting on one's socks and shoes; in some cases it is not important, as in placing coins in a vending machine or in the listing of the elements of a set. Order is important in permutations. Order is not important in combinations.</p>
+<example xml:id="counting-permuations-multiple-ways"><title>Counting Permutations Multiple Ways</title><statement>How many different ways are there to permute three letters from the set <m>A = \{a, b, c, d\}</m>?  From the <xref ref="permutations-counting-formula" autoname="title" /> there are <m>P(4,3)=\frac{4!}{(4-3)!} = 24</m> different orderings of three letters from <m>A</m> </statement></example>
+<example xml:id="four-choose-three"><title>three element subsets from a four element set</title> <statement>How many ways can we select a set of three letters from  <m>A = \{a, b, c, d\}</m>?  Note here that we are not concerned with the order of the three letters. By trial and error, abc, abd, acd, and bcd are the only listings possible. To repeat, we were looking for all three-element subsets of the set A. Order is not important in sets. The notation for choosing 3 elements from 4 is most commonly <m>\binom{4}{3}</m> or occasionally <m>C(4,3)</m>, either of which is read <q>4 choose 3</q> or the number of combinations for four objects taken three at a time.</statement>
+</example>
+<definition xml:id="binomial-coefficient"><title>Binomial Coefficient</title><statement><p>Let <m>n</m> and <m>k</m> be nonnegative integers.  The binomial coefficient <m>\binom{n}{k}</m> represents the number of combinations of <m>n</m> objects taken <m>k</m> at a time, and is read <q><m>n</m> choose <m>k</m>.</q></p></statement>
+<notation><m>\binom{n}{k}</m></notation>
+</definition>
+<p>We would now like to investigate the relationship between permutation and combination problems in order to derive a formula for <m>\binom{n}{k}</m></p>
+<p>Let us reconsider the <xref ref="four-choose-three" autoname="title" />. There are <m>3 ! = 6</m> different orderings for each of the three-element subsets. The table below lists each subset of <m>A</m>  and all permutations of each subset on the same line.
+<me>
+ \begin{array}{cc}
+ \textrm{subset} &amp; \textrm{permutations} \\
+ abc &amp; abc,acb,bca,bac,cab,cba \\
+ abd &amp; abd,adb,bda,bad,dab,dba \\
+ acd &amp; acd,adc,cda,cad,dac,dca \\
+ bcd &amp; bcd,bdc,cdb,cbd,dbc,dcb \\
+\end{array}
+ </me></p>
+<p> Hence, <m>\binom{4}{3} = \frac{P(4,3)}{3!} = \frac{4!}{(4-3)! \cdot 3!} = 4</m></p>
+<p> We generalize this result in the following theorem:</p>
+<theorem xml:id="binomial-coefficient-formula"><title>Binomial Coefficient Formula</title>
+<statement>
+If <m>n</m> and <m>k</m> are nonnegative integers with <m>0 \leq k \leq n</m>, then the number <m>k</m>-element subsets of an <m>n</m> element set is equal to <me>\binom{n}{k} = \frac{n!}{(n-k)! \cdot k!} </me></statement>
+<proof><p>Proof 1: There are <m>k!</m> ways of ordering the elements of any <m>k</m> element set.Therefore,
+<me>\binom{n}{k} = \frac{P(n,k)}{k!} = \frac{n!}{(n-k)! k!}.</me></p>
+<p>Proof 2: To <q>construct</q> a permutation of <m>k</m>  objects from a set of <m>n</m> elements, we can first choose one of the subsets of objects and second, choose one of the <m>k!</m>  permutations of those objects. By the rule of products,<me>P(n,k) = \binom{n}{k} \cdot k!</me> and solving for <m>\binom{n}{k}</m> we get the desired formula.</p></proof>
+</theorem> 
+<example xml:id="flipping-coins"><title>Flipping Coins</title><statement><p>  Assume an evenly balanced coin is tossed five times. In how many ways can three heads be obtained? This is a combination problem, because the order in which the heads appear does not matter. The number of ways to get three heads is <m>\binom{5}{3}= \frac{5 \cdot 4}{2 \cdot 1} = 10</m>.
+</p></statement></example>
+<example xml:id="five-flips"><title>Five Flips of a Coin</title> <statement><p>Determine the total number of ways a fair coin can land if tossed five times. The five tosses can produce any one of the following mutually exclusive, disjoint events: 5 heads, 4 heads, 3 heads, 2 heads, 1 head, or 0 heads. Hence by the law of addition we have:
+<me>\binom{5}{5}+\binom{5}{4}+\binom{5}{3}+\binom{5}{2}+\binom{5}{1}+\binom{5}{0}= 1 + 5 +10+10+5+1 = 32</me> ways to observe the five flips</p>
+<p> Of course, we could also have applied the extended rule of products, and since there are two possible outcomes for each of the five tosses, we have <m>2^5 = 32</m> ways.</p></statement></example>
+<p>You might think that counting something two ways is a waste of time but solving a problem two different ways often is instructive and leads to valuable insights. In this case, it suggests a general formula for the sum 
+<m>\sum_{k=0}^n \binom{n}{k}</m>. In the case of <m>n = 5</m>, we get <m>2^5</m> so it is reasonable to expect that the general sum is <m>2^n</m>, and it is.</p>
+<example xml:id="committee-of-five"><title>A Committee of Five</title><statement><p>A committee usually starts as an unstructured set of people selected from a larger membership. Therefore, a committee can be thought of as a combination. If a club of 25 members has a five-member social committee, there are <m>\binom{25}{5}=\frac{25 24 23 22 21}{5!} = 53130</m> different possible social committees. If any structure or restriction is placed on the way the social committee is to be selected, the number of possible committees will probably change. For example, if the club has a rule that the treasurer must be on the social committee, then the number of possibilities is reduced to <m>\binom{24}{4}=\frac{24 23 22 21}{4!} = 10626</m>. </p>
+<p> If we further require that a chairperson other than the treasurer be selected for the social committee, we have  <m>\binom{24}{4} \cdot 4 = 42504</m> different possible social committees. The choice of the four non-treasurers accounts for the factor <m>\binom{24}{4}</m> while the need to choose a chairperson accounts for the 4.</p></statement></example>
+<example xml:id="extreme-binomial-cases"><title>Binomial Coefficients - Extreme Cases</title><statement><p>By simply applying the definition of a <xref ref="binomial-coefficient" autoname="title" /> as a number of subsets we see that there is <m>\binom{n}{0} = 1</m> way of choosing a combination of zero elements from a set of <m>n</m>. In addition, we see that   there is <m>\binom{n}{n} = 1</m> way of choosing a combination of <m>n</m> elements from a set of <m>n</m>. </p>
+<p>We could compute these values using the formula we have developed, but no arithmetic is really needed here.  Other properties of binomial coefficients that can be derived using the subset definition will be seen in the exercises</p>
+</statement></example>
+</subsection>
+<subsection xml:id="the-binomial-theorem">
+<title>The Binomial Theorem</title>
+<p>
+ The binomial theorem gives us a formula for expanding <m>\( x + y \)^{n}</m>, where <m>n</m>  is a nonnegative integer. The coefficients of this expansion are precisely the binomial coefficients that we have used to count combinations. Using high school algebra we can  expand the expression for integers from 0 to 5:
+<table xml:id="pascal"><title>Pascal's Triangle</title>
+<tr><td> <me>
+ \begin{array}{cc}
+ n &amp; (x + y)^n \\
+ 0 &amp; 1 \\
+ 1 &amp; x+y \\
+ 2 &amp; x^2+2 x y+y^2 \\
+ 3 &amp; x^3+3 x^2 y+3 x y^2+y^3 \\
+ 4 &amp; x^4+4 x^3 y+6 x^2 y^2+4 x y^3+y^4
+   \\
+ 5 &amp; x^5+5 x^4 y+10 x^3 y^2+10 x^2
+   y^3+5 x y^4+y^5 \\
+\end{array}
+ </me>
+ </td>
+ <td>
+<image>\begin{tikzpicture}
+\foreach \n in {0,...,4} {
+  \foreach \k in {0,...,\n} {
+    \node at (\k-\n/2,-\n) {${\n \choose \k}$};
+  }
+}
+\end{tikzpicture}
+</image>
+ </td>
+ </tr>
+ </table></p>
+<p>In the expansion of <m>\( x + y \)^{5} </m>  we note that the coefficient of the third term is <m>\binom{5}{3} = 10</m>, and that of the sixth term is  <m>\binom{5}{5}=1</m>. We can rewrite the expansion as 
+<me>\binom{5}{0} x^5+\binom{5}{1} x^4 y+\binom{5}{2} x^3 y^2+\binom{5}{3} x^2 y^3+\binom{5}{4} x y^4+ \binom{5}{5} y^5
+</me></p>
+<p>
+ In summary, in the expansion of <m>\( x + y \)^{n}</m> we note:
+<ol>
+<li>The first term is <m>x^n</m> and the last term is <m>y^n</m>. </li>
+<li> With each successive term, exponents of <m>x</m> decrease by 1 as those of <m>y</m> increase by 1. For any term the sum of the exponents is <m>n</m>.</li>
+<li>  The coefficient of <m>x^{n-k} y^k</m> is <m>\binom{n}{k}</m>.</li>
+<li> The triangular array of numbers in <xref ref="pascal" /> is called Pascal's triangle after the seventeenth-century French mathematician Blaise Pascal. Note that each number in the triangle other than the 1's at the ends of each row is the sum of the two numbers to the right and left of it in the row above.</li></ol>
+</p>
+<theorem xml:id="binomial-theorem"><title>The Binomial Theorem</title>
+<statement> If <m>n \geq  0</m>, and <m>x</m> and <m>y</m> are numbers, then
+<me>(x+y)^{n} = \sum_{k=0}^n \binom{n}{k} x^{n-k} y^k</me>
+</statement>
+<proof>This theorem will proven using a procedure called mathematical induction, which will be introduced in Chapter 3. </proof>
+</theorem>
+<example xml:id="term-in-an-expansion"><title>Identifying a term in an expansion</title><p>Find the third term in the expansion of <m>( x-y )^{4}</m>. The third term (when <m>k=2</m>) is <m>\binom{4}{2} x^(4-2) y^2 = 6 x^2 y^2</m>.</p>
+</example>
+<example xml:id="a-full-expansion"><title>A Binomial Expansion</title><statement>
+Expand <m>(3 x - 2 )^{3}</m>.  If we replace <m>x</m>  and <m>y</m>  in the Binomial Theorem with <m>3x</m> and <m>-2</m>, respectively, we get
+<me>\begin{split} 
+\sum_{k=0}^3 \binom{3}{k} (3x)^{n-k} (-2)^k = \binom{3}{0} (3x)^{3} (-2)^0 + \binom{3}{1} (3x)^{2} (-2)^1 + \binom{3}{2} (3x)^{1} (-2)^2 + \binom{3}{3} (3x)^{0} (-2)^3 \\
+&amp; = 27 x^3 - 54 x^2 + 36 x - 8 
+\end{split}
+</me>
+</statement></example>
+</subsection>
+<subsection xml:id="mathematica-binomial"><title> <em>Mathematica</em>  Note</title>
+<p><em>Mathematica</em>  has a built-in function for binomial coefficients, <m>\texttt{Binomial}</m>. Unlike the examples we've concentrated on that can be done without technology, you can compute extremely large values. For 
+example, a bridge hand is a 13 element subset of a standard 52 card deck. The order in which the cards come to the player doesn't matter. From the point of view of a single player, the number of possible bridge hands is <m>\texttt{Binomial[52,13]}</m>, which is easily computed with <m>Mathematica</m> with an output of 635013559600</p>
+<p>In bridge, the location of a hand in relation to the dealer has some bearing on the game. An even truer indication of the number of possible hands takes into account <m>each</m>  player's possible hand. It is customary 
+to refer to bridge positions as West, North, East and South. We can apply the rule of product to get the total number of bridge hands with the following logic. West can get any of the <m>\binom{52}{13}</m> hands identified above. Then North get 13 of the remaining 39 cards and so has  <m>\binom{39}{13}</m> possible hands. East then gets 13 of the 26 remaining cards, which has <m>\binom{26}{13}</m>  possibilities. South gets the remaining cards. Therefore the number of bridge hands is computed by evaluating the expression <me>\texttt{Binomial\[52,13\] Binomial\[52,13\] Binomial\[52,13\]}</me> which is equal to 53644737765488792839237440000</p>
+</subsection>
+<subsection  xml:id="sage-bridge-hands"><title>Sage Note</title>
+<p>
+ Sage will do the same calculations for bridge hands just as easily. A correct input is provided in the sage cell below.  Click on the evaluate button to see the output.
+</p>
+<sage>
+<input>
+binomial(52,13)*binomial(39,13)*binomial(26,13)
+</input>
+</sage>
+</subsection>
+<exercises xml:id="exercises-2-4">
+<exercisegroup><title>A Exercises</title>
+<exercise number="1"><statement> The judiciary committee at a college is made up of three faculty members and four students. If ten faculty members and 25 students have been nominated for the committee, how many judiciary committees are possible?</statement></exercise>
+<exercise number="2"><statement> Suppose that a single character is stored in a computer using eight bits.
+<p> (a) How many bit patterns have exactly three 1 's?</p>
+<p> (b) How many bit patterns have at least two 1 's?</p>
+</statement></exercise>
+<exercise number="3"><statement> How many subsets of <m>\{1, 2, 3, \dots , 10\}</m> contain at least seven elements?</statement></exercise>
+<exercise number="4"><statement> The congressional committees on mathematics and computer science are made up of five congressmen each, and a congressional rule is that the two committees must be disjoint. If there are 385 members of congress, how many ways could the committees be selected?
+  </statement></exercise>
+<exercise number="5"><statement>Expand <m> \( 2x - 3y \)^4</m></statement></exercise>
+<exercise number="6"><statement>Find the fourth term of the expansion of <m>\(x -2y\)^6</m>.</statement></exercise>
+<exercise number="7"><statement> 
+<p>(a) A poker game is played with 52 cards. How many <q>hands</q> of five cards are possible?</p>
+<p>(b) If there are four people playing, how many five-card <q>hands</q> are possible on the first deal?</p>
+</statement></exercise>
+<exercise number="8"><statement> A flush in a five-card poker hand is five cards of the same suit. How many spade flushes are possible in a 52-card deck? How many flushes are possible in any suit?</statement></exercise>
+<exercise number="9"><statement> How many five-card poker hands using 52 cards contain exactly two aces?</statement></exercise>
+<exercise number="10"><statement>  In poker, a full house is three-of-a-kind and a pair in one hand; for example, three fives and two queens. How many full houses are possible from a 52- card deck?</statement></exercise>
+<exercise number="11"><statement> A class of twelve computer science students are to be divided into three groups of 3, 4, and 5 students to work on a project. How many ways can this be done if every student is to be in exactly one group?</statement></exercise>
+</exercisegroup>
+<exercisegroup>
+<title>B Exercises</title>
+<exercise number="12"><statement> Explain in words why the following equalities are true based on number of subsets,  and then verify the equalities using the formula for binomial coefficients.
+<ol type="a">
+<li><m>\binom{n}{1} = n</m> </li>
+<li><m>\binom{n}{k} = \binom{n}{n-k}</m>, <m> 0 \leq k \leq n</m></li>
+</ol>
+</statement></exercise>
+<exercise number="13"><statement><p>  There are ten points, <m>P_1, P_2, \dots , P_{10}</m> on a plane, no three on the same line.</p>
+<ol type="a">
+<li>How many lines are determined by the points?</li>
+<li> How many triangles are determined by the points?</li>
+</ol>
+</statement></exercise>
+<exercise number="14"><statement> How many ways can <m>n</m>  persons be grouped into pairs when <m>n</m>  is even? Assume the order of the pairs matters, but not the order within the pairs. For example, if <m>n=4</m>, the six different groupings would be
+<me>\begin{array}{cc}
+ \{1,2\} &amp; \{3,4\} \\
+ \{1,3\} &amp; \{2,4\} \\
+ \{1,4\} &amp; \{2,3\} \\
+ \{2,3\} &amp; \{1,4\} \\
+ \{2,4\} &amp; \{1,3\} \\
+ \{3,4\} &amp; \{1,2\} \\
+\end{array}
+</me> 
+</statement></exercise>
+<exercise number="15"><statement> Use the binomial theorem to prove that if <m>A</m> is a finite set, then 
+<m>\mathscr{P}\( A \) = 2^{\lvert A \rvert}</m></statement></exercise>
+<exercise number="16"><statement> 
+<ol type="a">
+<li>A state's lottery involves choosing six different numbers out of a possible 36. How many ways can a person choose six numbers?</li>
+<li>What is the probability of a person winning with one bet?</li>
+</ol></statement></exercise>
+<exercise number="17"><statement>Use the binomial theorem to calculate <m>9998^3</m>.</statement>
+<hint><m>9998 = 10000-2</m></hint></exercise>
+<exercise number="18"><statement> Suppose two gamblers are playing poker and are dealt five cards each. 
+Determine the number of possible ways the hands could be dealt. Assume, as in bridge, the order of the hands, but not the cards in the hands, matters. You can use the sage cell in the <xref ref="sage-bridge-hands" autoname="title" /> to do this calculation. </statement></exercise>
+</exercisegroup>
+</exercises>
+</section>
+</chapter>
