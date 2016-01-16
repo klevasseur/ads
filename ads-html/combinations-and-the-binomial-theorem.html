@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--* Generated from MathBook XML source *-->
+<!--*    on 2016-01-16T13:04:21-05:00    *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ADS Combinations and the Binomial Theorem</title>
+<meta name="Keywords" content="Authored in MathBook XML">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']],
+    },
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js", "http://aimath.org/mathbook/mathjaxknowl.js", ],
+        equationNumbers: { autoNumber: "none",
+                           useLabelIds: true,
+                           formatID: function (n) {return String(n).replace(/[:'"<>&]/g,"")},
+                         },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    "HTML-CSS": {
+        scale: 88,
+    },
+});
+    </script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><script type="text/javascript" src="http://sagecell.sagemath.org/static/jquery.min.js"></script><script type="text/javascript" src="http://sagecell.sagemath.org/embedded_sagecell.js"></script><script>
+$(function () {
+    // Make *any* div with class 'sage-compute' an executable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-compute',
+                           linked: true,
+                           evalButtonText: 'Evaluate'});
+});
+$(function () {
+    // Make *any* div with class 'sage-display' a visible, uneditable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-display',
+                           editor: 'codemirror-readonly',
+                           hide: ['evalButton', 'editorToggle', 'language']});
+});
+    </script><script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script><link href="http://aimath.org/knowlstyle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://aimath.org/knowl.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.sticky.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.espy.min.js"></script><script src="http://aimath.org/mathbook/js/Mathbook.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic%7CSource+Code+Pro:400" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/stylesheets/mathbook-3.css" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/mathbook-add-on.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<div style="display:none;">\(
+\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+    \)</div>
+<header id="masthead"><div class="banner"><div class="container">
+<a id="logo-link" href="http://faculty.uml.edu/klevasseur/ADS2" target="_blank"><img src="http://faculty.uml.edu/klevasseur/ads2/images/ads_v2_cover.jpg"></a><div class="title-container">
+<h1 class="heading"><span class="title">Applied Discrete Structures</span></h1>
+<p class="byline">Al Doerr, Ken Levasseur</p>
+</div>
+</div></div>
+<nav id="primary-navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="previous-button toolbar-item button" href="Partitions-and-Law-of-Addition.html">Previous</a><a class="up-button button toolbar-item" href="combinatorics.html">Up</a><span class="next-button button toolbar-item disabled">Next</span>
+</div>
+<button class="sidebar-right-toggle-button button active">Annotations</button>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="Partitions-and-Law-of-Addition.html">Previous</a><a class="up-button button toolbar-item" href="combinatorics.html">Up</a><span class="next-button button toolbar-item disabled">Next</span>
+</div>
+</div></nav></header><div class="page">
+<aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
+<nav id="toc"><h2 class="link"><a href="index.html"><span class="title">Front Matter</span></a></h2>
+<ul>
+<li><a href="colophon-1.html">Colophon</a></li>
+<li><a href="acknowledgement-1.html">Acknowledgements</a></li>
+<li><a href="preface-1.html">Preface</a></li>
+</ul>
+<h2 class="link"><a href="chapter-1.html"><span class="codenumber">1</span><span class="title">Set Theory I</span></a></h2>
+<ul>
+<li><a href="Set-Notation-and-Relations.html">Set Notation and Relations </a></li>
+<li><a href="Basic_Set_Operations.html">Basic Set Operations  </a></li>
+<li><a href="Cartesian_Products_and_Power_Sets.html">Cartesian Products and Power Sets</a></li>
+<li><a href="Binary_Representation_of_Positive_Integers%20.html">Binary Representation of Positive Integers </a></li>
+<li><a href="Summation_Notation_and_Generalizations%20.html">Summation Notation and Generalizations </a></li>
+</ul>
+<h2 class="link active"><a href="combinatorics.html"><span class="codenumber">2</span><span class="title">Combinatorics</span></a></h2>
+<ul>
+<li><a href="the-rule-of-products.html">Basic Counting Techniques - The Rule of Products</a></li>
+<li><a href="permutations.html">Permutations</a></li>
+<li><a href="Partitions-and-Law-of-Addition.html">Partitions of Sets and the Law of Addition</a></li>
+<li><a href="combinations-and-the-binomial-theorem.html" class="active">Combinations and the Binomial Theorem</a></li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a><a href="http://www.mathjax.org"><img title="Powered by MathJax" src="http://cdn.mathjax.org/mathjax/badge/badge.gif" border="0" alt="Powered by MathJax"></a></nav></div>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="combinations-and-the-binomial-theorem"><header><h1 class="heading" alt="Section 2.4 Combinations and the Binomial Theorem" title="Section 2.4 Combinations and the Binomial Theorem">
+<span class="type">Section</span><span class="codenumber">2.4</span><span class="title">Combinations and the Binomial Theorem</span>
+</h1></header><section class="subsection" id="combinations"><header><h1 class="heading hide-type">
+<span class="type">Subsection</span><span class="codenumber">2.4.1</span><span class="title">Combinations</span>
+</h1></header><p> In Section 2.1 we investigated the most basic concept in combinatorics, namely, the rule of products. Even though in this section we investigate other counting formulas, it is of paramount importance to keep this fundamental process in mind. In Section 2.2 we saw that a subclass of rule-of-products problems appears so frequently that we gave them a special designation, namely, permutations, and we derived a formula as a computational aid to assist us. In this section we will investigate another counting formula that are used to count combinations, which are subsets of a certain size..</p>
+<p>In many rule-of-products applications the permutation or order is important, as in the situation of the order of putting on one's socks and shoes; in some cases it is not important, as in placing coins in a vending machine or in the listing of the elements of a set. Order is important in permutations. Order is not important in combinations.</p>
+<div class="hidden-knowl-wrapper"><a knowl="" class="id-ref" refid="hk-counting-permuations-multiple-ways" id="counting-permuations-multiple-ways"><article class="example-like"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">2.4.1</span><span class="title">Counting Permutations</span>
+</h5></article></a></div>
+<div id="hk-counting-permuations-multiple-ways" style="display: none;" class="tex2jax_ignore"><article class="example-like">How many different ways are there to permute three letters from the set \(A = \{a, b, c, d\}\)?  From the <a knowl="./knowl/permutations-counting-formula.html" knowl-id="xref-permutations-counting-formula" alt="Theorem 2.2.8 Permutation Counting Formula" title="Theorem 2.2.8 Permutation Counting Formula">Permutation Counting Formula</a> there are \(P(4,3)=\frac{4!}{(4-3)!} = 24\) different orderings of three letters from \(A\)</article></div>
+<div class="hidden-knowl-wrapper"><a knowl="" class="id-ref" refid="hk-four-choose-three" id="four-choose-three"><article class="example-like"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">2.4.2</span><span class="title">Counting with No Order</span>
+</h5></article></a></div>
+<div id="hk-four-choose-three" style="display: none;" class="tex2jax_ignore"><article class="example-like">How many ways can we select a set of three letters from  \(A = \{a, b, c, d\}\)?  Note here that we are not concerned with the order of the three letters. By trial and error, abc, abd, acd, and bcd are the only listings possible. To repeat, we were looking for all three-element subsets of the set A. Order is not important in sets. The notation for choosing 3 elements from 4 is most commonly \(\binom{4}{3}\) or occasionally \(C(4,3)\), either of which is read “4 choose 3” or the number of combinations for four objects taken three at a time.</article></div>
+<article class="definition-like" id="binomial-coefficient"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">2.4.3</span><span class="title">Binomial Coefficient</span>
+</h5>
+<p>Let \(n\) and \(k\) be nonnegative integers.  The binomial coefficient \(\binom{n}{k}\) represents the number of combinations of \(n\) objects taken \(k\) at a time, and is read “\(n\) choose \(k\).”</p>
+<span id="notation-9"></span></article><p>We would now like to investigate the relationship between permutation and combination problems in order to derive a formula for \(\binom{n}{k}\)</p>
+<p>Let us reconsider the <a knowl="./knowl/four-choose-three.html" knowl-id="xref-four-choose-three" alt="Example 2.4.2 Counting with No Order" title="Example 2.4.2 Counting with No Order">Counting with No Order</a>. There are \(3 ! = 6\) different orderings for each of the three-element subsets. The table below lists each subset of \(A\)  and all permutations of each subset on the same line.
+<span class="displaymath" id="me-20">\[
+ \begin{array}{cc}
+ \textrm{subset} &amp; \textrm{permutations} \\
+ abc &amp; abc,acb,bca,bac,cab,cba \\
+ abd &amp; abd,adb,bda,bad,dab,dba \\
+ acd &amp; acd,adc,cda,cad,dac,dca \\
+ bcd &amp; bcd,bdc,cdb,cbd,dbc,dcb \\
+\end{array}
+ \]</span></p>
+<p> Hence, \(\binom{4}{3} = \frac{P(4,3)}{3!} = \frac{4!}{(4-3)! \cdot 3!} = 4\)</p>
+<p> We generalize this result in the following theorem:</p>
+<article class="theorem-like" id="binomial-coefficient-formula"><h5 class="heading">
+<span class="type">Theorem</span><span class="codenumber">2.4.4</span><span class="title">Binomial Coefficient Formula</span>
+</h5>
+If \(n\) and \(k\) are nonnegative integers with \(0 \leq k \leq n\), then the number \(k\)-element subsets of an \(n\) element set is equal to <span class="displaymath" id="me-21">\[\binom{n}{k} = \frac{n!}{(n-k)! \cdot k!} \]</span></article><div class="hidden-knowl-wrapper"><a knowl="" class="id-ref" refid="hk-proof-3" id="proof-3"><article class="hiddenproof"><h5 class="heading"><span class="type">Proof</span></h5></article></a></div>
+<div id="hk-proof-3" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof"><p>Proof 1: There are \(k!\) ways of ordering the elements of any \(k\) element set.Therefore,
+<span class="displaymath" id="me-22">\[\binom{n}{k} = \frac{P(n,k)}{k!} = \frac{n!}{(n-k)! k!}.\]</span></p>
+<p>Proof 2: To “construct” a permutation of \(k\)  objects from a set of \(n\) elements, we can first choose one of the subsets of objects and second, choose one of the \(k!\)  permutations of those objects. By the rule of products,<span class="displaymath" id="me-23">\[P(n,k) = \binom{n}{k} \cdot k!\]</span> and solving for \(\binom{n}{k}\) we get the desired formula.</p></article></div>
+<div class="hidden-knowl-wrapper"><a knowl="" class="id-ref" refid="hk-flipping-coins" id="flipping-coins"><article class="example-like"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">2.4.5</span><span class="title">Flipping Coins</span>
+</h5></article></a></div>
+<div id="hk-flipping-coins" style="display: none;" class="tex2jax_ignore"><article class="example-like"><p>  Assume an evenly balanced coin is tossed five times. In how many ways can three heads be obtained? This is a combination problem, because the order in which the heads appear does not matter. The number of ways to get three heads is \(\binom{5}{3}= \frac{5 \cdot 4}{2 \cdot 1} = 10\).
+</p></article></div>
+<div class="hidden-knowl-wrapper"><a knowl="" class="id-ref" refid="hk-five-flips" id="five-flips"><article class="example-like"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">2.4.6</span><span class="title">Listing Five Flips, taking order into account</span>
+</h5></article></a></div>
+<div id="hk-five-flips" style="display: none;" class="tex2jax_ignore"><article class="example-like"><p>Determine the total number of ways a fair coin can land if tossed five consecutive times. The five tosses can produce any one of the following mutually exclusive, disjoint events: 5 heads, 4 heads, 3 heads, 2 heads, 1 head, or 0 heads. Hence by the law of addition we have:
+<span class="displaymath" id="me-24">\[\binom{5}{5}+\binom{5}{4}+\binom{5}{3}+\binom{5}{2}+\binom{5}{1}+\binom{5}{0}= 1 + 5 +10+10+5+1 = 32\]</span> ways to observe the five flips</p>
+<p> Of course, we could also have applied the extended rule of products, and since there are two possible outcomes for each of the five tosses, we have \(2^5 = 32\) ways.</p></article></div>
+<p>You might think that counting something two ways is a waste of time but solving a problem two different ways often is instructive and leads to valuable insights. In this case, it suggests a general formula for the sum 
+\(\sum_{k=0}^n \binom{n}{k}\). In the case of \(n = 5\), we get \(2^5\) so it is reasonable to expect that the general sum is \(2^n\), and it is.</p>
+<div class="hidden-knowl-wrapper"><a knowl="" class="id-ref" refid="hk-committee-of-five" id="committee-of-five"><article class="example-like"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">2.4.7</span><span class="title">A Committee of Five</span>
+</h5></article></a></div>
+<div id="hk-committee-of-five" style="display: none;" class="tex2jax_ignore"><article class="example-like"><p>A committee usually starts as an unstructured set of people selected from a larger membership. Therefore, a committee can be thought of as a combination. If a club of 25 members has a five-member social committee, there are \(\binom{25}{5}=\frac{25 24 23 22 21}{5!} = 53130\) different possible social committees. If any structure or restriction is placed on the way the social committee is to be selected, the number of possible committees will probably change. For example, if the club has a rule that the treasurer must be on the social committee, then the number of possibilities is reduced to \(\binom{24}{4}=\frac{24 23 22 21}{4!} = 10626\). </p>
+<p> If we further require that a chairperson other than the treasurer be selected for the social committee, we have  \(\binom{24}{4} \cdot 4 = 42504\) different possible social committees. The choice of the four non-treasurers accounts for the factor \(\binom{24}{4}\) while the need to choose a chairperson accounts for the 4.</p></article></div>
+<div class="hidden-knowl-wrapper"><a knowl="" class="id-ref" refid="hk-extreme-binomial-cases" id="extreme-binomial-cases"><article class="example-like"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">2.4.8</span><span class="title">Binomial Coefficients - Extreme Cases</span>
+</h5></article></a></div>
+<div id="hk-extreme-binomial-cases" style="display: none;" class="tex2jax_ignore"><article class="example-like"><p>By simply applying the definition of a <a knowl="./knowl/binomial-coefficient.html" knowl-id="xref-binomial-coefficient" alt="Definition 2.4.3 Binomial Coefficient" title="Definition 2.4.3 Binomial Coefficient">Binomial Coefficient</a> as a number of subsets we see that there is \(\binom{n}{0} = 1\) way of choosing a combination of zero elements from a set of \(n\). In addition, we see that   there is \(\binom{n}{n} = 1\) way of choosing a combination of \(n\) elements from a set of \(n\). </p>
+<p>We could compute these values using the formula we have developed, but no arithmetic is really needed here.  Other properties of binomial coefficients that can be derived using the subset definition will be seen in the exercises</p></article></div></section><section class="subsection" id="the-binomial-theorem"><header><h1 class="heading hide-type">
+<span class="type">Subsection</span><span class="codenumber">2.4.2</span><span class="title">The Binomial Theorem</span>
+</h1></header><p>
+ The binomial theorem gives us a formula for expanding \(\( x + y \)^{n}\), where \(n\)  is a nonnegative integer. The coefficients of this expansion are precisely the binomial coefficients that we have used to count combinations. Using high school algebra we can  expand the expression for integers from 0 to 5:
+<figure class="figure-like" id="pascal">Pascal's Triangle <span class="displaymath" id="me-25">\[
+ \begin{array}{cc}
+ n &amp; (x + y)^n \\
+ 0 &amp; 1 \\
+ 1 &amp; x+y \\
+ 2 &amp; x^2+2 x y+y^2 \\
+ 3 &amp; x^3+3 x^2 y+3 x y^2+y^3 \\
+ 4 &amp; x^4+4 x^3 y+6 x^2 y^2+4 x y^3+y^4
+   \\
+ 5 &amp; x^5+5 x^4 y+10 x^3 y^2+10 x^2
+   y^3+5 x y^4+y^5 \\
+\end{array}
+ \]</span>
+ 
+ 
+
+ 
+ </figure></p>
+<p>In the expansion of \(( x + y )^{5} \)  we note that the coefficient of the third term is \(\binom{5}{3} = 10\), and that of the sixth term is  \(\binom{5}{5}=1\). We can rewrite the expansion as 
+<span class="displaymath" id="me-26">\[\binom{5}{0} x^5+\binom{5}{1} x^4 y+\binom{5}{2} x^3 y^2+\binom{5}{3} x^2 y^3+\binom{5}{4} x y^4+ \binom{5}{5} y^5
+\]</span></p>
+<p>
+ In summary, in the expansion of \(( x + y )^{n}\) we note:
+<ol style="list-style-type: decimal;">
+<li id="li-238">The first term is \(x^n\) and the last term is \(y^n\). </li>
+<li id="li-239"> With each successive term, exponents of \(x\) decrease by 1 as those of \(y\) increase by 1. For any term the sum of the exponents is \(n\).</li>
+<li id="li-240">  The coefficient of \(x^{n-k} y^k\) is \(\binom{n}{k}\).</li>
+<li id="li-241"> The triangular array of numbers in <a knowl="./knowl/pascal.html" knowl-id="xref-pascal" alt="Table  Pascal's Triangle" title="Table  Pascal's Triangle"></a> is called Pascal's triangle after the seventeenth-century French mathematician Blaise Pascal. Note that each number in the triangle other than the 1's at the ends of each row is the sum of the two numbers to the right and left of it in the row above.</li>
+</ol>
+</p>
+<article class="theorem-like" id="binomial-theorem"><h5 class="heading">
+<span class="type">Theorem</span><span class="codenumber">2.4.9</span><span class="title">The Binomial Theorem</span>
+</h5> If \(n \geq  0\), and \(x\) and \(y\) are numbers, then
+<span class="displaymath" id="me-27">\[(x+y)^{n} = \sum_{k=0}^n \binom{n}{k} x^{n-k} y^k\]</span></article><div class="hidden-knowl-wrapper"><a knowl="" class="id-ref" refid="hk-proof-4" id="proof-4"><article class="hiddenproof"><h5 class="heading"><span class="type">Proof</span></h5></article></a></div>
+<div id="hk-proof-4" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">This theorem will proven using a procedure called mathematical induction, which will be introduced in Chapter 3. </article></div>
+<div class="hidden-knowl-wrapper"><a knowl="" class="id-ref" refid="hk-term-in-an-expansion" id="term-in-an-expansion"><article class="example-like"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">2.4.10</span><span class="title">Identifying a term in an expansion</span>
+</h5></article></a></div>
+<div id="hk-term-in-an-expansion" style="display: none;" class="tex2jax_ignore"><article class="example-like"><p>Find the third term in the expansion of \(( x-y )^{4}\). The third term,  when \(k=2\), is \(\binom{4}{2} x^{4-2} y^2 = 6 x^2 y^2\).</p></article></div>
+<div class="hidden-knowl-wrapper"><a knowl="" class="id-ref" refid="hk-a-full-expansion" id="a-full-expansion"><article class="example-like"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">2.4.11</span><span class="title">A Binomial Expansion</span>
+</h5></article></a></div>
+<div id="hk-a-full-expansion" style="display: none;" class="tex2jax_ignore"><article class="example-like">
+Expand \((3 x - 2 )^{3}\).  If we replace \(x\)  and \(y\)  in the Binomial Theorem with \(3x\) and \(-2\), respectively, we get
+<span class="displaymath" id="me-28">\[\begin{split} 
+\sum_{k=0}^3 \binom{3}{k} (3x)^{n-k} (-2)^k = \binom{3}{0} (3x)^{3} (-2)^0 + \binom{3}{1} (3x)^{2} (-2)^1 + \binom{3}{2} (3x)^{1} (-2)^2 + \binom{3}{3} (3x)^{0} (-2)^3 \\
+&amp; = 27 x^3 - 54 x^2 + 36 x - 8 
+\end{split}
+\]</span></article></div></section><section class="subsection" id="mathematica-binomial"><header><h1 class="heading hide-type">
+<span class="type">Subsection</span><span class="codenumber">2.4.3</span><span class="title"> <!--Style me with CSS--><em>Mathematica</em>  Note</span>
+</h1></header><p><!--Style me with CSS--><em>Mathematica</em>  has a built-in function for binomial coefficients, \(\texttt{Binomial}\). Unlike the examples we've concentrated on that can be done without technology, you can compute extremely large values. For 
+example, a bridge hand is a 13 element subset of a standard 52 card deck. The order in which the cards come to the player doesn't matter. From the point of view of a single player, the number of possible bridge hands is \(\texttt{Binomial[52,13]}\), which is easily computed with \(Mathematica\) with an output of 635013559600</p>
+<p>In bridge, the location of a hand in relation to the dealer has some bearing on the game. An even truer indication of the number of possible hands takes into account \(each\)  player's possible hand. It is customary 
+to refer to bridge positions as West, North, East and South. We can apply the rule of product to get the total number of bridge hands with the following logic. West can get any of the \(\binom{52}{13}\) hands identified above. Then North get 13 of the remaining 39 cards and so has  \(\binom{39}{13}\) possible hands. East then gets 13 of the 26 remaining cards, which has \(\binom{26}{13}\)  possibilities. South gets the remaining cards. Therefore the number of bridge hands is computed by evaluating the expression <span class="displaymath" id="me-29">\[\texttt{Binomial\[52,13\] Binomial\[52,13\] Binomial\[52,13\]}\]</span> which is equal to 53644737765488792839237440000</p></section><section class="subsection" id="sage-bridge-hands"><header><h1 class="heading hide-type">
+<span class="type">Subsection</span><span class="codenumber">2.4.4</span><span class="title">Sage Note</span>
+</h1></header><p>
+ Sage will do the same calculations for bridge hands just as easily. A correct input is provided in the sage cell below.  Click on the evaluate button to see the output.
+</p>
+<div class="sage-compute"><script type="text/x-sage">binomial(52,13)*binomial(39,13)*binomial(26,13)
+</script></div></section><section class="exercises" id="exercises-2-4"><header><h1 class="heading hide-type">
+<span class="type">Subsection</span><span class="codenumber">2.4.5</span><span class="title">Exercises</span>
+</h1></header><div class="exercisegroup" id="exercisegroup-17">A Exercises<article class="exercise-like" id="exercise-84"><h5 class="heading"><span class="codenumber">1</span></h5> The judiciary committee at a college is made up of three faculty members and four students. If ten faculty members and 25 students have been nominated for the committee, how many judiciary committees could be formed at this point	?</article><div class="hidden-knowl-wrapper"></div>
+<article class="exercise-like" id="exercise-85"><h5 class="heading"><span class="codenumber">2</span></h5>
+<p> Suppose that a single character is stored in a computer using eight bits.</p>
+<p>a. How many bit patterns have exactly three 1 's?</p>
+<p>b. How many bit patterns have at least two 1 's?</p></article><div class="hidden-knowl-wrapper"></div>
+<article class="exercise-like" id="exercise-86"><h5 class="heading"><span class="codenumber">3</span></h5> How many subsets of \(\{1, 2, 3, \dots , 10\}\) contain at least seven elements?</article><div class="hidden-knowl-wrapper"></div>
+<article class="exercise-like" id="exercise-87"><h5 class="heading"><span class="codenumber">4</span></h5> The congressional committees on mathematics and computer science are made up of five congressmen each, and a congressional rule is that the two committees must be disjoint. If there are 385 members of congress, how many ways could the committees be selected?
+  </article><div class="hidden-knowl-wrapper"></div>
+<article class="exercise-like" id="exercise-88"><h5 class="heading"><span class="codenumber">5</span></h5>Expand \( ( 2x - 3y )^4\)</article><div class="hidden-knowl-wrapper"></div>
+<article class="exercise-like" id="exercise-89"><h5 class="heading"><span class="codenumber">6</span></h5>Find the fourth term of the expansion of \((x -2y)^6\).</article><div class="hidden-knowl-wrapper"></div>
+<article class="exercise-like" id="exercise-90"><h5 class="heading"><span class="codenumber">7</span></h5>
+<p>(a) A poker game is played with 52 cards. How many “hands” of five cards are possible?</p>
+<p>(b) If there are four people playing, how many five-card “hands” are possible on the first deal?</p></article><div class="hidden-knowl-wrapper"></div>
+<article class="exercise-like" id="exercise-91"><h5 class="heading"><span class="codenumber">8</span></h5> A flush in a five-card poker hand is five cards of the same suit. How many spade flushes are possible in a 52-card deck? How many flushes are possible in any suit?</article><div class="hidden-knowl-wrapper"></div>
+<article class="exercise-like" id="exercise-92"><h5 class="heading"><span class="codenumber">9</span></h5> How many five-card poker hands using 52 cards contain exactly two aces?</article><div class="hidden-knowl-wrapper"></div>
+<article class="exercise-like" id="exercise-93"><h5 class="heading"><span class="codenumber">10</span></h5>  In poker, a full house is three-of-a-kind and a pair in one hand; for example, three fives and two queens. How many full houses are possible from a 52- card deck?</article><div class="hidden-knowl-wrapper"></div>
+<article class="exercise-like" id="exercise-94"><h5 class="heading"><span class="codenumber">11</span></h5> A class of twelve computer science students are to be divided into three groups of 3, 4, and 5 students to work on a project. How many ways can this be done if every student is to be in exactly one group?</article><div class="hidden-knowl-wrapper"></div>
+</div>
+<div class="exercisegroup" id="exercisegroup-18">B Exercises<article class="exercise-like" id="exercise-95"><h5 class="heading"><span class="codenumber">12</span></h5> Explain in words why the following equalities are true based on number of subsets,  and then verify the equalities using the formula for binomial coefficients.
+<ol style="list-style-type: lower-alpha;">
+<li id="li-242">\(\binom{n}{1} = n\) </li>
+<li id="li-243">\(\binom{n}{k} = \binom{n}{n-k}\), \( 0 \leq k \leq n\)</li>
+</ol></article><div class="hidden-knowl-wrapper"></div>
+<article class="exercise-like" id="exercise-96"><h5 class="heading"><span class="codenumber">13</span></h5>
+<p>  There are ten points, \(P_1, P_2, \dots , P_{10}\) on a plane, no three on the same line.</p>
+<ol style="list-style-type: lower-alpha;">
+<li id="li-244">How many lines are determined by the points?</li>
+<li id="li-245"> How many triangles are determined by the points?</li>
+</ol></article><div class="hidden-knowl-wrapper"></div>
+<article class="exercise-like" id="exercise-97"><h5 class="heading"><span class="codenumber">14</span></h5> How many ways can \(n\)  persons be grouped into pairs when \(n\)  is even? Assume the order of the pairs matters, but not the order within the pairs. For example, if \(n=4\), the six different groupings would be
+<span class="displaymath" id="me-30">\[\begin{array}{cc}
+ \{1,2\} &amp; \{3,4\} \\
+ \{1,3\} &amp; \{2,4\} \\
+ \{1,4\} &amp; \{2,3\} \\
+ \{2,3\} &amp; \{1,4\} \\
+ \{2,4\} &amp; \{1,3\} \\
+ \{3,4\} &amp; \{1,2\} \\
+\end{array}
+\]</span></article><div class="hidden-knowl-wrapper"></div>
+<article class="exercise-like" id="exercise-98"><h5 class="heading"><span class="codenumber">15</span></h5> Use the binomial theorem to prove that if \(A\) is a finite set, then 
+\(\mathscr{P}(A) = 2^{\lvert A \rvert}\)</article><div class="hidden-knowl-wrapper"></div>
+<article class="exercise-like" id="exercise-99"><h5 class="heading"><span class="codenumber">16</span></h5>
+<ol style="list-style-type: lower-alpha;">
+<li id="li-246">A state's lottery involves choosing six different numbers out of a possible 36. How many ways can a person choose six numbers?</li>
+<li id="li-247">What is the probability of a person winning with one bet?</li>
+</ol></article><div class="hidden-knowl-wrapper"></div>
+<article class="exercise-like" id="exercise-100"><h5 class="heading"><span class="codenumber">17</span></h5>Use the binomial theorem to calculate \(9998^3\).</article><div class="hidden-knowl-wrapper">
+<span class="hidden-knowl-wrapper"><a knowl="" class="id-ref" refid="hk-hint-1" id="hint-1"><span class="heading"><span class="type">Hint</span></span></a></span><span id="hk-hint-1" style="display: none;" class="tex2jax_ignore"><span class="solution">\(9998 = 10000-2\)</span></span>
+</div>
+<article class="exercise-like" id="exercise-101"><h5 class="heading"><span class="codenumber">18</span></h5> Suppose two gamblers are playing poker and are dealt five cards each. 
+Determine the number of possible ways the hands could be dealt. Assume, as in bridge, the order of the hands, but not the cards in the hands, matters. You can use the sage cell in the <a href="combinations-and-the-binomial-theorem.html#sage-bridge-hands" alt="Subsection 2.4.4 Sage Note" title="Subsection 2.4.4 Sage Note">Sage Note</a> to do this calculation. </article><div class="hidden-knowl-wrapper"></div>
+</div></section></section></div></main>
+</div>
+</body>
+</html>
