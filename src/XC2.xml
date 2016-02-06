@@ -330,7 +330,7 @@ Determine
 </p>
 <example xml:id="counting-all-students"><title>Counting All Students</title><p>The number of students in a class could be determined by adding the numbers of students who are freshmen, sophomores, juniors, and seniors, and those who belong to none of these categories. However, you probably couldn't add the students by major, since some students may have double majors.
 </p></example>
-<example xml:id="student-counting-disjoint"><title>Counting Students in Disjoint Classes.</title><p>The sophomore computer science majors were told they must take one and only one of the following courses, Cryptography, Data Structures, or Javascript, in a given semester. The numbers in each course, respectively, for sophomore CS majors, were 75, 60, 55. How many sophomore C.S. majors are there? The Law of Addition applies here. There are exactly <m>75 + 60 + 55 = 190</m> CS majors since the rosters of the three courses listed above would be a partition of the CS majors.</p>
+<example xml:id="student-counting-disjoint"><title>Counting Students in Disjoint Classes</title><p>The sophomore computer science majors were told they must take one and only one of the following courses, Cryptography, Data Structures, or Javascript, in a given semester. The numbers in each course, respectively, for sophomore CS majors, were 75, 60, 55. How many sophomore C.S. majors are there? The Law of Addition applies here. There are exactly <m>75 + 60 + 55 = 190</m> CS majors since the rosters of the three courses listed above would be a partition of the CS majors.</p>
 </example>
 <example xml:id="student-counting-nondisjoint"><title>Counting Students in Non-disjoint Classes</title><p>It was determined that all junior computer science majors take at least one of the following courses: Algorithms, Logic Design, and Compiler Construction. Assume the number in each course was was 75, 60 and 55, respectively for the three courses listed. Further investigation indicated ten juniors took all three courses, twenty-five took  Algorithms and Logic Design, twelve took Algorithms and Compiler Construction, and fifteen took Logic Design and Compiler Construction. How many junior C.S. majors are there?
 </p>
@@ -413,8 +413,8 @@ The ideas used in this latest example gives rise to a basic counting technique:
  <title>Laws of Inclusion-Exclusion</title>
 <p>Given finite sets <m>A_1, A_2, A_3</m>, then
 <ol>
-<li><m> \lvert A_1 \cup A_2 \rvert =\lvert A_1 \rvert + \lvert A_2 \rvert - \lvert A_1 \cap A_2 \rvert  </m></li>
-<li><m>  \lvert A_1 \cup A_2 \cup A_3 \rvert =\lvert A_1 \rvert + \lvert A_2 \rvert + \lvert A_3 \rvert - (\lvert A_1 \cap A_2 \rvert + \lvert A_1 \cap A_3 \rvert+ \lvert A_2 \cap A_3 \rvert) + \lvert A_1 \cap A_2 \cap A_3 \rvert </m></li>
+<li xml:id="ie2"><title>Two Set Inclusion-Exclusion Law</title><m> \lvert A_1 \cup A_2 \rvert =\lvert A_1 \rvert + \lvert A_2 \rvert - \lvert A_1 \cap A_2 \rvert  </m></li>
+<li xml:id="ie3"><title>Two Set Inclusion-Exclusion Law</title><m>  \lvert A_1 \cup A_2 \cup A_3 \rvert =\lvert A_1 \rvert + \lvert A_2 \rvert + \lvert A_3 \rvert - (\lvert A_1 \cap A_2 \rvert + \lvert A_1 \cap A_3 \rvert+ \lvert A_2 \cap A_3 \rvert) + \lvert A_1 \cap A_2 \cap A_3 \rvert </m></li>
 </ol> 
 </p>
 </subsection>
@@ -458,7 +458,7 @@ The ideas used in this latest example gives rise to a basic counting technique:
 <exercisegroup>
 <title>B Exercises</title>
 <exercise number="9"><statement> <ol type="a">
- <li> Use Inclusion-exclusion Law 1 to derive Law 2. Note: a knowledge of basic set laws is needed for this exercise.</li>
+ <li> Use the <xref ref="ie2"/>  to derive the  <xref ref="ie3"/>. Note: a knowledge of basic set laws is needed for this exercise.</li>
  <li> State and derive the Inclusion-exclusion law for four sets.</li></ol>
  </statement></exercise>
 <exercise number="10"><statement> To complete your spring schedule, you must add Calculus and Physics. At 9:30, there are three Calculus sections and two Physics sections; while at 11:30, there are two Calculus sections and three Physics sections.  How many ways can you complete your schedule if your only open periods are 9:30 and 11:30?</statement></exercise>
@@ -517,7 +517,7 @@ If <m>n</m> and <m>k</m> are nonnegative integers with <m>0 \leq k \leq n</m>, t
 <subsection xml:id="the-binomial-theorem">
 <title>The Binomial Theorem</title>
 <p>
- The binomial theorem gives us a formula for expanding <m>\( x + y \)^{n}</m>, where <m>n</m>  is a nonnegative integer. The coefficients of this expansion are precisely the binomial coefficients that we have used to count combinations. Using high school algebra we can  expand the expression for integers from 0 to 5:
+ The binomial theorem gives us a formula for expanding <m>( x + y )^{n}</m>, where <m>n</m>  is a nonnegative integer. The coefficients of this expansion are precisely the binomial coefficients that we have used to count combinations. Using high school algebra we can  expand the expression for integers from 0 to 5:
 <table xml:id="pascal"><title>Pascal's Triangle</title>
 <tr><td> <me>
  \begin{array}{cc}
@@ -607,7 +607,7 @@ binomial(52,13)*binomial(39,13)*binomial(26,13)
 </statement></exercise>
 <exercise number="8"><statement> A flush in a five-card poker hand is five cards of the same suit. How many spade flushes are possible in a 52-card deck? How many flushes are possible in any suit?</statement></exercise>
 <exercise number="9"><statement> How many five-card poker hands using 52 cards contain exactly two aces?</statement></exercise>
-<exercise number="10"><statement>  In poker, a full house is three-of-a-kind and a pair in one hand; for example, three fives and two queens. How many full houses are possible from a 52-card deck?  You can use the sage cell in the <xref ref="sage-bridge-hands" autoname="title" /> to do this calculation, but also write your answer in terms of binomial coefficients. </statement></exercise></statement></exercise>
+<exercise number="10"><statement>  In poker, a full house is three-of-a-kind and a pair in one hand; for example, three fives and two queens. How many full houses are possible from a 52-card deck?  You can use the sage cell in the <xref ref="sage-bridge-hands" autoname="title" /> to do this calculation, but also write your answer in terms of binomial coefficients. </statement></exercise>
 <exercise number="11"><statement> A class of twelve computer science students are to be divided into three groups of 3, 4, and 5 students to work on a project. How many ways can this be done if every student is to be in exactly one group?</statement></exercise>
 </exercisegroup>
 <exercisegroup>
