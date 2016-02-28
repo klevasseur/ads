@@ -63,7 +63,7 @@ Note: It is important that <m>p_2</m> does not depend on the option that is chos
 <p>
  In Chapter 1 we introduced the power set of a set A, P(A), which is the set of all subsets of A. Can we predict how many elements are in <m>\mathcal{P}(A)</m> for a given finite set A? The answer is yes, and in fact if <m>\lvert A \rvert  = n</m>, then <m>\mathcal{P}(A) = 2^{n}</m>.  The ease with which we can prove this fact demonstrates the power and usefulness of the rule of products. Do not underestimate the usefulness of simple ideas.
 </p>
-<theorem xml:id="power-set-cardinality-theorem">
+<theorem xml:id="power-set-cardinality-theorem"><title>Power Set Cardinality Theorem</title>
 <statement>If <m>A</m> is a finite set, then <m>\lvert \mathcal{P}(A) \rvert = 2^{\lvert A \rvert }</m></statement>
 <proof>
 Proof: Consider how we might determine any <m>B \in \mathcal{P}(A)</m>, where <m> \lvert A \rvert =n</m>. For each element <m>x \in A</m> there are two choices, either <m>x \in B</m> or <m>x \notin B</m>.  Since there are <m>n</m>  elements of <m>A</m>  we have, by the rule of products, 
@@ -177,7 +177,7 @@ Each element is listed exactly once in each list (permutation). So if there are 
 </p>
 <example xml:id="choosing-club-officers"><title>Choosing Club Officers</title><statement>A club of twenty-five members will hold an election for president, secretary, and treasurer in that order. Assume a person can hold only one position. How many ways are there of choosing these three officers? By the rule of products there are <m>25 \cdot 24 \cdot 23</m> ways of making a selection.</statement>
 </example>
-<definition xml:id="permutation"><title>Definition: Permutation</title><statement> An ordered arrangement of <m>k</m> elements selected from a set of <m>n</m> elements, <m>0 \leq k \leq  n</m>, where no two elements of the arrangement are the same, is called a permutation of <m>n</m> objects taken <m>k</m> at a time. The total number of such permutations is denoted by <m>P(n, k)</m>.
+<definition xml:id="permutation"><title>Permutation</title><statement> An ordered arrangement of <m>k</m> elements selected from a set of <m>n</m> elements, <m>0 \leq k \leq  n</m>, where no two elements of the arrangement are the same, is called a permutation of <m>n</m> objects taken <m>k</m> at a time. The total number of such permutations is denoted by <m>P(n, k)</m>.
 </statement></definition>
 <theorem xml:id="permutations-counting-formula">
  <title>Permutation Counting Formula</title>.<statement> The number of possible permutations of <m>k</m>  elements taken from a set of <m>n</m>  elements is
@@ -288,7 +288,7 @@ Determine
  One way of counting the number of students in your class would be to count the number in each row and to add these totals. Of course this problem is simple because there are no duplications, no person is sitting in two different rows. The basic counting technique that you used involves an extremely important first step, namely that of partitioning a set. The concept of a partition must be clearly understood before we proceed further.
 </p>
 <definition xml:id="partition">
-<title>Definition: Partition.</title><statement> A partition of set <m>A</m> is a set of one or more nonempty subsets of <m>A</m>: <m>A_1, A_2, A_3, \cdots</m>, such that every element of <m>A</m> is in exactly one set.  Symbolically, 
+<title>Partition.</title><statement> A partition of set <m>A</m> is a set of one or more nonempty subsets of <m>A</m>: <m>A_1, A_2, A_3, \cdots</m>, such that every element of <m>A</m> is in exactly one set.  Symbolically, 
 <ol type="a">
 <li><m>A_1 \cup A_2 \cup A_3 \cup \cdots = A</m></li>
 <li>If  <m>i \neq j</m> then <m>A_i \cap A_j = \emptyset</m></li>
@@ -479,7 +479,12 @@ The ideas used in this latest example gives rise to a basic counting technique:
 <example xml:id="four-choose-three"><title>Counting with No Order</title> <statement>How many ways can we select a set of three letters from  <m>A = \{a, b, c, d\}</m>?  Note here that we are not concerned with the order of the three letters. By trial and error, abc, abd, acd, and bcd are the only listings possible. To repeat, we were looking for all three-element subsets of the set A. Order is not important in sets. The notation for choosing 3 elements from 4 is most commonly <m>\binom{4}{3}</m> or occasionally <m>C(4,3)</m>, either of which is read <q>4 choose 3</q> or the number of combinations for four objects taken three at a time.</statement>
 </example>
 <definition xml:id="binomial-coefficient"><title>Binomial Coefficient</title><statement><p>Let <m>n</m> and <m>k</m> be nonnegative integers.  The binomial coefficient <m>\binom{n}{k}</m> represents the number of combinations of <m>n</m> objects taken <m>k</m> at a time, and is read <q><m>n</m> choose <m>k</m>.</q></p></statement>
-<notation><m>\binom{n}{k}</m></notation>
+<notation>
+                    <usage>\binom{n}{k}</usage>
+                    <description>
+                    <m>n</m> choose <m>k</m>, the number of <m>k</m> element subsets of an <m>n</m> element set.  	
+                    </description>
+                </notation>
 </definition>
 <p>We would now like to investigate the relationship between permutation and combination problems in order to derive a formula for <m>\binom{n}{k}</m></p>
 <p>Let us reconsider the <xref ref="four-choose-three" autoname="title" />. There are <m>3 ! = 6</m> different orderings for each of the three-element subsets. The table below lists each subset of <m>A</m>  and all permutations of each subset on the same line.
@@ -595,7 +600,7 @@ binomial(52,13)*binomial(39,13)*binomial(26,13)
 <exercise number="2"><statement><p> Suppose that a single character is stored in a computer using eight bits.</p>
 <p>a. How many bit patterns have exactly three 1 's?</p>
 <p>b. How many bit patterns have at least two 1 's?</p>
-</statement></exercise>
+</statement><hint><p>Think of the set of positions that contain a 1 to turn this is into a question about sets.</p></hint><solution><p>(a) <m>\binom{8}{3}</m> (b) <m>2^8-(\binom{8}{0}+\binom{8}{1})</m></p></solution></exercise>
 <exercise number="3"><statement> How many subsets of <m>\{1, 2, 3, \dots , 10\}</m> contain at least seven elements?</statement></exercise>
 <exercise number="4"><statement> The congressional committees on mathematics and computer science are made up of five congressmen each, and a congressional rule is that the two committees must be disjoint. If there are 385 members of congress, how many ways could the committees be selected?
   </statement></exercise>
