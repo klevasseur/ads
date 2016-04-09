@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="c3s7"><title>Mathematical Induction</title>
+<p>In this section, we will examine mathematical induction, a technique for proving propositions over the positive integers. 
+Mathematical induction reduces the proof that all of the positive integers belong to a truth set to a finite number of steps.</p>
+<example xml:id="ex-triangular-numbers"><title>Formula for Triangular Numbers</title><p> Consider the following proposition over the positive integers, which we will label \(p(n)\): The sum of the positive integers from 1 to n is \(\frac{n (n+1)}{2}\). This is a well-known formula that is quite simple to verify for a given value of <m>n</m>.   For example, \(p(5)\) is: The sum of the positive integers from 1 to 5 is \(\frac{5 (5+1)}{2}\). Indeed, \(1 + 2 + 3 + 4 + 5= 15 =\frac{5
+(5+1)}{2}\). However, this doesn't serve as a proof that \(p(n)\) is a tautology. All that we've established is that \(5\) is in the truth set of <m>p</m>. Since the positive integers are infinite, we certainly can't use this approach to prove the formula.</p>
+</example>
+<p><em>An Analogy</em>: A proof by mathematical induction is similar to knocking over a row of closely spaced dominos that are standing on end. To knock over the five dominos in Figure 3.7.1, all you need to do is push Domino 1 to the right. To be assured that they all will be knocked over, some work must be done ahead of time. The dominos must be positioned so that if any domino is pushed to the right, it will push the next domino in the line.</p>
+
+<!-- 
+Domino figure
+-->
+<p>Returning to the <xref ref="ex-triangular-numbers" /> imagine the propositions \(p(1), p(2), p(3),\ldots\) to be an infinite line of dominos. Let's see if these propositions are in the same formation as the dominos were.  First, we will focus on one specific point of the line: \(p(99)\) and \(p(100)\). We are not going to prove that either of
+these propositions is true, just that the truth of \(p(99)\) implies the truth of \(p(100)\). In terms of our analogy, if \(p(99)\) is knocked over, it will knock over \(p(100)\).</p>
+<p>In proving \(p(99) \Rightarrow  p(\text{l00})\), we will use \(p(99)\) as our premise. We must prove: The sum of the positive integers from 1 to 100 is \(\frac{100 (100+1)}{2}\). We start by observing that the sum of the positive integers from 1 to 100 is \((1 + 2 + \cdots  + 99) +100\). That is, the sum of the positive integers from 1 to 100 equals  the sum of the first ninety-nine plus the final number, 100. We can now apply our premise, \(p(99)\), to the sum \(1 + 2 + \cdots  + 99\). After rearranging our numbers, we obtain the desired expression for \(1 + 2 + \cdots  + 100\):
+<me>\begin{split}
+ 1 + 2 + \cdots  + 99 + 100 &amp; = (1 + 2 + \cdots + 99) + 100 \\ 
+ &amp; = \frac{99 (99+1)}{2}+ 100 \textrm{         by our assumption of } p(99)\\
+ &amp; = \frac{99\ 100}{2} + \frac{2\ 100}{2} \\
+ &amp; =  \frac{100\ 101}{2}  \\
+ &amp; = \frac{100 (100+1)}{2} 
+\end{split}
+</me></p>
+<p>What we've just done is analogous to checking two dominos in a line and finding that they are properly positioned. Since we are dealing with an infinite line, we must check all pairs at once. This is accomplished by proving that \(p(n) \Rightarrow  p(n + 1)\) for all <m>n \geq  1</m>:
+
+<me>\begin{split}
+ 1 + 2 + \cdots  + n + (n+1) &amp; = (1 + 2 + \cdots  + n) + (n + 1) \\ 
+ &amp; = \frac{ n(n+1)}{2} + (n + 1) \textrm{      by } p(n) \\
+ &amp; =  \frac{ n(n+1)}{2}+\frac{2 (n+1)}{2}\\
+ &amp; = \frac{  (n+1) (n+2)}{2}  \\
+ &amp; = \frac{ (n+1) ((n+1)+1)}{2} 
+\end{split}
+</me></p>
+<p>They are all lined up! Now look at \(p(1)\): The sum of the positive integers from 1 to l is \(\frac{1+1}{2}\). Clearly, \(p(1)\) is true. This sets off a chain reaction. Since \(p(1) \Rightarrow  p(2)\), \(p(2)\) is true. Since \(p(2) \Rightarrow  p(3)\), \(p(3)\) is true; and so on.   <m>\blacksquare</m></p>
+<theorem xml:id="th-math-induction-basic"><title> The Principle of Mathematical Induction</title>
+<statement> Let <m>p(n)</m> be a proposition over the positive integers, then <m>p(n)</m> is a tautology if
+<ol style="1">
+<li>  <m>p(1)</m> is true, and</li>
+<li>  for all \(n\geq 1\),  \(p(n) \Rightarrow  p(n + 1)\).</li>
+</ol>
+</statement></theorem>
+
+<p>Note: The truth of \(p(1)\) is called the <em>basis</em> for the induction proof. The premise that p(n) is true in second part is called the <em>induction hypothesis</em>.  The proof that \(p(n)\) implies \(p(n + 1)\) is called the <em>induction </em> step of the proof. Despite our analogy, the basis is usually done first in an induction proof. However, order doesn't really matter.</p>
+
+<example xml:id="ex-logic-detachment"><title>Generalized Detachment</title><p>Consider the implication over the positive integers.</p>
+<me>p(n): q_0 \rightarrow  q_1, q_1\to q_2, \ldots  , q_{n-1}\to q_n, q_0\Rightarrow  q_n</me>
+<p>A proof that \(p(n)\) is a tautology follows.
+Basis: \(p(1)\) is \(q_0 \rightarrow  q_1, q_0\Rightarrow  q_1\). This is the logical law of detachment which we know is true. If you haven't done so yet, write out the truth table of \(((q_0 \rightarrow  q_1 )\land  q_0)\to  q_1\) to verify this step.</p>
+
+<p>Induction: Assume that  \(p(n)\) is true for some \(n \geq  1\). We want to prove that \(p(n + 1)\) must be true. That is:
+
+<me>q_0 \rightarrow  q_1, q_1\to q_2, \ldots  , q_{n-1}\to q_n , q_n\to q_{n+1}, q_0\Rightarrow  q_{n+1}</me>
+
+Here is a direct proof of \(p(n + 1)\):</p>
+<p><table xml:id="table-general-detachment">
+<tabular top="major" halign="center">
+<row><cell> Step </cell><cell> Proposition </cell><cell> Justification</cell></row>
+<row><cell> 1 - <m>(n+1)</m> </cell><cell> \(q_0 \rightarrow  q_1, q_1\to q_2, \ldots  , q_{n-1}\to q_n, q_0\) </cell><cell> Premises </cell><cell> p\to p\lor q \\</cell></row>
+<row><cell><m>n+2</m> </cell><cell> \(q_n\) </cell><cell> \((1)-(n+1)\), \(p(n)\) </cell></row>
+<row><cell> <m>n+3</m> </cell><cell> \(q_n\to q_{n+1}\) </cell><cell> Premise </cell></row>
+<row><cell> <m>n+4</m> </cell><cell> \(q_{n+1}\) </cell><cell> \((n+2),(n+3), \textrm{ detachment}\) </cell></row>
+ </tabular>
+</table><m>\blacksquare</m></p>
+</example>
+
+<example xml:id="ex-number-theory-3s"><title>An example from Number Theory</title>
+<p> For all \(n \geq  1\), \(n^3+2n\)  is a multiple of 3.  An inductive proof follows:</p>
+
+<p>Basis:  \(1^3+2(1)= 3\) is a multiple of 3. The basis is almost always this easy!</p>
+<p>Induction: Assume that \(n \geq  1\) and \(n^3+2n\) is a multiple of 3. Consider \((n+1)^3+2(n+1)\). Is it a multiple of 3?</p>
+<p><me>\begin{split}
+ (n+1)^3+2(n+1) &amp; = n^3+3 n^2+3 n+1+ (2n+2) \\ 
+ &amp; = n^3+2 n + 3 n^2+3 n+3  \\
+ &amp; = (n^3+2 n) + 3( n^2+ n+1)
+\end{split}
+</me></p>
+<p>Yes, \((n+1)^3+2(n+1)\) is the sum of two multiples of 3; therefore, it is also a multiple of 3.  <m>\blacksquare</m> </p>
+</example>
+
+<subsection xml:id="ss-induction-variations"><title>Variations of Induction</title>
+
+<p>Now we will discuss some of the variations of the principle of mathematical induction. The first simply allows for universes that are similar to <m>\mathbb{P}</m> such as \(\{-2, -1, 0, 1, . . . \}\) or \(\{5, 6, 7, 8, . . . \}\).</p>
+
+
+
+<theorem xml:id="th-math-induction-generalized"><title>Principle of Mathematical Induction (Generalized)</title>
+<statement><p> If \(p(n)\) is a proposition over \(\{k_0 , k_0+ 1, k_0+ 2,\ldots  \}\), where
+\(k_0\) is any integer, then \(p(n)\) is a tautology if
+<ol style="1">
+<li>  <m>p(k_0)</m> is true, and</li>
+<li>  for all \(n \geq k_0\),  \(p(n) \Rightarrow  p(n + 1)\).</li>
+</ol>
+</p>
+</statement>
+</theorem>
+
+<example xml:id="ex-permuations-formula-proof"><title>A proof of the permutations formula</title>
+<p>In Chapter 2, we stated that the number of different permutations of <m>k</m> elements taken from an <m>n</m> element set, \(P(n; k)\), can be computed with the formula \(\frac{n!}{(n-k)!}\). We can prove this statement by induction on <m>n</m>. For \(n \geq  0\), let \(q(n)\) be the proposition
+<me>P(n; k) = \frac{n!}{(n-k)!} \textrm{  for all } k \textrm{, } 0 \le k \le n</me>.</p>
+
+<p>Basis: \(q(0)\) states that  \(P(0; 0) \) if is the number of ways that <m>0</m> elements can be selected from the empty set and arranged in order, then \(P(0; 0) = \frac{0!}{0!} = 1 \).  This is true <m>--</m> a general law in combinatorics is that there is exactly one way of doing nothing.</p>
+
+<p>Induction: Assume that \(q(n)\) is true for some natural number <m>n</m>. It is left for us to prove that this assumption implies that \(q(n +1)\) is true. Suppose that we have a set of cardinality \(n + 1\) and want to select and arrange <m>k</m> of its elements. There are two cases to consider, the first of which is easy. If <m>k = 0</m>, then there is one way of selecting zero elements from the set; hence
+
+<me>P(n + 1; 0) = 1 =\frac{(n+1)!}{(n+1+0)!}</me>
+
+and the formula works in this case.</p>
+
+<p>The more challenging case is to verify the formula when <m>k</m> is positive and less than or equal to \(n+1\). Here we count the value of \(P(n+ 1; k)\) by counting the number of ways that the first element in the arrangement can be filled and then counting the number of ways that the remaining \(k -1\) elements can be filled in using the induction hypothesis.</p>
+
+<p>There are \(n + 1\) possible choices for the first element. Since that leaves \(n\) elements to fill in the remaining \(k - 1\) positions, there are \(P(n; k - 1)\) ways of completing the arrangement. By the rule of products,
+<me>
+\begin{split}
+P(n +1;k) &amp;= (n+1) P(n;k-1) \\
+&amp; = (n+1) \frac{n!}{(n-(k-1))!} \\
+&amp; = \frac{(n+1) n!}{(n-k+1)!}\\
+&amp; = \frac{(n+1)!}{((n+1)-k)!}
+\end{split}
+</me><m>\blacksquare</m>
+</p>
+</example>
+<p>A second variation allows for the expansion of the induction hypothesis. The course-of-values principle includes the previous generalization.  It is also sometimes called <em>strong induction</em>.</p>
+
+<theorem xml:id="th-math-induction-course-of-values"><title>The Course-of-Values Principle of Mathematical Induction</title>
+<statement><p> If \(p(n)\) is a proposition over \(\{k_0 , k_0+ 1, k_0+ 2,\ldots  \}\), where
+\(k_0\) is any integer, then \(p(n)\) is a tautology if
+<ol style="1">
+<li>  <m>p(k_0)</m> is true, and</li>
+<li>for all \(n\geq k_0\),   \(p(k_0), p(k_0 + 1), . . . , p(n) \Rightarrow  p(n + 1) \).</li>
+</ol>
+</p>
+</statement>
+</theorem>
+
+<example xml:id="ex-prime-factorization-proof"><title>Prime Factorization of Integers</title>
+<p> A prime number is defined as a positive integer that has exactly two positive divisors, 1 and itself. There are an infinite number of primes. The list of primes starts with <m>2, 3, 5, 7, 11,\ldots </m> .  The proposition over \(\{2, 3, 4, . . .\}\)  that we will prove here is \(p(n)\): <m>n</m> can be written as the product of one or more primes.  In most texts, the assertion that \(p(n)\) is a tautology would appear as</p>
+
+<theorem xml:id="th-prime-factorizations-exist"><title>Existence of Prime Factorizations</title><statement>
+<p>Every positive integer greater than or equal to 2 has a prime decomposition.</p></statement>
+</theorem>
+
+<p>If you were to encounter this theorem outside the context of a discussion of mathematical induction, it might not be obvious that the proof can be done by induction. Recognizing when an induction proof is appropriate is mostly a matter of experience. Now on to the proof!</p>
+
+<p>Basis:  Since 2 is a prime, it is already decomposed into primes (one of them).</p>
+
+<p>Induction:  Suppose that for some \(k \geq  2\) all of the integers \(2,3, . . . , k\) have a prime decomposition.  Notice the course-of-value hypothesis.  Consider \(k + 1\). Either \(k + 1\) is prime or it isn't.   If \(k + 1\) is prime, it is already decomposed into primes. If not, then \(k + 1\) has a divisor, <m>d</m>, other than 1 and \(k + 1\). Hence, \(k + 1 = c d\) where both <m>c</m> and <m>d</m> are between 2 and <m>k</m>. By the induction hypothesis, <m>c</m> and <m>d</m> have prime decompositions, \(c_1 c_2 \cdots  c_m\) and \(d_1 d_2 \cdots d_m\) , respectively. Therefore, \(k + 1\) has the prime decomposition \(c_1 c_2 \cdots  c_m d_1 d_2 \cdots  d_m\).   <m>\blacksquare </m></p>
+</example>
+</subsection>
+
+<subsection xml:id="ss-historical-note-induction"><title>Historical Note</title>
+
+<p>Mathematical induction originated in the late nineteenth century. Two mathematicians who were prominent in its development were Richard Dedekind and Giuseppe Peano. Dedekind developed a set of axioms that describe the positive integers. Peano refined these axioms and gave a logical interpretation to them. The axioms are usually called the Peano Postulates.</p>
+
+<subsubsection xml:id="sss-peano-postulates"><title>Peano's Postulates}</title><p> The system of positive integers consists of a nonempty set, P; a least element of P, denoted 1; and a
+<q>successor function,</q> s, with the properties
+<ol style="1">
+<li> If \(k \in  \mathbb{P}\) , then there is an element of <m>\mathbb{P}</m> called the successor of <m>k</m>, denoted \(s(k)\).</li>
+<li>  No two elements of <m>\mathbb{P}</m> have the same successor.</li>
+<li>  No element of <m>\mathbb{P}</m> has 1 as its successor.</li>
+<li> If \(S \subseteq  \mathbb{P}\), <m>1 \in  S</m>, and <m>k \in S \Rightarrow  s(k) \in  S</m>, then \(S = \mathbb{P}\).</li>
+</ol>
+</p>
+</subsubsection>
+
+<p>Notes:
+<ul>
+<li> You might recognize \(s(k)\) as simply being \(k + 1\).</li>
+<li> Axiom 4 is the one that makes mathematical induction possible. In an induction proof, we simply apply that axiom to the truth set of a proposition.</li>
+</ul></p>
+
+</subsection>
+<exercises xml:id="exercises-3.7">
+<title>Exercises for Section 3.7 </title>
+<exercisegroup><introduction><p>A Exercises</p></introduction>
+<exercise number="1"><statement>Prove that the sum of the first <m>n</m> odd integers equals \(n^2\) .
+</statement></exercise>
+
+<exercise number="2"><statement>Prove that if \(n \geq  1\), then \(1(1!) + 2(2!) + \cdots  + n(n!) = (n + 1)! - 1\).
+</statement></exercise>
+
+<exercise number="3"><statement>Prove that for \(n \geq  1\): \(\sum _{k=1}^n k^2= \frac{1}{6} n(n+1) (2 n+1)\).
+</statement></exercise>
+
+<exercise number="4"><statement>Prove that for <m>n \geq  1</m>: \(\sum _{k=0}^n 2^k = 2^{n+1}-1\).
+</statement></exercise>
+
+<exercise number="5"><statement><p>Use mathematical induction to show that for \(n\geq 1\),
+  <me>\frac{1}{1\ 2 }+ \frac{1}{2\ 3}+ \cdots  + \frac{1}{n(n+1)}= \frac{n}{n+1}</me></p>
+</statement></exercise>
+
+<exercise number="6"><statement><p> Prove that if \(n \geq  2\),  the generalized DeMorgan's Law is true:
+<me>\neg (p_1 \land p_2\land \text{...} \land p_n)\Leftrightarrow (\neg p_1)\lor  (\neg p_2) \lor  \cdots
+ \lor (\neg p_n)</me></p>
+</statement></exercise>
+</exercisegroup>
+<exercisegroup>
+<introduction><p>B Exercises</p></introduction>
+
+<exercise number="7"><statement>The number of strings of <m>n</m> zeros and ones that contain an even number of ones is \(2^{n-1}\).   Prove this fact by induction for <m>n \geq  1</m>.</statement></exercise>
+
+<exercise number="8"><statement> Let \(p(n)\) be \(8^n-3^n\) is a multiple of 5.  Prove that \(p(n)\) is a tautology over \(\mathbb{N}\).</statement></exercise>
+
+<exercise number="9"><statement>Suppose that there are <m>n</m> people in a room, \(n \geq  1\), and that they all shake hands with one another. Prove that \(\frac{n(n-1)}{2}\)
+handshakes will have occurred.
+</statement></exercise>
+
+<exercise number="10"><statement>Prove that it is possible to make up any postage of eight cents or more using only three- and five-cent stamps.
+</statement></exercise>
+
+\subsubsection{}
+</exercisegroup>
+
+<exercisegroup>
+<introduction><p>C Exercises</p></introduction>
+
+<exercise number="11"><statement> Generalized associativity. It is well known that if \(a_1\), \(a_2\), and \(a_3\) are numbers, then no matter what order the sums in the expression \(a_1+ a_2+a_3\) are taken in, the result is always the same. Call this fact \(p(3)\) and assume it is true. Prove using course-of-values induction that if \(a_1\), \(a_2\), \(\ldots ,\) and \(a_n\)  are numbers, then no matter what order the sums in the expression \(a_1+ a_2+\cdots +a_n\) are taken in, the result is always the same.
+</statement></exercise>
+
+<exercise number="12"><statement><p>Let <m>S</m> be the set of all numbers that can be produced by applying any of the rules below in any order a finite number of times.
+<ul>
+<li>Rule 1: \(\frac{1}{2} \in  S\)</li>
+<li>Rule 2: \(1 \in  S\)</li>
+<li>Rule 3: If <m>a</m> and <m>b</m> have been produced by the rules, then \(a b \in  S\).</li>
+<li>Rule 4: If <m>a</m> and <m>b</m> have been produced by the rules, then \(\frac{a+b}{2}\in S\).</li>
+</ul>
+Prove  that \(a\in S \Rightarrow  0 \le a \leq  1\).</p></statement><hint>The number of times the rules are applied should be the integer that you do the induction on.</hint>
+</exercise>
+
+<exercise number="13"><statement><p> A recursive definition is similar to an inductive proof. It consists of a basis, usually the simple part of the definition, and the recursion, which defines complex objects in terms of simpler ones. For example, if <m>x</m> is a real number and <m>n</m> is a positive integer, we can
+define \(x^n\) as follows:
+
+<ul>
+<li>Basis: \(x^1=x\).</li>
+<li>Recursion: if \(n \geq  2\), \(x^n= x^{n-1}x\).</li>
+</ul>
+For example, \(x^3= x^2x\) = \((x^1x)x = (x x) x\). Proofs involving objects that are defined recursively are often inductive.   There is much more on recursion in Chapter 8.</p>
+<p> Prove that
+if \(n, m \in  \mathbb{P}\), \(x^{m+n}= x^mx^n\).</p></statement>
+<hint> Let \(p(m)\) be the proposition that \(x^{m+n}= x^mx^n\) for all \(n\geq 1\).</hint>
+</exercise>
+
+<exercise number="14"><statement><p> Let <m>S</m> be a finite set and let \(P_n\) be defined recursively by \(P_{1 } = S\)  and \(P_n= S\times P_{n-1}\) for \(n\geq 2\).
+<ul>
+<li>List the elements of \(P_3\) for the case <m>S = \{a, b\}</m>.</li>
+<li>Determine the formula for \(\lvert P_n \rvert\), given that \(\lvert S \rvert= k\), and prove your formula by induction.</li>
+</ul>
+</p>
+</statement>
+</exercise>
+
+</exercisegroup>
+</exercises>
+</section>
