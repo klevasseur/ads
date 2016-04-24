@@ -794,6 +794,25 @@ Therefore, <m>41=101001_{\textrm{two}}</m></p>
 </ol>
 </statement>
 </algorithm>
+<p>Here is a Sage version of the algorithm with two alterations. It outputs a the binary representation as a string, and it handles all integers, not just positive ones.</p>
+<sage>
+<input>
+def binary_rep(n):
+    if n==0:
+        return '0'
+    else:
+        k=abs(n)
+        s=''
+        while k>0:
+            s=str(k%2)+s
+            k=k//2
+        if n &lt; 0:
+            s='-'+s
+        return s
+ 
+ binary_rep(41)
+</input>
+</sage>
 <p>Now that you've read this section, you should get this joke.</p>
             <figure xml:id="onetoten">
                 <caption>With permission from Randall Munroe
@@ -807,11 +826,11 @@ Therefore, <m>41=101001_{\textrm{two}}</m></p>
 <title>EXERCISES FOR SECTION 1.4 </title>
 <exercisegroup><introduction><p>A Exercises</p></introduction>
 <exercise number="1"><statement> 
-Find the binary representation of each of the following positive integers: 
+Find the binary representation of each of the following positive integers by working through the algorithm by hand.  You can check your answer using the sage cell above. 
 <ol type="a"><li> 31</li><li> 32</li><li>10</li><li>100 </li></ol>
 </statement> </exercise>
 <exercise number="2"><statement> 
-Find the binary representation of each of the following positive integers: 
+Find the binary representation of each of the following positive integers by working through the algorithm by hand.  You can check your answer using the sage cell above.  
 <ol type="a"><li> 64</li><li> 67</li><li>28</li><li>256 </li></ol>
 </statement> </exercise>
 <exercise number="3"><statement> 
