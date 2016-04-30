@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section xml:id="app-alg2"><title>The Invariant Relation Theorem</title>
-<p>Consider the following algorithm that claims to compute <m>a^m mod \, n</m>, given an arbitrary integer <m>a</m>, non-negative exponent <m>m</m>, and a modulus <m>n</m>, <m>n \ge 2</m>.  The default sample evaluation computes <m>2^5\, mod\,7 = 32\,mod\,7 = 4</m>, but you can edit the final line for other inputs. </p>
+<p>Consider the following algorithm implemented in Sage to compute <m>a^m mod \, n</m>, given an arbitrary integer <m>a</m>, non-negative exponent <m>m</m>, and a modulus <m>n</m>, <m>n \ge 0</m>.  The default sample evaluation computes <m>2^5\, mod\,7 = 32\,mod\,7 = 4</m>, but you can edit the final line for other inputs. </p>
 
 <sage xml:id="alg-slow-exp"><title>Slow Exponentiation Algorithm</title>
 <input>
@@ -16,7 +16,7 @@ slow_exp(2,5,7)
 </input>
 </sage>
 
-<p>It should be fairly clear that this algorithm will successfully compute <m>a^m (mod\, n)</m> since it mimics the basic definition of exponentiation.  However, this algorithm is highly inefficient.  The algorithm that is most commonly used for the task of exponentiation is the following one.</p>
+<p>It should be fairly clear that this algorithm will successfully compute <m>a^m (mod\, n)</m> since it mimics the basic definition of exponentiation.  However, this algorithm is highly inefficient.  The algorithm that is most commonly used for the task of exponentiation is the following one, also implemented in Sage.</p>
 
 <sage>
 <input>
@@ -33,7 +33,7 @@ def fast_exp(a,m,n):
 fast_exp(2,5,7)
 </input>
 </sage>
-<p>The only difficulty with the "fast algorithm" is that it might not be so obvious it works.  When implemented, it can be verified by example, but an even more rigorous verification can be done using the Invariant Relation Theorem. Before stating the theorem, we define some terminology.</p> 
+<p>The only difficulty with the "fast algorithm" is that it might not be so obvious that it works.  When implemented, it can be verified by example, but an even more rigorous verification can be done using the Invariant Relation Theorem. Before stating the theorem, we define some terminology.</p> 
 
 <definition xml:id="def-pre-post-values"><title>Pre and Post Values</title><statement>
 <p>Given a variable <m>x</m>, the pre value of <m>x</m>, denoted <m>\grave x</m>, is the value before an iteration of a loop.  The post value, denoted \(\acute x\), is the value after the iteration. </p></statement><notation><usage><m>\grave x</m>, <m>\acute x</m></usage><description>pre and post values of a variable <m>x</m></description></notation></definition>
