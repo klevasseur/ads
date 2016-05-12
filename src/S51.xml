@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="s-basic-matrix-definitions"><title>Basic Definitions and Operations</title>
+<subsection xml:id="ss-order-equality"><title>Matrix Order and Equality</title>
+
+<definition xml:id="def-matrix"><title>matrix</title>
+<statement><p>A matrix is a rectangular array of elements of the form 
+<me>A = \left(
+\begin{array}{ccccc}
+ a_{11} &amp; a_{12} &amp; a_{13} &amp; \cdots  &amp; a_{1n} \\
+ a_{21} &amp; a_{22} &amp; a_{23} &amp; \cdots  &amp; a_{2n} \\
+ a_{31} &amp; a_{32} &amp; a_{33} &amp; \cdots  &amp; a_{3n} \\
+ \vdots  &amp; \vdots  &amp; \vdots  &amp; \ddots &amp; \vdots  \\
+ a_{m1} &amp; a_{m2} &amp; a_{m3} &amp; \cdots  &amp; a_{mn} \\
+\end{array} \right)</me>
+</p></statement>
+</definition>
+
+<p>A convenient way of describing a matrix in general is to designate each entry via its position in the array. That is, the entry \(a_{34}\) is the entry in the third row and fourth column of the matrix A. Depending on the situation, we will decide in advance to which set the entries in a matrix will belong. For example, we might assume that each entry \(a_{\text{ij}}\) (\(1 \leq i\leq  m\), \(1 \leq  j \leq  n\)) is a real number. In
+that case we would use \(M_{m\times n}(\mathbb{R})\) to stand for the set of all <m>m</m> by <m>n</m> matrices whose entries are real numbers. If we decide that the entries in a matrix must come from a set <m>S</m>, we use \(M_{m\times n}(S)\) to denote all such matrices.</p>
+
+<definition xml:id="def-matrix-order"><title>The Order of a Matrix</title><statement><p>A matrix <m>A</m> that has m rows and n columns is called an \(m\times n\) (read <q>m by n</q>) matrix, and is said to have order \(m \times  n\).</p></statement></definition>
+
+<p>Since it is rather cumbersome to write out the large rectangular array above each time we wish to discuss the generalized form of a matrix, it is common practice to replace the above by \(A = \left(a_{\text{ij}}\right)\). In general, matrices are often given names that are capital letters and the corresponding lower case letter is used for individual entries. For example the entry in the third row, second column of a matrix called C would be \(c_{32}\).</p>
+
+<example xml:id="example-orders-of-matrices"><title>Orders of Some Matrices</title><statement><p>\(A =\left(
+\begin{array}{cc}
+ 2 &amp; 3 \\
+ 0 &amp; -5 \\
+\end{array}
+\right)\) , \(B =\left(
+\begin{array}{c}
+ 0 \\
+ \frac{1}{2} \\
+ 15 \\
+\end{array}
+\right)\) , and \(D =\left(
+\begin{array}{ccc}
+ 1 &amp; 2 &amp; 5 \\
+ 6 &amp; -2 &amp; 3 \\
+ 4 &amp; 2 &amp; 8 \\
+\end{array}
+\right)\)
+are \(2\times 2\), \(3\times 1\), and \(3\times 3\) matrices, respectively.</p></statement>
+</example>
+
+<p>Since we now understand what a matrix looks like, we are in a position to investigate the operations of matrix algebra for which users have found the most applications.</p>
+
+<p>First we ask ourselves: Is the matrix \(A =\left(
+\begin{array}{cc}
+ 1 &amp; 2 \\
+ 3 &amp; 4 \\
+\end{array}
+\right)\) equal to the matrix \(B =\left(
+\begin{array}{cc}
+ 1 &amp; 2 \\
+ 3 &amp; 5 \\
+\end{array}
+\right)\)? No, they are not because the corresponding entries in the second row, second column of the two matrices are not equal.</p>
+<p>Next, is
+ \(A =\left(
+\begin{array}{ccc}
+ 1 &amp; 2 &amp; 3 \\
+ 4 &amp; 5 &amp; 6 \\
+\end{array}
+\right)\) equal to \(B=\left(
+\begin{array}{cc}
+ 1 &amp; 2 \\
+ 4 &amp; 5 \\
+\end{array}
+\right)\)? No, although the corresponding entries in the first two columns are identical, <m>B</m> doesn't have a third column to compart to that of <m>A</m>. We formalize these observations in the following definition.</p>
+<definition xml:id="def-matrix-equality"><title>Equality of Matrices</title><statement>
+<p>A matrix A is said to be equal to matrix B (written \(A = B\)) if and only if:</p>
+<ol type="1">
+<li><p> A and B have the same order, and</p></li>
+<li><p> all corresponding entries are equal: that is, \(a_{\text{ij}}\) = \(b_{\text{ij}}\) for all appropriate i and j.</p></li>
+</ol>
+</statement>
+</definition>
+</subsection>
+<subsection xml:id="ss-matrix-addition-scalarmult"><title>Matrix Addition and Scalar Multiplication</title>
+<p>The first two operations we introduce are very natural and are not likely cause much confusion. The first is matrix addition. It seems natural that if
+
+<m>A =\left(
+\begin{array}{cc}
+ 1 &amp; 0 \\
+ 2 &amp; -1 \\
+\end{array}
+\right)</m>
+and 
+<m>B =\left(
+\begin{array}{cc}
+ 3 &amp; 4 \\
+ -5 &amp; 2 \\
+\end{array}
+\right)</m> , then</p> <me>A + B =\left(
+\begin{array}{cc}
+ 1+3 &amp; 0+4 \\
+ 2-5 &amp; -1+2 \\
+\end{array}
+\right)=\left(
+\begin{array}{cc}
+ 4 &amp; 4 \\
+ -3 &amp; 1 \\
+\end{array}
+\right). 
+</me>
+
+<p>
+However, if \(A=\left(
+\begin{array}{ccc}
+ 1 &amp; 2 &amp; 3 \\
+ 0 &amp; 1 &amp; 2 \\
+\end{array}
+\right)\) and \(B = \left(
+\begin{array}{cc}
+ 3 &amp; 0 \\
+ 2 &amp; 8 \\
+\end{array}
+\right)\), is there a natural way to add them to give us \(A+B\)? No, the orders of the two matrices must be identical.</p>
+
+<definition xml:id="def-matrix-addition"><title>Matrix Addition</title>
+<statement><p>Let <m>A</m> and <m>B</m> be \(m\times n\) matrices. Then \(A+B\) is an \(m\times n\) matrix where\((A
++ B)_{\text{ij}} = a_{\text{ij}} + b_{\text{ij}}\) (read <q>The ith jth entry of the matrix \(A + B\) is obtained by adding the ith jth entry of \(A\) to the ith jth entry of \(B\)).</q> If the orders of \(A\) and \(B\) are not identical, \(A+B\) is not defined.</p></statement></definition>
+
+
+
+<p> In short,  \(A + B\) is defined if and only if <m>A</m> and <m>B</m> are of the same order.</p>
+
+<p>Another frequently used operation is that of multiplying a matrix by a number, commonly called a scalar in this context. Scalars normally come from the same set as the entries in a matrix. For example, if \(A\in M_{m\times n}(\mathbb{R})\), a scalar can be any real number.</p>
+
+<example xml:id="ex-scalar-mult"><title>A Scalar Product</title><statement><p> If \(c = 3\) and if \(A =\left(
+\begin{array}{cc}
+ 1 &amp; -2 \\
+ 3 &amp; 5 \\
+\end{array}
+\right)\) and we wish to find \(c A\), it seems natural to multiply each entry of <m>A</m> by 3 so that \(3 A =\left(
+\begin{array}{cc}
+ 3 &amp; -6 \\
+ 9 &amp; 15 \\
+\end{array}
+\right)\) , and this is precisely the way scalar multiplication is defined.</p></statement></example>
+
+<definition xml:id="def-scalar-multiplication"><title>Scalar Multiplication</title><statement><p>Let <m>A</m> be an \(m \times  n\) matrix and <m>c</m> a scalar. Then \(c A\) is the \(m\times n\) matrix
+obtained by multiplying <m>c</m> times each entry of <m>A</m>; that is \((c A)_{ij} = c a_{ij}\).</p>
+</statement></definition>
+</subsection>
+<subsection xml:id="ss-matrix-multiplication"><title>Matrix Multiplication</title>
+
+<p>For a video introduction to matrix multiplication, go to <url href="http://faculty.uml.edu/klevasseur/ads2/videos/matrixmultiplication">http://faculty.uml.edu/klevasseur/ads2/videos/matrixmultiplication</url></p>
+
+<p>A definition that is more awkward to motivate (and we will not attempt to do so here) is the product of two matrices. In time, the reader will see that the following definition of the product of matrices will be very useful, and will provide an algebraic system that is quite similar to elementary algebra.</p>
+<definition xml:id="def-matrix-multiplication"><title>Matrix Multiplication</title><statement><p>Let <m>A</m> be an \(m\times n\) matrix and let <m>B</m> be an \(n\times p\) matrix. The product of <m>A</m>and <m>B</m>, denoted
+by <m>AB</m>, is an \(m\times p\) matrix whose ith row jth column entry is</p>
+
+<me>\begin{split}
+(A B)_{ij}&amp;= a_{i 1}b_{1 j}+a_{i 2}b_{2 j}+ \cdots +a_{i n}b_{n j}\\
+
+&amp;= \sum _{k=1}^n a_{i k} b_{k j}\\
+\end{split}
+</me>
+
+<p>for \(1\leq i\leq m\) and \(1\leq j\leq p\).
+</p></statement></definition>
+
+
+
+<p>The mechanics of computing one entry in the product of two matrices is illustrated in Figure 5.3.1.</p>
+
+
+<figure xml:id="fig-one-matrix-product-entry">
+                <caption>Computation of one entry in the product of two 3 by 3 matrices
+                </caption>
+                <image width="400" source="images/fig-one-matrix-product-entry.png">
+                    <description>Computation of one entry in the product of two 3 by 3 matrices</description>
+                </image>
+            </figure>
+
+<p>The computation of a product 
+can take a considerable amount of time in comparison to the time required to add two matrices. Suppose that <m>A</m> and <m>B</m> are \(n\times n\) matrices; then \((\text{AB})_{\text{\textit{ij}}}\) is determined performing <m>n</m> multiplications and \(n-1\) additions. The full product takes \(n^3\) multiplications and \(n^3 --- n^2\) additions. This compares with \(n^2\) additions for the sum of two \(n\times n\) matrices. The product of two 10 by 10 matrices will require 1,000 multiplications and 900 additions, clearly a job that you would assign to a computer. The sum of two matrices requires a more modest 100 additions. This analysis is based on the assumption that matrix multiplication will be done using the formula that is given in the definition. There are more advanced methods that, in theory, reduce operation counts. For example, Strassen's algorithm (<url href="https://en.wikipedia.org/wiki/Strassen_algorithm">https://en.wikipedia.org/wiki/Strassen_algorithm</url>) computes the product of two <m>n</m> by <m>n</m> matrices in \(7\cdot 7^{\log _2n}-6\cdot  4^{\log _2n}\approx  7 n^{2.808}\) operations. There are practical issues involved in actually using the algorithm in many situations.  For example, round-off error can be more of a problem than with the standard formula. </p>
+
+
+
+<example xml:id="ex-matrix-product"><title>A Matrix Product</title><statement><p>  Let \(A =\left(
+\begin{array}{cc}
+ 1 &amp; 0 \\
+ 3 &amp; 2 \\
+ -5 &amp; 1 \\
+\end{array}
+\right)\), a \(3\times 2\) matrix, an let \(B =\left(
+\begin{array}{c}
+ 6 \\
+ 1 \\
+\end{array}
+\right)\), a \(2\times 1\) matrix. Then \(A B\) is a \(3 \times  1\) matrix:</p>
+<me>(A B = \left(
+\begin{array}{cc}
+ 1 &amp; 0 \\
+ 3 &amp; 2 \\
+ -5 &amp; 1 \\
+\end{array}
+\right) \left(
+\begin{array}{c}
+ 6 \\
+ 1 \\
+\end{array}
+\right) = \left(
+\begin{array}{c}
+ 1\cdot 6+0\cdot 1 \\
+ 2\cdot 1+3 \cdot 6 \\
+ -5 \cdot 6 + 1\cdot 1 \\
+\end{array}
+\right) = \left(
+\begin{array}{c}
+ 6 \\
+ 20 \\
+ -29 \\
+\end{array}
+\right)</me>
+</statement></example>
+
+
+<p>Remarks:</p>
+<ol style="1">
+<li> The product \(A B\) is defined only if <m>A</m> is an \(m\times n\) matrix and <m>B</m> is an \(n\times p\) matrix; that is, the two <q>inner</q> numbers must be the equal. Furthermore, the order of the product matrix \(A B\) is the <q>outer</q> numbers, in
+this case \(m\times p\).
+</li>
+<li> <p>It is wise to first determine the order of a product matrix. For example, if <m>A</m> is a \(3\times 2\) matrix and <m>B</m> is a \(2\times 2\) matrix, then \(A B\) is a \(3\times 2\) matrix of the form
+
+\[A B =\left(
+\begin{array}{cc}
+ c_{11} &amp; c_{12} \\
+ c_{21} &amp; c_{22} \\
+ c_{31} &amp; c_{32} \\
+\end{array}
+\right)\] 
+
+Then to obtain, for example, \(C_{31}\), we multiply corresponding entries in the third row of <m>A</m> times the first column of <m>B</m>
+and add the results.</p>
+</li>
+</ol>
+
+<example xml:id="ex-diagonal-product"><title>Multiplication with a diagonal matrix</title><statement><p>
+
+Let \(A =\left(
+\begin{array}{cc}
+ -1 &amp; 0 \\
+ 0 &amp; 3 \\
+\end{array}
+\right)\), and \(B =\left(
+\begin{array}{cc}
+ 3 &amp; 10 \\
+ 2 &amp; 1 \\
+\end{array}
+\right)\) . Then
+
+\(A B =\left(
+\begin{array}{cc}
+ -1\cdot 3 + 0\cdot 2 &amp; -1\cdot 10+0\cdot 1 \\
+ 0\cdot 3+3\cdot 2 &amp; 0\cdot 10+3\cdot 1 \\
+\end{array}
+\right)= \left(
+\begin{array}{cc}
+ -3 &amp; -10 \\
+ 6 &amp; 3 \\
+\end{array}
+\right)\)
+</p>
+<p>The net effect is to multiply the first row of <m>B</m> by -1 and the second row of <m>B</m> by 3.</p>
+<p>Note: \(B A =\left(
+\begin{array}{cc}
+ -3 &amp; 30 \\
+ -	2 &amp; 3 \\
+\end{array}
+\right) \neq A B\).   The columns of <m>B</m> are multiplied by -1 and 3 when the order is switched.
+</p></statement></example>
+
+
+
+<p>Remarks:</p>
+
+<ul>
+<li><p> An \(n\times n\) matrix is called a <em>square matrix</em>.</p></li>
+<li><p> If <m>A</m> is a square matrix, \(A A\) is defined and is denoted by \(A^2\) , and \(A A A = A^3\), etc. </p></li>
+<li><p> The \(m\times n\) matrices whose entries are all 0 are denoted by \(\pmb{0}_{m\times n}\), or simply \(\pmb{ 0}\), when no confusion arises regarding the order.</p></li>
+</ul>
+</subsection>
+<exercises xml:id="exercises-5-1"><title>Exercises</title>
+<exercisegroup><title>A Exercises</title>
+
+<exercise number="1"><statement> <p>Let \(A=\left(
+\begin{array}{cc}
+ 1 &amp; -1 \\
+ 2 &amp; 3 \\
+\end{array}
+\right)\), \(B =\left(
+\begin{array}{cc}
+ 0 &amp; 1 \\
+ 3 &amp; -5 \\
+\end{array}
+\right)\) , and \(C=\left(
+\begin{array}{ccc}
+ 0 &amp; 1 &amp; -1 \\
+ 3 &amp; -2 &amp; 2 \\
+\end{array}
+\right)\) </p>
+<ol type="a">
+<li><p> Compute \(A B\) and \(B A\).</p></li>
+<li><p> Compute \(A + B\) and \(B + A\).</p></li>
+<li><p> If \(c = 3\), show that \(c(A + B) = c A + c B\).</p></li>
+<li><p> Show that \((A B)C = A(B C)\).</p></li>
+<li><p> Compute \(A^2 C\).</p></li>
+<li><p>  Compute \(B + \pmb{0}\)</p></li>
+<li><p> Compute \(A \pmb{0}_{2\times 2}\) and \(\pmb{0}_{2\times 2} A\), where \(\pmb{0}_{2\times 2}\) is the \(2\times 2\) zero matrix</p></li>
+<li><p> Compute \(0A\), where 0 is the real number (scalar) zero.</p></li>
+<li><p> Let \(c = 2\) and \(d = 3\). Show that\((c + d)A = c A + d A\).</p></li>
+</ol>
+</statement></exercise>
+<exercise number="2"><statement> Let \(A = \left(
+\begin{array}{ccc}
+ 1 &amp; 0 &amp; 2 \\
+ 2 &amp; -1 &amp; 5 \\
+ 3 &amp; 2 &amp; 1 \\
+\end{array}
+\right)\) , \(B =\left(
+\begin{array}{ccc}
+ 0 &amp; 2 &amp; 3 \\
+ 1 &amp; 1 &amp; 2 \\
+ -1 &amp; 3 &amp; -2 \\
+\end{array}
+\right)\) , and \(C=\left(
+\begin{array}{cccc}
+ 2 &amp; 1 &amp; 2 &amp; 3 \\
+ 4 &amp; 0 &amp; 1 &amp; 1 \\
+ 3 &amp; -1 &amp; 4 &amp; 1 \\
+\end{array}
+\right)\)
+Compute, if possible;
+<ol type="a">
+<li><p> \(A - B\)</p></li>
+<li><p> \(A B\) </p></li>
+<li><p> \(A C - B C\) </p></li>
+<li><p> \(A(B C)\)</p></li>
+<li><p> \(C A - C B\)</p></li>
+<li><p> \(C \left(
+\begin{array}{c}
+ x \\
+ y \\
+ z \\
+ w \\
+\end{array}
+\right)\)</p></li>
+</ol>
+</statement></exercise>
+<exercise number="3"><statement><p> Let \(A =\left(
+\begin{array}{cc}
+ 2 &amp; 0 \\
+ 0 &amp; 3 \\
+\end{array}
+\right)\) . Find a matrix B such that \(A B = I\) and \(B A = I\), where \(I = \left(
+\begin{array}{cc}
+ 1 &amp; 0 \\
+ 0 &amp; 1 \\
+\end{array}
+\right)\)</p>
+</statement></exercise>
+<exercise number="4"><statement><p> Find \(A I\) and \(B I\) where <m>I</m> is as in Exercise 3, where
+\(A = \left(
+\begin{array}{cc}
+ 1 &amp; 8 \\
+ 9 &amp; 5 \\
+\end{array}
+\right)\) and \(B = \left(
+\begin{array}{cc}
+ -2 &amp; 3 \\
+ 5 &amp; -7 \\
+\end{array}
+\right)\). 
+ What do you notice?</p>
+</statement></exercise>
+<exercise number="5"><statement> Find \(A^3\) if \(A=\left(
+\begin{array}{ccc}
+ 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 2 &amp; 0 \\
+ 0 &amp; 0 &amp; 3 \\
+\end{array}
+\right)\) . What is \(A^{15}\) equal to?
+</statement></exercise>
+</exercisegroup>
+<exercisegroup><title>B Exercises</title>
+<exercise number="6"><statement> 
+	<ol type="a">
+	<li><p> Determine \(I^2\) and \(I^3 \text{if}\) \(I = \left(
+\begin{array}{ccc}
+ 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 \\
+\end{array}
+\right)\).</p></li>
+<li><p> What is \(I^n\) equal to for any \(n\geq 1\)?</p></li>
+<li><p> Prove your answer to part (b) by induction.</p></li>
+</ol>
+</statement></exercise>
+<exercise number="7"><statement>
+	<ol type="a">
+	<li><p>If \(A =\left(
+\begin{array}{cc}
+ 2 &amp; 1 \\
+ 1 &amp; -1 \\
+\end{array}
+\right)\), \(X =\left(
+\begin{array}{c}
+ x_1 \\
+ x_2 \\
+\end{array}
+\right)\), and \(B =\left(
+\begin{array}{c}
+ 3 \\
+ 1 \\
+\end{array}
+\right)\) , show that \(A X =B\) is a way of expressing the system  
+    \(2x_1 + x_2 = 3\\ \\ x_1 - x_2= 1\)  using matrices.</p></li>
+
+
+
+ <li><p> Express the following systems of equations using matrices:
+		<ol type="i">
+				
+			<li><p>  \(2 x_1- x_2= 4\\
+				\\
+				\text{   }x_1+ x_2= 0\)</p></li>
+
+
+
+			<li><p>  \(x_1+ x_2+ 2 x_3= 1\\
+				\\
+				x_1+ 2 x_2-x_3= -1\\
+				\\
+				x_1+ 3 x_2+x_3= 5\)</p></li>
+
+
+
+			<li><p>  \(x_1+x_2\text{             }= 3\\
+				\\
+				\text{          }x_2\text{              }= 5\\
+				\\
+				x_1\text{         }+ 3x_3= 6\)
+				</p></li>
+		</ol>
+</p></li>
+</ol>
+</statement></exercise>
+</exercisegroup>
+</exercises>
+</section>
