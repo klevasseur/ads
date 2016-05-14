@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="Binary_Representation_of_Positive_Integers ">
+<title>Binary Representation of Positive Integers </title><index><main>Binary Representation</main></index>
+<p>Recall that the set of positive integers, <m>\mathbb{P}</m>, is <m>\{1, 2, 3, . . . \}</m>. Positive integers are naturally used to count things. There are many ways to count and many ways to record, or represent, the results of counting. For example, if we wanted to count five hundred twenty-three apples, we might group the apples by tens. There would be fifty-two groups of ten with three single apples left over. The fifty-two groups of ten could be put into five groups of ten tens (hundreds), with two tens left over. The five hundreds, two tens, and three units is recorded as 523. This system of counting is called the base ten positional system, or decimal system. It is quite natural for us to do grouping by tens, hundreds, thousands, <m>\dots</m> since it is the method that all of us use in everyday life. </p>
+<p> The term positional refers to the fact that each digit in the decimal representation of a number has a significance based on its position. Of course this means that rearranging digits will change the number being described. You may have learned of numeraton systems in which the position of symbols does not have any significance (e.g., the ancient Egyptian system). Most of these systems are merely curiosities to us now.</p>
+<p>The binary number system differs from the decimal number system in that units are grouped by twos, fours, eights, etc. That is, the group sizes are powers of two instead of powers of ten. For example, twenty-three can be grouped into eleven groups of two with one left over. The eleven twos can be grouped into five groups of four with one group of two left over. Continuing along the same lines, we find that twenty-three can be described as one sixteen, zero eights, one four, one two, and one one, which is abbreviated <m>10111_{\textrm{two}}</m>, or simply <m>10111</m> if the
+context is clear. </p>
+<p>The process that we used to determine the binary representation of <m>23</m> can be described in general terms to determine the binary representation of any positive integer n. A general description of a process such as this one is called an algorithm. Since this is the first algorithm in the book, we will first write it out using less formal language than usual, and then introduce some <q>algorithmic notation.</q></p> 
+<p><ol style="1">
+	<li> Start with an empty list of bits. </li>
+	<li> Step Two: Assign the variable <m>k</m> the value <m>n</m>. </li>
+	<li> Step Three: While <m>k</m>'s value is positive, continue performing the following three steps until <m>k</m> becomes zero and then stop. 
+	<ol style="a"> 
+		<li>divide <m>k</m> by 2, obtaining a quotient <m>q</m> (often denoted <m>k \textrm{ div } 2</m>) and a remainder <m>r</m> (denoted <m>(k \bmod 2)</m>). </li>
+		<li>attach <m>r</m> to the left-hand side of the list of bits. </li>
+		<li> assign the variable <m>k</m> the value <m>q</m>.</li>   
+	</ol></li>
+</ol></p>
+<example  xml:id="An_example_of_conversion_to_binary">
+<title>An example of conversion to binary</title>
+<p> To determine the binary representation of 41 we take the following steps:
+<ul> 
+<li><m>41 = 2 \times  20+ 1 \quad List = 1 </m> </li>
+<li><m>20 = 2 \times  10+0 \quad List = 01 </m></li>
+<li> <m>10 = 2\times 5 + 0 \quad List = 001 </m></li>
+<li><m>5 =\text2\times  2+ 1 \quad List =1001</m> </li>
+<li><m>2 =2\times  1+ 0 \quad List = 01001 </m></li>
+<li><m>1 =\text2 \times 0\text+1  \quad List = 101001</m> </li>
+</ul>   
+Therefore, <m>41=101001_{\textrm{two}}</m></p>
+</example>
+<p>The notation that we will use to describe this algorithm and all others is called pseudocode, an informal variation of the instructions that are commonly used in many computer languages. Read the following description carefully, comparing it with the informal description above. Appendix B, which contains a general discussion of the components of the algorithms in this book, should clear up any lingering questions. Anything after // are comments.</p> 
+<algorithm  xml:id="binary_conversion_algorithm">
+<title>Binary Conversion Algorithm</title><index><main>Binary Conversion Algorithm</main></index><statement>
+<p> An algorithm for determining the binary representation of a positive integer.</p>
+<p>Input: a positive integer n.</p> 
+<p>Output: the binary representation of n in the form of a list of bits, with units bit last, twos bit next to last, etc.</p> 
+<ol style="1">
+<li>k := n <m>\qquad  </m>     //initialize k</li>
+<li>L := { } <m>\qquad  </m>   //initialize L to an empty list</li>
+<li> While k > 0 do 
+   <ol style="a">
+   	<li> q := k div 2		<m>\qquad  </m>	//divide k by 2</li>
+      <li> r:= k mod 2 </li>
+   	<li>L: = prepend r to L <m>\qquad  </m> //Add r to the front of L </li>
+    	<li> k:= q   			<m>\qquad  </m>	//reassign k</li>
+</ol></li>
+</ol>
+</statement>
+</algorithm>
+<p>Here is a Sage version of the algorithm with two alterations. It outputs a the binary representation as a string, and it handles all integers, not just positive ones.</p>
+<sage>
+<input>
+def binary_rep(n):
+    if n==0:
+        return '0'
+    else:
+        k=abs(n)
+        s=''
+        while k>0:
+            s=str(k%2)+s
+            k=k//2
+        if n &lt; 0:
+            s='-'+s
+        return s
+ 
+ binary_rep(41)
+</input>
+</sage>
+<p>Now that you've read this section, you should get this joke.</p>
+            <figure xml:id="onetoten">
+                <caption>With permission from Randall Munroe
+                </caption>
+                <image width="200" source="images/1_to_10.png">
+                    <description>Comic from http://xkcd.com.</description>
+                </image>
+            </figure>
+
+<exercises xml:id="exercises-1.4">
+<title>EXERCISES FOR SECTION 1.4 </title>
+<exercisegroup><introduction><p>A Exercises</p></introduction>
+<exercise number="1"><statement> 
+Find the binary representation of each of the following positive integers by working through the algorithm by hand.  You can check your answer using the sage cell above. 
+<ol type="a"><li> 31</li><li> 32</li><li>10</li><li>100 </li></ol>
+</statement> </exercise>
+<exercise number="2"><statement> 
+Find the binary representation of each of the following positive integers by working through the algorithm by hand.  You can check your answer using the sage cell above.  
+<ol type="a"><li> 64</li><li> 67</li><li>28</li><li>256 </li></ol>
+</statement> </exercise>
+<exercise number="3"><statement> 
+What positive integers have the following binary representations?
+<ol type="a"><li> 10010</li><li> 10011</li><li>101010</li><li>10011110000 </li></ol>
+</statement> </exercise>
+<exercise number="4"><statement> 
+What positive integers have the following binary representations?
+<ol type="a"><li> 100001</li><li> 1001001</li><li>1000000000</li><li>1001110000 </li></ol>
+</statement> </exercise>
+<exercise number="5"><statement> 
+The number of bits in the binary representations of integers increase by one as the numbers double.  Using this fact, determine how many bits the binary representations of the following decimal numbers have without actually doing the full conversion. 
+<m> \quad (a) 2011  \quad (b)  4000   \quad (c) 4500   \quad (d) 2^{50}</m> 
+</statement> </exercise>
+</exercisegroup>
+<exercisegroup><introduction><p>B Exercises</p></introduction>
+<exercise number="6"><statement> 
+Let <m>m</m> be a positive integer with <m> n</m>-bit binary representation: <m>a_{n-1}a_{n-2}\cdots  a_1a_0</m> with <m>a_{n-1}=1</m> What are the smallest
+and largest values that <m>m</m> could have? 
+</statement> </exercise>
+<exercise number="7"><statement> 
+If a positive integer is a multiple of 100, we can identify this fact from its decimal representation, since it will end with two zeros. What can
+you say about a positive integer if its binary representation ends with two zeros? 
+</statement> </exercise>
+<exercise number="8"><statement> 
+Can a multiple of ten be easily identified from its binary representation? 
+</statement> </exercise>
+</exercisegroup>
+</exercises>
+</section> 
