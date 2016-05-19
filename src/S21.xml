@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="the-rule-of-products">
+<title>Basic Counting Techniques - The Rule of Products</title>
+<subsection xml:id="What-is-Combinatorics">
+<p>
+ One of the first concepts our parents taught us was the <q>art of counting.</q> We were taught to raise three fingers to indicate that we were three years old. The question of <q>how many</q> is a natural and frequently asked question. Combinatorics is the <q>art of counting.</q> It is the study of techniques that will help us to count the number of objects in a set quickly. Highly sophisticated results can be obtained with this simple concept. The following examples will illustrate that many questions concerned with counting involve the same process.
+</p>
+
+<example xml:id="lunch-possibilies1"><title>How many lunches can you have?</title><p>A snack bar serves five different sandwiches and three different beverages. How many different lunches can a person order? One way of determining the number of possible lunches is by listing or enumerating all the possibilities. One systematic way of doing this is by means of a tree, as in the following figure.</p>
+<p>            <figure xml:id="lunch">
+                <caption>Tree diagram to enumerate the number of possible lunches.
+                </caption>
+                <image width="194" source="images/lunch.gif">
+                    <description>Tree diagram to enumerate the number of possible lunches.</description>
+                </image>
+            </figure>
+</p>
+<p>
+ Every path that begins at the position labeled START and goes to the right can be interpreted as a choice of one of the five sandwiches followed by a choice of one of the three beverages. Note that considerable work is required to arrive at the number fifteen this way; but we also get more than just a number. The result is a complete list of all possible lunches. If we need to answer a question that starts with <q>How many . . . ,</q> enumeration would be done only as a last resort. In a later chapter we will examine more enumeration techniques.
+</p>
+<p>
+ An alternative method of solution for this example is to make the simple observation that there are five different choices for sandwiches and three different choices for beverages, so there are <m>5 \cdot 3 = 15</m> different lunches that can be ordered.
+</p>
+<p>
+ A listing of possible lunches a person could have is: <span><span>{(BEEF, milk), (BEEF, juice), (BEEF, coffee), ..., (BOLOGNA, coffee)}</span></span>.
+</p>
+</example>
+<example xml:id="cartesian-cardinality">
+<title>Counting elements in a cartesion product</title> 
+<p>Let <m>A = \{a, b, c, d, e\}</m> and <m>B = \{1,2,3\}</m>. From Chapter 1 we know how to list the elements in <m>A \times B = \{(a, 1), (a, 2), (a, 3), ..., (e, 3)\}</m>.  Since the first entry of each pair can be any one of the five elements <m>a, b, c, d</m>, and <m>e</m>, and since the second can be any one of the three numbers 1, 2, and 3, it is quite clear there are 
+<m>5 \cdot 3 = 15</m> different elements in <m>A \times B</m>.
+</p>
+</example>
+<example xml:id="questionnaire"><title>A True-False Questionnaire</title><p>A person is to complete a true-false questionnaire consisting of ten questions. How many different ways are there to answer the questionnaire? Since each question can be answered either of two ways (true or false), and there are a total of ten questions, there are <me> 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 = 2^{10} = 1024</me> different ways of answering the questionnaire. The reader is encouraged to visualize the tree diagram of this example, but not to draw it!</p>
+</example>
+
+<p>
+ We formalize the procedures developed in the previous examples with the following rule and its extension.
+</p>
+</subsection>
+<subsection xml:id="rule-of-products">
+<title>The Rule Of Products:</title><index><main>The Rule Of Products:</main></index> 
+<p>If two operations must be performed, and If the first operation can always be performed <m>p_1</m> different ways and the second operation can always be performed <m>p_2</m> different ways, then there are <m>p_1 p_2</m> different ways that the two operations can be performed.
+</p>
+<p>
+Note: It is important that <m>p_2</m> does not depend on the option that is chosen in the first operation. Another way of saying this is that <m>p_2</m> is independent of the first operation. If <m>p_2</m> is dependent on the first operation, then the rule of products does not apply.
+</p>
+<example xml:id="lunch-possibilites2"><title>Reduced Lunch Possibilities</title><statement><p>Assume in <xref ref="lunch-possibilies1" />, coffee is not served with a beef or chicken sandwiches. Then by inspection of <xref ref="lunch" /> we see that there are only thirteen different choices for lunch. The rule of products does not apply, since the choice of beverage depends on one's choice of a sandwich.</p></statement>
+</example>
+<p><em>Extended Rule Of Products.</em> The rule of products can be extended to include sequences of more than two operations. If <m>n</m> operations must be performed, and the number of options for each operation is <m>p_1</m>, <m>p_2, \dots, p_n</m> respectively, with each <m>p_i</m>  independent of previous choices, then the <m>n</m> operations can be performed <m>p_1 \cdot p_2 \cdot \cdots \cdot p_n</m> different ways.
+</p>
+<example xml:id="another_questionnaire"><title>A Multiple Choice Questionnaire</title><p>A questionnaire contains four questions that have two possible answers and three questions with five possible answers. Since the answer to each question is independent of the answers to the other questions, the extended rule of products applies and there are
+<m>2 \cdot 2 \cdot 2 \cdot 2 \cdot 5 \cdot 5 \cdot 5 = 2^4 \cdot 5^3 = 2000 </m> different ways to answer the questionnaire.</p>
+</example>
+<p>
+ In Chapter 1 we introduced the power set of a set A, P(A), which is the set of all subsets of A. Can we predict how many elements are in <m>\mathcal{P}(A)</m> for a given finite set A? The answer is yes, and in fact if <m>\lvert A \rvert  = n</m>, then <m>\mathcal{P}(A) = 2^{n}</m>.  The ease with which we can prove this fact demonstrates the power and usefulness of the rule of products. Do not underestimate the usefulness of simple ideas.
+</p>
+<theorem xml:id="power-set-cardinality-theorem"><title>Power Set Cardinality Theorem</title><index><main>Power Set Cardinality Theorem</main></index>
+<statement>If <m>A</m> is a finite set, then <m>\lvert \mathcal{P}(A) \rvert = 2^{\lvert A \rvert }</m></statement>
+<proof>
+Proof: Consider how we might determine any <m>B \in \mathcal{P}(A)</m>, where <m> \lvert A \rvert =n</m>. For each element <m>x \in A</m> there are two choices, either <m>x \in B</m> or <m>x \notin B</m>.  Since there are <m>n</m>  elements of <m>A</m>  we have, by the rule of products, 
+  <me>\underset{n \textrm{ factors}}{\underline{2 \cdot 2 \cdot  \cdots \cdot 2}}=  2^n</me>   different subsets of <m>A</m>. Therefore, <m>\mathcal{P}(A)= 2^{n}</m>;
+</proof>
+</theorem>
+
+</subsection>
+<exercises xml:id="EXERCISES-FOR-SECTION-2-1">
+<exercisegroup><introduction>A Exercises</introduction>
+
+<exercise number="1"><statement> In horse racing, to bet the <q>daily double</q> is to select the winners of the first two races of the day. You win only if both selections are correct. In terms of the number of horses that are entered in the first two races, how many different daily double bets could be made?</statement></exercise>
+
+<exercise number="2"><statement> Professor Shortcut records his grades using only his students' first and last initials. What is the smallest class size that will definitely force Prof. S. to use a different system?</statement></exercise>
+
+<exercise number="3"><statement> A certain shirt comes in four sizes and six colors. One also has the choice of a dragon, an alligator, or no emblem on the pocket. How many different shirts could you order?</statement></exercise>
+
+<exercise number="4"><statement> A builder of modular homes would like to impress his potential customers with the variety of styles of his houses. For each house there are blueprints for three different living rooms, four different bedroom configurations, and two different garage styles. In addition, the outside can be finished in cedar shingles or brick. How many different houses can be designed from these plans?</statement></exercise>
+
+<exercise number="5"><statement> The Pi Mu Epsilon mathematics honorary society of Outstanding University wishes to have a picture taken of its six officers. There will be two rows of three people. How many different way can the six officers be arranged?</statement></exercise>
+
+<exercise number="6"><statement>  An automobile dealer has several options available for each of three different packages of a particular model car: a choice of two styles of seats in three different colors, a choice of four different radios, and five different exteriors. How many choices of automobile does a customer have?</statement></exercise>
+
+<exercise number="7"><statement> A clothing manufacturer has put out a mix-and-match collection consisting of two blouses, two pairs of pants, a skirt, and a blazer. How many outfits can you make? Did you consider that the blazer is optional? How many outfits can you make if the manufacturer adds a sweater to the collection?</statement></exercise>
+
+<exercise number="8"><statement> As a freshman, suppose you had to take two of four lab science courses, one of two literature courses, two of three math courses, and one of seven physical education courses. Disregarding possible time conflicts, how many different schedules do you have to choose from?</statement></exercise>
+<exercise number="9"><statement> (a) Suppose each single character stored in a computer uses eight bits. Then each character is represented by a different sequence of eight 0's and l's called a bit pattern. How many different bit patterns are there? (That is, how many different characters could be represented?)
+<p> (b) How many bit patterns are palindromes (the same backwards as forwards)?</p>
+<p> (c) How many different bit patterns have an even number of 1's?</p></statement></exercise>
+<exercise number="10"><statement> Automobile license plates in Massachusetts usually consist of three digits followed by three letters. The first digit is never zero. How many different plates of this type could be made?</statement></exercise>
+<exercise number="11"><statement> (a) Let <m>A = \{1, 2, 3, 4\}</m>. Determine the number of different subsets of <m>A</m>. 
+<p> (b) Let <m>A = \{1, 2, 3, 4, 5\}</m>. Determine the number of proper subsets of <m>A</m> .
+</p></statement></exercise>
+<exercise number="12"><statement> How many integers from 100 to 999 can be written with no 7's?</statement></exercise>
+<exercise number="13"><statement> Consider three persons, A, B, and C, who are to be seated in a row of three chairs. Suppose A and B are identical twins. How many seating arrangements of these persons can there be
+<p>(a) If you are a total stranger?</p>
+<p>(b) If you are A and B's mother?</p>
+<p>This problem is designed to show you that different people can have different correct answers to the same problem.</p></statement></exercise>
+<exercise number="14"><statement> How many ways can a student do a ten-question true-false exam if he or she can choose not to answer any number of questions?</statement></exercise>
+<exercise number="15"><statement><p> Suppose you have a choice of fish, lamb, or beef for a main course, a choice of peas or carrots for a vegetable, and a choice of pie, cake, or ice cream for dessert. If you must order one item from each category, how many different dinners are possible?</p></statement></exercise>
+<exercise number="16"><statement> Suppose you have a choice of vanilla, chocolate, or strawberry for ice cream, a choice of peanuts or walnuts for chopped nuts, and a choice of hot fudge or marshmallow for topping. If you must order one item from each category, how many different sundaes are possible?</statement></exercise>
+</exercisegroup>
+<exercisegroup><introduction>B Exercises</introduction>
+<exercise number="17"><statement> A questionnaire contains six questions each having yes-no answers. For each yes response, there is a follow-up question with four possible responses.
+<ol type="a">
+<li><p>Draw a tree diagram that illustrates how many ways a single question in the questionnaire can be answered.</p></li>
+<li><p>How many ways can the questionnaire be answered?</p></li>
+</ol>
+</statement></exercise>
+<exercise number="18"><statement> Ten people are invited to a dinner party. How many ways are there of seating them at a round table? If the ten people consist of five men and five women, how many ways are there of seating them if each man must be surrounded by two women around the table?</statement></exercise>
+<exercise number="19"><statement> How many ways can you separate a set with <m>n</m>  elements into two nonempty subsets if the order of the subsets is immaterial? What if the order of the subsets is important?</statement></exercise>
+<exercise number="20"><statement> A gardener has three flowering shrubs and four nonflowering shrubs. He must plant these shrubs in a row using an alternating pattern, that is, a shrub must be of a different type from that on either side. How many ways can he plant these shrubs? If he has to plant these shrubs in a circle using the same pattern, how many ways can he plant this circle? Note that one nonflowering shrub will be left out at the end.</statement></exercise>
+</exercisegroup>
+</exercises>
+</section>
