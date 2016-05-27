@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="s-graphs-of-relations-on-a-set"><title>Graphs of Relations on a Set</title>
+
+<p>In this section we introduce directed graphs as a way to visualize relations on a set. </p>
+
+<p>Let \(A = \{0, 1,2,3\}\), and let  \[r = \{(0, 0), (0, 3), (1, 2), (2, 1), (3, 2), (2, 0)\}\]
+In representing this relation as a graph, elements of <m>A</m> are called the vertices of the graph. They are typically represented by labeled points or small circles. We connect vertex <m>a</m> to vertex <m>b</m> with an arrow, called an edge, going from vertex <m>a</m> to vertex <m>b</m> if and only if \(a r b\).  This type of graph of a relation <m>r</m> is called a <term>directed graph</term> or <term>digraph</term>. <xref ref="fig-graph-6-2-1" autoname="yes" /> is a digraph for <m>r</m>. Notice that since 0 is related to itself, we draw a <q>self-loop</q> at 0.<index><main>directed graph</main></index><index><main>digraph</main></index></p>
+
+
+<figure xml:id="fig-graph-6-2-1">
+   <caption>Digraph of the relation <m>r</m></caption>
+      <image xml:id="graph-6-2-1">
+         <description>Digraph of the relation <m>r</m></description>
+					<sageplot>
+					g=DiGraph({0:[0,3],1:[2],2:[1,0],3:[2]})
+					f621=g.plot(layout='spring',loop_size=0.1)
+					f621
+					</sageplot>
+      </image>
+</figure>
+<p>The actual location of the vertices in a digraph is immaterial. The actual location of vertices we choose is called an <term>embedding of a graph</term><index><main>embedding of a graph</main></index>. The main idea is to place the vertices in such a way that the graph is easy to read. After drawing a rough-draft graph of a relation, we may decide to relocate the vertices so that the final result will be neater. <xref ref="fig-graph-6-2-1" autoname="yes" /> could also
+be presented as in <xref ref="fig-graph-6-2-2" autoname="yes" />.</p>
+
+
+<figure xml:id="fig-graph-6-2-2">
+   <caption>Alternate embedding of of the previous directed graph <m>r</m></caption>
+      <image xml:id="graph-6-2-2">
+         <description>Digraph of the relation <m>r</m>, alternate embedding</description>
+					<sageplot>
+					g=DiGraph({0:[0,3],1:[2],2:[1,0],3:[2]})
+					f622=g.plot(pos={0:(0,0),1:(1,0),2:(1,1),3:(0,1)},loop_size=0.1)
+					f622
+					</sageplot>
+      </image>
+</figure>
+
+<p>A vertex of a graph is also called a node, point, or a junction. An edge of a graph is also referred to as an arc, a line, or a branch. Do not be concerned if two graphs of a given relation look different as long as the connections between vertices are are the same in two graphs.</p>
+
+<example xml:id="ex-another-simple-graph"><title>Another directed graph.</title><statement><p>Consider the relation <m>s</m> whose digraph is <xref ref="fig-graph-6-2-3" autoname="yes" />. What information does this give us? The graph tells us that <m>s</m> is a relation on \(A = \{1, 2, 3\}\) and that \(s = \{(1, 2), (2, 1), (1, 3), (3, 1), (2, 3), (3, 3)\}\),</p>
+
+      <figure xml:id="fig-graph-6-2-3">
+            <caption>Digraph of the relation <m>s</m></caption>
+            <image xml:id="graph-6-2-3">
+               <description>Digraph of the relation <m>s</m></description>
+						<sageplot>
+                  g=DiGraph({1:[2,3],2:[1,3],3:[1,3]})
+                  f623=g.plot(layout="circular",loop_size=0.1)
+                  f623
+                  </sageplot>
+            </image>
+      </figure>
+</statement></example>
+
+
+
+<example xml:id="ex-subsets-2-ordering"><title>Ordering subsets of a two element universe</title><statement><p> Let \(B = \{1,2\}\), and let \(A = \mathcal{P}(B) = \{0, \{1\}, \{2\}, \{1,2\}\}\). Then \(\subseteq\) is a relation on <m>A</m> whose digraph is <xref ref="fig-graph-6-2-subsets-2" autoname="yes" />.</p>
+
+<figure xml:id="fig-graph-6-2-subsets-2">
+   <caption>Graph for set containment on subsets of <m>\{1,2\}</m> </caption>
+   <image width="400" source="images/graph-6-2-subsets-2.png">
+   <description>Graph for set containment on subsets  of <m>\{1,2\}</m></description>
+   </image>
+</figure>
+<p>We will see in the next section that since \(\subseteq\) has certain structural properties that describe <q>partial orderings.</q> We will be able to draw a much simpler type graph than this one, but for now the graph above serves our purposes.</p></statement></example>
+
+
+<exercises xml:id="exercises-6-2"><title>Exercises</title>
+<exercisegroup><introduction>A Exercises</introduction>
+<exercise number="1"><statement> Let \(A = \{1, 2, 3, 4\}\), and let <m>r</m> be the relation \(\leq\) on <m>A</m> Draw a digraph for <m>r</m>.
+</statement></exercise>
+<exercise number="2"><statement> Let \(B = \{1,2, 3, 4, 6, 8, 12, 24\}\), and let <m>s</m> be the relation <q>divides,</q> on <m>B</m>. Draw a digraph for <m>s</m>. 
+</statement></exercise>
+<exercise number="3"><statement>  Let \(A=\{1,2,3,4,5\}\). Define \(t\) on <m>A</m> by \(a t b\) if and only if \(b - a\) is even. Draw a digraph for <m>t</m>.
+</statement></exercise>
+<exercise number="4"><statement><ol type="a">
+<li>Let <m>A</m> be the set of strings of 0's and 1's of length 3 or less. Define the relation of <m>d</m> on A by \(x d y\) if <m>x</m> is contained within <m>y</m>. For example, \(01 d 101\). Draw a digraph for this relation. </li>
+<li> Do the same for the relation <m>p</m> defined by \(x p y\) if <m>x</m> is a prefix of <m>y</m>. For example, \(10 p 101\), but \(01 p 101\) is false.</li>
+</ol>
+</statement></exercise>
+</exercisegroup>
+<exercisegroup><introduction>B Exercises</introduction>
+<exercise number="5"><statement> Recall the relation in Exercise 5 of Section 6.1, <m>\rho</m> defined on the power set, \(\mathcal{P}(S)\), of a set <m>S</m>. The definition
+was \((A,B) \in \rho\) iff \(A\cap  B = \emptyset\). Draw the digraph for \(\rho\) where \(S = \{a, b\}\). 
+</statement></exercise>
+<exercise number="6"><statement> Let \(C= \{1,2, 3, 4, 6, 8, 12, 24\}\) and define <m>t</m> on <m>C</m> by
+\(a t b\) if and only if <m>a</m> and <m>b</m> share a common divisor greater than 1.  Draw a digraph for <m>t</m>.
+</statement></exercise>
+</exercisegroup>
+</exercises>
+</section>
