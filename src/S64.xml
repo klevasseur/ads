@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="s-matrices-of-relations"><title>Matrices of Relations</title>
+
+<p>We have discussed two of the many possible ways of representing a relation, namely as a digraph or as a set of ordered pairs. In this section we will discuss the representation of relations by matrices.</p>
+
+<definition xml:id="def-adjacency-matrix"><title>Adjacency Matrix</title><index><main>Adjacency Matrix</main></index><statement><p>Let \(A = \{a_1,a_2,\ldots , a_m\}\) and \(B= \{b_1,b_2,\ldots , b_n\}\) be finite sets of cardinality <m>m</m> and <m>n</m>, respectively. Let <m>r</m> be a relation from <m>A</m> into <m>B</m>. Then <m>r</m> can be represented by the \(m\times n\) matrix <m>R</m> defined by
+
+<me>R_{ij}= \left\{
+		\begin{array}{cc}
+		 1 &amp; \textrm{   if } a_i r b_j \\
+		 0 &amp; \textrm{   otherwise}     \\
+		\end{array}\right.
+</me>
+ <m>R</m> is called the <term>adjacency matrix</term> (or the relation matrix) of <m>r</m>.</p>
+ </statement></definition> 
+
+<p>For example, let \(A = \{2, 5, 6\}\) and let <m>r</m> be the relation \(\{(2, 2), (2, 5), (5, 6), (6, 6)\}\) on <m>A</m>. Since <m>r</m> is a relation from <m>A</m> into the same set <m>A</m> (the <m>B</m> of the definition), we have \(a_1= 2\), \(a_2=5\), and \(a_3=6\), while \(b_1= 2\), \(b_2=5\), and \(b_3=6\). Next, since</p>
+<ul>
+<li><p>\(2 r 2\), we have \(R_{11}= 1\)</p></li>
+<li><p>\(2 r 5\), we have \(R_{12}= 1\)</p></li>
+<li><p>\(5 r 6\), we have \(R_{23}= 1\) </p></li>
+<li><p>\(6 r 6\), we have \(R_{33}= 1\)</p></li>
+</ul>
+<p>All other entries of <m>R</m> are zero, so
+
+\(R =\left(
+\begin{array}{ccc}
+ 1 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 \\
+ 0 &amp; 0 &amp; 1 \\
+\end{array}
+\right)\)
+</p>
+
+<p>From the definition of <m>r</m> and of composition, we note that
+
+<me>r^2 = \{(2, 2), (2, 5), (2, 6), (5, 6), (6, 6)\}</me>
+
+The adjacency matrix of \(r^2\) is
+
+<me>R^2 =\left(
+\begin{array}{ccc}
+ 1 &amp; 1 &amp; 1 \\
+ 0 &amp; 0 &amp; 1 \\
+ 0 &amp; 0 &amp; 1 \\
+\end{array}
+\right)</me></p>
+
+<p>We do not write \(R^2\) only for notational purposes. In fact, \(R^2\) can be obtained from the matrix product \(R R\); however, we must use a slightly different form of arithmetic.</p>
+
+<definition xml:id="def-boolean-arithmetic"><title>Boolean Arithmetic</title>
+<index><main>Boolean Arithmetic</main></index><statement><p>Boolean arithmetic is the arithmetic defined on \(\{0,1\}\) using Boolean addition and Boolean multiplication, defined by</p>
+<table>
+<tabular>
+<row><cell>\(0 + 0 = 0\)</cell><cell>\(0+1 = 1 + 0=1\)     </cell><cell>\(1 + 1 = 1\)</cell></row>
+<row><cell>\(0\cdot 0=0\) </cell><cell> \(0 \cdot  1 = 1 \cdot  0 = 0\)</cell><cell>\(1 \cdot  1 = 1\)</cell></row>
+</tabular>
+</table>
+</statement></definition> 
+
+<p>Notice that from Chapter 3, this is the <q>arithmetic of logic,</q> where \(+\) replaces <q>or</q> and \(\cdot\) replaces <q>and.</q></p>
+
+<example xml:id="ex-composition-matrices"><title>Composition by Multiplication</title><statement><p>If  \(R=\left(
+\begin{array}{cccc}
+ 0 &amp; 1 &amp; 0 &amp; 0 \\
+ 1 &amp; 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 &amp; 1 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 \\
+\end{array}
+\right)\)  and  \(S=\left(
+\begin{array}{cccc}
+ 0 &amp; 1 &amp; 1 &amp; 1 \\
+ 0 &amp; 0 &amp; 1 &amp; 1 \\
+ 0 &amp; 0 &amp; 0 &amp; 1 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 \\
+\end{array}
+\right)\).
+
+Then using Boolean arithmetic, \(R S =\left(
+\begin{array}{cccc}
+ 0 &amp; 0 &amp; 1 &amp; 1 \\
+ 0 &amp; 1 &amp; 1 &amp; 1 \\
+ 0 &amp; 0 &amp; 1 &amp; 1 \\
+ 0 &amp; 0 &amp; 0 &amp; 1 \\
+\end{array}
+\right)\)  and \(S R=\left(
+\begin{array}{cccc}
+ 1 &amp; 1 &amp; 1 &amp; 1 \\
+ 0 &amp; 1 &amp; 1 &amp; 1 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 \\
+\end{array}
+\right)\).
+</p></statement></example>
+
+<theorem xml:id="theorem-composition-is-multiplication"><title>Composition is Matrix Multiplication</title><statement><p>Let \(A_1\), 
+\(A_2\), and \(A_3\) be finite sets where \(r_1\) is a relation from \(A_1\) into \(A_2\) and \(r_2\)
+is a relation from \(A_2\) into \(A_3\). If \(R_1\) and \(R_2\) are the adjacency matrices of \(r_1\) and \(r_2\) , respectively, then the product
+\(R_1R_2\) using Boolean arithmetic is the adjacency matrix of the composition \(r_1r_2\).</p></statement></theorem> 
+
+	
+
+<p>Remark: A convenient help in constructing the adjacency matrix of a relation from a set <m>A</m> into a set <m>B</m> is to write the elements from <m>A</m> in a column preceding the first column of the adjacency matrix, and the elements of <m>B</m> in a row above the first row. Initially, <m>R</m> in Example 6.4.1 would be
+
+<me>
+\begin{array}{cc}
+   &amp; 
+\begin{array}{ccc}
+ 2 &amp; 5 &amp; 6 \\
+\end{array}
+ \\
+ 
+\begin{array}{c}
+ 2 \\
+ 5 \\
+ 6 \\
+\end{array}
+ &amp; \left(
+\begin{array}{ccc}
+   &amp;   &amp;   \\
+   &amp;   &amp;   \\
+   &amp;   &amp;   \\
+\end{array}
+\right) \\
+\end{array}</me> 
+
+To fill in the matrix, \(R_{ij}\) is 1 if and only if\(\left(a_i,b_j\right) \in r\). So that, since the pair \((2, 5) \in r\), the entry of <m>R</m> corresponding to the row labeled 2 and the column labeled 5 in the matrix is a 1.</p>
+
+<example xml:id="ex-relations-information"><title>Relations and Information</title><statement><p>This final example gives an insight into how relational data base programs can systematically answer questions pertaining to large masses of information. Matrices <m>R</m> (on the left) and <m>S</m> (on the right) define the relations <m>r</m> and <m>s</m> where
+\(a r b\) if software <m>a</m> can be run with operating system <m>b</m>, and \(b s c\) if operating system <m>b</m> can run on computer <m>c</m>.
+
+<me>\begin{array}{cc}
+   &amp; 
+\begin{array}{cccc}
+ \text{OS1} &amp; \text{OS2} &amp; \text{OS3} &amp; \text{OS4} \\
+\end{array}
+ \\ 
+\begin{array}{c}
+ \text{P1} \\
+ \text{P2} \\
+ \text{P3} \\
+ \text{P4} \\
+\end{array}
+ &amp; \left(
+\begin{array}{cccc}
+  1  &amp;  0  &amp;  1  &amp;  0  \\
+  1  &amp;  1  &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp;  1  \\
+ 0 &amp; 0 &amp;  1  &amp;  1  \\
+\end{array}
+\right) \\
+\end{array}\)       \(\begin{array}{cc}
+   &amp; 
+\begin{array}{ccc}
+ \text{C1} &amp; \text{C2} &amp; \text{C3} \\
+\end{array}
+ \\
+ 
+\begin{array}{c}
+ \text{OS1} \\
+ \text{OS2} \\
+ \text{OS3} \\
+ \text{OS4} \\
+\end{array}
+ &amp; \left(
+\begin{array}{ccc}
+  1  &amp;  1  &amp; 0 \\
+ 0 &amp;  1  &amp; 0 \\
+ 0 &amp; 0 &amp;  1  \\
+ 0 &amp;  1  &amp;  1  \\
+\end{array}
+\right) \\
+\end{array}</me>
+
+Although the relation between the software and computers is not implicit from the data given, we can easily compute this information. The matrix of <m>rs</m> is <m>RS</m>, which is
+
+ <me>\begin{array}{cc}
+   &amp; 
+\begin{array}{ccc}
+ \text{C1} &amp; \text{C2} &amp; \text{C3} \\
+\end{array}
+ \\
+ 
+\begin{array}{c}
+ \text{P1} \\
+ \text{P2} \\
+ \text{P3} \\
+ \text{P4} \\
+\end{array}
+ &amp; \left(
+\begin{array}{ccc}
+  1  &amp;  1  &amp; 1 \\
+ 1 &amp;  1  &amp; 0 \\
+ 1 &amp; 1 &amp;  1  \\
+ 0 &amp;  1  &amp;  1  \\
+\end{array}
+\right) \\
+\end{array}</me>
+This matrix tells us at a glance which software will run on the computers listed. In this case, all software will run on all computers with the exception of program P2, which will not run on the computer C3, and program P4, which will not run on the computer C1.</p></statement></example> 
+
+<exercises xml:id="exercises-6-4"><title>Exercises</title>
+<exercisegroup><introduction>A Exercises</introduction>
+
+<exercise number="1"><statement><p>Let \(A_1 = \{1,2, 3, 4\}\), \(A_2 = \{4, 5, 6\}\), and \(A_3 = \{6, 7, 8\}\). Let \(r_1\) be the relation from \(A_1\) into \(A_2\) defined by
+\(r_1 = \{(x, y) | y - x = 2\}\), and let \(r_2\) be the relation from \(A_2\) into \(A_3\) defined by \(r_2 = \{(x, y)| y - x =
+1\}\).</p>
+<ol type="a">
+<li><p> Determine the adjacency matrices of \(r_1\) and \(r_2\).</p></li>
+<li><p> Use the definition of composition to find \(r_1r_2\).</p></li>
+<li><p> Verify the result in part by finding the product of the adjacency matrices of \(r_1\) and \(r_2\).</p></li>
+</ol>
+</statement></exercise>
+<exercise number="2"><statement> 
+<ol type="a">
+<li><p> Determine the adjacency matrix of each relation given via the digraphs in Exercise 3 of Section 6.3.</p></li>
+<li><p> Using the matrices found in part (a) above, find \(r^2\) of each relation in Exercise 3 of Section 6.3.</p></li>
+<li><p> Find the digraph of \(r^2\) directly from the given digraph and compare your results with those of part (b).</p></li>
+</ol>
+</statement></exercise>
+<exercise number="3"><statement><p>Suppose that the matrices in <xref ref="ex-composition-matrices" autoname="yes" /> are relations on \(\{1, 2, 3, 4\}\). What relations do <m>R</m> and <m>S</m> describe?</p>
+</statement></exercise>
+<exercise number="4"><statement><p>Let <m>D</m> be the set of weekdays, Monday through Friday, let <m>W</m> be a set of employees \(\{1, 2, 3\}\) of a tutoring center, and let <m>V</m> be a set
+of computer languages for which tutoring is offered,  \(\{A(PL), B(asic), C(++), J(ava), L(isp), P(ython)\}\). We define <m>s</m> (schedule)
+from <m>D</m> into <m>W</m> by \(d s w\) if <m>w</m> is scheduled to work on day <m>d</m>. We also define <m>r</m> from <m>W</m>
+into <m>V</m> by \(w r l\) if <m>w</m> can tutor students in language <m>l</m>. If <m>s</m> and <m>r</m> are defined by matrices</p>
+<p>
+<me> 
+S = 
+\begin{array}{cc}
+   &amp; 
+		\begin{array}{ccc}
+		1 &amp; 2 &amp; 3 \\
+		\end{array}
+		 \\
+ 
+	\begin{array}{c}
+			 M \\
+			 T \\
+			 W \\
+			 R \\
+			 F \\
+	\end{array}
+     &amp; 
+     \left(
+			\begin{array}{ccc}
+				 1 &amp; 0 &amp; 1 \\
+				 0 &amp; 1 &amp; 1 \\
+				 1 &amp; 0 &amp; 1 \\
+				 0 &amp; 1 &amp; 0 \\
+				 1 &amp; 1 &amp; 0 \\
+			\end{array}
+		\right) \\
+		\end{array}
+\textrm{ and }R=
+	\begin{array}{cc}
+   &amp; 
+	\begin{array}{cccccc}
+		 A &amp; B &amp; C &amp; J &amp; L &amp; P \\
+	\end{array}
+ \\
+ 
+\begin{array}{c}
+ 1 \\
+ 2 \\
+ 3 \\
+\end{array}
+ &amp; \left(
+\begin{array}{cccccc}
+ 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+ 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 \\
+ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\
+\end{array}
+\right) \\
+\end{array}</me>
+</p>
+
+
+<ol type="a">
+<li><p> compute \(S R\) using Boolean arithmetic and give an interpretation of the relation it defines, and</p></li>
+<li><p> compute \(S R\) using regular arithmetic and give an interpretation of what the result describes.</p></li>
+</ol>
+</statement></exercise>
+<exercise number="5"><statement> How many different reflexive, symmetric relations are there on a set with three elements? (Hint: Consider the possible matrices.)
+</statement></exercise>
+<exercise number="6"><statement><p>Let \(A = \{a, b, c, d\}\).  Let <m>r</m> be the relation on <m>A</m> with adjacency matrix
+
+\(\begin{array}{cc}
+   &amp; 
+\begin{array}{cccc}
+ a &amp; b &amp; c &amp; d \\
+\end{array}
+ \\
+ 
+\begin{array}{c}
+ a \\
+ b \\
+ c \\
+ c \\
+\end{array}
+ &amp; \left(
+\begin{array}{cccc}
+ 1 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 &amp; 0 \\
+ 1 &amp; 1 &amp; 1 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 &amp; 1 \\
+\end{array}
+\right) \\
+\end{array}\)</p>
+<ol type="a">
+<li><p> Explain why <m>r</m> is a partial ordering on <m>A</m>.</p></li>
+<li><p> Draw its Hasse diagram.</p></li>
+</ol>
+</statement></exercise>
+<exercise number="7"><statement> Define relations <m>p</m> and <m>q</m> on \(\{1, 2, 3, 4\}\) by \(p = \{(a, b) \mid \lvert a-b\rvert=1\}\) and \(q=\{(a,b) \mid a-b \textrm{ is even}\}\)
+<ol type="a">
+<li><p> Represent <m>p</m> and <m>q</m> as both graphs and matrices.</p></li>
+<li><p> Determine \(p q\), \(p^2\), and \(q^2\); and represent them clearly in any way.</p></li>
+</ol>
+</statement></exercise>
+</exercisegroup>
+<exercisegroup><introduction>B Exercises</introduction>
+<exercise number="8"><statement> 
+<ol type="a">
+<li><p>Prove that if <m>r</m> is a transitive relation on a set <m>A</m>, then \(r^2 \subseteq  r\). </p></li>
+<li><p> Find an example of a transitive relation for which \(r^2\neq r\).</p></li>
+</ol>
+</statement></exercise>
+<exercise number="9"><statement><p> We define <m>\leq</m> on the set of all \(n\times n\) relation matrices by the rule that if <m>R</m> and <m>S</m>are any two \(n\times n\)
+relation matrices, \(R \leq  S\) if and only if \(R_{ij} \leq S_{ij}\) for all \(1 \leq  i, j \leq  n\).</p>
+<ol type="a">
+<li><p> Prove that <m>\leq</m> is a partial ordering on all \(n\times n\) relation matrices.</p></li>
+<li><p> Prove that \(R \leq  S  \Rightarrow   R^2\leq S^2\) , but the converse is not true.</p></li>
+<li><p> If <m>R</m> and <m>S</m> are matrices of equivalence relations and \(R \leq  S\), how are the equivalence classes defined by <m>R</m> related to the equivalence classes defined by <m>S</m>?</p></li>
+</ol>
+</statement></exercise>
+</exercisegroup>
+</exercises>
+</section>
