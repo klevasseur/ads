@@ -8,9 +8,9 @@
 
 <p>This can be rephrased as follows; Find the smallest relation \(r^{+ }\)which contains <m>r</m> as a subset and which is transitive; \(r^+ =\{(a, b), (a, c), (b, d), (c, d), (a, d)\}\).</p>
 
-<definition xml:id="def-transitive-closure"><title>Transitive Closure</title><index><main>title>Transitive Closure</main></index><statement><p>Let <m>A</m> be a set and <m>r</m> be a relation on <m>A</m>. The transitive closure of <m>r</m>, denoted by \(r^+\) , is the smallest transitive relation that contains <m>r</m> as a subset.</p></statement><notation><usage>r^+</usage><description>The transitive closure of <m>r</m></description></notation></definition> 
+<definition xml:id="def-transitive-closure"><title>Transitive Closure</title><index><main>Transitive Closure</main></index><statement><p>Let <m>A</m> be a set and <m>r</m> be a relation on <m>A</m>. The transitive closure of <m>r</m>, denoted by \(r^+\) , is the smallest transitive relation that contains <m>r</m> as a subset.</p></statement><notation><usage>r^+</usage><description>The transitive closure of <m>r</m></description></notation></definition> 
 
-<p>Let \(A = \{1, 2, 3, 4$\}\), and let \(\mathcal{S} = \{(1, 2), (2, 3), (3, 4)\}\) be a relation on <m>A</m>. This relation is called the successor relation on <m>A</m> since each element is related to its successor. How do we compute \(\mathcal{S}^+\)?  By inspection we note that \((1, 3)\) must be in \(\mathcal{S}^+\) . Let's analyze why. This is so because \((1,2) \in \mathcal{S}\) and \((2, 3) \in \mathcal{S}\), and the transitive property forces \((1,3)\) to be in \(\mathcal{S}^+\). </p>
+<p>Let \(A = \{1, 2, 3, 4\}\), and let \(\mathcal{S} = \{(1, 2), (2, 3), (3, 4)\}\) be a relation on <m>A</m>. This relation is called the successor relation on <m>A</m> since each element is related to its successor. How do we compute \(\mathcal{S}^+\)?  By inspection we note that \((1, 3)\) must be in \(\mathcal{S}^+\) . Let's analyze why. This is so because \((1,2) \in \mathcal{S}\) and \((2, 3) \in \mathcal{S}\), and the transitive property forces \((1,3)\) to be in \(\mathcal{S}^+\). </p>
 
 <p>In general, it follows that if \((a, b) \in \mathcal{S}\) and \((b, c) \in S,\) then \((a, c) \in \mathcal{S}^+ \). This condition is exactly the membership requirement for the pair \((a, c)\) to be in the composition \(\mathcal{S}\mathcal{S} = \mathcal{S}^2\). So every element in \(\mathcal{S}^2\) must be an element in \(\mathcal{S}^+\) . So we now know that, \(\mathcal{S}^+\) contains at least \(\mathcal{S} \cup  \mathcal{S}^2\) . In particular, for this example, since \(\mathcal{S} = \{(1, 2), (2, 3), (3, 4)\}\) and \(\mathcal{S}^2 = \{(1, 3), (2, 4)\}\), we have 
 
@@ -22,9 +22,9 @@
  \[\mathcal{S}^+ =\mathcal{S}\cup \mathcal{S} ^2\cup  \mathcal{S} ^3=\{(1, 2), (2, 3), (3, 4),(1, 3),(2, 4),(1,4)\}\]
  </p>
 
-<theorem xml:id="theorem-transitive-closure-formula"><title>Transitive Closure on a Finite Set</title><statement><p>If <m>r</m> is a relation on a set <m>A</m> and \(|A| = n\), then the transitive closure of <m>r</m> is the union of the first <m>n</m> powers of
+<theorem xml:id="theorem-transitive-closure-formula"><title>Transitive Closure on a Finite Set</title><statement><p>If <m>r</m> is a relation on a set <m>A</m> and \(\lvert A \rvert = n\), then the transitive closure of <m>r</m> is the union of the first <m>n</m> powers of
 r.  That is, 
-\[r^+ = r \cup  r^2 \cup  r ^3 \cup \cdots  \cup  \text{\textit{$r$}}^n\].</p></statement></theorem> 
+\[r^+ = r \cup  r^2 \cup  r ^3 \cup \cdots  \cup  r^n\].</p></statement></theorem> 
 
 
 
@@ -110,180 +110,126 @@ on the set \(A = \{1,2, 3, 4, 5\}\). The matrix of <m>r</m> is
 
 <p>For example, if \(n = 3\), \(R = R(I + R(I + R))\).</p>
 
-We can make use of the fact that if <m>T</m> is a relation matrix, \(T + T = T\) due to the fact that \(1 + 1 = 1\) in Boolean arithmetic. Let \(S_k = R + R^2 + \cdots  + R^k\) . Then
+<p>We can make use of the fact that if <m>T</m> is a relation matrix, \(T + T = T\) due to the fact that \(1 + 1 = 1\) in Boolean arithmetic. Let \(S_k = R + R^2 + \cdots  + R^k\) . Then </p>
 
-\(R = S_1\)
+<p><me>
+\begin{split}
+R &amp;= S_1\\
+S_1(I+S_1)&amp;=R(I+R)=R+R^2 = S_2 \\
+S_2(I+S_2)&amp;=(R+R^2)(I+R+R^2) \\
+			&amp;=(R+R^2)+(R^2+R^3)+(R^3+R^4) \\
+			&amp;=R+R^2+R^3+R^4 = S_4 \\
+\end{split}
+</me></p>
+<p>Similarly,
+\[S_4(I+S_4)=S_8\]
+and by induction we can prove
+\[S_{2^k}(I+S_{2^k})=S_{2^{k+1}}\]
+</p>
 
+<p>Notice how each matrix multiplication doubles the number of terms that have been added to the sum that you currently have computed. In algorithmic form, we can compute \(R^+\) as follows.</p>
 
-
-\(S_1\text{ (}\text{\textit{$I$}}\text{ + }S_1\text{) = }\text{\textit{$R$}}\text{ (}\text{\textit{$I$}}\text{ + }\text{\textit{$R$}}\text{)
-= }\text{\textit{$R$}}\text{ + }R^2\text{ = }S_2\)
-
-
-
-\(S_2 \left(I + S _2\right) = \left(R + R^2 \right)\left(I + R + R^2 \right)\\
-\\
-=\left(R + R ^2\right) + \left(R^2 + R ^3 \right) + \left(R^3+ R^4 \right) \\
-\\
-= R + R^2 + R ^3 + R ^4 =S_4\)
-
-
-
-Similarly, 
-
-
-
-\(S_4\left(I+S_4\right) = S_8\)
-
-
-
-etc..
-
-
-
-Notice how each matrix multiplication doubles the number of terms that have been added to the sum that you currently have computed. In algorithmic
-form, we can compute \(R^2\) as follows.
-
-
-
-\pmb{ Algorithm 6.5.1: Transitive Closure Algorithm 1.} Let <m>R</m> be a known relation matrix and let \(R^+\) be its transitive closure matrix, which
-is to be computed.
-
+<algorithm xml:id="alg-trans-closure"><title>Transitive Closure Algorithm</title><statement>
+<p> Let <m>R</m> be a relation matrix and let \(R^+\) be its transitive closure matrix, which is to be computed as matrix <m>T</m></p>
 <program>
 <input>
-1.0. \(T\text{:=}R\) 
-
-
-
-2.0. Repeat
-
-
-
-2.1 \(S\text{:=} T\)
-
-
-
-2.2 \(T\text{:=} S(I + S)\) // using Boolean arithmetic
-
-
-
-    Until \(T = S\)
-
-
-
-3.0. Terminate with \(T=R^+\).
+1.0. S = R
+2.0  T= S*(I+S)
+3.0 While T != S
+		3.1 S = T
+		3.2 T= S*(I+S) // using Boolean arithmetic
+4.0 Return T
 </input>
 </program>
-
+</statement>
+</algorithm>
 
 <p>Notes:</p>
-<ol type="a">
-<li> Often the higher-powered terms in \(S_n\) do not contribute anything to \(R^+\). When the condition \(T = S\) becomes true in Step 2, this
-is an indication that no higher-powered terms are needed.</li>
-<li> To compute \(R^+\) using this algorithm, you need to perform no more than \(\left\lceil \log _2 n\right\rceil\) matrix multiplications, where
-$\lceil $x$\rceil $ is the least integer that is greater than or equal to <m>x</m>. For example, if <m>r</m> is a relation on 25 elements,
-no more than \(\left\lceil \log _2 25\right\rceil =5\) matrix multiplications are needed.</li>
-</ol>
+<ul>
+<li> Often the higher-powered terms in \(S_n\) do not contribute anything to \(R^+\). When the condition \(T = S\) becomes true in Step 3, this is an indication that no higher-powered terms are needed.</li>
+<li> To compute \(R^+\) using this algorithm, you need to perform no more than \(\lceil \log_2 n \rceil\) matrix multiplications, where
+\(\lceil x \rceil\) is the least integer that is greater than or equal to <m>x</m>. For example, if <m>r</m> is a relation on 25 elements,
+no more than \(\lceil \log_2 25 \rceil = 5\) matrix multiplications are needed.</li>
+</ul>
 
 
-A second algorithm, Warshall's Algorithm, reduces computation time to the time that it takes to perform one matrix multiplication.
+<p>A second algorithm, Warshall's Algorithm, reduces computation time to the time that it takes to perform one matrix multiplication.</p>
 
+<algorithm xml:id="alg-warshall"><title>Warshall's Algorithm</title><statement>
 
-
-\pmb{ Algorithm 6.5.2; Warshall's Algorithm.} Let <m>R</m> be a known relation matrix and let \(R^+\) be its transitive closure matrix, which
-is to be computed.
+<p>Let <m>R</m> be an <m>n \times n</m> relation matrix and let \(R^+\) be its transitive closure matrix, which is to be computed as matrix <m>T</m> using boolean arithmetic</p>
 
 <program>
 <input>
-
-1.0 \(T\text{:=} R\)
-
-
-
-2.0  FOR \(k: = 1 \text{to} n\) DO
-
-
-
-         FOR \(i: = 1 \text{to} n\) DO
-
-
-
-            FOR \(j \text{:=} 1 \text{to} n\)   DO
-
-
-
-               \(T[i,j]\text{:=}T[i,j] + T[i,k]\cdot T[k,j]\)
-
-
-
-3.0 Terminate with \(T=R^+\).
-
+1.0 T = R
+2.0 for k = 1 to n:
+     for i = 1 to n:
+      for j = 1 to n:
+        T[i,j]= T[i,j] + T[i,k] * T[k,j]
+3.0 Return T
 </input>
 </program>
-
+</statement>
+</algorithm>
 </subsection>
-<exercises xml:id="exercises-6-5><title>Exercises</title>
 
-
+<exercises xml:id="exercises-6-5"><title>Exercises</title>
 <exercisegroup><introduction>A Exercises</introduction>
 
-</statement></exercise>
-<exercise number="1"><statement> Let <m>A</m> and $\mathcal{S}$ be as in Example 6.5.1. Compute \(\mathcal{S}^+\) as in Example 6.5.2. Verify your results by checking against
-the relation \(\mathcal{S}^+\) obtained in Example 6.5.1.
+<exercise number="1"><statement> Let <m>A</m> and \(\mathcal{S}\) be as defined above. Compute \(\mathcal{S}^+\) using the matrix representation of \(\mathcal{S}\). Verify your results by checking against the result obtained directly from the definition of transitive closure.
 
 </statement></exercise>
-<exercise number="2"><statement> Let <m>A</m> and <m>r</m> be as in Example 6.5.2. Compute the relation \(r^+\) as in Example 6.5.1. Verify your results.
+<exercise number="2"><statement><p>Let <m>A=\{1,2,3,4,6,12\}</m> and <m>t=\{(a,b)\mid b/a \textrm{ is a prime number}\}</m>. determine <m>t^+</m> by any means but represent it as a matrix.</p>
 
 </statement></exercise>
-<exercise number="3"><statement> (a) Draw digraphs of the relations \(\mathcal{S}\), \(\mathcal{S}^2\), \(\mathcal{S}^3\) , and \(\mathcal{S}^+\) of Example 6.5.1.</li>
-<li> Verify that in terms of the graph of \(\mathcal{S}\), \(a \mathcal{S}^+ b\) if and only if <m>b</m> is reachable from <m>a</m> along a
-path of any finite nonzero length.
-
-</statement></exercise>
-<exercise number="4"><statement> Let <m>r</m> be the relation represented by the digraph in Figure 6.5,1.
+<exercise number="3"><statement> 
 <ol type="a">
-<li> Find \(r^+\)</li>
+<li>Draw digraphs of the relations \(\mathcal{S}\), \(\mathcal{S}^2\), \(\mathcal{S}^3\) , and \(\mathcal{S}^+\)  where \(\mathcal{S}\) is defined above.</li>
+<li> Verify that in terms of the graph of \(\mathcal{S}\), \(a \mathcal{S}^+ b\) if and only if <m>b</m> is reachable from <m>a</m> along a
+path of any finite nonzero length.</li>
+</ol>
+
+</statement></exercise>
+<exercise number="4"><statement> Let <m>r</m> be the relation represented by the digraph in <xref ref="fig-exercise-6-5-4" />
+<ol type="a">
+<li> Find \(r^+\) using the definition based on order pairs.</li>
 <li> Determine the digraph of \(r^+\) directly from the digraph of <m>r</m>.</li>
-<li> Verify your result in part (b) by computing the digraph from your result in part (a).
+<li> Verify your result in part (b) by computing the digraph from your result in part (a).</li>
+</ol>
 
-
-\begin{center}\(\)
-\end{center}
-
-
-\caption{\pmb{ FIGURE 6.5.1}}
-
-</statement></exercise>
-<exercise number="5"><statement> (a) Define reflexive closure and symmetric closure by imitating the definition of transitive closure.
-
-
-
-  (b) Use your definitions to compute the reflexive and symmetric closures of Examples 6.5.1 and 6.5.2.
-
-
-
-  (c) What are the transitive reflexive closures of these examples?
-
-
-
-  (d) Convince yourself that the reflexive closure of the relation $<$ on the set of positive integers $\mathbb{P}$ is $\leq $.
+	<figure xml:id="fig-exercise-6-5-4">
+			 <caption>Digraph of <m>r</m> in exercise 4. 
+			 </caption>
+			 <image width="400" source="images/fig-exercise-6-5-4.png">
+				  <description>Graph for exercise 4 of Section 6.5</description>
+			 </image>
+	</figure>
 
 </statement></exercise>
-<exercise number="6"><statement> What common relations on $\mathbb{Z}$ are the transitive closures of the following relations?
+<exercise number="5"><statement> 
+<ol type="a">
+<li>Define reflexive closure and symmetric closure by imitating the definition of transitive closure.</li>
+<li> Use your definitions to compute the reflexive and symmetric closures of examples in the text.</li>
+<li> What are the transitive reflexive closures of these examples?</li>
+<li> Convince yourself that the reflexive closure of the relation \(&lt;\) on the set of positive integers \(\mathbb{P}\) is \(\leq\).</li>
+</ol>
+
+</statement></exercise>
+<exercise number="6"><statement><p> What common relations on \(\mathbb{Z}\) are the transitive closures of the following relations?</p>
 <ol type="a">
 <li> \(a S b\) if and only if \(a + 1 = b\).</li>
-<li> \(a R b\) if and only if \(| a - b | = 2\).
-
+<li> \(a R b\) if and only if \(| a - b | = 2\).</li>
+</ol>
+</statement></exercise>
 </exercisegroup>
 
-\subsubsection{B Exercise}
-
+<exercisegroup><introduction>B Exercises</introduction>
+<exercise number="7"><statement> 
+<ol type="a">
+<li>Let <m>A</m> be any set and <m>r</m> a relation on <m>A</m>, prove that \(\left(r^+\right)^+=r^+\).</li>
+<li>Is the transitive closure of a symmetric relation always both symmetric and reflexive? Explain.</li>
+</ol>
 </statement></exercise>
-<exercise number="7"><statement> (a) Let <m>A</m> be any set and <m>r</m> a relation on <m>A</m>, prove that \(\left(r^+\right)^+=r^+\).
-
-
-
-   (b) Is the transitive closure of a symmetric relation always both symmetric and reflexive? Explain.
    
 </exercisegroup>
 </exercises>
