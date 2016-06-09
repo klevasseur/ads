@@ -178,20 +178,61 @@ P(n +1;k) &amp;= (n+1) P(n;k-1) \\
 <title>Exercises for Section 3.7 </title>
 <exercisegroup><introduction><p>A Exercises</p></introduction>
 <exercise number="1"><statement>Prove that the sum of the first <m>n</m> odd integers equals \(n^2\) .
-</statement></exercise>
+</statement>
+<answer><p> We wish to prove that \(P(n):1+3+5+\cdots +(2n-1)=n^2\) is true for \(n \geqslant 1\). Recall that the <m>n</m>th odd positive integer is 2n - 1.</p>
+
+<p>Basis:  for \(n=1\), \(P(n)\) is \(1=1^2\), which is true</p>
+
+<p>Induction:  Assume that for some \(n\geqslant 1, P(n)\) is true. Then:
+<me>
+\begin{split}
+1+3+\cdots +(2(n+1)-1) &amp;= (1+3+\cdots +(2n-1) ) +(2(n+1)-1)\\
+	&amp; =n^2+(2n+1) \quad textrm{by } P(n) \textrm{ and basic algebra}\\
+	&amp; =(n+1)^2 \quad \blacksquare\\
+\end{split}
+</me>
+</p>
+</answer>
+</exercise>
 
 <exercise number="2"><statement>Prove that if \(n \geq  1\), then \(1(1!) + 2(2!) + \cdots  + n(n!) = (n + 1)! - 1\).
 </statement></exercise>
 
-<exercise number="3"><statement>Prove that for \(n \geq  1\): \(\sum _{k=1}^n k^2= \frac{1}{6} n(n+1) (2 n+1)\).
-</statement></exercise>
-
+<exercise number="3">
+<statement><p>Prove that for \(n \geq  1\): \(\sum _{k=1}^n k^2= \frac{1}{6} n(n+1) (2 n+1)\).</p>
+</statement>
+<answer><p> Proof: </p>
+<ul>
+<li> Basis: \(1=1(2)(3)/6=1\)</li>
+<li> Induction: \(\sum _1^{n+1} k^2=\sum _1^n k^2+(n+1)^2\\
+\\
+\text{   }=\frac{n(n+1)(2n+1)}{6}+(n+1)^2\\
+\\
+\text{   }=\frac{(n+1)(2n^2+7n+6)}{6}\\
+\\
+\text{   }=\frac{(n+1)(n+2)(2n+3)}{6}\text{   }\blacksquare\)</li>
+</ul>
+</answer>
+</exercise>
 <exercise number="4"><statement>Prove that for <m>n \geq  1</m>: \(\sum _{k=0}^n 2^k = 2^{n+1}-1\).
 </statement></exercise>
 
 <exercise number="5"><statement><p>Use mathematical induction to show that for \(n\geq 1\),
   <me>\frac{1}{1\ 2 }+ \frac{1}{2\ 3}+ \cdots  + \frac{1}{n(n+1)}= \frac{n}{n+1}</me></p>
-</statement></exercise>
+</statement>
+<answer><p> Basis:  For \(n=1\), we observe that \(\frac{1}{(1\cdot 2)}=\frac{1}{(1+1)}\)</p>
+<p>Induction: Assume that for some \(n\geqslant 1\), the formula is true.</p>
+
+<p>Then: \(\frac{1}{(1\cdot 2)}+\cdots +\frac{1}{((n+1)(n+2))}=\frac{n}{(n+1)}+\frac{1}{((n+1)(n+2))}\\
+\\
+      =\frac{(n+2)(n)}{(n+1)(n+2)}+\frac{1}{(n+1)(n+2)}\\
+\\
+      =\frac{(n+1)^2}{((n+1)(n+2))}\\
+\\
+      =\frac{(n+1)}{(n+2)} \quad \blacksquare\)</p>
+</answer>
+
+</exercise>
 
 <exercise number="6"><statement><p> Prove that if \(n \geq  2\),  the generalized DeMorgan's Law is true:
 <me>\neg (p_1 \land p_2\land \text{...} \land p_n)\Leftrightarrow (\neg p_1)\lor  (\neg p_2) \lor  \cdots
@@ -201,13 +242,39 @@ P(n +1;k) &amp;= (n+1) P(n;k-1) \\
 <exercisegroup>
 <introduction><p>B Exercises</p></introduction>
 
-<exercise number="7"><statement>The number of strings of <m>n</m> zeros and ones that contain an even number of ones is \(2^{n-1}\).   Prove this fact by induction for <m>n \geq  1</m>.</statement></exercise>
+<exercise number="7"><statement>The number of strings of <m>n</m> zeros and ones that contain an even number of ones is \(2^{n-1}\).   Prove this fact by induction for <m>n \geq  1</m>.</statement>
+<answer><p> Let \(A_n\) be the set of strings of zeros and ones of length <m>n</m> (we assume that \(\lvert A_n \rvert =2^n\) is known). Let  \(E_n\) be the set of the <q>even</q> strings, and \(E_{n}^{c}=\) the odd strings. The problem is to prove that for \(n\geqslant 1\), \(\lvert E_n \rvert =2^{n-1}\). Clearly, \(\lvert E_1\rvert =1\), and, if for some \(n\geqslant 1, \lvert E_n\rvert =2^{n-1}\), it follows that \(\lvert E_{n+1}\rvert  =2^n\) by the following reasoning.</p>
+
+<p>We partition \(E_{n+1}\) according to the first bit: \(	E_{n+1}=\{1s\mid s \in E_n^c \}\cup \{ 0s \mid s \in E_n\}\)</p>
+
+<p> Since \(\{1s\mid s \in E_n^c\}\) and \(\{0s \mid s \in E_n\}\) are disjoint, we can apply the addition law. Therefore, 
+<me>
+\begin{split}
+\quad \lvert  E_{n+1}\rvert &amp; =\lvert E_n^c \rvert  +\lvert  E_n \rvert  \\
+	&amp; =2^{n-1}+ (2^n-2^{n-1}) =2^n.\quad \blacksquare\\
+\end{split}
+</me>
+</p>
+</answer>
+</exercise>
 
 <exercise number="8"><statement> Let \(p(n)\) be \(8^n-3^n\) is a multiple of 5.  Prove that \(p(n)\) is a tautology over \(\mathbb{N}\).</statement></exercise>
 
 <exercise number="9"><statement>Suppose that there are <m>n</m> people in a room, \(n \geq  1\), and that they all shake hands with one another. Prove that \(\frac{n(n-1)}{2}\)
 handshakes will have occurred.
-</statement></exercise>
+</statement>
+<answer> Assume that for <m>n</m> persons \((n\geqslant 1),\frac{(n-1)n}{2}\) handshakes take place. If one more person enters the room, he or she will shake hands with n people,
+<me>
+\begin{split}
+\frac{(n-1)n}{2}+n &amp; =\frac{n^2-n+2n}{2}\\
+	&amp;=\frac{n^2+n}{2}=\frac{n(n+1)}{2}\\
+	&amp;=\frac{((n+1)-1)(n+1)}{2}\\
+\end{split}
+</me>
+
+Also, for \(n=1\), there are no handshakes, which matches the conjectured formula: \[\frac{(1-1)(1)}{2}=0 \quad \blacksquare.\] 
+</answer>
+</exercise>
 
 <exercise number="10"><statement>Prove that it is possible to make up any postage of eight cents or more using only three- and five-cent stamps.
 </statement></exercise>
@@ -219,7 +286,23 @@ handshakes will have occurred.
 <introduction><p>C Exercises</p></introduction>
 
 <exercise number="11"><statement> Generalized associativity. It is well known that if \(a_1\), \(a_2\), and \(a_3\) are numbers, then no matter what order the sums in the expression \(a_1+ a_2+a_3\) are taken in, the result is always the same. Call this fact \(p(3)\) and assume it is true. Prove using course-of-values induction that if \(a_1\), \(a_2\), \(\ldots ,\) and \(a_n\)  are numbers, then no matter what order the sums in the expression \(a_1+ a_2+\cdots +a_n\) are taken in, the result is always the same.
-</statement></exercise>
+</statement>
+<solution><p> Let \(p(n)\) be <q>\(a_{1} + a_2 + \cdots + a_n\) has the same value no matter how it is evaluated.</q></p>
+<p> Basis: \(a_1 + a_2 + a_3\) may be evaluated only two ways. Since + is associative, \((a_1 + a_2) + a_3 = a_1 + (a_2 + a_3)\). Hence, \(p(3)\) is true.</p>
+
+<p>Induction: Assume that for some \( n\geq 3\), \(p(3), p(4), \dots , p(n)\) are all true. Now consider the sum \(a_1 + a_2 + \cdots + a_n + a_{n+1}\). Any of the \(n\) additions in this expression can be applied last. If the <m>j</m>th addition is applied last, we have \(c_j=(a_1+a_2+\cdots +a_j)+(a_{j+1}+\cdots +a_{n+1})\). No matter how the expression to the left and right of the \(j^{\text{th}}\) addition are evaluated, the result will always be the same by the induction hypothesis, specifically \(p(j)\) and \(p(n+1-j)\). We now can prove that \(c_1=c_2=\cdots =c_n\). If \(i &lt; j\), 
+ <me>
+\begin{split}
+c_i &amp;=(a_1+a_2+\cdots +a_i)+(a_{i+1}+\cdots +a_{n+1})\\
+	&amp;=(a_1+a_2+\cdots +a_i)+((a_{i+1}+\cdots +a_j)+(a_{j+1}+\cdots +a_{n+1})\\
+	&amp;=((a_1+a_2+\cdots +a_i)+((a_{i+1}+\cdots +a_j))+(a_{j+1}+\cdots +a_{n+1})\\
+	&amp;=((a_1+a_2+\cdots +a_j))+(a_{j+1}+\cdots +a_{n+1})\\
+	&amp;=c_j \quad\quad \square
+\end{split}
+</me>
+</p>
+</solution>
+</exercise>
 
 <exercise number="12"><statement><p>Let <m>S</m> be the set of all numbers that can be produced by applying any of the rules below in any order a finite number of times.
 <ul>
@@ -242,6 +325,20 @@ For example, \(x^3= x^2x\) = \((x^1x)x = (x x) x\).    </p>
 <p> Prove that
 if \(n, m \in  \mathbb{P}\), \(x^{m+n}= x^mx^n\).  There is much more on recursion in Chapter 8.</p></statement>
 <hint> Let \(p(m)\) be the proposition that \(x^{m+n}= x^mx^n\) for all \(n\geq 1\).</hint>
+<solution> For \(m\geqslant 1\), let \(p(m)\textrm{ be } x^{n+m}=x^nx^m\) for all \(n\geqslant 1\). The basis for this proof follows directly from the basis for the definition of exponentiation.
+
+Induction: Assume that for some \(m\geqslant 1, p(m)\) is true. Then
+<me>
+\begin{split}
+x^{n+(m+1)} &amp; =x^{(n+m)+1}\quad \textrm{by associativity of integer addition}\\
+	&amp;=x^{n+m}x^1 \quad \textrm{  by recursive definition}\\
+	&amp;=x^nx^mx^1 \quad \textrm{induction hypothesis}\\
+	&amp;=x^nx^{m+1}\quad \textrm{recursive definition}\quad \square\\
+\end{split}
+</me>
+
+</solution>
+
 </exercise>
 
 <exercise number="14"><statement><p> Let <m>S</m> be a finite set and let \(P_n\) be defined recursively by \(P_{1 } = S\)  and \(P_n= S\times P_{n-1}\) for \(n\geq 2\).
