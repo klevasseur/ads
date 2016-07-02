@@ -2,7 +2,7 @@
 <section xml:id="s-function-def-notation"><title>Definition and Notation</title>
 
 <definition xml:id="def-function"><title> Function</title><statement><p>A function from a set <m>A</m> into a set <m>B</m> is a relation from <m>A</m> into <m>B</m> such that each element of <m>A</m> is related to exactly one element of the set <m>B</m>. The set <m>A</m> is called <term>domain</term> of the function and the set <m>B</m> is called the <term>codomain</term>.</p></statement>
-<notation><usage>\(f:A \rightarrow B\)</usage><description>A function, <m>f</m>, from <m>A</m> into <m>B</m></description></notation><index><main>Function</main></index></definition>
+<notation><usage>f:A \rightarrow B</usage><description>A function, <m>f</m>, from <m>A</m> into <m>B</m></description></notation><index><main>Function</main></index></definition>
 
 <p>The reader should note that a function <m>f</m> is a relation from <m>A</m> into <m>B</m> with two important restrictions:</p>
 
@@ -92,78 +92,85 @@ producing quantities of two products, we can imagine varying \(n_1\) while \(n_2
 
 
 <p>There are several ways to define a function in \textit{ Mathematica}. One way is using a \(Function\) expression. For example the function
-\(f:\mathbb{Z}\to \mathbb{Z}\), where \(f(x)=x^2\) can be defined by evaluating the expression
+\(f:\mathbb{Z}\to \mathbb{Z}\), where \(f(x)=x^2\) can be defined by evaluating the expression.</p>
 
-<me>
-\begin{doublespace}
-\noindent\(\pmb{f=\text{Function}\left[x,x^2\right]}\)
-\end{doublespace}
+<listing>
+<input>
+f=Function[x,x^2]
+</input>
+<output>
+<me>x \mid-> x^2</me>
+</output>
+</listing>
 
-\begin{doublespace}
-\noindent\(x\unicode{f4a1}x^2\)
-\end{doublespace}</me>
-</p>
 
 <p>Then we can compute the image of various numbers.  Since \textit{ Mathematica} isn't a typed programming language the concept of a domain doesn't
 apply unless you specify a bit more structure. As it stands we can take the image of numbers, strings, matrices, or symbols, among other things:
-<me>
-\begin{doublespace}
-\noindent\(\pmb{\left\{f[-5],f[2.5],f[\text{<q>Hello</q>}],f\left[\left(
+
+<listing>
+<input>
+{f[-5],f[2.5],f["Hello"],f[<m>\left(
 \begin{array}{cc}
  1 &amp; 2 \\
  3 &amp; -1 \\
 \end{array}
-\right)\right],f[\theta ]\right\}}\)
-\end{doublespace}
-
-\begin{doublespace}
-\noindent\(\left\{25,6.25,\text{Hello}^2,\left(
+\right)</m>,f[<m>\theta</m>]}
+</input>
+<output>
+<me>\{25,6.25,\textrm{Hello}^2,\left(
 \begin{array}{cc}
  1 &amp; 4 \\
  9 &amp; 1 \\
 \end{array}
-\right),\theta ^2\right\}\)
-\end{doublespace}
-</me>
+\right),\theta^2\}</me>
+</output>
+</listing>
+
+
 </p>
 <p>Notice the syntax of <em>Mathematica</em> is to use square brackets such as \(f[x]\) instead of parentheses, \(f(x)\) for computing images under <m>f</m>.  Notice that the square of the matrix isn't the matrix product, rather it is simpler componentwise product.</p> 
 
 <p>If we want to restrict the possible inputs to a function that implements <m>f</m>, we might use the following alternate way of defining a function.
-<me>
-\begin{doublespace}
-\noindent\(\pmb{\text{fa}[\text{x$\_$}?\text{IntegerQ}]\text{:=}x^2}\)
-\end{doublespace}
-</me>
+
+<listing>
+<input>
+fa[x_?IntegerQ]:=x^2
+</input>
+</listing>
+
 </p>
 
 <p>If the $\texttt{"}$\(?IntegerQ$\texttt{"}$\) had been left out, \(fa\) and \(f\) would be identical, but as it is defined, the formula for \(fa\)
 only applies to integers.  This makes \(fa\) more similar to <m>f</m>.  We get what we expect when we ask for the image of an integer:
-<me>
-\begin{doublespace}
-\noindent\(\pmb{\{\text{fa}[-5],\text{fa}[25!]\}}\)
-\end{doublespace}
-
-\begin{doublespace}
-\noindent\(\{25,240597637008332048087335626345604448256000000000000\}\)
-\end{doublespace}
-</me>
+<listing>
+<input>
+{fa[-5],fa[25!]}
+</input>
+<output>
+<me>\{ 25,240597637008332048087335626345604448256000000000000  \}</me>
+</output>
+</listing>
 </p>
 
 <p>If we ask for the image of anything that isn't an integer, the expression is left unevaluated. 
-<me>
-\begin{doublespace}
-\noindent\(\pmb{\left\{\text{fa}[2.5],\text{fa}[\text{<q>Hello</q>}],\text{fa}\left[\left(
+<listing>
+<input>
+{fa[-5],fa[2.5],fa["Hello"],fa[<m>\left(
 \begin{array}{cc}
  1 &amp; 2 \\
  3 &amp; -1 \\
 \end{array}
-\right)\right],\text{fa}[\theta ]\right\}}\)
-\end{doublespace}
+\right)</m>],fa[<m>\theta</m>]}</input>
+<output>
+<me>\{\textrm{fa}[2.5],\textrm{fa}[\textrm{"Hello"}],\textrm{fa}[\left(
+\begin{array}{cc}
+ 1 &amp; 2 \\
+ 3 &amp; -1 \\
+\end{array}
+\right)],\textrm{fa}[\theta]\}</me>
+</output>
+</listing>
 
-\begin{doublespace}
-\noindent\(\{\text{fa}[2.5],\text{fa}[\text{Hello}],\text{fa}[\{\{1,2\},\{3,-1\}\}],\text{fa}[\theta ]\}\)
-\end{doublespace}
-</me>
 </p>
 <p>It is also possible to program <em>Mathematica</em> to issue an error message for these unintended cases.</p>
 </subsection>
