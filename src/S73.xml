@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="s-function-composition"><title>Function Composition</title>
+
+<p>Now that we have a good understanding of what a function is, our next step is to consider an important operation on functions. Our purpose is not
+to develop the algebra of functions as completely as we did for the algebras of logic, matrices, and sets, but the reader should be aware of the
+similarities between the algebra of functions and that of matrices. We first define equality of functions.</p>
+
+<definition xml:id="def-equality-of-functions."><title>Equality of Functions</title><statement> Let \(f, g:A \rightarrow  B\); that is, let f and g both be functions from A into B.  Then f is
+equal to g (i. e., \(f=g\)) if and only if \(f(x) = g(x)\) for all \(x \in  A\). </statement><index><main>Function</main><sub>Equality</sub></index></definition>
+
+
+<p>Two functions that have different domains cannot be equal. For example,  \(f: \mathbb{Z}\to \mathbb{Z}\) defined by \(f(x)=x^2\) and \(g: \mathbb{R}\to
+\mathbb{R}\) defined by \(g(x)=x^2\) are not equal even though the formula that defines them is the same.</p>
+
+<p>On the other hand, it is not uncommon for two functions to be equal even though they are defined differently. For example consider the functions
+<m>h</m> and <m> k</m>, where \(h: \{-1,0,1,2\}\to \{0,1,2\}\) is defined by \(h(x)=|x|\) and \(k: \{-1,0,1,2\}\to \{0,1,2\}\)
+is defined by \(k(x) = -\frac{x^3}{3}+x^2+\frac{x}{3}\) appear to be very different functions. However, they are equal because \(h(x)= k(x)\)
+for \(x = -1, 0, 1, \text{and} 2\).</p>
+
+<subsection xml:id="ss-composition"><title>Function Composition</title>
+
+
+<p>One of the most important operations on functions is that of composition.</p>
+
+<definition xml:id="def- Composition of Functions."><title> Composition of Functions.</title><statement>Let \(f:A \rightarrow  B\) and \(g:B \rightarrow  C\). Then the composition of f followed by g, written \(g\circ f\) is a function from A into C defined by \((g \circ f)(x) = g(f(x))\), which is read <q> g of f of x.</q></statement><notation><usage>g\circ f</usage><description>The composition of g with f</q></description></notation>
+<index><main>Composition of Functions</main></index>
+<index><main>Function</main><sub>Composition</sub></index>
+</definition> 
+
+
+<p>The reader should note that it is traditional to write the composition of functions from right to left. Thus, in the above definition, the first function performed in computing \(g \circ f\), which is <m>f</m>. On the other hand, for relations, the composition \(r s\) is read from left
+to right, so that the first relation is<m>  r</m>.</p>
+
+<example xml:id="ex-7.3.1."><title>7.3.1.</title><p>Let \(f:\{1, 2, 3\}\rightarrow  \{a, b\}\) be defined by \(f(1) = a\), \(f(2) = a\), and \(f(3) = b\). Let \(g:\{a, b\} \rightarrow  \{5,
+6, 7\}\) be defined by \(g(a) = 5\) and \(g(b) = 7\). Then \(g\circ f: \{1, 2, 3\}\rightarrow  \{5, 6, 7\}\) is defined by \((g\circ f)(1)= 5\),
+\((g\circ f)(2)= 5,\) and \((g\circ f)(3)= 7\). For example, \((g\circ f)(1)= g(f(l)) = g(a) = 5\). Note that f<m>circ</m>g is not defined. Why?</p>
+<p> Let \(f:\mathbb{R} \rightarrow  \mathbb{R}\) be defined by \(f(x) = x^3\) and let \(g:\mathbb{R} \rightarrow  \mathbb{R}\) be defined by \(g(x)
+= 3x+1\). Then, since
+
+\quad \quad  \((g\circ f)(x) = g(f(x)) = g\left(x^3\right) = 3x^3 + 1\), 
+
+we have \(g\circ f: \mathbb{R} \rightarrow  \mathbb{R}\) is defined by\((g\circ f)(x)= 3x^3 + 1\). Here \(f\circ g\) is also defined and \(f\circ
+g:\mathbb{R}\rightarrow \mathbb{R}\) is defined by \((f\circ g)(x)=(3x + 1)^3\) . Moreover, since \(3x ^3+ 1 \neq (3x + 1)^3\) for at least
+one real number, \(g\circ f \neq  f\circ g\).  Therefore, the commutative law is not true for functions under the operation of composition.
+However, the associative law is true for functions under the operation of composition.
+</p></example> 
+
+<theorem xml:id="function-composition-associative">
+<title>Function composition is associative</title>
+<statement><p>If \(f:A\rightarrow B\),\(g:B\to C\), and \(h:C\rightarrow D\), then \(h\circ (g\circ f) = (h\circ g)\circ f\).</p></statement>
+<proof><p>Note: In order to prove that two functions are equal, we must use the definition of equality of functions. Assuming that the functions
+have the same domain, they are equal if, for each domain element, the images of that element under the two functions are equal.</p>
+<p>We wish to prove that \((h\circ (g\circ f))(x) = ((h\circ g)\circ f)(x)\) for all \(x \in  A\), which is the domain of both functions.</p>
+<p>
+\((h\circ (g\circ f))(x)= h((g\circ f) (x))\text{  }\text{by} \text{the} \text{definition} \text{of} \text{composition} \text{of} \text{\textit{$h$}}\text{\textit{$
+$}}\text{with}g\circ f\\
+\\
+\quad \quad =h(g(f(x)))\text{  }\text{by} \text{the} \text{definition} \text{of} \text{composition} \text{of} g\text{}\text{with}f\)</p>
+<p>Similarly,
+<me>((h\circ g)\circ f)(x)= (h\circ g)(f(x))\text{  }\text{by} \text{the} \text{definition} \text{of} \text{composition} \text{of} h\circ
+g\text{}\text{with}f\\
+\\
+\quad \quad =h(g(f(x)))\text{  }\text{by} \text{the} \text{definition} \text{of} \text{composition} \text{of} h\text{}\text{withg}</me></p>
+
+
+<p>Notice that no matter how the functions the expression \(h\circ g\circ f\) is grouped, the final image of any element of \(x\in A\) is \(h(g(f(x)))\)
+and so \(h\circ (g\circ f) = (h\circ g)\circ f\).  <m>\square</m></p></proof></theorem> 
+
+
+
+
+
+
+<p>If <m>f</m> is a function from a set <m>A</m> onto itself, we can find \(f\circ  f\), \(f\circ  f\circ  f\), <m>ldots</m> ,which we write as
+\(f^2\) , \(f^3\) , .... This idea can be expressed more elegantly as follows; If \(f: A \rightarrow  A\), the repeated composition of \textit{
+f} with itself is defined recursively as;</p>
+
+<definition xml:id="def-powers-of-functions"><title>Powers of Functions. </title><statement><p>Let \(f: A\to A\).</p>
+ <ul>
+<li><p> \(f^1= f\);  that is, \(f^1(a) = f(a)\), for \(a \in A\).</p> </li>
+<li><p> For \(n\geq 1\), \(f^{n+1}= f\circ f^n\);  that is, \(f^{n+1}(a)=f\left( f^n(a)\right)\) for a \in A.</p></li>
+</ul>
+</statement><notation>f \circ f = f^2<usage></usage><description>the <q>square</q> of a function.</description></notation><index><main>Powers of Functions</main></index></definition>
+
+<p>Two useful theorems concerning composition are given below. The proofs are left for the exercises.</p>
+
+<theorem xml:id="theorem-composition-of-injections"><title>The composition of injections is an injection</title><statement><p>If \(f: A \rightarrow  B\) and \(g : B \rightarrow  C\) are injections, then \(g\circ f : A \rightarrow  C\) is an injection.</p></statement></theorem> 
+
+<theorem xml:id="theorem-composition-of-surjections"><title>title>The composition of surjections is a surjection</title><statement><p> If \(f : A \rightarrow  B\) and g ; B <m>rightarrow</m> C are surjections, then \(g\circ f: A\rightarrow  C\) is a surjection.</p></statement>
+</theorem>
+
+
+<p>We would now like to define the concepts of identity and inverse for functions under composition. The motivation and descriptions of the definitions
+of these terms come from the definitions of the terms in the set of real numbers and for matrices. For real numbers, the numbers 0 and 1 play the
+unique role that \(x + 0 = 0 + x = x\) and \(x \cdot 1 = 1 \cdot  x = x\) for any real number <m>x</m>.  0 and 1 are the identity elements
+for the reals under the operations of addition and multiplication, respectively. Similarly, the \(n \times  n\) zero matrix 0 and the \(n \times
+ n\) identity matrix <m>I</m> are such that for any \(n \times  n\) matrix <m>A</m>, \(A + 0 = 0 + A=A\) and \(A I = I A = I\). Hence, an
+elegant way of defining the identity function under the operation of composition would be to imitate the above well-known facts.</p>
+
+
+
+<definition xml:id="def-Identity Function"><title>Identity Function</title>
+<statement><p>For any set A, the identity function on A is a function from A onto A, denoted by i (or, more specifically, \(i_A\)) such that \(i(a) = a\)  for all \(a\in A\)</p></statement>
+<notation><usage>i \textrm{ or } i_A</usage><description>The identitiy function (on a set <m>A</m>)</description></notation><index><main>Identity
+Function</main></index></definition>
+
+
+<p>Based on the definition of <m>i</m>, we can show that for all functions \(f:A\to A\), \(f\circ i=i\circ f = f\).</p>
+
+<example xml:id="an-identity-function"><title>The identity function on \(\{1,2,3\}\)</title><p> If \(A = \{1, 2, 3\}\), then the identity function\(i : A \to  A\) is defined by \(i(1) = 1\), \(i(2) = 2,\) and \(i(3)= 3\).</p></example>
+
+<example xml:id="ex-7.3.3."><title>The identity function on <m>\mathbb{R}</m></title><p>The identity function on <m>\mathbb{R}</m> is \(i : \mathbb{R} \rightarrow  \mathbb{R}\) defined by \(i(x) = x\).</p></example> 
+
+</subsection>
+<subsection xml:id="ss-inverse-functions"><title>INVERSE FUNCTIONS</title>
+
+<p>We will introduce the inverse of a function with a special case: the inverse of a function on a set. After you've taken the time to understand this
+concept, you can read about the inverse of a function from one set into another. The reader is encouraged to reread the definition of the inverse
+of a matrix in Section 5.4 to see that the following definition of the inverse function is a direct analogue of that definition.</p>
+
+<definition xml:id="def-inverse-function"><title> Inverse of a Function on a Set</title><statement> Let \(f: A\rightarrow  A\). If there exists a function \(g : A \rightarrow  A\) such that \(g\circ f = f\circ g = i\), then g is called the inverse of f and is denoted by \(f^{-1}\) , read <q>f inverse.</q></statement><notation><usage>f^{-1}</usage><description>The inverse of function <m>f</m></description></notation><index><main>Inverse Function</main><sub>of a function on a set</sub></index>
+</definition>
+
+
+<p>Notice that in the definition we refer to <q>the inverse</q> as opposed to <q>an inverse.</q>  It can be proven that a function can never have
+more than one inverse (see exercises).</p>
+
+<p>An alternate description of the inverse of a function, which can be proven from the definition, is as follows:  Let \(f: A \rightarrow  A\) be such that \(f(a) = b\). Then when it exists, \(f^{-1}\) is a function from <m>A</m> to <m>A</m> such that \(f^{-1}(b)=a\).
+Note that \(f^{-1}\) <q>undoes</q> what <m>f</m> does. </p>
+
+<example xml:id="ex-simple-inverse"><title>The inverse of a function on \(\{1,2,3\}\)</title><p>Let \(A = \{1, 2, 3\}\) and let <m>f</m> be the function defined on <m>A</m> such that \(f(1) = 2\), \(f(2) = 3\), and
+\(f(3) = 1\). Then \(f^{-1} : A \rightarrow  A\) is defined by \(f^{-1}(I) = 3\), \(f^{-1}(2) = 1\), and \(f^{-1}(3) = 2\).</p></example>
+
+<example xml:id="ex-inverse-of-a-real-function"><title>Inverse of a real function</title><p>If \(g : \mathbb{R} \rightarrow  \mathbb{R}\) is defined by \(g(x) =x^3\) , then \(g^{-1}\) is the function that undoes what
+<m>g</m> does. Since <m>g</m> cubes real numbers, \(g^{-1}\) must be the <q>reverse</q> process, namely, takes cube roots. Therefore, \(g^{-1}
+: \mathbb{R} \rightarrow  \mathbb{R}\) is defined by \(g^{-1}(x)=\sqrt[3]{x}\). We should show that \(g^{-1}\circ g = i\) and \(g\circ g^{-1}=i\).
+We will do the first, and the reader is encouraged to do the second.
+
+\(\left(g^{-1}\circ g\right)(x)= g^{-1}(g(x))\text{        }\text{Definition} \text{of} \text{composition}\\
+\\
+\text{       }= g^{-1}\left(x^3\right)\text{           }\text{Definition} \text{of} g\\
+\\
+\text{                       }=\sqrt[3]{x^3}\text{                 }\text{Definition} \text{of} g^{-1}\\
+\\
+\text{                      }= x\text{                          }\text{Definition} \text{of} \text{cube} \text{root}\\
+\\
+\text{     }= i(x)\text{                     }\text{Definition} \text{of} \text{the} \text{identity} \text{function}\)</p>
+<p>Therefore, \(g^{-1}\circ g = i\). Why?
+</p></example> 
+
+<p>The definition of the inverse of a function alludes to the fact that not all functions have inverses. How do we determine when the inverse of a function
+exists?</p>
+
+<theorem xml:id="theorem-bijections-have-inverses"><title>Bijections have inverses</title><statement><p>Let \(f: A\rightarrow  A\).  \(f^{-1}\) exists if and only if f is a bijection; i. e. f is one-to-one and onto.</p></statement><proof><p>(<m>Rightarrow</m>)  In this half of the proof, assume that \(f^{-1}\) exists and we must prove that <m>f</m> is one-to-one and onto.
+To do so, it is convenient for us to use the relation notation, where \(f(s)=t\) is equivalent to \((s,t)\in f\). To prove that <m>f</m> is
+one-to-one, assume that \(f(a)=f(b) = c\). Alternatively, that means \((a, c)\) and \((b, c)\) are elements of <m>f</m> . We must show
+that \(a =b\). Since \((a, b), (c, b) \in \text{  }f\), \((c, a)\) and \((c,b)\) are in \(f^{-1}\) . By the fact that \(f^{-1}\) is a function
+and <m>c</m> cannot have two images, <m>a</m> and <m>b</m> must be equal, so <m>f</m> is one-to-one. </p>
+<p>Next, to prove that <m>f</m> is onto, observe that for \(f^{-1}\) to be a function, it must use all of its domain, namely A. Let <m>b</m>
+be any element of <m>A</m>. Then b has an image under \(f^{-1}\) , \(f^{-1}(b)\). Another way of writing this is \(\left(b,f^{-1}(b)\right)\in
+f^{-1}\), By the definition of the inverse, this is equivalent to \(\left(f^{-1}(b), b\right) \in  f\). Hence, <m>b</m> is in the range of \textit{
+f}. Since <m>b</m> was chosen arbitrarily, this shows that the range of <m> f </m> must be all of <m>A</m>.</p>
+
+<p>(<m>Leftarrow</m> ) Assume<m> f</m>is one-to-one and onto and we are to prove \(f^{-1}\) exists. We leave this half of the proof to the reader.
+<m>\square</m></p></proof></theorem> 
+
+<definition xml:id="def-Permutation"><title>Permutation</title><statement><p>A bijection of a set <m>A</m> into itself is called a permutation of <m>A</m>.</p></statement><index><main>Permutation</main></index>
+</definition>
+
+<p>Next, we will consider the situation where <m>f: A \rightarrow B</m> and <m>B</m> is not necessarily equal to <m>A</m>. How do we define the inverse in this case?</p>
+
+<definition xml:id="def-general-inverse-function"><title>Inverse of a Function (General Case) </title><statement><p>Let \(f:A \rightarrow  B\), If there exists a function \(g:B \rightarrow  A\) such that \(g \circ f = i_A\) and \(f\circ  g = i_B\) , then g is called the inverse of f and is denoted by \(f^{-1}\) , read <q>f inverse.</q></p></statement>
+<notation><usage></usage><description></description></notation><index><main>Inverse Function</main><sub>General Case</sub></index></definition>
+
+
+<p>Note the slightly more complicated condition for the inverse in this case because the domains of \(f\circ  g\) and \(g \circ f\) are different if
+A and B are different. The proof of the following theorem isn't really very different from the special case where \(A=B\).</p>
+
+<theorem xml:id="theorem-inverse-function-condition"><title>When does a function have an inverse?</title><statement><p> Let\(f:A \rightarrow  B\). \(f^{-1}\) exists if and only if f is a bijection.</p></statement></theorem>
+
+<example xml:id="ex-7.3.6."><title>7.3.6.</title><p>Let \(A =\{1,2, 3\}\) and \(B = \{a, b, c\}\). Define \(f:A \rightarrow  B\) by \(f(1) = a\), \(f(2) = b\), and {
+}\(f(3) = c\). Then \(g: B \rightarrow  A\) defined by \(g(a) = 1\), \(g(b) = 2\), and \(g(c) = 3\) is the inverse of <m>f</m>.
+
+\[\left.
+\begin{array}{c}
+ (g\circ f)(1)= 1 \\
+ (g\circ f)(2)=2 \\
+ (g\circ f)(3)=3 \\
+\end{array}
+\right\}\Rightarrow \text{  }g\circ f = i_A\) and \(\left.
+\begin{array}{c}
+ (f\circ g)(a)=a \\
+ (f\circ g)(b)=b \\
+ (f\circ g)(c)=c \\
+\end{array}
+\right\}\Rightarrow \text{  }f\circ g = i_B\]</p></example> 
+</subsection>
+
+<subsection xml:id="ss-mathematica-note-inverses"><title>Mathematica Note</title><index><main>Mathematica Note</main><sub>Inverse Functions</sub></index>
+<p>Computer languages have many functions that also have inverses. Here are a few examples in <em>Mathematica</em></p>
+
+
+
+\(RotateRight\) and \(RotateLeft\) are both functions on lists.  For example,
+
+\begin{doublespace}
+\noindent\(\pmb{\text{RotateRight}[\{1,2,3,4,5\}]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\{5,1,2,3,4\}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\pmb{\text{RotateLeft}[\{1,2,3,4,5\}]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\{2,3,4,5,1\}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\pmb{\text{RotateLeft}[\text{RotateRight}[\{1,2,3,4,5\}]]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\{1,2,3,4,5\}\)
+\end{doublespace}
+
+
+
+\(IntegerDigits\) and \(FromDigits\) are inverses of one another, with domains being the positive integers and lists of digits, respectively.
+ For example
+
+\begin{doublespace}
+\noindent\(\pmb{\text{IntegerDigits}[1492]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\{1,4,9,2\}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\pmb{\text{FromDigits}[]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(1492\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\pmb{\text{FromDigits}[\text{IntegerDigits}[193410]]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(193410\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\pmb{\text{IntegerDigits}[\text{FromDigits}[]]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\{4,3,1,7,8\}\)
+\end{doublespace}
+</subsection>
+
+<exercises xml:id="exercises-7-3">
+<title>Exercises for Section 7.3 </title>
+<exercisegroup><introduction>A Exercises</introduction>
+
+<exercise number="1"><statement> <p>Let \(A = \{1,2, 3, 4, 5\}\), \(B = \{a, b, c, d, e,f\}\), and \(C = \{+, -\}\). Define \(f: A \to  B\) by \(f(k)\) equal to the \(k^{th}\)
+letter in the alphabet, and define \(g : B \rightarrow  C\) by \(g(\alpha ) = +\) if <m>alpha</m> is a vowel and \(g(\alpha ) = -\) if \textit{
+<m>alpha</m>} is a consonant.</p>
+<ol type="a">
+<li><p> Find \(g\circ  f\).</p></li>
+<li><p> Does it make sense to discuss \(f\circ g\)? If not, why not?</p></li>
+<li><p> Does \(f^{-1}\) exist? Why?</p></li>
+<li><p> Does \(g^{-1}\) exist? Why?</p></li>
+</ol>
+</statement>
+<answer><ol type="a"><li>  \(g\circ f:A\to C\) is defined by \((g\circ f)(k)=\begin{cases}
+ + &amp; \text{if} k=1 \text{or} k=5 \\
+ - &amp; \text{if} k=2,3,4
+\end{cases}\)</li>
+<li><p> No, since the domain of \(f\) is not equal to the codomain of \(g\).</p></li>
+<li><p> No, since \(f\) is not surjective.</p></li>
+<li><p> No, since \(g\) is not injective.</p></li>
+</ol>
+</answer>
+</exercise>
+<exercise number="2"><statement> Let \(A = \{1, 2, 3\}\). Define\(f:A\rightarrow A\) by \(f(1) = 2\), \(f(2) = 1\), and \(f(3) = 3\). Find \(f^2\) , \(f^3\) , \(f^4\) and
+\(f^{-1}\).
+</statement>
+</exercise>
+<exercise number="3"><statement> <p>Let \(A = \{1, 2, 3\}\).</p>
+ <ol type="a">
+<li><p> List all permutations of <m>A</m>.</p></li>
+<li><p> Find the inverse of each of the permutations of part a.</p></li>
+<li><p> Find the square of each of the permutations of part a.</p></li>
+<li><p> Show that the composition of any two permutations of <m>A</m> is a permutation of <m> A</m>.</p></li>
+<li><p> Prove that if <m>A</m> be any set where the \(|A|=\text{\textit{$n$}}\), then the number of permutations of <m>A</m> is \(n!\).</p></li>
+</ol>
+</statement>
+<answer>
+<ol type="a">
+<li> The permutations of \(A\) are \(i,r_1,r_2,f_1,f_2,\) and \(f_3\), defined in section 15.3
+
+  (b, c) $          $Inverse of   Square of\\
+ Permutation   the permutation  permutation
+
+ \(\begin{array}{c}
+ i \\
+ r_1 \\
+ r_2 \\
+ f_1 \\
+ f_2 \\
+ f_3 \\
+\end{array}\)$        $\(\begin{array}{c}
+ i \\
+ r_2 \\
+ r_1 \\
+ f_1 \\
+ f_2 \\
+ f_3 \\
+\end{array}\)$        $\(\begin{array}{c}
+ 
+\begin{array}{c}
+ i \\
+ r_2 \\
+\end{array}
+ \\
+ r_1 \\
+ i \\
+ i \\
+ i \\
+\end{array}\)</li>
+<li> Apply both Theorems 7.3.3 and 7.3.4: If \(f\) and \(g\) are permutations of \(A\), then they are both  \\
+ injections and their composition, \(f\circ g\), is a injection, by Theorem 7.3.3. By 7.3.4, \(f\circ g\) is also a \\
+ surjection; therefore, \(f\circ g\) is a bijection on \(A\), a permutation.</li>
+<li> Proof by induction:
+
+ 
+\subsubsection{Basis}: \((n=1)\) The number of permutations of \(A\) is one, the identity function, and 1! \(=1\).
+
+ 
+\subsubsection{Induction:} Assume that the number of permutations on a set with \(n\) elements,
+ \(n\geq 1\), is \(n\)!. Furthermore, assume that \(|A|=\)\(\text{  }n+1\) and that \(A\) contains
+  an element called \(x\). Let \(A'=A-\{x\}\). We can reduce the definition of a permutation, \(f\),
+   on \(A\) to two steps. First, we select any one of the \(n\)! permutations on \(A'\).
+    (Note the use of the induction hypothesis.) Call it \(g\). This permutation almost
+     completely defines a permutation on \(A\) by \(f\) for all
+      \(a\) in \(A'\), Next, we select the image of \(x\), which can be done \(n+1\) different ways.
+       To keep our function bijective, we must adjust \(f\) as follows: If we select \(f(x)=y\),
+        then we must find the element, \(z\), of \(A\) such that \(g(z)=y\), and redefine the image
+         of \(z\) to \(f(z)=x\). If we had selected \(f(x)=x\), then there is really no adjustment needed.
+          By the rule of products, the number of ways that we can define \(f\) is \(n!(n+1)=(n+1)!\)
+            <m>\square</m></p></li>
+</ol>
+</answer>
+</exercise>
+<exercise number="4"><statement><p> Define <m>s</m>, <m>u</m>, and <m>d</m>, all functions on the integers, by \(s(n) = n^2\) , \(u(n) = n + 1\), and \(d(n) = n-1\). Determine:</p>
+<ol type="a">
+<li><p> \(u \circ  s \circ  d\)</p></li>
+<li><p> \(s \circ  u\circ  d\)</p></li>
+<li><p> \(d \circ  s \circ  u\)</p></li>
+</ol>
+</statement>
+</exercise>
+<exercise number="5"><statement><p> Based on the definition of the identity function, show that for all functions \(f:A\to A\), \(f\circ i=i\circ f = f\).</p>
+</statement>
+</exercise>
+<exercise number="6"><statement><term>Inverse images.</term> If <m>f</m> is any function from <m>A</m> into <m>B</m>, we can describe the inverse image of from \textit{
+B }into \(\mathcal{P}(A)\), which is also commonly denoted \(f^{-1}\). If \(b \in  B\), \(\left.f^{-1}(b) = \{a \in A | f(a) = b\right)\). If
+<m>f</m> does have an inverse, the inverse image of <m>b</m> is \(\left\{f^{-1}(b)\right\}\).</p>
+<ol type="a">
+<li><p> Let \(g : \mathbb{R} \to  \mathbb{R}\) be defined by \(g(x) = x^2\). What are \(g^{-1}(4)\), \(g^{-1}(0)\) and \(g^{-1}(-1)\)?</p></li>
+<li><p> If \(r: \mathbb{R}\to \mathbb{Z}\), where \(r(x) = \lceil x\rceil\),  what is \(r^{-1}(1)\)?</p></li>
+</ol>
+</statement>
+</exercise>
+<exercise number="7"><statement><p> Let <m> f,</m>  <m>g</m>, and <m>h</m> all be functions from <m>\mathbb{Z}</m> into <m>\mathbb{Z}</m> defined by \(f(n) = n + 5\), \(g(n) = n - 2,\)
+and \(h(n)=n^2\). Define:</p>
+<ol type="a">
+<li><p> \(f\circ g\)</p></li>
+<li><p> \(f^3\)</p></li>
+<li><p> \(f\circ h\)</p></li>
+</ol>
+</statement>
+<answer><ol type="a" cols="3">
+<li><p> \(f\circ g(n)=n+3\)</p></li>
+<li><p> \(f^3(n)=n+15\)   </p></li>
+<li><p> \(f\circ h(n)=n^2+5\) </p></li>
+</ol>
+</answer>
+</exercise>
+<exercise number="8"><statement> <p>Define the following functions on the integers by \(f(k) = k + 1\), \(g(k) = 2k\), and \(h(k)=\lceil k/2\rceil\) </p>
+ <ol type="a"> 
+<li><p> Which of these functions are one-to-one?</p></li>
+<li><p> Which of these functions are onto?</p></li>
+<li><p> Express in simplest terms the compositions \(f\circ g\), \(g \circ f\), \(g \circ  h\), \(h \circ  g\), and \(h^2\) ,</p></li>
+</ol>
+</statement>
+</exercise>
+<exercise number="9"><statement><p> Let <m>A</m> be a nonempty set. Prove that if <m> f </m> is a bijection on <m>A</m> and \(f\circ f=f\), then <m> f </m>is the identity
+function, <m>i</m> </p>
+</statement>
+<hint><p>You have seen a similar proof in matrix algebra.</p></hint>
+<answer> 
+\subsection{Theorem:} If \(f:A\to B\) and \(f\) has an inverse, then that inverse is unique.
+
+
+\subsubsection{  Proof:} Suppose that \(g\) and \(h\) are both inverses of \(f\).
+
+$          $\(g\)\(=g\circ i_A g\\
+\\
+=g\circ (f\circ h)\\
+\\
+=(g\circ f)\circ h\\
+\\
+=i_A\circ h\\
+\\
+=h\text{                              }\Rightarrow g=h\text{         }\#\)  
+</answer>
+</exercise>
+<exercise number="10"><statement><p> For the real matrix \(A=\left(
+\begin{array}{cc}
+ a &amp; b \\
+ c &amp; d \\
+\end{array}
+\right), \text{\textit{\det }} A=\text{\textit{ad}-\text{bc}}\).</p>
+
+<p>Recall that a  <term>bijection</term> from a set to itself is also referred to as a <term>permutation</term> of the set. Let \(\pi\) be a permutation of \(\{a,b,c,d\}\) such that <m>a</m> becomes \(\pi (a)\), <m>b</m> becomes \(\pi (b)\), etc.</p>
+
+<p>Let \(B=\left(
+\begin{array}{cc}
+ \pi(a)&amp; \pi(b)\\
+ \pi(c)&amp; \pi(d)\\
+\end{array}
+\right)\). How many permutations of <m>pi</m> leave the determinant of <m>A</m> invariant, that is, \(\det  A = \det  B\)?</p>
+</statement>
+</exercise>
+
+</exercisegroup>
+<exercisegroup><introduction>B Exercises</introduction>
+<exercise number="11"><statement><p>State and prove a theorem on inverse functions analogous to Theorem 5.4.1 (if a matrix has an inverse, that inverse is unique).</p>
+</statement>
+</exercise>
+<exercise number="12"><statement><p> Let <m>f</m> and <m>g</m> be functions whose inverses exist. Prove that \((f\circ g)^{-1}= g^{-1}\circ f^{-1}\).</p>
+</statement>
+<hint>See Exercise 3
+of Section 5.4.</hint>
+</exercise>
+<exercise number="13"><statement><p> Prove <xref ref="theorem-composition-of-injections" autoname="yes"/> and <xref ref="theorem-composition-of-surjections" autoname="yes"/>.</p>
+</statement>
+<answer> <p> Let \(x,x'\) be elements of \(A\) such that \(g\circ f(x)=g\circ f(x')\); that is, \(g(f(x))=g(f(x'))\). Since \(g\) is injective, \(f(x)=f(x')\) and since \(f\) is injective, \(x=x'\). <m>\square</m></p>
+
+<p> Let \(x\) be an element of \(C\). We must show that there exists an element of \(A\) whose image under \(g\circ f\) is \(x\). Since \(g\) is surjective, there exists an element of \(B\), \(y\), such that \(g(y)=x\). Also, since \(f\) is a surjection, there exists an element of \(A\), \(z\), such that \(f(z)=y\), \(g\circ f(z)=g(f(z))=g(y)=x\).</p> <m>\square</m>
+</answer></exercise>
+<exercise number="14"><statement><p> Prove the second half of <xref ref="theorem-bijections-have-inverses" autoname="yes"/>.</p>
+</statement>
+</exercise>
+<exercise number="15"><statement> Prove by induction that if \(n\geq  2\) and \(f_1\), \(f_2\) , \ldots  , \(f_n\) are invertible functions on some nonempty set A, then {
+}\(\left( f_1\circ  f_2\circ  \cdots  \circ  f_n \right){}^{-1}= f_n^{-1}\circ \cdots \circ f_2^{-1}\circ f_1^{-1}\). The basis has been taken
+care of in Exercise 10.</p>
+</statement>
+<answer>  
+\subsubsection{Basis:} \((n=2)\): \(\left(f_1\circ f_2\right){}^{-1}=f_2{}^{-1}\circ f_1{}^{-2}\) by exercise 10. \\
+ 
+\subsubsection{Induction:} Assume \(n\geq 2\) and \(\left(f_1\circ f_2\circ \cdots \circ f_n\right){}^{-1}=\)\\
+ \(f_n{}^{-1}\circ \cdots \circ f_2{}^{-1}\circ f_1{}^{-1}\)\\
+ Consider \(\left(f_1\circ f_2\circ \cdots \circ f_{n+1}\right){}^{-1}\).
+  \(\left(f_1\circ f_2\circ \cdots \circ f_{n+1}\right){}^{-1}\) \(=\left(\left(f_1\circ f_2\circ \cdots \circ f_n\right)\circ f_{n+1}\right){}^{-1}\)\\
+  by the Basis   \(=f_{n+1}{}^{-1}\circ \left(f_1\circ f_2\circ \cdots \circ f_n\right){}^{-1}\)\\
+  by Induction hypothesis  \(=f_{n+1}{}^{-1}\circ \left(f_n{}^{-1}\circ \cdots \circ f_2{}^{-1}\circ f_1{}^{-1}\right)\)\\
+ \(=f_{n+1}{}^{-1}\circ \cdots \circ f_2{}^{-1}\circ f_1{}^{-1}\). <m>\square</m>
+</answer>
+</exercise>
+
+</exercisegroup>
+<exercisegroup><introduction>C Exercises</introduction>
+<exercise number="16"><statement><ol type="a"><li> Our definition of cardinality states that two sets, <m>A</m> and <m>B</m>, have the same cardinality if there exists a bijection
+between the two sets. Why does it not matter whether the bijection is from <m>A</m> into <m>B</m> or <m>B</m> into <m>A</m>?</li>
+<li><p>Prove that <q>has the same cardinality as</q> is an equivalence relation on sets.</p></li>
+</ol>
+</statement>
+</exercise>
+<exercise number="17"><statement> Construct a table listing as many <q>Laws of Function Composition</q> as you can identify. Use previous lists of laws as a guide.
+</statement>
+</exercise>
+
+</exercisegroup>
+</exercises>
+</section>
