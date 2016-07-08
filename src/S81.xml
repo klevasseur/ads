@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<section xml:id="s-The Many Faces of Recursion">
+<section xml:id="s-faces-of-recursion">
 <title>The Many Faces of Recursion</title>
 <index><main>The Many Faces of Recursion</main></index>
 <p>Consider the following definitions, all of which should be somewhat familiar to you. When reading them, concentrate on how they are similar.</p>
@@ -7,22 +7,25 @@
 <subsection xml:id="ss-binomial-coefficients"><title>Binomial Coefficients</title><index><main>polynomials and their evaluation</main></index>
 <p>A common alternate notation for the binomial coefficient \(\binom{n}{k}\) is \(C(n,k)\). We will use the latter notation in this chapter. Here is a recursive definition of binomial coefficients.</p>
 
-<definition xml:id="def-binomial-coefficient-recursive"><title>Binomial Coefficient - Recursion Definition</title><statement><p>Assume \(n\geq 0\) and \(n \geq  k \geq  0\).\\
-$\quad $\(C(n;0) = 1\)\\
-$\quad $\(C(n, n)=1\)\\
-and   \(C(n, k) = C(n - 1, k) + C(n - 1, k - 1)\) if \(n > k > 0\).</p></statement><notation><usage></usage><description></description></notation><index><main>Binomial Coefficient</main><sub>Recursive Definition</sub></index></definition>
+<definition xml:id="def-binomial-coefficient-recursive"><title>Binomial Coefficient - Recursion Definition</title><statement><p>Assume \(n\geq 0\) and \(n \geq  k \geq  0\). We define \(C(n,k)\) by</p>
+<ul>
+<li><p>\(C(n, 0) = 1\)</p></li>
+<li><p>\(C(n, n)=1\) and</p></li>
+<li><p>\(C(n, k) = C(n - 1, k) + C(n - 1, k - 1)\) if \(n > k > 0\)</p></li>
+</ul>
+</statement><notation><usage></usage><description></description></notation><index><main>Binomial Coefficient</main><sub>Recursive Definition</sub></index></definition>
 <p>A word a about definitions:  Strictly speaking, when mathematical objects such as binomial coefficents are defined, they should be defined just once.  Since we defined binomial coefficients earlier, in <xref ref="binomial-coefficient" autoname="yes" />, other statements describing them should be theorems.  The theorem, in this case, would be that the <q>definition</q> above is consistent with the original definition.   Our point in this chapter in discussing recursion is to observe alternative definitions that have a recursive nature.   In the exercises, you will have the opportunity to prove that the two definitions are indeed equivalent.
 </p>
-<p>Here is how we can apply the recursive definition to compute \(\binom{5}{2}\).
+<p>Here is how we can apply the recursive definition to compute \(C(5,2)\).
 <me>
 \begin{split}
-\binom{5}{2} &amp;=\binom{4}{2}+\binom{4}{1}\\
-			&amp;=(\binom{3}{2}+\binom{3}{1})+(\binom{3}{1}+\binom{3}{0})\\
-			&amp;=\binom{3}{2} +2 \binom{3}{1} + 1\\
-			&amp;=(\binom{2}{2}+\binom{2}{1})+ 2(\binom{2}{1}+\binom{2}{0})+1\\
-			&amp;=(1+\binom{2}{1})+ 2( \binom{2}{1}  + 1) + 1\\
-			&amp;=3 \binom{2}{1} + 4\\
-			&amp;=3(\binom{1}{1} + \binom{1}{0}) + 4\\
+C(5,2) &amp;=C(4,2)+C(4,1)\\
+			&amp;=(C(3,2)+C(3,1))+(C(3,1)+C(3,0))\\
+			&amp;=C(3,2) +2 C(3,1) + 1\\
+			&amp;=(C(2,2)+C(2,1))+ 2(C(2,1)+C(2,0))+1\\
+			&amp;=(1+C(2,1))+ 2( C(2,1)  + 1) + 1\\
+			&amp;=3 C(2,1) + 4\\
+			&amp;=3(C(1,1) + C(1,0)) + 4\\
 			&amp;=3(1+1)+4 = 10\\
 \end{split}
 </me>
@@ -66,12 +69,12 @@ an \((n-1)^{st}\) degree polynomial expression in <m>x</m> and \(a\in  S\).</p>
 <index><main>Polynomial Expression</main><sub>Recursive definition</sub></index>
 </definition>
 
-<p>We can easily verify that \(f(n)== 4n^3 + 2n^2 - 8n + 9\) is a third-degree polynomial expression in  <m>n</m> over the <m>\mathbb{Z}</m> based on this definition:
+<p>We can easily verify that \(f(n) = 4n^3 + 2n^2 - 8n + 9\) is a third-degree polynomial expression in  <m>n</m> over the <m>\mathbb{Z}</m> based on this definition:
 
 \[f(n)= 4n^3 + 2n^2 - 8n + 9 = ((4n+2)n-8)n+9\]
 
 Notice that 4 is a zeroth degree polynomial since it is an integer. Therefore \(4n + 2\) is a first-degree polynomial; therefore,
-\((4n + 2) n - 8\) is a second-degree polynomial in <m>n</m> over <m>mathbb{Z}</m>; therefore, \(f(n)\) is a third-degree polynomial in <m>n</m> over <m>mathbb{Z}</m>. The final expression for \(f(n)\) is called its <term>telescoping form</term>. If we use it to calculate \(f(7)\),
+\((4n + 2) n - 8\) is a second-degree polynomial in <m>n</m> over <m>\mathbb{Z}</m>; therefore, \(f(n)\) is a third-degree polynomial in <m>n</m> over <m>\mathbb{Z}</m>. The final expression for \(f(n)\) is called its <term>telescoping form</term>. If we use it to calculate \(f(7)\),
 we need only three multiplications and three additions subtractions. This is called <term>Horner's method</term> for evaluating a polynomial expression.</p>
 
 
@@ -92,7 +95,7 @@ we need only three multiplications and three additions subtractions. This is cal
 
 <p>Next, we consider recursive algorithm for a binary search within a sorted list of items.  Suppose  \(r=\{r(1),r(2) \ldots  , r(n)\}\) represent a list of
 <m>n</m> items sorted by a numeric key in descending order. The \(j^{th}\) item is denoted \(r(j)\) and its key value by \(r(j).\textrm{key}\).
-For example, each item might contain data on the buildings in a city and the key value might be the height of the building. Then \(r(1)\) would be the item for the tallest building and  \(r(1)\).\textrm{key} would be its height. The algorithm \(\textrm{BinarySearch}(j, k)\) can be applied to search for an item in <m>r</m> with key value
+For example, each item might contain data on the buildings in a city and the key value might be the height of the building. Then \(r(1)\) would be the item for the tallest building and  \(r(1).\textrm{key}\) would be its height. The algorithm \(\textrm{BinarySearch}(j, k)\) can be applied to search for an item in <m>r</m> with key value
 <m>C</m>. This would be accomplished by the execution of \(\textrm{BinarySearch}(1, n)\). When the algorithm is completed, the variable \(\textrm{Found}\)
 will have a value of true if an item with the desired key value was found, and the value of \(\textrm{location}\) will be the index of an item whose key is
 C. If \(\textrm{Found}\) stays false, no such item exists in the list. The general idea behind the algorithm is illustrated in <xref ref="fig-binsearch" autoname="yes"/></p>
@@ -107,25 +110,26 @@ C. If \(\textrm{Found}\) stays false, no such item exists in the list. The gener
 <p>In the following algorithm, \(\textrm{Found}\) and \(\textrm{location}\) are <q>global</q> variables to execution of the algorithm.</p>
 
  
-<algorithm xml:id="algorithm-binary-search"><title>Binary Search Algorithm</title>
-<listing>
+<program language="r">
+<input>
 def BinarySearch (j, k):
   Found = False
-  if j < k: 
+  if j &lt; k: 
 		Mid = floor( j + k ) / 2
 		if r(Mid).key == C: 
 	   	location = Mid
          Found = True
          Exit
 	   else:
-	   	if r(Mid).key < C:
+	   	if r(Mid).key &lt; C:
 				BinarySearch(j, Mid - 1)
 			else: 
          	BinarySearch(Mid + 1 , k)
    else:
    	Exit
-</listing>
-</algorithm>
+</input>
+</program>
+
 
 
 </subsection>
@@ -136,7 +140,7 @@ def BinarySearch (j, k):
 <example xml:id="ex-geometric-growth"><title>Geometric Growth Sequence</title>
 <p> Define the sequence of numbers <m>B</m> by
 <me>  B_0 = 100\textrm{ and }</me>  
-<me>  B_k = 1.08 B_{k-1} \textrm{ for } \(k\geq 1 </me></p>
+<me>  B_k = 1.08 B_{k-1} \textrm{ for } k\geq 1 </me></p>
 
 <p>These rules stipulate that each number in the list is 1.08 times the previous number, with the starting number equal to 100. For example
 
@@ -145,7 +149,7 @@ def BinarySearch (j, k):
 B_3 &amp;= 1.08 B_2 \\
 	&amp;=1.08\left(1.08B_1\right)\\
 	&amp;= 1.08\left(1.08\left(1.08 B_0\right)\right)\\
-	&amp; = 1.08(1.08(1.08100))\\
+	&amp; = 1.08(1.08(1.08\cdot 100))\\
 	&amp;= 1.08^3 100 = 125.971\\
 \end{split}
 </me>
@@ -173,25 +177,25 @@ definition, the basis must be reached after a finite number of applications of t
 with an expression involving \(F_0\) and \(F_1\):
 
 <me>
-/begin{split}
+\begin{split}
 F_4 &amp;= F_2+F_3\\	
 	&amp;=\left(F_0+F_1\right)+\left(F_1+F_2\right)\\
 	&amp;=\left(F_0+F_1\right)+\left(F_1+\left(F_0+F_1\right)\right)\\
 	&amp;=(1+1)+(1+(1+1))\\
 	&amp;=5\\
-/end{split}
+\end{split}
 </me>
 </p>
 </subsection>
 <subsection xml:id="ss-iteration"><title>Iteration</title>
 <p>On the other hand, we could compute a term in the Fibonacci sequence, say \(F_5\) by starting with the basis terms and working forward as follows:</p>
 <table>
-<tabulate>
+<tabular>
 <row><cell>\(F_2= F_0+ F_1 =1 + 1 =2\)</cell></row>
 <row><cell>\(F_3= F_1+ F_2=1+ 2=3\)</cell></row>
 <row><cell>\(F_4= F_2+F_3=2+3=5\)</cell></row>
 <row><cell>\(F_5=F_3+F_4= 3+5=8\)</cell></row>
-</tabulate>
+</tabular>
 </table>
 
 <p>This is called an iterative computation of the Fibonacci sequence. Here we start with the basis and work our way forward to a less simple number,
@@ -222,9 +226,8 @@ and the recursion is that if n is a positive integer, then so is its successor. 
 type. Of course, the validity of an induction proof is based on our acceptance of this definition. Therefore, the appearance of induction proofs
 when recursion is used is no coincidence.</p>
 
-<example xml:id="ex-geometric-squence-proof"><title>Proof of a formula for <m>B</m></title><p></p></example>
-<p>A formula for the sequence <m>B</m> in <xref ref="ex-geometric-growth" autoname="yes"/> is \(B = 100(1.08)^k\) for \(k\geq 0\). A proof by induction follow.</p>
-<p>If \(k= 0\), then \(B = 100(1.08)^0 = 100\), as defined. Now assume that for some \(k\geq 1\), the formula for \(B_k\) is true.</p>
+<example xml:id="ex-geometric-squence-proof"><title>Proof of a formula for <m>B</m></title><p>A formula for the sequence <m>B</m> in <xref ref="ex-geometric-growth" autoname="yes"/> is \(B = 100(1.08)^k\) for \(k\geq 0\). A proof by induction follow.</p>
+<p>If \(k= 0\), then \(B = 100(1.08)^0 = 100\), as defined. Now assume that for some \(k\geq 1\), the formula for \(B_k\) is true.
 
 <me>
 \begin{split}
@@ -234,12 +237,10 @@ B_{k+1} &amp;= 1.08B_k \textrm{  by the recursive definition}\\
 \end{split}
 </me>
 hence the formula is true for \(k+1\)</p>
-
-
-
 <p>The formula that we have just proven for <m>B</m> is called a closed form expression. It involves no recursion or summation signs.</p>
+</example>
 
-<definition xml:id="def-closed-form-expression"><title>Closed Form Expression.</title><statement><p> Let \(E = E\left(x_1, x_2, \ldots ,x_n\right)\) he an algebraic expression involving variables
+<definition xml:id="def-closed-form-expression"><title>Closed Form Expression.</title><statement><p> Let \(E = E\left(x_1, x_2, \ldots ,x_n\right)\) be an algebraic expression involving variables
 \(x_1, x_2, \ldots ,x_n\) which are allowed to take on values from some predetermined set. <m>E</m> is a \textit{ closed form expression} if there exists
 a number <m>B</m> such that the evaluation of <m>E</m> with any allowed values of the variables will take no more than <m>B</m> operations (alternatively, <m>B</m> time units).</p></statement><index><main>Closed Form Expression.</main></index></definition>
 
@@ -259,13 +260,13 @@ a number <m>B</m> such that the evaluation of <m>E</m> with any allowed values o
 </statement>
 <answer><me>
 \begin{split}
- \(C(7,2)&amp;=C(6,2)+C(6,1)\\
+ C(7,2)&amp;=C(6,2)+C(6,1)\\
 	&amp;=C(5,2)+C(5,1)+C(5,1)+C(0,0)\\
 &amp;=C(5,2)+2 C(5,1)+1\\
 &amp;=C(4,2)+C(4,1)+2(C(4,1)+C(4,0))+1\\
 &amp;=C(4,2)+3 C4,1) + 3\\
 &amp;=C(3,2)+C(3,1)+3(C(3,1)+C(3,0))+3\\
-&amp;=C(3,2)+4 C(3,1) + 6
+&amp;=C(3,2)+4 C(3,1) + 6\\
 &amp;=C(2,2)+C(2,1)+ 4(C(2,1)+C(2,0)) + 6\\
 &amp;=5 C(2,1)+ + 11\\
 &amp;=5(C(1,1)+C(1,0)) + 11\\
@@ -312,7 +313,7 @@ by induction that \(L_k=7-2^{k+1}\).
 <answer>The basis is not reached in a finite number of steps if you try to compute \(f(x)\) for a nonzero value of \(x\).</answer>
 </exercise>
 
-<exercise number="6"><statement><p>Prove the two definitions of binomials coefficients, <xref ref="" autoname="yes" /> <xref ref="binomial-coefficient" autoname="yes" /> and <xref ref="def-binomial-coefficient-recursive" autoname="yes"/> are equivalent.</p></statement>
+<exercise number="6"><statement><p>Prove the two definitions of binomials coefficients, <xref ref="binomial-coefficient" autoname="yes" /> and <xref ref="def-binomial-coefficient-recursive" autoname="yes"/>, are equivalent.</p></statement>
 </exercise>
 </exercisegroup>
 </exercises>
