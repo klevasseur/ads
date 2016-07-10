@@ -2,18 +2,18 @@
 <section xml:id="s-faces-of-recursion">
 <title>The Many Faces of Recursion</title>
 <index><main>The Many Faces of Recursion</main></index>
-<p>Consider the following definitions, all of which should be somewhat familiar to you. When reading them, concentrate on how they are similar.</p>
+<introduction><p>Consider the following definitions, all of which should be somewhat familiar to you. When reading them, concentrate on how they are similar.</p></introduction>
 
 <subsection xml:id="ss-binomial-coefficients"><title>Binomial Coefficients</title><index><main>polynomials and their evaluation</main></index>
 <p>A common alternate notation for the binomial coefficient \(\binom{n}{k}\) is \(C(n,k)\). We will use the latter notation in this chapter. Here is a recursive definition of binomial coefficients.</p>
 
-<definition xml:id="def-binomial-coefficient-recursive"><title>Binomial Coefficient - Recursion Definition</title><statement><p>Assume \(n\geq 0\) and \(n \geq  k \geq  0\). We define \(C(n,k)\) by</p>
+<definition xml:id="def-binomial-coefficient-recursive"><title>Binomial Coefficient - Recursion Definition</title><index><main>Binomial Coefficient</main><sub>Recursive Definition</sub></index><statement><p>Assume \(n\geq 0\) and \(n \geq  k \geq  0\). We define \(C(n,k)\) by</p>
 <ul>
 <li><p>\(C(n, 0) = 1\)</p></li>
 <li><p>\(C(n, n)=1\) and</p></li>
 <li><p>\(C(n, k) = C(n - 1, k) + C(n - 1, k - 1)\) if \(n > k > 0\)</p></li>
 </ul>
-</statement><index><main>Binomial Coefficient</main><sub>Recursive Definition</sub></index></definition>
+</statement></definition>
 <p>A word a about definitions:  Strictly speaking, when mathematical objects such as binomial coefficents are defined, they should be defined just once.  Since we defined binomial coefficients earlier, in <xref ref="binomial-coefficient" autoname="yes" />, other statements describing them should be theorems.  The theorem, in this case, would be that the <q>definition</q> above is consistent with the original definition.   Our point in this chapter in discussing recursion is to observe alternative definitions that have a recursive nature.   In the exercises, you will have the opportunity to prove that the two definitions are indeed equivalent.
 </p>
 <p>Here is how we can apply the recursive definition to compute \(C(5,2)\).
@@ -33,7 +33,7 @@ C(5,2) &amp;=C(4,2)+C(4,1)\\
 </subsection>			
 <subsection xml:id="ss-polynomials-and-their-evaluation"><title>Polynomials and Their Evaluation</title><index><main>Polynomials</main></index>
 
-<definition xml:id="def-polynomial-expression-nonrecursive"><title>Polynomial Expression in <m>x</m> over <m>S</m> (Non-Recursive).</title><statement><p>Let n be an integer, \(n\geq 0\). An \(n^{\text{th}}\) degree polynomial in <m>x</m> is an expression of the form \(a_nx^n+ a_{n-1}x^{n-1}+ \cdots  + a_1x+a_0\), where \(a_n, a_{n-1},\ldots ,a_1,a_0\) are elements of some designated set of numbers, <m>S</m>, called the set of coefficients and \(a_n\neq 0\).</p></statement><index><main>Polynomial Expression</main><sub>Non-recursive). </sub></index></definition>
+<definition xml:id="def-polynomial-expression-nonrecursive"><title>Polynomial Expression in <m>x</m> over <m>S</m> (Non-Recursive).</title><index><main>Polynomial Expression</main><sub>Non-recursive). </sub></index><statement><p>Let n be an integer, \(n\geq 0\). An \(n^{\text{th}}\) degree polynomial in <m>x</m> is an expression of the form \(a_nx^n+ a_{n-1}x^{n-1}+ \cdots  + a_1x+a_0\), where \(a_n, a_{n-1},\ldots ,a_1,a_0\) are elements of some designated set of numbers, <m>S</m>, called the set of coefficients and \(a_n\neq 0\).</p></statement></definition>
 
 <p>We refer to <m>x</m> as a variable here, although the more precise term for <m>x</m> is an <em>indeterminate</em>. There is a distinction
 between the terms indeterminate and variable, but that distinction will not come into play in our discussions.</p>
@@ -57,16 +57,16 @@ f(7) &amp;= 4\ 7^3 + 2\ 7^2 - 8\ 7 + 9\\
 four terms; and adding/subtacting a list of <m>k</m> numbers requires \(k-1\) addition/subtractions. The following definition of a polynomial
 expression suggests another more efficient method of evaluation.</p>
 
-<definition xml:id="def-polynomial-expression-recursive"><title> Polynomial Expression in <m>x</m> over <m>S</m> (Recursive)</title>
+<definition xml:id="def-polynomial-expression-recursive"><title> Polynomial Expression in <m>x</m> over <m>S</m> (Recursive)</title><index><main>Polynomial Expression</main><sub>Recursive definition</sub></index>
 <statement><p>Let <m>S</m> be a set of coefficients and <m>x</m> a variable.</p> 
-<ol style="a">
+<ol label="a">
 <li><p>A zeroth degree polynomial expression in <m>x</m> over <m>S</m> is a nonzero element of <m>S</m>.</p></li>
 <li><p>For \(n\geq 1\), an \(n^{th}\) degree polynomial expression in <m>x</m> over <m>S</m> is an expression of the form \(p(x)x + a\) where \(p(x)\) is
 an \((n-1)^{st}\) degree polynomial expression in <m>x</m> and \(a\in  S\).</p>
 </li>
 </ol>
 </statement>
-<index><main>Polynomial Expression</main><sub>Recursive definition</sub></index>
+
 </definition>
 
 <p>We can easily verify that \(f(n) = 4n^3 + 2n^2 - 8n + 9\) is a third-degree polynomial expression in  <m>n</m> over the <m>\mathbb{Z}</m> based on this definition:
@@ -79,7 +79,7 @@ we need only three multiplications and three additions subtractions. This is cal
 
 
 <example xml:id="ex-more-telescoping_"><title>More Telescoping Polynomials</title>
-<ol type="a">
+<ol label="a">
 <li><p> The telescoping form of \(p(x) = 5x^4 + 12x^3 -6x^2 + x + 6\) is \((((5x + 12) x - 6) x + 1) x + 6\). Using Horner's method, computing the value of \(p(c)\) requires four multiplications and four additions/subtractions for any real number <m>c</m>.</p></li>
 <li><p>\(g(x) = -x^5 + 3x^4 + 2x^2 + x\) has the telescoping form \(((((- x + 3) x ) x + 2) x + 1) x\).</p></li>
 </ol>
@@ -240,9 +240,9 @@ hence the formula is true for \(k+1\)</p>
 <p>The formula that we have just proven for <m>B</m> is called a closed form expression. It involves no recursion or summation signs.</p>
 </example>
 
-<definition xml:id="def-closed-form-expression"><title>Closed Form Expression.</title><statement><p> Let \(E = E\left(x_1, x_2, \ldots ,x_n\right)\) be an algebraic expression involving variables
+<definition xml:id="def-closed-form-expression"><title>Closed Form Expression.</title><index><main>Closed Form Expression.</main></index><statement><p> Let \(E = E\left(x_1, x_2, \ldots ,x_n\right)\) be an algebraic expression involving variables
 \(x_1, x_2, \ldots ,x_n\) which are allowed to take on values from some predetermined set. <m>E</m> is a \textit{ closed form expression} if there exists
-a number <m>B</m> such that the evaluation of <m>E</m> with any allowed values of the variables will take no more than <m>B</m> operations (alternatively, <m>B</m> time units).</p></statement><index><main>Closed Form Expression.</main></index></definition>
+a number <m>B</m> such that the evaluation of <m>E</m> with any allowed values of the variables will take no more than <m>B</m> operations (alternatively, <m>B</m> time units).</p></statement></definition>
 
 
 
@@ -253,12 +253,12 @@ a number <m>B</m> such that the evaluation of <m>E</m> with any allowed values o
 <exercises><title>Exercises for Section 8.1</title>
 
 <exercisegroup>
-<introduction>A Exercises</introduction>
+<introduction><p>A Exercises</p></introduction>
 
 <exercise number="1"><statement>
- By the recursive definition of binomial coefficients, \(C(7, 2) = C(6, 2) + C(6, 1)\). Continue expanding \(C(7, 2)\) to express it in terms of quantities defined by the basis. Check your result by applying the factorial definition of \(C(n, k)\).
+<p>By the recursive definition of binomial coefficients, \(C(7, 2) = C(6, 2) + C(6, 1)\). Continue expanding \(C(7, 2)\) to express it in terms of quantities defined by the basis. Check your result by applying the factorial definition of \(C(n, k)\).</p>
 </statement>
-<answer><me>
+<answer><p><me>
 \begin{split}
  C(7,2)&amp;=C(6,2)+C(6,1)\\
 	&amp;=C(5,2)+C(5,1)+C(5,1)+C(0,0)\\
@@ -273,23 +273,24 @@ a number <m>B</m> such that the evaluation of <m>E</m> with any allowed values o
 &amp;=21
 \end{split}
 </me>
+</p>
 </answer>
 </exercise>
 
-<exercise number="2"><statement> Define the sequence <m>L</m> by \(L_0 = 5\) and for \(k\geq 1\), \(L _k = 2L_{k-1}-7\).  Determine \(L_4\) and prove
-by induction that \(L_k=7-2^{k+1}\).
+<exercise number="2"><statement><p> Define the sequence <m>L</m> by \(L_0 = 5\) and for \(k\geq 1\), \(L _k = 2L_{k-1}-7\).  Determine \(L_4\) and prove
+by induction that \(L_k=7-2^{k+1}\).</p>
 </statement>
 </exercise>
 
-<exercise number="3"><statement> Let \(p(x) = x^5+ 3x^4 - 15x^3 + x - 10\).
- <ol style="a">
+<exercise number="3"><statement><p> Let \(p(x) = x^5+ 3x^4 - 15x^3 + x - 10\).</p>
+ <ol label="a">
 <li><p> Write \(p(x)\) in telescoping form.</p></li>
 <li><p> Use a calculator to compute \(p(3)\) using the original form of \(p(x)\). </p></li>
 <li><p> Use a calculator to compute \(p(3)\) using the telescoping form of \(p(x)\).</p></li>
 <li><p> Compare your speed in parts b and c.</p></li>
 </ol>
 </statement>
-<answer><ol type="a"><li><p> \(p(x)\) in telescoping form: \(((((x+3)x-15)x+0)x+1)x-10\)</p></li>
+<answer><ol label="a"><li><p> \(p(x)\) in telescoping form: \(((((x+3)x-15)x+0)x+1)x-10\)</p></li>
 <li><p> \(p(3)=((((3+3)3-15)3-0)3+1)3-10=74\)</p></li>
 </ol>
 </answer>
@@ -297,10 +298,10 @@ by induction that \(L_k=7-2^{k+1}\).
 
 </exercisegroup>
 <exercisegroup>
-<introduction>B Exercises</introduction>
+<introduction><p>B Exercises</p></introduction>
 
 <exercise number="4"><statement><p> Suppose that a list of nine items, (r(l), r(2), . . . , r(9)), is sorted by key in decending order so that \(r(3).\textrm{key} = 12\) and \(r(4).\textrm{key} = 10\). List the executions of the BinarySearch algorithms that would be needed to complete BinarySearch(1,9) for:</p>
- <ol style="a" cols="2">
+ <ol label="a" cols="2">
 <li><p> C = 12</p></li>
 <li><p> C = 11</p></li>
 </ol>
@@ -310,7 +311,7 @@ by induction that \(L_k=7-2^{k+1}\).
 <exercise number="5"><statement><p> What is wrong with the following definition of \(f:\mathbb{R}\to \mathbb{R}\)? 
 \(f(0) = 1\) and \(f(x) = f(x/2)/2\) if \(x\neq 0\).</p>
 </statement>
-<answer>The basis is not reached in a finite number of steps if you try to compute \(f(x)\) for a nonzero value of \(x\).</answer>
+<answer><p>The basis is not reached in a finite number of steps if you try to compute \(f(x)\) for a nonzero value of \(x\).</p></answer>
 </exercise>
 
 <exercise number="6"><statement><p>Prove the two definitions of binomials coefficients, <xref ref="binomial-coefficient" autoname="yes" /> and <xref ref="def-binomial-coefficient-recursive" autoname="yes"/>, are equivalent.</p></statement>
