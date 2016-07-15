@@ -35,6 +35,7 @@ This product form of \(P(n)\) is not a closed form expression because as <m>n</m
 </subsection>
 
 <subsection xml:id="analysis-of-binary-search"><title>A Analysis of the Binary Search Algorithm.</title>
+<subsubsection><title> </title>
 <p> Suppose you intend to use a binary search algorithm (see <xref ref="ss-recursive-searching"/>) on lists of zero or more sorted items, and that the items are stored in an array, so that you have easy access to each item. A natural question to ask is <q>How much time will it take to complete the search?</q> When a question like this is asked, the time we refer to is often the so - called worst - case time. That is, if we were to search through <m>n</m> items, what is the longest amount of time that we will need to complete the search? In order to make an analysis such as this independent of the computer to be used, time is measured by counting the number of steps that are executed. Each
 step (or sequence of steps) is assigned an absolute time, or weight; therefore, our answer will not be in seconds, but in absolute time units. If
 the steps in two different algorithms are assigned weights that are consistent, then analyses of the algorithms can be used to compare their relative
@@ -74,9 +75,9 @@ The pattern that is established makes it clear that \(T\left(2^m\right) = m + 1\
 
 <p>A more complete solution can be obtained if we represent n in binary form. For each \(n\geq 1\), there exists a non-negative integer <m>r</m> such that
 
-<mdn><mrow xml:id="eq-inequality-84">\quad \quad 2^{r-1}\leq n<2^r</mrow></mdn> 
+<mdn><mrow xml:id="eq-inequality-84">\quad \quad 2^{r-1}\leq n &lt; 2^r</mrow></mdn> 
 
-For example, if \(n = 21\), \(2^4 \leq  21 < 2^5\); therefore, \(r = 5\). If <m>n</m> satisfies (8.4c), its binary representation requires \textit{
+For example, if \(n = 21\), \(2^4 \leq  21 &lt; 2^5\); therefore, \(r = 5\). If <m>n</m> satisfies (8.4c), its binary representation requires \textit{
 r} digits. For example, \(21_{\text{ten}}\) = \(10101_{\text{two}}\).</p>
 
 <p>In general, \(n = \left(a_1a_2\ldots  a_r\right)_{\text{two}}\). where \(a_1=1\). Note that in this form, \(\lfloor n/2\rfloor\) is easy to describe:
@@ -119,8 +120,8 @@ expect that most readers would be satisfied with the argument above. Any skeptic
 <p>Our general conclusion is that the solution to <xref ref="eq-bin-search-recursion"/>  and <xref ref="eq-bin-search-basis"/> is that for \(n\geq 1\), \(T(n) = r\), where \(2^{r-1}\leq n &lt; 2^r\).</p>
 
 <p>A less cumbersome statement of this fact is that \(T(n)=\left\lfloor \log_{2}n\right\rfloor +1\). For example, { }\(T(21) = \left\lfloor \log_2 21\right\rfloor + 1 = 4 + 1 = 5\). </p>
-
-<subsubsection xml:id="sss-review of logarithms"><title>review of logarithms</title><index><main>review of logarithms</main></index>
+</subsubsection>
+<subsubsection xml:id="sss-review-of-logarithms"><title>review of logarithms</title><index><main>review of logarithms</main></index>
 <p>Any discussion of logarithms must start by establishing a base, which can be any positive number other than 1. With the exception of Theorem 8.4.1,
 our base will be 2. We will see that the use of a different base (10 and \(e\approx  2.171828\) are the other common ones) only has the effect of
 multiplying each logarithm by a constant. Therefore, the base that you use really isn't very important. Our choice of base 2 logarithms is convenient
@@ -140,7 +141,7 @@ for the problems that we are considering.</p>
 
 
 <p>For example, \(\log_2 8 = 3\) because \(2^3 = 8\) and \(\log_21.414\approx 0.5\) because \(2^{0.5}\approx 1.414\) . A graph of the function \(f(x)
-= \log_2 x\) in <xref ref="fig-log-2-plot" autoname="yes"/> shows that if \(a < b\), the \(\log_2a < \log_2 b\); that is, when <m>x</m> increases, \(\log_2 x\) also increases.
+= \log_2 x\) in <xref ref="fig-log-2-plot" autoname="yes"/> shows that if \(a &lt; b\), the \(\log_2a &lt; \log_2 b\); that is, when <m>x</m> increases, \(\log_2 x\) also increases.
 However, if we move <m>x</m> from \(2^{10} = 1024\) to \(2^{11} = 2048\), \(\log_2 x\) only increases from 10 to 11. This slow rate of increase
 of the logarithm function is an important point to remember. An algorithm acting on <m>n</m> pieces of data that can be executed in \(\log_2{n}\)
 time units can handle significantly larger sets of data than an algorithm that can be executed in \(n/100\) or  \(\sqrt{n}\) time units. The graph of \(T(n)=\left\lfloor \log_2n\right\rfloor +1\) would show the same behavior.</p>
@@ -165,7 +166,7 @@ time units can handle significantly larger sets of data than an algorithm that c
 </definition>
 
 <theorem xml:id="theorem-logs-related">
-<title>How logarithms with different bases are related</title><statement><p>Let <m>b>0</m>, \(b \neq 1\). Then for all <m>a >0</m>, \(\log_b a = \frac{\log_2a}{\log_2b}\). Therefore, if <m>b > 1</m>, base b logarithms can be computed from base 2 logarithms by dividing by the positive scaling factor \(\log_2b\). { }If \(b<1\), this scaling factor is negative.</p>
+<title>How logarithms with different bases are related</title><statement><p>Let <m>b>0</m>, \(b \neq 1\). Then for all <m>a >0</m>, \(\log_b a = \frac{\log_2a}{\log_2b}\). Therefore, if <m>b > 1</m>, base b logarithms can be computed from base 2 logarithms by dividing by the positive scaling factor \(\log_2b\). { }If \(b &lt; 1\), this scaling factor is negative.</p>
 </statement><proof><p>By an analogue of <xref ref=""/>, \(a=b^{\log_b a}\). Therefore, if we take the base 2 logarithm of both sides of this equality we get:
 <me>\log_2a = \log_2\left(b^{\log_2a}\right)  \Rightarrow \log_2a =\log_ba\cdot \log_2b\)</me>
 Finally, divide both sides of the last equation by \(\log_2b\). <m>\square</m></p></proof></theorem>
@@ -174,6 +175,7 @@ Finally, divide both sides of the last equation by \(\log_2b\). <m>\square</m></
 
 
 </subsubsection>
+<subsubsection><title> </title>
 
 <p>Returning to the binary search algorithm, we can derive the final expression for \(T(n)\) using the properties of logarithms, including that the
 logarithm function is increasing so that inequalities are maintained when taking logarithms of numbers.</p>
@@ -249,6 +251,8 @@ Therefore, \(x = a\frac{b^{r+1}-1}{b-1}\).</p>
 
 <me>T(n) = a\frac{b^{r+1}-1}{b-1} +\text{  }c b^{r+1}\text{  }\text{where}\text{  }r = \left\lfloor \log_2n\right\rfloor \text{  }</me>
 </p>
+</subsubsection>
+
 </subsection>
 
 
@@ -260,7 +264,7 @@ quadratic function \(B(n) =\frac{1}{2}\left(n^2-n\right)\). The growth rate of a
 term. Any other terms are dwarfed by it as <m>n</m> gets large. For the bubble sort, this means that if we double the size of the list that we
 are to sort, <m>n</m> changes to \(2n\) and so \(n^2\) becomes \(4n^2\) . Therefore, the time needed to do a bubble sort is quadrupled. One alternative
 to bubble sort is the merge sort. Here is a simple version of this algorithm for sorting \(F=\{r(1), r(2), \ldots , r(n)\}\), \(n \geq  1\). If \(n
-= 1\), the list is sorted trivially. If \(n\geq  2\) then:<p>
+= 1\), the list is sorted trivially. If \(n\geq  2\) then:</p>
 
 <ol label="1">
 <li><p> Divide \(F\) into \(F_1= \{r(1), \ldots , r(\lfloor n/2\rfloor )\}\) and \(F_2= \{r(\lfloor n/2\rfloor +1), \ldots ,r(n)\}\).</p></li>
@@ -273,9 +277,9 @@ gets one more item than \(F_1\). We will assume that the time required to perfor
 steps; therefore, we will assign a time value of zero to this step. Step 3 requires roughly <m>n</m> comparisons and <m>n</m> movements of
 items from { }\(F_1\) and \(F_2\) to <m>F</m>; thus, its time is proportional to <m>n</m>. For this reason, we will assume that Step 3 takes
 <m>n</m> time units. Since Step 2 requires \(T(\lfloor n/2\rfloor ) + T(\lceil n/2\rceil )\) time units,
-<mn><mrow>T(n) = n + T(\lfloor n/2\rfloor ) + T(\lceil n/2\rceil )<mrow></mn>
+<mdn><mrow>T(n) = n + T(\lfloor n/2\rfloor ) + T(\lceil n/2\rceil )</mrow></mdn>
 with the initial condition
-<mn><mrow>(T(1) = 0<mrow></mn>
+<mdn><mrow>(T(1) = 0</mrow></mdn>
 </p>
 
 <p>Instead of an exact solution of these equations, we will be content with an estimate for \(T(n)\).  First, consider the case of \(n=2^r\), \(r \geq 1\):
@@ -303,12 +307,12 @@ compares \(B(n)\) with \(T_e(n)\) for selected values of <m>n</m>.</p>
 <table xml:id="table-sort-analysis">
 <caption>Comparison of Times for Bubble Sort and Merge Sort</caption>
 <tabular top="major" halign="center">
-<row><cell><p>n</p></cell><cell><p><m>B(n)</m></p></cell><cell><p><m>T_e(n)</m></p></cell></row>
-<row><cell><p>10</p></cell><cell><p>45</p></cell><cell><p>34</p></cell></row>
-<row><cell><p>50</p></cell><cell><p>1225</p></cell><cell><p>283</p></cell></row>
-<row><cell><p>100</p></cell><cell><p>4950</p></cell><cell><p>665</p></cell></row>
-<row><cell><p>500</p></cell><cell><p>124750</p></cell><cell><p>4483</p></cell></row>
-<row><cell><p>1000</p></cell><cell><p>499500</p></cell><cell><p>9966</p></cell></row>
+<row><cell>n</cell><cell><m>B(n)</m></cell><cell><m>T_e(n)</m></cell></row>
+<row><cell>10</cell><cell>45</cell><cell>34</cell></row>
+<row><cell>50</cell><cell>1225</cell><cell>283</cell></row>
+<row><cell>100</cell><cell>4950</cell><cell>665</cell></row>
+<row><cell>500</cell><cell>124750</cell><cell>4483</cell></row>
+<row><cell>1000</cell><cell>499500</cell><cell>9966</cell></row>
 </tabular>
 </table>
 </subsection>
@@ -345,7 +349,7 @@ no derangement of \(\{1, 2, . . . , n\}\) with \(f(n) = k\) can be constructed b
 <p>To recap our result, we see that <m>f</m> is determined by first choosing one of \(n - 1\) images of <m>n</m> and then constructing the
 remainder of <m>f</m> in one of \(D(n - 2) + D(n -1)\) ways. Therefore,
 
-<mn><mrow>D(n) = (n - 1) (D(n - 2) + D(n - 1))</mrow></mn>
+<mdn><mrow>D(n) = (n - 1) (D(n - 2) + D(n - 1))</mrow></mdn>
 </p>
 
 
@@ -403,7 +407,7 @@ in so many places in mathematics that it has its own name, <m>e</m>. An approxim
 <exercisegroup>
 <introduction><p>B Exercises</p></introduction>
 
-<exercise number="3"><statement> { }Solve as completely as possible:
+<exercise number="3"><statement><p>Solve as completely as possible:</p>
  <ol label="a">
 <li><p>\(T(n) = 3 + T(\lfloor n/2\rfloor )\), \(T(0) = 0\).</p></li>
 <li><p>\(T(n) = 1 + \frac{1}{2}T(\lfloor n/2\rfloor )\), { }\(T(0) = 2\).</p></li>
@@ -411,9 +415,9 @@ in so many places in mathematics that it has its own name, <m>e</m>. An approxim
 </ol>
 </statement></exercise>
 
-<exercise number="4"><statement><p> Prove by induction that if \(T(n)= 1 + T (\lfloor n/2 \rfloor )\), \(T(0) = 0\), and \(2^{r-1}\leq n<2^r\) , \(r \geq  1\), then \(T(n) = r\).
+<exercise number="4"><statement><p> Prove by induction that if \(T(n)= 1 + T (\lfloor n/2 \rfloor )\), \(T(0) = 0\), and \(2^{r-1}\leq n &lt; 2^r\) , \(r \geq  1\), then \(T(n) = r\).
 </p>
-</statement><hint>Prove by induction on <m>r</m>.</hint></exercise>
+</statement><hint><p>Prove by induction on <m>r</m>.</p></hint></exercise>
 
 <exercise number="5"><statement><p> Use the substitution \(S(n) = T(n + 1)/T(n)\) to solve
 \(T(n)T(n-2)-T(n)^2=1\) for \(n \geq  2\), with \(T(0) = 1\), \(T(1) = 6\), and\(T(n) \geq  0\).</p>
@@ -423,7 +427,7 @@ in so many places in mathematics that it has its own name, <m>e</m>. An approxim
 \(T(n)^2-T(n-1)^2=1\) for \(n \geq  1\), with \(T(0) = 10\).</p>
 </statement></exercise>
 
-<exercise number="7"><statement> { }Solve as completely as possible:
+<exercise number="7"><statement><p>Solve as completely as possible:</p>
  <ol label="a">
 <li><p> \(Q(n)=1+Q\left(\left\lfloor \sqrt{n}\right\rfloor \right)\), \(n \geq  2\), \(Q(1) = 0\).</p></li>
 <li><p> \(R(n)=n +R(\lfloor n/2\rfloor )\), \(n \geq  1\), \(R(0) = 0\).</p></li>
