@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="s-graphs-introduction">
+<title>Graphs - General Introduction</title>
+
+Recall that we introduced directed graphs in Chapter 6.
+
+<definition xml:id="def- Directed Graph."><title> Directed Graph.</title><index><main> Directed Graph.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+
+ A directed graph consists of a set of vertices, V, and a set of edges, E, connecting certain elements of V. {
+}Each element of E is an ordered pair from V (i.e., an element of \(V\times V\)). The first entry is the initial vertex of the edge and the second
+entry is the terminal vertex. In certain cases there will be more than one edge between two vertices, in which cases the different edges are identified
+with labels.
+
+
+
+Despite the set terminology in this definition, we usually think of a graph as a picture, an aid in visualizing a situation. In Chapter 6, we introduced
+this concept to help understand relations on sets. Although those relations were principally of a mathematical nature, it remains true that when
+we see a graph, it tells us how the elements of a set are related to one another.
+
+<definition xml:id="def- Simple Graph and Multigraph."><title> Simple Graph and Multigraph.</title><index><main> Simple Graph and Multigraph.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+
+ A simple graph is one for which there is no more than one vertex directed from any vertex to another
+vertex. All other graphs, ones with at least two edges from one vertex to some other vertex, are called multigraphs.
+
+
+
+To illustrate the points that we will make in this chapter, we will introduce the following examples of graphs.
+
+<example xml:id="ex-9.1.1."><title>9.1.1.</title><p></p></example>
+ A Directed Graph. Figure 9.1.1 is an example of a simple directed graph. In set terms, this graph is \((V, E)\), where \(V
+= \{s, a, b\}\) and \(E = \{(s, a), (s, b), (a, b), (b, a), (b,b)\}\). Note how each edge is labeled either 0 or 1. There are often reasons for labeling
+even simple graphs. Some labels are to help make a graph easier to discuss; others are more significant. We will discuss the significance of the
+labels on this graph later.
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ Figure 9.1.1}\\
+A directed graph}
+
+<example xml:id="ex-9.1.2. An Undirected Graph"><title>9.1.2. An Undirected Graph</title><p></p></example>
+. A network of computers can be described easily using a graph. Figure 9.1.2 describes a network of five
+computers, <m>a</m>, <m>b</m>, <m>c</m>, <m>d</m>, and <m>e</m>. An edge between any two vertices indicates that direct two-way communication
+is possible between the two computers. Note that the edges of this graph are not directed. This is due to the fact that the relation that is being
+displayed is symmetric (i.e., if <m>X</m> can communicate with <m>Y</m>, then <m>Y</m> can communicate with <m>X</m>). Although directed
+edges could be used here, it would simply clutter the graph.
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ Figure 9.1.2}\\
+An undirected graph}
+
+
+
+There are several other situations for which this graph can serve as a model. One of them is to interpret the vertices as cities and the edges as
+roads, an abstraction of a map such as the one in Figure 9.1.3. Another interpretation is as an abstraction of the floor plan of a house (Figure
+9.1.4). Vertex <m>a</m> represents the outside of the house; all others represent rooms. Two vertices are connected if there is a door between
+them.
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ Figure 9.1.3}\\
+Road Map}
+
+<definition xml:id="def- Undirected Graph. "><title> Undirected Graph. </title><index><main> Undirected Graph. </main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+
+An undirected graph consists of a set <m>V</m>, called a vertex set, and a set <m>E</m> of two-element
+subsets of <m>V</m>, called the edge set. The two-element subsets are drawn as lines connecting the vertices.
+
+
+
+The undirected graph of Figure 9.1.2 is \(V = \{a, b, c, d, e\}\) and \(E = \{\{a, b,\}, \{a, d\}, \{b, c\}, \{b, d\}, \{c, e\}, \{b, e\}\}\). 
+
+<definition xml:id="def- Complete Undirected Graph."><title> Complete Undirected Graph.</title><index><main> Complete Undirected Graph.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+
+ A complete undirected graph of n vertices is an undirected graph with the property that each pair of
+distinct vertices are connected to one another. Such a graph is usually denoted by \(K_n\).
+
+<example xml:id="ex-9.1.3."><title>9.1.3.</title><p></p></example>
+ A Multigraph. A common occurrence of a multigraph is a road map. The cities and towns on the map can be thought of as vertices,
+while the roads are the edges. It is not uncommon to have more than one road connecting two cities. In order to give clear travel directions, we
+name or number roads so that there is no ambiguity. We use the same method to describe the edges of the multigraph in Figure 9.1.5. There is no question
+what \(\text{e3}\) is; however, referring to the edge \((2, 3)\) would be ambiguous.
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+\caption{\pmb{ Figure 9.1.5}\\
+A multigraph}
+
+<example xml:id="ex-9.1.4."><title>9.1.4.</title><p></p></example>
+ A flowchart is a common example of a simple graph that requires labels for its vertices and some of its edges. Figure 9.1.6
+is one such example that illustrates how many problems are solved. 
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+\caption{\pmb{ Figure 9.1.5}\\
+Flowchart for the problem-solving process}
+
+
+
+At the start of the problem-solving process, we are at the vertex labeled <q>Start</q> and at the end (if we are lucky enough to have solved the
+problem) we will be at the vertex labeled <q>End.</q> The sequence of vertices that we pass through as we move from <q>Start</q> to <q>End</q>
+is called a path. The <q>Start</q> vertex is called the initial vertex of the path, while the <q>End</q> is called the final, or terminal, vertex.
+Suppose that the problem is solved after two attempts; then the path that was taken is \(\text{Start}, R, A, Q, L, A, Q, \text{End}\). An alternate
+path description would be to list the edges that were used: \(1, 2, 3, \text{No}, 4, 3, \text{Yes}\). This second method of describing a path has
+the advantage of being applicable for multigraphs. On the graph in Figure 9.1.5, the vertex list \(1,2,3,4,3\) does not clearly describe a path between
+1 and 3, but \(e_1,e_4, e_6, e_7\) is unambiguous.
+
+
+
+<subsection xml:id="ss-A SUMMARY OF PATH NOTATION AND TERMINOLOGY"><title>A SUMMARY OF PATH NOTATION AND TERMINOLOGY</title><index><main>A SUMMARY OF PATH NOTATION AND TERMINOLOGY</main></index>
+
+
+
+If <m>x</m> and <m>y</m> are two vertices of a graph, then a path between <m>x</m> and <m>y</m> describes a motion from <m>x</m> and
+<m>y</m> along edges of the graph. Vertex <m>x</m> is called the initial vertex of the path and <m>y</m> is called the terminal vertex.
+A path between <m>x</m> and <m>y</m> can always be described by its  edge list, the list of edges that were used: \(\left(e_1, e_2,
+\ldots , e_n\right)\), where : (1) the initial vertex of \(e_1\) is <m>x</m>; (2) the terminal vertex of \(e_i\) is the initial vertex of \(e_{i+1}\)
+, \(i = 1, 2, \ldots , n - 1\); and (3) the terminal vertex of \(e_n\) is <m>y</m>. The number of edges in the edge list is the \textit{ path
+length}. A path on a simple graph can also be described by a  vertex list. A path of length <m>n</m> will have a list of \(n + 1\) vertices
+\(v_0=x\), \(v_1\), \(v_2,\ldots ,v_n=y\), where, for \(k = 0,1,2,\ldots , n-1\), \(\left(v_k,v_{k+1}\right)\) is an edge on the graph. A \textit{
+circuit} is a path that terminates at its initial vertex.
+
+
+
+Suppose that a path between two vertices has an edge list (e,, e 2 , . . . ,e$,,$). A  subpath of this graph is any portion of the path
+described by one or more consecutive edges in the edge list. For example, \((3, \text{No}, 4)\) is a subpath of \((1,2,3, \text{No}, 4, 3, \text{Yes})\).
+Any path is its own subpath; however, we call it an improper subpath of itself. All other subpaths are called proper subpaths.
+
+
+
+A path or circuit is  simple if it contains no proper subpath that is a circuit. This is the same as saying that a path or circuit is simple
+if it does not visit any vertex more than once except for the common initial and terminal vertex in the circuit. In the problem-solving method described
+in Figure 9.1.6, the path that you take is simple only if you reach a solution on the first try.
+
+
+
+<example xml:id="ex-9.1.5."><title>9.1.5.</title><p></p></example>
+ The leadership structure of a corporation is often represented with a graph as in Figure 9.1.7. 
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ Figure 9.1.7}\\
+Organization of a corporation}
+
+
+
+The principle behind such a structure is that everyone but the president has a single immediate supervisor. Any action that anyone takes can reach
+the president only through a unique <q>chain of command.</q> This chain-of-command property is characteristic of a special type of graph called
+a  tree. Note that the edges of this graph are not directed, but, as in a Hasse diagram, the relation between two connecting vertices is
+clear: the top vertex is the supervisor of the lower vertex.
+
+
+
+The process of structured (or top-down) problem solving results in a graph that is similar to this tree. Starting with the top of the tree, which
+would represent the whole problem, the problem is divided into a sequence of separate subproblems. Each subproblem is divided further into smaller
+sub-problems in the same way until the solutions of the lowest problems are easy enough to recognize.
+
+
+
+From these examples, we can see that although a graph can be defined, in short, as a collection of vertices and edges, an integral part of most graphs
+is the labeling of the vertices and edges that allows us to interpret the graph as a model for some situation.
+
+<example xml:id="ex-9.1.6."><title>9.1.6.</title><p></p></example>
+ A Graph as a Model for a Set of Strings. Suppose that you would like to mechanically describe the set of strings of 0's and
+1's having no consecutive 1's. One way to visualize a string of this kind is with the graph in Figure 9.1.1. Consider any path starting at vertex
+<m>s</m>. If the label on each graph is considered to be the output to a printer, then the output will have no consecutive 1's. For example, the
+path that is described by the vertex list \((s,a, b, b, a, b, b, a, b)\) would result in an output of \(10010010\). Conversely, any string with
+no consecutive 1's determines a path starting at  s.
+
+<example xml:id="ex-9.1.7."><title>9.1.7.</title><p></p></example>
+ A Tournament Graph. Suppose that four teams compete in a round-robin sporting event; that is, each team meets every other team
+once, and each game is played until a winner is determined. If the teams are named A, B, C, and D, we can define the relation \(\beta\) on the set
+of teams by \(X \beta  Y\) if <m>X</m> beat <m>Y</m>. For one set of results, the graph of \(\beta\) might look like Figure 9.1.8.
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ Figure 9.1.8}\\
+Round-robin graph with four vertices}
+
+Definition: \pmb{ Tournament Graph. }
+<ol label=“a”>
+<li><p> A tournament graph is a directed graph with the property that no edge connects a vertex to itself, and between any two vertices there is at most
+one edge.
+
+(b) A complete (or round-robin) tournament graph is a tournament graph with the property that between any two distinct vertices there is exactly
+one edge.
+
+(c) A single-elimination tournament graph is a tournament graph with the properties that: (i) one vertex (the champion) has no edge terminating
+at it and at least one edge initiating from it; (ii) every other vertex is the terminal vertex of exactly one edge; and (iii) there is a path from
+the champion vertex to every other vertex.
+
+<example xml:id="ex-9.1.8."><title>9.1.8.</title><p></p></example>
+ The major league baseball championship is decided with a single-elimination tournament, where each <q>game</q> is actually
+a series of games. Until 1995, the two divisional champions in the American League (East and West) compete in a series of games. The loser is eliminated
+and the winner competes against the winner of the National League series (which is decided as in the American League). The tournament graph of the
+1983 championship is in Figure 9.1.9.
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+\caption{\pmb{ Figure 9.1.9}\\
+1983 Major League Baseball Championship}
+
+
+
+The question <q>Once you have a graph, what do you do with it?</q> might come to mind. The following list of common questions and comments about
+graphs is a partial list that will give you an overview of the remainder of the chapter.
+
+
+
+Question 1. How can a graph be represented as a data structure for use on a computer? We will discuss some common Pascal data structures that are
+used to represent graphs in Section 9.2.
+
+
+
+Question 2. Given two vertices in a graph, does there exist a path between them? The existence of a path between any or all pairs
+of vertices in a graph will be discussed in Section 9.3. A related question is: How many paths of a certain type or length are there between two
+vertices?
+
+
+
+Question 3. Is there a path (or circuit) that passes through every vertex (or uses every edge) exactly once? Paths of this kind are called traversals.
+We will discuss traversals in Section 9.4.
+
+
+
+Question 4, Suppose that a cost is associated with the use of each vertex and/or edge in a path. What is the <q>cheapest</q> path, circuit, or traversal
+of a given kind? Problems of this kind will be discussed in Section 9.5.
+
+
+
+Question 5. Given the specifications of a graph, or the graph itself, what is the best way to draw the graph? The desire for neatness makes this
+a reasonable question. Another goal might be to avoid having edges of the graph cross one another. This is discussed in Section 9.6.
+
+
+
+<subsection xml:id="ss-ISOMORPHIC GRAPHS"><title>ISOMORPHIC GRAPHS</title><index><main>ISOMORPHIC GRAPHS</main></index>
+
+
+
+We will close this section by establishing the relation <q>is isomorphic to,</q> a form of equality on graphs. The graphs in Figure 9.1.10 obviously
+share some similarities, such as the number of vertices and the number of edges. It happens that they are even more similar than just that. If the
+letters a, b, c, and d in a are replaced with the numbers 1,3,4, and 2, respectively, and they are moved around so that they appear as in b, you
+obtain b.
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+\caption{\pmb{ Figure 9.1.10}\\
+Two Isomorphic Graphs}
+
+
+
+Here is a more precise definition that reflects the fact that the actual positioning of vertices isn't an essential part of a graph.
+
+<definition xml:id="def- Isomorphic Graphs."><title> Isomorphic Graphs.</title><index><main> Isomorphic Graphs.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+
+ Two graphs \((V, E)\) and \((V', E')\) are isomorphic if there exists a bijection \(f:V\to V'\) such that \(\left(v_i,v_j\right)\in
+E\) if and only if \(\left(f\left(v_i\right),f\left(v_j\right)\right)\in E'\). For multigraphs, we add that the number of edges connecting \(v_i\)
+to \(v_j\), must equal the number of edges from \(f\left(v_i\right)\) to \(f\left(v_j\right)\).
+
+
+
+<subsection xml:id="ss-Degrees and Graphic Sequences"><title>Degrees and Graphic Sequences</title><index><main>Degrees and Graphic Sequences</main></index>
+
+
+
+The most significant local characteristic of a vertix within a graph is its degree. Collectively, the degrees can partially characterize a graph.
+
+<definition xml:id="def- Degree. "><title> Degree. </title><index><main> Degree. </main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+
+
+<ol label=“a”>
+<li><p> Let v be a vertex of an undirected graph. The degree of v, denoted \textup{ deg}(v), is the number of edges that connect v to the other vertices
+in the graph.
+
+(b) If v is a vertex of a directed graph, then the outdegree of v, denoted \textup{ outdeg}(v), is the number of edges of the graph that initiate
+at v. The indegree of v, denoted \textup{ indeg}(v). is the number of edges that terminate at v.
+
+<example xml:id="ex-9.4.9."><title>9.4.9.</title><p></p></example>
+
+<ol label=“a”>
+<li><p> The degrees of vertices 1 through 5 in Figure 9.1.11 are 2, 3, 4, 1, and 2, respectively.
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{Figure 9.1.11}
+
+(b) In a tournament graph, \(\text{outdeg}(v)\) is the number of wins for <m>v</m> and \(\text{indeg}(v)\) is the number of losses. In a complete
+(round-robin) tournament graph with <m>n</m> vertices, \(\text{outdeg}(v) + \text{indeg}(v) = n - 1\) for each vertex.
+
+
+
+<subsubsection xml:id="sss-Graphic Sequences"><title>Graphic Sequences</title><index><main>Graphic Sequences</main></index>
+
+
+
+A finite nonincreasing sequence of integers \(d_1,d_2, \ldots , d_n\) is a  graphic if there exists a simple graph with  n vertices
+having the sequence as its degree sequence.  For example, \(4,2,1,1,1,1\) is graphic because the degrees of the following graph match these numbers.
+
+
+\begin{center}\\
+ \(\)
+\end{center}
+
+
+\caption{Note: There is no connection between the vertex name/number and its degree.}
+
+
+<exercises xml:id="exercises-9-1">
+<title>Exercises for Section 9.1</title>
+
+
+
+
+<exercisegroup>
+<introduction><p>A Exercises</p></introduction>
+
+
+<exercise number="1"><statement> What is the significance of the fact that there is a path connecting vertex <m>b</m> with every other vertex in Figure 9.1.2, as it applies
+to various situations that it models?</statement></exercise>
+<exercise number="2"><statement><p> Draw a graph similar to Figure 9.1.1 that represents the set of strings of 0's and 1's containing no more than two consecutive 1's.</p></statement></exercise>
+<exercise number="3"><statement><p> Draw a directed graph that models the set of strings of 0's and 1's where all of the 1's must appear consecutively. </p></statement></exercise>
+<exercise number="4"><statement> In the NCAA final-four basketball tournament, the East champion plays the West champion, and the champions from the Mideast and Midwest play.
+The winners of the two games play for the national championship. Draw the eight different single-elimination tournament graphs that could occur.</statement></exercise>
+<exercise number="5"><statement><p> What is the maximum number of edges in a simple undirected graph with eight vertices?</p></statement></exercise>
+<exercise number="6"><statement> Which of the graphs in Figure 9.1.11 are isomorphic? What is the correspondence between their vertices?
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+\caption{\pmb{ Figure 9.2.11}}</statement></exercise>
+<exercise number="7"><statement> (a) How many edges does a complete tournament graph with <m>n</m> vertices have? 
+
+
+
+   (b) How many edges does a single-elimination tournament graph with n vertices have?</statement></exercise>
+<exercise number="8"><statement> Draw complete undirected graphs with 1, 2, 3, 4, and 5 vertices. How many edges does a \(K_n\), a complete undirected graph with <m>n</m>
+vertices, have?</statement></exercise>
+<exercise number="4"><statement> Determine whether the following sequences are graphic. Explain your logic.
+
+
+<ol label=“a”>
+<li><p>  \(\text{6, 5, 4, 3, 2, 1, 0}\)\\
+(b) 2, \(2,2,2,2,2,2\)\\
+(c) \(3,2,2,2,2,2\)\\
+(c) \(5,3,3,3,3,3\)\\
+(e) \(1,1,1,1,1,1\)\\
+(f) \(5,5,4,3,2,1\)</statement></exercise>
+<exercise number="10"><statement> (a) Based on observations you might have made in exercise 9, describe as many characteristics as you can about graphic sequences of length
+<m>n</m>.</p></li>
+<li><p> Consider the two graphs
+
+\begin{doublespace}
+\noindent\(\begin{array}{lll}
+  &amp; \text{and} &amp;  \\
+\end{array}\)
+\end{doublespace}
+
+
+Notice that they have the same degree sequences, \(2,2,2,2,2,2\).  Explain why the two graphs are not isomorphic. 
+</statement></exercise>
+</exercisegroup>
+</exercises>
+</section>
