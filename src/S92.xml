@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="s-data-structures-for-graphs">
+<title>Data Structures and Computer Generation of Graphs</title>
+<index><main>Graph</main><sub>Data Structures</sub></index>
+
+<introduction><p>In this section, we will describe data structures that are commonly used to represent graphs. In addition we will introduce the basic syntax for
+graphs in Sage.</p></introduction>
+
+<subsection xml:id="ss-graph-data-structures"><title>Basic Data Stuctures</title>
+
+
+ 
+
+<list>
+<title>Data Structures for Graphs</title>
+<introduction><p>Assume that we have a graph with <m>n</m> vertices that can be indexed by the integers <m>1, 2, \dots, n</m>.  Here are three different data structures that can be employed to represent graphs.</p>
+</introduction>
+<ol>
+<li><p>Adjacency Matrix:  As we saw in Chapter 6, the information about edges in a graph can be summarized with an adjacency
+matrix, <m>G</m>, where \(G_{\text{ij}}=1\) if and only if vertex <m>i</m> is connected to vertex <m>j</m> in the graph.  Note
+that this is the same as the adjacency matrix for a relation, with the exception.</p></li>
+
+
+<li><p>Edge Dictionary:  For each vertex in our graph, we maintain a list of edges that
+initiate at that vertex. If <m>G</m> represents the graph's edge information, then we denote by \(G_i\) the list of vertices that are terminal vertices  of edges initiating at vertex <m>i</m>. The exact syntax that would be used can vary.  We will use the Python syntax that is adopted be used in Sage.</p></li>
+
+<li><p>Edge List:  Note that in creating either of the first two data structures, we would presume that a list of
+edges for the graph exists. A simple way to represent the edges is to maintain this list of ordered pairs, or two element sets, depending on whether the graph is intended to be directed or undirected.  We will not work with this data stucture here, other than in the first example.</p></li>
+</ol>
+</list>
+
+
+<example xml:id="ex-data-structure-sample"><title>A Very Small Example</title>
+<p>We consider the representation of the following graph:</p>
+
+<figure xml:id="fig-example-9-2-1">
+		 <image width="400" source="images/fig-example-9-2-1.png">
+			  <description>Example Graph to illustrate data structures</description>
+		 </image>
+</figure>
+
+<p>The adjacency matrix that represents the graph would be 
+<m>\quad \quad</m>\(G=\left(
+\begin{array}{cccc}
+ 0 &amp; 1 &amp; 0 &amp; 1 \\
+ 0 &amp; 0 &amp; 1 &amp; 1 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 \\
+ 1 &amp; 0 &amp; 0 &amp; 0 \\
+\end{array}
+\right)\).</p>
+
+
+<p>The same graph would be represented with the edge dictionary 
+<c>{1:[2,4],2:[3,4],3:[3],4:[1]}</c>.  Notice the general form of each item in the dictionary: <c>vertex:[list of vertices]</c>.</p>
+<p>Finally, the list of edges \(\{(1,2),(1,4),(2,3),(2,4),(3,3),(4,1)\}\) also describes the same graph.</p>
+</example>
+
+
+
+<p>A natural question to ask is: Which data structure should be used in a given situation? For small graphs, it really doesn't make much difference.  For larger matrices the edge count would be a consideration. If <m>n</m> is large and the
+number of edges is relatively small, it might use less memory to maintain an edge dictionary or  list of edges instead of building an \(n \times  n\) matrix. Some software for working with graphs will make the decision for you.</p>
+
+<example xml:id="ex-ncaa-bb"><title>NCAA Basketball</title><p>Consider an directed graph represented by the Division I NCAA college basketball teams in the United States for a given year. There are approximately 350 teams in Division 1. Suppose we constructed the graph with an edge from team A to team B if A beat B at least once in the season; and we label the edge with the number of wins.  Since the average team plays around 30 games in a season, most of which will be against other Division I teams, we could expect around \(\frac{30 \cdot 350}{2}=5,250\) edges in the graph. This would be somewhat reduced by games with lower division teams and cases where two or more wins over the same team produces one edge. Since 5,250 is much smaller than \(350^2=122,500\) entries in an adjacency matrix.  Clearly, an edge dictionary or edge list would be more compact than an adjacency matrix.  Even if we were use software to create an adjacency matrix, many programs will identify the fact that a matrix such as the one in this example would be "sparse" and would leave data in list form and use sparse array methods to work with it.</p></example>
+
+
+</subsection>
+
+<subsection xml:id="sss-sage-graphs">
+<title>Sage Graphs</title>
+<index><main>Sage Note</main><sub>Graphs</sub></index>
+
+<p>The most common way to define a graph in Sage is to use an edge dictionary.  Here is how the graph in <xref ref="ex-data-structure-sample" autoname="yes"/> is generated and then displayed.  Notice that  we simply wrap the function <c>DiGraph()</c> around the same dictionary expression we identified earlier.</p>
+<sage>
+<input>
+G1 = DiGraph( {1 : [4, 2], 2 : [3, 4], 3 : [3], 4 : [1]})
+G1.show()
+</input>
+</sage>
+
+<p>
+You can get the adjacency matrix of a graph with the <c>adjacency_matrix</c> method.
+</p>
+<sage>
+<input>
+G1.adjacency_matrix()
+</input>
+<output>
+[0 1 0 1]
+[0 0 1 1]
+[0 0 1 0]
+[1 0 0 0]
+</output>
+</sage>
+<p>You can also define a graph based on its adjacency matrix.</p>
+<sage>
+<input>
+M = Matrix([[0,1,0,0,0],[0,0,1,0,0],[0,0,0,1,0],
+			[0,0,0,0,1],[1,0,0,0,0]])
+DiGraph(M).show()</input>
+<output>
+[0 1 0 1]
+[0 0 1 1]
+[0 0 1 0]
+[1 0 0 0]
+</output>
+</sage>
+<p>The edge list of any directed graph an be easily retrieved.  If you replace <c>edges</c> with <c>edge_iterator</c>, you can iterate through the edge list.  The third coordinate of the items in the edge is the label of the edge, which is None in this case.</p>
+<sage>
+<input>
+DiGraph(M).edges()
+</input>
+<output>
+[(0, 1, None), (1, 2, None), (2, 3, None), (3, 4, None), (4, 0, None)]
+</output>
+</sage>
+
+<p>Replacing the wrapper <c>DiGraph()</c> with <c>Graph()</c> creates an undirected graph.</p>
+
+<sage>
+<input>
+G2 = Graph( {1 : [4, 2], 2 : [3, 4], 3 : [3], 4 : [1]})
+G2.show()
+</input>
+</sage>
+
+
+<p>There are many special graphs and graph families that are available in Sage through the <c>graphs</c> module.  They are referenced with the prefix <c>graphs.</c> followed by the name and zero or more paramenters inside parentheses.  Here are a couple of them, first a complete graph with five vertices.</p>
+<sage>
+<input>
+graphs.CompleteGraph(5).show()
+</input>
+</sage>
+
+<p>Here is a wheel graph, named for an obvious pattern of vertices and edges.  We assign a name to it first and then show the graph without labeling the vertices.</p>
+
+<sage>
+<input>
+w=graphs.WheelGraph(20)
+w.show(vertex_labels=false)
+</input>
+</sage>
+
+<p>There are dozens of graph methods, one of which determines the degree sequence of a graph.  In this case, it's the wheel graph above </p>
+
+<sage>
+<input>
+w.degree_sequence()
+</input>
+<output>
+ [19, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+</output>
+</sage>
+
+<p>The degree sequence method is defined within the graphs module, but the prefix <c>graphs.</c> is not needed because the value of <c>w</c> inherits the graphs methods.</p>
+
+</subsection>
+
+
+<exercises xml:id="exercises-9-2">
+<title>Exercises for Section 9.2</title>
+<exercisegroup>
+<introduction><p>A Exercises</p></introduction>
+<exercise number="1"><statement> <p>Estimate the number of vertices and edges in each of the following graphs. Would the graph be considered sparse, so that an adjacency matrix would be inefficient?</p>
+<ol label="a">
+<li><p> Vertices: Cities of the world that are served by at least one airline. 
+  Edges: Pairs of cities that are connected by a regular direct flight.</p></li>
+<li><p> Vertices: ASCII characters. 
+ Edges: connect characters that differ in their binary code by exactly two bits.</p></li>
+<li><p> Vertices: All English words. 
+ Edges: An edge connects word x to word y if x is a prefix of y.</p></li>
+ </ol></statement></exercise>
+<exercise number="2"><statement><p> Each edge of a graph is colored with one of the four colors red, blue, yellow, or green. How could you represent the edges in this graph using
+a variation of the adjacency matrix structure?</p></statement></exercise>
+<exercise number="3"><statement> <p>Directed graphs \(G_1\), \dots, \(G_6\) , each with vertex set \(\{1,2,3,4,5\}\) are represented by the matrices below. Which graphs are isomorphic?</p>
+<p> \(G_1: \left(
+\begin{array}{ccccc}
+ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+ 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+\end{array}
+\right)\)<m>\quad \quad</m>\(G_2: \left(
+\begin{array}{ccccc}
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+\end{array}
+\right)\)<m>\quad \quad</m>\(G_3: \left(
+\begin{array}{ccccc}
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+\end{array}
+\right)\)
+
+ \(G_4: \left(
+\begin{array}{ccccc}
+ 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+\end{array}
+\right)\)<m>\quad \quad</m>\(\quad G_5: \left(
+\begin{array}{ccccc}
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+\end{array}
+\right)\)<m>\quad \quad</m>\(G_6: \left(
+\begin{array}{ccccc}
+ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+\end{array}
+\right)\)</p>
+</statement></exercise>
+<exercise number="4"><statement> <p> The following Sage command verifies that the wheel graph with four vertices is isomorphic to the complete graph with four vertices. </p>
+<sage>
+<input>
+graphs.WheelGraph(4).is_isomorphic(graphs.CompleteGraph(4))</input>
+<output>
+True
+</output>
+</sage>
+<p>A list of all graphs in this the <c>graphs</c> database is available via tab
+   completion. Type "graphs." and then hit the tab key to see which
+   graphs are available.  This can be done using the Sage application or SageMathCloud, but not sage cells.  Find some other pairs of isomorphic graphs in the database.</p>
+</statement></exercise>
+</exercisegroup>
+</exercises>
+</section>
