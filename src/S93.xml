@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="s-Connectivity">
+<title>Connectivity</title>
+<index><main>Connectivity in Graphs</main></index>
+<introduction>
+<p>This section is devoted to a question that, when posed in relation to the graphs that we have examined, seems trivial. That question is: Given two
+vertices, <m>s</m> and <m>t</m>, of a graph, is there a path from <m>s</m> to  t?  If \(s = t\), this question is interpreted
+as asking whether there is a circuit of positive length starting at <m>s</m>. Of course, for the graphs we have seen up to now, this question
+can be answered after a brief examination.</p>
+</introduction>
+<subsection xml:id="ss-connectivity-prelim"><title>Preliminaries</title>
+
+
+<p>There are two situations under which a question of this kind is nontrivial. One is where the graph is very large and an <q>examination</q> of the
+graph could take a considerable amount of time. Anyone who has tried to solve a maze may have run into a similar problem. The second interesting
+situation is when we want to pose the question to a machine. If only the information on the edges between the vertices is part of the data structure
+for the graph, how can you put that information together to determine whether two vertices can be connected by a path?</p>
+
+
+
+<note><title>Connectivity Terminology</title><p> Let <m>v</m> and <m>w</m> be vertices of a directed graph. Vertex <m>v</m> is  connected to vertex
+<m>w</m> if there is a path from <m>v</m> to <m>w</m>. Two vertices are  strongly connected if they are connected in both directions
+to one another. A  graph is connected if, for each pair of distinct vertices, <m>v</m> and <m>w</m>, <m>v</m> is connected to <m>w</m>  or <m>w</m> is connected to <m>v</m>. A  graph is strongly connected if every pair of its vertices is strongly connected. For an
+undirected graph, in which edges can be used in either direction, the notions of strongly connected and connected are the same.</p>
+</note>
+
+<theorem xml:id="theorem-9.3.1"><title>Maximal Path Theorem</title><index><main>9.3.1</main></index><statement>If a graph has <m>n</m> vertices and vertex <m>u</m> is connected to vertex <m>w</m>, then there exists a path from <m>u</m> to <m>w</m> of length no more than
+<m>n</m>.</statement><proof>(Indirect): Suppose <m>u</m> is connected to <m>w</m>, but the shortest path from <m>u</m> to <m>w</m> has length <m>m</m>, where \(m>n\). A vertex list for a path of length <m>m</m> will have \(m + 1\) vertices. This path can be represented as \(\left(v_0,v_1,\ldots, v_m\right)\), where \(v_0=u\) and \(v_m= w\). Note that since there are only <m>n</m> vertices in the graph and m vertices are listed in the path after \(v_0\), we can apply the pigeonhole principle and be assured that there must be some duplication in the last <m>m</m> vertices of the vertex list, which represents a circuit in the path. This means that our path of minimum length can be reduced, which is a contradiction.
+</proof></theorem>
+ 
+
+
+
+<list>
+<title>Basic Questions</title>
+<ol>
+<li><p>Given a graph and two vertices in the graph, is there a path from the first vertex to the second?</p></li>
+<li><p>If the answer to Question 1 is <q>yes</q> then what is the path?</p></li>
+</ol>
+</list>
+</subsection>
+
+<subsection xml:id="ss-adjacency-matrix-method"><title>Adjacency Matrix Method</title><index><main>Adjacency Matrix Method</main></index>
+
+<algorithm><title>Adjacency Matrix Method</title>
+<statement>
+<p>Suppose that the information about edges in a graph is stored in an adjacency matrix, <m>G</m>. The
+relation, <m>r</m>, that <m>G</m> defines is \(v r w\) if there is an edge connecting <m>v</m> to <m>w</m>. Recall that the composition
+of <m>r</m> with itself, \(r^2\) , is defined by \(v r^2 w\) if there exists a vertex <m>y</m> such that \(v r y\) and \(y r w\); that is,
+<m>v</m> is connected to <m>w</m> by a path of length 2. We could prove by induction that the relation \(r^k\) , \(k\geq 1\), is defined by
+\(v r^k w\) if and only if there is a path of length <m>k</m> from <m>v</m> to <m>w</m>. Since the transitive closure, \(r^+\) , is the
+union of <m>r</m>, \(r^2\) \(,r^3,\ldots\), we can answer our connectivity question by determining the transitive closure of <m>r</m>, which
+can be done most easily by keeping our relation in matrix form. <xref ref="theorem-9.3.1" autoname="yes"/> is significant in our calculations because it tells us that we need
+only go as far as \(E^n\) to determine the matrix of the transitive closure. </p>
+</statement>
+</algorithm>
+
+
+
+<p>The main advantage of the adjacency matrix method is that the transitive closure matrix can answer all questions about the existence of paths between any 
+vertices. If \(G^+\)is the matrix of the transitive closure, \(v_i\), is connected to \(v_j\) if \(\left(E^+\right)_{i j }=1\) . A directed
+graph is connected if \(\left(E^+\right)_{i j }=1\) or \(\left(E^+\right)_{j i}=1\) for each \(i\neq j\). A directed graph is strongly connected
+if its transitive closure matrix has no zeros.</p>
+
+
+
+<p>A disadvantage of the adjacency matrix method is that the transitive closure matrix tells us whether a path exists, but not what the path is.  The next algorithm solve this problem</p>
+
+</subsection>
+
+<subsection xml:id="ss-breadth-first-search"><title>Breadth-First Search</title><index><main>Breadth-First Search</main></index>
+
+
+<p>We will describe the Breadth-First Search Algorithm first with an example.</p>
+
+
+
+<p> The football team at Mediocre State University (MSU) has had a bad year, 2 wins and 9 losses. Thirty days after the end of the football season, the university trustees is meeting to decide whether to rehire the head coach; things look bad for him. However, on the day
+of the meeting, the coach issues the following press release with results from the past year:</p>
+
+<list><title>Press Release: MSU complete successful season</title>
+<introduction>The Mediocre State University football team compared favorably with national champion Enourmous State University this season</introduction>
+<ul>
+<li><p>Mediocre State defeated Local A &amp; M.</p></li>
+<li><p>Local A &amp; M defeated City College.</p></li>
+<li><p>City College defeated Corn State U.</p></li>
+<li><p>... (25 results later)</p></li>
+<li><p>Tough Tech defeated Enormous State University (ESU).</p></li>
+</ul>
+<conclusion>...and ESU went on to win the national championship!</conclusion>
+</list>
+<p>The trustees were so impressed that they rehired the coach with a raise! How did the coach come up with such a list?</p>
+
+<p>In reality, such lists exist occasionally and have appeared in newspapers from time to time. Of course they really don't prove anything since each team that defeated MSU in our example above can produce a similar, shorter chain of results. Since college football records are readily available, the coach could have found this list by trial and error. All that he needed to start with was that his team won at least one game. Since ESU lost one game, there was some hope of producing the chain.</p>
+
+<p>The problem of finding this list is equivalent to finding a path in the tournament graph for last year's football season that initiates at MSU and ends at ESU. Such a graph is far from complete and is likely to be represented using edge lists. To make the coach's problem interesting,
+let's imagine that only the winner of any game remembers the result of the game. The coach's problem has now taken on the flavor of a maze. To reach
+ESU, he must communicate with the various teams along the path. One way that the coach could have discovered his list in time is by sending the following
+messages to the coaches of the two teams that MSU defeated during the season:</p>
+
+<note><p>When this example was first written, we commented that ties should be ignored. Most recent NCAA rules call for a tiebreaker in college football and so ties are no longer an issue. Email was also not common and we described the process in terms of letter, not email messages. Another change is that the coach could also have asked the MSU math department to use Mathematica or Sage to find the path!</p></note>
+
+<p><blockquote>
+<p>Dear Football Coach:</p>
+<p>Please follow these directions exactly.</p>
+<ol>
+<li><p> If you are the coach at ESU, contact the coach at MSU now and tell him who sent you this message.</p></li>
+<li><p> If you are not the coach at ESU and this is the first message of this type that you have received, then:</p>
+<ul>
+<li><p>Remember from whom you received this message.</p></li>
+<li><p>Forward a copy of this message, signed by you, to each of the coaches whose teams you defeated during the past year. </p></li>
+<li><p>Ignore this message if you have received one like it already.</p></li>
+</ul></li>
+</ol>
+<p><m>\quad \quad \quad \quad \quad </m>Signed,</p>
+<p><m>\quad \quad \quad \quad \quad </m>Coach of MSU</p>
+</blockquote></p>
+
+
+<list><title>
+Observations</title>
+<introduction>From the conditions of this message, it should be clear that if everyone cooperates and if coaches participate within a day of receiving
+the message:</introduction>
+<ol label=“1”>
+<li><p> If a path of length <m>n</m> exists from MSU to ESU, then the coach will know about it in <m>n</m> days.</p></li>
+<li><p> By making a series of phone calls, the coach can construct a path that he wants by first calling the coach who defeated ESU (the person who sent ESU's coach that message). This coach will know who sent him a letter, and so on. Therefore, the vertex list of the desired path is constructed in reverse order.</p></li>
+<li><p> If a total of <m>M</m> football games were played, no more than <m>M</m> messages will be sent out.</p></li>
+<li><p> If a day passes without any message being sent out, no path from MSU to ESU exists.</p></li>
+<li><p> This method could be extended to construct a list of all teams that a given team can be connected to. Simply imagine a series of letters like the one above sent by each football coach and targeted at every other coach.</p></li>
+</ol>
+</list>
+
+
+
+<p>The general problem of finding a path between two vertices in a graph, if one exists, can be solved exactly as we solved the problem above. The following
+algorithm is commonly called a  breadth-first search.</p>
+
+
+
+<algorithm xml:id="alg-breadth-first"><title>Breadth-first Search</title>
+<index><main>Breadth-first Search</main></index>
+<statement>A broadcasting algorithm for finding a path between vertex <m>i</m> and vertex <m>j</m> of a graph having <m>n</m> vertices. The each item \(V_k\) of a list \(V=\left\{V_1, V_2, \ldots , V_n\right\}\), consist of a Boolean field \(V_k.found\) and an
+integer field \(V_k.from\). The sets \(D_1\), \(D_2\), \dots, called  depth sets, have the property that if <m>k</m> is in
+\(D_r\) , then the shortest path from vertex <m>i</m> to vertex <m>k</m> is of length <m>r</m>. In Step 5, a stack is used to put the vertex list for the path from the vertex <m>i</m> to vertex <m>j</m> in the proper order.</p>
+<ol label="1">
+<li><p>Set the value \(V_k.\text{found}\) equal to False, \(k = 1, 2, \dots , n\)</p></li>
+<li><p><m>r = 0</m></p></li>
+<li><p> \(D_0= \{i\}\)</p></li>
+<li><p> while \(\neg V_j.\text{found}\)) and \(\left(D_r\right.\neq \emptyset \)</p>
+		<ul><li><p>\(D_{r+1}=\emptyset\)</p></li>
+			 <li><p> for each k in \(D_r\):</p>
+					<p><m>\quad</m>for each edge (k,t):</p>
+					<p><m>\quad \quad </m>If \(V_t.\text{found}\) == False: </p>
+					<p><m>\quad \quad \quad </m>\(V_t.\text{found}=\text{True}\)</p>
+					<p><m>\quad \quad \quad </m>\(V_t.\text{from} = k\)</p>
+					<p><m>\quad \quad \quad </m>\(D_{r+1}=D_{r+1}\cup \{t\}\)</p></li>
+				<li><p><m>r = r + 1</m></p></li>
+				</ul></li>		
+<li><p>if \(V_j.\text{found} = \text{True}\):</p>
+		<ul><li><p><m>S = Empty Stack</m></p></li>
+			<li><p><m>k=j</m></p></li>
+			<li><p>while <m>\(V_k.\text{from} \neq  i\)</m>:</p></li>
+			<p><m>\quad</m>Push <m>k</m> onto <m>S</m></p>
+			<p><m>\quad</m>\(k = V_k.\text{from}\)</p>
+			</li>
+		</ul>
+</li>
+</ol>
+</statement>
+</algorithm>
+
+<list><title>Notes on Breadth-first Search</title>
+<ul>
+<li><p> This algorithm will produce one path from vertex <m>i</m> to vertex <m>j</m>, if one exists, and that path will be as short as possible.
+If more than one path of this length exists, then the one that is produced depends on the order in which the edges are examined and the order in
+which the elements of \(D_r\) are examined in Step 4.</p></li>
+<li><p> The condition \(D_{r }\neq \emptyset\) is analogous to the condition that if no mail is sent in a given stage of the process, in which
+case MSU cannot be connected to ESU.</p></li>
+<li><p> This algorithm can be easily revised to find paths to all vertices that can be reached from vertex i. Step 5 would be put off until a specific
+path to a vertex is needed since the information in <m>V</m> contains an efficient list of all paths. The algorithm can also be extended further
+to find paths between any two vertices.</p></li>
+</ul>
+</list>
+
+<example xml:id="ex-search-example"><title>A simple example</title>
+<p> Consider the graph below. The existence of a path from vertex 2 to vertex 3 is not difficult to determine by examination.
+After a few seconds, you should be able to find two paths of length four. Algorithm 9.3.1 will produce one of them.</p>
+
+<figure xml:id="fig-example-9-3-1">
+                <image width="400" source="images/fig-example-9-3-1.png">
+                    <description>Example Graph for breath-first search</description>
+                </image>
+</figure>
+
+
+
+<p>Suppose that the edges from each vertex are sorted in ascending order by terminal vertex. For example, the edges from vertex 3 would be in the order
+\((3, 1), (3, 4), (3, 5)\). In addition, assume that in the body of Step 4 of the algorithm, the elements of \(D_r\) are used in ascending order.  Then at the end of Step 4, the value of V will be<
+
+ \(\begin{array}{cccccccc}
+ k &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp;   \\
+ V_k.\text{found} &amp; T &amp; T &amp; T &amp; T &amp; T &amp; T &amp;   \\
+ V_k.\text{from} &amp; 2 &amp; 4 &amp; 6 &amp; 1 &amp; 1 &amp; 4 &amp;   \\
+ \text{Depth} \text{set} &amp; 1 &amp; 3 &amp; 4 &amp; 2 &amp; 2 &amp; 3 &amp; \\
+\end{array}\)
+
+Therefore, the path \((2, 1, 4, 6, 3)\) is produced by the algorithm. Note that if we wanted a path from 2 to 5, the information in <m>V</m> produces
+the path (2, 1, 5) since \(V_k.\text{from} = 1\) and \(V_1.\text{from} = 2\). A shortest circuit that initiates at vertex 2 is also available
+by noting that \(V_2.\text{from}=4\), \(V_4\text{.from = 1}\), and \(V_1.\text{from} = 2\); thus the circuit \((2, 1, 4, 2)\) is the output of the algorithm.
+</p></example>
+
+</subsection>
+
+
+<subsection xml:id="ss-sage-note-search"><title>Sage Note - Graph Searching</title><index><main>Sage Note</main><sub>Search in a Graph</sub></index>
+
+<p>The following sequence of Sage cells illustrates how searching can be done in graphs.</p>
+
+<p>Generate a random undirected graph with 18 vertices. For each pair of vertices, an edge is included between them with probability 0.2. Since there are \(\binom{18}{2}=153\) potential edges, we expect that there will be approximately \(0.2 \cdot 153 \approx 31\) edges.  The random number generation is seeded first so that the result will always be the same in spite of the random graph function.  Changing or removing that first line will let you experiment with different graphs.</p>
+
+<sage>
+<input>
+set_random_seed(2017)
+Gr=graphs.RandomGNP(18,0.2)
+Gr.show()
+</input>
+</sage>
+
+<p>Count the number of edges. In this case the number is a bit less than expected.</p>
+<sage>
+<input>
+len(Gr.edges(labels=False))
+</input>
+</sage>
+
+
+
+<p>Find a shortest path from vertex 0 to vertex 8.</p>
+
+<sage>
+<input>
+Gr.shortest_path(0, 8)
+</input>
+</sage>
+
+
+<p>Generate a list of vertices that would be reached in a breadth-first search.  The expression <c>Gr.depth_first_search(0)</c> creates an iterator that is convenient for programming. Wrapping <c>list( )</c> around the expression shows the order in which the vertices are visited.</p>
+
+<sage>
+<input>
+list(Gr.breadth_first_search(0))
+</input>
+</sage>
+
+
+
+<p>Generate a list of vertices that would be reached in a depth-first search.
+ In this type of search you travel in one direction away from the starting point until no further new vertices. We will discuss this search later.</p>
+<sage>
+<input>
+list(Gr.depth_first_search(0))
+</input>
+</sage>
+
+
+</subsection>
+
+<exercises xml:id="exercises-9-3">
+<title>Exercises for Section 9.3</title>
+
+<exercisegroup>
+<introduction><p>A Exercises</p></introduction>
+
+
+<exercise number="1"><statement><p> Apply <xref ref="alg-breadth-first" autoname="yes"/> to find a path from 5 to 1 in <xref ref="alg-breadth-first" autoname="yes"/>. What would be the final value of <m>V</m>? Assume that the terminal vertices
+in edge lists and elements of the depth sets are put into ascending order, as we assumed in <xref ref="ex-search-example" autoname="yes"/>.</p></statement></exercise>
+
+<exercise number="2"><statement><p> Apply <xref ref="alg-breadth-first" autoname="yes"/> to find a path from <m>d</m> to <m>c</m>  in the road graph in <xref ref="ex-undirected-1" autoname="yes"/> using the edge list in that example. Assume that the elements
+of the depth sets are put into ascending order.</p></statement></exercise>
+<exercise number="3"><statement><p> In a simple undirected graph with no self-loops, what is the maximum number of edges you can have, keeping the graph unconnected? What is the
+minimum number of edges that will assure that the graph is connected?</p></statement></exercise>
+<exercise number="4"><statement> <p>Use a broadcasting algorithm to determine the shortest path from vertex a to vertex i in the graphs shown in <xref ref="fig-exercise-9-3-4" autoname="yes"/>. List the depth sets
+and the stack that is created.</p>
+
+<figure xml:id="fig-exercise-9-3-4">
+	 <image width="400" source="images/fig-exercise-9-3-4.png">
+		  <description>Graphs for exercise 9-3-4</description>
+	 </image>
+</figure>
+</statement>
+</exercise>
+
+</exercisegroup>
+<exercisegroup>
+<introduction><p>B Exercises</p></introduction>
+<exercise number="5"><statement> Prove (by induction on <m>k</m>) that if the relation <m>r</m> on vertices of a graph is defined by \(v r w\) if there is an edge connecting
+<m>v</m> to <m>w</m>, then \(r^k\) ,\(k \geq  1\), is defined by \(v r^kw\) if there is a path of length <m>k</m> from <m>v</m> to
+<m>w</m>.
+</statement></exercise>
+</exercisegroup>
+</exercises>
+</section>
