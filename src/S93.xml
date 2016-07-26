@@ -25,7 +25,7 @@ undirected graph, in which edges can be used in either direction, the notions of
 </note>
 
 <theorem xml:id="theorem-9.3.1"><title>Maximal Path Theorem</title><index><main>9.3.1</main></index><statement>If a graph has <m>n</m> vertices and vertex <m>u</m> is connected to vertex <m>w</m>, then there exists a path from <m>u</m> to <m>w</m> of length no more than
-<m>n</m>.</statement><proof>(Indirect): Suppose <m>u</m> is connected to <m>w</m>, but the shortest path from <m>u</m> to <m>w</m> has length <m>m</m>, where \(m>n\). A vertex list for a path of length <m>m</m> will have \(m + 1\) vertices. This path can be represented as \(\left(v_0,v_1,\ldots, v_m\right)\), where \(v_0=u\) and \(v_m= w\). Note that since there are only <m>n</m> vertices in the graph and m vertices are listed in the path after \(v_0\), we can apply the pigeonhole principle and be assured that there must be some duplication in the last <m>m</m> vertices of the vertex list, which represents a circuit in the path. This means that our path of minimum length can be reduced, which is a contradiction.
+<m>n</m>.</statement><proof><p>(Indirect): Suppose <m>u</m> is connected to <m>w</m>, but the shortest path from <m>u</m> to <m>w</m> has length <m>m</m>, where \(m>n\). A vertex list for a path of length <m>m</m> will have \(m + 1\) vertices. This path can be represented as \(\left(v_0,v_1,\ldots, v_m\right)\), where \(v_0=u\) and \(v_m= w\). Note that since there are only <m>n</m> vertices in the graph and m vertices are listed in the path after \(v_0\), we can apply the pigeonhole principle and be assured that there must be some duplication in the last <m>m</m> vertices of the vertex list, which represents a circuit in the path. This means that our path of minimum length can be reduced, which is a contradiction.</p>
 </proof></theorem>
  
 
@@ -121,7 +121,7 @@ messages to the coaches of the two teams that MSU defeated during the season:</p
 Observations</title>
 <introduction>From the conditions of this message, it should be clear that if everyone cooperates and if coaches participate within a day of receiving
 the message:</introduction>
-<ol label=“1”>
+<ol label="1">
 <li><p> If a path of length <m>n</m> exists from MSU to ESU, then the coach will know about it in <m>n</m> days.</p></li>
 <li><p> By making a series of phone calls, the coach can construct a path that he wants by first calling the coach who defeated ESU (the person who sent ESU's coach that message). This coach will know who sent him a letter, and so on. Therefore, the vertex list of the desired path is constructed in reverse order.</p></li>
 <li><p> If a total of <m>M</m> football games were played, no more than <m>M</m> messages will be sent out.</p></li>
@@ -139,14 +139,14 @@ algorithm is commonly called a  breadth-first search.</p>
 
 <algorithm xml:id="alg-breadth-first"><title>Breadth-first Search</title>
 <index><main>Breadth-first Search</main></index>
-<statement>A broadcasting algorithm for finding a path between vertex <m>i</m> and vertex <m>j</m> of a graph having <m>n</m> vertices. The each item \(V_k\) of a list \(V=\left\{V_1, V_2, \ldots , V_n\right\}\), consist of a Boolean field \(V_k.found\) and an
-integer field \(V_k.from\). The sets \(D_1\), \(D_2\), \dots, called  depth sets, have the property that if <m>k</m> is in
+<statement><p>A broadcasting algorithm for finding a path between vertex <m>i</m> and vertex <m>j</m> of a graph having <m>n</m> vertices. The each item \(V_k\) of a list \(V=\left\{V_1, V_2, \ldots , V_n\right\}\), consist of a Boolean field \(V_k.\text{found}\) and an
+integer field \(V_k.\text{from}\). The sets \(D_1\), \(D_2\), \dots, called  depth sets, have the property that if <m>k</m> is in
 \(D_r\) , then the shortest path from vertex <m>i</m> to vertex <m>k</m> is of length <m>r</m>. In Step 5, a stack is used to put the vertex list for the path from the vertex <m>i</m> to vertex <m>j</m> in the proper order.</p>
 <ol label="1">
 <li><p>Set the value \(V_k.\text{found}\) equal to False, \(k = 1, 2, \dots , n\)</p></li>
 <li><p><m>r = 0</m></p></li>
 <li><p> \(D_0= \{i\}\)</p></li>
-<li><p> while \(\neg V_j.\text{found}\)) and \(\left(D_r\right.\neq \emptyset \)</p>
+<li><p> while \((\neg V_j.\text{found}\)) and \(\left(D_r\right.\neq \emptyset )\)</p>
 		<ul><li><p>\(D_{r+1}=\emptyset\)</p></li>
 			 <li><p> for each k in \(D_r\):</p>
 					<p><m>\quad</m>for each edge (k,t):</p>
@@ -159,7 +159,7 @@ integer field \(V_k.from\). The sets \(D_1\), \(D_2\), \dots, called  depth sets
 <li><p>if \(V_j.\text{found} = \text{True}\):</p>
 		<ul><li><p><m>S = Empty Stack</m></p></li>
 			<li><p><m>k=j</m></p></li>
-			<li><p>while <m>\(V_k.\text{from} \neq  i\)</m>:</p></li>
+			<li><p>while <m>V_k.\text{from} \neq  i</m>:</p>
 			<p><m>\quad</m>Push <m>k</m> onto <m>S</m></p>
 			<p><m>\quad</m>\(k = V_k.\text{from}\)</p>
 			</li>
@@ -195,14 +195,14 @@ After a few seconds, you should be able to find two paths of length four. Algori
 
 
 <p>Suppose that the edges from each vertex are sorted in ascending order by terminal vertex. For example, the edges from vertex 3 would be in the order
-\((3, 1), (3, 4), (3, 5)\). In addition, assume that in the body of Step 4 of the algorithm, the elements of \(D_r\) are used in ascending order.  Then at the end of Step 4, the value of V will be<
+\((3, 1), (3, 4), (3, 5)\). In addition, assume that in the body of Step 4 of the algorithm, the elements of \(D_r\) are used in ascending order.  Then at the end of Step 4, the value of V will be
 
- \(\begin{array}{cccccccc}
+ \[\begin{array}{cccccccc}
  k &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp;   \\
  V_k.\text{found} &amp; T &amp; T &amp; T &amp; T &amp; T &amp; T &amp;   \\
  V_k.\text{from} &amp; 2 &amp; 4 &amp; 6 &amp; 1 &amp; 1 &amp; 4 &amp;   \\
  \text{Depth} \text{set} &amp; 1 &amp; 3 &amp; 4 &amp; 2 &amp; 2 &amp; 3 &amp; \\
-\end{array}\)
+\end{array}\]
 
 Therefore, the path \((2, 1, 4, 6, 3)\) is produced by the algorithm. Note that if we wanted a path from 2 to 5, the information in <m>V</m> produces
 the path (2, 1, 5) since \(V_k.\text{from} = 1\) and \(V_1.\text{from} = 2\). A shortest circuit that initiates at vertex 2 is also available
@@ -220,7 +220,7 @@ by noting that \(V_2.\text{from}=4\), \(V_4\text{.from = 1}\), and \(V_1.\text{f
 
 <sage>
 <input>
-set_random_seed(2017)
+set_random_seed(2002)
 Gr=graphs.RandomGNP(18,0.2)
 Gr.show()
 </input>
@@ -231,6 +231,9 @@ Gr.show()
 <input>
 len(Gr.edges(labels=False))
 </input>
+<output>
+27
+</output>
 </sage>
 
 
@@ -241,6 +244,9 @@ len(Gr.edges(labels=False))
 <input>
 Gr.shortest_path(0, 8)
 </input>
+<output>
+[0, 7, 3, 8]
+</output>
 </sage>
 
 
@@ -250,6 +256,9 @@ Gr.shortest_path(0, 8)
 <input>
 list(Gr.breadth_first_search(0))
 </input>
+<output>
+[0, 7, 14, 15, 16, 2, 3, 13, 17, 4, 5, 10, 6, 11, 8, 1, 9, 12]
+</output>
 </sage>
 
 
@@ -260,6 +269,9 @@ list(Gr.breadth_first_search(0))
 <input>
 list(Gr.depth_first_search(0))
 </input>
+<output>
+[0, 15, 11, 10, 14, 5, 13, 7, 3, 8, 9, 12, 6, 16, 1, 2, 17, 4]
+</output>
 </sage>
 
 
@@ -279,7 +291,7 @@ in edge lists and elements of the depth sets are put into ascending order, as we
 of the depth sets are put into ascending order.</p></statement></exercise>
 <exercise number="3"><statement><p> In a simple undirected graph with no self-loops, what is the maximum number of edges you can have, keeping the graph unconnected? What is the
 minimum number of edges that will assure that the graph is connected?</p></statement></exercise>
-<exercise number="4"><statement> <p>Use a broadcasting algorithm to determine the shortest path from vertex a to vertex i in the graphs shown in <xref ref="fig-exercise-9-3-4" autoname="yes"/>. List the depth sets
+<exercise number="4"><statement> <p>Use a broadcasting algorithm to determine the shortest path from vertex a to vertex i in the graphs shown in the <xref ref="fig-exercise-9-3-4" autoname="yes"/> below. List the depth sets
 and the stack that is created.</p>
 
 <figure xml:id="fig-exercise-9-3-4">
