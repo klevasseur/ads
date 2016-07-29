@@ -24,8 +24,8 @@ to one another. A  graph is connected if, for each pair of distinct vertices, <m
 undirected graph, in which edges can be used in either direction, the notions of strongly connected and connected are the same.</p>
 </note>
 
-<theorem xml:id="theorem-9.3.1"><title>Maximal Path Theorem</title><index><main>9.3.1</main></index><statement>If a graph has <m>n</m> vertices and vertex <m>u</m> is connected to vertex <m>w</m>, then there exists a path from <m>u</m> to <m>w</m> of length no more than
-<m>n</m>.</statement><proof><p>(Indirect): Suppose <m>u</m> is connected to <m>w</m>, but the shortest path from <m>u</m> to <m>w</m> has length <m>m</m>, where \(m>n\). A vertex list for a path of length <m>m</m> will have \(m + 1\) vertices. This path can be represented as \(\left(v_0,v_1,\ldots, v_m\right)\), where \(v_0=u\) and \(v_m= w\). Note that since there are only <m>n</m> vertices in the graph and m vertices are listed in the path after \(v_0\), we can apply the pigeonhole principle and be assured that there must be some duplication in the last <m>m</m> vertices of the vertex list, which represents a circuit in the path. This means that our path of minimum length can be reduced, which is a contradiction.</p>
+<theorem xml:id="theorem-9.3.1"><title>Maximal Path Theorem</title><index><main>9.3.1</main></index><statement><p>If a graph has <m>n</m> vertices and vertex <m>u</m> is connected to vertex <m>w</m>, then there exists a path from <m>u</m> to <m>w</m> of length no more than
+<m>n</m>.</p></statement><proof><p>(Indirect): Suppose <m>u</m> is connected to <m>w</m>, but the shortest path from <m>u</m> to <m>w</m> has length <m>m</m>, where \(m>n\). A vertex list for a path of length <m>m</m> will have \(m + 1\) vertices. This path can be represented as \(\left(v_0,v_1,\ldots, v_m\right)\), where \(v_0=u\) and \(v_m= w\). Note that since there are only <m>n</m> vertices in the graph and m vertices are listed in the path after \(v_0\), we can apply the pigeonhole principle and be assured that there must be some duplication in the last <m>m</m> vertices of the vertex list, which represents a circuit in the path. This means that our path of minimum length can be reduced, which is a contradiction.</p>
 </proof></theorem>
  
 
@@ -79,7 +79,7 @@ if its transitive closure matrix has no zeros.</p>
 of the meeting, the coach issues the following press release with results from the past year:</p>
 
 <list><title>Press Release: MSU complete successful season</title>
-<introduction>The Mediocre State University football team compared favorably with national champion Enourmous State University this season</introduction>
+<introduction><p>The Mediocre State University football team compared favorably with national champion Enourmous State University this season.</p></introduction>
 <ul>
 <li><p>Mediocre State defeated Local A &amp; M.</p></li>
 <li><p>Local A &amp; M defeated City College.</p></li>
@@ -87,7 +87,7 @@ of the meeting, the coach issues the following press release with results from t
 <li><p>... (25 results later)</p></li>
 <li><p>Tough Tech defeated Enormous State University (ESU).</p></li>
 </ul>
-<conclusion>...and ESU went on to win the national championship!</conclusion>
+<conclusion><p>...and ESU went on to win the national championship!</p></conclusion>
 </list>
 <p>The trustees were so impressed that they rehired the coach with a raise! How did the coach come up with such a list?</p>
 
@@ -100,9 +100,9 @@ messages to the coaches of the two teams that MSU defeated during the season:</p
 
 <note><p>When this example was first written, we commented that ties should be ignored. Most recent NCAA rules call for a tiebreaker in college football and so ties are no longer an issue. Email was also not common and we described the process in terms of letter, not email messages. Another change is that the coach could also have asked the MSU math department to use Mathematica or Sage to find the path!</p></note>
 
-<p><blockquote>
-<p>Dear Football Coach:</p>
-<p>Please follow these directions exactly.</p>
+<list><title>The Coach's Letter</title>
+<introduction><p>Dear Football Coach:</p>
+<p>Please follow these directions exactly.</p></introduction>
 <ol>
 <li><p> If you are the coach at ESU, contact the coach at MSU now and tell him who sent you this message.</p></li>
 <li><p> If you are not the coach at ESU and this is the first message of this type that you have received, then:</p>
@@ -112,15 +112,16 @@ messages to the coaches of the two teams that MSU defeated during the season:</p
 <li><p>Ignore this message if you have received one like it already.</p></li>
 </ul></li>
 </ol>
-<p><m>\quad \quad \quad \quad \quad </m>Signed,</p>
+<conclusion><p><m>\quad \quad \quad \quad \quad </m>Signed,</p>
 <p><m>\quad \quad \quad \quad \quad </m>Coach of MSU</p>
-</blockquote></p>
+</conclusion>
+</list>
 
 
 <list><title>
 Observations</title>
-<introduction>From the conditions of this message, it should be clear that if everyone cooperates and if coaches participate within a day of receiving
-the message:</introduction>
+<introduction><p>From the conditions of this message, it should be clear that if everyone cooperates and if coaches participate within a day of receiving
+the message:</p></introduction>
 <ol label="1">
 <li><p> If a path of length <m>n</m> exists from MSU to ESU, then the coach will know about it in <m>n</m> days.</p></li>
 <li><p> By making a series of phone calls, the coach can construct a path that he wants by first calling the coach who defeated ESU (the person who sent ESU's coach that message). This coach will know who sent him a letter, and so on. Therefore, the vertex list of the desired path is constructed in reverse order.</p></li>
@@ -285,12 +286,25 @@ list(Gr.depth_first_search(0))
 
 
 <exercise number="1"><statement><p> Apply <xref ref="alg-breadth-first" autoname="yes"/> to find a path from 5 to 1 in <xref ref="alg-breadth-first" autoname="yes"/>. What would be the final value of <m>V</m>? Assume that the terminal vertices
-in edge lists and elements of the depth sets are put into ascending order, as we assumed in <xref ref="ex-search-example" autoname="yes"/>.</p></statement></exercise>
+in edge lists and elements of the depth sets are put into ascending order, as we assumed in <xref ref="ex-search-example" autoname="yes"/>.</p>
+</statement>
+<answer><p>  \(\begin{array}{ccccccc}
+ k &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 \\
+ V[k].\text{found} &amp; T &amp; T &amp; T &amp; F &amp; F &amp; T \\
+ V[k].\text{from} &amp; 2 &amp; 5 &amp; 6 &amp; * &amp; * &amp; 5 \\
+ \text{Depth} \text{Set} &amp; 2 &amp; 1 &amp; 2 &amp; * &amp; * &amp; 1 \\
+\end{array}\) \(\text{(*} = \text{undefined})\)
+
+</p></answer></exercise>
 
 <exercise number="2"><statement><p> Apply <xref ref="alg-breadth-first" autoname="yes"/> to find a path from <m>d</m> to <m>c</m>  in the road graph in <xref ref="ex-undirected-1" autoname="yes"/> using the edge list in that example. Assume that the elements
 of the depth sets are put into ascending order.</p></statement></exercise>
 <exercise number="3"><statement><p> In a simple undirected graph with no self-loops, what is the maximum number of edges you can have, keeping the graph unconnected? What is the
-minimum number of edges that will assure that the graph is connected?</p></statement></exercise>
+minimum number of edges that will assure that the graph is connected?</p></statement>
+<answer><p> If the number of vertices is <m>n</m>, there can be \(\frac{(n-1)(n-2)}{2}\) vertices with one vertex not connected to any of the others. One
+more edge and connectivity is assured.
+
+</p></answer></exercise>
 <exercise number="4"><statement> <p>Use a broadcasting algorithm to determine the shortest path from vertex a to vertex i in the graphs shown in the <xref ref="fig-exercise-9-3-4" autoname="yes"/> below. List the depth sets
 and the stack that is created.</p>
 
@@ -305,10 +319,26 @@ and the stack that is created.</p>
 </exercisegroup>
 <exercisegroup>
 <introduction><p>B Exercises</p></introduction>
-<exercise number="5"><statement> Prove (by induction on <m>k</m>) that if the relation <m>r</m> on vertices of a graph is defined by \(v r w\) if there is an edge connecting
+<exercise number="5"><statement><p> Prove (by induction on <m>k</m>) that if the relation <m>r</m> on vertices of a graph is defined by \(v r w\) if there is an edge connecting
 <m>v</m> to <m>w</m>, then \(r^k\) ,\(k \geq  1\), is defined by \(v r^kw\) if there is a path of length <m>k</m> from <m>v</m> to
-<m>w</m>.
-</statement></exercise>
+<m>w</m>.</p>
+</statement><answer><p> Basis: \((k=1)\) Is the relation \(r^1\)defined by \(\text{\textit{vr}}^1w\) if there is a path of length \(l\) from \(v \text{to} w\)? Yes, since
+\textit{ \(\text{vrw}\)} if and only if an edge, which is a path of length <m>l</m>, connects <m>v</m> to <m>w</m>.</p>
+
+
+
+<p>Induction: Assume that \(\text{\textit{vr}}^kw\) if and only if there is a path of length \textit{ k }from <m>v</m> to <m>w</m>. We must show
+that \(\text{\textit{vr}}^{k+1}w\) if and only if there is a path of length \(k+1\) from <m>v</m> to <m>w</m>.</p>
+
+
+<p>
+\(\text{\textit{vr}}^{k+1}w\Rightarrow \text{\textit{vr}}^ky \text{and} \text{\textit{yrw}}\), for some vertex <m>y</m>. By the induction
+hypothesis, there is a path of length <m>k</m> from \(v \text{to} y\). And by the basis, there is a path of length one from <m>y</m> to \textit{
+w}. If we combine these two paths, we obtain a path of length \(k+1\) from <m>v</m> to <m>w</m>. Of course, if we start with a path of length
+\(k+1\) from <m>v</m> to <m>w</m>, we have a path of length <m>k</m> from <m>v</m> to some vertex <m>y</m> and a path of length\textit{
+ l} from <m>y</m> to <m>w</m>. Therefore, \(\text{\textit{vr}}^ky \text{and} \text{\textit{yrw}}\Rightarrow \text{\textit{vr}}^{k+1}w\text{
+   }\square\)
+</p></answer></exercise>
 </exercisegroup>
 </exercises>
 </section>

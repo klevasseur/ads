@@ -2,49 +2,49 @@
 <section xml:id="s-traversals">
 <title>Traversals: Eulerian and Hamiltonian Graphs</title>
 <index><main>Traversals of Graphs</main></index>
-<introduction><p>The subject of graph traversals has a long history. In fact, the solution by Leonhard Euler (Switzerland, 1707-83) of the K{\"o}nigsberg Bridge
+<introduction><p>The subject of graph traversals has a long history. In fact, the solution by Leonhard Euler (Switzerland, 1707-83) of the Koenigsberg Bridge
 Problem is considered by many to represent the birth of graph theory.</p>
 </introduction>
 <subsection xml:id="ss-eulerian"><title>Eulerian  Graphs</title>
 
  <sidebyside xml:id="fig-sidebyside-konigsberg">
-                    <caption>The K{\"o}nigsberg Bridge Problem</caption>
-                    <figure width="40%" xml:id="fig-konigsberg-map">
-                        <caption></caption>
+                    <caption>The Koenigsberg Bridge Problem</caption>
+                    <figure width="45%" xml:id="fig-konigsberg-map">
+                        <caption>A  map of Koenigsberg, circa 1735 </caption>
                         <image source="images/fig-konigsberg-map.png">
-                            <description>A map of K{\"o}nigsberg</description>
+                            <description>A map of Koenigsberg</description>
                         </image>
                     </figure>
-                    <figure width="40%" xml:id="fig-konigsberg-multigraph">
-                        <caption>A multigraph for the bridges of K{\"o}nigsberg</caption>
+                    <figure width="45%" xml:id="fig-konigsberg-multigraph">
+                        <caption>A multigraph for the bridges of Koenigsberg</caption>
                         <image source="images/fig-konigsberg-multigraph.png"/>
                     </figure>
                 </sidebyside>
 
-<p>A map of the Prussian city of K{\"o}nigsberg (circa 1735) in Figure 9.4.1 shows that there were seven bridges connecting the four land masses that
-made up the city. The legend of this problem states that the citizens of K{\"o}nigsberg searched in vain for a walking tour that passed over each
+<p>A map of the Prussian city of Koenigsberg (circa 1735) in Figure 9.4.1 shows that there were seven bridges connecting the four land masses that
+made up the city. The legend of this problem states that the citizens of Koenigsberg searched in vain for a walking tour that passed over each
 bridge exactly once. No one could design such a tour and the search was abruptly abandoned with the publication of Euler's Theorem.</p>
 
-<theorem xml:id="th-euler-theorem-konigsberg-case"><title>Euler's Theorem - K{\"o}nigsberg Case</title><index><main>Euler's Theorem</main><sub>K{\"o}nigsberg Case</sub></index>
-<statement><p>No walking tour of K{\"o}nigsberg can be designed so that each bridge is used exactly
+<theorem xml:id="th-euler-theorem-koenigsberg-case"><title>Euler's Theorem - Koenigsberg Case</title><index><main>Euler's Theorem</main><sub>Koenigsberg Case</sub></index>
+<statement><p>No walking tour of <m>K\"onigsberg</m> can be designed so that each bridge is used exactly
 once.</p></statement>
-<proof><p>The map of K{\"o}nigsberg can be represented as an undirected multigraph, as in Figure 9.4.2. The four land masses are the vertices and each
+<proof><p>The map of Koenigsberg can be represented as an undirected multigraph, as in Figure 9.4.2. The four land masses are the vertices and each
 edge represents a bridge. </p>
 
 
 <p>The desired tour is then a path that uses each edge once and only once. Since the path can start and end at two different
 vertices, there are two remaining vertices that must be intermediate vertices in the path. If <m>x</m> is an intermediate vertex, then every time
 that you visit <m>x</m>, you must use two of its incident edges, one to enter and one to exit. Therefore, there must be an even number of edges
-connecting <m>x</m> to the other vertices. Since every vertex in the K{\"o}nigsberg graph has an odd number of edges, no tour of the type that
+connecting <m>x</m> to the other vertices. Since every vertex in the Koenigsberg graph has an odd number of edges, no tour of the type that
 is desired is possible. </p>
 </proof>
 </theorem>
 
-<p>As is typical of most mathematicians, Euler wasn't satisfied with solving only the K{\"o}nigsberg problem. His original theorem, which is paraphrased
-below, concerned the existence of paths and circuits like those sought in K{\"o}nigsberg. These paths and circuits have become associated with Euler's
+<p>As is typical of most mathematicians, Euler wasn't satisfied with solving only the Koenigsberg problem. His original theorem, which is paraphrased
+below, concerned the existence of paths and circuits like those sought in Koenigsberg. These paths and circuits have become associated with Euler's
 name.</p>
 
-<definition xml:id="def-eulerian-paths-circuits-graphs"><title>Eulerian Paths, Circuits, Graphs.</title><index><main>Eulerian Paths, Circuits, Graphs.</main></index><notation><usage></usage><description></description></notation><statement><p> A Eulerian path through a graph is a path whose edge list contains each edge of the graph exactly
+<definition xml:id="def-eulerian-paths-circuits-graphs"><title>Eulerian Paths, Circuits, Graphs.</title><index><main>Eulerian Paths, Circuits, Graphs.</main></index><statement><p> A Eulerian path through a graph is a path whose edge list contains each edge of the graph exactly
 once. If the path is a circuit, then it is called a Eulerian circuit. A Eulerian graph is a graph that possesses a Eulerian path.</p></statement></definition>
 
 
@@ -66,7 +66,7 @@ degree. This follows from the following theorem.
 <statement><p>An undirected graph is Eulerian if and only if it is connected and has either zero or two vertices with an odd degree. If no vertex has an odd degree, then the graph has a Eulerian circuit.</p></statement>
 <proof><p>It can be proven by induction that the number of vertices in an undirected graph that have an odd degree must be even. We will leave
 the proof of this fact to the reader as an exercise. The necessity of having either zero or two vertices of odd degree is clear from the proof of
-the K{\"o}nigsberg case of this theorem. Therefore, we will concentrate on proving that this condition is sufficient to ensure that a graph is Eulerian.
+the Koenigsberg case of this theorem. Therefore, we will concentrate on proving that this condition is sufficient to ensure that a graph is Eulerian.
 Let <m>k</m> be the number of vertices with odd degree.</p>
 
 
@@ -124,26 +124,23 @@ is not Eulerian.
 <statement><p>A Hamiltonian path through a graph is a path whose vertex list contains each vertex of the graph exactly once, except if the path is a circuit, in which case the initial vertex appears a second time as the terminal vertex. If the path is a circuit, then it is called a Hamiltonian circuit. A Hamiltonian graph is a graph that possesses a Hamiltonian path.</p></statement></definition>
 
 
-<example xml:id="ex-dodec-graph"><title>The Original Hamiltonian Graph</title><p><xref ref="fig-dodec-graph" autoname="yes"/> shows a graph that is Hamiltonian. In fact, it is the graph that Hamilton used as an example to pose the question
-of existence of Hamiltonian paths in 1859. In its original form, the puzzle that was posed to readers was called <q>Around the World.</q> The vertices
-were labeled with names of major cities of the world and the object was to complete a tour of these cities. The graph is also referred to as the
-dodecahedron graph, where vertices correspond with< the corners of a dodecahedron and the edges are the edges of the solid that connect the corners.</p>
+<example xml:id="ex-dodec-graph"><title>The Original Hamiltonian Graph</title><p><xref ref="fig-dodec-graph" autoname="yes"/> shows a graph that is Hamiltonian. In fact, it is the graph that Hamilton used as an example to pose the question of existence of Hamiltonian paths in 1859. In its original form, the puzzle that was posed to readers was called <q>Around the World.</q> The vertices were labeled with names of major cities of the world and the object was to complete a tour of these cities. The graph is also referred to as the
+dodecahedron graph, where vertices correspond with the corners of a dodecahedron and the edges are the edges of the solid that connect the corners.</p>
 
  <sidebyside xml:id="sidebyside-dodec">
-                    <caption>The Dodecahedron</caption>
                     <figure width="40%" xml:id="fig-dodec">
-                        <caption></caption>
+                        <caption>A Dodecahedron</caption>
                         <image source="images/fig-dodec.png">
-                            <description>The Dodecahedron</description>
+                            <description>A Dodecahedron</description>
                         </image>
                     </figure>
                     <figure width="40%" xml:id="fig-dodec-graph">
                         <caption>The Dodecahedron Graph</caption>
-                        <image source="images/fig-dodec-graph.png"/>
+                        <image source="images/fig-dodec-graph.png">
                            <description>The Dodecahedron Graph</description>
+                        </image>
                     </figure>
 </sidebyside>
-
 </example>
 
 <problem><p>Unfortunately, a simple condition doesn't exist that characterizes a Hamiltonian graph. An obvious necessary condition is that the
@@ -161,7 +158,7 @@ paths, the actual execution time for known algorithms is large with 20 vertices.
 for 10,000 vertices, no currently known algorithm could be executed.</p>
 
 <p>It is an unproven but widely held belief that no faster algorithm exists to search for Hamiltonian paths in general groups. A faster algorithm would have to be one
-that takes only polynomial time; that is, \(T(n) < p(n)\), for some polynomial sequence <m>p</m>. To sum up, the problem of determining whether
+that takes only polynomial time; that is, \(T(n) &lt; p(n)\), for some polynomial sequence <m>p</m>. To sum up, the problem of determining whether
 a graph is Hamiltonian is theoretically possible; however, for large graphs we consider it a practical impossibility. Many of the problems we will discuss in the next section, particularly the Traveling Salesman Problem, are thought to be impossible in the same sense. 
 </p></note>
 
@@ -178,8 +175,8 @@ graphs.CubeGraph(4).show()
 
 
 
-<note xml:id="note-gray-code"><title>The Gray Code</title> A Hamiltonian circuit of the <m>n</m>-cube can be described recursively. The circuit itself, called the Gray Code, is
-not the only Hamiltonian circuit of the <m>n</m>-cube, but it is the easiest to describe. The standard way to write the Gray Code is as a column of strings, where the last string is followed by the first string to complete the circuit.
+<note xml:id="note-gray-code"><title>The Gray Code</title><p> A Hamiltonian circuit of the <m>n</m>-cube can be described recursively. The circuit itself, called the Gray Code, is
+not the only Hamiltonian circuit of the <m>n</m>-cube, but it is the easiest to describe. The standard way to write the Gray Code is as a column of strings, where the last string is followed by the first string to complete the circuit.</p>
 
 
 
@@ -247,16 +244,14 @@ is a 1.</p>
 <exercises xml:id="exercises-9-4">
 <title>Exercises for Section 9.4</title>
 
-
-
-
-</exercisegroup>
 <exercisegroup>
 <introduction><p>A Exercises</p></introduction>
-
-
 <exercise number="1"><statement><p> Locate a map of New York City and draw a graph that represents its land masses, bridges and tunnels. Is there a Eulerian path through New York? You can do the same with any other city that has at least two land masses.</p></statement>
-</exercise>
+<answer><p> Using a recent road map, it appears that a Eulerian circuit exists in New York City, not including the small islands that belong to the city.
+Lowell, Massachusetts, is located at the confluence of the Merrimack and Concord rivers and has several canals flowing through it. No Eulerian path
+exists for Lowell.
+
+</p></answer></exercise>
 <exercise number="2"><statement><p> Which of the drawings in <xref ref="fig-drawings-9-4" autoname="yes"/> can be drawn without removing your pencil from the paper and without drawing any line twice?</p>
          <figure xml:id="fig-drawings-9-4">
                 <image width="400" source="images/fig-drawings-9-4.png">
@@ -264,17 +259,40 @@ is a 1.</p>
                 </image>
             </figure>
 </statement></exercise>
-<exercise number="3"><statement><p>Write out the Gray Code for the 4-cube.</p></statement></exercise>
+<exercise number="3"><statement><p>Write out the Gray Code for the 4-cube.</p></statement><answer><p> Gray Code for the 4-cube:
+\[G_4=\left(
+\begin{array}{c}
+ 0000 \\
+ 0001 \\
+ 0011 \\
+ 0010 \\
+ 0110 \\
+ 0111 \\
+ 0101 \\
+ 0100 \\
+ 1100 \\
+ 1101 \\
+ 1111 \\
+ 1110 \\
+ 1010 \\
+ 1011 \\
+ 1001 \\
+ 1000 \\
+\end{array}
+\right)\]
+</p></answer></exercise>
 <exercise number="4"><statement><p> Find a Hamiltonian circuit for the dodecahedron graph in <xref ref="fig-dodec-graph" autoname="yes"/>.</p></statement></exercise>
-<exercise number="5"><statement><p> The Euler Construction Company has been contracted to construct an extra bridge in K{\"o}nigsberg so that a Eulerian path through the town
-exists. Can this be done, and if so, where should the bridge be built?</p></statement></exercise>
+<exercise number="5"><statement><p> The Euler Construction Company has been contracted to construct an extra bridge in Koenigsberg so that a Eulerian path through the town
+exists. Can this be done, and if so, where should the bridge be built?</p></statement><answer><p> Any bridge between two land masses will be sufficient. To get a Eulerian circuit, you must add a second bridge that connects the two land masses
+that were not connected by the first bridge.
+</p></answer></exercise>
 <exercise number="6"><statement> 
 <ol label="a">
 <li><p>Determine which of the graphs in Figure 9.4.8 has a Eulerian path?</p></li>
 <li><p>Find a Eulerian path for the graphs that have one.</p></li>
 </ol>
             <figure xml:id="fig-exercise-9-4-6">
-                <image width="400" source="images/fig-exercise-9-4-6.png">
+                <image width="500" source="images/fig-exercise-9-4-6.png">
                     <description>graphs for exercise 9-4-6</description>
                 </image>
             </figure>
@@ -285,8 +303,12 @@ exists. Can this be done, and if so, where should the bridge be built?</p></stat
 </exercisegroup>
 <exercisegroup>
 <introduction><p>B Exercises</p></introduction>
-</statement></exercise>
-<exercise number="7"><statement><p> Formulate Euler's theorem for directed graphs.</p></statement></exercise>
+<exercise number="7"><statement><p> Formulate Euler's theorem for directed graphs.</p></statement>
+<answer>
+<p>Let  \(G=(V,E)\)} be a directed graph. <m>G</m> has a Eulerian circuit if and only if G is connected and (\text{indeg}(v)=\text{outdeg}(v)\) for all <m>v</m> in <m>V</m>. There exists a Eulerian path from  \(v_1\textrm{ to } v_2\)  if and only if 
+g is connected, \(\text{indeg}\left(v_1\right)=\text{outdeg}\left(v_1\right)-1\), \(\text{indeg}\left(v_2\right)=\text{outdeg}\left(v_2\right)+1\),
+ and for all other vertices in <m>V</m> the indegree and outdegree are equal.</p>
+</answer></exercise>
 <exercise number="8"><statement><p> Prove that the number of vertices in an undirected graph with odd degree must be even.</p></statement>
 <hint><p> Prove by induction on the number of edges.</p></hint></exercise>
 <exercise number="9"><statement>
@@ -295,7 +317,8 @@ exists. Can this be done, and if so, where should the bridge be built?</p></stat
 <li><p>Prove that every round-robin tournament graph is Hamiltonian.</p></li>
 </ol>
 </statement>
-</exercise>
+<answer><p> A round-robin tournament graph is rarely Eulerian. It will be Eulerian if it has an odd number of vertices and each vertex (team) wins exactly
+as many times as it loses. Every round-robin tournament graph has a Hamiltonian path. This can be proven by induction on the number of vertices.</p></answer></exercise>
 <exercise number="10"><statement><p> For what values of <m>n</m> is  n-cube Eulerian.</p>
 </statement></exercise>
 
