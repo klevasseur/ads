@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="s-traversals">
+<title>Traversals: Eulerian and Hamiltonian Graphs</title>
+<index><main>Traversals of Graphs</main></index>
+<introduction><p>The subject of graph traversals has a long history. In fact, the solution by Leonhard Euler (Switzerland, 1707-83) of the K{\"o}nigsberg Bridge
+Problem is considered by many to represent the birth of graph theory.</p>
+</introduction>
+<subsection xml:id="ss-eulerian"><title>Eulerian  Graphs</title>
+
+ <sidebyside xml:id="fig-sidebyside-konigsberg">
+                    <caption>The K{\"o}nigsberg Bridge Problem</caption>
+                    <figure width="40%" xml:id="fig-konigsberg-map">
+                        <caption></caption>
+                        <image source="images/fig-konigsberg-map.png">
+                            <description>A map of K{\"o}nigsberg</description>
+                        </image>
+                    </figure>
+                    <figure width="40%" xml:id="fig-konigsberg-multigraph">
+                        <caption>A multigraph for the bridges of K{\"o}nigsberg</caption>
+                        <image source="images/fig-konigsberg-multigraph.png"/>
+                    </figure>
+                </sidebyside>
+
+<p>A map of the Prussian city of K{\"o}nigsberg (circa 1735) in Figure 9.4.1 shows that there were seven bridges connecting the four land masses that
+made up the city. The legend of this problem states that the citizens of K{\"o}nigsberg searched in vain for a walking tour that passed over each
+bridge exactly once. No one could design such a tour and the search was abruptly abandoned with the publication of Euler's Theorem.</p>
+
+<theorem xml:id="th-euler-theorem-konigsberg-case"><title>Euler's Theorem - K{\"o}nigsberg Case</title><index><main>Euler's Theorem</main><sub>K{\"o}nigsberg Case</sub></index>
+<statement><p>No walking tour of K{\"o}nigsberg can be designed so that each bridge is used exactly
+once.</p></statement>
+<proof><p>The map of K{\"o}nigsberg can be represented as an undirected multigraph, as in Figure 9.4.2. The four land masses are the vertices and each
+edge represents a bridge. </p>
+
+
+<p>The desired tour is then a path that uses each edge once and only once. Since the path can start and end at two different
+vertices, there are two remaining vertices that must be intermediate vertices in the path. If <m>x</m> is an intermediate vertex, then every time
+that you visit <m>x</m>, you must use two of its incident edges, one to enter and one to exit. Therefore, there must be an even number of edges
+connecting <m>x</m> to the other vertices. Since every vertex in the K{\"o}nigsberg graph has an odd number of edges, no tour of the type that
+is desired is possible. </p>
+</proof>
+</theorem>
+
+<p>As is typical of most mathematicians, Euler wasn't satisfied with solving only the K{\"o}nigsberg problem. His original theorem, which is paraphrased
+below, concerned the existence of paths and circuits like those sought in K{\"o}nigsberg. These paths and circuits have become associated with Euler's
+name.</p>
+
+<definition xml:id="def-eulerian-paths-circuits-graphs"><title>Eulerian Paths, Circuits, Graphs.</title><index><main>Eulerian Paths, Circuits, Graphs.</main></index><notation><usage></usage><description></description></notation><statement><p> A Eulerian path through a graph is a path whose edge list contains each edge of the graph exactly
+once. If the path is a circuit, then it is called a Eulerian circuit. A Eulerian graph is a graph that possesses a Eulerian path.</p></statement></definition>
+
+
+
+<example xml:id="ex-an-eulerian-graph"><title>An Eulerian Graph</title><p>Without tracing any paths, we can be sure that the graph below has an Eulerian circuit because all vertices have an even
+degree. This follows from the following theorem.
+</p>
+            <figure xml:id="fig-eulerian-9-4">
+                <caption>An Eulerian graph
+                </caption>
+                <image width="400" source="images/fig-eulerian-9-4.png">
+                    <description>An Eulerian graph</description>
+                </image>
+            </figure>
+</example>  
+
+<theorem xml:id="theorem-euler-theorem-general"><title>Euler's Theorem - General Case</title>
+<index><main>Euler's Theorem</main></index>
+<statement><p>An undirected graph is Eulerian if and only if it is connected and has either zero or two vertices with an odd degree. If no vertex has an odd degree, then the graph has a Eulerian circuit.</p></statement>
+<proof><p>It can be proven by induction that the number of vertices in an undirected graph that have an odd degree must be even. We will leave
+the proof of this fact to the reader as an exercise. The necessity of having either zero or two vertices of odd degree is clear from the proof of
+the K{\"o}nigsberg case of this theorem. Therefore, we will concentrate on proving that this condition is sufficient to ensure that a graph is Eulerian.
+Let <m>k</m> be the number of vertices with odd degree.</p>
+
+
+
+<p> Phase 1. If \(k = 0\), start at any vertex, \(v_0\), and travel along any path, not using any edge twice. Since each vertex has an even
+degree, this path can always be continued past each vertex that you reach except \(v_0\). The result is a circuit that includes \(v_0\). If \(k =
+2\), let \(v_0\) be either one of the vertices of odd degree. Trace any path starting at \(v_0\) using up edges until you can go no further, as in
+the \(k = 0\) case. This time, the path that you obtain must end at the other vertex of odd degree that we will call \(v_1\).  At the end of Phase
+1, we have an initial path that may or may not be Eulerian. If it is not Eulerian, Phase 2 can be repeated until all of the edges have been used.
+Since the number of unused edges is decreased in any use of Phase 2, a Eulerian path must be obtained in a finite number of steps.</p>
+
+
+
+<p> Phase 2. As we enter this phase, we have constructed a path that uses a proper subset of the edges in our graph. We will refer to this
+path as the current path. Let <m>V</m> be the vertices of our graph, <m>E</m> the edges, and \(E_u\) the edges that have been used in the current
+path. Consider the graph \(G' = \left(V, E - E_u\right)\).  Note that every vertex in \(G'\) has an even degree. Select any edge, \textit{
+e}, from \(G'.\) Let \(v_a\) and \(v_b\) be the vertices that <m>e</m> connects. Trace a new path starting at \(v_a\) whose first edge is \textit{
+e}. We can be sure that at least one vertex of the new path is also in the current path since \((V, E)\) is connected. Starting at \(v_a\), there
+exists a path in \((V, E)\) to any vertex in the current path. At some point along this path, which we can consider the start of the new path, we
+will have intersected the current path. Since the degree of each vertex in G' is even, any path that we start at \(v_a\) can be continued until it
+is a circuit. Now, we simply augment the current path with this circuit. As we travel along the current path, the first time that we intersect the
+new path, we travel along it (see Figure 9.4.3). Once we complete the circuit that is the new path, we resume the traversal of the current path.</p>
+
+            <figure xml:id="fig-path-augmentation">
+                <caption>Path Augmentation Plan
+                </caption>
+                <image width="400" source="images/fig-path-augmentation.png">
+                    <description>Path Augmentation Plan</description>
+                </image>
+            </figure>
+
+
+<p>If the result of this phase is a Eulerian path, then we are finished; otherwise, repeat this phase.</p> </proof></theorem>
+
+<example xml:id="ex-complete-eulerian"><title>Complete Eulerian Graphs</title><p>The complete undirected graphs \(K_2\) and \(K_{2n+1}\), \(n = 1, 2, 3, \ldots\). .., are Eulerian. If \(n>1\), then \(K_{2n}\)
+is not Eulerian.
+</p></example>
+ 
+</subsection>
+<subsection xml:id="ss-hamiltonian-graphs"><title>Hamiltonian Graphs</title>
+
+
+
+<p>To search for a path that uses every vertex of a graph exactly once seems to be a natural next problem after you have considered Eulerian graphs.The Irish mathematician Sir William Rowan Hamilton (1805-65) is given credit for first defining such paths. He is also credited with discovering the quaternions, for which he was honored by the Irish government with a postage stamp in 2004.</p>
+
+            <figure xml:id="fig-hamilton-stamp">
+                <caption>Irish stamp honoring Sir William Rowan Hamilton
+                </caption>
+                <image width="400" source="images/fig-hamilton-stamp.png">
+                    <description>Irish stamp honoring Sir William Rowan Hamilton</description>
+                </image>
+            </figure>
+
+<definition xml:id="def-hamiltonian-path-circuit-graph"><title>Hamiltonian Path, Circuit, and Graphs</title><index><main>Hamiltonian Paths, Circuits, and Graphs</main></index>
+<statement><p>A Hamiltonian path through a graph is a path whose vertex list contains each vertex of the graph exactly once, except if the path is a circuit, in which case the initial vertex appears a second time as the terminal vertex. If the path is a circuit, then it is called a Hamiltonian circuit. A Hamiltonian graph is a graph that possesses a Hamiltonian path.</p></statement></definition>
+
+
+<example xml:id="ex-dodec-graph"><title>The Original Hamiltonian Graph</title><p><xref ref="fig-dodec-graph" autoname="yes"/> shows a graph that is Hamiltonian. In fact, it is the graph that Hamilton used as an example to pose the question
+of existence of Hamiltonian paths in 1859. In its original form, the puzzle that was posed to readers was called <q>Around the World.</q> The vertices
+were labeled with names of major cities of the world and the object was to complete a tour of these cities. The graph is also referred to as the
+dodecahedron graph, where vertices correspond with< the corners of a dodecahedron and the edges are the edges of the solid that connect the corners.</p>
+
+ <sidebyside xml:id="sidebyside-dodec">
+                    <caption>The Dodecahedron</caption>
+                    <figure width="40%" xml:id="fig-dodec">
+                        <caption></caption>
+                        <image source="images/fig-dodec.png">
+                            <description>The Dodecahedron</description>
+                        </image>
+                    </figure>
+                    <figure width="40%" xml:id="fig-dodec-graph">
+                        <caption>The Dodecahedron Graph</caption>
+                        <image source="images/fig-dodec-graph.png"/>
+                           <description>The Dodecahedron Graph</description>
+                    </figure>
+</sidebyside>
+
+</example>
+
+<problem><p>Unfortunately, a simple condition doesn't exist that characterizes a Hamiltonian graph. An obvious necessary condition is that the
+graph be connected; however, there is a connected undirected graph with four vertices that is not Hamiltonian. Can you draw such a graph? 
+</p></problem>
+
+<note><title>A Note on What Is Possible and What Is Impossible</title><p>The search for a Hamiltonian path in a graph is typical of many simple-sounding problems
+in graph theory that have proven to be very difficult to solve. Although there are simple algorithms for conducting the search, they are impractical
+for large problems because they take such a long time to complete as graph size increases. Currently, every algorithm to search for a Hamiltonian
+path in a graph takes exponential time to complete. That is, if \(T(n)\) is the time it takes to search a graph of <m>n</m> vertices, then there
+is a positive real number <m>a</m>, \(a > 1\), such that \(T(n) > a^n\) for all but possibly a finite number of positive values for \textit{
+n}. No matter how close to 1 we can make <m>a</m>, \(a^n\) will grow at such a fast rate that the algorithm will not be feasible for large values
+of <m>n</m>. For a given algorithm, the value of a depends on the relative times that are assigned to the steps, but in the search for Hamiltonian
+paths, the actual execution time for known algorithms is large with 20 vertices. For 1,000 vertices, no algorithm is likely to be practical, and
+for 10,000 vertices, no currently known algorithm could be executed.</p>
+
+<p>It is an unproven but widely held belief that no faster algorithm exists to search for Hamiltonian paths in general groups. A faster algorithm would have to be one
+that takes only polynomial time; that is, \(T(n) < p(n)\), for some polynomial sequence <m>p</m>. To sum up, the problem of determining whether
+a graph is Hamiltonian is theoretically possible; however, for large graphs we consider it a practical impossibility. Many of the problems we will discuss in the next section, particularly the Traveling Salesman Problem, are thought to be impossible in the same sense. 
+</p></note>
+
+<definition xml:id="def-n-cube"><title>The <m>n</m>-cube.</title>
+<index><main>N-cube</main></index><notation><usage>Q_n</usage><description>the <m>n</m>-cube</description></notation><statement><p>Let \(n \geq  1\), and let \(B^n\) be the set of strings of 0's and 1's with length n.  The <m>n</m>-cube is the undirected graph with a vertex for each string in \(B^n\) and an edge connecting each pair of strings that differ in exactly one position. The <m>n</m>-cube is normally denoted <m>Q_n</m>. </p></statement></definition>
+
+<p>The <m>n</m>-cube is among the graphs that are defined within the <c>graphs</c> package of Sage and is created with the expresson <c>graphs.CubeGraph(n)</c>. </p>
+ 
+<sage>
+<input>
+graphs.CubeGraph(4).show()
+</input>
+</sage>
+
+
+
+<note xml:id="note-gray-code"><title>The Gray Code</title> A Hamiltonian circuit of the <m>n</m>-cube can be described recursively. The circuit itself, called the Gray Code, is
+not the only Hamiltonian circuit of the <m>n</m>-cube, but it is the easiest to describe. The standard way to write the Gray Code is as a column of strings, where the last string is followed by the first string to complete the circuit.
+
+
+
+<p>Basis for the Gray Code (\(n = 1\)): The Gray Code for the 1-cube is \(G_1=\left(
+\begin{array}{c}
+ 0 \\
+ 1 \\
+\end{array}
+\right)\).  Note that the edge between 0 and 1 is used twice in this circuit. That doesn't violate any rules for Hamiltonian circuits, but
+can only happen if a graph as two vertices.</p>
+
+
+
+<p>Recursive definition of the Gray Code: Given the Gray Code for the <m>n</m>-cube, \(n > 1\), then \(G_{n+1}\) is obtained by (1) listing \(G_n\) with each string prefixed
+with 0, and then (2) reversing the list of strings in \(G_n\) with each string prefixed with 1. Symbolically, the recursion can
+be expressed as
+
+
+
+\[G_{n+1}=\left(
+\begin{array}{c}
+ 0 G_n \\
+ 1 G_n^r \\
+\end{array}
+\right)\]
+
+
+
+where \(G_n^r\) is the reverse of list \(G_n\).</p>  
+<p>The Gray Codes for the 2-cube and 3-cube are
+
+\[G_2= \left(
+\begin{array}{c}
+ 00 \\
+ 01 \\
+ 11 \\
+ 10 \\
+\end{array}
+\right) \textrm{  and   }G_3=\left(
+\begin{array}{c}
+ 000 \\
+ 001 \\
+ 011 \\
+ 010 \\
+ 110 \\
+ 111 \\
+ 101 \\
+ 100 \\
+\end{array}
+\right)\]
+</p>
+</note>
+
+<example><title>Applications of the Gray Code</title><p> One application of the Gray code was discussed in the Introduction to this book.  An other application is
+in statistics. In a statistical analysis, there is often a variable that depends on several factors, but exactly which factors are significant
+may not be obvious. For each subset of factors, there would be certain quantities to be calculated. One such quantity is the multiple correlation
+coefficient for a subset. If the correlation coefficient for a given subset, <m>A</m>, is known, then the value for any subset that is obtained
+by either deleting or adding an element to <m>A</m> can be obtained quickly. To calculate the correlation coefficient for each set, we simply
+travel along \(G_n\), where <m>n</m> is the number of factors being studied. The first vertex will always be the string of 0's, which represents
+the empty set. For each vertex that you visit, the set that it corresponds to contains the \(k^{\text{th}}\) factor if the \(k^{\text{th}}\) character
+is a 1.</p>
+</example>
+
+</subsection>
+<exercises xml:id="exercises-9-4">
+<title>Exercises for Section 9.4</title>
+
+
+
+
+</exercisegroup>
+<exercisegroup>
+<introduction><p>A Exercises</p></introduction>
+
+
+<exercise number="1"><statement><p> Locate a map of New York City and draw a graph that represents its land masses, bridges and tunnels. Is there a Eulerian path through New York? You can do the same with any other city that has at least two land masses.</p></statement>
+</exercise>
+<exercise number="2"><statement><p> Which of the drawings in <xref ref="fig-drawings-9-4" autoname="yes"/> can be drawn without removing your pencil from the paper and without drawing any line twice?</p>
+         <figure xml:id="fig-drawings-9-4">
+                <image width="400" source="images/fig-drawings-9-4.png">
+                    <description>Drawings for exercise 9-4-2</description>
+                </image>
+            </figure>
+</statement></exercise>
+<exercise number="3"><statement><p>Write out the Gray Code for the 4-cube.</p></statement></exercise>
+<exercise number="4"><statement><p> Find a Hamiltonian circuit for the dodecahedron graph in <xref ref="fig-dodec-graph" autoname="yes"/>.</p></statement></exercise>
+<exercise number="5"><statement><p> The Euler Construction Company has been contracted to construct an extra bridge in K{\"o}nigsberg so that a Eulerian path through the town
+exists. Can this be done, and if so, where should the bridge be built?</p></statement></exercise>
+<exercise number="6"><statement> 
+<ol label="a">
+<li><p>Determine which of the graphs in Figure 9.4.8 has a Eulerian path?</p></li>
+<li><p>Find a Eulerian path for the graphs that have one.</p></li>
+</ol>
+            <figure xml:id="fig-exercise-9-4-6">
+                <image width="400" source="images/fig-exercise-9-4-6.png">
+                    <description>graphs for exercise 9-4-6</description>
+                </image>
+            </figure>
+</statement>
+</exercise>
+
+
+</exercisegroup>
+<exercisegroup>
+<introduction><p>B Exercises</p></introduction>
+</statement></exercise>
+<exercise number="7"><statement><p> Formulate Euler's theorem for directed graphs.</p></statement></exercise>
+<exercise number="8"><statement><p> Prove that the number of vertices in an undirected graph with odd degree must be even.</p></statement>
+<hint><p> Prove by induction on the number of edges.</p></hint></exercise>
+<exercise number="9"><statement>
+<ol label="a">
+<li><p>Under what conditions will a round-robin tournament graph be Eulerian?</p></li>
+<li><p>Prove that every round-robin tournament graph is Hamiltonian.</p></li>
+</ol>
+</statement>
+</exercise>
+<exercise number="10"><statement><p> For what values of <m>n</m> is  n-cube Eulerian.</p>
+</statement></exercise>
+
+</exercisegroup>
+</exercises>
+</section>
