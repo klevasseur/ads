@@ -35,7 +35,7 @@ If \(e \in  E\), \(w(e)\) is the weight on edge e.</p></statement></definition>
 
 </subsection>
 <subsection xml:id="ss-traveling-salesman-problem"><title>The Traveling Salesman Problem</title><index><main>The Traveling Salesman Problem</main></index>
-<p>The Traveling Salesman Problem is, given a weighted graph, to find a circuit \(\left(e_1, e_2,\ldots ,e_n\right)\) that visits every vertex at least once and minimizes the sum of the weights, \(\sum _{i=1}^n w\left(e_i\right)\).  Any such circuit is called an  optimal path.</p>
+<p>The Traveling Salesman Problem is, given a weighted graph, to find a circuit \(\left(e_1, e_2,\ldots ,e_n\right)\) that visits every vertex at least once and minimizes the sum of the weights, \(\sum_{i=1}^n w\left(e_i\right)\).  Any such circuit is called an  optimal path.</p>
 
 <p>Some statements of the Traveling Salesman Problem require that the circuit be Hamiltonian. In many applications, the graph in question
 will be complete and this restriction presents no problem.  If the weight on each edge is constant, for example, \(w(e) = 1\), then an optimal path would be any Hamiltonian circuit.</p>
@@ -67,7 +67,7 @@ circuit through G starting at \(v_1\) is \(\left(v_1, v_2,\ldots ,v_n\right)\), 
 <li><p>\(v_n= \text{the} \text{only} \text{element} \text{of} V_n\).</p></li>
 </ol>
 <p>The cost of the closest neighbor circuit is
-\(\sum _{k=1}^{n-1} w\left(v_k,v_{k+1}\right)+w\left(v_n,v_1\right)\)</p>
+\(\sum_{k=1}^{n-1} w\left(v_k,v_{k+1}\right)+w\left(v_n,v_1\right)\)</p>
 </statement>
 </algorithm>
 
@@ -206,10 +206,10 @@ a time that is roughly a multiple of \(n \log  n\) time units when <m>n</m> poin
 (see Sopowit et al.).</p>
 
 </subsection>
-
 <subsection xml:id="ss-networks-and-flows"><title>Networks and the Maximum Flow Problem</title><index><main>Networks</main></index>
 
-<definition xml:id="def-network"><title>Network</title><index><main> Network</main></index><statement><p> A network is a simple weighted directed graph that contains two distinguished vertices called the  source and the  sink with the properties that the indegree of the source and outdegree of the sink are both zero, and source is connected to sink.  The weight function on network is the capacity function, which as positive weights. </p></statement></definition>
+<definition xml:id="def-network"><title>Network</title><index><main> Network</main></index>
+<statement><p> A network is a simple weighted directed graph that contains two distinguished vertices called the  source and the  sink with the properties that the indegree of the source and outdegree of the sink are both zero, and source is connected to sink.  The weight function on network is the capacity function, which as positive weights. </p></statement></definition>
 
 
 <p>An example of a real situation that can be represented by a network is a city's water system. A reservoir would be the source, while a distribution
@@ -218,10 +218,10 @@ network. We can assume that the water that passes through a pipe in one minute i
 size of the pipe and the strength of the pump. This maximum rate of flow through a pipe is called its capacity and is the information that the weight
 function of a network contains.</p>
 
-<example xml:id="ex-9.5.6."><title>9.5.6.</title><p></p></example>
- Consider the system that is illustrated in Figure 9.5.5. The numbers that appear next to each pipe indicate the capacity of
+<example xml:id="ex-city-water"><title>A City Water System</title><p> Consider the system that is illustrated in <xref ref="fig-water-system" autoname="yes" />. The numbers that appear next to each pipe indicate the capacity of
 that pipe in thousands of gallons per minute. This map can be drawn in the form of a network, as in Figure 9.5.6.
-
+</p></example>
+		<sidebyside>
             <figure xml:id="fig-water-system">
                 <caption>City Water System
                 </caption>
@@ -229,197 +229,133 @@ that pipe in thousands of gallons per minute. This map can be drawn in the form 
                     <description>City Water System</description>
                 </image>
             </figure>
-Although the material passing through this network is water, networks can also represent the flow of other materials, such as automobiles, electricity,
-telephone calls or patients in a health system.
-
-           <figure xml:id="fig-water-network">
+ 				<figure xml:id="fig-water-network">
                 <caption>Flow Diagrom for a City's Water Network
                 </caption>
                 <image width="400" source="images/fig-water-network.png">
                     <description>City Water Network</description>
                 </image>
             </figure>
+      </sidebyside>
+<p>Although the material passing through this network is water, networks can also represent the flow of other materials, such as automobiles, electricity, bits, telephone calls, or patients in a health system.</p>
+</example>
+<problem xml:id="problem-maximal-flow"><title>The Maximum Flow Problem</title><statement>
+<p>The Maximum Flow Problem is derived from the objective of moving the maximum amount of water or other material from the source to the sink. To measure this amount, we define a flow as a function \(f: E \to \mathbb{R}\) such that (1) the flow of material through any edge is nonnegative and no larger
+than its capacity: \(0 \leq  f(e) \leq  w(e)\), for all \(e\in  E\); and (2) for each vertex other than the source and sink, the total amount of material that is directed into a vertex is equal to the total amount that is directed out:
 
-
-
-The Maximum Flow Problem is derived from the objective of moving the maximum amount of water or other material from the source to the sink. To measure
-this amount, we define a flow as a function \(f: E \to \mathbb{R}\) such that (1) the flow of material through any edge is nonnegative and no larger
-than its capacity: \(0 \leq  f(e) \leq  w(e)\), for all \(e\in  E\); and (2) for each vertex other than the source and sink, the total amount of
-material that is directed into a vertex is equal to the total amount that is directed out:
-
-
-
- <m>\quad \quad</m>\(\begin{array}{ccc}
- \sum _{(x,v)\in E} f(x,v)  &amp; = &amp; \sum _{(v,y)\in E} f(v,y) \\
+<mdn><mrow xml:id="flow-rules">\begin{array}{ccc}
+ \sum_{(x,v)\in E} f(x,v)  &amp; = &amp; \sum_{(v,y)\in E} f(v,y) \\
  \text{Flow} \text{into} v &amp; = &amp; \text{Flow} \text{out} \text{of} v \\
-\end{array}\)      (9.5b)
+\end{array}</mrow></mdn>
 
+The summation notation on the left of <xref ref="flow-rules" /> represents the sum of the flows through each edge in <m>E</m> that has <m>v</m> as a terminal vertex.
+The right-hand side indicates that you should add all of the flows through edges that initiate at <m>v</m>.</p>
+</statement>
+</problem>
 
-
-The summation notation on the left of 9.5b represents the sum of the flows through each edge in <m>E</m> that has <m>v</m> as a terminal vertex.
-The right-hand side indicates that you should add all of the flows through edges that initiate at <m>v</m>.
-
-<theorem xml:id="theorem-9.5.2."><title>9.5.2.</title><index><main>9.5.2.</main></index><statement></statement><proof></proof></theorem>
- If <m>f</m> is a flow, then
-
-<m>\quad \quad</m>\(\sum _{(\text{source},v)\in E} f(\text{source},v)\text{  }=\sum _{(v,\text{sink})\in E} f(v,\text{sink})\)  
-
-
-
-
-
-
-
-This common value is called the value of the flow. We will denote the value of a flow by \(V(f)\). The value of a flow represents the amount of
-material that passes through the network with that flow.
-
-
-
-\pmb{ Proof. } Subtract the right-hand side of 9.5b from the left-hand side. The result is: 
-
-
-
-<m>\quad \quad</m>\(\text{Flow} \text{into} v - \text{Flow} \text{out} \text{of} v = 0\)
-
-
+<theorem xml:id="theorem-flow-inout"><title>Flow out of Source equals Flow in Sink</title>
+<statement><p> If <m>f</m> is a flow, then
+<m>\quad \quad</m>\(\sum_{(\text{source},v)\in E} f(\text{source},v)\text{  }=\sum_{(v,\text{sink})\in E} f(v,\text{sink})\)  </p></statement><proof>Subtract the right-hand side of <xref ref="flow-rules" /> from the left-hand side. The result is: 
+\[\text{Flow} \text{into} v - \text{Flow} \text{out} \text{of} v = 0\]
 
  Now sum up these differences for each vertex in \(V' = V - \{\text{source}, \text{sink}\}\). The result is
+<mdn><mrow xml:id="proof-step-9-5">\sum_{v\in V'}  \left(\sum_{(x,v)\in E} f(x,v)-\sum_{(v,y)\in E} f(v,y)\right)= 0</mrow></mdn>
 
+</p>
 
-
-<m>\quad \quad</m>\(\sum _{v\in V'}  \left(\sum _{(x,v)\in E} f(x,v)-\sum _{(v,y)\in E} f(v,y)\right)= 0\)  <m>\quad \quad</m>(9.5c)
-
-
-
-Now observe that if an edge connects two vertices in V, its flow appears as both a positive and a negative term in 9.5c. This means that the only
-positive terms that are not cancelled out are the flows into the sink. In addition, the only negative terms that remain are the flows out of the
+<p>Now observe that if an edge connects two vertices in V, its flow appears as both a positive and a negative term in <xref ref="proof-step-9-5"/>. This means that the only positive terms that are not cancelled out are the flows into the sink. In addition, the only negative terms that remain are the flows out of the
 source. Therefore,
+\[\sum_{(v,\text{sink})\in E} f(v,\text{sink})-\sum_{(\text{source},v)\in E} f(\text{source},v) =0\]</p>
+</proof></theorem>
+<definition xml:id="def-value-of-flow"><title>The Value of a Flow</title><index><main>Value of a Flow</main></index> <notation><usage>V(f)</usage><description>The value of flow <m>f</m></description></notation>
+<statement><p>The common value, as proven in <xref ref="theorem-flow-inout" autoname="yes" />, flow into the sink and flow out of the source, is called the value of the flow. It is denoted by \(V(f)\). The value of a flow represents the amount of material that passes through the network with that flow.</p></statement></definition>
+<p>Since the Maximum Flow Problem consists of maximizing the amount of material that passes through a given network, it is equivalent to finding a flow with the largest possible value. Any such flow is called a <term>maximal flow</term><index><main>maximal flow</main></index>.</p>
 
-
-
-<m>\quad \quad</m>\(\sum _{(v,\text{sink})\in E} f(v,\text{sink})-\sum _{(\text{source},v)\in E} f(\text{source},v) =0\)$\quad \quad \quad $\(\blacksquare\)
-
-
-
-<subsubsection xml:id="sss-MAXIMAL FLOWS"><title>MAXIMAL FLOWS</title><index><main>MAXIMAL FLOWS</main></index>
-
-
-
-Since the Maximum Flow Problem consists of maximizing the amount of material that passes through a given network, it is equivalent to finding a flow
-with the largest possible value. Any such flow is called a maximal flow.
-
-
-
-For the network in Figure 9.5.6, one flow is \(f_1\), defined by \(f_1\left(e_1\right)=25\), \(f_1\left(e_2\right)=20\), \(f_1\left(e_3\right)=0\),
+<p>For the network in <xref ref="fig-water-network" autoname="yes"/>, one flow is \(f_1\), defined by \(f_1\left(e_1\right)=25\), \(f_1\left(e_2\right)=20\), \(f_1\left(e_3\right)=0\),
 \(f_1\left(e_4\right)= 25\), and \(f_1\left(e_5\right)=20\). The value of \(f_1\), \(V\left(f_1\right)\), is 45. Since the total flow into the sink
 can be no larger than 50 (\(w \left(e_4\right) + w \left(e_5\right) = 30 + 20\)), we can tell that \(f_1\) is not very far from the solution. Can
 you improve on \(f_1\) at all? The sum of the capacities into the sink can't always be obtained by a flow. The same is true for the sum of the
-capacities out of the source. In this case, the sum of the capacities out of the source is 60, which obviously can't be reached in this network.
-
-
-
-A solution of the Maximum Flow Problem for this network is the maximal flow \(f_2\), where \(f_2\left(e_1\right)=25\), \(f_2\left(e_2\right)=25\),
+capacities out of the source. In this case, the sum of the capacities out of the source is 60, which obviously can't be reached in this network.</p>
+<p>A solution of the Maximum Flow Problem for this network is the maximal flow \(f_2\), where \(f_2\left(e_1\right)=25\), \(f_2\left(e_2\right)=25\),
 \(f_2\left(e_3\right)=5\), \(f_2\left(e_4\right)= 30\), and \(f_2\left(e_5\right)=20\), with \(V\left(f_2\right) = 50\). This solution is not unique.
-In fact, there is an infinite number of maximal flows for this problem.
+In fact, there is an infinite number of maximal flows for this problem.</p>
+<p>There have been several algorithms developed to solve the Maximal Flow Problem. One of these is the Ford and Fulkerson Algorithm (FFA). The FFA consists of repeatedly finding paths in a network called flow augmenting paths until no improvement can be made in the flow that has been obtained.</p>
+
+<definition xml:id="def-flow-augmenting-path"><title>Flow Augmenting Path.</title><index><main>Flow Augmenting Path</main></index>
+<statement><p>Given a flow <m>f</m> in a network \((V, E)\), a flow augmenting path with respect to <m>f</m> is a simple path from the
+source to the sink using edges both in their forward and their reverse directions such that for each edge <m>e</m> in the path, \(w(e) - f(e) > 0\) if <m>e</m> is used in its forward direction and \(f(e) > 0\) if <m>e</m> is used in the reverse direction.
+</p></statement></definition>
+
+ 
 
 
+<example xml:id="example-water-augmenting"><title>Augmenting City Water Flow</title>
+<p>For \(f_1\) in Example 9.5.6, a flow augmenting path would be\(\left(e_2 , e_3 , e_4 \right)\) since
+\(w\left(e_2\right)-f_1\left(e_2\right)= 15\), \(w\left(e_3\right)-f_1\left(e_3\right)=5\), and \(w\left(e_4\right)-f_1\left(e_4\right)=5\).</p>
+<p>These positive differences represent unused capacities, and the smallest value represents the amount of flow that can be added to each edge in the path. Note that by adding 5 to each edge in our path, we obtain \(f_2\), which is maximal. If an edge with a positive flow is used in its reverse direction, it is contributing a movement of material that is counterproductive to the objective of maximizing flow. This is why the
+algorithm directs us to decrease the flow through that edge.</p></example>
+ 
 
-There have been several algorithms developed to solve the Maximal Flow Problem. One of these is the Ford and Fulkerson Algorithm (FFA). The FFA consists
-of repeatedly finding paths in a network called flow augmenting paths until no improvement can be made in the flow that has been obtained.
-
-<definition xml:id="def- Flow Augmenting Path."><title> Flow Augmenting Path.</title><index><main> Flow Augmenting Path.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
-
- Given a flow f in a network \((V, E)\), a flow augmenting path with respect to f is a simple path from the
-source to the sink using edges both in their forward and their reverse directions such that for each edge e in the path, \(w(e) - f(e) > 0\) if
-e is used in its forward direction and \(f(e) > 0\) if e is used in the reverse direction.
-
-
-
-<example xml:id="ex-9.5.7."><title>9.5.7.</title><p></p></example>
- For \(f_1\) in Example 9.5.6, a flow augmenting path would be\(\left(e_2 , e_3 , e_4 \right)\) since
-
-
-
-<m>\quad \quad</m>\(w\left(e_2\right)-f_1\left(e_2\right)= 15\), \(w\left(e_3\right)-f_1\left(e_3\right)=5\), and \(w\left(e_4\right)-f_1\left(e_4\right)=5\).
-
-
-
-These positive differences represent unused capacities, and the smallest value represents the amount of flow that can be added to each edge in the
-path. Note that by adding 5 to each edge in our path, we obtain \(f_2\), which is maximal. If an edge with a positive flow is used in its reverse
-direction, it is contributing a movement of material that is counterproductive to the objective of maximizing flow. This is why the
-algorithm directs us to decrease the flow through that edge.
-
-\pmb{ Algorithm 9.5.3: The Ford and Fulkerson Algorithm. }
+<algorithm xml:id="alg-ford-fulkerson"><title>The Ford and Fulkerson Algorithm</title>
 <ol label=“1”>
-<li><p> Define the flow function \(f_0\) by \(f_0(e)=0\) for each edge \(e \in  E\).
-
-(2) i = 0.
-
-(3) Repeat:
-
+<li><p> Define the flow function \(f_0\) by \(f_0(e)=0\) for each edge \(e \in  E\).</p></li>
+<li><p>i = 0.</p></li>
+<li><p>Repeat:
 <m>\quad \quad</m>(3.1)If possible, find a flow augmenting path with respect to \(f_i\).
-
 <m>\quad \quad</m>(3.2)If a flow augmenting path exists, then:
-
 <m>\quad \quad</m>(3.2.1)Determine
-
 <m>\quad \quad</m>   \(d = \min  \left\{\left\{\left.w(e) - f_i(e) \right| e \text{is} \text{used} \text{in} \text{the} \text{forward} \text{direction}\right\},\text{
             }\left\{\left.f_i(e) \right| e \text{is} \text{used} \text{in} \text{the} \text{reverse} \text{direction}\right\}\right\}\)
 
 <m>\quad \quad</m>(3.2.2)Define \(f_{i+1}\) by
-
 $\quad \quad \quad $\(\begin{array}{cc}
  f_{i+1}(e) = f_i(e) &amp;  \text{if} e \text{is} \text{not} \text{part} \text{of} \text{the} \text{flow} \text{augmenting} \text{path} \\
  f_{i+1}(e)=f_i(e)+d &amp; \text{if} e \text{is} \text{used} \text{in} \text{the} \text{forward} \text{direction} \\
  f_{i+1}(e)=f_i(e)-d &amp; \text{if} e \text{is} \text{used} \text{in} \text{the} \text{reverse} \text{direction} \\
 \end{array}\)
-
 <m>\quad \quad</m>(3.2.3) i = i + \textup{ 1}.
+     until no flow augmenting path exists.</p></li>
+<li><p>Terminate with a maximal flow \(f_i\)</p></li>
+</ol>
+</statement>
+</algorithm>
 
-     until no flow augmenting path exists.
-
-(4) Terminate with a maximal flow \(f_i\)
-
-
-
-Notes:
-
-
-<ol label=“a”>
-<li><p> It should be clear that every flow augmenting path leads to a flow of increased value and that none of the capacities of the network can be
-violated.</p></li>
-<li><p> The depth-first search should be used to find flow augmenting paths since it is far more efficient than the breadth-first search in this situation.
-The depth-first search differs from the broadcasting algorithm (a variation of the breadth-first search) in that you sequentially visit vertices
+<list><title>Notes on the Ford and Fulkerson Algorithm</title>
+<ol label=“1”>
+<li><p> It should be clear that every flow augmenting path leads to a flow of increased value and that none of the capacities of the network can be violated.</p></li>
+<li><p> The depth-first search should be used to find flow augmenting paths since it is far more efficient than the breadth-first search in this situation. The depth-first search differs from the breadth-first algorithm  in that you sequentially visit vertices
 until you reach a <q>dead end</q> and then backtrack.</p></li>
-<li><p> There have been networks discovered for which the FFA does not terminate in a finite number of steps. These examples all have irrational capacities.
-It has been proven that if all capacities are positive integers, the FFA terminates in a finite number of steps. See Ford and Fulkerson, Even, or
-Berge for details.</p></li>
-<li><p> When you use the FFA to solve the Maximum Flow Problem by hand it is convenient to label each edge of the network with the fraction \(\left.f_i(e)\right/w(e)\).
+<li><p> There have been networks discovered for which the FFA does not terminate in a finite number of steps. These examples all have irrational capacities. It has been proven that if all capacities are positive integers, the FFA terminates in a finite number of steps. See Ford and Fulkerson, Even, or Berge for details.</p></li>
+<li><p> When you use the FFA to solve the Maximum Flow Problem by hand it is convenient to label each edge of the network with the fraction \(\left.f_i(e)\right/w(e)\).</p></li>
+</ol>
+</list>
 
-\pmb{ A Depth-First Search for the Sink Initiating at the Source.} Let \(E'\) be the set of directed edges that can be used in producing a flow augmenting
-path. Add to the network a vertex called  start and the edge \((\text{start}, \text{source}).\)\\<ol label=“1”>
-<li><p> <m>\quad \quad</m>S = vertex set of the network.\\
-(2) <m>\quad \quad</m>\(p\text{  }= \text{start}\).\\
-(3) <m>\quad \quad</m>\(p = \text{source}\text{  }\) \(\text{(*}\text{Move} p \text{along} \text{the} \text{edge} (\text{start}, \text{source}) \text{*)}\)\\
-(4) \pmb{ While} <m>p</m> is not equal to  start or  sink \pmb{ do}.\\
+<algorithm xml:id="alg-depth-first-search"><title>Depth-First Search for a Flow Augmenting Path</title>
+<statement>
+<p> This is a  depth-first search for the Sink Initiating at the Source. Let \(E'\) be the set of directed edges that can be used in producing a flow augmenting path. Add to the network a vertex called  start and the edge \((\text{start}, \text{source}).\)</p>
+<ol label=“1”>
+<li><p><m>S = </m>vertex set of the network.</p></li>
+<li><p><m>p= </m>start</p></li>
+<li><p><m>p = </m>source   Move <m>p</m> along the edge <m>(start, source)</m> </p></li>
+<li><p>while <m>p</m> is not equal to  start or  sink:
 <m>\quad \quad</m>\pmb{ If} an edge in \(E'\) exists that takes you from <m>p</m> to another vertex in <m>S</m>\\
-\hspace*{0.5ex} <m>\quad \quad</m>\pmb{ then} set <m>p</m> to be that next vertex and delete the edge from \(E'\).\\
-             \pmb{ else} reassign <m>p</m> to be the vertex that <m>p</m> was reached from (i.e., backtrack).\\
-(5) \pmb{ If} \(p = \text{start}\),  \\
+<m>\quad \quad</m>\pmb{ then} set <m>p</m> to be that next vertex and delete the edge from \(E'\).\\
+<m>\quad \quad</m> \pmb{ else} reassign <m>p</m> to be the vertex that <m>p</m> was reached from (i.e., backtrack).</p></li>
+<li><p>\pmb{ If} \(p = \text{start}\),  \\
 <m>\quad \quad</m>\pmb{ then} no flow augmenting path exists.\\
 <m>\quad \quad</m>\pmb{ else} \(p = \text{sink}\), you have found a flow augmenting path.
+</p></li>
+</ol>
+</statement>
+</algorithm>
 
 
 
-
-
-
-
-<example xml:id="ex-9.5.8."><title>9.5.8.</title><p></p></example>
- Consider the network in Figure 9.5.7, where the current flow, <m>f</m>, is indicated by a labeling of the edges. The path
+<example xml:id="ex-fap-1"><title>A flow augmenting path going against the flow</title><p> Consider the network in <xref ref="fig-flow-example-before" autoname="yes" />, where the current flow, <m>f</m>, is indicated by a labeling of the edges. The path
 \(\left(S\text{ource}, v_2 , v_1,v_3 , S\text{ink}\right)\) is a flow augmenting path that allows us to increase the flow by one
 unit. Note that \(\left(v_1,v_3\right)\) is used in the reverse direction, which is allowed because \(f\left(v_1,v_3\right)>0\). The value of
-the new flow that we obtain is 8. This flow must be maximal since the capacities out of the source add up to 8. This maximal flow is defined by the
+the new flow that we obtain is 8. This flow must be maximal since the capacities out of the source add up to 8. This maximal flow is defined by <xref ref="fig-updated-flow" autoname="yes" />.</p>
+  <sidebyside>
             <figure xml:id="fig-flow-example-before">
                 <caption>Current Flow
                 </caption>
@@ -435,6 +371,8 @@ the new flow that we obtain is 8. This flow must be maximal since the capacities
                     <description>Updated Flow</description>
                 </image>
             </figure>
+	</sidebyside>
+</example>
 </subsection>
 <subsection xml:id="ss-other-optimization"><title>Other Graph Optimization Problems</title>
 
@@ -448,7 +386,6 @@ that the distance from the center to every other vertex is as small as possible.
 </p></li>
 </ol>
 </subsection>
-
 <exercises xml:id="exercises-9-5">
 <title>Exercises for Section 9.5</title>
 
@@ -456,22 +393,46 @@ that the distance from the center to every other vertex is as small as possible.
 <introduction><p>A Exercises</p></introduction>
 
 
-<exercise number="1"><statement> Find the closest neighbor circuit through the six capitals of New England starting at Boston. If you start at a different city,
-will you get a different circuit?</statement></exercise>
+<exercise number="1"><statement><p> Find the closest neighbor circuit through the six capitals of New England starting at Boston. If you start at a different city, will you get a different circuit?</p></statement>
+<answer><p> The circuit would be Boston, Providence, Hartford, Concord, Montpelier, Augusta, Boston. It does matter where you start. If you start in Concord,
+for example, your mileage will be higher.</p></answer>
+</exercise>
 <exercise number="2"><statement><p> Is Theorem 9.5.1 sharp for \(n = 3\)? For \(n = 4\)?</p></statement></exercise>
-<exercise number="3"><statement> Given the following sets of points in the unit square, find the shortest circuit that visits all the points and find the circuit that is obtained
-with the strip algorithm.
-
-
+<exercise number="3"><statement><p> Given the following sets of points in the unit square, find the shortest circuit that visits all the points and find the circuit that is obtained
+with the strip algorithm.</p>
 <ol label=“a”>
-<li><p> \(\{(0.1k, 0.1k) : k = 0, 1, 2, . . . , 10\}\)
-
-</p></li>
+<li><p> \(\{(0.1k, 0.1k) : k = 0, 1, 2, . . . , 10\}\)</p></li>
 <li><p> \(\{(0.1, 0.3), (0.3, 0.8), (0.5, 0.3), (0.7, 0.9), (0.9, 0.1)\}\)</p></li>
 <li><p> \(\{(0.0, 0.5), (0.5, 0.0), (0.5, 1.0), (1.0, 0.5)\}\)</p></li>
-<li><p> \(\{(0, 0), (0.2, 0.6), (0.4, 0.1), (0.6, 0.8), (0.7, 0.5)\}\)</statement></exercise>
+<li><p> \(\{(0, 0), (0.2, 0.6), (0.4, 0.1), (0.6, 0.8), (0.7, 0.5)\}\)</p></li>
+</ol>
+</statement>
+<answer>
+<ol label="a"><li><p> Optimal cost \(=2\sqrt{2}\).
+Phase 1 cost \(=2.4\sqrt{2}\).
+Phase 2 cost \(=2.6\sqrt{2}\).
+</p></li>
+<li><p> Optimal cost \(=2.60.\) 
+Phase 1 cost \(=3.00\). 
+Phase 2 cost \(2\sqrt{2}\).
+</p></li>
+<li><p>  \(A=(0.0, 0.5), B=(0.5, 0.0), C=(0.5, 1.0), D=(1.0, 0.5)\)
+here are 4 points; so we will divide the unit square into two strips. 
+Optimal Path: \((B,A,C,D)\)$\quad \quad $Distance \(=2\sqrt{2}\) 
+Phase I Path: \((B,A,C,D)\)$\quad \quad $Distance \(=2\sqrt{2}\) 
+Phase II Path: \((A,C,B,D)\)$\quad \quad $Distance \(=2+\sqrt{2}\)
+</p></li>
+<li><p> \(A=(0,0), B=(0.2,0.6), C=(0.4,0.1), D=(0.6,0.8), E=(0.7,0.5)\)
+There are 5 points; so we will divide the unit square into three strips.
+Optimal Path: \((A,B,D,E,C)\)$\quad \quad $Distance \(=2.31\)
+Phase I Path: \((A,C,B,C,E)\)$\quad \quad $Distance = 2.57
+Phase II Path: \((A,B,D,E,C)\)$\quad \quad $Distance \(=2.31\)
+</p></li>
+</ol>
+</answer>
+</exercise>
 <exercise number="4"><statement><p> For \(n = 4, 5, \text{and} 6\), locate <m>n</m> points in the unit square for which the strip algorithm works poorly.</p></statement></exercise>
-<exercise number="5"><statement> Consider the network whose maximum capacities are shown on the following graph.
+<exercise number="5"><statement><p> Consider the network whose maximum capacities are shown on the following graph.</p>
 
        <figure xml:id="fig-exercise-9-5-5">
                 <image width="400" source="images/fig-exercise-9-5-5.png">
@@ -480,19 +441,29 @@ with the strip algorithm.
             </figure>
 <ol label=“a”>
 <li><p> A function <m>f</m> is partially defined on the edges of this network by:
-
-
-
 <m>\quad \quad</m>\(f(\text{Source}, c) = f(\text{Source}, b) =f(\text{Source}, a) = 2\), and \(f(a, d) = 1\). 
-
-
-
-   Define <m>f</m> on the rest of the other edges so that <m>f</m> is a flow. What is the value of  f ?</p></li>
+ Define <m>f</m> on the rest of the other edges so that <m>f</m> is a flow. What is the value of  <m>f</m> ?</p></li>
 <li><p> Find a flow augmenting path with respect to <m>f</m> for this network. What is the value of the augmented flow?</p></li>
-<li><p> Is the augmented flow a maximum flow? Explain.</statement></exercise>
-<exercise number="6"><statement> Given the following network with capacity function <m>c</m> and flow function <m>f</m>, find a maximal flow function. The labels on the
-edges of the network are of the form \(f(e)/c(e)\), where \(c(e)\) is the capacity of edge <m>e</m> and \(f(e)\) is the used capacity for flow
-<m>f</m>.
+<li><p> Is the augmented flow a maximum flow? Explain.</p></li>
+</ol>
+</statement>
+<answer><ol label="a"><li><p> \(f(c,d)=2, f(b,d)=2, f(d,k)=5, f(a,g)=1, \text{and} f(g,k)=1\).
+</p></li>
+<li><p>  There are three possible flow-augmenting paths.
+
+\(s,b,d,k\) with flow increase of 1.
+\(s,a,d,k\) with flow increase of 1, and
+\(s,a,g,k\) with flow increase of 2.
+</p></li>
+<li><p>  The new flow is never maximal, since another flow-augmenting path will always exist. For example, if \(s,b,d,k\) is used above, the new flow
+can be augmented by 2 units with \(s,a,g,k\).
+</p></li>
+</ol>
+</answer>
+
+</exercise>
+<exercise number="6"><statement><p> Given the following network with capacity function <m>c</m> and flow function <m>f</m>, find a maximal flow function. The labels on thevedges of the network are of the form \(f(e)/c(e)\), where \(c(e)\) is the capacity of edge <m>e</m> and \(f(e)\) is the used capacity for flow
+<m>f</m>.</p>
       <figure xml:id="fig-exercise-9-5-6">
                 <image width="400" source="images/fig-exercise-9-5-6.png">
                     <description>Figure for Exercise 9-5-6</description>
@@ -500,7 +471,8 @@ edges of the network are of the form \(f(e)/c(e)\), where \(c(e)\) is the capaci
             </figure>
 
 </statement></exercise>
-<exercise number="7"><statement> Find maximal flows for the following networks.
+<exercise number="7"><statement><p> Find maximal flows for the following networks.</p>
+   <sidebyside>
       <figure xml:id="fig-exercise-9-5-7a">
                 <image width="400" source="images/fig-exercise-9-5-7a.png">
                     <description>Figure for Exercise 9-5-7a</description>
@@ -511,30 +483,53 @@ edges of the network are of the form \(f(e)/c(e)\), where \(c(e)\) is the capaci
                     <description>Figure for Exercise 9-5-7b</description>
                 </image>
             </figure>
+   </sidebyside>
 
       <figure xml:id="fig-exercise-9-5-7c">
                 <image width="400" source="images/fig-exercise-9-5-7c.png">
                     <description>Figure for Exercise 9-5-7c</description>
                 </image>
             </figure>
+</statement>
+<answer><ol label="a"><li><p> Value of maximal flow \(=31\).</p></li>
+<li><p> Value of maximal flow \(=14\).</p></li>
+<li><p> Value of maximal flow \(=14\).
+One way of obtaining this flow is:
 
+
+
+\[\begin{array}{ccc}
+ \text{Step}\text{     } & \text{Flow}-\text{Augmenting} \text{Path}\text{   } & \text{Flow} \text{Added} \\
+\hline
+ 123456\text{     } & \text{Source}, A, \text{Sink}\text{Source}, C,B, \text{Sink}\text{Source}, E,D, \text{Sink}\text{Source},A,B,\text{Sink}\text{Source},
+C,D, \text{Sink}\text{Source},A,B,C,D, \text{Sink}\text{   } & 234122 \\
+\end{array}\]
+
+</p></li>
+</ol>
+</answer>
+</exercise>
 
 </exercisegroup>
 <exercisegroup>
 <introduction><p>B Exercises</p></introduction>
 </statement></exercise>
-<exercise number="8"><statement> (a) [Easy] Find two maximal flows for the network in Figure 9.5.6 other than the one found in the text.
+<exercise number="8"><statement>
+<ol label=“a”>
+<li><p> [Easy] Find two maximal flows for the network in Figure 9.5.6 other than the one found in the text.</p></li>
+<li><p>  [Harder] Describe the set of all maximal flows for the same network.</p></li>
+<li><p>  [Hardest] Prove that if a network has two maximal flows, then it has an infinite number of maximal flows.</p></li>
+</ol>
+</statement></exercise>
+<exercise number="9"><statement> <p>Discuss reasons that the closest neighbor algorithm is not used in the unit square version of the Traveling Salesman Problem.</p>
+<hint>Count the number of comparisons of distances that must be done.</hint>
+</statement>
+<answer><p> To locate the closest neighbor among the list of <m>k</m> other points on the unit square requires a time proportional to <m>k</m>. Therefore
+the time required for the closest-neighbor algorithm with <m>n</m> points is proportional to \((n-1)+(n-2)+\cdots +2+1\), which is proportional
+to \(n^2\). Since the strip algorithm takes a time proportional to \(n(\log  n)\), it is much faster for large values of <m>n</m>.
+</p></answer>
 
-
-
-   (b) [Harder] Describe the set of all maximal flows for the same network.
-
-
-
-   (c) [Hardest] Prove that if a network has two maximal flows, then it has an infinite number of maximal flows.</statement></exercise>
-<exercise number="9"><statement> Discuss reasons that the closest neighbor algorithm is not used in the unit square version of the Traveling Salesman Problem. (Hint: Count the
-number of comparisons of distances that must be done.)
-
+</exercise>
 
 </exercisegroup>
 <exercisegroup>
@@ -542,3 +537,8 @@ number of comparisons of distances that must be done.)
 </statement></exercise>
 <exercise number="10"><statement><p> Explore the possibility of solving the Traveling Salesman Problem in the <q>unit box</q>: \([0, 1]^3\) .</p></statement></exercise>
 <exercise number="11"><statement> Devise a <q>closest neighbor</q> algorithm for matching points in the unit square.
+</p></statement>
+</exercise>
+</exercisegroup>
+</exercises>
+</section>
