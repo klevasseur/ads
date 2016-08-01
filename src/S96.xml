@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="s-planarity-and-colorings">
+<title>Planarity and Colorings</title>
+<introduction><p>The topics in this section are related to how graphs are drawn.</p>
+
+<p>Planarity: Can a given graph be drawn in a plane so that no edges intersect? Certainly, it is natural to avoid intersections, but up to now we haven't gone out of our way to do so.</p>
+
+<p>Colorings: Suppose that each vertex in an undirected graph is to be colored so that no two vertices that are connected by an edge have the
+same color. How many colors are needed? This question is motivated by the problem of drawing a map so that no two bordering countries are colored
+the same. A similar question can be asked for coloring edges.</p>
+</introduction>
+<subsection xml:id="ss-planarity"><title>Planar Graphs</title>
+<definition xml:id="def-planar-graph"><title>Planar Graph/Plane Graph</title><index><main> Planar Graph</main></index><index><main> Plane Graph</main></index><notation><usage></usage><description></description></notation><statement><p>A graph is planar if it can be drawn in a plane so that no edges cross. If a
+graph is drawn so that no edges intersect, it is a plane graph, and such a drawing is a planar embedding of the graph.</p></statement></definition>
+
+
+<example xml:id="ex-planar-graph"><title>A Planar Graph</title><p>The graph in <xref ref="fig-planar-plane" autoname="yes"/>(a) is planar but not a plane graph. The same graph is drawn as a plane graph in <xref ref="fig-planar-plane" autoname="yes"/>(b).</p>
+         <figure xml:id="fig-planar-plane">
+                <caption>A Planar Graph
+                </caption>
+                <image width="400" source="images/fig-planar-plane.png">
+                    <description>A Planar Graph</description>
+                </image>
+            </figure>
+</example>
+
+<ol label="a">
+<li><p> In discussing planarity, we need only consider simple undirected graphs with no self-loops. All other graphs can be treated as such since
+all of the edges that relate any two vertices can be considered as one <q>package</q> that clearly can be drawn in a plane.</p></li>
+<li><p> Can you think of a graph that is not planar? How would you prove that it isn't planar? Proving the nonexistence of something is usually more
+difficult than proving its existence. This case is no exception. Intuitively, we would expect that sparse graphs would be planar and dense graphs
+would be nonplanar. Theorem 9.6.2 will verify that dense graphs are indeed nonplanar.</p></li>
+<li><p> The topic of planarity is a result of trying to restrict a graph to two dimensions. Is there an analogous topic for three dimensions? What
+graphs can be drawn in one dimension?</p></li>
+</ol>
+
+
+<observation><title>Graphs in other dimensions</title><p> If a graph has only a finite number of vertices, it can always be drawn in three dimensions. This is not true for all graphs with
+an infinite number of vertices. The only <q>one-dimensional</q> graphs are the ones that consist of a finite number of chains, as in Figure 9.6.2,
+with one or more vertices in each chain.</p>
+
+
+      <figure xml:id="fig-chains">
+                <caption>Chains - one dimensional graphs
+                </caption>
+                <image width="400" source="images/fig-chains.png">
+                    <description>Chains - one dimensional graphs</description>
+                </image>
+            </figure>
+</observation>
+
+<p><index><main>Three Utilities Puzzle</main></index>A discussion of planarity is not complete without mentioning the famous Three Utilities Puzzle. The object
+of the puzzle is to supply three houses, A, B, and C, with the three utilities, gas, electric, and water. The constraint that makes this puzzle impossible
+to solve is that no utility lines may intersect i. e., a planar embedding of the graph in <xref ref="fig-utilities-puzzle" autoname="yes"/>, which is commonly denoted \(K_{3,3}\). This graph is one of two fundamental nonplanar graphs. The Kuratowski Reduction Theorem states that if a graph is nonplanar then <q>contains</q> either a \(K_{3,3}\) or a \(K_5\).  Containment is in the sense that if you start with a nonplanar graph you can always perform a sequence of
+edge deletions and contractions (shrinking an edge so that the two vertices connecting it coincide) to produce one of the two graphs.</p>
+
+           <figure xml:id="fig-utilities-puzzle">
+                <caption>The Three Utilities Puzzle
+                </caption>
+                <image width="400" source="images/fig-utilities-puzzle.png">
+                    <description>The Three Utilities Puzzle</description>
+                </image>
+            </figure>
+
+<p>A planar graph divides the plane into one or more regions. Two points on the plane lie in the same region if you can draw a curve connecting the
+two points that does not pass through an edge. One of these regions will be of infinite area. Each point on the plane is either a vertex, a point on an edge, or a point in a region. A remarkable fact about the geography of planar graphs is the following theorem that is attributed to Euler.</p>
+
+
+<task><p>Experiment: Jot down a graph right now and count the number of vertices, regions, and edges that you have. If \(v + r - e\) is not 2, then your graph
+is either nonplanar or not connected.</p></task>
+
+<theorem xml:id="theorem-euler-formula"><title>Euler's Formula</title><index><main>Euler's Formula</main></index>
+<statement>
+<p>If \(G = (V, E)\) is a connected planar graph with <m>r</m> regions, <m>v</m> vertices and <m>e</m> edges, then
+<mdn><mrow xml:id="euler-formula">v + r - e = 2</mrow></mdn></p></statement>
+<proof>
+<p>We prove Euler's Formula by Induction on <m>e</m>, for \(e \geq  0\).</p>
+
+<p>Basis: If \(e = 0\), then <m>G</m> must be a graph with one vertex, \(v = 1\); and there is one infinite region,\(\text{  }r = 1\). Therefore, \(v + r-e= 1 + 1-0 = 2\), and the basis is true.</p>
+
+<p>Induction: Suppose that <m>G</m> has <m>k</m> edges, \(k \geq  1\), and that all connected planar graphs with less than <m>k</m> edges satisfy
+9.6a. Select any edge that is part of the boundary of the infinite region and call it \(e_1\). Let \(G'\) be the graph obtained from <m>G</m>
+by deleting \(e_1\). Figure 9.6.4 illustrates the two different possibilities we need to consider: either \(G'\) is connected or it has two
+connected components, \(G_1\) and \(G_2\).</p>
+
+
+          <figure xml:id="fig-euler-proof-scheme">
+                <caption>Two cases in the proof of Euler's Formula
+                </caption>
+                <image width="400" source="images/fig-euler-proof-scheme.png">
+                    <description>Two cases in the proof of Euler's Formula</description>
+                </image>
+            </figure>
+<p>If \(G'\) is connected, the induction hypothesis can be applied to it. If \(G'\) has \(v'\) vertices, \(r'\) edges and \(e'\) edges, then {
+}\(v'+r'-e'=2\) and in terms of the corresponding numbers for <m>G</m>, 
+
+   \(\begin{array}{cc}
+ v'=v &amp; \text{  }\text{No} \text{vertices} \text{were} \text{removed} \text{to} \text{form} G' \\
+ r'=r-1 &amp; \text{One} \text{region} \text{of} G \text{merged} \text{with} \text{the} \text{infinite} \text{region} \text{when} e_1 \text{is} \text{removed}
+\\
+ e' = k-1 &amp; \text{We} \text{assumed} \text{that} G \text{had} k \text{edges}. \\
+\end{array}\)</p>
+
+<p>For the case where \(G'\) is connected, 
+
+<m>\quad \quad</m>\(\text{            }v+ r -e= v+r-k \quad \quad = v' + (r'+1) -(e'+1)\quad \quad = v' + r'-e'\quad \quad =2\text{   }\)
+
+ \textup{ If \(G'\) \textup{ is not connected, it must consist of two connected components, }\(G_1\)\textup{  and }\(G_2\) \textup{ since
+we started with a connected graph, }G\textup{ . We can apply the induction hypothesis to each of the two components to complete the proof. 
+We leave it to the students to do this, with the reminder that in counting regions, }\(G_1\) \textup{ and }\(G_2\) \textup{  will share the same
+infinite region.  }</p>
+
+</proof></theorem>
+ 
+
+<theorem xml:id="theorem-edge-bound"><title>A Bound on Edges of a Planar Graph</title>
+<statement><p>If \(G = (V, E)\) is a connected planar graph with <m>v</m> vertices, \(v\geq 3\), and <m>e</m> edges, then
+<mdn><mrow xml:id="edge-bound">e \leq  3v - 6</mrow></mdn>
+</p></statement><proof><p>(Outline of a Proof)</p>
+<ol label="a">
+<li><p> Let <m>r</m> be the number of regions in <m>G</m>. For each region, count the number of edges that comprise its border. The sum of these
+counts must be at least  3r. Recall that we are working with simple graphs here, so a region made by two edges connecting the same two
+vertices is not possible.</p></li>
+<li><p> Based on (a), infer that the number of edges in <m>G</m> must be at least \(\frac{3 r}{2}\).</p></li>
+<li><p> \(e\geq \frac{3r}{2}\text{   }\Rightarrow \text{      }r\leq \frac{2e}{3}\)</p></li>.
+<li><p>Substitute \(\frac{2e}{3}\) for <m>r</m> in Euler's Formula to obtain an inequality that is equivalent to 9.6.b.</p></li>
+</ol>
+</proof></theorem>
+ 
+
+<remark><p>One implication of <xref ref="edge-bound" /> is that the number of edges in a connected planar graph will never be larger than three times its
+number of vertices (as long as it has at least three vertices). Since the maximum number of edges in a graph with <m>v</m> vertices is a quadratic function of <m>v</m>, as <m>v</m> increases, planar graphs are more and more sparse.</p></remark>
+
+<p>The following theorem will be useful as we turn to graph coloring.</p>
+<theorem xml:id="theorem-degree-5"><title>A Vertex of Degree Five</title>
+<statement><p>If <m>G</m> is a connected planar graph, then it has a vertex with degree 5 or less.</p></statement>
+<proof>(by contradiction): We can assume that <m>G</m> has at least seven vertices, for otherwise the degree of any vertex is at most 5.
+Suppose that <m>G</m> is a connected planar graph and each vertex has a degree of 6 or more. Then, since each edge contributes to the degree
+of two vertices, \(e\geq \frac{6v}{2}=3v\). However,<xref ref="theorem-edge-bound" autoname="yes" />  states that the \(e\leq 3v-6 &lt; 3v\), which is a contradiction.</proof></theorem>
+ </subsection>
+<subsection xml:id="ss-graph-coloring"><title>Graph Coloring</title>
+
+          <figure xml:id="fig-euler-island">
+                <caption>A 3-coloring of Euler Island
+                </caption>
+                <image width="400" source="images/fig-euler-island.png">
+                    <description>A 3-coloring of Euler Island</description>
+                </image>
+            </figure>
+
+
+<p>The map of Euler Island in <xref ref="fig-euler-island" autoname="yes" /> shows that there are seven towns on the island. Suppose that a cartographer must produce a colored map in
+which no two towns that share a boundary have the same color. To keep costs down, she wants to minimize the number of different colors that appear
+on the map. How many colors are sufficient? For Euler Island, the answer is three. This problem motivates a more general problem.</p>
+
+"<definition xml:id="def-graph-coloring"><title>Graph Coloring</title>
+<index><main>Graph Coloring</main></index><index><main>Chromatic Number</main></index>
+<notation><usage>\chi(G)</usage><description></description>the chromatic number of <m>G</m></notation>
+<statement><p>Given an undirected graph \(G = (V, E)\), find a <q>coloring function</q> <m>f</m> from <m>V</m> into a
+set of colors <m>H</m> such that \(\left(v_i,v_j\right)\in E \Rightarrow  f\left(v_i\right)\neq f\left(v_j\right)\) and <m>H</m> has the smallest
+possible cardinality. The cardinality of <m>H</m> is called the  chromatic number of G, \(\chi(G)\).</p></statement></definition>
+
+<ul>
+<li><p> A coloring function onto an <m>n</m> element set is called an <m>n</m>-coloring.</p></li>
+<li><p> In terms of this general problem, the chromatic number of the graph of Euler Island is three. To see that no more than three colors are needed,
+we need only display a 3-coloring: \(f(1) = f(4) = f(6) = \text{blue}\), \(f(2) = \text{red}\), and \(f(3) = f(5) = f(7) = \text{white}\). This coloring
+is not unique. The next smallest set of colors would be of two colors, and you should be able to convince yourself that no 2-coloring exists for
+this graph.
+</p></li>
+</ul>
+
+<p>In the mid-nineteenth century, it became clear that the typical planar graph had a chromatic number of no more than 4. At that point, mathematicians
+attacked the Four-Color Conjecture, which is that if <m>G</m> is any planar graph, then its chromatic number is no more than 4. Although the conjecture
+is quite easy to state, it took over 100 years, until 1976, to prove the conjecture in the affirmative.</p>
+
+<theorem xml:id="theorem-four-color-theorem"><title>The Four-Color Theorem.</title><index><main>Four-Color Theorem.</main></index>
+<statement><p>If <m>G</m> is a planar graph, then \(\chi (G)\leq 4\).</p></statement>
+</theorem>
+<p>A proof of the Four-Color Theorem is beyond the scope of this text, but we can prove a theorem that is only 25 percent inferior.</p>
+
+<theorem xml:id="theorem-five-color-theorem"><title>The Five-Color Theorem</title><index><main>Five-Color Theorem</main></index>
+<statement><p>If <m>G</m> is a planar graph, then \(\chi (G)\leq 5\).</p></statement>
+<proof>
+<p>The number 5 is not a sharp upper bound for \(\chi(G)\) because of the Four-Color Theorem.</p>
+<p>This is a proof by Induction on the Number of Vertices in the Graph.</p>
+<p>Basis: Clearly, a graph with one vertex has a chromatic number of 1.</p>
+<p>Induction: Assume that all planar graphs with \(n - 1\) vertices have a chromatic number of 5 or less. Let <m>G</m> be a planar graph. By Theorem
+9.6.2, there exists a vertex <m>v</m> with \(\deg  v \leq 5\). Let \(G - v\) be the planar graph obtained by deleting <m>v</m> and all edges
+that connect <m>v</m> to other vertices in <m>G</m>. By the induction hypothesis, \(G - v\) has a 5-coloring. Assume that the colors used
+are red, white, blue, green, and yellow. </p>
+
+
+
+<p>If \(\deg  v &lt; 5\), then we can produce a 5-coloring of <m>G</m> by selecting a color that is not used in coloring the vertices that are connected
+to <m>v</m> with an edge in <m>G</m>.</p>
+
+
+
+<p>If \(\deg  v = 5\), then we can use the same approach if the five vertices that are adjacent to <m>v</m> are not all colored differently. We are
+now left with the possibility that \(v_1\), \(v_2\), \(v_3\), \(v_4\), and \(v_5\) are all connected to <m>v</m> by an edge and they are all colored
+differently. Assume that they are colored red, white blue, yellow, and green, respectively, as in <xref ref="fig-five-coloring-proof" autoname="yes" />. </p>
+
+      <figure xml:id="fig-five-coloring-proof">
+                <image width="400" source="images/fig-euler-island.png">
+                    <description>Figure used in the proof of the five color theorem</description>
+                </image>
+            </figure>
+
+<p>Starting at \(v_1\) in \(G-v\), suppose we try to construct a path \(v_3\) that passes through only red and blue vertices.  This can either be
+accomplished or it can't be accomplished. If it can't be done, consider all paths that start at \(v_1\), and go through only red and blue vertices.
+If we exchange the colors of the vertices in these paths, including \(v_1\) we still have a 5-coloring of \(G - v\). Since \(v_1\) is now blue, we
+can color the central vertex, <m>v</m>, red.</p>
+<p>Finally, suppose that \(v_1\) is connected to \(v_3\) using only red and blue vertices. Then a path from \(v_{1 }\)to \(v_3\) by using red and blue
+vertices followed by the edges \(\left(v_3,v\right)\) and \(\left(v,v_1\right)\) completes a circuit that either encloses \(v_2\) or encloses \(v_4\)
+and \(v_5\) . Therefore, no path from \(v_2\) to \(v_4\) exists using only white and yellow vertices. We can then repeat the same process as in the
+previous paragraph with \(v_2\) and \(v_4\) , which will allow us to color v white.</p>
+</proof></theorem>
+ 
+<definition xml:id="def-bipartite-graph"><title>Bipartite Graph.</title><index><main>Bipartite Graph.</main></index>
+<statement><p>A bipartite graph is a graph that has a 2-coloring. Equivalently, a graph is bipartite if its vertices
+can be partitioned into two nonempty subsets so that no edge connects a vertices from the same from each subset.</p></statement>
+</definition>
+
+
+<example xml:id="ex-bipartite"><title>A Few Examples</title>
+<ol label="a">
+<li><p> The graph of the Three Utilities Puzzle is bipartite. The vertices are partitioned into the utilities and the homes. Of course a 2-coloring of
+the graph is to color the utilities red and the homes blue.</p></li>
+<li><p>For \(n\geq 1\), the <m>n</m>-cube is bipartite. A coloring would be to color all strings with an even number of 1's red and the strings with
+an odd number of 1's blue. By the definition of the <m>n</m>-cube, two strings that have the same color couldn't be connected since they would
+need to differ in at least two positions.</p></li>
+<li><p>Let <m>V</m> be a set of 64 vertices, one for each square on a chess board. We can index the elements of <m>V</m> by
+
+ <m>\quad \quad</m>\(v_{i j}\) = the square on the row <m>i</m>, column <m>j</m>. 
+
+Connect vertices in <m>V</m> according to whether or not you can move a knight from one square to another. Using our indexing of <m>V</m>,
+
+<m>\quad \quad</m>\(\left(v_{i j}, v_{k l}\right)\in  E\text{ if and only if      }
+\begin{array}{c}
+ |i-k|+|j-l|=3 \\
+ \text{and} |i-k|\cdot |j-l|=2 \\
+\end{array}\)
+
+\((V, E)\) is a bipartite graph. The usual coloring of a chessboard is valid 2-coloring.</p></li>
+</ol>
+</example>
+
+<p>How can you recognize whether a graph is bipartite? Unlike planarity, there is a nice equivalent condition for a graph to be bipartite.</p>
+
+<theorem xml:id="theorem-no-odd"><title>No Odd Circuits in a Bipartite Graph</title><statement><p>An undirected graph is bipartite if and only if it has no circuit of odd length.</p></statement>
+
+<proof><p>(\(\Rightarrow\)) Let \(G = (V, E)\) be a bipartite graph that is partitioned into two sets,  R(ed) and  B(lue) that define
+a 2-coloring. Consider any circuit in <m>V</m>. If we specify a direction in the circuit and define  f on the vertices of the circuit
+by 
+\[f(u) = \text{the} \text{next} \text{vertex} \text{in} \text{the} \text{circuit} \text{after} v\]
+Note that <m>f</m> is a bijection. Hence the number of red vertices in the circuit equals the number of blue vertices, and so the length of the
+circuit must be even.</p> 
+<p>(\(\Longleftarrow\)) Assume that <m>G</m> has no circuit of odd length. For each component of <m>G</m>, select any vertex <m>w</m> and color
+it red. Then for every other vertex <m>v</m> in the component, find the path of shortest distance from <m>w</m> to <m>v</m>. If the length
+of the path is odd, color v blue, and if it is even, color <m>v</m> red. We claim that this method defines a 2-coloring of <m>G</m>. Suppose
+that it does not define a 2-coloring. Then let \(v_a\) and \(v_b\) be two vertices with identical colors that are connected with an edge. By the
+way that we colored <m>G</m>, neither \(v_a\) nor \(v_{b }\) could equal  w.  We can now construct a circuit with an odd length
+in <m>G</m>. First, we start at <m>w</m> and follow the shortest path to \(v_a\) . Then follow the edge \(\left(v_a,v_b\right)\), and finally,
+follow the reverse of a shortest path from <m>w</m> to \(v_b\). Since \(v_a\) and \(v_b\) have the same color, the first and third segments of
+this circuit have lengths that are both odd or even, and the sum of their lengths must be even. The addition of the single edge \(\left(v_a,v_b\right)\)
+shows us that this circuit has an odd length. This contradicts our premise.</p></proof></theorem>
+ 
+.
+</subsection>
+
+<exercises xml:id="exercises-9-6">
+<title>Exercises for Section 9.6</title>
+<exercisegroup>
+<introduction><p>A Exercises</p></introduction>
+
+
+<exercise number="1">
+<statement><p> Apply Theorem 9.6.2 to prove that once <m>n</m> gets to a certain size, a \(K_n\) is nonplanar. What is the largest complete planar graph?</p></statement></exercise>
+<exercise number="2">
+<statement><p> Can you apply Theorem 9.6.2 to prove that the Three Utilities Puzzle can't be solved?</p></statement></exercise>
+<exercise number="3">
+<statement> What are the chromatic numbers of the following graphs?
+
+         <figure xml:id="fig-exercise-9-6-3">
+                <caption>What are the chromatic numbers?
+                </caption>
+                <image width="400" source="images/fig-exercise-9-6-3.png">
+                    <description>What are the chromatic numbers?</description>
+                </image>
+            </figure>
+   </statement></exercise>
+<exercise number="4">
+<statement><p> Prove that if an undirected graph has a subgraph that is a \(K_3\) it then its chromatic number is at least 3.</p></statement></exercise>
+<exercise number="5">
+<statement><p> What is \(\chi \left(K_n\right)\), \(n\geq 1\)?</p></statement></exercise>
+<exercise number="6">
+<statement><p> What is the chromatic number of the United States? </p></statement></exercise>
+
+</exercisegroup>
+<exercisegroup>
+<introduction><p>B Exercises</p></introduction>
+<exercise number="7">
+<statement><p> Complete the proof of <xref ref="theorem-euler-formula" autoname="yes"/></p></statement></exercise>
+<exercise number="8">
+<statement><p> Use the outline of a proof of <xref ref="theorem-edge-bound" autoname="yes" /> to write a complete proof. Be sure to point out where the premise \(v\geq 3\) is essential.</p></statement></exercise>
+<exercise number="9">
+<statement><p> Let \(G = (V,E)\) with \(|V|\geq 11\), and let <m>U</m> be the set of all undirected edges between distinct vertices in <m>V</m>.  Prove
+that either <m>G</m> or \(G' = \left(V,E^c\right)\) is nonplanar.</p></statement></exercise>
+<exercise number="10">
+<statement><p> Design an algorithm to determine whether a graph is bipartite.</p></statement></exercise>
+<exercise number="11">
+<statement><p> Prove that a bipartite graph with an odd number of vertices greater than or equal to 3 has no Hamiltonian circuit.</p></statement></exercise>
+
+
+</exercisegroup>
+<exercisegroup>
+<introduction><p>C Exercises</p></introduction>
+<exercise number="12"><statement><p>Prove that any graph with a finite number of vertices can be drawn in three dimensions so that no edges intersect.</p></statement></exercise>
+<exercise number="13"><statement>Suppose you had to color the edges of an undirected graph so that for each vertex, the edges that it is connected to have different colors.
+How can this problem be transformed into a vertex coloring problem?</statement></exercise>
+<exercise number="14"><statement> 
+<ol label="a">
+<li><p>Suppose the edges of a \(K_6\) are colored either red or blue. Prove that there will be either a <q>red \(K_3\)</q> (a subset
+of the vertex set with three vertices connected by red edges) or a <q>blue \(K_3\)</q> </p></li>
+<li><p> Suppose six people are selected at random. Prove that either there exists a subset of three of them with the property that any two people in
+the subset can communicate in a common language, or there exist three people, no two of whom can communicate in a common language.
+</p></li>
+</ol>
+</statement>
+</exercise>
+</exercisegroup>
+</exercises>
+</section>
