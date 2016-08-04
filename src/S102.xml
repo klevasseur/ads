@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<section xml:id="s-Spanning Trees">
+<section xml:id="s-spanning-trees">
 <title>Spanning Trees</title>
 <index><main>Spanning Trees</main></index>	
 
@@ -29,109 +29,108 @@ and West (see <xref ref="exercise-trees" autoname="yes"/>) solves the problem as
 
 
 <ul>
-<li>
-\pmb{ Objective 1:} Given that the cost of each line depends on certain factors, such as the distance between the campuses, select a tree whose cost
-is as low as possible.
-
-
-
-\pmb{ Objective 2:} Suppose that communication over multiple lines is noisier as the number of lines increases. Select a tree with the property that
-the maximum number of lines that any pair of campuses must use to communicate with is as small as possible.
-
-
-
-Typically, these objectives are not compatible; that is, you cannot always simultaneously achieve these objectives. In the case of the Atlantis university
-system, the solution with respect to Objective 1 is indicated with solid lines in Figure 10.2.1. There are four solutions to the problem with respect
+<li><p>Objective 1: Given that the cost of each line depends on certain factors, such as the distance between the campuses, select a tree whose cost is as low as possible.</p></li>
+<li><p>Objective 2: Suppose that communication over multiple lines is noisier as the number of lines increases. Select a tree with the property that
+the maximum number of lines that any pair of campuses must use to communicate with is as small as possible.</p></li>
+</ul>
+<p>Typically, these objectives are not compatible; that is, you cannot always simultaneously achieve these objectives. In the case of the Atlantis university
+system, the solution with respect to Objective 1 is indicated with solid lines in <xref ref="fig-atlantis-10" autoname="yes" />. There are four solutions to the problem with respect
 to Objective 2: any tree in which one campus is directly connected to the other three. One solution with respect to Objective 2 is indicated with
-dotted lines in Figure 10.2.1. After satisfying the conditions of Objective 2, it would seem reasonable to select the cheapest of the four trees.
+dotted lines in <xref ref="fig-atlantis-10" autoname="yes" />. After satisfying the conditions of Objective 2, it would seem reasonable to select the cheapest of the four trees.</p>
 
-<definition xml:id="def- Spanning Set, Spanning Tree."><title> Spanning Set, Spanning Tree.</title><index><main> Spanning Set, Spanning Tree.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+<definition xml:id="def-spanning-set-tree"><title>Spanning Set, Spanning Tree</title>
+<index><main>Spanning Tree</main></index>
+<index><main>Spanning Set</main></index>
+<statement><ol label="a">
+<li><p> Let \(G = (V, E)\) be a connected undirected graph. A spanning set for G is a subset E' of E such that \((V, E')\) is connected.</p></li>
+<li><p> If E' is a spanning set for G and \(T = (V, E')\) is a tree, then T is called a spanning tree for <m>G</m>.</p></li></ol>
+</statement></definition>
 
  
+
+
+<note>
 <ol label="a">
-<li><p> Let \(G = (V, E)\) be a connected undirected graph. A spanning set for G is a subset E' of E such that \((V, E')\) is connected.\\
-(b) If E' is a spanning set for G and \(T = (V, E')\) is a tree, then T is called a spanning tree for G.
-
-Notes
-<ol label="a">
-<li><p> If \((V, E')\)is a spanning tree, \(\left|  E' \right|  =\left|  V \right|  - 1\).</p></li>
-<li><p> The significance of a spanning tree is that it is a minimal spanning\\
-set. A smaller set would not span the graph, while a larger set would have a cycle, which has an edge that is superfluous.
+<li><p> If \((V, E')\)is a spanning tree, \(\lvert  E' \rvert  =\lvert  V \rvert  - 1\).</p></li>
+<li><p> The significance of a spanning tree is that it is a minimal spanning set. A smaller set would not span the graph, while a larger set would have a cycle, which has an edge that is superfluous.
+</p></li>
+</ol>
+</note>
 
 
-
-For the remainder of this section, we will discuss two of the many topics that relate to spanning trees. The first is the Minimal Spanning Tree Problem,
-which addresses Objective 1 above. The second is the Minimum Diameter Spanning Tree Problem, which addresses Objective 2.
+<p>For the remainder of this section, we will discuss two of the many topics that relate to spanning trees. The first is the problem of finding Minimal Spanning Trees,
+which addresses Objective 1 above. The second is the problem of finding Minimum Diameter Spanning Trees, which addresses Objective 2.</p>
 
 
 
-<subsection xml:id="ss-THE MINIMAL SPANNING TREE PROBLEM"><title>THE MINIMAL SPANNING TREE PROBLEM</title><index><main>THE MINIMAL SPANNING TREE PROBLEM</main></index>
+<definition xml:id="def-min-spanning-tree"><title>Minimal Spanning Tree</title>
+<index><main>Minimal Spanning Tree</main></index> 
+<statement><p>Given a weighted connected undirected graph \(G = (V, E, w)\) , a minimal spanning tree is a spanning tree \((V, E')\) for which \(\sum_{e\in E'} w(e)\) is as small as possible.</p></statement></definition>
 
 
+<p>Unlike many of the graph-optimization problems that we've examined, a solution to this problem can be obtained efficiently. It is a situation in which a greedy algorithm works.</p>
+
+<definition xml:id="def-bridge"><title>Bridge</title>
+<index><main>Bridge</main></index>
+<statement><p>Let \(G = (V, E)\) be an undirected graph and let \(\{L, R\}\) be a partition of <m>V</m>. A bridge between <m>L</m> and <m>R</m> is
+an edge in <m>E</m> that connects a vertex in <m>L</m> to a vertex in <m>R</m>.
+</p></statement></definition>
 
 
-Given a weighted connected undirected graph \(G = (V, E, w)\) , the \textit{ minimal spanning tree problem} is to find a spanning tree \((V, E')\)
-for which \(\sum _{e\in E'} w(e)\) is as small as possible.
+<theorem xml:id="theorem-10-2-1">
+<statement><p>Let \(G = (V, E, w)\) be a weighted connected undirected graph. Let <m>V</m> be partitioned into two sets <m>L</m> and <m>R</m>. If \(e^*\)
+is a bridge of least weight between <m>L</m> and <m>R</m>, then there exists a minimal spanning tree for <m>G</m> that includes \(e^*\).</p></statement>
+<proof><p>Suppose that no minimum spanning tree including \(e^*\) exists. Let \(T = (V, E')\) be a minimum spanning tree. If we add \(e^*\) to <m>T</m>, a cycle is created, and this cycle must contain another bridge, <m>e</m>, between <m>L</m> and <m>R</m>.
+Since \(w\left(e^*\right) \leq  w(e)\), we can delete <m>e</m> and the new tree, which includes \(e^*\) must also be a minimum spanning tree.</p></proof></theorem> 
 
-
-
-Unlike many of the graph-optimization problems that we've examined, a solution to this problem can be obtained efficiently. It is a situation in
-which a greedy algorithm works.
-
-<definition xml:id="def- Bridge. "><title> Bridge. </title><index><main> Bridge. </main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
-
-Let \(G = (V, E)\) be an undirected graph and let \(\{L, R\}\) be a partition of V. A bridge between L and R is
-an edge in E that connects a vertex in L to a vertex in R.
-
-<theorem xml:id="theorem-10.2.1."><title>10.2.1.</title><index><main>10.2.1.</main></index><statement></statement><proof></proof></theorem> Let \(G = (V, E, w)\) be a weighted connected undirected graph. Let V be partitioned into two sets L and R. If \(e^*\)
-is a bridge of least weight between L and R, then there exists a minimal spanning tree for G that includes \(e^*\).
-
-Proof\pmb(Indirect proof): Suppose that no minimum spanning tree including \(e^*\) exists. Let \(T = (V, E')\) be a minimum spanning tree. If
-we add \(e^*\) to <m>T</m>, a cycle is created, and this cycle must contain another bridge, <m>e</m>, between <m>L</m> and <m>R</m>.
-Since \(w\left(e^*\right) \leq  w(e)\), we can delete <m>e</m> and the new tree, which includes \(e^*\) must also be a minimum spanning tree.
-\(\blacksquare\)
-
-<example xml:id="ex-10.2.2."><title>10.2.2.</title><p></p></example> The bridges between the vertex sets \(\{a, b, c\}\) and \(\{d, e\}\) in Figure 10.2.2 are the edges \(\{b, d\}\) and \(\{c,
-e\}\). According to the theorem, a minimal spanning tree that includes \(\{b, d\}\) exists. By examination, you should be able to see that this is
-true. Is it true that only the bridges of minimal weight can be part of a minimal spanning tree? The answer is no.
-
-            <figure xml:id="fig-bridges-10">
+<example xml:id="ex-10.2.2"><title>Some Bridges</title><p> The bridges between the vertex sets \(\{a, b, c\}\) and \(\{d, e\}\) in <xref ref="fig-bridges-10" autoname="yes" /> are the edges \(\{b, d\}\) and \(\{c, e\}\). According to the theorem above, a minimal spanning tree that includes \(\{b, d\}\) exists. By examination, you should be able to see that this is
+true. Is it true that only the bridges of minimal weight can be part of a minimal spanning tree?</p>
+           <figure xml:id="fig-bridges-10">
                 <caption>Bridges between two sets
                 </caption>
                 <image width="400" source="images/fig-bridges-10.png">
                     <description>Bridges between two sets</description>
                 </image>
             </figure>
+</example>
 
-Theorem 10.2.1 essentially tells us that a minimal spanning tree can be constructed recursively by continually adding minimally weighted bridges
-to a set of edges.
+ 
+<p><xref ref="theorem-10-2-1" autoname="yes" /> essentially tells us that a minimal spanning tree can be constructed recursively by continually adding minimally weighted bridges
+to a set of edges.</p>
 
-\pmb{ Algorithm 10.2.1: Prim{'}s Algorithm for Finding a Minimal Spanning Tree. }Let \(G = (V, E, w)\) be a connected, weighted, undirected graph,
-and let \(v_0\) be an arbitrary vertex in V. The following steps lead to a minimal spanning tree for G.  L and R will be sets of vertices
-and \(E'\) is a set of edges.<ol lable="1">
+<algorithm xml:id="alg-prim"><title>Prim's Algorithm</title>
+<statement><p>
+Let \(G = (V, E, w)\) be a connected, weighted, undirected graph,
+and let \(v_0\) be an arbitrary vertex in <m>V</m>. The following steps lead to a minimal spanning tree for <m>G</m>.  <m>L</m> and <m>R</m> will be sets of vertices
+and \(E'\) is a set of edges.</p>
+<ol label="1">
 <li><p> (Initialize) \(L = V - \left\{v_0\right\}\);  \(R = \left\{v_0\right\}\); \(E' = \emptyset\).</p></li>
-<li><p> (Build the tree) While \(L\neq  \emptyset\) 
+<li><p> (Build the tree) While \(L\neq  \emptyset\):</p> 
+		<ol label="1">
+		<li><p>Find \(e^* = \left\{v_L,v_R\right\}\), a bridge of minimum weight between <m>L</m> and <m>R</m>.</p></li>
+		<li><p> \(R = R \cup  \left\{v_L \right\}\); \(L = L - \left\{v_L\right\}\) ; \(E' \text{:=}E'\cup  \left\{e^*\right\}\)</p></li>
+		</ol></li>
+<li><p>Terminate with a minimal spanning tree \((V, E')\).</p></li>
+</ol>
+</statement>
+</algorithm>
 
-$\quad \quad $(2.1) Find \(e^* = \left\{v_L,v_R\right\}\), a bridge of minimum weight between L and R.
-
-$\quad \quad $(2.2) \(R = R \cup  \left\{v_L \right\}\); \(L = L - \left\{v_L\right\}\) ; \(E' \text{:=}E'\cup  \left\{e^*\right\}\)
-
- (3) Terminate with a minimal spanning tree \((V, E')\).
-
-Notes:
+<note>
 <ol label="a">
 <li><p> If more than one minimal spanning tree exists, then the one that is obtained depends on \(v_0\) and the means by which \(e^*\) is selected
 in Step 2.1 if two minimally weighted bridges exist.</p></li>
 <li><p> Warning: If two minimally weighted bridges exist between <m>L</m> and <m>R</m>, do not try to speed up the algorithm by adding both of them to <m>E</m>'.</p></li>
-<li><p> That Algorithm 10.2.1 yields a minimal spanning tree can be proven by induction with the use of Theorem 10.2.1.</p></li>
-<li><p> If it is not known whether <m>G</m> is connected, Algorithm 10.2.1 can be revised to handle this possibility. The key change (in Step 2.1)
+<li><p> That <xref ref="alg-prim" autoname="yes" /> yields a minimal spanning tree can be proven by induction with the use of <xref ref="theorem-10-2-1" autoname="yes" />.</p></li>
+<li><p> If it is not known whether <m>G</m> is connected, <xref ref="alg-prim" autoname="yes" /> can be revised to handle this possibility. The key change (in Step 2.1)
 would be to determine whether any bridge at all exists between <m>L</m> and <m>R</m>. The condition of the while loop in Step 2 must also be
-changed somewhat.
+changed somewhat.</p></li>
+</ol>
+</note>
 
-<example xml:id="ex-10.2.3."><title>10.2.3.</title><p> Consider the graph in <xref ref="fig-weighted-graph-10" autoname="yes" />. If we apply Algorithm 10.2.1 starting at <m>a</m>, we obtain the following edge list
+<example xml:id="ex-an-example"><title>An Small Example</title><p>Consider the graph in <xref ref="fig-weighted-graph-10" autoname="yes" />. If we apply Algorithm 10.2.1 starting at <m>a</m>, we obtain the following edge list
 in the order given: \(\{a, f\}, \{f, e\}, \{e, c\}, \{c, d\}, \{f, b\}, \{b, g\}\). The total of the weights of these edges is 20. The method that
 we have used (in Step 2.1) to select a bridge when more than one minimally weighted bridge exists is to order all bridges alphabetically by the vertex
-in L and then, if further ties exist, by the vertex in R. The first vertex in that order is selected in Step 2.1 of the algorithm.</p>
+in <m>L</m> and then, if further ties exist, by the vertex in <m>R</m>. The first vertex in that order is selected in Step 2.1 of the algorithm.</p>
        <figure xml:id="fig-weighted-graph-10">
                <image width="400" source="images/fig-weighted-graph-10.png">
                     <description>A weighted graph</description>
@@ -143,33 +142,28 @@ in L and then, if further ties exist, by the vertex in R. The first vertex in th
 
 
 
-  
-<subsection xml:id="ss-The Minimum Diameter Spanning Tree Problem"><title>The Minimum Diameter Spanning Tree Problem</title><index><main>The Minimum Diameter Spanning Tree Problem</main></index>
+<definition xml:id="def-min-diameter-spanning-tree"><title>Minimum Diameter Spanning Tree</title><index><main>Minimum Diameter Spanning Tree</main></index> 
+<statement><p>Given a connected undirected graph \(G = (V, E)\), find a spanning tree \(T = (V, E')\) of <m>G</m> such that the longest path in <m>T</m> is as short as possible.</p></statement></definition>
+
+
+<example xml:id="ex-10.2.4."><title>10.2.4</title><p> The Minimum Diameter Spanning Tree Problem is trivial to solve in a \(K_n\). Select any vertex \(v_0\) and construct the spanning
+tree whose edge set is the set of edges that connect \(v_0\) to the other vertices in the \(K_n\) . <xref ref="fig-min-diameter-k5" autoname="yes" /> illustrates a solution for \(n=5\).</p>
+
+          <figure xml:id="fig-min-diameter-k5">
+                <caption>Minimum diameter spanning tree for <m>K_5</m>
+                </caption>
+                <image width="400" source="images/fig-min-diameter-k5.png">
+                    <description>Minimum diameter spanning tree for K_5</description>
+                </image>
+            </figure>
+
+</example>
 
 
 
-
-Given a connected undirected graph G = (V, E), find a spanning tree T = (V, E') of G such that the longest path in T is as short as possible.
-
-
-
-<example xml:id="ex-10.2.4."><title>10.2.4.</title><p></p></example> The Minimum Diameter Spanning Tree Problem is easy to solve in a \(K_n\). Select any vertex \(v_0\) and construct the spanning
-tree whose edge set is the set of edges that connect \(v_0\) to the other vertices in the \(K_n\) . Figure 10.2.4 illustrates a solution for \(n=5\)
-.
-
-
-\begin{center}\(\)
-\end{center}
-
-
-\caption{Minimum diameter spanning tree for \(K_5\)}
-
-
-
-For incomplete graphs, a two-stage algorithm is needed. In short, the first step is to locate a <q>center</q> of the graph. The maximum distance
+<p>For incomplete graphs, a two-stage algorithm is needed. In short, the first step is to locate a <q>center</q> of the graph. The maximum distance
 from a center to any other vertex is as small as possible. Once a center is located, a breadth-first search of the graph is used to construct the
-spanning tree. The breadth-first search is essentially the broadcasting algorithm that we discussed in Section 9.3 applied to undirected graphs.
-
+spanning tree. </p>
 
 <exercises xml:id="exercises-10-2">
 <title>Exercises for Section 10.2</title>
@@ -179,49 +173,51 @@ spanning tree. The breadth-first search is essentially the broadcasting algorith
 <exercisegroup>
 <introduction><p>A Exercises</p></introduction>
 
-<exercise number="1"><statement> Suppose that after Atlantis University's phone system is in place, a fifth campus is established and that a transmission line can be bought
+<exercise number="1"><statement><p> Suppose that after Atlantis University's phone system is in place, a fifth campus is established and that a transmission line can be bought
 to connect the new campus to any old campus. Is this larger system the most economical one possible with respect to Objective 1? Can you always satisfy
-Objective 2?
+Objective 2?</p>
 </statement></exercise>
-<exercise number="2"><statement> Construct a minimal spanning tree for the capital cities in New England (see Figure 9.5.1).
+<exercise number="2"><statement><p> Construct a minimal spanning tree for the capital cities in New England (see <xref ref="table-ne-capitals" autoname="yes" />).</p>
 </statement></exercise>
-<exercise number="3"><statement> Show that the answer to the question posed in Example 10.2.2 is <q>no.</q>
+<exercise number="3"><statement><p> Show that the answer to the question posed in <xref ref="ex-10.2.2" autoname="yes" /> is <q>no.</q></p>
 </statement></exercise>
-<exercise number="4"><statement> Find a minimal spanning tree for the following graphs.
+<exercise number="4"><statement><p> Find a minimal spanning tree for the following graphs.</p>
+            <figure xml:id="fig-exercise-10-2-4a">
+                <image width="400" source="images/fig-exercise-10-2-4a.png">
+                    <description>Figure for exercise-10-2-4a</description>
+                </image>
+            </figure>
+            <figure xml:id="fig-exercise-10-2-4b">
+                <image width="400" source="images/fig-exercise-10-2-4b.png">
+                    <description>Figure for exercise-10-2-4b</description>
+                </image>
+            </figure>
+            <figure xml:id="fig-exercise-10-2-4c">
+                <image width="400" source="images/fig-exercise-10-2-4c.png">
+                    <description>Figure for exercise-10-2-4c</description>
+                </image>
+            </figure>
 
-
-\begin{center}\(\)
-\end{center}
-
-
-\begin{center}\(\)
-\end{center}
-
-
-\begin{center}\(\)
-\end{center}
 </statement></exercise>
-<exercise number="5"><statement> Find a minimum diameter spanning tree for the following graphs.
-
-
-\begin{center}\(\)
-\end{center}
-
-
-\begin{center}\(\)
-\end{center}
+<exercise number="5"><statement><p> Find a minimum diameter spanning tree for the following graphs.</p>
+            <figure xml:id="fig-exercise-10-2-5a">
+                <image width="400" source="images/fig-exercise-10-2-5a.png">
+                    <description>Figure for exercise-10-2-5a</description>
+                </image>
+            </figure>
+            <figure xml:id="fig-exercise-10-2-5b">
+                <image width="400" source="images/fig-exercise-10-2-5b.png">
+                    <description>Figure for exercise-10-2-5b</description>
+                </image>
+            </figure>
 </statement></exercise>
-<exercise number="6"><statement> In each of the following parts back up your answer with either a proof or an counterexample.
-
-
+<exercise number="6"><statement><p> In each of the following parts back up your answer with either a proof or an counterexample.</p>
 <ol label="a">
-<li><p> Suppose a weighted undirected graph had distinct edge weights. Is is possible that no minimal spanning tree includes the edge of minimal weight?
-
-</p></li>
+<li><p> Suppose a weighted undirected graph had distinct edge weights. Is is possible that no minimal spanning tree includes the edge of minimal weight?</p></li>
 <li><p> Suppose a weighted undirected graph had distinct edge weights. Is is possible that every minimal spanning tree includes the edge of maximal
-weight?\\
+weight?</p></li>
 </ol>
-</answer>
+</statement>
 </exercise>
 </exercisegroup>
 </exercises>
