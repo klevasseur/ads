@@ -6,7 +6,7 @@
 <p>An <term>ordered rooted tree</term> is a rooted tree whose subtrees are put into a definite order and are, themselves, ordered rooted trees. An empty tree and
 a single vertex with no descendants (no subtrees) are ordered rooted trees.</p>
 
-<example xml:id="ex-ordered-rooted"><title>Distinct Ordered Rooted Trees</title><p>The trees in Figure 10.4.1 are identical rooted trees, with root 1, but as ordered trees, they are different.</p>
+<example xml:id="ex-ordered-rooted"><title>Distinct Ordered Rooted Trees</title><p>The trees in <xref ref="fig-ordered-rooted" autoname="yes" /> are identical rooted trees, with root 1, but as ordered trees, they are different.</p>
 
           <figure xml:id="fig-ordered-rooted">
                 <caption>Two different ordered rooted trees
@@ -17,7 +17,7 @@ a single vertex with no descendants (no subtrees) are ordered rooted trees.</p>
             </figure>
 </example> 
 
-<p>If a tree rooted at <m>v</m> has <m>p</m> subtrees, we would refer to them as the first, second,... , \(p^{th}\) subtrees. If we restrict the number of subtrees of each vertex to be less than or equal to two, we have a <term>binary ordered tree</term>.  There is a subtle difference beween binary ordered trees and binary trees, which we define next.</p>
+<p>If a tree rooted at <m>v</m> has <m>p</m> subtrees, we would refer to them as the first, second,..., \(p^{th}\) subtrees. If we restrict the number of subtrees of each vertex to be less than or equal to two, we have a <term>binary ordered tree</term>.  There is a subtle difference beween binary ordered trees and binary trees, which we define next.</p>
  
 <definition xml:id="def-binary-tree"><title>Binary Tree</title>
 <index><main>Binary Tree</main></index>
@@ -83,7 +83,7 @@ and its subtrees are visited. The three traversals are best described recursivel
 
 <p>Any traversal of an empty tree consists of doing nothing.</p>
 
-<example xml:id="ex-10.4.2."><title>10.4.2.</title><p>For the tree in <xref ref="fig-bin-tree-10-4" autoname="yes" />, the orders in which the vertices are visited are:</p>
+<example xml:id="ex-traversals-example"><title>Traversal Examples</title><p>For the tree in <xref ref="fig-bin-tree-10-4" autoname="yes" />, the orders in which the vertices are visited are:</p>
 <ul>
 <li><p>A-B-D-E-C-F-G, for the preorder traversal.</p></li>
 <li><p>D-B-E-A-F-C-G, for the inorder traversal.</p></li>
@@ -111,17 +111,17 @@ tree:</p>
 			<li><p>inserted = false</p></li>
 			<li><p>while not(inserted):</p>
 					<p><m>\quad </m>if \(a_k &lt; r\):</p>
-					<p><m>\quad \quad </m>if \(r\) has a left child:</p>
-					<p><m>\quad \quad \quad</m>r = left child of \(r\)</p>
-					<p><m>\quad \quad</m> else: </p>
-					<p><m>\quad \quad \quad</m>make \(a_k\) the left child of  \(r\) </p>
-					<p><m>\quad \quad \quad</m>inserted = true </p>
+					<p><m>\quad \quad \quad </m>if \(r\) has a left child:</p>
+					<p><m>\quad \quad \quad \quad</m>r = left child of \(r\)</p>
+					<p><m>\quad \quad \quad</m> else: </p>
+					<p><m>\quad \quad \quad \quad</m>make \(a_k\) the left child of  \(r\) </p>
+					<p><m>\quad \quad \quad \quad</m>inserted = true </p>
 					<p><m>\quad \quad</m>else:</p>
-					<p><m>\quad \quad </m>if \(r\) has a right child:</p>
-					<p><m>\quad \quad \quad</m>r = right child of \(r\)</p>
-					<p><m>\quad \quad</m> else: </p>
-					<p><m>\quad \quad \quad</m>make \(a_k\) the right child of  \(r\) </p>
-					<p><m>\quad \quad \quad</m>inserted = true </p>
+					<p><m>\quad \quad \quad </m>if \(r\) has a right child:</p>
+					<p><m>\quad \quad \quad \quad</m>r = right child of \(r\)</p>
+					<p><m>\quad \quad \quad</m> else: </p>
+					<p><m>\quad \quad \quad \quad</m>make \(a_k\) the right child of  \(r\) </p>
+					<p><m>\quad \quad \quad \quad</m>inserted = true </p>
 					</li>
 		</ol></li>
 </ol>
@@ -143,7 +143,7 @@ tree:</p>
 <subsection xml:id="ss-expression-trees"><title>Expression Trees</title><index><main>Expression Tree</main></index>
 
 <p>A convenient way to visualize an algebraic expression is by its expression tree. Consider the expression
- \[X = a*b - c/d + e\]. 
+ \[X = a*b - c/d + e.\] 
 Since it is customary to put a precedence on multiplication/divisions, X is evaluated as \(((a*b) -(c/d)) + e\). Consecutive multiplication/divisions
 or addition/subtractions are evaluated from left to right. We can analyze X further by noting that it is the sum of two simpler expressions \((a*b)
 - (c/d)\) and \(e\). The first of these expressions can be broken down further into the difference of the expressions \(a*b\) and \(c/d\). When
@@ -206,8 +206,8 @@ form is postfix, in which the sum is written \(a b+\). Algebraic expressions inv
 
 
 
-<example xml:id="ex-expression-tree-traversal-example"><title>Traversing an Expression Tree</title><p> The preorder traversal of the tree in <xref ref="fig-expression-tree-build" autoname="yes" /> is \(+-*ab/cd e\), which is the prefix version of expression \textit{
-X}. The postfix traversal is \(ab*cd/-e+\). Note that since the original form of X needed no parentheses, the inorder traversal, \(a*b-c/d+e\), is the correct infix version.</p>
+<example xml:id="ex-expression-tree-traversal-example"><title>Traversing an Expression Tree</title><p> The preorder traversal of the tree in <xref ref="fig-expression-tree-build" autoname="yes" /> is \(+-*ab/cd e\), which is the prefix version of expression <m>
+X</m>. The postfix traversal is \(ab*cd/-e+\). Note that since the original form of X needed no parentheses, the inorder traversal, \(a*b-c/d+e\), is the correct infix version.</p>
 </example>
 
 </subsection>
@@ -235,7 +235,7 @@ a have the recurrence relation for \(n\geq 0\):
 
 
 <mdn><mrow>
- B(n+1)= B(0)B(n)+ B(1)B(n-1)+ \cdots  + B(n)B(0)\quad \quad =\sum _{k=0}^n B(k) B(n-k)</mrow></mdn>
+ B(n+1)= B(0)B(n)+ B(1)B(n-1)+ \cdots  + B(n)B(0)=\sum _{k=0}^n B(k) B(n-k)</mrow></mdn>
 </p>
 
 <p>Now take the generating function of both sides of this recurrence relation:
@@ -270,12 +270,12 @@ we do the same with \(G_2\) we get
  2n \\
  n \\
 \end{array}
-\right)\].
+\right)\]
 
 
 
-This sequence of numbers is often called the \textit{ Catalan numbers. } For more information on the Catalan numbers, see the entry A000108 in The
-On-Line Encyclopedia of Integer Sequences.</p>
+This sequence of numbers is often called the <term>Catalan numbers</term>. For more information on the Catalan numbers, see the entry A000108 in The
+<url href="https://oeis.org">On-Line Encyclopedia of Integer Sequences</url>.</p>
 </subsection>
 <subsection xml:id="ss-sage-note-powerseries"><title>Sage Note - Power Series</title><index><main>Sage Note</main><sub>Power Series</sub></index>
 <p>It may be of interest to note how the extended power series expansions of \(G_1\) and \(G_2\) are determined using Sage.  In Sage, one has the capability of being very specific about how algebraic expressions should be interpreted by specifying the underlying ring. This can make working with various algebraic expressions a bit more confusing to the beginner.  Here is how to get a Laurent expansion for \(G_1\) above.</p>
@@ -283,7 +283,7 @@ On-Line Encyclopedia of Integer Sequences.</p>
 <sage>
 <input>
 R.&lt;z>=PowerSeriesRing(ZZ,'z')
-G1=(1+sqrt(1-4*z))/(2*z)}
+G1=(1+sqrt(1-4*z))/(2*z)
 G1
 </input>
 </sage>
@@ -297,7 +297,7 @@ element, <c>G1</c>. So the important thing about this first input is that it est
 <sage>
 <input>
 R.&lt;z>=PowerSeriesRing(ZZ,'z')
-G2=(1-sqrt(1-4*z))/(2*z)}
+G2=(1-sqrt(1-4*z))/(2*z)
 G2
 </input>
 </sage>
@@ -339,11 +339,10 @@ G2
 <exercise number="3"><statement><p> Write out the preorder, inorder, and postorder traversals of the trees in Exercise 1 above.</p>
 </statement>
 <answer><p>  \[\begin{array}{cccc}
-   &amp; \text{Preorder}  &amp; \text{Inorder}\text{   } &amp; \text{Postorder} \\
- (a)\text{   } &amp; \cdot a+\text{\textit{bc}}\text{\textit{      }} &amp; a\cdot b+c\text{   } &amp; \text{\textit{abc}}+\cdot \text{     } \\
- (b)\text{   } &amp; +\cdot \text{\textit{abc}}\text{\textit{      }} &amp; a\cdot b+c\text{    } &amp; \text{\textit{ab}}\cdot c+\text{     } \\
- (c)\text{   } &amp; +\cdot \text{\textit{ab}}\cdot \text{\textit{ac}}\text{\textit{$ $}} &amp; a\cdot b+a\cdot c\text{  } &amp; \text{\textit{ab}}\cdot \text{\textit{ac}}\cdot
-+  \\
+   &amp; \text{Preorder}  &amp; \text{Inorder} &amp; \text{Postorder} \\
+ (a) &amp; \cdot a + b c &amp; a\cdot b+c &amp;  a b c + \cdot \\
+ (b) &amp; +\cdot a b c &amp; a\cdot b+c &amp; a b\cdot c+ \\
+ (c) &amp; +\cdot a b\cdot a c &amp; a\cdot b+a\cdot c &amp; a b\cdot a c\cdot +  \\
 \end{array}\]
 
 </p></answer>
@@ -380,7 +379,7 @@ Now consider any full binary tree with \(k+1\) vertices. Let \(T_A\) and \(T_B\)
 of a full binary tree, must both be full. If \(i_A\) and \(i_B\) are the numbers of internal vertices in \(T_A\) and \(T_B\), and \(j_A\) and \(j_B\) are the numbers of leaves, then \(j_A=i_A+1 \) and \(j_B=i_B+1\). Therefore, in the whole tree, 
 <me>
 \begin{split}
-the number of leaves &amp; =j_A+j_B\\
+\textrm{the number of leaves} &amp; =j_A+j_B\\
 	&amp;=\left(i_A+1\right)+\left(i_B+1\right)\\
 	&amp;=\left(i_A+i_B+1\right)+1\\
 	&amp;=(\textrm{number of internal vertices})+1\\
