@@ -5,16 +5,15 @@
 <title>Combinations</title><index><main>Combinations</main></index>
 <p> In Section 2.1 we investigated the most basic concept in combinatorics, namely, the rule of products. Even though in this section we investigate other counting formulas, it is of paramount importance to keep this fundamental process in mind. In Section 2.2 we saw that a subclass of rule-of-products problems appears so frequently that we gave them a special designation, namely, permutations, and we derived a formula as a computational aid to assist us. In this section we will investigate another counting formula that are used to count combinations, which are subsets of a certain size..</p>
 <p>In many rule-of-products applications the permutation or order is important, as in the situation of the order of putting on one's socks and shoes; in some cases it is not important, as in placing coins in a vending machine or in the listing of the elements of a set. Order is important in permutations. Order is not important in combinations.</p>
-<example xml:id="counting-permuations-multiple-ways"><title>Counting Permutations</title><statement>How many different ways are there to permute three letters from the set <m>A = \{a, b, c, d\}</m>?  From the <xref ref="permutations-counting-formula" autoname="title" /> there are <m>P(4,3)=\frac{4!}{(4-3)!} = 24</m> different orderings of three letters from <m>A</m> </statement></example>
-<example xml:id="four-choose-three"><title>Counting with No Order</title> <statement>How many ways can we select a set of three letters from  <m>A = \{a, b, c, d\}</m>?  Note here that we are not concerned with the order of the three letters. By trial and error, abc, abd, acd, and bcd are the only listings possible. To repeat, we were looking for all three-element subsets of the set A. Order is not important in sets. The notation for choosing 3 elements from 4 is most commonly <m>\binom{4}{3}</m> or occasionally <m>C(4,3)</m>, either of which is read <q>4 choose 3</q> or the number of combinations for four objects taken three at a time.</statement>
+<example xml:id="counting-permuations-multiple-ways"><title>Counting Permutations</title><statement><p>How many different ways are there to permute three letters from the set <m>A = \{a, b, c, d\}</m>?  From the <xref ref="permutations-counting-formula" autoname="title" /> there are <m>P(4,3)=\frac{4!}{(4-3)!} = 24</m> different orderings of three letters from <m>A</m> </p></statement></example>
+<example xml:id="four-choose-three"><title>Counting with No Order</title> <statement><p>How many ways can we select a set of three letters from  <m>A = \{a, b, c, d\}</m>?  Note here that we are not concerned with the order of the three letters. By trial and error, abc, abd, acd, and bcd are the only listings possible. To repeat, we were looking for all three-element subsets of the set A. Order is not important in sets. The notation for choosing 3 elements from 4 is most commonly <m>\binom{4}{3}</m> or occasionally <m>C(4,3)</m>, either of which is read <q>4 choose 3</q> or the number of combinations for four objects taken three at a time.</p></statement>
 </example>
-<definition xml:id="binomial-coefficient"><title>Binomial Coefficient</title><index><main>Binomial Coefficient</main></index><statement><p>Let <m>n</m> and <m>k</m> be nonnegative integers.  The binomial coefficient <m>\binom{n}{k}</m> represents the number of combinations of <m>n</m> objects taken <m>k</m> at a time, and is read <q><m>n</m> choose <m>k</m>.</q></p></statement>
-<notation>
+<definition xml:id="binomial-coefficient"><title>Binomial Coefficient</title><index><main>Binomial Coefficient</main></index><notation>
                     <usage>\binom{n}{k}</usage>
                     <description>
                     <m>n</m> choose <m>k</m>, the number of <m>k</m> element subsets of an <m>n</m> element set.  	
                     </description>
-                </notation>
+                </notation><statement><p>Let <m>n</m> and <m>k</m> be nonnegative integers.  The binomial coefficient <m>\binom{n}{k}</m> represents the number of combinations of <m>n</m> objects taken <m>k</m> at a time, and is read <q><m>n</m> choose <m>k</m>.</q></p></statement>
 </definition>
 <p>We would now like to investigate the relationship between permutation and combination problems in order to derive a formula for <m>\binom{n}{k}</m></p>
 <p>Let us reconsider the <xref ref="four-choose-three" autoname="title" />. There are <m>3 ! = 6</m> different orderings for each of the three-element subsets. The table below lists each subset of <m>A</m>  and all permutations of each subset on the same line.
@@ -31,7 +30,7 @@
 <p> We generalize this result in the following theorem:</p>
 <theorem xml:id="binomial-coefficient-formula"><title>Binomial Coefficient Formula</title><index><main>Binomial Coefficient Formula</main></index>
 <statement>
-If <m>n</m> and <m>k</m> are nonnegative integers with <m>0 \leq k \leq n</m>, then the number <m>k</m>-element subsets of an <m>n</m> element set is equal to <me>\binom{n}{k} = \frac{n!}{(n-k)! \cdot k!} </me></statement>
+<p>If <m>n</m> and <m>k</m> are nonnegative integers with <m>0 \leq k \leq n</m>, then the number <m>k</m>-element subsets of an <m>n</m> element set is equal to <me>\binom{n}{k} = \frac{n!}{(n-k)! \cdot k!} </me></p></statement>
 <proof><p>Proof 1: There are <m>k!</m> ways of ordering the elements of any <m>k</m> element set.Therefore,
 <me>\binom{n}{k} = \frac{P(n,k)}{k!} = \frac{n!}{(n-k)! k!}.</me></p>
 <p>Proof 2: To <q>construct</q> a permutation of <m>k</m>  objects from a set of <m>n</m> elements, we can first choose one of the subsets of objects and second, choose one of the <m>k!</m>  permutations of those objects. By the rule of products,<me>P(n,k) = \binom{n}{k} \cdot k!</me> and solving for <m>\binom{n}{k}</m> we get the desired formula.</p></proof>
@@ -52,10 +51,8 @@ If <m>n</m> and <m>k</m> are nonnegative integers with <m>0 \leq k \leq n</m>, t
 <subsection xml:id="the-binomial-theorem">
 <title>The Binomial Theorem</title>
 <p>
- The binomial theorem gives us a formula for expanding <m>( x + y )^{n}</m>, where <m>n</m>  is a nonnegative integer. The coefficients of this expansion are precisely the binomial coefficients that we have used to count combinations. Using high school algebra we can  expand the expression for integers from 0 to 5:
-<table xml:id="pascal"><title>Pascal's Triangle</title><index><main>Pascal's Triangle</main></index>
-<tr><td> <me>
- \begin{array}{cc}
+ The binomial theorem gives us a formula for expanding <m>( x + y )^{n}</m>, where <m>n</m>  is a nonnegative integer. The coefficients of this expansion are precisely the binomial coefficients that we have used to count combinations. Using high school algebra we can  expand the expression for integers from 0 to 5:</p>
+<p><me> \begin{array}{cc}
  n &amp; (x + y)^n \\
  0 &amp; 1 \\
  1 &amp; x+y \\
@@ -67,45 +64,32 @@ If <m>n</m> and <m>k</m> are nonnegative integers with <m>0 \leq k \leq n</m>, t
    y^3+5 x y^4+y^5 \\
 \end{array}
  </me>
- </td>
- <td>
-<image>\begin{tikzpicture}
-\foreach \n in {0,...,4} {
-  \foreach \k in {0,...,\n} {
-    \node at (\k-\n/2,-\n) {${\n \choose \k}$};
-  }
-}
-\end{tikzpicture}
-</image>
- </td>
- </tr>
- </table></p>
+ </p>
 <p>In the expansion of <m>(x + y)^{5} </m>  we note that the coefficient of the third term is <m>\binom{5}{3} = 10</m>, and that of the sixth term is  <m>\binom{5}{5}=1</m>. We can rewrite the expansion as 
 <me>\binom{5}{0} x^5+\binom{5}{1} x^4 y+\binom{5}{2} x^3 y^2+\binom{5}{3} x^2 y^3+\binom{5}{4} x y^4+ \binom{5}{5} y^5
 </me></p>
 <p>
- In summary, in the expansion of <m>( x + y )^{n}</m> we note:
-<ol>
+ In summary, in the expansion of <m>( x + y )^{n}</m> we note:</p>
+<p><ol>
 <li><p>The first term is <m>x^n</m> and the last term is <m>y^n</m>. </p></li>
 <li><p> With each successive term, exponents of <m>x</m> decrease by 1 as those of <m>y</m> increase by 1. For any term the sum of the exponents is <m>n</m>.</p></li>
 <li><p>  The coefficient of <m>x^{n-k} y^k</m> is <m>\binom{n}{k}</m>.</p></li>
-<li><p> The triangular array of numbers in <xref ref="pascal" /> is called Pascal's triangle after the seventeenth-century French mathematician Blaise Pascal. Note that each number in the triangle other than the 1's at the ends of each row is the sum of the two numbers to the right and left of it in the row above.</p></li></ol>
-</p>
+<li><p> The triangular array of numbers in <xref ref="pascal" /> is called Pascal's triangle after the seventeenth-century French mathematician Blaise Pascal. Note that each number in the triangle other than the 1's at the ends of each row is the sum of the two numbers to the right and left of it in the row above.</p></li></ol></p>
 <theorem xml:id="binomial-theorem"><title>The Binomial Theorem</title><index><main>The Binomial Theorem</main></index>
-<statement> If <m>n \geq  0</m>, and <m>x</m> and <m>y</m> are numbers, then
-<me>(x+y)^{n} = \sum_{k=0}^n \binom{n}{k} x^{n-k} y^k</me>
+<statement><p> If <m>n \geq  0</m>, and <m>x</m> and <m>y</m> are numbers, then
+<me>(x+y)^{n} = \sum_{k=0}^n \binom{n}{k} x^{n-k} y^k</me></p>
 </statement>
 <proof><p>This theorem will proven using a logical procedure called mathematical induction, which will be introduced in Chapter 3. </p></proof>
 </theorem>
 <example xml:id="term-in-an-expansion"><title>Identifying a term in an expansion</title><p>Find the third term in the expansion of <m>( x-y )^{4}</m>. The third term,  when <m>k=2</m>, is <m>\binom{4}{2} x^{4-2} y^2 = 6 x^2 y^2</m>.</p>
 </example>
-<example xml:id="a-full-expansion"><title>A Binomial Expansion</title><statement>
+<example xml:id="a-full-expansion"><title>A Binomial Expansion</title><statement><p>
 Expand <m>(3 x - 2 )^{3}</m>.  If we replace <m>x</m>  and <m>y</m>  in the Binomial Theorem with <m>3x</m> and <m>-2</m>, respectively, we get
 <me>\begin{split} 
 \sum_{k=0}^3 \binom{3}{k} (3x)^{n-k} (-2)^k &amp; = \binom{3}{0} (3x)^{3} (-2)^0 + \binom{3}{1} (3x)^{2} (-2)^1 + \binom{3}{2} (3x)^{1} (-2)^2 + \binom{3}{3} (3x)^{0} (-2)^3 \\
 &amp; = 27 x^3 - 54 x^2 + 36 x - 8 \\
 \end{split}
-</me>
+</me></p>
 </statement></example>
 </subsection>
 <subsection xml:id="mathematica-binomial"><title><em>Mathematica</em>  Note</title><index><main>Mathematica  Note</main><sub>Bridge Hands</sub></index>
@@ -128,63 +112,63 @@ binomial(52,13)*binomial(39,13)*binomial(26,13)
 </sage>
 </subsection>
 <exercises xml:id="exercises-2-4">
-<exercisegroup><introduction><p><p>A Exercises</p></p></introduction>
-<exercise number="1"><statement> The judiciary committee at a college is made up of three faculty members and four students. If ten faculty members and 25 students have been nominated for the committee, how many judiciary committees could be formed at this point	?</statement><answer> \(C(10,3)\cdot C(25,4)=1,518,000\)
+<exercisegroup><introduction><p>A Exercises</p></introduction>
+<exercise number="1"><statement><p> The judiciary committee at a college is made up of three faculty members and four students. If ten faculty members and 25 students have been nominated for the committee, how many judiciary committees could be formed at this point	?</p></statement><answer><p> \(C(10,3)\cdot C(25,4)=1,518,000\)</p>
 </answer></exercise>
 <exercise number="2"><statement><p> Suppose that a single character is stored in a computer using eight bits.</p>
 <p>a. How many bit patterns have exactly three 1 's?</p>
 <p>b. How many bit patterns have at least two 1 's?</p>
 </statement><hint><p>Think of the set of positions that contain a 1 to turn this is into a question about sets.</p></hint><solution><p>(a) <m>\binom{8}{3}</m> (b) <m>2^8-(\binom{8}{0}+\binom{8}{1})</m></p></solution></exercise>
-<exercise number="3"><statement> How many subsets of <m>\{1, 2, 3, \dots , 10\}</m> contain at least seven elements?</statement>
-<answer> \(C(10,7)+C(10,8)+C(10,9)+C(10,10)\) 
+<exercise number="3"><statement><p> How many subsets of <m>\{1, 2, 3, \dots , 10\}</m> contain at least seven elements?</p></statement>
+<answer><p> \(C(10,7)+C(10,8)+C(10,9)+C(10,10)\) </p>
 </answer></exercise>
-<exercise number="4"><statement> The congressional committees on mathematics and computer science are made up of five congressmen each, and a congressional rule is that the two committees must be disjoint. If there are 385 members of congress, how many ways could the committees be selected?
+<exercise number="4"><statement><p> The congressional committees on mathematics and computer science are made up of five congressmen each, and a congressional rule is that the two committees must be disjoint. If there are 385 members of congress, how many ways could the committees be selected?</p>
   </statement>
 </exercise>
-<exercise number="5"><statement>Expand <m> ( 2x - 3y )^4</m></statement>
-<answer> \(16x^4-96x ^3y+216x^2y^2-216x y^3+81y^4\)
+<exercise number="5"><statement><p>Expand <m> ( 2x - 3y )^4</m></p></statement>
+<answer><p> \(16x^4-96x ^3y+216x^2y^2-216x y^3+81y^4\)</p>
 </answer></exercise>
-<exercise number="6"><statement>Find the fourth term of the expansion of <m>(x -2y)^6</m>.</statement>
+<exercise number="6"><statement><p>Find the fourth term of the expansion of <m>(x -2y)^6</m>.</p></statement>
 </exercise>
 <exercise number="7"><statement> 
 <p>(a) A poker game is played with 52 cards. How many <q>hands</q> of five cards are possible?</p>
 <p>(b) If there are four people playing, how many five-card <q>hands</q> are possible on the first deal?</p>
 </statement>
-<answer><ol label="a"><li> \(C(52,5)=2,598,960\text{  }\)</li>
-<li>  \(C(52,5)\cdot C(47,5)\cdot C(42,5)\cdot C(37,5)\)</li>
-</ol>
+<answer><p><ol label="a"><li><p> \(C(52,5)=2,598,960\)</p></li>
+<li><p>  \(C(52,5)\cdot C(47,5)\cdot C(42,5)\cdot C(37,5)\)</p></li>
+</ol></p>
 </answer></exercise>
-<exercise number="8"><statement> A flush in a five-card poker hand is five cards of the same suit. How many spade flushes are possible in a 52-card deck? How many flushes are possible in any suit?</statement>
+<exercise number="8"><statement><p> A flush in a five-card poker hand is five cards of the same suit. How many spade flushes are possible in a 52-card deck? How many flushes are possible in any suit?</p></statement>
 </exercise>
-<exercise number="9"><statement> How many five-card poker hands using 52 cards contain exactly two aces?</statement>
-<answer> \(C(4,2)C(48,3)\)
+<exercise number="9"><statement><p> How many five-card poker hands using 52 cards contain exactly two aces?</p></statement>
+<answer><p>\(C(4,2)C(48,3)\)</p>
 </answer></exercise>
-<exercise number="10"><statement>  In poker, a full house is three-of-a-kind and a pair in one hand; for example, three fives and two queens. How many full houses are possible from a 52-card deck?  You can use the sage cell in the <xref ref="sage-bridge-hands" autoname="title" /> to do this calculation, but also write your answer in terms of binomial coefficients. </statement>
+<exercise number="10"><statement><p>  In poker, a full house is three-of-a-kind and a pair in one hand; for example, three fives and two queens. How many full houses are possible from a 52-card deck?  You can use the sage cell in the <xref ref="sage-bridge-hands" autoname="title" /> to do this calculation, but also write your answer in terms of binomial coefficients. </p></statement>
 </exercise>
-<exercise number="11"><statement> A class of twelve computer science students are to be divided into three groups of 3, 4, and 5 students to work on a project. How many ways can this be done if every student is to be in exactly one group?</statement>
-<answer>\(C(12,3)\cdot C(9,4)\cdot C(5,5)\)
+<exercise number="11"><statement><p> A class of twelve computer science students are to be divided into three groups of 3, 4, and 5 students to work on a project. How many ways can this be done if every student is to be in exactly one group?</p></statement>
+<answer><p>\(C(12,3)\cdot C(9,4)\cdot C(5,5)\)</p>
 </answer></exercise>
 </exercisegroup>
 <exercisegroup>
 <introduction><p>B Exercises</p></introduction>
-<exercise number="12"><statement> Explain in words why the following equalities are true based on number of subsets,  and then verify the equalities using the formula for binomial coefficients.
-<ol label="a">
+<exercise number="12"><statement><p> Explain in words why the following equalities are true based on number of subsets,  and then verify the equalities using the formula for binomial coefficients.</p>
+<p><ol label="a">
 <li><p><m>\binom{n}{1} = n</m> </p></li>
 <li><p><m>\binom{n}{k} = \binom{n}{n-k}</m>, <m> 0 \leq k \leq n</m></p></li>
-</ol>
+</ol></p>
 </statement>
 </exercise>
 <exercise number="13"><statement><p>  There are ten points, <m>P_1, P_2, \dots , P_{10}</m> on a plane, no three on the same line.</p>
-<ol label="a">
+<p><ol label="a">
 <li><p>How many lines are determined by the points?</p></li>
 <li><p> How many triangles are determined by the points?</p></li>
-</ol>
+</ol></p>
 </statement>
-<answer><ol label="a"><li> \(C(10,2)=45\)</li>
+<answer><p><ol label="a"><li> \(C(10,2)=45\)</li>
 <li> \(C(10,3)=120\)</li>
-</ol>
+</ol></p>
 </answer></exercise>
-<exercise number="14"><statement> How many ways can <m>n</m>  persons be grouped into pairs when <m>n</m>  is even? Assume the order of the pairs matters, but not the order within the pairs. For example, if <m>n=4</m>, the six different groupings would be
+<exercise number="14"><statement><p> How many ways can <m>n</m>  persons be grouped into pairs when <m>n</m>  is even? Assume the order of the pairs matters, but not the order within the pairs. For example, if <m>n=4</m>, the six different groupings would be
 <me>\begin{array}{cc}
  \{1,2\} &amp; \{3,4\} \\
  \{1,3\} &amp; \{2,4\} \\
@@ -193,26 +177,26 @@ binomial(52,13)*binomial(39,13)*binomial(26,13)
  \{2,4\} &amp; \{1,3\} \\
  \{3,4\} &amp; \{1,2\} \\
 \end{array}
-</me> 
+</me> </p>
 </statement>
 </exercise>
-<exercise number="15"><statement> Use the binomial theorem to prove that if <m>A</m> is a finite set, then 
-<m>\mathscr{P}(A) = 2^{\lvert A \rvert}</m></statement>
-<answer> Assume \(\lvert A \rvert =n.\) If we let \(x=y=1\) in the Binomial Theorem, we obtain \(2^n=C(n;0)+C(n;1)+\cdots +C(n;n)\), with the right side of the equality counting all subsets of <m>A</m> containing <m>0, 1, 2, \dots , n</m> elements.  Hence \(\left| P(A)\right| =2^{\left| A\right| }\) 
+<exercise number="15"><statement><p> Use the binomial theorem to prove that if <m>A</m> is a finite set, then 
+<m>\mathscr{P}(A) = 2^{\lvert A \rvert}</m></p></statement>
+<answer><p> Assume \(\lvert A \rvert =n.\) If we let \(x=y=1\) in the Binomial Theorem, we obtain \(2^n=C(n;0)+C(n;1)+\cdots +C(n;n)\), with the right side of the equality counting all subsets of <m>A</m> containing <m>0, 1, 2, \dots , n</m> elements.  Hence \(\left| P(A)\right| =2^{\left| A\right| }\) </p>
 </answer>
 </exercise>
 <exercise number="16"><statement> 
-<ol label="a">
+<p><ol label="a">
 <li><p>A state's lottery involves choosing six different numbers out of a possible 36. How many ways can a person choose six numbers?</p></li>
 <li><p>What is the probability of a person winning with one bet?</p></li>
-</ol></statement>
+</ol></p></statement>
 </exercise>
-<exercise number="17"><statement>Use the binomial theorem to calculate <m>9998^3</m>.</statement>
-<hint><m>9998 = 10000-2</m></hint>
-<answer> \(1000^3 - 3\cdot 2 \cdot 1000^2 +3 \cdot 2^2 \cdot 1000 -2^3 = 999,400,119,992.\)
+<exercise number="17"><statement><p>Use the binomial theorem to calculate <m>9998^3</m>.</p></statement>
+<hint><p><m>9998 = 10000-2</m></p></hint>
+<answer><p> \(1000^3 - 3\cdot 2 \cdot 1000^2 +3 \cdot 2^2 \cdot 1000 -2^3 = 999,400,119,992.\)</p>
 </answer>
 </exercise>
-<exercise number="18"><statement> In the card game Blackjack, there are one or more players and a dealer.  Initially, each player is dealt two cards and the dealer is dealt one card down and one facing up.  As in bridge, the order of the hands, but not the order of the cards in the hands, matters.  Starting with a single 52 card deck, and three players, how many ways can the first two cards be dealt out?  You can use the sage cell in the <xref ref="sage-bridge-hands" autoname="title" /> to do this calculation. </statement>
+<exercise number="18"><statement><p> In the card game Blackjack, there are one or more players and a dealer.  Initially, each player is dealt two cards and the dealer is dealt one card down and one facing up.  As in bridge, the order of the hands, but not the order of the cards in the hands, matters.  Starting with a single 52 card deck, and three players, how many ways can the first two cards be dealt out?  You can use the sage cell in the <xref ref="sage-bridge-hands" autoname="title" /> to do this calculation. </p></statement>
 </exercise>
 </exercisegroup>
 </exercises>
