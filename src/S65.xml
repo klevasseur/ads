@@ -8,7 +8,7 @@
 
 <p>This can be rephrased as follows; Find the smallest relation \(r^{+ }\)which contains <m>r</m> as a subset and which is transitive; \(r^+ =\{(a, b), (a, c), (b, d), (c, d), (a, d)\}\).</p>
 
-<definition xml:id="def-transitive-closure"><title>Transitive Closure</title><index><main>Transitive Closure</main></index><statement><p>Let <m>A</m> be a set and <m>r</m> be a relation on <m>A</m>. The transitive closure of <m>r</m>, denoted by \(r^+\) , is the smallest transitive relation that contains <m>r</m> as a subset.</p></statement><notation><usage>r^+</usage><description>The transitive closure of <m>r</m></description></notation></definition> 
+<definition xml:id="def-transitive-closure"><title>Transitive Closure</title><index><main>Transitive Closure</main></index><notation><usage>r^+</usage><description>The transitive closure of <m>r</m></description></notation><statement><p>Let <m>A</m> be a set and <m>r</m> be a relation on <m>A</m>. The transitive closure of <m>r</m>, denoted by \(r^+\) , is the smallest transitive relation that contains <m>r</m> as a subset.</p></statement></definition> 
 
 <p>Let \(A = \{1, 2, 3, 4\}\), and let \(\mathcal{S} = \{(1, 2), (2, 3), (3, 4)\}\) be a relation on <m>A</m>. This relation is called the successor relation on <m>A</m> since each element is related to its successor. How do we compute \(\mathcal{S}^+\)?  By inspection we note that \((1, 3)\) must be in \(\mathcal{S}^+\) . Let's analyze why. This is so because \((1,2) \in \mathcal{S}\) and \((2, 3) \in \mathcal{S}\), and the transitive property forces \((1,3)\) to be in \(\mathcal{S}^+\). </p>
 
@@ -104,7 +104,6 @@ on the set \(A = \{1,2, 3, 4, 5\}\). The matrix of <m>r</m> is
 <p>Using this theorem, we find \(R^+\) is the \(5\times 5\) matrix consisting of all \(1's\), thus, \(r^+\) is all of \(A \times A\).</p>
 
 
-<subsection xml:id="ss-warshall-algorithm"><title>Warshall's Algorithm</title>
 <p>Let <m>r</m> be a relation on the set \(\{1, 2, \dots , n\}\) with relation matrix <m>R</m>. The matrix of the transitive closure \(R^+\), can be computed by the equation \(R^+ = R + R ^2 + \cdots  + R^n\). By using ordinary polynomial evaluation methods, you can compute \(R^+\) with \(n -1\) matrix multiplications: 
 \[R^+ = R(I + R(I +( \cdots  R(I+ R) \cdots )))\]</p>
 
@@ -144,14 +143,14 @@ and by induction we can prove
 </statement>
 </algorithm>
 
-<p>Notes:</p>
-<ul>
+<note>
+<p><ul>
 <li><p> Often the higher-powered terms in \(S_n\) do not contribute anything to \(R^+\). When the condition \(T = S\) becomes true in Step 3, this is an indication that no higher-powered terms are needed.</p></li>
 <li> To compute \(R^+\) using this algorithm, you need to perform no more than \(\lceil \log_2 n \rceil\) matrix multiplications, where
 \(\lceil x \rceil\) is the least integer that is greater than or equal to <m>x</m>. For example, if <m>r</m> is a relation on 25 elements,
 no more than \(\lceil \log_2 25 \rceil = 5\) matrix multiplications are needed.</li>
-</ul>
-
+</ul></p>
+</note>
 
 <p>A second algorithm, Warshall's Algorithm, reduces computation time to the time that it takes to perform one matrix multiplication.</p>
 
@@ -171,12 +170,11 @@ no more than \(\lceil \log_2 25 \rceil = 5\) matrix multiplications are needed.<
 </program>
 </statement>
 </algorithm>
-</subsection>
 
 <exercises xml:id="exercises-6-5"><title>Exercises</title>
 <exercisegroup><introduction><p>A Exercises</p></introduction>
 
-<exercise number="1"><statement> Let <m>A</m> and \(\mathcal{S}\) be as defined above. Compute \(\mathcal{S}^+\) using the matrix representation of \(\mathcal{S}\). Verify your results by checking against the result obtained directly from the definition of transitive closure.
+<exercise number="1"><statement><p> Let <m>A</m> and \(\mathcal{S}\) be as defined above. Compute \(\mathcal{S}^+\) using the matrix representation of \(\mathcal{S}\). Verify your results by checking against the result obtained directly from the definition of transitive closure.</p>
 </statement>
 
 </exercise>
@@ -185,29 +183,28 @@ no more than \(\lceil \log_2 25 \rceil = 5\) matrix multiplications are needed.<
 
 </exercise>
 <exercise number="3"><statement> 
-<ol label="a">
+<p><ol label="a">
 <li><p>Draw digraphs of the relations \(\mathcal{S}\), \(\mathcal{S}^2\), \(\mathcal{S}^3\) , and \(\mathcal{S}^+\)  where \(\mathcal{S}\) is defined above.</p></li>
 <li> Verify that in terms of the graph of \(\mathcal{S}\), \(a \mathcal{S}^+ b\) if and only if <m>b</m> is reachable from <m>a</m> along a
 path of any finite nonzero length.</li>
-</ol>
+</ol></p>
 </statement>
-<answer><ol label="a">
+<answer><p><ol label="a">
 <li><figure xml:id="fig-sol-6-5-3">
                 <image width="100%" source="images/fig-sol-6-5-3.png">
                     <description>Solution to 3a of Section 6.5</description>
                 </image>
             </figure></li>
 <li><p>  Example, \(1s 4\) and using \(S\) one can go from 1 to 4 using a path of length 3.</p></li>
-</ol>
+</ol></p>
 </answer>
 </exercise>
 <exercise number="4"><statement><p> Let <m>r</m> be the relation represented by the following digraph.</p>
-<ol label="a">
+<p><ol label="a">
 <li><p> Find \(r^+\) using the definition based on order pairs.</p></li>
 <li><p> Determine the digraph of \(r^+\) directly from the digraph of <m>r</m>.</p></li>
 <li><p> Verify your result in part (b) by computing the digraph from your result in part (a).</p></li>
-</ol>
-
+</ol></p>
 	<figure>
 			 <caption>Digraph of <m>r</m> in exercise 4. 
 			 </caption>
@@ -219,12 +216,12 @@ path of any finite nonzero length.</li>
 
 </exercise>
 <exercise number="5"><statement> 
-<ol label="a">
+<p><ol label="a">
 <li><p>Define reflexive closure and symmetric closure by imitating the definition of transitive closure.</p></li>
 <li><p> Use your definitions to compute the reflexive and symmetric closures of examples in the text.</p></li>
 <li><p> What are the transitive reflexive closures of these examples?</p></li>
 <li><p> Convince yourself that the reflexive closure of the relation \(&lt;\) on the set of positive integers \(\mathbb{P}\) is \(\leq\).</p></li>
-</ol>
+</ol></p>
 </statement>
 <answer><p>Definition: Reflexive Closure.  Let <m>r</m> be a relation on <m>A</m>. The reflexive closure of <m>r</m> is the smallest reflexive relation that contains <m>r</m>.</p>
 <p>Theorem: The reflexive closure of <m>r</m> is the union of <m>r</m> with \(\{(x, x) : x\in A\}\) 
@@ -232,24 +229,24 @@ path of any finite nonzero length.</li>
 </answer>
 </exercise>
 <exercise number="6"><statement><p> What common relations on \(\mathbb{Z}\) are the transitive closures of the following relations?</p>
-<ol label="a">
+<p><ol label="a">
 <li><p> \(a S b\) if and only if \(a + 1 = b\).</p></li>
 <li><p> \(a R b\) if and only if \(| a - b | = 2\).</p></li>
-</ol></statement>
+</ol></p></statement>
 
 </exercise>
 </exercisegroup>
 
 <exercisegroup><introduction><p>B Exercises</p></introduction>
 <exercise number="7"><statement> 
-<ol label="a">
+<p><ol label="a">
 <li><p>Let <m>A</m> be any set and <m>r</m> a relation on <m>A</m>, prove that \(\left(r^+\right)^+=r^+\).</p></li>
 <li><p>Is the transitive closure of a symmetric relation always both symmetric and reflexive? Explain.</p></li>
-</ol></statement>
-<answer><ol label="a"><li><p><p>  By the definition of transitive closure, \(r^+\) is the smallest relation which contains \(r\); therefore, it is transitive. The transitive closure of \(r^+\), \(\left(r^+\right)^+\) , is the smallest transitive relation that contains \(r^+\). Since \(r^+\) is transitive, \(\left(r^+\right)^+=r^+\). </p></p></li>
+</ol></p></statement>
+<answer><p><ol label="a"><li><p>  By the definition of transitive closure, \(r^+\) is the smallest relation which contains \(r\); therefore, it is transitive. The transitive closure of \(r^+\), \(\left(r^+\right)^+\) , is the smallest transitive relation that contains \(r^+\). Since \(r^+\) is transitive, \(\left(r^+\right)^+=r^+\). </p></li>
 <li><p>  The transitive closure of a symmetric relation is symmetric, but it may not be reflexive. If one element is not related to any elements, then the transitive closure will not relate that element to others.
 </p></li>
-</ol>
+</ol></p>
 </answer>
 </exercise>
    
