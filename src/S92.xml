@@ -2,10 +2,8 @@
 <section xml:id="s-data-structures-for-graphs">
 <title>Data Structures and Computer Generation of Graphs</title>
 <index><main>Graph</main><sub>Data Structures</sub></index>
-
 <introduction><p>In this section, we will describe data structures that are commonly used to represent graphs. In addition we will introduce the basic syntax for
 graphs in Sage.</p></introduction>
-
 <subsection xml:id="ss-graph-data-structures"><title>Basic Data Stuctures</title>
 
 
@@ -15,15 +13,13 @@ graphs in Sage.</p></introduction>
 <title>Data Structures for Graphs</title>
 <introduction><p>Assume that we have a graph with <m>n</m> vertices that can be indexed by the integers <m>1, 2, \dots, n</m>.  Here are three different data structures that can be employed to represent graphs.</p>
 </introduction>
+
 <ol>
 <li><p>Adjacency Matrix:  As we saw in Chapter 6, the information about edges in a graph can be summarized with an adjacency
 matrix, <m>G</m>, where \(G_{\text{ij}}=1\) if and only if vertex <m>i</m> is connected to vertex <m>j</m> in the graph.  Note
 that this is the same as the adjacency matrix for a relation, with the exception.</p></li>
-
-
 <li><p>Edge Dictionary:  For each vertex in our graph, we maintain a list of edges that
 initiate at that vertex. If <m>G</m> represents the graph's edge information, then we denote by \(G_i\) the list of vertices that are terminal vertices  of edges initiating at vertex <m>i</m>. The exact syntax that would be used can vary.  We will use the Python syntax that is adopted be used in Sage.</p></li>
-
 <li><p>Edge List:  Note that in creating either of the first two data structures, we would presume that a list of
 edges for the graph exists. A simple way to represent the edges is to maintain this list of ordered pairs, or two element sets, depending on whether the graph is intended to be directed or undirected.  We will not work with this data stucture here, other than in the first example.</p></li>
 </ol>
@@ -64,23 +60,21 @@ number of edges is relatively small, it might use less memory to maintain an edg
 
 
 </subsection>
-
 <subsection xml:id="sss-sage-graphs">
 <title>Sage Graphs</title>
 <index><main>Sage Note</main><sub>Graphs</sub></index>
-
 <p>The most common way to define a graph in Sage is to use an edge dictionary.  Here is how the graph in <xref ref="ex-data-structure-sample" autoname="yes"/> is generated and then displayed.  Notice that  we simply wrap the function <c>DiGraph()</c> around the same dictionary expression we identified earlier.</p>
 <sage>
 <input>
 G1 = DiGraph( {1 : [4, 2], 2 : [3, 4], 3 : [3], 4 : [1]})
 G1.show()
 </input>
-<output>
 <!-- 
+<output>
 <figure xml:id="graph-9-2-1">
 	 <caption>A Sage Digraph
 	 </caption>
- -->
+
 <image width="100%" source="images/graph-9-2-1.png">
 <description>A Sage Digraph</description>
 		<sageplot>
@@ -88,10 +82,8 @@ G1.show()
 		G1.plot()
 		</sageplot>
 </image>
-<!-- 
 </figure>
- -->
-</output>
+</output> -->
 </sage>
 
 <p>
@@ -171,29 +163,27 @@ w.degree_sequence()
 <p>The degree sequence method is defined within the graphs module, but the prefix <c>graphs.</c> is not needed because the value of <c>w</c> inherits the graphs methods.</p>
 
 </subsection>
-
-
 <exercises xml:id="exercises-9-2">
 <title>Exercises for Section 9.2</title>
 <exercisegroup>
 <introduction><p>A Exercises</p></introduction>
 <exercise number="1"><statement> <p>Estimate the number of vertices and edges in each of the following graphs. Would the graph be considered sparse, so that an adjacency matrix would be inefficient?</p>
-<ol label="a">
+<p><ol label="a">
 <li><p> Vertices: Cities of the world that are served by at least one airline. 
   Edges: Pairs of cities that are connected by a regular direct flight.</p></li>
 <li><p> Vertices: ASCII characters. 
  Edges: connect characters that differ in their binary code by exactly two bits.</p></li>
 <li><p> Vertices: All English words. 
  Edges: An edge connects word x to word y if x is a prefix of y.</p></li>
- </ol></statement>
- <answer><ol label="a">
+ </ol></p></statement>
+ <answer><p><ol label="a">
 
 <li><p>  A rough estimate of the number of vertices in the <q>world airline graph</q> would be the number of cities with population greater than or equal to 100,000. This is estimated to be around 4,100. There are many smaller cities that have airports, but some of the metropolitan areas with clusters of large cities are served by only a few airports.  4,000-5,000 is probably a good guess.   As for edges, that's a bit more difficult to estimate.  It's certainly not  a complete graph.  Looking at some medium sized airports such as Manchester, NH, the average number of cities that you can go to directly is in the 50-100 range.   So a very
 rough estimate would be   \(\frac{75 \cdot  4500}{2}=168,750\). This is far less than <m>4,500^2</m>, so an edge list or dictionary of some kind would be more efficient. </p></li>
 <li><p> The number of ASCII characters is 128.  Each character would be connected to <m>\binom{8}{2}=28</m> others and so there are \(\frac{128 \dot 28}{2}=3,584\)  edges.  Comparing this to the <m>128^2=16,384</m>, an array is probably the best choice.
 </p></li>
 <li><p> The Oxford English Dictionary as approximately a half-million words, although many are obsolete.   The number of edges is probably of the same order of magnitude as the number of words, so an edge list or dictionary is probably the best choice.</p></li>
-</ol></answer>
+</ol></p></answer>
  </exercise>
 <exercise number="2"><statement><p> Each edge of a graph is colored with one of the four colors red, blue, yellow, or green. How could you represent the edges in this graph using
 a variation of the adjacency matrix structure?</p></statement></exercise>
