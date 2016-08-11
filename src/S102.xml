@@ -28,11 +28,11 @@ any line in the cycle can be deleted, reducing the cost. Each of the sixteen tre
 and West (see <xref ref="exercise-trees" autoname="yes"/>) solves the problem as it is stated. Note that in each case, three direct lines must be purchased. There are two considerations that can help reduce the number of solutions that would be considered.</p>
 
 
-<ul>
+<p><ul>
 <li><p>Objective 1: Given that the cost of each line depends on certain factors, such as the distance between the campuses, select a tree whose cost is as low as possible.</p></li>
 <li><p>Objective 2: Suppose that communication over multiple lines is noisier as the number of lines increases. Select a tree with the property that
 the maximum number of lines that any pair of campuses must use to communicate with is as small as possible.</p></li>
-</ul>
+</ul></p>
 <p>Typically, these objectives are not compatible; that is, you cannot always simultaneously achieve these objectives. In the case of the Atlantis university
 system, the solution with respect to Objective 1 is indicated with solid lines in <xref ref="fig-atlantis-10" autoname="yes" />. There are four solutions to the problem with respect
 to Objective 2: any tree in which one campus is directly connected to the other three. One solution with respect to Objective 2 is indicated with
@@ -41,20 +41,20 @@ dotted lines in <xref ref="fig-atlantis-10" autoname="yes" />. After satisfying 
 <definition xml:id="def-spanning-set-tree"><title>Spanning Set, Spanning Tree</title>
 <index><main>Spanning Tree</main></index>
 <index><main>Spanning Set</main></index>
-<statement><ol label="a">
+<statement><p><ol label="a">
 <li><p> Let \(G = (V, E)\) be a connected undirected graph. A spanning set for G is a subset E' of E such that \((V, E')\) is connected.</p></li>
-<li><p> If E' is a spanning set for G and \(T = (V, E')\) is a tree, then T is called a spanning tree for <m>G</m>.</p></li></ol>
+<li><p> If E' is a spanning set for G and \(T = (V, E')\) is a tree, then T is called a spanning tree for <m>G</m>.</p></li></ol></p>
 </statement></definition>
 
  
 
 
 <note>
-<ol label="a">
+<p><ol label="a">
 <li><p> If \((V, E')\)is a spanning tree, \(\lvert  E' \rvert  =\lvert  V \rvert  - 1\).</p></li>
 <li><p> The significance of a spanning tree is that it is a minimal spanning set. A smaller set would not span the graph, while a larger set would have a cycle, which has an edge that is superfluous.
 </p></li>
-</ol>
+</ol></p>
 </note>
 
 
@@ -103,20 +103,20 @@ to a set of edges.</p>
 Let \(G = (V, E, w)\) be a connected, weighted, undirected graph,
 and let \(v_0\) be an arbitrary vertex in <m>V</m>. The following steps lead to a minimal spanning tree for <m>G</m>.  <m>L</m> and <m>R</m> will be sets of vertices
 and \(E'\) is a set of edges.</p>
-<ol label="1">
+<p><ol label="1">
 <li><p> (Initialize) \(L = V - \left\{v_0\right\}\);  \(R = \left\{v_0\right\}\); \(E' = \emptyset\).</p></li>
 <li><p> (Build the tree) While \(L\neq  \emptyset\):</p> 
-		<ol label="1">
+		<p><ol label="1">
 		<li><p>Find \(e^* = \left\{v_L,v_R\right\}\), a bridge of minimum weight between <m>L</m> and <m>R</m>.</p></li>
 		<li><p> \(R = R \cup  \left\{v_L \right\}\); \(L = L - \left\{v_L\right\}\) ; \(E' \text{:=}E'\cup  \left\{e^*\right\}\)</p></li>
-		</ol></li>
+		</ol></p></li>
 <li><p>Terminate with a minimal spanning tree \((V, E')\).</p></li>
-</ol>
+</ol></p>
 </statement>
 </algorithm>
 
 <note>
-<ol label="a">
+<p><ol label="a">
 <li><p> If more than one minimal spanning tree exists, then the one that is obtained depends on \(v_0\) and the means by which \(e^*\) is selected
 in Step 2.1 if two minimally weighted bridges exist.</p></li>
 <li><p> Warning: If two minimally weighted bridges exist between <m>L</m> and <m>R</m>, do not try to speed up the algorithm by adding both of them to <m>E</m>'.</p></li>
@@ -124,7 +124,7 @@ in Step 2.1 if two minimally weighted bridges exist.</p></li>
 <li><p> If it is not known whether <m>G</m> is connected, <xref ref="alg-prim" autoname="yes" /> can be revised to handle this possibility. The key change (in Step 2.1)
 would be to determine whether any bridge at all exists between <m>L</m> and <m>R</m>. The condition of the while loop in Step 2 must also be
 changed somewhat.</p></li>
-</ol>
+</ol></p>
 </note>
 
 <example xml:id="ex-an-example"><title>An Small Example</title><p>Consider the graph in <xref ref="fig-weighted-graph-10" autoname="yes" />. If we apply Algorithm 10.2.1 starting at <m>a</m>, we obtain the following edge list
@@ -223,19 +223,19 @@ for this graph.</p>
                 </image>
             </figure>
 </statement>
-<answer><ol label="a"><li><p>Edges in one solution are: \(\{8,7\},\{8,9\},\{8,13\},\{7,6\},\{9,4\},\{13,12\},\{13,14\},\{6,11\},\{6,1\},\{1,2\},\{4,3\},\{4,5\},\{14,15\},
+<answer><p><ol label="a"><li><p>Edges in one solution are: \(\{8,7\},\{8,9\},\{8,13\},\{7,6\},\{9,4\},\{13,12\},\{13,14\},\{6,11\},\{6,1\},\{1,2\},\{4,3\},\{4,5\},\{14,15\},
 \textrm{ and } \{5,10\}\)</p></li>
 <li><p> Vertices 8 and 9 are at the center of the graph. Starting from vertex 8, a minimum diameter spanning tree is \(\{\{8, 3\}, \{8, 7\}, \{8, 13\},
 \{8, 14\}, \{8, 9\}, \{3, 2\}, \{3, 4\}, \{7, 6\}, \{13, 12\}, \{13, 19\}, \{14, 15\}, \{9, 16\}, \{9, 10\}, \{6, 1\}, \{12, 18\}, \{16, 20\}, \{16,
 17\}, \{10, 11\}, \{20, 21\}, \{11, 5\}\}. \textrm{The diameter of the tree is } 7.\)
-</p></li></ol></answer>
+</p></li></ol></p></answer>
 </exercise>
 <exercise number="6"><statement><p> In each of the following parts back up your answer with either a proof or an counterexample.</p>
-<ol label="a">
+<p><ol label="a">
 <li><p> Suppose a weighted undirected graph had distinct edge weights. Is is possible that no minimal spanning tree includes the edge of minimal weight?</p></li>
 <li><p> Suppose a weighted undirected graph had distinct edge weights. Is is possible that every minimal spanning tree includes the edge of maximal
 weight?</p></li>
-</ol>
+</ol></p>
 </statement>
 </exercise>
 </exercisegroup>
