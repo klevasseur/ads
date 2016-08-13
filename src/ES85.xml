@@ -65,8 +65,8 @@ Note that the index that is used in the summation has no significance. Also, not
  <me>
  \begin{split}
  0 &amp; =\sum_{n=2}^{\infty}  (S(n) - 2S (n - 1) - 3S (n - 2)) z^n\\
- 	&amp; =\sum_{n=2}^{\infty} S(n) z^n-2 \left(\sum_{n=2}^{\infty
-} S(n-1) z^n\right)-3\left(\sum_{n=2}^{\infty} S(n-2) z^n\right)\]
+ 	&amp; =\sum_{n=2}^{\infty} S(n) z^n-2 (\sum_{n=2}^{\infty
+} S(n-1) z^n)-3(\sum_{n=2}^{\infty} S(n-2) z^n)
 \end{split}
 </me>
 </p>
@@ -83,9 +83,9 @@ since \(S(0)=3\) and \(S(1)=1\).</p></li>
 <li><p>
 <me>
 \begin{split}
-\sum_{n=2}^{\infty} S(n-1) z^n &amp;=z\left(\sum_{n=2}^{\infty} S(n-1) z^{n-1}\right)\\
-		&amp; =z\left(\sum_{n=1}^{\infty} S(n) z^n\right)\\
-		&amp; = z\left(\sum_{n=0}^{\infty} S(n) z^n-S(0)\right)\\
+\sum_{n=2}^{\infty} S(n-1) z^n &amp;=z(\sum_{n=2}^{\infty} S(n-1) z^{n-1})\\
+		&amp; =z(\sum_{n=1}^{\infty} S(n) z^n)\\
+		&amp; = z(\sum_{n=0}^{\infty} S(n) z^n-S(0))\\
 		&amp;= z(G(S;z)-3
 \end{split}
 </me>
@@ -94,7 +94,7 @@ since \(S(0)=3\) and \(S(1)=1\).</p></li>
 <li><p>
 <me>
 \begin{split}
-\sum_{n=2}^{\infty} S(n-2) z^n  &amp; = z^2\left(\sum_{n=2}^{\infty} S(n-2) z^{n-2}\right)\\
+\sum_{n=2}^{\infty} S(n-2) z^n  &amp; = z^2(\sum_{n=2}^{\infty} S(n-2) z^{n-2})\\
 	&amp; =z^2G(S;z)
 \end{split}
 </me>
@@ -188,7 +188,7 @@ operation \(S\downarrow\) (read <q>S push</q>) term-wise for \(k \geq  0\) by
 <mrow xml:id="seq-op-mult">(S \cdot T)(k) = S(k)T(k)\)</mrow>
 <mrow xml:id="seq-op-convolve">(S*T)(k) = \sum_{j=0}^k S(j) T(k-j)\)</mrow>
 <mrow xml:id="seq-op-pop">(S\uparrow )(k) = S(k+1)\)</mrow>
-<mrow xml:id="seq-op-push">(S\downarrow )(k)=\left\{\begin{array}{cc} 0 &amp; \textrm{ if } k=0 \\ S(k-1) &amp; \textrm{ if } k>0 \\\end{array}\right.\)\\
+<mrow xml:id="seq-op-push">(S\downarrow )(k)=\left\{\begin{array}{cc} 0 &amp; \textrm{ if } k=0 \\ S(k-1) &amp; \textrm{ if } k>0 \\\end{array}\)\\
 \end{array}</mrow>
 </mdn></p>
 </statement>
@@ -215,15 +215,15 @@ Keep these figures in mind when we discuss the pop and push operations.</p>
 <li><p> \((S + T)(n) = n + n^2\)</p></li>
 <li><p>\((U + R)(n) = 2^n+ n 2^n= (1+n)2^n\)</p></li>
 <li><p>\((2 U)(n) = 2\cdot 2^n= 2^{n+1}\)</p></li>
-<li><p> \(\left(\frac{1}{2}R\right)(n)= \frac{1}{2}n 2^n= n 2^{n-1}\)</p></li>
+<li><p> \((\frac{1}{2}R)(n)= \frac{1}{2}n 2^n= n 2^{n-1}\)</p></li>
 <li><p> \((S\cdot T)(n) = n n^2 = n^3\)</p></li>
 <li><p>\((S*T)(n)= \sum_{j=0}^n S(j) T(n-j)= \sum_{j=0}^n j (n-j)^2\\
 \\
-\quad \quad =\sum_{j=0}^n \left( j n^2-2 n j^2 + j^3\right)\\
+\quad \quad =\sum_{j=0}^n ( j n^2-2 n j^2 + j^3)\\
 \\
 \quad \quad = n^2\sum_{j=0}^n j-2n \sum_{j=0}^n j^2 + \sum_{j=0}^n j ^3\\
 \\
-\quad \quad =n^{2 }\left(\frac{n (n+1)}{2}\right)- 2n\left(\frac{(2n+1)(n+1)n}{6}\right)+\frac{1}{4} n^2 (n+1)^2\\
+\quad \quad =n^{2 }(\frac{n (n+1)}{2})- 2n(\frac{(2n+1)(n+1)n}{6})+\frac{1}{4} n^2 (n+1)^2\\
 \\
 \quad \quad = \frac{n^2(n+1)(n-1)}{12}\)</p></li>
 <li><p>\((U*U)(n) =\sum_{j=0}^n U(j) U(n-j)\\
@@ -239,14 +239,14 @@ Keep these figures in mind when we discuss the pop and push operations.</p>
  2^{n-1} &amp; \textrm{ if } n>0 \\
  0 &amp; \textrm{ if } n=0 \\
 \end{array}
-\right.\)</p></li>
+\)</p></li>
 <li><p> \(((U\downarrow )\uparrow )(n)=(U\downarrow )(n+1)= 2^n= U(n)\)</p></li>
 <li><p> \(((U\uparrow )\downarrow ) (n)=\left\{
 \begin{array}{cc}
  0 &amp; \textrm{ if } n = 0 \\
  U(n) &amp; \textrm{ if } n>0 \\
 \end{array}
-\right.\)</p></li>
+\)</p></li>
 </ol></p></example>
 
 
@@ -273,7 +273,7 @@ Similarly, define
  0 &amp; \textrm{ if } k &lt; p \\
  S(k-p) &amp; \textrm{ if } k\geq p \\
 \end{array}
-\right.
+
 </me>
 </p>
 </subsection>
@@ -286,10 +286,10 @@ Similarly, define
 are generating functions and <m>c</m> is a real number, then the sum \(G + H\), scalar product \(c G\), product \(G H\), and monomial product \(z^p G\), \(p \geq  1\) are generating functions, where
 
 <mdn>
-<mrow xml:id="gf-sum">(G + H)(z)=\sum_{k=0}^{\infty} \left(a_k+b_k\right) z^k</mrow>
+<mrow xml:id="gf-sum">(G + H)(z)=\sum_{k=0}^{\infty} (a_k+b_k) z^k</mrow>
 <mrow xml:id="gf-scalarmult">[(c G)(z)=\sum_{k=0}^{\infty} c a_k z^k</mrow>
 <mrow xml:id="gf-product">(G H)(z) = \sum_{k=0}^{\infty} c z^k \textrm{ where } c_k= \sum_{j=0}^k a_jb_{k-j}</mrow>
-<mrow xml:id="gf-shift">\left(z^p G\right)(z) = z^p\sum_{k=0}^{\infty} a_k z^k=\sum_{k=0}^{\infty} a_k z^{k+p} = \sum_{n=p}^{\infty} a_{n-p} z^n</mrow>
+<mrow xml:id="gf-shift">(z^p G)(z) = z^p\sum_{k=0}^{\infty} a_k z^k=\sum_{k=0}^{\infty} a_k z^{k+p} = \sum_{n=p}^{\infty} a_{n-p} z^n</mrow>
 </mdn>
 </p>
 <p>The last sum is obtained by substituting \(n - p\) for <m>k</m> in the previous sum.</p>
@@ -302,16 +302,16 @@ are generating functions and <m>c</m> is a real number, then the sum \(G + H\), 
 
 then
 
-\((D + H)(z) =\sum_{k=0}^{\infty} \left(k+2^k\right) z^k\) 
+\((D + H)(z) =\sum_{k=0}^{\infty} (k+2^k) z^k\) 
 
 \((2H)(z)= \sum_{k=0}^{\infty} 2\cdot 2^kz^k =\sum_{k=0}^{\infty} 2^{k+1}z^k\)
 
  \((z D)(z) = z\sum_{k=0}^{\infty} kz^k= \sum_{k=0}^{\infty} kz^{k+1}= \sum_{k=1}^{\infty} (k-1)
 z^k \quad = D(z)- \sum_{k=1}^{\infty} z^k\)
 
-\((D H)(z)=\sum_{k=0}^{\infty} \left(\sum_{j=0}^k j 2^{k-j}\right)z^k\)
+\((D H)(z)=\sum_{k=0}^{\infty} (\sum_{j=0}^k j 2^{k-j})z^k\)
 
-\((H H)(z)= \sum_{k=0}^{\infty} \left(\sum_{j=0}^k 2^j2^{k-j}\right) z^k=\sum_{k=0}^{\infty} (k+1)2^k z^k\)</p>
+\((H H)(z)= \sum_{k=0}^{\infty} (\sum_{j=0}^k 2^j2^{k-j}) z^k=\sum_{k=0}^{\infty} (k+1)2^k z^k\)</p>
 <p>Note: \(D(z) = G(S;z)\), and \(H(z) = G(U;z)\) from Example 8.5.2.</p>
 </example>
 
@@ -333,7 +333,7 @@ there is no operation on generating functions that is related to sequence multip
 
 <theorem xml:id="gf-of-pop-push"><title>Generating functions related to Pop and Push</title><statement><p>If \(p > 1\),</p>
 <p><ol label="a">
-<li><p>\(G(S\uparrow p;z) = \left(G(S;z) -\left.\sum_{k=0}^{p-1} S(k) z^k\right)/z^k\right.\)</p></li>
+<li><p>\(G(S\uparrow p;z) = (G(S;z) -\left.\sum_{k=0}^{p-1} S(k) z^k)/z^k\)</p></li>
 <li><p> \(G(S\downarrow p;z) = z^p G(S;z)\).</p></li>
 </ol></p>
 </statement><proof><p>We prove (a)  by induction and leave the proof of (b) to the reader.  </p>
@@ -342,8 +342,8 @@ there is no operation on generating functions that is related to sequence multip
 \begin{split}
   G(S\uparrow;z) &amp;= \sum_{k=0}^{\infty} S(k+1) z^k\\
   		&amp; =\sum_{k=1}^{\infty} S(k) z^{k-1}\\
-  		&amp; =\left.\left(\sum_{k=1}^{\infty} S(k) z^k\right)\right/z\\ 		
-  		&amp; =\left.\left(S(0)+\sum_{k=1}^{\infty} S(k) z^k-S(0)\right)\right/z\\
+  		&amp; =\left.(\sum_{k=1}^{\infty} S(k) z^k)\right/z\\ 		
+  		&amp; =\left.(S(0)+\sum_{k=1}^{\infty} S(k) z^k-S(0))\right/z\\
   		&amp; =(G(S;z)-S(0))/z
 \end{split}
 </me>
@@ -356,16 +356,16 @@ Therefore, part (a) is true for \(p=1\).</p>
 \begin{split}
  G(S\uparrow (p+1);z) &amp;= G((S\uparrow p)\uparrow ;z)\\
 		&amp; = (G(S\uparrow p ;z)-(S\uparrow p)(0))/z \textrm{ by the basis}\\
-		&amp; = \frac{\frac{\left(G(S;z)-\sum_{k=0}^{p-1} S(k) z^k\right)}{z^p}-S(p)}{z}
+		&amp; = \frac{\frac{(G(S;z)-\sum_{k=0}^{p-1} S(k) z^k)}{z^p}-S(p)}{z}
 \end{split}
 </me>
 
-by the induction hypothesis. Now write \(S(p)\) in the last expression above as \(\left(S(r)z^p \right)/z^p\) so that it fits into the finite summation:
+by the induction hypothesis. Now write \(S(p)\) in the last expression above as \((S(r)z^p )/z^p\) so that it fits into the finite summation:
 
 <me>
 \begin{split}
- G(S\uparrow (p+1);z) &amp; =\left.\left(\frac{G(S;z)-\sum_{k=0}^p S(k) z^k}{z^p}\right)\right/z\\
-					&amp; = \left(G(S;z)-\sum_{k=0}^p S(k) z^k\right)/z^{p+1}
+ G(S\uparrow (p+1);z) &amp; =\left.(\frac{G(S;z)-\sum_{k=0}^p S(k) z^k}{z^p})\right/z\\
+					&amp; = (G(S;z)-\sum_{k=0}^p S(k) z^k)/z^{p+1}
 \end{split}
 </me>
 </p>
@@ -378,7 +378,7 @@ by the induction hypothesis. Now write \(S(p)\) in the last expression above as 
 <p>The most basic tool used to express generating functions in closed form is the closed form expression for the geometric series, which is an expression
 of the form \(a + a r + a r^2+ \cdots\). It can either be terminated or extended infinitely.</p>
 <p>Finite Geometric Series: 
-<mdn><mrow xml:id="finite-geometric-series">a + a r + a r^2+ \cdots +a r^n= a\left(\frac{1-r^{n+1}}{1-r}\right)
+<mdn><mrow xml:id="finite-geometric-series">a + a r + a r^2+ \cdots +a r^n= a(\frac{1-r^{n+1}}{1-r})
 </mrow></mdn> </p>
 <p>Infinite Geometric Series:
 <mdn><mrow xml:id="infinite-geometric-series">a + a r + a r^2+ \cdots = \frac{a}{1-r}
@@ -437,7 +437,7 @@ We recognize this fraction as the sum of the infinite geometric series with \(a 
 \begin{array}{cc}
  C(n;k) &amp; 0\leq k\leq n \\
  0 &amp; k>n \\
-\end{array}\right.</m></cell><cell><m> G(S;z)=(1+z)^n</m></cell></row>
+\end{array}</m></cell><cell><m> G(S;z)=(1+z)^n</m></cell></row>
 <row><cell><m></m></cell><cell><m></m></cell></row>
 <row><cell><m></m></cell><cell><m></m></cell></row>
 </tabular>
@@ -466,7 +466,7 @@ Expand and collect all terms involving \(G(S;z)\) on one side of the equation:
 
 \(G(S;z) + 3z G(S;z) - 4z^2 G(S;z) = 3 + 7z\) 
 
-\(\left(1 + 3z - 4z^2 \right)G(S;z)= 3 + 7z\) 
+\((1 + 3z - 4z^2 )G(S;z)= 3 + 7z\) 
 
 Therefore,
 
@@ -487,21 +487,21 @@ Therefore, \(A + B = 3\) and \(4B - A = 7\). The solution of this set of equatio
 
 \(\frac{2}{1-z}\) is the generating function of \(S_2(n) = 2(1)^n = 2\).
 
-In conclusion, since \(G(S;z) = G\left(S_1;z\right) + G\left(S _2;z\right)\), \(S(n) = 2 + (-4)^n\).
+In conclusion, since \(G(S;z) = G(S_1;z) + G(S _2;z)\), \(S(n) = 2 + (-4)^n\).
 </p></li>
 </ol></p>
 </example>
 
 <example xml:id="example-counting-application"><title>An Application to Counting</title><p> Let \(A = \{a, b, c, d, e\}\) and let \(A^*\) be the set of all strings of length zero or more that can be made using each of the elements of <m>A</m> zero or more times. By the generalized rule of products, there are \(5^n\) such strings that have length \textit{
 n}, \(n\geq 0\), Suppose that \(X_n\) is the set of strings of length <m>n</m> with the property that all of the <m>a</m>'s and \textit{ b'}s precede all of the <m>c</m>'s, <m>d</m>'s, and <m>e</m>'s. Thus \(\text{aaabde} \in  X_6\), but \(\text{abcabc} \notin  X_6\). Let \(R(n)
-=\left|X_n\right|\).A closed form expression for <m>R</m> can be obtained by recognizing <m>R</m> as the convolution of two sequences.
+=\lvert X_n\rvert \).A closed form expression for <m>R</m> can be obtained by recognizing <m>R</m> as the convolution of two sequences.
 To illustrate our point, we will consider the calculation of \(R(6)\).</p>
 
 <p>Note that if a string belongs to \(X_6\), it starts with <m>k</m> characters from \(\{a, b\}\) and is followed by \(6 - k\) characters from \(\{c,
 d, e\}\). Let \(S(k)\) be the number of strings of <m>a</m>'s and <m>b</m>'s with length <m>k</m> and let \(T(k)\) be the number of strings
 of <m>c</m>'s, <m>d</m>'s, and <m>e</m>'s with length <m>k</m>. By the generalized rule of products, \(S(k) = 2^k\) and \(T(k) = 3^k\).
 Among the strings in \(X_6\) are the ones that start with two <m>a</m>'s and <m>b</m>'s and end with <m>c</m>'s, <m>d</m>'s, and \textit{
-e}'s. There are \(S(2)T(4)\) such strings. By the law of addition, \(\left.\left|X_6\right| =R(6)=S(0)T(6)+S(1)T(5)+\cdots +S(5)T(1)+S(6)T(0\right)\).
+e}'s. There are \(S(2)T(4)\) such strings. By the law of addition, \(\left.\lvert X_6\rvert  =R(6)=S(0)T(6)+S(1)T(5)+\cdots +S(5)T(1)+S(6)T(0)\).
 Note that the sixth term of R is the sixth term of the convolution of <m>S</m> with <m>T</m>, \(S*T\). Think about the general situation for
 a while and it should be clear that \(R =S*T\). Now, our course of action will be to:</p>
  <p><ol label="a">
@@ -561,7 +561,7 @@ has a non-negative integer associated with it. Finally, define a frequency funct
 <p>Now, based on these assumptions, we can define the problems that can be solved. If a process <m>P</m> is defined as a sequence of actions \(P_1,P_2,\ldots
 ,P_m\) as above, and if the outcome of <m>P</m>, which would be an element of \(X_1\times X_2\times \cdots \times X_m\), is quantified by
 
- \[Q\left(a_1,a_2, \ldots , a_m\right)= \sum_{k=1}^m Q_k\left(a_k\right)\]
+ \[Q(a_1,a_2, \ldots , a_m)= \sum_{k=1}^m Q_k(a_k)\]
 
 
 
@@ -569,7 +569,7 @@ then the frequency function, <m>F</m>, for <m>P</m> is the convolution of the fr
 which has a generating function equal to the product of the generating functions of the frequency functions \(F_1\), \(F_2\), <m>\ldots</m>, \(F_m\).  That is,
 
 <me>
-G(F;z) =G\left(F_1;z\right)G\left(F_2;z\right) \cdots \left(F_m;z\right)
+G(F;z) =G(F_1;z)G(F_2;z) \cdots (F_m;z)
 </me>
 
 </p>
@@ -580,12 +580,12 @@ one way, with two 1's. There are two sequences that yield a sum of 3: 1-2 and 2-
 12 can be obtained, we set up the situation as follows. For \(j = 1, 2\);\(P_j\) is the rolling of the die for the \(j^{\text{th}}\) time. \(X_j
 = \{1, 2, . . . , 6\}\) and \(Q_j : X_j \rightarrow \{0, 1, 2, 3,\ldots \}\) is defined by \(Q_j(x) = x\). Since each number appears on a die exactly once,
 the frequency function is \(F_j(k)=1\) if \(1 \leq  k \leq  6\), and \(F_j(k) = 0\) otherwise. The process of rolling the die two times is quantified
-by adding up the \(Q_j's\); that is, \(Q\left(a_1, a_2\right) =Q_{1}\left(a_1\right)+Q_2\left(a_2\right)\) . The generating function for the
+by adding up the \(Q_j's\); that is, \(Q(a_1, a_2) =Q_{1}(a_1)+Q_2(a_2)\) . The generating function for the
 frequency function of rolling the die two times is then
 
 <me>
 \begin{split}
-G(F; z) &amp; = G\left(F_1;z\right)G\left(F_2;z\right)\\
+G(F; z) &amp; = G(F_1;z)G(F_2;z)\\
 		&amp;  = (z^6+z^5+z^4+z^3+z^2+z)^2\\
 		&amp; =z^{12}+2 z^{11}+3 z^{10}+4 z^9+5 z^8+6 z^7+5 z^6+4 z^5+3 z^4+2
 z^3+z^2
@@ -607,13 +607,13 @@ the committee be made up? One example of a valid committee would be 4 A's, 4 B's
 
 
 Let \(P_A\) be the action of deciding how many members (not who) from Section A will serve on the committee. \(X_A= \{3, 4, 5\}\) and \(Q_A(k)=k\).
-{ }The frequency function, \(F_A\) , is defined by \(F_A(k)=1\) if \(k\in X_k\) , with \(F_A(k)=0\) otherwise. \(G\left(F_A;z\right)\) is then \(z^3+
-z^4+z^5\) . Similarly, \(G\left(F_B;z\right) =z^2+ z^3+ z ^4 + z^5= G\left(F_C ;z\right)\). Since the committee must have 11 members, our answer
-will be the coefficient of \(z^{11}\) in \(G\left(F_A;z\right)G\left(F_B;z\right)G\left(F_C;z\right)\), which is 10:
+{ }The frequency function, \(F_A\) , is defined by \(F_A(k)=1\) if \(k\in X_k\) , with \(F_A(k)=0\) otherwise. \(G(F_A;z)\) is then \(z^3+
+z^4+z^5\) . Similarly, \(G(F_B;z) =z^2+ z^3+ z ^4 + z^5= G(F_C ;z)\). Since the committee must have 11 members, our answer
+will be the coefficient of \(z^{11}\) in \(G(F_A;z)G(F_B;z)G(F_C;z)\), which is 10:
 
 
 
-\(G\left(F_A;z\right)G\left(F_B;z\right)G\left(F_C;z\right)=\left(z^3+ z^4+z^5\right)\left(z^2+ z^3+ z ^4 + z^5\right)^2\\
+\(G(F_A;z)G(F_B;z)G(F_C;z)=(z^3+ z^4+z^5)(z^2+ z^3+ z ^4 + z^5)^2\\
 \\
 \quad =z^{15}+3 z^{14}+6 z^{13}+9 z^{12}+10 z^{11}+9 z^{10}+6 z^9+3 z^8+z^7\)</p></example>
  
@@ -660,8 +660,8 @@ will be the coefficient of \(z^{11}\) in \(G\left(F_A;z\right)G\left(F_B;z\right
 <li><p> The Fibonacci sequence: \(F(k + 2) = F(k + 1) + F(k)\), \(k \geq  0\), with \(F(0) = F(1) = 1\).</p></li>
 </ol></p>
 </statement><answer><p><ol label="a"><li><p> \(1/(1-9z)\) </p></li>
-<li><p> \((2-10z)\left/\left(1-6z+5z^2\right)\right.\)</p></li>
-<li><p> \(1\left/\left(1-z-z^2\right)\right.\)</p></li>
+<li><p> \((2-10z)\left/(1-6z+5z^2)\)</p></li>
+<li><p> \(1\left/(1-z-z^2)\)</p></li>
 </ol></p></answer></exercise>
 
 <exercise number="4"><statement><p>Find closed form expressions for the generating functions of the following sequences:</p>
