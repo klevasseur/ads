@@ -1,6 +1,6 @@
 %**************************************%
 %* Generated from MathBook XML source *%
-%*    on 2016-08-13T10:01:07-04:00    *%
+%*    on 2016-08-13T10:39:01-04:00    *%
 %*                                    *%
 %*   http://mathbook.pugetsound.edu   *%
 %*                                    *%
@@ -111,7 +111,6 @@
 %% Style is like a theorem, and for statements without proofs
 %% Numbering: all theorem-like numbered consecutively
 %% i.e. Corollary 4.3 follows Theorem 4.2
-\newtheorem{algorithm}[theorem]{Algorithm}
 %% Definition-like environments, normal text
 %% Numbering is in sync with theorems, etc
 \theoremstyle{definition}
@@ -129,7 +128,43 @@
 \theoremstyle{definition}
 \newtheorem{exercise}[theorem]{Exercise}
 %% Localize LaTeX supplied names (possibly none)
+\renewcommand*{\proofname}{Proof}
 \renewcommand*{\chaptername}{Chapter}
+%% Equation Numbering
+%% Controlled by  numbering.equations.level  processing parameter
+\numberwithin{equation}{section}
+%% For improved tables
+\usepackage{array}
+%% Some extra height on each row is desirable, especially with horizontal rules
+%% Increment determined experimentally
+\setlength{\extrarowheight}{0.2ex}
+%% Define variable thickness horizontal rules, full and partial
+%% Thicknesses are 0.03, 0.05, 0.08 in the  booktabs  package
+\makeatletter
+\newcommand{\hrulethin}  {\noalign{\hrule height 0.04em}}
+\newcommand{\hrulemedium}{\noalign{\hrule height 0.07em}}
+\newcommand{\hrulethick} {\noalign{\hrule height 0.11em}}
+%% We preserve a copy of the \setlength package before other
+%% packages (extpfeil) get a chance to load packages that redefine it
+\let\oldsetlength\setlength
+\newlength{\Oldarrayrulewidth}
+\newcommand{\crulethin}[1]%
+{\noalign{\global\oldsetlength{\Oldarrayrulewidth}{\arrayrulewidth}}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{0.04em}}\cline{#1}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{\Oldarrayrulewidth}}}%
+\newcommand{\crulemedium}[1]%
+{\noalign{\global\oldsetlength{\Oldarrayrulewidth}{\arrayrulewidth}}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{0.07em}}\cline{#1}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{\Oldarrayrulewidth}}}
+\newcommand{\crulethick}[1]%
+{\noalign{\global\oldsetlength{\Oldarrayrulewidth}{\arrayrulewidth}}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{0.11em}}\cline{#1}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{\Oldarrayrulewidth}}}
+%% Single letter column specifiers defined via array package
+\newcolumntype{A}{!{\vrule width 0.04em}}
+\newcolumntype{B}{!{\vrule width 0.07em}}
+\newcolumntype{C}{!{\vrule width 0.11em}}
+\makeatother
 %% Figures, Tables, Listings, Floats
 %% The [H]ere option of the float package fixes floats in-place,
 %% in deference to web usage, where floats are totally irrelevant
@@ -152,36 +187,16 @@
 \makeatletter
 \let\c@figure\c@theorem
 \makeatother
+% Table environment setup so that it no longer floats
+\SetupFloatingEnvironment{table}{fileext=lot,placement={H},within=section,name=Table}
+% tables have the same number as theorems: http://tex.stackexchange.com/questions/16195/how-to-make-equations-figures-and-theorems-use-the-same-numbering-scheme 
+\makeatletter
+\let\c@table\c@theorem
+\makeatother
 %% Raster graphics inclusion, wrapped figures in paragraphs
 %% \resizebox sometimes used for images in side-by-side layout
 \usepackage{graphicx}
 %%
-%% Program listing support, for inline code, Sage code
-\usepackage{listings}
-%% We define the listings font style to be the default "ttfamily"
-%% To fix hyphens/dashes rendered in PDF as fancy minus signs by listing
-%% http://tex.stackexchange.com/questions/33185/listings-package-changes-hyphens-to-minus-signs
-\makeatletter
-\lst@CCPutMacro\lst@ProcessOther {"2D}{\lst@ttfamily{-{}}{-{}}}
-\@empty\z@\@empty
-\makeatother
-\ifthenelse{\boolean{xetex}}{}{%
-%% begin: pdflatex-specific listings configuration
-%% translate U+0080 - U+00F0 to their textmode LaTeX equivalents
-%% Data originally from https://www.w3.org/Math/characters/unicode.xml, 2016-07-23
-%% Lines marked in XSL with "$" were converted from mathmode to textmode
-\lstset{extendedchars=true}
-\lstset{literate={ }{{~}}{1}{¡}{{\textexclamdown }}{1}{¢}{{\textcent }}{1}{£}{{\textsterling }}{1}{¤}{{\textcurrency }}{1}{¥}{{\textyen }}{1}{¦}{{\textbrokenbar }}{1}{§}{{\textsection }}{1}{¨}{{\textasciidieresis }}{1}{©}{{\textcopyright }}{1}{ª}{{\textordfeminine }}{1}{«}{{\guillemotleft }}{1}{¬}{{\textlnot }}{1}{­}{{\-}}{1}{®}{{\textregistered }}{1}{¯}{{\textasciimacron }}{1}{°}{{\textdegree }}{1}{±}{{\textpm }}{1}{²}{{\texttwosuperior }}{1}{³}{{\textthreesuperior }}{1}{´}{{\textasciiacute }}{1}{µ}{{\textmu }}{1}{¶}{{\textparagraph }}{1}{·}{{\textperiodcentered }}{1}{¸}{{\c{}}}{1}{¹}{{\textonesuperior }}{1}{º}{{\textordmasculine }}{1}{»}{{\guillemotright }}{1}{¼}{{\textonequarter }}{1}{½}{{\textonehalf }}{1}{¾}{{\textthreequarters }}{1}{¿}{{\textquestiondown }}{1}{À}{{\`{A}}}{1}{Á}{{\'{A}}}{1}{Â}{{\^{A}}}{1}{Ã}{{\~{A}}}{1}{Ä}{{\"{A}}}{1}{Å}{{\AA }}{1}{Æ}{{\AE }}{1}{Ç}{{\c{C}}}{1}{È}{{\`{E}}}{1}{É}{{\'{E}}}{1}{Ê}{{\^{E}}}{1}{Ë}{{\"{E}}}{1}{Ì}{{\`{I}}}{1}{Í}{{\'{I}}}{1}{Î}{{\^{I}}}{1}{Ï}{{\"{I}}}{1}{Ð}{{\DH }}{1}{Ñ}{{\~{N}}}{1}{Ò}{{\`{O}}}{1}{Ó}{{\'{O}}}{1}{Ô}{{\^{O}}}{1}{Õ}{{\~{O}}}{1}{Ö}{{\"{O}}}{1}{×}{{\texttimes }}{1}{Ø}{{\O }}{1}{Ù}{{\`{U}}}{1}{Ú}{{\'{U}}}{1}{Û}{{\^{U}}}{1}{Ü}{{\"{U}}}{1}{Ý}{{\'{Y}}}{1}{Þ}{{\TH }}{1}{ß}{{\ss }}{1}{à}{{\`{a}}}{1}{á}{{\'{a}}}{1}{â}{{\^{a}}}{1}{ã}{{\~{a}}}{1}{ä}{{\"{a}}}{1}{å}{{\aa }}{1}{æ}{{\ae }}{1}{ç}{{\c{c}}}{1}{è}{{\`{e}}}{1}{é}{{\'{e}}}{1}{ê}{{\^{e}}}{1}{ë}{{\"{e}}}{1}{ì}{{\`{\i}}}{1}{í}{{\'{\i}}}{1}{î}{{\^{\i}}}{1}{ï}{{\"{\i}}}{1}{ð}{{\dh }}{1}{ñ}{{\~{n}}}{1}{ò}{{\`{o}}}{1}{ó}{{\'{o}}}{1}{ô}{{\^{o}}}{1}{õ}{{\~{o}}}{1}{ö}{{\"{o}}}{1}{÷}{{\textdiv }}{1}{ø}{{\o }}{1}{ù}{{\`{u}}}{1}{ú}{{\'{u}}}{1}{û}{{\^{u}}}{1}{ü}{{\"{u}}}{1}{ý}{{\'{y}}}{1}{þ}{{\th }}{1}{ÿ}{{\"{y}}}{1}}
-%% end: pdflatex-specific listings configuration
-}
-%% End of generic listing adjustments
-%% Sage's blue is 50%, we go way lighter (blue!05 would work)
-\definecolor{sageblue}{rgb}{0.95,0.95,1}
-%% Sage input, listings package: Python syntax, boxed, colored, line breaking
-%% Indent from left margin, flush at right margin
-\lstdefinestyle{sageinput}{language=Python,breaklines=true,breakatwhitespace=true,basicstyle=\small\ttfamily,columns=fixed,frame=single,backgroundcolor=\color{sageblue},xleftmargin=4ex}
-%% Sage output, similar, but not boxed, not colored
-\lstdefinestyle{sageoutput}{language=Python,breaklines=true,breakatwhitespace=true,basicstyle=\small\ttfamily,columns=fixed,xleftmargin=4ex}
 %% Multiple column, column-major lists
 \usepackage{multicol}
 %% More flexible list management, esp. for references and exercises
@@ -382,7 +397,7 @@ of the other sets of numbers that we will use frequently are: %
 %
 \par
 The important fact to keep in mind in set notation, or in any mathematical notation, is that it is meant to be a help, not a hindrance. We hope that notation will assist us in a more complete understanding of the collection of objects under consideration and will enable us to describe it in a concise manner. However, brevity of notation is not the aim of sets. If you prefer to write \(a\in \mathbb{Z}\) and \(b\in \mathbb{Z}\) instead of \(a, b\in \mathbb{Z}\), you should do so. Also, there are frequently many different, and equally good, ways of describing sets. For example, \(\left\{x\in
-\mathbb{R} \mid x^{2}-5x+6\right.=0\right\}\) and \(\left\{x \left| x\in \mathbb{R}, x^{2 }-5x+6\right.=0\right\}\) both describe the solution set \(\{2, 3\}\). 
+\mathbb{R} \mid x^{2}-5x+6=0\right\}\) and \(\left\{x \lvert  x\in \mathbb{R}, x^{2 }-5x+6=0\right\}\) both describe the solution set \(\{2, 3\}\). 
 %
 \par
 A proper definition of the real numbers is beyond the scope of this text. It is sufficient to think of the real numbers as the set of points on a
@@ -571,305 +586,711 @@ C Exercises%
 \end{exercisegroup}
 \par\smallskip\noindent
 \typeout{************************************************}
-\typeout{Section 1.2 Basic Set Operations  }
+\typeout{Section 1.2 Generating Functions}
 \typeout{************************************************}
-\section[Basic Set Operations  ]{Basic Set Operations  }\label{Basic_Set_Operations}
-\index{Basic Set Operations  }\typeout{************************************************}
-\typeout{Subsection 1.2.1 Definitions}
+\section[Generating Functions]{Generating Functions}\label{s-generating-functions}
+\index{Generating Functions}\typeout{************************************************}
+\typeout{Introduction  }
 \typeout{************************************************}
-\subsection[Definitions]{Definitions}\label{subsection-3}
-\begin{definition}[ Intersection]\label{def-intersection}
-\index{Intersection}\label{notation-6}
- Let \(A\) and \(B\) be sets. The intersection of \(A\) and \(B\) (denoted by \(A \cap  B\)) is the set of all elements
-that are in both \(A\) and \(B\). That is, \(A \cap  B = \{x:x \in  A \textrm{ and } x \in  B\}\). %
-\end{definition}
-\begin{example}[Some Intersections]\label{some_intersections}
+This section contains an introduction to the topic of generating functions and how they are used to solve recurrence relations, among other problems.
+Methods that employ generating functions are based on the concept that you can take a problem involving sequences and translate it into a problem
+involving generating functions. Once you've solved the new problem, a translation back to sequences gives you a solution of the original problem.%
+\par
+This section covers:%
+\par
 \leavevmode%
+\begin{enumerate}[label=\arabic*]
+\item\hypertarget{li-58}{}The definition of a generating function;%
+\item\hypertarget{li-59}{}Solution of a recurrence relation using generating functions to identify the skills needed to use generating functions;\\%
+\item\hypertarget{li-60}{}An introduction and/or review of the skills identified in point b;\\%
+\item\hypertarget{li-61}{}Some applications of generating functions.%
+\end{enumerate}
+%
+\typeout{************************************************}
+\typeout{Subsection 1.2.1 Definition}
+\typeout{************************************************}
+\subsection[Definition]{Definition}\label{ss-what-is-a-generating-function}
+\begin{definition}[Generating Function of a Sequence]\label{def-generating-function}
+\index{Generating Function}\label{notation-6}
+The generating function of a sequence S with terms \(S_0,S_1 ,S_2, \dots \),  is the infinite sum
+ \[G(S;z)=\sum_{n=0}^{\infty} S_n z^n=S_0+S_1 z+S_2 z^2+S_3 z^3+\cdots\]
+The domain and codomain of generating functions will not be of any concern to us since we will only be performing algebraic operations on them.%
+\end{definition}
+\begin{example}[First Examples]\label{ex-first-gf-examples}
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-62}{} If \(S_n = 3^n\),\(n \geq  0\), then
+
+\(G(S;z) = 1 + 3z + 9z^2 + 27z^3 +\cdots \\
+\\
+\quad =\sum_{n=0}^{\infty} 3^n z^n\\
+\\
+\quad =\sum_{n=0}^{\infty} (3 z)^n\)
+
+We can get a closed form expression for \(G(S;z)\) by observing that \(G(S;z) - 3z G(S;z) = 1\). Therefore,
+
+\(G(S;z) =\frac{1}{1-3 z}\).%
+\item\hypertarget{li-63}{}Finite sequences have generating functions. For example, the sequence of binomial coefficients \(C(n; 0)\), \(C(n; 1)\), \(\ldots\),\(C(n;
+n)\), \(n \geq  1\) has generating function
+
+\(G(C(n; \cdot ); z) = C(n; 0) + C(n; 1)z +\cdots  + C(n; n)z^n\\
+\\
+\quad \quad = \sum_{k=0}^{\infty} C(n;k) z^k\\
+\\
+\quad \quad =(1+z)^n\)
+
+by application of the binomial formula.%
+\item\hypertarget{li-64}{} If \(Q(n) = n^2\),
+
+\(G(Q;z)=\sum_{n=0}^{\infty} n^2 z^n=\sum_{k=0}^{\infty} k^2 z^k\)
+
+Note that the index that is used in the summation has no significance. Also, note that the lower limit of the summation could start at 1 since \(Q(0)=0\).%
+\end{enumerate}
+%
+\end{example}
+\typeout{************************************************}
+\typeout{Subsection 1.2.2 Solution of a Recurrence Relation Using Generating Functions}
+\typeout{************************************************}
+\subsection[Solution of a Recurrence Relation Using Generating Functions]{Solution of a Recurrence Relation Using Generating Functions}\label{ss-solution-of-rr-using-generating-functions}
+We illustrate the use of generating functions by solving
+ \(S(n) - 2S(n - 1) - 3S(n - 2) = 0\), \(n \geq  2\), with \(S(0) = 3\) and \(S(1) = 1\).%
+\par
+\leavevmode%
+\begin{enumerate}[label=\arabic*]
+\item\hypertarget{li-65}{} Translate the recurrence relation into an equation about generating functions.%
+\par
+Let \(V(n) = S(n) - 2S (n - 1) - 3S (n - 2)\), \(n \geq  2\), with \(V(0) = 0\) and \(V(1) = 0\). Therefore,
+\[G(V;z) = 0 + 0z +\sum_{n=2}^{\infty}  (S(n) - 2S (n - 1) - 3S (n - 2)) z^n= 0\]
+%
+\item\hypertarget{li-66}{}Solve for the generating function of the unknown sequence,\(G(S,z) = \sum_{n=0}^{\infty} S_n z^n\).
+ \begin{equation*}
+ \begin{split}
+ 0 & =\sum_{n=2}^{\infty}  (S(n) - 2S (n - 1) - 3S (n - 2)) z^n\\
+ 	& =\sum_{n=2}^{\infty} S(n) z^n-2 (\sum_{n=2}^{\infty
+} S(n-1) z^n)-3(\sum_{n=2}^{\infty} S(n-2) z^n)\]\\
+\end{split}
+\end{equation*}
+%
+\par
+Close examination of the three sums above shows:%
+\par
+%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-67}{}
+\begin{equation*}
+\begin{split}
+\sum_{n=2}^{\infty} S_n z^n &=\sum_{n=0}^{\infty} S_n z^n - S(0)-S(1)z\\
+			&= G(S;z)-3-z\\
+\end{split}
+\end{equation*}
+since \(S(0)=3\) and \(S(1)=1\).%
+\item\hypertarget{li-68}{}
+\begin{equation*}
+\begin{split}
+\sum_{n=2}^{\infty} S(n-1) z^n &=z(\sum_{n=2}^{\infty} S(n-1) z^{n-1})\\
+		& =z(\sum_{n=1}^{\infty} S(n) z^n)\\
+		& = z(\sum_{n=0}^{\infty} S(n) z^n-S(0))\\
+		&= z(G(S;z)-3\\\
+\end{split}
+\end{equation*}
+%
+\item\hypertarget{li-69}{}
+\begin{equation*}
+\begin{split}
+\sum_{n=2}^{\infty} S(n-2) z^n  & = z^2(\sum_{n=2}^{\infty} S(n-2) z^{n-2})\\
+	& =z^2G(S;z)\\
+\end{split}
+\end{equation*}
+%
+\par
+Therefore, 
+\begin{equation*}
+\begin{split}
+&(G(S;z)-3-z)-2z(G(S;z)-3)-3z^2G(S;z)=0\\
+	 & \Rightarrow G(S;z)-2z G(S;z)-3z^2G(S;z)=3 - 5z\\
+		&\Rightarrow G(S;z)=\frac{3-5z}{1-2z-3z^2}\\
+\end{split}
+\end{equation*}
+%
+\end{enumerate}
+%
+\item\hypertarget{li-70}{}Determine the sequence whose generating function is the one we got in Step 2.%
+\par
+For our example, we need to know one general fact about the closed form expression of an exponential sequence (a proof will be given later):
+\begin{gather}
+T(n)=b a^n ,n\geq 0 \Leftrightarrow G(T;z)=\frac{b}{1-a z} \label{gf-of-exp}
+\end{gather}
+%
+\par
+Now, in order to recognize \(S\) in our example, we must write our closed form expression for \(G(S;z)\) as a sum of terms like \(G(T;z)\) above. Note that the denominator of \(G(S;z)\) can be factored:
+
+ \[G(S;z)=\frac{3-5z}{1-2z-3z^2} =\frac{3-5z}{(1-3z)(1+z)}\]
+
+If you look at this last expression for \(G(S;z)\) closely, you can imagine how it could be the result of addition of two fractions,
+\begin{gather}
+\frac{3-5z}{(1-3z)(1+z)} = \frac{A}{1-3z}+ \frac{B}{1+z}
+\label{eq-pf}
+\end{gather}
+where \(A\) and \(B\) are two real numbers that must be determined. Starting on the right of \hyperref[eq-pf]{(\ref{eq-pf})}, it should be clear that the sum, for
+any \(A\) and \(B\), would look like the left-hand side. The process of finding values of \(A\) and \(B\) that make \hyperref[eq-pf]{(\ref{eq-pf})}
+true is called the \terminology{partial fractions decomposition} of the left-hand side:
+
+\begin{equation*}
+\begin{split}
+\frac{A}{1-3z}+ \frac{B}{1+z} &=\frac{A(1+z)}{(1-3z)(1+z)}+ \frac{B(1-3z)}{(1-3z)(1+z)}\\
+		& =\frac{(A+B)+(A-3B)z}{(1-3z)(1+z)}\\
+\end{split}
+\end{equation*}
+%
+\par
+Therefore,
+
+
+
+ \[\left\{
+\begin{array}{c}
+ A+B=3 \\
+ A-3B=-5 \\
+\end{array}
+\right\}\Rightarrow \left\{
+\begin{array}{c}
+ A=1 \\
+ B=2 \\
+\end{array}
+\right\}\]
+and
+
+\[G(S;z)= \frac{1}{1-3z}+ \frac{2}{1+z}\]
+
+%
+\par
+We can apply \hyperref[gf-of-exp]{(\ref{gf-of-exp})} to each term of G(S;z):%
+\par
+%
 \begin{itemize}[label=\textbullet]
-\item{} Let \(A = \{1, 3, 8\}\) and \(B = \{-9, 22, 3\}\). Then \(A \cap  B = \{3\}\).%
-\item{}Solving a system of simultaneous equations such as \(x + y = 7\) and \(x - y = 3\) can be viewed as an intersection. Let \(A = \{(x,y): x + y = 7, x,y \in  \mathbb{R}\}\) and \(B = \{(x,y): x - y = 3, x,y\in  \mathbb{R}\}\). These two sets are lines in the plane and their intersection,
-\(A \cap  B = \{(5, 2)\}\), is the solution to the system. %
-\item{} \(\mathbb{Z}\cap \mathbb{Q}=\mathbb{Z}\). %
-\item{}If \(A = \{3, 5, 9\}\) and \(B = \{-5, 8\}\), then \(A\cap  B =\emptyset\). %
+\item{}\(\frac{1}{1-3z}\) is the generating function for \(S_1(n)=1\cdot  3^n= 3^n\)%
+\item{}\(\frac{2}{1+z}\) is the generating function for \(S_2(n)=2(-1)^n\).%
 \end{itemize}
 %
-\end{example}
-\begin{definition}[ Disjoint Sets]\label{def-disjoint-sets}
-\index{Disjoint Sets}Two sets are disjoint if they have no elements in common (as in Example 1.2.1 d). That is, \(A\) and \(B\) are disjoint if \(A \cap  B = \emptyset\).%
-\end{definition}
-\begin{definition}[ Union]\label{def-union}
-\index{Union}\label{notation-7}
- Let \(A\) and \(B\) be sets. The union of \(A\) and \(B\) (denoted by \(A \cup  B\)) is the set of all elements that are
-in \(A\) or in \(B\) or in both A and B. That is, \(A\cup B= \{x:x \in  A\textrm{ or } x\in  B\}\). %
-\end{definition}
-It is important to note in the set-builder notation for \(A\cup B\), the word ``or'' is used in the inclusive sense; it includes the case where \( x\) is in both \(A\) and \(B\).%
-\begin{example}[Some Unions]\label{some_unions}
-\leavevmode%
-\begin{itemize}[label=\textbullet]
-\item{} If \(A = \{2, 5, 8\}\) and  \(B = \{7, 5, 22\}\), then \(A \cup  B = \{2, 5, 8, 7, 22\}\). %
-\item{} \(\mathbb{Z}\cup \mathbb{Q}=\mathbb{Q}.\) %
-\item{} \(A \cup \emptyset  = A\) for any set \(A\).%
-\end{itemize}
-%
-\end{example}
 \par
-Frequently, when doing mathematics, we need to establish a universe or set of elements under discussion. For example, the set \(A = \{x : 81x^4 -16 = 0 \}\) contains different elements depending on what kinds of numbers we allow ourselves to use in solving the equation \(81 x^4 -16 = 0\). This set of numbers would be our universe. For example, if the universe is the integers, then \(A\) is empty. If our universe is the
-rational numbers, then \( A\) is \(\{2/3, -2/3\}\) and if the universe is the complex numbers, then A is \(\{2/3, -2/3, 2i/3, - 2i/3\}\).
+Therefore, \(S(n)=3^n+ 2(-1)^n\).%
+\end{enumerate}
 %
-\begin{definition}[ Universe]\label{universe.}
-\index{Universe} The universe, or universal set, is the set of all elements under discussion for possible membership
-in a set. We normally reserve the letter \( U\) for a universe in general discussions. %
-\end{definition}
+\par
+From this example, we see that there are several skills that must be mastered in order to work with generating functions. You must be able to:%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-73}{}Manipulate summation expressions and their indices (in Step 2).%
+\item\hypertarget{li-74}{}Solve algebraic equations and manipulate algebraic expressions, including partial function decompositions (Steps 2 and 3).%
+\item\hypertarget{li-75}{} Identify sequences with their generating functions (Steps 1 and 3).%
+\end{enumerate}
+%
+\par
+We will concentrate on the last skill first, a proficiency in the other skills is a product of doing as many exercises and reading as many examples as possible.%
+\par
+First, we will identify the operations on sequences and on generating functions.%
 \typeout{************************************************}
-\typeout{Subsection 1.2.2 Set Operations and their Venn Diagams }
+\typeout{Subsection 1.2.3 Operations on Sequences}
 \typeout{************************************************}
-\subsection[Set Operations and their Venn Diagams ]{Set Operations and their Venn Diagams }\label{subsection-4}
-When working with sets, as in other branches of mathematics, it is often quite useful to be able to draw a picture or diagram of the situation under consideration. A diagram of a set is called a Venn diagram. The universal set U is represented by the interior of a rectangle and the sets by disks inside the rectangle.%
-\begin{example}[Venn Diagram Examples]\label{venn_diagram_examples}
- \(A \cap  B\) is illustrated in \hyperref[venn_diagram_intersection]{\ref{venn_diagram_intersection}} by shading the appropriate region.%
-\leavevmode%
-\begin{figure}
-\centering
-\IfFileExists{images/sageplot-venn-intersection.pdf}%
-{\includegraphics[width=1\linewidth]{images/sageplot-venn-intersection.pdf}}%
-{\includegraphics[width=1\linewidth]{images/sageplot-venn-intersection.png}}
-\caption{Venn Diagram for the Intersection of Two Sets\label{venn_diagram_intersection}}
-\end{figure}
-\par
- The union \(A \cup  B\) is illustrated in \hyperref[venn_diagram_union]{\ref{venn_diagram_union}}.%
-\leavevmode%
-\begin{figure}
-\centering
-\IfFileExists{images/sageplot-venn-union.pdf}%
-{\includegraphics[width=1\linewidth]{images/sageplot-venn-union.pdf}}%
-{\includegraphics[width=1\linewidth]{images/sageplot-venn-union.png}}
-\caption{Venn Diagram for the union \(A \cup  B\) \label{venn_diagram_union}}
-\end{figure}
-\par
-In a Venn diagram, the region representing \(A \cap  B\) does not appear empty; however, in some instances it will represent the empty set. The same is true for any other region in a Venn diagram. 
-%
-\end{example}
-\begin{definition}[Complement of a set]\label{set_complement.}
-\index{Complement of a set}\label{notation-8}
+\subsection[Operations on Sequences]{Operations on Sequences}\label{ops-on-sequences}
+\begin{definition}[Operations on Sequences]\label{definition-6}
+\index{Sequences!Operations on,}\label{notation-7}
+\label{notation-8}
 \label{notation-9}
-Let \( A\) and \( B\) be sets. The complement of \( A\) relative to \( B\) (notation
-\(B - A\)) is the set of elements that are in \( B\) and not in \( A\). That is, \(B-A=\{x: x\in B \textrm{ and } x\notin A\}\). If \(
-U\) is the universal set, then \(U-A\) is denoted by \(A^c\) and is called simply the complement of \( A\). \(A^c=\{x\in U : x\notin A\}\). 
-%
+Let \(S\) and \(T\) be sequences of numbers and let \(c\) be a real number. Define the sum \(S + T\), the scalar product \(c S\), the product \(S T\), the convolution \(S*T\), the pop operation \(S\uparrow\) (read ``S pop''), and the push
+operation \(S\downarrow\) (read ``S push'') term-wise for \(k \geq  0\) by
+\begin{align}
+(S + T)(k) = S(k) + T(k)\label{seq-op-add}\\
+(c S)(k) = c S(k)\label{seq-op-sc-mult}\\
+(S \cdot T)(k) = S(k)T(k)\)\label{seq-op-mult}\\
+(S*T)(k) = \sum_{j=0}^k S(j) T(k-j)\)\label{seq-op-convolve}\\
+(S\uparrow )(k) = S(k+1)\)\label{seq-op-pop}\\
+(S\downarrow )(k)=\left\{\begin{array}{cc} 0 & \textrm{ if } k=0 \\ S(k-1) & \textrm{ if } k>0 \\\end{array}\)\\
+\end{array}\label{seq-op-push}
+\end{align}%
 \end{definition}
-\begin{example}[Some Complements]\label{complements}
+If one imagines a sequence to be a matrix with one row and an infinite number of columns, \(S + T\) and \(c S\) are exactly as in matrix addition
+and scalar multiplication. There is no obvious similarity between the other operations and matrix operations.%
+\par
+The pop and push operations can be understood by imagining a sequence to be an infinite stack of numbers with \(S(0)\) at the top, \(S(1)\) next,
+etc., as in \hyperref[fig-pop-push]{Figure~\ref{fig-pop-push}}a. The sequence \(S\uparrow\) is obtained by ``popping'' S(0) from the stack, leaving a stack as in \hyperref[fig-pop-push]{Figure~\ref{fig-pop-push}}b, with
+S(1) at the top, S(2) next, etc. The sequence S I is obtained by placing a zero at the top of the stack, resulting in a stack as in \hyperref[fig-pop-push]{Figure~\ref{fig-pop-push}}c.
+Keep these figures in mind when we discuss the pop and push operations.%
 \leavevmode%
 \begin{figure}
 \centering
-\IfFileExists{images/sageplot-venn-complement1.pdf}%
-{\includegraphics[width=1\linewidth]{images/sageplot-venn-complement1.pdf}}%
-{\includegraphics[width=1\linewidth]{images/sageplot-venn-complement1.png}}
-\caption{Venn Diagram for \(B - A\)\label{venn_diagram_complement1}}
+\includegraphics[width=1\linewidth]{images/fig-pop-push.png}
+\caption{Stack interpretation of pop and push operation\label{fig-pop-push}}
 \end{figure}
+\begin{example}[Some Sequence Operations]\label{ex-some-sequence-operations}
+If \(S(n) = n\), \(T(n) = n^2\), \(U(n) = 2^n\), and \(R(n) =n 2^n\) %
+\par
 \leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-65}{} Let \(U = \{1,2, 3, \text{...} , 10\}\) and \(A = \{2,4,6,8, 10\}\). Then \(U-A = \{1, 3, 5, 7, 9\}\) and \(A - U= \emptyset\)%
-\item\hypertarget{li-66}{} If \(U = \mathbb{R}\), then the complement of the rational numbers is the irrational numbers. 
-%
-\item\hypertarget{li-67}{}\(U^c= \emptyset\) and \(\emptyset ^c= U\). 
-%
-\item\hypertarget{li-68}{} The Venn diagram of \(B - A\) is represented in \hyperref[venn_diagram_complement1]{\ref{venn_diagram_complement1}}. %
-\item\hypertarget{li-69}{} The Venn diagram of \(A^c\) is represented in \hyperref[venn_diagram_complement2]{\ref{venn_diagram_complement2}}. %
-\item\hypertarget{li-70}{} If \(B\subseteq A\), then the Venn diagram of \(A- B\) is as shown in \hyperref[venn_diagram_complement3]{\ref{venn_diagram_complement3}}. %
-\item\hypertarget{li-71}{} In the universe of integers, the set of even integers, \(\{\ldots  , - 4,-2, 0, 2, 4,\ldots \}\), has the set of odd integers as its complement.%
+\item\hypertarget{li-76}{} \((S + T)(n) = n + n^2\)%
+\item\hypertarget{li-77}{}\((U + R)(n) = 2^n+ n 2^n= (1+n)2^n\)%
+\item\hypertarget{li-78}{}\((2 U)(n) = 2\cdot 2^n= 2^{n+1}\)%
+\item\hypertarget{li-79}{} \((\frac{1}{2}R)(n)= \frac{1}{2}n 2^n= n 2^{n-1}\)%
+\item\hypertarget{li-80}{} \((S\cdot T)(n) = n n^2 = n^3\)%
+\item\hypertarget{li-81}{}\((S*T)(n)= \sum_{j=0}^n S(j) T(n-j)= \sum_{j=0}^n j (n-j)^2\\
+\\
+\quad \quad =\sum_{j=0}^n ( j n^2-2 n j^2 + j^3)\\
+\\
+\quad \quad = n^2\sum_{j=0}^n j-2n \sum_{j=0}^n j^2 + \sum_{j=0}^n j ^3\\
+\\
+\quad \quad =n^{2 }(\frac{n (n+1)}{2})- 2n(\frac{(2n+1)(n+1)n}{6})+\frac{1}{4} n^2 (n+1)^2\\
+\\
+\quad \quad = \frac{n^2(n+1)(n-1)}{12}\)%
+\item\hypertarget{li-82}{}\((U*U)(n) =\sum_{j=0}^n U(j) U(n-j)\\
+\\
+\quad \quad =\sum_{j=0}^n 2^j 2^{n-j}\\
+\\
+\quad \quad = (n+1)2^n\)%
+\item\hypertarget{li-83}{} \((S\uparrow )(n)=n+1\)%
+\item\hypertarget{li-84}{}\((S\downarrow )(n)=\max (0,n-1)\)%
+\item\hypertarget{li-85}{} \(((S\downarrow )\downarrow )(n)= \max (0, n - 2)\)%
+\item\hypertarget{li-86}{} \((U\downarrow )(n)=\left\{
+\begin{array}{cc}
+ 2^{n-1} & \textrm{ if } n>0 \\
+ 0 & \textrm{ if } n=0 \\
+\end{array}
+\)%
+\item\hypertarget{li-87}{} \(((U\downarrow )\uparrow )(n)=(U\downarrow )(n+1)= 2^n= U(n)\)%
+\item\hypertarget{li-88}{} \(((U\uparrow )\downarrow ) (n)=\left\{
+\begin{array}{cc}
+ 0 & \textrm{ if } n = 0 \\
+ U(n) & \textrm{ if } n>0 \\
+\end{array}
+\)%
 \end{enumerate}
 %
-\leavevmode%
-\begin{figure}
-\centering
-\IfFileExists{images/sageplot-venn-complement2.pdf}%
-{\includegraphics[width=1\linewidth]{images/sageplot-venn-complement2.pdf}}%
-{\includegraphics[width=1\linewidth]{images/sageplot-venn-complement2.png}}
-\caption{Venn Diagram for \(A^{c}\)\label{venn_diagram_complement2}}
-\end{figure}
-\leavevmode%
-\begin{figure}
-\centering
-\IfFileExists{images/sageplot-venn-complement3.pdf}%
-{\includegraphics[width=1\linewidth]{images/sageplot-venn-complement3.pdf}}%
-{\includegraphics[width=1\linewidth]{images/sageplot-venn-complement3.png}}
-\caption{Venn Diagram for \(A^{c}\)\label{venn_diagram_complement3}}
-\end{figure}
 \end{example}
-\begin{definition}[ Symmetric Difference]\label{symmetric-difference.}
-\index{Symmetric Difference}\label{notation-10}
-Let A and B be sets. The symmetric difference of A and B (denoted by \(A\oplus B\)) is the set of all elements
-that are in A and B but not in both. That is, \(A \oplus  B = (A \cup  B) - (A \cap  B)\). %
+\par
+Note that \((U\downarrow )\uparrow \neq (U\uparrow )\downarrow\).%
+\begin{definition}[ Multiple Pop and Push]\label{def-multiple-pop-and-push}
+\index{Multiple Pop and Push:}\label{notation-10}
+\label{notation-11}
+If S is a sequence of numbers and \(p\) a positive integer greater than 1, define
+\[S\uparrow p = (S\uparrow (p - 1))\uparrow\textrm{ if }p \geq  2 \textrm{ and }S\uparrow 1 = S\uparrow\] 
+Similarly, define
+\[S\downarrow p = (S\downarrow (p - 1))\downarrow\)\textrm{ if }\(p \geq  2\textrm{ and }S\downarrow 1 = S\downarrow\]
+%
 \end{definition}
-\begin{example}[Some Symmetric Differences]\label{some_symmetric_differences}
+\par
+In general, \(S \uparrow p)(k) = S(k+p),\) and
+
+
+
+\begin{equation*}
+(S\downarrow p)(k)=\left\{
+   \begin{array}{cc}
+ 0 & \textrm{ if } k < p \\
+ S(k-p) & \textrm{ if } k\geq p \\
+\end{array}
+
+\end{equation*}
+%
+\typeout{************************************************}
+\typeout{Subsection 1.2.4 Operations on Generating Functions}
+\typeout{************************************************}
+\subsection[Operations on Generating Functions]{Operations on Generating Functions}\label{sss-operations-on-generating-functions}
+\index{Generating Functions!Operations on,}\begin{definition}[Operations on Generating Functions]\label{definition-8}
+\index{Generating Functions!Operations on,}If  \(G(z)=\sum_{k=0}^{\infty} a_k z^k\) and \(H(z) =\sum_{k=0}^{\infty} b_k z^k\)
+are generating functions and \(c\) is a real number, then the sum \(G + H\), scalar product \(c G\), product \(G H\), and monomial product \(z^p G\), \(p \geq  1\) are generating functions, where
+
+\begin{gather}
+(G + H)(z)=\sum_{k=0}^{\infty} (a_k+b_k) z^k\label{gf-sum}\\
+[(c G)(z)=\sum_{k=0}^{\infty} c a_k z^k\label{gf-scalarmult}\\
+(G H)(z) = \sum_{k=0}^{\infty} c z^k \textrm{ where } c_k= \sum_{j=0}^k a_jb_{k-j}\label{gf-product}\\
+(z^p G)(z) = z^p\sum_{k=0}^{\infty} a_k z^k=\sum_{k=0}^{\infty} a_k z^{k+p} = \sum_{n=p}^{\infty} a_{n-p} z^n\label{gf-shift}
+\end{gather}
+%
+\par
+The last sum is obtained by substituting \(n - p\) for \(k\) in the previous sum.%
+\end{definition}
+\begin{example}[Some operations on generating functions]\label{ex-some-gf-operations}
+If
+
+\(D(z) =\sum_{k=0}^{\infty} kz^k\) and \(H(z) =\sum_{k=0}^{\infty} 2^k z^k\) 
+
+then
+
+\((D + H)(z) =\sum_{k=0}^{\infty} (k+2^k) z^k\) 
+
+\((2H)(z)= \sum_{k=0}^{\infty} 2\cdot 2^kz^k =\sum_{k=0}^{\infty} 2^{k+1}z^k\)
+
+ \((z D)(z) = z\sum_{k=0}^{\infty} kz^k= \sum_{k=0}^{\infty} kz^{k+1}= \sum_{k=1}^{\infty} (k-1)
+z^k \quad = D(z)- \sum_{k=1}^{\infty} z^k\)
+
+\((D H)(z)=\sum_{k=0}^{\infty} (\sum_{j=0}^k j 2^{k-j})z^k\)
+
+\((H H)(z)= \sum_{k=0}^{\infty} (\sum_{j=0}^k 2^j2^{k-j}) z^k=\sum_{k=0}^{\infty} (k+1)2^k z^k\)%
+\par
+Note: \(D(z) = G(S;z)\), and \(H(z) = G(U;z)\) from Example 8.5.2.%
+\end{example}
+Now we establish the connection between the operations on sequences and generating
+functions. Let \(S\) and \(T\) be sequences and let \(c\) be a real number.
+
+\begin{gather}
+G(S+T;z)=G(S;z)+G(T;z)\label{gf-ops-1}\\
+G(cS;z)=c G(S;z)\label{gf-ops-2}\\
+ G(S*T;z)=G(S;z) G(T;z)\label{gf-ops-3}\\
+ G(S\uparrow ;z)=(G(S;z)-S(0))/z\label{gf-ops-4}\\
+ G(S\downarrow ;z)=z G(S;z)\label{gf-ops-5}
+\end{gather}%
+\par
+In words, \hyperref[gf-ops-1]{(\ref{gf-ops-1})} says that the generating function of the sum of two sequences equals the sum of the generating functions of those sequences. Take
+the time to write out the other four identities in your own words. From the previous examples, these identities should be fairly obvious, with the
+possible exception of the last two. We will prove \hyperref[gf-ops-4]{(\ref{gf-ops-4})} as part of the next theorem and leave the proof of \hyperref[gf-ops-5]{(\ref{gf-ops-5})} to the interested reader. Note that
+there is no operation on generating functions that is related to sequence multiplication; that is, \(G(S\cdot T;z)\) cannot be simplified.%
+\begin{theorem}[Generating functions related to Pop and Push]\label{gf-of-pop-push}
+If \(p > 1\),%
+\par
 \leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-72}{}Let \(A = \{1, 3, 8\}\) and \(B = \{2, 4, 8\}\). Then \(A \oplus  B = \{1, 2, 3, 4\}\). 
-%
-\item\hypertarget{li-73}{}\(A \oplus  0 = A\) and \(A \oplus  A = \emptyset\) for any set \(A\). 
-%
-\item\hypertarget{li-74}{}\(\mathbb{R} \oplus  \mathbb{Q}\) is the set of irrational numbers. 
-%
-\item\hypertarget{li-75}{}The Venn diagram of \(A \oplus  B\) is represented in \hyperref[venn_diagram_symmetric]{\ref{venn_diagram_symmetric}}.%
+\item\hypertarget{li-89}{}\(G(S\uparrow p;z) = (G(S;z) -\left.\sum_{k=0}^{p-1} S(k) z^k)/z^k\)%
+\item\hypertarget{li-90}{} \(G(S\downarrow p;z) = z^p G(S;z)\).%
 \end{enumerate}
 %
+\end{theorem}
+\begin{proof}\hypertarget{proof-1}{}
+We prove (a)  by induction and leave the proof of (b) to the reader.  %
+\par
+Basis: 
+\begin{equation*}
+\begin{split}
+  G(S\uparrow;z) &= \sum_{k=0}^{\infty} S(k+1) z^k\\
+  		& =\sum_{k=1}^{\infty} S(k) z^{k-1}\\
+  		& =\left.(\sum_{k=1}^{\infty} S(k) z^k)\right/z\\ 		
+  		& =\left.(S(0)+\sum_{k=1}^{\infty} S(k) z^k-S(0))\right/z\\
+  		& =(G(S;z)-S(0))/z\\
+\end{split}
+\end{equation*}
+
+Therefore, part (a) is true for \(p=1\).%
+\par
+Induction: Suppose that for some \(p\geq 1\), the statement in part (a) is true:
+
+\begin{equation*}
+\begin{split}
+ G(S\uparrow (p+1);z) &= G((S\uparrow p)\uparrow ;z)\\
+		& = (G(S\uparrow p ;z)-(S\uparrow p)(0))/z \textrm{ by the basis}\\
+		& = \frac{\frac{(G(S;z)-\sum_{k=0}^{p-1} S(k) z^k)}{z^p}-S(p)}{z}\\
+\end{split}
+\end{equation*}
+
+by the induction hypothesis. Now write \(S(p)\) in the last expression above as \((S(r)z^p )/z^p\) so that it fits into the finite summation:
+
+\begin{equation*}
+\begin{split}
+ G(S\uparrow (p+1);z) & =\left.(\frac{G(S;z)-\sum_{k=0}^p S(k) z^k}{z^p})\right/z\\
+					& = (G(S;z)-\sum_{k=0}^p S(k) z^k)/z^{p+1}\\
+\end{split}
+\end{equation*}
+%
+\par
+Therefore the statement is true for \(p+1\).\(\square\)%
+\end{proof}
+\typeout{************************************************}
+\typeout{Subsection 1.2.5 Closed Form Expressions for Generating Functions}
+\typeout{************************************************}
+\subsection[Closed Form Expressions for Generating Functions]{Closed Form Expressions for Generating Functions}\label{ss-closed-form-expressions-for-generating-functions}
+\index{Generating Functions!Closed form expressions for}The most basic tool used to express generating functions in closed form is the closed form expression for the geometric series, which is an expression
+of the form \(a + a r + a r^2+ \cdots\). It can either be terminated or extended infinitely.%
+\par
+Finite Geometric Series: 
+\begin{gather}
+a + a r + a r^2+ \cdots +a r^n= a(\frac{1-r^{n+1}}{1-r})
+\label{finite-geometric-series}
+\end{gather} %
+\par
+Infinite Geometric Series:
+\begin{gather}
+a + a r + a r^2+ \cdots = \frac{a}{1-r}
+\label{infinite-geometric-series}
+\end{gather} %
+\par
+Restrictions: 
+\(a\) and \(r\) represent constants and the right sides of the two equations apply under the following conditions:%
+\par
 \leavevmode%
-\begin{figure}
+\begin{enumerate}[label=\arabic*]
+\item\hypertarget{li-91}{}\(r\) must not equal 1 in the finite case. Note that \(a + a r + \cdots  a r^n = (n + 1)a\) if\(r = 1\).%
+\item\hypertarget{li-92}{} In the infinite case, the absolute value of \(r\) must be less than 1.%
+\end{enumerate}
+%
+\par
+These restrictions don't come into play with generating functions. We could derive \hyperref[finite-geometric-series]{(\ref{finite-geometric-series})} by noting that if \(S(n) = a + a r +\cdots  + a r^n\), \(n
+> 0\), then \(S(n) = r S(n - 1) + a\) (See Exercise 10 of Section 8.3). An alternative derivation was used in Section 8.4. We will take the same
+steps to derive \hyperref[infinite-geometric-series]{(\ref{infinite-geometric-series})}. Let \(x = a + a r + a r^2 + \cdots \).  Then
+
+\begin{equation*}r x =a r+ ar^2 +\cdots = x- a \Rightarrow x-rx=a \Rightarrow x=  \frac{a}{1-r}\end{equation*}
+%
+\begin{example}[Generating Functions involving Geometric Sums]\label{ex-geometric-sums}
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-93}{} If \(S(n) = 9\cdot 5^n\), \(n \geq  0\), \(G(S;z)\) is an infinite geometric series with \(a = 9\) and \(r = 5z\).Therefore,  \(G(S;z) = \frac{9}{1 - 5z}\).%
+\item\hypertarget{li-94}{} If \(T(n) = 4\), \(n \geq\)0, then \(G(T;z) = 4/(1 - z)\).%
+\item\hypertarget{li-95}{}If \(U(n) = 3(-1)^n\), then \(G(U;z) = 3/(1 + z)\).%
+\item\hypertarget{li-96}{}Let \(C(n) = S(n) + T(n) + U(n) = 9 \cdot  5^n + 4 + 3(-1)^n\).  Then
+
+\begin{equation*}
+\begin{split}
+G(C;z) & = G(S;z) + C(T;z) + G(U;z)\\
+		& = \frac{9}{1-5z} + \frac{4}{1-z}+ \frac{3}{1+z}\\
+		& = -\frac{14 z^2+34z-16}{5 z^3-z^2-5 z+1}\\
+\end{split}
+\end{equation*}%
+\par
+Given a choice between the last form of \(G(C;z)\) and the previous sum of three fractions, we would prefer leaving it as a sum of three functions.
+As we saw in an earlier example, a partial fractions decomposition of a fraction such as the last expression requires some effort to produce.%
+\item\hypertarget{li-97}{} If \(G(Q;z) = 34/(2 - 3z)\), then \(Q\) can be determined by multiplying the numerator and denominator by 1/2 to obtain \(\frac{17}{1-\frac{3}{2}z}\).
+We recognize this fraction as the sum of the infinite geometric series with \(a = 17\) and \(r = \frac{3}{2}z\). Therefore \(Q(n) = 17(3/2)^n\).%
+\item\hypertarget{li-98}{}If \(G(A;z) = (1 + z)^3\) , then we expand \((1 + z)^3\)to \(1 + 3z + 3z^2 + z^{3}\) . Therefore \(A(0) = 1\), \(A(1) = 3\) \(A(2)= 3\), \(A(3) = 1\), and, since there are no higher-powered terms, \(A(n) = 0\), \(n \geq  4\). A more concise way of describing \(A\) is \(A(k)
+= C(3;k)\), since \(C(n,k)\) is interpreted as 0 of \(k > n\).
+%
+\end{enumerate}
+%
+\end{example}
+\par
+\hyperref[table-gf-closed-form]{Table~\ref{table-gf-closed-form}} lists some closed form expressions for the generating functions of some common sequences.%
+\leavevmode%
+\begin{table}
 \centering
-\IfFileExists{images/sageplot-venn-symmetric.pdf}%
-{\includegraphics[width=1\linewidth]{images/sageplot-venn-symmetric.pdf}}%
-{\includegraphics[width=1\linewidth]{images/sageplot-venn-symmetric.png}}
-\caption{Venn Diagram for the symmetric difference \(A \oplus  B\)\label{venn_diagram_symmetric}}
-\end{figure}
+\begin{tabular}{cc}\hrulethick
+\(\)&\(\)\tabularnewline[0pt]
+ Sequence&Generating Function\tabularnewline[0pt]
+\(S(k)=b a^k\)&\(G(S;z)=\frac{b}{1-a z}\)\tabularnewline[0pt]
+\(S(k)=k\)&\(G(S;z)=\frac{z}{(1-z)^2}\)\tabularnewline[0pt]
+\(S(k)=b k a^k\)&\(G(S;z)=\frac{a b z}{(1-a z)^2}\)\tabularnewline[0pt]
+\(S(k) = \frac{1}{k!}\)&\(G(S;z)=e^z\)\tabularnewline[0pt]
+\(S(k) = \left\{
+\begin{array}{cc}
+ C(n;k) & 0\leq k\leq n \\
+ 0 & k>n \\
+\end{array}\)&\( G(S;z)=(1+z)^n\)\tabularnewline[0pt]
+\(\)&\(\)\tabularnewline[0pt]
+\(\)&\(\)
+\end{tabular}
+\caption{Closed Form Expressions of some Generating Functions\label{table-gf-closed-form}}
+\end{table}
+\begin{example}[Another Complete Solution]\label{ex-another-complete-solution}
+ Solve \(S(k) + 3S(k - 1) - 4S(k -2) = 0\), \(k\geq 2\), with \(S(0) = 3\) and \(S(1) = -2\). The solution will be derived using the same steps that were used earlier in this section, with one variation.%
+\par
+\leavevmode%
+\begin{enumerate}[label=\arabic*]
+\item\hypertarget{li-99}{}Translate to an equation about generating functions. First, we change the index of the recurrence relation by substituting \(n + 2\) for \(k\).
+The result is \(S(n + 2) + 3S(n + 1) - 4S(n) = 0\), \(n \geq  0\).Now, if \(V(n) = S(n + 2) + 35 (n + 1) - 4S(n)\), then \(V\) is the zero
+sequence, which has a zero generating function. Furthermore, \(V = S\uparrow 2+3(S\uparrow )-4 S\) . Therefore,
+
+\(0 = G(V;z) \\
+\\
+\quad = G(S\uparrow 2; z) + 3 G(S\uparrow ;z) - 4G(S;z) \\
+\\
+\quad = \frac{G(S;z) - S(0) - S(1)z }{z^2}+4 \frac{(G(S;z) - S(0))}{z} - 4G(S;z)\).%
+\item\hypertarget{li-100}{}We want to now solve the following equation for \(G(S;z)\):
+ \(\frac{G(S;z) - S(0) - S(1)z }{z^2}+4 \frac{(G(S;z) - S(0))}{z} - 4G(S;z) = 0\)
+
+Multiply by \(z^2\) :
+
+\(G(S;z) - 3 + 2z + 3z(G(S;z) - 3) - 4z^2 G(S;z) = 0\)
+
+Expand and collect all terms involving \(G(S;z)\) on one side of the equation:
+
+\(G(S;z) + 3z G(S;z) - 4z^2 G(S;z) = 3 + 7z\) 
+
+\((1 + 3z - 4z^2 )G(S;z)= 3 + 7z\) 
+
+Therefore,
+
+\(G(S;z)= \frac{3+7z}{1 + 3z - 4z^2}\)%
+\item\hypertarget{li-101}{} Determine S from its generating function.
+ \(1 + 3z - 4z^2 = (1 + 4z) (1 - z)\)
+thus a partial fraction decomposition of \(G(S;z)\) would be:
+
+\(\frac{A}{1+4z}+ \frac{B}{1-z}=\frac{A z-A-4 B z-B}{(z-1) (4 z+1)}\\
+\\
+\quad \quad =\frac{(A+B)+(4B-A)z}{(z-1) (4 z+1)}\)
+
+Therefore, \(A + B = 3\) and \(4B - A = 7\). The solution of this set of equations is \(A = 1\) and \(B = 2\).
+
+\(G(S;z)= \frac{1}{1+4z}+ \frac{2}{1-z}\)
+
+\(\frac{1}{1+4z}\) is the generating function of \(S_1(n)=(-4)^n\), and
+
+\(\frac{2}{1-z}\) is the generating function of \(S_2(n) = 2(1)^n = 2\).
+
+In conclusion, since \(G(S;z) = G(S_1;z) + G(S _2;z)\), \(S(n) = 2 + (-4)^n\).
+%
+\end{enumerate}
+%
+\end{example}
+\begin{example}[An Application to Counting]\label{example-counting-application}
+ Let \(A = \{a, b, c, d, e\}\) and let \(A^*\) be the set of all strings of length zero or more that can be made using each of the elements of \(A\) zero or more times. By the generalized rule of products, there are \(5^n\) such strings that have length \textit{
+n}, \(n\geq 0\), Suppose that \(X_n\) is the set of strings of length \(n\) with the property that all of the \(a\)'s and \textit{ b'}s precede all of the \(c\)'s, \(d\)'s, and \(e\)'s. Thus \(\text{aaabde} \in  X_6\), but \(\text{abcabc} \notin  X_6\). Let \(R(n)
+=\lvert X_n\rvert \).A closed form expression for \(R\) can be obtained by recognizing \(R\) as the convolution of two sequences.
+To illustrate our point, we will consider the calculation of \(R(6)\).%
+\par
+Note that if a string belongs to \(X_6\), it starts with \(k\) characters from \(\{a, b\}\) and is followed by \(6 - k\) characters from \(\{c,
+d, e\}\). Let \(S(k)\) be the number of strings of \(a\)'s and \(b\)'s with length \(k\) and let \(T(k)\) be the number of strings
+of \(c\)'s, \(d\)'s, and \(e\)'s with length \(k\). By the generalized rule of products, \(S(k) = 2^k\) and \(T(k) = 3^k\).
+Among the strings in \(X_6\) are the ones that start with two \(a\)'s and \(b\)'s and end with \(c\)'s, \(d\)'s, and \textit{
+e}'s. There are \(S(2)T(4)\) such strings. By the law of addition, \(\left.\lvert X_6\rvert  =R(6)=S(0)T(6)+S(1)T(5)+\cdots +S(5)T(1)+S(6)T(0)\).
+Note that the sixth term of R is the sixth term of the convolution of \(S\) with \(T\), \(S*T\). Think about the general situation for
+a while and it should be clear that \(R =S*T\). Now, our course of action will be to:%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-102}{}Determine the generating functions of \(S\) and \(T\),%
+\item\hypertarget{li-103}{}Multiply \(G(S;z)\) and\(G(T;z)\) to obtain \(G(S*T;z) = G(R;z)\) (by 10.5e), and%
+\item\hypertarget{li-104}{}Determine \(R\) on the basis of\(G(R;z)\).%
+\end{enumerate}
+%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-105}{}\(G(S;z) =\sum_{k=0}^{\infty} 2^k z^k=\frac{1}{1-2z}\) , and \(G(T;z) =\sum_{k=0}^{\infty} 3^k z^k=\frac{1}{1-3z}\)%
+\item\hypertarget{li-106}{} \(G(R;z) = G(S;z)G(T;z) = \frac{1}{(1-2z)(1-3z)}\)%
+\item\hypertarget{li-107}{}To recognize \(R\) from \(G(R;z)\), we must do a partial fractions decomposition:
+
+
+
+ \(\frac{1}{(1-2z)(1-3z)}=\frac{A}{1-2z}+\frac{B}{1-3z}=\frac{-3 A z+A-2 B z+B}{(2 z-1) (3 z-1)}=\frac{(A+B)+(-3 A -2 B )z}{(2 z-1) (3 z-1)}\)
+
+Therefore, \(A + B = 1\) and \(-3A - 2B = 0\). The solution of this pair of equations is \(A = - 2\) and \(B = 3\).
+
+Since
+
+
+
+ \(G(R;z) =\frac{-2}{1-2z}+\frac{3}{1-3z}\),
+
+which is the sum of the generating functions of \(-2(2)^k\) and \(3 (3)^k\),
+
+\(R(k) =-2(2)^k+3 (3)^k = 3^{k+1}-2^{k+1}\) %
+\par
+For example, \(R(6) = 3^7 - 2^7= 2187 - 128 = 2059\). Naturally, this equals the sum that we get from \((S*T)(6)\).To put this number
+in perspective, the total number of strings of length 6 with no restrictions is \(5^6=15625\), and \(\frac{2059}{15625}\approx 0.131776\).Therefore
+approximately 13 percent of the strings of length 6 satisfy the conditions of the problem.
+
+%
+\end{enumerate}
+%
 \end{example}
 \typeout{************************************************}
-\typeout{Subsection 1.2.3 Sage Note: Sets}
+\typeout{Subsection 1.2.6 Extra for Experts}
 \typeout{************************************************}
-\subsection[Sage Note: Sets]{Sage Note: Sets}\label{Sage_Note_Sets-1-2}
-\index{Sage Note!Sets}To work with sets in Sage, a set is an expression of the form  Set(\emph{list}).  By wrapping a list with set, the order of elements appearing in the list and their duplication are ignored.  For example, L1 and L2 are two different lists, but notice how as sets they are considered equal:%
-\begin{lstlisting}[style=sageinput]
-L1=[3,6,9,0,3]
-L2=[9,6,3,0,9]
-[L1==L2, Set(L1)==Set(L2) ]
-\end{lstlisting}
-\begin{lstlisting}[style=sageoutput]
-[False,True]
-\end{lstlisting}
+\subsection[Extra for Experts]{Extra for Experts}\label{ss-extra-for-experts}
+The remainder of this section is intended for readers who have had, or who intend to take, a course in combinatorics. We do not advise that it be
+included in a typical course. The method that was used in \hyperref[example-counting-application]{Example~\ref{example-counting-application}} is a very powerful one and can be used to solve many problems in combinatorics.
+We close this section with a general description of the problems that can be solved in this way, followed by some examples.%
 \par
-The standard set operations are all methods and/or functions that can act on Sage sets. \emph{You need to evalute the following cell to use the subsequent cell.}%
-\begin{lstlisting}[style=sageinput]
-A=Set(srange(5,50,5))
-B=Set(srange(6,50,6))
-[A,B]
-\end{lstlisting}
-\begin{lstlisting}[style=sageoutput]
-[{35, 5, 40, 10, 45, 15, 20, 25, 30}, {36, 6, 42, 12, 48, 18, 24, 30}]
-\end{lstlisting}
+Consider the situation in which \(P_1\), \(P_2\), \(\ldots\), \(P_m\) are \(m\) actions that must be taken, each of which results in a well-defined
+outcome. For each\(k = 1,2, . . . ,m\) define \(X_k\) to be the set of possible outcomes of \(P_k\) . We will assume that each outcome can be quantified
+in some way and that the quantification of the elements of \(X_k\) is defined by the function \(Q_k : X_k \to  \{0, 1,2, . . .\}\). Thus, each outcome
+has a non-negative integer associated with it. Finally, define a frequency function \(F_k : \{0, 1, 2, . . .\} \to  \{0, 1, 2, . . .\}\) such that
+\(F_k(n)\) is the number of elements of \(X_k\) that have a quantification of \(n\).%
 \par
+Now, based on these assumptions, we can define the problems that can be solved. If a process \(P\) is defined as a sequence of actions \(P_1,P_2,\ldots
+,P_m\) as above, and if the outcome of \(P\), which would be an element of \(X_1\times X_2\times \cdots \times X_m\), is quantified by
 
-We can test membership, asking whether 10 is in each of the sets:
-%
-\begin{lstlisting}[style=sageinput]
-[10 in A, 10 in B]
-\end{lstlisting}
-\begin{lstlisting}[style=sageoutput]
-[True, False]
-\end{lstlisting}
-\par
+ \[Q(a_1,a_2, \ldots , a_m)= \sum_{k=1}^m Q_k(a_k)\]
 
-The ampersand is used for the intersection of sets.  Change it to the vertical bar, |, for union. 
+
+
+then the frequency function, \(F\), for \(P\) is the convolution of the frequency functions for\(P_1\), \(P_2\), \(\ldots\), \(P_m\),
+which has a generating function equal to the product of the generating functions of the frequency functions \(F_1\), \(F_2\), \(\ldots\), \(F_m\).  That is,
+
+\begin{equation*}
+G(F;z) =G(F_1;z)G(F_2;z) \cdots (F_m;z)
+\end{equation*}
+
 %
-\begin{lstlisting}[style=sageinput]
-A & B
-\end{lstlisting}
-\begin{lstlisting}[style=sageoutput]
-{30}
-\end{lstlisting}
+\begin{example}[Rolling Two Dice]\label{ex-dice-roll}
+ Suppose that you roll a die two times and add up the numbers on the top face for each roll. Since the faces on the die represent
+the integers 1 through 6, the sum must be between 2 and 12. How many ways can any one of these sums be obtained? Obviously, 2 can be obtained only
+one way, with two 1's. There are two sequences that yield a sum of 3: 1-2 and 2-1. To obtain all of the frequencies with which the numbers 2 through
+12 can be obtained, we set up the situation as follows. For \(j = 1, 2\);\(P_j\) is the rolling of the die for the \(j^{\text{th}}\) time. \(X_j
+= \{1, 2, . . . , 6\}\) and \(Q_j : X_j \rightarrow \{0, 1, 2, 3,\ldots \}\) is defined by \(Q_j(x) = x\). Since each number appears on a die exactly once,
+the frequency function is \(F_j(k)=1\) if \(1 \leq  k \leq  6\), and \(F_j(k) = 0\) otherwise. The process of rolling the die two times is quantified
+by adding up the \(Q_j's\); that is, \(Q(a_1, a_2) =Q_{1}(a_1)+Q_2(a_2)\) . The generating function for the
+frequency function of rolling the die two times is then
+
+\begin{equation*}
+\begin{split}
+G(F; z) & = G(F_1;z)G(F_2;z)\\
+		&  = (z^6+z^5+z^4+z^3+z^2+z)^2\\
+		& =z^{12}+2 z^{11}+3 z^{10}+4 z^9+5 z^8+6 z^7+5 z^6+4 z^5+3 z^4+2
+z^3+z^2\\
+\end{split}
+\end{equation*}
+%
 \par
-Symmetric difference and set complement are defined as ``methods'' in Sage. Here is how to compute the symmetric difference of \(A\)  with  \(B\), followed by their differences.%
-\begin{lstlisting}[style=sageinput]
-[A.symmetric_difference(B),A.difference(B),B.difference(A)]
-\end{lstlisting}
-\begin{lstlisting}[style=sageoutput]
-[{35, 36, 5, 6, 40, 42, 12, 45, 15, 48, 18, 20, 24, 25, 10},
- {35, 5, 40, 10, 45, 15, 20, 25},
- {48, 18, 36, 6, 24, 42, 12}]
-\end{lstlisting}
+Now, to get \(F(k)\), just read the coefficient of \(z^k\).For example, the coefficient of \(z^5\) is 4, so there are four ways to roll a total
+of 5.%
+\par
+To apply this method, the crucial step is to decompose a large process in the proper way so that it fits into the general situation that we've described.
+%
+\end{example}
+\begin{example}[Distribution of a Committee]\label{ex-committee-distribution}
+Suppose that an organization is divided into three geographic sections, A, B, and C. Suppose that an executive committee of
+11 members must be selected so that no more than 5 members from any one section are on the committee and that Sections A, B, and C must have minimums
+of 3, 2, and 2 members, respectively, on the committee. Looking only at the number of members from each section on the committee, how many ways can
+the committee be made up? One example of a valid committee would be 4 A's, 4 B's, and 3 C's.
+
+
+
+Let \(P_A\) be the action of deciding how many members (not who) from Section A will serve on the committee. \(X_A= \{3, 4, 5\}\) and \(Q_A(k)=k\).
+{ }The frequency function, \(F_A\) , is defined by \(F_A(k)=1\) if \(k\in X_k\) , with \(F_A(k)=0\) otherwise. \(G(F_A;z)\) is then \(z^3+
+z^4+z^5\) . Similarly, \(G(F_B;z) =z^2+ z^3+ z ^4 + z^5= G(F_C ;z)\). Since the committee must have 11 members, our answer
+will be the coefficient of \(z^{11}\) in \(G(F_A;z)G(F_B;z)G(F_C;z)\), which is 10:
+
+
+
+\(G(F_A;z)G(F_B;z)G(F_C;z)=(z^3+ z^4+z^5)(z^2+ z^3+ z ^4 + z^5)^2\\
+\\
+\quad =z^{15}+3 z^{14}+6 z^{13}+9 z^{12}+10 z^{11}+9 z^{10}+6 z^9+3 z^8+z^7\)%
+\end{example}
 \typeout{************************************************}
-\typeout{Exercises 1.2.4 EXERCISES FOR SECTION 1.2 }
+\typeout{Exercises 1.2.7 Exercises for Section 8.5}
 \typeout{************************************************}
-\subsection[EXERCISES FOR SECTION 1.2 ]{EXERCISES FOR SECTION 1.2 }\label{exercises-1.2}
+\subsection[Exercises for Section 8.5]{Exercises for Section 8.5}\label{exercises-2}
 \hypertarget{exercisegroup-3}{}\typeout{************************************************}
 \typeout{Introduction  }
 \typeout{************************************************}
 A Exercises%
 \begin{exercisegroup}
-\item[1.]\hypertarget{exercise-7}{} Let \(A = \{0, 2, 3\}\), \(B = \{2, 3\}\), \(C = \{1, 5, 9\}\), and let the universal set be \(U = \{0, 1, 2, . . . , 9\}\). Determine: %
+\item[1.]\hypertarget{exercise-7}{}What sequences have the following generating functions?%
 \par
 \leavevmode%
-\begin{multicols}{3}
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-76}{}  \(A \cap  B\)  %
-\item\hypertarget{li-77}{}  \(A \cup  B\)%
-\item\hypertarget{li-78}{}  \(B \cup  A\)   %
-\item\hypertarget{li-79}{}  \(A \cup  C\) %
-\item\hypertarget{li-80}{}  \(A - B\)%
-\item\hypertarget{li-81}{}  \(B - A\)%
-\item\hypertarget{li-82}{}   \(A^c\) %
-\item\hypertarget{li-83}{}   \(C^c\)%
-\item\hypertarget{li-84}{}  \(A\cap C\)%
-\item\hypertarget{li-85}{}   \(A\oplus B\) %
+\item\hypertarget{li-108}{} 1%
+\item\hypertarget{li-109}{}\(\frac{10}{2-z}\)%
+\item\hypertarget{li-110}{} \(1 + z\)%
+\item\hypertarget{li-111}{} \(\frac{3}{1+2z}+ \frac{3}{1-3z}\)%
 \end{enumerate}
-\end{multicols}
 %
 \par\smallskip
 \par\smallskip
 \noindent\textbf{Answer.}\hypertarget{answer-4}{}\quad
 \leavevmode%
-\begin{multicols}{3}
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-86}{} \(\{2,3\}\)%
-\item\hypertarget{li-87}{} \(\{0,2,3\}\)%
-\item\hypertarget{li-88}{} \(\{0,2,3\}\)%
-\item\hypertarget{li-89}{}\(\{0,1,2,3,5,9\}\)%
-\item\hypertarget{li-90}{}\(\{0\}\) %
-\item\hypertarget{li-91}{} \(\emptyset\) %
-\item\hypertarget{li-92}{}\(\{ 1,4,5,6,7,8,9\}\) %
-\item\hypertarget{li-93}{} \(\{0,2,3,4,6,7,8\}\)%
-\item\hypertarget{li-94}{} \(\emptyset\) %
-\item\hypertarget{li-95}{} \(\{0\}\)%
+\item\hypertarget{li-112}{} \(1,0,0,0,0,\ldots\)%
+\item\hypertarget{li-113}{} \(5(1/2)^k\) %
+\item\hypertarget{li-114}{} \(1,1,0,0,0,\ldots\)%
+\item\hypertarget{li-115}{} \(3(-2)^k+3\cdot 3^k\)%
 \end{enumerate}
-\end{multicols}
 %
-\item[2.]\hypertarget{exercise-8}{}  Let \( A\), \( B\), and \( C\) be as in Exercise 1, let \(D = \{3, 2\}\), and let \(E = \{2, 3, 2\}\). Determine which of the
-following are true. Give reasons for your decisions. %
+\item[2.]\hypertarget{exercise-8}{}What sequences have the following generating functions?%
 \par
 \leavevmode%
-\begin{multicols}{2}
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-96}{}  \(A = B\) %
-\item\hypertarget{li-97}{}  \(B = C\) %
-\item\hypertarget{li-98}{}  \(B = D\) %
-\item\hypertarget{li-99}{}  \(E=D\)%
-\item\hypertarget{li-100}{}  \(A\cap B = B\cap A\)%
-\item\hypertarget{li-101}{}  \(A \cup  B = B \cup  A\) %
-\item\hypertarget{li-102}{}  \(A-B = B-A\) %
-\item\hypertarget{li-103}{}  \(A \oplus  B = B \oplus  A\) %
+\item\hypertarget{li-116}{}\(\frac{1}{1+z}\)%
+\item\hypertarget{li-117}{} \(\frac{1}{4-3z}\)%
+\item\hypertarget{li-118}{}\(\frac{2}{1-z}+ \frac{1}{1+z}\)%
+\item\hypertarget{li-119}{}\(\frac{z+2}{z+3}\)%
 \end{enumerate}
-\end{multicols}
-%
-\par\smallskip
-\item[3.]\hypertarget{exercise-9}{}  Let \(U= \{1, 2, 3, . . . , 9\}\). 
-Give examples of sets \( A\), \( B\), and \( C\) for which:
-%
-\par
-\leavevmode%
-\begin{multicols}{2}
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-104}{}  \(A\cap (B\cap C)=(A\cap B)\cap C\) %
-\item\hypertarget{li-105}{}  \(A\cap (B\cup C)=(A\cap B)\cup (A\cap C)\)%
-\item\hypertarget{li-106}{}  \((A \cup  B)^c= A^c\cap B^c\) %
-\item\hypertarget{li-107}{}  \(A \cup  A^c = U\)%
-\item\hypertarget{li-108}{}  \(A \subseteq A\cup B\)%
-\item\hypertarget{li-109}{}  \(A\cap B \subseteq A\) %
-\end{enumerate}
-\end{multicols}
-%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-5}{}\quad
- These are all true for any sets \(A\), \(B\), and \(C\). %
-\item[4.]\hypertarget{exercise-10}{} Let \(U= \{1, 2, 3, . . . , 9\}\). Give examples to illustrate the following facts: %
-\par
-\leavevmode%
-\begin{multicols}{1}
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-110}{}  If \(A \subseteq  B\) and \(B \subseteq C\), then \(A\subseteq C\).%
-\item\hypertarget{li-111}{} There are sets \(A\) and \(B\) such that \(A - B \neq  B - A\) %
-\item\hypertarget{li-112}{}  If \(U = A\cup  B\) and \(\text{A $\cap $ B = $\emptyset $}\), it always follows that \(A = U - B\). %
-\item\hypertarget{li-113}{}  \(A \oplus  (B\cap C) = (A \oplus  B)\cap  (A \oplus C)\)   %
-\end{enumerate}
-\end{multicols}
 %
 \par\smallskip
 \end{exercisegroup}
@@ -879,760 +1300,127 @@ Give examples of sets \( A\), \( B\), and \( C\) for which:
 \typeout{************************************************}
 B Exercises%
 \begin{exercisegroup}
-\item[5.]\hypertarget{exercise-11}{}  What can you say about \(A\) if \(U = \{1, 2, 3, 4, 5\}\), \(B = \{2, 3\}\), and (separately) %
+\item[3.]\hypertarget{exercise-9}{}Find closed form expressions for the generating functions of the following sequences:%
 \par
 \leavevmode%
-\begin{multicols}{1}
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-114}{}  \(A \cup B = \{1, 2, 3,4\}\) %
-\item\hypertarget{li-115}{}  \(A \cap  B = \{2\}\) %
-\item\hypertarget{li-116}{}  \(A \oplus  B = \{3, 4, 5\}\)%
+\item\hypertarget{li-120}{}\(V(n) = 9^n\)%
+\item\hypertarget{li-121}{}\(P\), where \(P(k) - 6 P(k - 1) + 5 P(k - 2) = 0\) for \(k \geq  2\), with\(P(0) = 2\)and \(P(1) = 2\).%
+\item\hypertarget{li-122}{} The Fibonacci sequence: \(F(k + 2) = F(k + 1) + F(k)\), \(k \geq  0\), with \(F(0) = F(1) = 1\).%
 \end{enumerate}
-\end{multicols}
+%
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-5}{}\quad
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-123}{} \(1/(1-9z)\) %
+\item\hypertarget{li-124}{} \((2-10z)\left/(1-6z+5z^2)\)%
+\item\hypertarget{li-125}{} \(1\left/(1-z-z^2)\)%
+\end{enumerate}
+%
+\item[4.]\hypertarget{exercise-10}{}Find closed form expressions for the generating functions of the following sequences:%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-126}{} \(W(n) = C(5;n)2^n\) for \(0 \leq  n \leq  5\) and \(W(n) = 0\) for \(n > 5\).%
+\item\hypertarget{li-127}{} \(Q\), where \(Q(k) + Q(k - 1) - 42Q(k - 2) = 0\) for \(k\geq 2\), with \(Q(0) = 2\) and\(Q(1) = 2\).%
+\item\hypertarget{li-128}{} \(G\), where \(G(k + 3) = G(k + 2) + G(k + 1) + G(k)\) for \(k \geq  0\), with \(G(0) = G(1) = G(2) = 1\).%
+\end{enumerate}
+%
+\par\smallskip
+\item[5.]\hypertarget{exercise-11}{}For each of the following expressions, find the partial fraction decomposition and identify the sequence having the expression as a generating
+function.%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-129}{} \(\frac{5+2z}{1-4z^2}\)%
+\item\hypertarget{li-130}{} \(\frac{32-22z}{2-3z+z^2}\)%
+\item\hypertarget{li-131}{} \(\frac{6-29z}{1-11z+ 30z^2}\)%
+\end{enumerate}
 %
 \par\smallskip
 \par\smallskip
 \noindent\textbf{Answer.}\hypertarget{answer-6}{}\quad
 \leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-117}{} \(\{1, 4\} \subseteq  A \subseteq  \{1, 2, 3, 4\}\)%
-\item\hypertarget{li-118}{} \(\{2\} \subseteq  A \subseteq  \{1, 2, 4, 5\}\) %
-\item\hypertarget{li-119}{} \(A = \{2, 4, 5\}\)%
+\item\hypertarget{li-132}{} \(3/(1-2z)+2/(1+2z), 3\cdot 2^k+2(-2)^k\)%
+\item\hypertarget{li-133}{} \(10/(1-z)+12/(2-z), 10+6(1/2)^k\)%
+\item\hypertarget{li-134}{} \(-1/(1-5z)+7/(1-6z), 7\cdot 6^k-5^k\)%
 \end{enumerate}
 %
-\item[6.]\hypertarget{exercise-12}{} Suppose that \( U\) is an infinite universal set, and \( A\) and \( B\) are infinite subsets of \( U\). Answer the following questions with a brief explanation.%
+\item[6.]\hypertarget{exercise-12}{}Find the partial fraction decompositions and identify the sequence having the following expressions:%
 \par
 \leavevmode%
-\begin{multicols}{1}
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-120}{}  Must \(A^c\) be finite? %
-\item\hypertarget{li-121}{}  Must \(A\cup B\) infinite? %
-\item\hypertarget{li-122}{}  Must \(A\cap B\) be infinite? %
+\item\hypertarget{li-135}{} \(\frac{1}{1-9z^2}\)%
+\item\hypertarget{li-136}{} \(\frac{1+3z}{16-8z+z^2}\)%
+\item\hypertarget{li-137}{} \(\frac{2z}{1-6z-7z^2}\)%
 \end{enumerate}
-\end{multicols}
 %
 \par\smallskip
-\item[7.]\hypertarget{exercise-13}{}  Given that \( U\) = all students at a university, \( D\) = day students, \( M\) = mathematics majors, and \( G\) = graduate students. Draw Venn diagrams illustrating this situation and shade in the following sets:%
+\item[7.]\hypertarget{exercise-13}{} Given that \(S(k) = k\) and \(T(k) = 10k\), what is the \(k^{\text{th}}\) term of the generating function of each of the following sequences:%
 \par
 \leavevmode%
-\begin{multicols}{2}
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-123}{}  evening students %
-\item\hypertarget{li-124}{}  undergraduate mathematics majors %
-\item\hypertarget{li-125}{}  non-math graduate students %
-\item\hypertarget{li-126}{}  non-math undergraduate students%
+\item\hypertarget{li-138}{}\(S + T\)%
+\item\hypertarget{li-139}{}\(S\uparrow  * T\) %
+\item\hypertarget{li-140}{} \(S * T\)%
+\item\hypertarget{li-141}{} \(S\uparrow *S\uparrow\)%
 \end{enumerate}
-\end{multicols}
 %
 \par\smallskip
 \par\smallskip
 \noindent\textbf{Answer.}\hypertarget{answer-7}{}\quad
 \leavevmode%
-\begin{figure}
-\centering
-\includegraphics[width=1\linewidth]{images/fig-sol-1-2-7.png}
-\caption{
-	 \label{fig-sol-1-2-7}}
-\end{figure}
-\item[8.]\hypertarget{exercise-14}{} Let the sets \( D\), \( M\), \( G\), and \( U\) be as in exercise 7.  Let \(\lvert U \rvert  = 16,000\), \(\lvert D \rvert = 9,000\), \(|M |=
-300\), and \(\lvert G \rvert = 1,000\). Also assume that the number of day students who are mathematics majors is 250, 50 of whom are graduate students, that there are 95 graduate mathematics majors, and that the total number of day graduate students is 700. Determine the number of students who are: %
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-142}{} \(11k\)%
+\item\hypertarget{li-143}{} \((5/3)k(k+1)(2k+1)+5k(k+1)\)%
+\item\hypertarget{li-144}{} \(\underset{j=0}{\overset{k}{\Sigma }}(j)(10(k-j))=10k\underset{j=0}{\overset{k}{\Sigma }}j-10\underset{j=0}{\overset{k}{\Sigma }}j^2\)
+    \(=5k^2(k+1)-(5k(k+1)(2k+1)/6)
+=(5/3)k(k+1)(2k+1)\)%
+\item\hypertarget{li-145}{} \(k(k+1)(2k+7)/12\)%
+\end{enumerate}
+%
+\item[8.]\hypertarget{exercise-14}{}Given that \(P(k) = C(10;k)\) and \(Q(k) = k!\), what is the \(k^{\text{th}}\) term of the generating function of each of the following sequences:%
 \par
 \leavevmode%
-\begin{multicols}{2}
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-127}{}  evening students %
-\item\hypertarget{li-128}{}  nonmathematics majors %
-\item\hypertarget{li-129}{}  undergraduates (day or evening) %
-\item\hypertarget{li-130}{}  day graduate nonmathematics majors %
-\item\hypertarget{li-131}{}  evening graduate students %
-\item\hypertarget{li-132}{}  evening graduate mathematics majors %
-\item\hypertarget{li-133}{}  evening undergraduate nonmathematics majors %
+\item\hypertarget{li-146}{}\(P * P\)%
+\item\hypertarget{li-147}{}\(P + P\uparrow\)%
+\item\hypertarget{li-148}{}\(P * Q\)%
+\item\hypertarget{li-149}{} \(Q * Q\)%
 \end{enumerate}
-\end{multicols}
 %
 \par\smallskip
 \end{exercisegroup}
 \par\smallskip\noindent
-\typeout{************************************************}
-\typeout{Section 1.3 Cartesian Products and Power Sets}
-\typeout{************************************************}
-\section[Cartesian Products and Power Sets]{Cartesian Products and Power Sets}\label{Cartesian_Products_and_Power_Sets}
-\typeout{************************************************}
-\typeout{Subsection 1.3.1 Cartesian Products}
-\typeout{************************************************}
-\subsection[Cartesian Products]{Cartesian Products}\label{Cartesian-products}
-\begin{definition}[ Cartesian Product]\label{cartesian-product.}
-\index{Cartesian Product}\label{notation-11}
- Let \(A\) and \(B\) be sets. The Cartesian product of \(A\) and \(B\), denoted by \(A\times B\), is defined as follows: \(A\times B = \{(a, b) \mid a \in  A \quad\textrm{ and }\quad b \in  B\}\), that is, \(A\times B\) is the set of all possible ordered pairs whose first component comes from \(A\) and whose second component comes from \(B\).%
-\end{definition}
-\begin{example}[Some Cartesian Products]\label{example-8}
- Notation in mathematics is often developed for good reason. In this case, a few examples will make clear why the symbol $\times $ is used for Cartesian products.%
-\par
-\leavevmode%
-\begin{itemize}[label=\textbullet]
-\item{}  Let \(A = \{1, 2, 3\}\) and \(B = \{4, 5\}\). Then \(A \times  B = \{(1, 4), (1, 5), (2, 4), (2, 5), (3, 4), (3, 5)\}\). Note that \(|A \times B| = 6 = \lvert A \rvert  \times  \lvert B \rvert \). %
-\item{}  \(A \times  A = \{(1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3), (3, 1), (3, 2), (3, 3)\}\). Note that \(|A \times  A| = 9 = {\lvert A \rvert}^2\).%
-\end{itemize}
-%
-\end{example}
-These two examples illustrate the general rule: If A and B are finite sets, then \(| A \times B | = \lvert A \rvert  \times  \lvert B \rvert \).%
-\par
-We can define the Cartesian product of three (or more) sets similarly. For example, \(A \times  B \times  C = \{(a, b, c):a \in  A, b \in  B, c \in C\}\). %
-\par
-It is common to use exponents if the sets in a Cartesian product are the same: 
-\begin{equation*}A^2= A \times  A\end{equation*}
-\begin{equation*}A^3=A \times A \times A\end{equation*}
-and in general, 
-\begin{equation*}A^n =  \underset{n \textrm{ factors}}{\underline{A \times A \times \ldots \times A}}\end{equation*}.%
-\typeout{************************************************}
-\typeout{Subsection 1.3.2 Power Sets}
-\typeout{************************************************}
-\subsection[Power Sets]{Power Sets}\label{power-sets}
-\begin{definition}[ Power Set ]\label{power-set}
-\index{Power Set }\label{notation-12}
-If \( A\) is any set, the power set of \(A\) is the set of all subsets of \(A\), denoted \(\mathcal{P}(A)\).%
-\end{definition}
-The two extreme cases, the empty set and all of \(A\), are both included in \(\mathcal{P}(A)\).%
-\begin{example}[ Some Power Sets ]\label{Some_Power_Sets}
-\leavevmode%
-\begin{itemize}[label=\textbullet]
-\item{}\(\mathcal{P}(\emptyset )=\{\emptyset \}\) %
-\item{} \(\mathcal{P}(\{1\}) = \{\emptyset , \{1\}\}\) %
-\item{} \(\mathcal{P}(\{1,2\}) = \{\emptyset , \{1\}, \{2\}, \{1, 2\}\}\). %
-\end{itemize}
-%
-\par
-We will leave it to you to guess at a general formula for the number of elements in the power set of a finite set. In Chapter 2, we will discuss counting rules that will help us derive this formula.%
-\end{example}
-\typeout{************************************************}
-\typeout{Subsection 1.3.3 Sage Note: Cartesion Products and Power Sets}
-\typeout{************************************************}
-\subsection[Sage Note: Cartesion Products and Power Sets]{Sage Note: Cartesion Products and Power Sets}\label{Sage_Note_Sets-1-3}
-\index{Sage Note!Cartesion Products and Power Sets}Here is a simple example of a cartesion product of two sets:%
-\begin{lstlisting}[style=sageinput]
-A=Set([0,1,2])
-B=Set(['a','b'])
-P=cartesian_product([A,B]);P
-\end{lstlisting}
-\begin{lstlisting}[style=sageoutput]
-The cartesian product of ({0, 1, 2}, {'a', 'b'})
-\end{lstlisting}
-\par
-Here is the cardinality of the cartesian product.%
-\begin{lstlisting}[style=sageinput]
-P.cardinality()
-\end{lstlisting}
-\begin{lstlisting}[style=sageoutput]
-6
-\end{lstlisting}
-\par
-
-The power set of a set is an iterable, as you can see from the output of this next cell
-%
-\begin{lstlisting}[style=sageinput]
-U=Set([0,1,2,3])
-subsets(U)
-\end{lstlisting}
-\begin{lstlisting}[style=sageoutput]
-<generator object powerset at 0x7fec5ffd33c0>
-\end{lstlisting}
-\par
-
-You can iterate over a powerset - here is a trivial example.  
-%
-\begin{lstlisting}[style=sageinput]
-for a in subsets(U):
-    print(str(a)+ " has " +str(len(a))+" elements.")
-\end{lstlisting}
-\begin{lstlisting}[style=sageoutput]
-[] has 0 elements.
-[0] has 1 elements.
-[1] has 1 elements.
-[0, 1] has 2 elements.
-[2] has 1 elements.
-[0, 2] has 2 elements.
-[1, 2] has 2 elements.
-[0, 1, 2] has 3 elements.
-[3] has 1 elements.
-[0, 3] has 2 elements.
-[1, 3] has 2 elements.
-[0, 1, 3] has 3 elements.
-[2, 3] has 2 elements.
-[0, 2, 3] has 3 elements.
-[1, 2, 3] has 3 elements.
-[0, 1, 2, 3] has 4 elements.
-\end{lstlisting}
-\typeout{************************************************}
-\typeout{Exercises 1.3.4 EXERCISES FOR SECTION 1.3 }
-\typeout{************************************************}
-\subsection[EXERCISES FOR SECTION 1.3 ]{EXERCISES FOR SECTION 1.3 }\label{exercises-1.3}
 \hypertarget{exercisegroup-5}{}\typeout{************************************************}
 \typeout{Introduction  }
 \typeout{************************************************}
-A Exercises%
+C Exercises%
 \begin{exercisegroup}
-\item[1.]\hypertarget{exercise-15}{} Let \(A = \{0, 2, 3\}\), \(B = \{2, 3\}\), \(C = \{1, 4\}\), and let the universal set be \(U = \{0, 1, 2, 3, 4\}\). List the elements of %
-\par
-\leavevmode%
-\begin{multicols}{2}
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-139}{}  \(A \times B\) %
-\item\hypertarget{li-140}{}  \(B \times  A\) %
-\item\hypertarget{li-141}{}  \(A \times B\times C\) %
-\item\hypertarget{li-142}{}  \(U \times \emptyset\)%
-\item\hypertarget{li-143}{}  \(A \times  A^c\)%
-\item\hypertarget{li-144}{}  \(B^2\) %
-\item\hypertarget{li-145}{}  \(B^3\)%
-\item\hypertarget{li-146}{}  \(B\times \mathcal{P}(B)\)%
-\end{enumerate}
-\end{multicols}
-%
+\item[9.]\hypertarget{exercise-15}{}A game is played by rolling a die five times. For the \(k^{\text{th}}\) roll, one point is added to your score if you roll a number higher
+than \(k\). Otherwise, your score is zero for that roll. For example, the sequence of rolls \(2,3,4,1,2\) gives you a total score of three;
+while a sequence of 1,2,3,4,5 gives you a score of zero. Of the \(6^5 = 7776\) possible sequences of rolls, how many give you a score of zero?, of
+one? \(\ldots \) of five?%
 \par\smallskip
 \par\smallskip
 \noindent\textbf{Answer.}\hypertarget{answer-8}{}\quad
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-147}{} \(\{(0, 2), (0, 3), (2, 2), (2, 3), (3, 2), (3, 3)\}\)%
-\item\hypertarget{li-148}{}\(\{(2, 0), (2, 2), (2, 3), (3, 0), (3, 2), (3, 3)\}\)%
-\item\hypertarget{li-149}{} \(\{(0, 2, 1), (0, 2, 4), (0, 3, 1), (0, 3, 4), (2, 2, 1), (2, 2, 4),\\ (2, 3, 1), (2, 3, 4), (3, 2, 1), (3, 2, 4), (3, 3, 1), (3, 3, 4)\}\)%
-\item\hypertarget{li-150}{}\(\emptyset\)%
-\item\hypertarget{li-151}{} \(\{(0, 1), (0, 4), (2, 1), (2, 4), (3, 1), (3, 4)\}\)%
-\item\hypertarget{li-152}{}\(\{(2, 2), (2, 3), (3, 2), (3, 3)\}\)%
-\item\hypertarget{li-153}{} \(\{(2, 2, 2), (2, 2, 3), (2, 3, 2), (2, 3, 3), (3, 2, 2), (3, 2, 3), (3, 3, 2), (3, 3, 3)\}\)%
-\item\hypertarget{li-154}{} \(\{(2, \emptyset ), (2, \{2\}), (2, \{3\}), (2, \{2, 3\}), (3, \emptyset ), (3, \{2\}), (3, \{3\}), (3, \{2, 3\})\}\)%
-\end{enumerate}
-%
-\item[2.]\hypertarget{exercise-16}{} 
-Suppose that you are about to flip a coin and then roll a die. Let \(A = \{HEADS, TAILS\}\) and  \(B = {$1, 2, 3, 4, 5, 6}\). %
+ Coefficients of \(z^0\) through \(z^5\) in \((1+5z)(2+4z)(3+3z)(4+2z)(5+z)\)%
 \par
-\leavevmode%
-\begin{itemize}[label=\textbullet]
-\item{}  What is \(|A \times  B|\)? %
-\item{}  How could you interpret the set \(A \times  B\) ?   %
-\end{itemize}
-%
-\par\smallskip
-\item[3.]\hypertarget{exercise-17}{} 
-List all two-element sets in \(\mathcal{P}(\{a,b,c,d\})\) %
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-9}{}\quad
-\(\{a, b\}, \{a, c\}, \{a, d\}, \{b, c\}, \{b, d\} and \{c, d\}\)%
-\item[4.]\hypertarget{exercise-18}{}
-List all three-element sets in \(\mathcal{P}(\{a, b, c,d\})\).%
-\par\smallskip
-\item[5.]\hypertarget{exercise-19}{}How many singleton (one-element) sets are there in \(\mathcal{P}(A)\) if \(\lvert A \rvert =n\) ? %
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-10}{}\quad
- There are \(n\) singleton subsets, one for each element.%
-\item[6.]\hypertarget{exercise-20}{}A person has four coins in his pocket: a penny, a nickel, a dime, and a quarter. How many different sums of money can he take out if he removes 3 coins at a time? %
-\par\smallskip
-\item[7.]\hypertarget{exercise-21}{}Let \(A = \{+,-\}\) and \(B = \{00, 01, 10, 11\}\).%
-\par
-\leavevmode%
-\begin{itemize}[label=\textbullet]
-\item{}  List the elements of \(A \times  B\) %
-\item{}  How many elements do \(A ^4\) and \((A \times B)^3\) have? %
-\end{itemize}
-%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-11}{}\quad
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-159}{} \(\{+00, +01, +10, +11, -00, -01, -10, -11\}\)%
-\item\hypertarget{li-160}{} \(16 \textrm{ and } 512\)%
-\end{enumerate}
-%
-\end{exercisegroup}
-\par\smallskip\noindent
-\hypertarget{exercisegroup-6}{}\typeout{************************************************}
-\typeout{Introduction  }
-\typeout{************************************************}
-B Exercises%
-\begin{exercisegroup}
-\item[8.]\hypertarget{exercise-22}{}Let \(A = \{\bullet,\square ,\otimes \}\) and \(B = \{\square ,\ominus ,\bullet\}\). %
-\par
-\leavevmode%
-\begin{itemize}[label=\textbullet]
-\item{} List the elements of \(A \times  B\) and \(B \times  A\). The parentheses and comma in an ordered pair are not necessary in cases such as this where the elements of each set are individual symbols. %
-\item{}  Identify the intersection of \(A \times  B\) and \(B \times  A\) for the case above, and then guess at a general rule for the intersection of \(A \times  B\) and \(B \times  A\). where \( A\) and \( B\) are any two sets. %
-\end{itemize}
-%
-\par\smallskip
-\item[9.]\hypertarget{exercise-23}{}Let \(A\) and \(B\) be nonempty sets. When are \(A \times  B\) and \(B \times  A\) equal? %
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-12}{}\quad
- They are equal when \(A=B\).%
-\end{exercisegroup}
-\par\smallskip\noindent
-\typeout{************************************************}
-\typeout{Section 1.4 Binary Representation of Positive Integers }
-\typeout{************************************************}
-\section[Binary Representation of Positive Integers ]{Binary Representation of Positive Integers }\label{Binary_Representation_of_Positive_Integers}
-\index{Binary Representation}Recall that the set of positive integers, \(\mathbb{P}\), is \(\{1, 2, 3, . . . \}\). Positive integers are naturally used to count things. There are many ways to count and many ways to record, or represent, the results of counting. For example, if we wanted to count five hundred twenty-three apples, we might group the apples by tens. There would be fifty-two groups of ten with three single apples left over. The fifty-two groups of ten could be put into five groups of ten tens (hundreds), with two tens left over. The five hundreds, two tens, and three units is recorded as 523. This system of counting is called the base ten positional system, or decimal system. It is quite natural for us to do grouping by tens, hundreds, thousands, \(\dots\) since it is the method that all of us use in everyday life. %
-\par
- The term positional refers to the fact that each digit in the decimal representation of a number has a significance based on its position. Of course this means that rearranging digits will change the number being described. You may have learned of numeraton systems in which the position of symbols does not have any significance (e.g., the ancient Egyptian system). Most of these systems are merely curiosities to us now.%
-\par
-The binary number system differs from the decimal number system in that units are grouped by twos, fours, eights, etc. That is, the group sizes are powers of two instead of powers of ten. For example, twenty-three can be grouped into eleven groups of two with one left over. The eleven twos can be grouped into five groups of four with one group of two left over. Continuing along the same lines, we find that twenty-three can be described as one sixteen, zero eights, one four, one two, and one one, which is abbreviated \(10111_{\textrm{two}}\), or simply \(10111\) if the
-context is clear. %
-\par
-The process that we used to determine the binary representation of \(23\) can be described in general terms to determine the binary representation of any positive integer \(n\). A general description of a process such as this one is called an algorithm. Since this is the first algorithm in the book, we will first write it out using less formal language than usual, and then introduce some ``algorithmic notation.''  If you are unfamiliar with algorithms, we refer you to {$\langle\langle$Unresolved xref, reference "app-alg1"; check spelling or use "provisional" attribute$\rangle\rangle$}%
-\par
-\leavevmode%
-\begin{enumerate}[label=\arabic*]
-\item\hypertarget{li-163}{} Start with an empty list of bits. %
-\item\hypertarget{li-164}{} Step Two: Assign the variable \(k\) the value \(n\). %
-\item\hypertarget{li-165}{} Step Three: While \(k\)'s value is positive, continue performing the following three steps until \(k\) becomes zero and then stop. %
-\par
-%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-166}{}divide \(k\) by 2, obtaining a quotient \(q\) (often denoted \(k \textrm{ div } 2\)) and a remainder \(r\) (denoted \((k \bmod 2)\)). %
-\item\hypertarget{li-167}{}attach \(r\) to the left-hand side of the list of bits. %
-\item\hypertarget{li-168}{} assign the variable \(k\) the value \(q\).%
-\end{enumerate}
-%
-\end{enumerate}
-%
-\begin{example}[An example of conversion to binary]\label{An_example_of_conversion_to_binary}
- To determine the binary representation of 41 we take the following steps:%
-\par
-\leavevmode%
-\begin{itemize}[label=\textbullet]
-\item{}\(41 = 2 \times  20+ 1 \quad List = 1 \) %
-\item{}\(20 = 2 \times  10+0 \quad List = 01 \)%
-\item{} \(10 = 2\times 5 + 0 \quad List = 001 \)%
-\item{}\(5 =\text2\times  2+ 1 \quad List =1001\) %
-\item{}\(2 =2\times  1+ 0 \quad List = 01001 \)%
-\item{}\(1 =\text2 \times 0\text+1  \quad List = 101001\) %
-\end{itemize}
-%
-\par
-Therefore, \(41=101001_{\textrm{two}}\)%
-\end{example}
-\par
-The notation that we will use to describe this algorithm and all others is called pseudocode, an informal variation of the instructions that are commonly used in many computer languages. Read the following description carefully, comparing it with the informal description above. Appendix B, which contains a general discussion of the components of the algorithms in this book, should clear up any lingering questions. Anything after // are comments.%
-\begin{algorithm}[Binary Conversion Algorithm]\label{binary_conversion_algorithm}
-\index{Binary Conversion Algorithm} An algorithm for determining the binary representation of a positive integer.%
-\par
-Input: a positive integer n.%
-\par
-Output: the binary representation of n in the form of a list of bits, with units bit last, twos bit next to last, etc.%
-\par
-\leavevmode%
-\begin{enumerate}[label=\arabic*]
-\item\hypertarget{li-175}{}k := n \(\qquad  \)     //initialize k%
-\item\hypertarget{li-176}{}L := { } \(\qquad  \)   //initialize L to an empty list%
-\item\hypertarget{li-177}{} While k > 0 do %
-\par
-%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-178}{} q := k div 2		\(\qquad  \)	//divide k by 2%
-\item\hypertarget{li-179}{} r:= k mod 2 %
-\item\hypertarget{li-180}{}L: = prepend r to L \(\qquad  \) //Add r to the front of L %
-\item\hypertarget{li-181}{} k:= q   			\(\qquad  \)	//reassign k%
-\end{enumerate}
-%
-\end{enumerate}
-%
-\end{algorithm}
-\par
-Here is a Sage version of the algorithm with two alterations. It outputs a the binary representation as a string, and it handles all integers, not just positive ones.%
-\begin{lstlisting}[style=sageinput]
-def binary_rep(n):
-    if n==0:
-        return '0'
-    else:
-        k=abs(n)
-        s=''
-        while k>0:
-            s=str(k%2)+s
-            k=k//2
-        if n < 0:
-            s='-'+s
-        return s
- 
-binary_rep(41)
-\end{lstlisting}
-\begin{lstlisting}[style=sageoutput]
-'101001'
-\end{lstlisting}
-\par
-Now that you've read this section, you should get this joke.%
-\leavevmode%
-\begin{figure}
-\centering
-\includegraphics[width=1\linewidth]{images/1_to_10.png}
-\caption{With permission from Randall Munroe
-                \label{onetoten}}
-\end{figure}
-\typeout{************************************************}
-\typeout{Exercises 1.4.1 EXERCISES}
-\typeout{************************************************}
-\subsection[EXERCISES]{EXERCISES}\label{exercises-1-4}
-\hypertarget{exercisegroup-7}{}\typeout{************************************************}
-\typeout{Introduction  }
-\typeout{************************************************}
-A Exercises%
-\begin{exercisegroup}
-\item[1.]\hypertarget{exercise-24}{}Find the binary representation of each of the following positive integers by working through the algorithm by hand.  You can check your answer using the sage cell above. %
-\par
-\leavevmode%
-\begin{multicols}{2}
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-182}{} 31%
-\item\hypertarget{li-183}{} 32%
-\item\hypertarget{li-184}{}10%
-\item\hypertarget{li-185}{}100 %
-\end{enumerate}
-\end{multicols}
-%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-13}{}\quad
-\leavevmode%
-\begin{multicols}{2}
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-186}{} \(11111\)%
-\item\hypertarget{li-187}{} \(100000\)%
-\item\hypertarget{li-188}{} \(1010\)%
-\item\hypertarget{li-189}{} \(1100100\)%
-\end{enumerate}
-\end{multicols}
-%
-\item[2.]\hypertarget{exercise-25}{}Find the binary representation of each of the following positive integers by working through the algorithm by hand.  You can check your answer using the sage cell above. %
-\par
-\leavevmode%
-\begin{multicols}{2}
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-190}{} 64%
-\item\hypertarget{li-191}{} 67%
-\item\hypertarget{li-192}{}28%
-\item\hypertarget{li-193}{}256 %
-\end{enumerate}
-\end{multicols}
-%
-\par\smallskip
-\item[3.]\hypertarget{exercise-26}{}What positive integers have the following binary representations?%
-\par
-\leavevmode%
-\begin{multicols}{2}
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-194}{} 10010%
-\item\hypertarget{li-195}{} 10011%
-\item\hypertarget{li-196}{}101010%
-\item\hypertarget{li-197}{}10011110000 %
-\end{enumerate}
-\end{multicols}
-%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-14}{}\quad
-\leavevmode%
-\begin{multicols}{2}
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-198}{} \(18\)%
-\item\hypertarget{li-199}{} \(19\)%
-\item\hypertarget{li-200}{} \(42\)%
-\item\hypertarget{li-201}{} \(1264\)%
-\end{enumerate}
-\end{multicols}
-%
-\item[4.]\hypertarget{exercise-27}{}What positive integers have the following binary representations?%
-\par
-\leavevmode%
-\begin{multicols}{2}
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-202}{} 100001%
-\item\hypertarget{li-203}{} 1001001%
-\item\hypertarget{li-204}{}1000000000%
-\item\hypertarget{li-205}{}1001110000 %
-\end{enumerate}
-\end{multicols}
-%
-\par\smallskip
-\item[5.]\hypertarget{exercise-28}{}The number of bits in the binary representations of integers increase by one as the numbers double.  Using this fact, determine how many bits the binary representations of the following decimal numbers have without actually doing the full conversion. 
-\( \quad (a) 2017  \quad (b)  4000   \quad (c) 4500   \quad (d) 2^{50}\)%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-15}{}\quad
-There is a bit for each power of 2 up to the largest one needed to represent an integer, and you start counting with the zeroth power. For example, 2017 is between \(2^{10}=1024\) and \(2^{11}=2048\), and so the largest power needed is \(2^{10}\). Therefore there are \(11\) bits in binary 2017%
-\par
-\leavevmode%
-\begin{multicols}{2}
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-206}{} \(11\)%
-\item\hypertarget{li-207}{} \(12\)%
-\item\hypertarget{li-208}{} \(13\)%
-\item\hypertarget{li-209}{} 51%
-\end{enumerate}
-\end{multicols}
-%
-\end{exercisegroup}
-\par\smallskip\noindent
-\hypertarget{exercisegroup-8}{}\typeout{************************************************}
-\typeout{Introduction  }
-\typeout{************************************************}
-B Exercises%
-\begin{exercisegroup}
-\item[6.]\hypertarget{exercise-29}{}Let \(m\) be a positive integer with \( n\)-bit binary representation: \(a_{n-1}a_{n-2}\cdots  a_1a_0\) with \(a_{n-1}=1\) What are the smallest
-and largest values that \(m\) could have? %
-\par\smallskip
-\item[7.]\hypertarget{exercise-30}{}If a positive integer is a multiple of 100, we can identify this fact from its decimal representation, since it will end with two zeros. What can you say about a positive integer if its binary representation ends with two zeros? What if i ends in \(k\) zeros?%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-16}{}\quad
-A number must be a multiple of four if its binary representation ends in two zeros. If it ends in \(k\) zeros, it must be a multiple of \(2^k\).%
-\item[8.]\hypertarget{exercise-31}{}Can a multiple of ten be easily identified from its binary representation? %
-\par\smallskip
-\end{exercisegroup}
-\par\smallskip\noindent
-\typeout{************************************************}
-\typeout{Section 1.5 Summation Notation and Generalizations }
-\typeout{************************************************}
-\section[Summation Notation and Generalizations ]{Summation Notation and Generalizations }\label{Summation_Notation_and_Generalizations}
-\index{Summation Notation and Generalizations }Most operations such as addition of numbers are introduced as binary operations. That is, we are taught that two numbers may be added
-together to give us a single number. Before long, we run into situations where more than two numbers are to be added. For example, if four numbers,
-\(a_1\), \(a_2\), \(a_3\), and \(a_4\) are to be added, their sum may be written down in several ways, such as\(\) \(((a_1+a_2)+a_3)+a_4\)
-or \(\left(a_1+a_2\right)+\left(a_3+a_4\right)\). In the first expression, the first two numbers are added, the result is added to the third number,
-and that result is added to the fourth number. In the second expression the first two numbers and the last two numbers are added and the results
-of these additions are added. Of course, we know that the final results will be the same. This is due to the fact that addition of numbers is an
-associative operation. For such operations, there is no need to describe how more than two objects will be operated on. 
-A sum of numbers such as \(a_1+a_2+a_3+a_4\)is called a series and is often written \(\sum _{k=1}^4 a_k\) in what is called \emph{ summation notation}. %
-\par
-We first recall some basic facts about series that you probably have seen before. A more formal treatment of sequences and series is covered in Chapter 8. The purpose here is to give the reader a working knowledge of summation notation and to carry this notation through to intersection
-and union of sets and other mathematical operations. %
-\par
-A \emph{finite series} is an expression such as \(a_1+a_2+a_3 +\dots +a_n=\sum _{k=1}^{n} a_k\)%
-\par
-In the expression \(\sum _{k=1}^{n} a_k\):%
-\par
-\leavevmode%
-\begin{itemize}[label=\textbullet]
-\item{} The variable \(k\) is referred to as the \emph{ index}, or the index of summation.%
-\item{} The expression \(a_k\) is the \emph{ general term} of the series. It defines the numbers that are being added together in the series.%
-\item{} The value of \(k\) below the summation symbol is the \emph{ initial index} and the value above the summation symbol is the \emph{ terminal index}.%
-\item{} It is understood that the series is a sum of the general terms where the index start with the initial index and increases by one up to and including the terminal index.%
-\end{itemize}
-%
-\begin{example}[Some finite series]\label{some_finite_series}
-(a)  \(\sum _{i=1}^4 a_i= a_1+ a_2+a_3+a_4\)%
-\par
-(b) \(\sum _{k=0}^5 b_k=b_0+b_1+b_2+b_3+b_4+b_5\)%
-\par
-(c) \(\sum _{i=-2}^2 c_i=c_{-2}+c_{-1}+c_0+c_1+c_2\)%
-\end{example}
-\begin{example}[More finite series ]\label{more_finite_series}
-If the general terms in a series are more specific, the sum can often be simplified. For example,%
-\par
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-214}{} \(\sum _{i=1}^4 i^2=1^2+2^2+3^2+4^2=30\) %
-\item\hypertarget{li-215}{}\begin{equation*}\begin{split}
-	\sum _{i=1}^5 (2i-1)&=(2\ 1-1)+(2\ 2-1)+(2\ 3-1)+(2\ 4-1)+(2\ 5-1)\\
-    & =1+3+5+7+9\\
-    & =25\\
-    /end{split}
-    \end{equation*}%
-\end{enumerate}
-%
-\end{example}
-\par
-Summation notation can be generalized to many mathematical operations, for example, 
-\(A_1\cap A_2\cap A_3\cap A_4=\underset{i=1}{\overset{4}{\cap }}A_i\) %
-\begin{definition}[Generalized Set Operations]\label{generalized-set-operations}
-\index{Generalized Set Operations}Let \(A_1, A_2, \ldots , A_n\) be sets. Then: %
-\par
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-216}{}  \(A_1\cap A_2\cap \cdots \cap A_n=\underset{i=1}{\overset{n}{\cap }}A_i\)%
-\item\hypertarget{li-217}{}   \(A_1\cup A_2\cup \cdots \cup A_n=\underset{i=1}{\overset{n}{\cup }}A_i\)%
-\item\hypertarget{li-218}{}   \(A_1\times A_2\times \cdots \times A_n=\underset{i=1}{\overset{n}{\times }}A_i\)%
-\item\hypertarget{li-219}{}   \(A_1\oplus A_2\oplus \cdots \oplus A_n=\underset{i=1}{\overset{n}{\oplus }}A_i\)%
-\end{enumerate}
-%
-\end{definition}
-\begin{example}[Some generalized operations]\label{some_generalized_operations}
-If \(A_1 = \{0, 2, 3\}\), \(A_2 = \{1, 2, 3, 6\}\), and \(A_3 = \{-1, 0, 3, 9\}\), then 
- \begin{equation*}\underset{i=1}{\overset{3}{\cap }}A_i=A_1\cap A_2\cap A_3=\{3\}\end{equation*}
-and
-\begin{equation*}\underset{i=1}{\overset{3}{\cup }}A_i=A_1\cup A_2\cup A_3=\{-1,0,1,2,3,6,9\}\end{equation*}
-With this notation it is quite easy to write lengthy expressions in a fairly compact form. For example, the statement 
-    \begin{equation*}A\cap \left(B_1\cup B_2\cup \cdots \cup B_n\right)= \left(A\cap B_1\right)\cup \left(A\cap B_2\right)\cup \cdots \cup \left(A\cap
-B_n\right)\end{equation*}
-becomes 
-   \begin{equation*}A \cap \left(\underset{i=1}{\overset{n}{\cup }}B_i\right)= \underset{i=1}{\overset{n}{\cup }}\left(A\cap B_i\right)\end{equation*}%
-\end{example}
-\typeout{************************************************}
-\typeout{Exercises 1.5.1 Exercises}
-\typeout{************************************************}
-\subsection[Exercises]{Exercises}\label{exercises-1-5}
-\hypertarget{exercisegroup-9}{}\typeout{************************************************}
-\typeout{Introduction  }
-\typeout{************************************************}
-A Exercises%
-\begin{exercisegroup}
-\item[1.]\hypertarget{exercise-32}{}Calculate the following series:%
-\par
-\leavevmode%
-\begin{multicols}{2}
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-220}{}  \(\sum _{i=1}^3 (2 + 3i)\)%
-\item\hypertarget{li-221}{}  \(\sum _{i=-2}^1 i^2\) %
-\item\hypertarget{li-222}{}  \(\sum _{j=0}^n 2^j\text{   }\) for \(n= 1, 2, 3, 4\)%
-\item\hypertarget{li-223}{}  \(\sum _{k=1}^n (2k-1)\) for \(n = 1, 2, 3, 4\) %
-\end{enumerate}
-\end{multicols}
-%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-17}{}\quad
-\leavevmode%
-\begin{multicols}{2}
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-224}{} \(24\)%
-\item\hypertarget{li-225}{} \(6\)%
-\item\hypertarget{li-226}{} \(3,7,15,31\)%
-\item\hypertarget{li-227}{} \(1,4,9,16\)%
-\end{enumerate}
-\end{multicols}
-%
-\item[2.]\hypertarget{exercise-33}{} Calculate the following series: %
-\par
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-228}{}  \(\sum _{k=1}^3 k^n\) for\(n = 1, 2, 3, 4\) %
-\item\hypertarget{li-229}{}  \(\sum _{i=1}^5 20\) %
-\item\hypertarget{li-230}{}   \(\sum _{j=0}^3 \left(n^j+1\right)\) for \(n = 1, 2, 3,4\) %
-\item\hypertarget{li-231}{}   \(\sum _{k=-n}^n k\) for \(n = 1, 2, 3, 4\) %
-\end{enumerate}
-%
-\par\smallskip
-\item[3.]\hypertarget{exercise-34}{}\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-232}{}  Express the formula \(\sum _{i=1}^n \frac{1}{i(i+1)}= \frac{n}{n+1}\)  without using summation notation. %
-\item\hypertarget{li-233}{}  Verify this formula for \(n=3\). %
-\item\hypertarget{li-234}{}  Repeat parts (a) and (b) for \(\sum _{i=1}^n i^3=\frac{n^2(n+1)^2}{4}\)%
-\end{enumerate}
-%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-18}{}\quad
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-235}{} \(\frac{1}{1 (1+1)}+\frac{1}{2 (2+1)}+\frac{1}{3 (3+1)}+\cdots +\frac{1}{n(n+1)}=\frac{n}{n+1}\)%
-\item\hypertarget{li-236}{} \(\frac{1}{1(2)}+\frac{1}{2(3)}+\frac{1}{3(4)}=\frac{1}{2}+\frac{1}{6}+\frac{1}{12}=\frac{3}{4}=\frac{3}{3+1}\)%
-\item\hypertarget{li-237}{}\(1+2^3+3^3+\cdots +n^3=\left(\frac{1}{4}\right)n^2(n+1)^2\) \(\quad 1+4+27=36 = \left(\frac{1}{4}\right)(3)^2(3+1)^2\)%
-\end{enumerate}
-%
-\item[4.]\hypertarget{exercise-35}{}   Verify the following properties for \(n = 3\). %
-\par
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-238}{}   \(\sum _{i=1}^n \left(a_i+ b_i\right) =\sum _{i=1}^n a_i +\sum _{i=1}^n  b_i\) %
-\item\hypertarget{li-239}{}    \(c\left(\sum _{i=1}^n a_i\right) = \sum _{i=1}^n c a_i\)%
-\end{enumerate}
-%
-\par\smallskip
-\item[5.]\hypertarget{exercise-36}{} Rewrite the following without summation sign for \(n = 3\). It is not necessary that you understand or expand the notation \(\left(
-\begin{array}{c}
- n \\
- k \\
-\end{array}
-\right)\) at this point. 
-  \((x + y)^n= \sum _{k=0}^n \left(
-\begin{array}{c}
- n \\
- k \\
-\end{array}
-\right)x^{n-k}y^k\).%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-19}{}\quad
-\((x+y)^n=\left(\text{}_0^n\right)x^n+\left(\text{}_1^n\right)x^{n-1}y+\left.(_2^n\right)x^{n-2}y^2+\cdots +\left(\left.\text{}_{n-1}^n\right)x y^{n-1}+\left(\text{}_n^n\right)y^n\right.\)%
-\item[6.]\hypertarget{exercise-37}{}\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-240}{}  Draw the Venn diagram for \(\underset{i=1}{\overset{3}{\cap }}A_i\).%
-\item\hypertarget{li-241}{}Express in ``expanded format'': 
-\(	A\cup (\underset{i=1}{\overset{n}{\cap }}B_i)= \underset{i=1}{\overset{n}{\cap }}(A \cup B_n)\).%
-\end{enumerate}
-%
-\par\smallskip
-\item[7.]\hypertarget{exercise-38}{} For any positive integer \(k\), let \(A_k = \{x \in \mathbb{Q}:k-1 < x <= k\}\) and \(B_k = \{x \in \mathbb{Q}: -k < x < k\}\). What are
-the following sets? %
-\par
-\leavevmode%
-\begin{multicols}{2}
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-242}{}  \(\underset{i=1}{\overset{5}{\cup }}A_i\)%
-\item\hypertarget{li-243}{}  \(\underset{i=1}{\overset{5}{\cup }}B_i\)%
-\item\hypertarget{li-244}{}  \(\underset{i=1}{\overset{5}{\cap }}A_i\)%
-\item\hypertarget{li-245}{}  \(\underset{i=1}{\overset{5}{\cap }}B_i\) %
-\end{enumerate}
-\end{multicols}
-%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-20}{}\quad
-\leavevmode%
-\begin{multicols}{2}
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-246}{} \(\{x\in \mathbb{Q}\mid 0 < x \leq 5\}\) %
-\item\hypertarget{li-247}{} \(\{x\in \mathbb{Q}\mid -5 < x < 5\}=B_5\) %
-\item\hypertarget{li-248}{}  \(\emptyset\)                %
-\item\hypertarget{li-249}{} \(\{x\in \mathbb{Q}\mid -1 < x < 1\}=B_1\)%
-\end{enumerate}
-\end{multicols}
-%
-\item[8.]\hypertarget{exercise-39}{} For any positive integer k, let \(A = \{x \in \mathbb{Q}:\text0 < x < 1/k\}\) and \(B _k = \{x \in \mathbb{Q}:\,0 < x < k\}\). What
-are the following sets? %
-\par
-\leavevmode%
-\begin{multicols}{2}
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-250}{}  \(\underset{i=1}{\overset{\infty }{\cup }}A_i\)%
-\item\hypertarget{li-251}{}  \(\underset{i=1}{\overset{\infty }{\cup }}B_i\)%
-\item\hypertarget{li-252}{}  \(\underset{i=1}{\overset{\infty }{\cap }}A_i\)%
-\item\hypertarget{li-253}{}  \(\underset{i=1}{\overset{\infty }{\cap }}B_i\)%
-\end{enumerate}
-\end{multicols}
-%
-\par\smallskip
-\item[9.]\hypertarget{exercise-40}{}The symbol \(\Pi\) is used for the product of numbers in the same way that \(\Sigma\) is used for sums. For example,
-  \(\prod _{i=1}^5 x_i=x_1 x_2 x_3 x_4 x_5\)
-Evaluate the following:%
-\par
-\leavevmode%
-\begin{multicols}{2}
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-254}{}  \(\prod _{i=1}^3 i^2\)%
-\item\hypertarget{li-255}{}   \(\prod _{i=1}^3 (2i+1)\)%
-\end{enumerate}
-\end{multicols}
-%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-21}{}\quad
-\leavevmode%
-\begin{multicols}{2}
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-256}{} \(36\)%
-\item\hypertarget{li-257}{} \(105\)%
-\end{enumerate}
-\end{multicols}
-%
-\item[10.]\hypertarget{exercise-41}{}Evaluate%
-\par
-\leavevmode%
-\begin{multicols}{2}
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-258}{}   \(\prod _{k=0}^3 2^k\)%
-\item\hypertarget{li-259}{}   \(\prod _{k=1}^{100} \frac{k}{k+1}\)%
-\end{enumerate}
-\end{multicols}
-%
+
+\(\begin{array}{cc}
+ k & \textrm{ Number of ways of getting a score of } k \\
+ 0 & 120 \\
+ 1 & 1044 \\
+ 2 & 2724 \\
+ 3 & 2724 \\
+ 4 & 1044 \\
+ 5 & 120 \\
+\end{array}\)%
+\item[10.]\hypertarget{exercise-16}{} Suppose that you roll a die ten times in a row and record the square of each number that you roll. How many ways could the sum of the squares
+of your rolls equal 40? What is the most common outcome?%
 \par\smallskip
 \end{exercisegroup}
 \par\smallskip\noindent
