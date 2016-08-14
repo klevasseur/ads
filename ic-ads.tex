@@ -1,6 +1,6 @@
 %**************************************%
 %* Generated from MathBook XML source *%
-%*    on 2016-08-14T13:52:09-04:00    *%
+%*    on 2016-08-14T14:00:46-04:00    *%
 %*                                    *%
 %*   http://mathbook.pugetsound.edu   *%
 %*                                    *%
@@ -111,15 +111,10 @@
 %% Style is like a theorem, and for statements without proofs
 %% Numbering: all theorem-like numbered consecutively
 %% i.e. Corollary 4.3 follows Theorem 4.2
-\newtheorem{algorithm}[theorem]{Algorithm}
 %% Definition-like environments, normal text
 %% Numbering is in sync with theorems, etc
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
-%% Remark-like environments, normal text
-%% Numbering is in sync with theorems, etc
-\theoremstyle{definition}
-\newtheorem{note}[theorem]{Note}
 %% Example-like environments, normal text
 %% Numbering is in sync with theorems, etc
 \theoremstyle{definition}
@@ -129,39 +124,8 @@
 \theoremstyle{definition}
 \newtheorem{exercise}[theorem]{Exercise}
 %% Localize LaTeX supplied names (possibly none)
+\renewcommand*{\proofname}{Proof}
 \renewcommand*{\chaptername}{Chapter}
-%% For improved tables
-\usepackage{array}
-%% Some extra height on each row is desirable, especially with horizontal rules
-%% Increment determined experimentally
-\setlength{\extrarowheight}{0.2ex}
-%% Define variable thickness horizontal rules, full and partial
-%% Thicknesses are 0.03, 0.05, 0.08 in the  booktabs  package
-\makeatletter
-\newcommand{\hrulethin}  {\noalign{\hrule height 0.04em}}
-\newcommand{\hrulemedium}{\noalign{\hrule height 0.07em}}
-\newcommand{\hrulethick} {\noalign{\hrule height 0.11em}}
-%% We preserve a copy of the \setlength package before other
-%% packages (extpfeil) get a chance to load packages that redefine it
-\let\oldsetlength\setlength
-\newlength{\Oldarrayrulewidth}
-\newcommand{\crulethin}[1]%
-{\noalign{\global\oldsetlength{\Oldarrayrulewidth}{\arrayrulewidth}}%
-\noalign{\global\oldsetlength{\arrayrulewidth}{0.04em}}\cline{#1}%
-\noalign{\global\oldsetlength{\arrayrulewidth}{\Oldarrayrulewidth}}}%
-\newcommand{\crulemedium}[1]%
-{\noalign{\global\oldsetlength{\Oldarrayrulewidth}{\arrayrulewidth}}%
-\noalign{\global\oldsetlength{\arrayrulewidth}{0.07em}}\cline{#1}%
-\noalign{\global\oldsetlength{\arrayrulewidth}{\Oldarrayrulewidth}}}
-\newcommand{\crulethick}[1]%
-{\noalign{\global\oldsetlength{\Oldarrayrulewidth}{\arrayrulewidth}}%
-\noalign{\global\oldsetlength{\arrayrulewidth}{0.11em}}\cline{#1}%
-\noalign{\global\oldsetlength{\arrayrulewidth}{\Oldarrayrulewidth}}}
-%% Single letter column specifiers defined via array package
-\newcolumntype{A}{!{\vrule width 0.04em}}
-\newcolumntype{B}{!{\vrule width 0.07em}}
-\newcolumntype{C}{!{\vrule width 0.11em}}
-\makeatother
 %% Figures, Tables, Listings, Floats
 %% The [H]ere option of the float package fixes floats in-place,
 %% in deference to web usage, where floats are totally irrelevant
@@ -183,12 +147,6 @@
 % figures have the same number as theorems: http://tex.stackexchange.com/questions/16195/how-to-make-equations-figures-and-theorems-use-the-same-numbering-scheme 
 \makeatletter
 \let\c@figure\c@theorem
-\makeatother
-% Table environment setup so that it no longer floats
-\SetupFloatingEnvironment{table}{fileext=lot,placement={H},within=section,name=Table}
-% tables have the same number as theorems: http://tex.stackexchange.com/questions/16195/how-to-make-equations-figures-and-theorems-use-the-same-numbering-scheme 
-\makeatletter
-\let\c@table\c@theorem
 \makeatother
 %% Raster graphics inclusion, wrapped figures in paragraphs
 %% \resizebox sometimes used for images in side-by-side layout
@@ -213,16 +171,15 @@
 %% end: pdflatex-specific listings configuration
 }
 %% End of generic listing adjustments
-%% Generic input, listings package: boxed, white, line breaking, language per instance
-%% Colors match a subset of Google prettify "Default" style
-%% Set latex.print='yes" to get all black
-%% http://code.google.com/p/google-code-prettify/source/browse/trunk/src/prettify.css
-\definecolor{identifiers}{rgb}{0.375,0,0.375}
-\definecolor{comments}{rgb}{0.5,0,0}
-\definecolor{strings}{rgb}{0,0.5,0}
-\definecolor{keywords}{rgb}{0,0,0.5}
-\lstdefinestyle{genericinput}{breaklines=true,breakatwhitespace=true,columns=fixed,frame=single,xleftmargin=4ex,xrightmargin=4ex,
-basicstyle=\small\ttfamily,identifierstyle=\color{identifiers},commentstyle=\color{comments},stringstyle=\color{strings},keywordstyle=\color{keywords}}
+%% Sage's blue is 50%, we go way lighter (blue!05 would work)
+\definecolor{sageblue}{rgb}{0.95,0.95,1}
+%% Sage input, listings package: Python syntax, boxed, colored, line breaking
+%% Indent from left margin, flush at right margin
+\lstdefinestyle{sageinput}{language=Python,breaklines=true,breakatwhitespace=true,basicstyle=\small\ttfamily,columns=fixed,frame=single,backgroundcolor=\color{sageblue},xleftmargin=4ex}
+%% Sage output, similar, but not boxed, not colored
+\lstdefinestyle{sageoutput}{language=Python,breaklines=true,breakatwhitespace=true,basicstyle=\small\ttfamily,columns=fixed,xleftmargin=4ex}
+%% Multiple column, column-major lists
+\usepackage{multicol}
 %% More flexible list management, esp. for references and exercises
 %% But also for specifying labels (i.e. custom order) on nested lists
 \usepackage{enumitem}
@@ -356,155 +313,249 @@ Lowell MA
 %% end:   table of contents
 \mainmatter
 \typeout{************************************************}
-\typeout{Chapter 1 Relations}
+\typeout{Chapter 1 Functions}
 \typeout{************************************************}
-\chapter[Relations]{Relations}\label{chapter_6}
+\chapter[Functions]{Functions}\label{chapter_7}
 \typeout{************************************************}
 \typeout{Introduction  }
 \typeout{************************************************}
-One understands a set of objects completely only if the structure of that set is made clear by the interrelationships between its elements. For example, the individuals in a crowd can be compared by height, by age, or through any number of other criteria. In mathematics, such comparisons are called relations. The goal of this chapter is to develop the language, tools, and concepts of relations.%
+In this chapter we will consider some basic concepts of the relations that are called functions. A large variety of mathematical ideas and applications can be more completely understood when expressed through the function concept.%
 \typeout{************************************************}
-\typeout{Section 1.1 Basic Definitions}
+\typeout{Section 1.1 Definition and Notation}
 \typeout{************************************************}
-\section[Basic Definitions]{Basic Definitions}\label{s-basic-definitions}
-In Chapter 1 we introduced the concept of the Cartesian product of sets. Let's assume that a person owns three shirts and two pairs of slacks. More
-precisely, let \(A = \{\textrm{blue shirt}, \textrm{tan shirt}, \textrm{mint green shirt}\}\) and \(B = \{\textrm{grey slacks}, \textrm{tan slacks}\}\). Then \(A\times B\) is the set of all six possible combinations of shirts and slacks that the individual could wear. However, an individual may wish to restrict himself or herself to combinations which are color coordinated, or ``related.'' This may not be all possible pairs in \(A\times B\) but will certainly be a subset of \(A\times B\). For example, one such subset may be \(\{(\textrm{blue shirt}, \textrm{grey slacks}), (\textrm{blue shirt},  \textrm{tan slacks}), (\textrm{mint green shirt}, \textrm{tan slacks})\}\).%
-\begin{definition}[Relation]\label{Relation}
-\index{Relation} Let A and B be sets. A relation from A into B is any subset of \(A\times B\).%
+\section[Definition and Notation]{Definition and Notation}\label{s-function-def-notation}
+\typeout{************************************************}
+\typeout{Subsection 1.1.1 Fundamentals}
+\typeout{************************************************}
+\subsection[Fundamentals]{Fundamentals}\label{ss-fundamentals-functions}
+\begin{definition}[ Function]\label{def-function}
+\index{Function}\label{notation-1}
+A function from a set \(A\) into a set \(B\) is a relation from \(A\) into \(B\) such that each element of \(A\) is related to exactly one element of the set \(B\). The set \(A\) is called \terminology{domain} of the function and the set \(B\) is called the \terminology{codomain}.%
 \end{definition}
-\begin{example}[A simple example]\label{ex-simple-relation}
-Let \(A = \{1, 2, 3\}\) and \(B = \{4, 5\}\). Then \(\{(1, 4), (2, 4), (3, 5)\}\) is a relation from \(A\) into \(B\). Of course, there are many others we could describe; 64, to be exact.%
+The reader should note that a function \(f\) is a relation from \(A\) into \(B\) with two important restrictions:%
+\par
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{} Each element in the set \(A\), the domain of \(f\), must be related to some element of \(B\), the codomain.%
+\item{}The phrase ``is related to exactly one element of the set B'' means that if \((a, b)\in f\) and \((a, c)\in f\), then \(b = c\).%
+\end{itemize}
+%
+\begin{example}[A function as a list of ordered pairs]\label{ex-function-1}
+Let \(A = \{-2, -1,0, 1, 2\}\) and \(B = \{0, 1, 2, 3, 4\}\), and if \(s = \{(-2, 4), (-1, 1), (0, 0), (1, 1), (2, 4)\}\), then \(s\) is a function from \(A\) into \(B\).%
 \end{example}
-\begin{example}[Divisibility Example]\label{ex-divides-example}
- Let \(A = \{2, 3, 5, 6\}\) and define a relation \(r\) from \(A\) into \(A\) by \((a, b) \in r\) if and only if \(a\) divides evenly into \(b\). The set of pairs that qualify for membership is \(r = \{(2, 2), (3, 3), (5, 5), (6, 6), (2, 6), (3, 6)\}\).
+\begin{example}[A function as a set of ordered pairs in set-builder notation]\label{ex-function-2}
+Let \(\mathbb{R}\) be the real numbers. Then \(L = \{(x, 3x) \mid x \in \mathbb{R}\}\) is a function from \(\mathbb{R}\) into \(\mathbb{R}\),
+or, more simply, \(L\) is a function on \(\mathbb{R}\).%
+\end{example}
+\par
+It is customary to use a different system of notation for functions than the one we used for relations. If \(f\) is a function from the set  \(A\) into the set \(B\), we will write \(f:A \rightarrow B\).%
+\par
+The reader is probably more familiar with the notation for describing functions that is used in basic algebra or calculus courses. For example, \(y =\frac{1}{x}\) or \(f(x) =\frac{1}{x}\) both define the function \(\left\{\left.\left(x,\frac{1}{x}\right)\right| x\in \mathbb{R}, x\neq
+0\right\}\). Here the domain was assumed to be those elements of \(\mathbb{R}\) whose substitutions for \(x\) make sense, the nonzero real numbers,
+and the codomain was assumed to be \(\mathbb{R}\). In most cases, we will make a point of listing the domain and codomain in addition to describing what the function does in order to define a function. %
+\par
+The terms \terminology{mapping}, \terminology{map}, and \terminology{transformation} are also used for functions.%
+\par
+One way to imagine a function and what it does is to think of it as a machine. The machine could be mechanical, electronic, hydraulic, or abstract. Imagine that the machine only accepts certain objects as raw materials or input. The possible raw materials make up the domain. Given some input, the machine produces a finished product that depends on the input. The possible finished products that we imagine could come out of this process make up the codomain.%
+\begin{example}[A definition based on images]\label{ex-non-pair-description}
+We can define a function based on specifying the codomain element to which each domain element is related.   For example, f: \(\mathbb{R} \rightarrow \mathbb{R}\) defined by \(f(x) = x^2\) is an alternate description of \(f= \left\{\left.\left(x,
+x ^2\right)\right|x \in  \mathbb{R}\right\}\).%
+\end{example}
+\begin{definition}[Image of an element under a function]\label{def-image-of-an-element}
+\index{Image of an Element.}\label{notation-2}
+Let \(f:A \rightarrow  B\), (read ``Let \(f\) be a function from the set \(A\) into
+the set \(B\).'') If \(a \in  A\), then \(f(a)\) is used to denote that element of \(B\) to which \(a\) is related.
+\(f(a)\) is called the \terminology{image} of \(a\), or, more precisely, the image of \(a\) under \( f\). We write \(f(a) = b\) to indicate that the image of \(a\) is \(b\).%
+\end{definition}
+\par
+In \hyperref[ex-non-pair-description]{Example~\ref{ex-non-pair-description}}, the image of 2 under \(f\) is 4; that is, \(f(2) = 4\). In \hyperref[ex-function-1]{Example~\ref{ex-function-1}}, the image of -1 under \(s\) is 1; that is,
+\(s(-1) = 1\).%
+\begin{definition}[Range of a Function]\label{def-range-of-function}
+\index{Range of a Function.}\label{notation-3}
+ The range of a function is the set of images of its domain. If \(f:X \rightarrow Y\), then the range of f is denoted \(f(X)\), and  
+\begin{equation*}f(X) = \{f(a) \mid a \in X\} = \{b \in Y \mid  \exists a \in X\textrm{ such that } f(a) = b\}\end{equation*}%
+\end{definition}
+\par
+Note that the range of a function is a subset of its codomain. \(f(X)\) is also read as ``the image of the set \(X\) under the function \(f\)`` or simply ''the image of \(f\).''%
+\par
+In \hyperref[ex-function-1]{Example~\ref{ex-function-1}}, \(s(A)= \{0, 1, 4\}\). Notice that 2 and 3 are not images of any element of \(A\). In addition, note that both 1 and 4 are related to more than one element of the domain \(s(1) = s(-1) = 1\) and \(s(2) = s(-2) = 4\). This does not violates the definition of a function. Go back and read the definition if this isn't clear to you.%
+\par
+In \hyperref[ex-function-2]{Example~\ref{ex-function-2}}, the range of \(L\) is equal to its codomain, \(\mathbb{R}\). If \(b\) is any real number, we can demonstrate that it
+belongs to L(\(\mathbb{R}\)) by finding a real number \(x\) for which \(L(x) = b\). By the definition of \(L\), \(L(x) = 3x\), which leads
+us to the equation \(3x = b\). This equation always has a solution, \(\frac{b}{3}\); thus \(L(\mathbb{R}) = \mathbb{R}\).%
+\par
+The formula that we used to describe image of a real number under \(L\), \(L(x) = 3x\), is preferred over the set notation for \(L\)
+due to its brevity. Any time a function can be described with a rule or formula, we will use this form of description. In Example 7.1.1, the image
+of each element of \(A\) is its square. To describe that fact, we write \(s(a) = a^2\) (\(a \in  A\)), or \(S:A \rightarrow  B\) defined by
+\(S(a) = a^2\).%
+\par
+There are many ways that a function can be described. Many functions, such as the complexity of the function dictate its representation.%
+\begin{example}[Data as a function]\label{ex-data-function}
+Suppose a survey of 1,000 persons is done asking how many hours of television each watches per day. Consider the function \(W:
+\{0,1,\ldots , 24\} \rightarrow  \{0,1,2,\ldots ,1000\}\) defined by 
+ \[W(t) = \textrm{the number of persons who gave a response of } t \textrm{ hours}\] 
+
+This function will probably have no formula such as the ones for s and L above. Besides listing the data in a table, a bar graph might be a good
+way to represent \(W\).%
+\end{example}
+\begin{example}[Conditional definiton of a function]\label{ex-conditional-function}
+ Consider the function \(m:\mathbb{P} \rightarrow  \mathbb{Q}\) defined by the set
+
+\begin{equation*}m = \{(1, 1), (2, 1/2), (3, 9), (4, 1/4), (5, 25), . . . \} \end{equation*}
+
+No simple single formula could describe \(m\), but if we assume that the pattern given continues, we can write
+
+ \begin{equation*}m(x) =\left\{
+\begin{array}{cc}
+ x^2 &  \textrm{if } x \textrm{ is odd} \\
+ 1/x & \textrm{if } x \textrm{ is even} \\
+\end{array}
+\right.\end{equation*}
 %
 \end{example}
-\begin{definition}[Relation on a Set]\label{relation-on-a-set}
-\index{Relation on a Set}A relation from a set A into itself is called a relation on A.%
-\end{definition}
-\par
-The relation ``divides'' in \hyperref[ex-divides-example]{Example~\ref{ex-divides-example}} is will appear throughout the book. Here is a general definition on the whole set of integers.%
-\begin{definition}[Divides]\label{Divides}
-\index{Divides}\label{notation-1}
-Let \(a, b \in \mathbb{Z}\).  
-We say that \(a\) divides \(b\), denoted \(a \mid b\),  if and only if there exists an integer \(k\) such that \(a k = b\).%
-\end{definition}
-\par
-Be very careful in writing about the relation ``divides.''  The vertical line symbol use for this relation, if written carelessly, can look like division.  While \(a \mid b\) is either true or false, \(a/b\) is a number. %
-\par
-Based on the equation \(a k = b\), we can say that \(a|b\) is equivalent to \(k= \frac{b}{a}\), or \(a\) divides evenly into \(b\). In fact the ``divides'' is short for ``divides evenly into.'' You might find the equation \(k= \frac{b}{a}\) initially easier to understand, but in the long run we will find the equation \(a k = b\) more convenient. %
-\par
-Sometimes it is helpful to illustrate a relation with a graph. Consider \hyperref[ex-simple-relation]{Example~\ref{ex-simple-relation}}.  A graph of \(r\) can be drawn as in \hyperref[graph-6-1-1-relation]{Figure~\ref{graph-6-1-1-relation}}. The arrows indicate that 1 is related to 4 under \(r\). Also, 2 is related to 4 under \(r\), and 3 is related to 5, while the upper arrow denotes that \(r\) is a relation from the whole set \(A\) into the set \(B\). %
-\leavevmode%
-\begin{figure}
-\centering
-\includegraphics[width=1\linewidth]{images/graph-6-1-relation-graph.png}
-\caption{The graph of a relation\label{graph-6-1-1-relation}}
-\end{figure}
-\par
-A typical element in a relation \(r\) is an ordered pair \((x, y)\). In some cases, \(r\) can be described by actually listing the pairs which are in \(r\), as in the previous examples. This may not be convenient if \(r\) is relatively large. Other notations are used with certain well-known relations. Consider the ``less than or equal'' relation on the real numbers. We could define it as a set of ordered pairs this way:
-\[\le = \{(x, y) | x \leq  y\}\].
-However, the notation \(x \leq  y\) is clear and self-explanatory; it is a more natural, and hence preferred, notation to use than \((x, y) \in \le\).%
-\par
-Many of the relations we will work with ``resemble'' the relation \(\leq\), so \(x s y\) is a common way to express the fact that \(x\) is related to \(y\) through the relation \(s\).%
-\par
-\emph{Relation Notation}\index{Relation Notation} Let \(s\) be a relation from a set \(A\) into a set \(B\). Then the fact that \((x, y) \in s\) is frequently
-written \(x s y\).\label{notation-2}
-%
-\par
-With \(A = \{2, 3, 5, 8\}\), \(B = \{4, 6, 16\}\), and \(C = \{1, 4, 5, 7\}\), let \(r\) be the relation ``divides,''
-from \(A\) into \(B\); and let \(s\) be the relation \(\leq\) from \(B\) into \(C\). So \(r = \{(2, 4), (2, 6), (2,16), (3, 6), (8, 16)\}\) and \(s = \{(4, 4), (4, 5), (4, 7), (6, 7)\}\).%
-\par
-Notice that in \hyperref[graph-6-1-relation-composition]{Figure~\ref{graph-6-1-relation-composition}} that we can, for certain elements of \(A\), go through elements in \(B\) to results in \(C\). That is:%
-\leavevmode%
-\begin{table}
-\centering
-\begin{tabular}{c}
-\(2 | 4 \textrm{ and } 4 \leq  4\)\tabularnewline[0pt]
-\(2 | 4 \textrm{ and } 4 \leq  5\)\tabularnewline[0pt]
-\(2 | 4 \textrm{ and } 4 \leq  7\)\tabularnewline[0pt]
-\(2| 6 \textrm{ and } 6 \leq 7\)\tabularnewline[0pt]
-\(3| 6 \textrm{ and } 6 \leq  7\)
-\end{tabular}
-\end{table}
-\leavevmode%
-\begin{figure}
-\centering
-\includegraphics[width=1\linewidth]{images/graph-6-1-relation-composition.png}
-\caption{Relation Composition - a graphical view\label{graph-6-1-relation-composition}}
-\end{figure}
-\par
-Based on this observation, we can define a new relation, call it \(rs\), from \(A\) into \(C\). In order for \((a, c)\)
-to be in \(rs\), it must be possible to travel along a path in Figure 6.1.2 from \(a\) to \(c\). In other words, \((a, c) \in rs\) if and only if \((\exists b)_B(a r b \textrm{ and } b s c)\). The name \(rs\) was chosen because it reminds us that this new relation was formed by the two previous relations \(r\) and \(s\). The complete listing of all elements in \(rs\) is \(\{(2, 4), (2, 5), (2, 7), (3, 7)\}\). We summarize in a definition.%
-\begin{definition}[Composition of Relations]\label{def-composition-of-relations}
-\index{Composition of Relations}\label{notation-3}
-Let \(r\) be a relation from a set \(A\) into a set \(B\), and let \(s\) be a relation from \(B\) into a set \(C\). The composition of \(r\) with \(s\), written \(rs\), is the set of pairs of the form \((a, c) \in A\times C\), where \((a, c) \in rs\) if and only if there exists \(b \in B\) such that \((a, b) \in r\) and \((b, c) \in s\).%
-\end{definition}
-\par
-Remark: A word of warning to those readers familiar with composition of functions. (For those who are not, disregard this remark. It will be repeated at an appropriate place in the next chapter.) As indicated above, the traditional way of describing a composition of two relations is \(rs\) where \(r\) is the first relation and \(s\) the second. However, function composition is traditionally expressed in the opposite order; that is, \(s\circ r\), where \(r\) is the first function and \(s\) is the second.%
 \typeout{************************************************}
-\typeout{Exercises 1.1.1 Exercises}
+\typeout{Subsection 1.1.2 Functions of Two Variables}
 \typeout{************************************************}
-\subsection[Exercises]{Exercises}\label{exercises-6-1}
+\subsection[Functions of Two Variables]{Functions of Two Variables}\label{ss-two-variables}
+\index{Functions!Of two Variables}If the domain of a function is the Cartesian product of two sets, then our notation and terminology is changed slightly. For example, consider the
+function \(C:\mathbb{N} \times \mathbb{N}\rightarrow \mathbb{N}\) defined by \(C\left(\left(n_1,n_2\right)\right)=n_1^2+n_2^2- n_1n_2+10\).  For
+this function, we would drop one set of parentheses and write \(C(4, 2) = 22\), not \(C((4, 2)) = 22\). We call \(C\) a function of two variables.
+From one point of view, this function is no different from any others that we have seen. The elements of the domain happen to be slightly more complicated.
+On the other hand, we can look at the individual components of the ordered pairs as being separate. If we interpret \(C\) as giving us the cost of
+producing quantities of two products, we can imagine varying \(n_1\) while \(n_2\) is fixed, or vice versa.%
+\typeout{************************************************}
+\typeout{Subsection 1.1.3 Sage Note}
+\typeout{************************************************}
+\subsection[Sage Note]{Sage Note}\label{ss-sage-note-functions}
+\index{Sage Note!Functions}There are several ways to define a function in Sage. The simplest way to implement \(f\) is as follows.%
+\begin{lstlisting}[style=sageinput]
+f(x)=x^2
+f
+\end{lstlisting}
+\begin{lstlisting}[style=sageoutput]
+x |--> x^2
+\end{lstlisting}
+\begin{lstlisting}[style=sageinput]
+[f(4),f(1.2)]
+\end{lstlisting}
+\begin{lstlisting}[style=sageoutput]
+[16,1.44000000000000]
+\end{lstlisting}
+\par
+Sage is built upon the programming language Python, which is a \emph{strongly typed language} and so you can't evaluate expressions such as \(f(``Hello'')\). However a function like f above will accept any type of number, so a bit more work is needed to restrict the inputs of f to the integers.%
+\par
+A second way to define a function in Sage is based on Python syntax.%
+\begin{lstlisting}[style=sageinput]
+def fa(x):
+	return x^2
+[fa(2),fa(1.2)]
+\end{lstlisting}
+\begin{lstlisting}[style=sageoutput]
+[16,1.44000000000000]
+\end{lstlisting}
+\typeout{************************************************}
+\typeout{Subsection 1.1.4 Non-Functions}
+\typeout{************************************************}
+\subsection[Non-Functions]{Non-Functions}\label{ss-non-functions}
+We close this section with two examples of relations that are not functions.%
+\begin{example}[A non-function]\label{ex-nonfunction1}
+ Let \(A = B = \{1, 2, 3\}\) and let \(f= \{(1, 2), (2, 3)\}\). Here \(f\) is not a function since \(f\) does not
+act on, or ``use,'' all elements of \(A\).%
+\end{example}
+\begin{example}[Another non-function]\label{ex-nonfunction2}
+ Let \(A = B = \{1,2, 3\}\) and let \(g = \{(1, 2), (2, 3), (2, 1),(3, 2)\}\). We note that \(g\) acts on all of \(A\).  However, \(g\) is still not a function since \((2, 3) \in  g\) and \((2, 1) \in  g\) and the condition on each domain being related
+to exactly one element of the codomain is violated.%
+\end{example}
+\typeout{************************************************}
+\typeout{Exercises 1.1.5 Exercises for Section 7.1 }
+\typeout{************************************************}
+\subsection[Exercises for Section 7.1 ]{Exercises for Section 7.1 }\label{exercises-7-1}
 \hypertarget{exercisegroup-1}{}\typeout{************************************************}
 \typeout{Introduction  }
 \typeout{************************************************}
 A Exercises%
 \begin{exercisegroup}
-\item[1.]\hypertarget{exercise-1}{} For each of the following relations \(r\) defined on \(\mathbb{P}\), determine which of the given ordered pairs belong to \(r\)%
+\item[1.]\hypertarget{exercise-1}{} Let \(A = \{1, 2, 3, 4\}\) and \(B = \{a,b, c, d)\). Determine which of the following are functions. Explain.%
 \par
 \leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-1}{} \(x r y\) iff \(x|y\);  (2, 3), (2, 4), (2, 8), (2, 17)%
-\item\hypertarget{li-2}{} \(x r y\) iff \(x \leq  y\); (2, 3), (3, 2), (2, 4), (5, 8)%
-\item\hypertarget{li-3}{} \(x r y\) iff \(y =x^2\) ; (1,1), (2, 3), (2, 4), (2, 6)%
+\item\hypertarget{li-3}{} \(f \subseteq  A \times  B\), where \(f = \{(1, a), (2, b), (3, c), (4, d)\}\).%
+\item\hypertarget{li-4}{} \(g\subseteq A\times B\), where \(g = \{(1, a), (2, a), (3,b), (4,d)\}\).%
+\item\hypertarget{li-5}{} \(h \subseteq A \times  B\), where \(A = \{(1, a), (2, b), (3, c)\}\).%
+\item\hypertarget{li-6}{} \(k \subseteq A\times  B\), where \(k = \{(1, a), (2, b), (2, c), (3, a), (4, a)\}\).%
+\item\hypertarget{li-7}{} \(L\subseteq A\times A\), where \(L = \{(1, 1), (2, 1), (3, 1), (4, 1)\}\).%
 \end{enumerate}
 %
 \par\smallskip
 \par\smallskip
 \noindent\textbf{Answer.}\hypertarget{answer-1}{}\quad
 \leavevmode%
+\begin{multicols}{3}
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-4}{} \((2,4), (2,8)\)   %
-\item\hypertarget{li-5}{} \((2, 3), (2, 4), (5,8)\)   %
-\item\hypertarget{li-6}{} \((1,1), (2,4)\)%
+\item\hypertarget{li-8}{} Yes %
+\item\hypertarget{li-9}{} Yes %
+\item\hypertarget{li-10}{} No %
+\item\hypertarget{li-11}{}No%
+\item\hypertarget{li-12}{}Yes%
 \end{enumerate}
+\end{multicols}
 %
-\item[2.]\hypertarget{exercise-2}{} The following relations are on \(\{\{1, 3, 5\}\}\). Let \(r\) be the relation \(x r y\) iff \(y = x + 2\) and \(s\) the
-relation \(x s y\) iff \(x \leq  y\).%
+\item[2.]\hypertarget{exercise-characteristic-function}{} Let \(A\) be a set and let \(S\) be any subset of \(A\). Let \(\chi _S: A\to \{0,1\}\) be defined by
+
+
+
+\begin{equation*}\chi _S(x)= \left\{
+\begin{array}{cc}
+ 1 & \textrm{if } x\in S \\
+ 0 & \textrm{if } x\notin S \\
+\end{array}
+\right.
+\end{equation*}
+%
+\par
+The function \(\chi _S\), is called the \terminology{characteristic function}\index{Characteristic function} of \(S\)%
 \par
 \leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-7}{} List all elements in  \(rs\).%
-\item\hypertarget{li-8}{} List all elements in  \(sr\).%
-\item\hypertarget{li-9}{} Illustrate \(rs\) and \(sr\) via a diagram.%
-\item\hypertarget{li-10}{} Is the relation (set) \(rs\) equal to the relation \(sr\)? Why?%
+\begin{enumerate}[label=(\alph*)]
+\item\hypertarget{li-13}{} If \(A = \{a, b, c\}\) and \(S = \{a, b\}\), list the element of \(\chi _S\) .%
+\item\hypertarget{li-14}{} If \(A = \{a, b, c, d, e\}\) and \(S = \{a, c, e\}\), , list the element of \(\chi _S\).%
+\item\hypertarget{li-15}{} If \(A = \{a, b, c\}\), what are \(\chi _{\emptyset }\) and \(\chi _A\).%
 \end{enumerate}
 %
 \par\smallskip
-\item[3.]\hypertarget{exercise-3}{} Let \(A = \{1,2,3,4,5\}\) and define \(r\) on A by \(x r y\) iff \(x + 1 = y\). We
-define \(r^2 = r r\) and \(r^3 = r^2 r\). Find:%
-\par
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-11}{} \(r\)%
-\item\hypertarget{li-12}{} \(r^2\)%
-\item\hypertarget{li-13}{} \(r^3\)%
-\end{enumerate}
-%
+\item[3.]\hypertarget{exercise-3}{} Find the ranges of each of the relations that are functions in Exercise 1.%
 \par\smallskip
 \par\smallskip
 \noindent\textbf{Answer.}\hypertarget{answer-2}{}\quad
 \leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-14}{} \(r=\{(1,2), (2,3), (3,4), (4,5)\}\)%
-\item\hypertarget{li-15}{} \(r^2 = \{(1,3), (2,4), (3,5)\}=\{(x,y) : y=x+2, x,y\in A\}\)%
-\item\hypertarget{li-16}{} \(r^3=\{(1,4), (2,5)\}=\{(x,y) : y=x+3, x,y \in  A\}\) %
+\item\hypertarget{li-16}{} Range of \(f=f(A)=\{a,b,c,d\}=B\)%
+\item\hypertarget{li-17}{} Range of \(g=g(A)=\{a,b,d\}\)%
+\item\hypertarget{li-18}{} Range of \(L=L(A)=\{1\}\)%
 \end{enumerate}
 %
-\item[4.]\hypertarget{exercise-4}{} Given \(s\) and \(t\), relations on \(\mathbb{Z}\),\( s = \{(1, n) : n \in \mathbb{Z}\}\) and \(t= \{(n, 1) : n \in  \mathbb{Z}\}\),
-what are \(st\) and \(ts\)? Hint: Even when a relation involves infinite sets, you can often get insights into them by drawing
-partial graphs.%
+\item[4.]\hypertarget{exercise-4}{} Find the ranges of the following functions on \(\mathbb{Z}\):%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-19}{} \(g = \{(x, 4x +1)|x \in  \mathbb{Z}\}\)%
+\item\hypertarget{li-20}{} \(h(x) = \text{least} \text{integer} \text{that} \text{is} \text{greater} \text{than} \text{or} \text{equal} \text{to} \sqrt{|x|}\).%
+\item\hypertarget{li-21}{} \(P(x) = x + 10\).%
+\end{enumerate}
+%
+\par\smallskip
+\item[5.]\hypertarget{exercise-5}{} Let \(f:\mathbb{P}\to \mathbb{P}\), where\(f(a)\) is the largest power of two that evenly divides \(a\); for example, \(f(12)=4,f(9)=1,\text{and}
+f(8)=8\). Describe the equivalence classes of the kernel of \(f\).%
+\par\smallskip
+\item[6.]\hypertarget{exercise-6}{} Let \(U\) be a set with subsets \(A\) and \(B\).%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-22}{} Show that \(g:U\to \{0,1\}\) defined by \(g(a)=\min \left(C_A(a),C_B(a)\right)\) is the characteristic function of \(A\cap B\).%
+\item\hypertarget{li-23}{} What characteristic function is \(h:U\to \{0,1\}\) defined by \(h(a)=\max \left(C_A(a),C_B(a)\right)\)?%
+\item\hypertarget{li-24}{} How are the characteristic functions of \(A\) and \(A^c\) related?%
+\end{enumerate}
+%
 \par\smallskip
 \end{exercisegroup}
 \par\smallskip\noindent
@@ -513,108 +564,225 @@ partial graphs.%
 \typeout{************************************************}
 B Exercises%
 \begin{exercisegroup}
-\item[5.]\hypertarget{exercise-5}{} Let \(\rho\) be the relation on the power set, \(\mathcal{P}(S )\), of a finite set S of cardinality \(n\). Define \(\rho\) by \((A,B)
-\in \rho\) iff \(A\cap  B = \emptyset\).%
-\par
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-17}{} Consider the specific case \(n = 3\), and determine the cardinality of the set \(\rho\).%
-\item\hypertarget{li-18}{} What is the cardinality of \(\rho\) for an arbitrary \(n\)? Express your answer in terms of \(n\). (Hint: There are three places that each element of S can go in building an element of \(\rho\).)%
-\end{enumerate}
-%
+\item[7.]\hypertarget{exercise-7}{}If \(\lvert A \rvert\) and \(\lvert B \rvert\) are both finite, how many different functions are there from \(A\) into \(B\)?%
 \par\smallskip
 \par\smallskip
 \noindent\textbf{Answer.}\hypertarget{answer-3}{}\quad
+ For each of the \(\lvert A \rvert \) elements of \(A\), there are \(\lvert B \rvert\) possible images, so there are\(\lvert B \rvert\cdot \lvert B \rvert\cdot \ldots \cdot \lvert B \rvert=\left\lvert B \rvert^{\lvert A \rvert}\right.\) functions from \(A\) into \(B\).%
+\item[8.]\hypertarget{exercise-8}{} Let \(f\) be a function with domain \(A\) and codomain \(B\). Consider the relation \(K \subseteq  A \times  A\) defined
+on the domain of \(f\) by \((x, y) \in  K\) if and only if \(f(x) = f(y)\). The relation \(K\) is called \textit{ the kernel of f}.%
+\par
 \leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-19}{} When \(n=3\), there are 27 pairs in the relation.%
-\item\hypertarget{li-20}{} Imagine building a pair of disjoint subsets of \(S\). For each element of \(S\) there are three places that it can go: into the first set of the ordered pair, into the second set, or into neither set. Therefore the number of pairs in the relation is \(3^n\), by the product rule.%
+\item\hypertarget{li-25}{} Prove that \(K\) is an equivalence relation.%
+\item\hypertarget{li-26}{} For the specific case of \(A = \mathbb{Z}\), where \(\mathbb{Z}\) is the set of integers, let \(f: \mathbb{Z} \rightarrow  \mathbb{Z}\) be defined by \(f(x) = x^2\). Describe the equivalence classes of the kernel for this specific function.%
 \end{enumerate}
 %
-\item[6.]\hypertarget{exercise-6}{} Let \(r_1\), \(r_2\), and \(r_3\) be relations on any set \(A\). Prove that if \(r_1\subseteq r_2\)then \(r_1r_3\subseteq r_2r_3\).%
 \par\smallskip
 \end{exercisegroup}
 \par\smallskip\noindent
 \typeout{************************************************}
-\typeout{Section 1.2 Graphs of Relations on a Set}
+\typeout{Section 1.2 Properties of Functions }
 \typeout{************************************************}
-\section[Graphs of Relations on a Set]{Graphs of Relations on a Set}\label{s-graphs-of-relations-on-a-set}
-In this section we introduce directed graphs as a way to visualize relations on a set. %
+\section[Properties of Functions ]{Properties of Functions }\label{s-properties-of-functions}
+\index{Properties of Functions}Consider the following functions:%
 \par
-Let \(A = \{0, 1,2,3\}\), and let  \[r = \{(0, 0), (0, 3), (1, 2), (2, 1), (3, 2), (2, 0)\}\]
-In representing this relation as a graph, elements of \(A\) are called the vertices of the graph. They are typically represented by labeled points or small circles. We connect vertex \(a\) to vertex \(b\) with an arrow, called an edge, going from vertex \(a\) to vertex \(b\) if and only if \(a r b\).  This type of graph of a relation \(r\) is called a \terminology{directed graph} or \terminology{digraph}. \hyperref[fig-graph-6-2-1]{Figure~\ref{fig-graph-6-2-1}} is a digraph for \(r\). Notice that since 0 is related to itself, we draw a ``self-loop'' at 0.\index{Directed graph}\index{Digraph}%
-\leavevmode%
-\begin{figure}
-\centering
-\IfFileExists{images/graph-6-2-1.pdf}%
-{\includegraphics[width=1\linewidth]{images/graph-6-2-1.pdf}}%
-{\includegraphics[width=1\linewidth]{images/graph-6-2-1.png}}
-\caption{Digraph of a relation \label{fig-graph-6-2-1}}
-\end{figure}
+Let \(A = \{1, 2, 3, 4\}\) and \(B = \{a, b, c, d\}\), and defined \(f:A \rightarrow  B\) by 
+\begin{equation*}f(1) = a, f(2) = b, f(3) = c \textrm{ and } f(4) = d\end{equation*}
+%
 \par
-The actual location of the vertices in a digraph is immaterial. The actual location of vertices we choose is called an \terminology{embedding of a graph}\index{Embedding of a graph}. The main idea is to place the vertices in such a way that the graph is easy to read. After drawing a rough-draft graph of a relation, we may decide to relocate the vertices so that the final result will be neater. \hyperref[fig-graph-6-2-1]{Figure~\ref{fig-graph-6-2-1}} could also
-be presented as in \hyperref[fig-graph-6-2-2]{Figure~\ref{fig-graph-6-2-2}}.%
-\leavevmode%
-\begin{figure}
-\centering
-\IfFileExists{images/graph-6-2-2.pdf}%
-{\includegraphics[width=1\linewidth]{images/graph-6-2-2.pdf}}%
-{\includegraphics[width=1\linewidth]{images/graph-6-2-2.png}}
-\caption{Alternate embedding of of the previous directed graph\label{fig-graph-6-2-2}}
-\end{figure}
+Let \(A = \{1, 2, 3, 4\}\) and \(B = \{a, b, c, d\}\), and defined \(g:A \rightarrow  B\) by 
+\begin{equation*}g(1) = a , g(2) = b, g(3) = a \textrm{ and } g(4) = b.\end{equation*}
+%
 \par
-A vertex of a graph is also called a node, point, or a junction. An edge of a graph is also referred to as an arc, a line, or a branch. Do not be concerned if two graphs of a given relation look different as long as the connections between vertices are are the same in two graphs.%
-\begin{example}[Another directed graph.]\label{ex-another-simple-graph}
-Consider the relation \(s\) whose digraph is \hyperref[fig-graph-6-2-3]{Figure~\ref{fig-graph-6-2-3}}. What information does this give us? The graph tells us that \(s\) is a relation on \(A = \{1, 2, 3\}\) and that \(s = \{(1, 2), (2, 1), (1, 3), (3, 1), (2, 3), (3, 3)\}\),%
-\leavevmode%
-\begin{figure}
-\centering
-\IfFileExists{images/graph-6-2-3.pdf}%
-{\includegraphics[width=1\linewidth]{images/graph-6-2-3.pdf}}%
-{\includegraphics[width=1\linewidth]{images/graph-6-2-3.png}}
-\caption{Digraph of the relation \(s\)\label{fig-graph-6-2-3}}
-\end{figure}
+The first function, \(f\), gives us more information about the set \(B\) than the second function, \(g\). Since \(A\) clearly has four elements,/tells us that the set \(B\) contains at least four elements since each element of the set \(A\) is mapped onto one and only one element of the set \(B\), The properties that f has, and g does not have, are the most basic properties that we look for in a function. The following definitions summarize the basic vocabulary for function properties.%
+\begin{definition}[Injective Function, Injection]\label{def-injective-function}
+\index{Function!Injective}\index{Function!One-to-one}\index{Injection}A function \(f: A \rightarrow B\) is injective if \begin{equation*} a, b\in  A, a\neq b \Rightarrow  f(a) \neq  f(b)\end{equation*}  A injective function is called a injection, or a one-to-one function%
+\end{definition}
+\par
+Notice that the condition for a injective function is equivalent to
+  \[a, b\in  A, f(a) = f(b) \Rightarrow  a = b\] 
+%
+\begin{definition}[Surjective Function, Surjection]\label{def-surjective-function}
+\index{Function!Surjective}\index{Function!Onto}\index{Surjection}A function \(f: A \rightarrow B\) is surjective if its range, \(f(A)\), is equal to its codomian B.  A surjective function is called a surjection, or an onto function%
+\end{definition}
+\par
+Notice that the condition for a surjective function is equivalent to 
+\begin{equation*}\textrm{For all } b \in  B\textrm{, there exists } a\in A \textrm{ such that } f(a)=b.\end{equation*}%
+\begin{definition}[Bijective Function, Bijection.]\label{def-bijective-function}
+\index{Function!Bijective}\index{Bijection} A function \(f: A \rightarrow B\) is bijective if it is both injective and surjective. Bijective functions are also called one-to-one, onto functions.%
+\end{definition}
+\par
+The function \(f\) that we opened this section with is bijective. The function \(g\) is neither injective nor
+surjective.%
+\begin{example}[Injective but not surjective function]\label{ex-injective-notsurjective}
+Let \(A = \{1, 2, 3\}\) and \(B = \{a, b, c, d\}\), and define \(f:A \rightarrow  B\) by \(f(1) = b\), \(f(2) = c\), and \(f(3)
+= a\). Then \( f \) is injective but not surjective.%
 \end{example}
-\begin{example}[Ordering subsets of a two element universe]\label{ex-subsets-2-ordering}
- Let \(B = \{1,2\}\), and let \(A = \mathcal{P}(B) = \{0, \{1\}, \{2\}, \{1,2\}\}\). Then \(\subseteq\) is a relation on \(A\) whose digraph is \hyperref[fig-graph-6-2-subsets-2]{Figure~\ref{fig-graph-6-2-subsets-2}}.%
-\leavevmode%
-\begin{figure}
-\centering
-\includegraphics[width=1\linewidth]{images/graph-6-2-subsets-2.png}
-\caption{Graph for set containment on subsets of \(\{1,2\}\) \label{fig-graph-6-2-subsets-2}}
-\end{figure}
+\begin{example}[Characteristic Functions]\label{ex-characteristic-properties}
+The characteristic function, \(\chi _S\) in \hyperlink{exercise-characteristic-function}{Exercise~1.1.5.2}  is surjective if \(S\) is a proper subset of \(A\), but never injective if \(\lvert A \rvert > 2\).%
+\end{example}
+\begin{example}[Seating Students]\label{ex-classroom}
+Let \(A\) be the set of students who are sitting in a classroom,  let \(B\) be the set of seats in the classroom, and let \(s\) be the function which maps each student into the chair he or she is sitting in. When is \(s\) one to one? When is it onto? Under normal circumstances, \(s\)  would always be injective since no two different students would be in the same seat.  In order for \(s\) to be surjective, we need all seats to be used, so \(s\)  is a surjection if the classroom is filled to capacity.%
+\end{example}
 \par
-We will see in the next section that since \(\subseteq\) has certain structural properties that describe ``partial orderings.'' We will be able to draw a much simpler type graph than this one, but for now the graph above serves our purposes.%
+Functions can also be used for counting the elements in large finite sets or in infinite sets. Let's say we wished to count the occupants in an auditorium containing 1,500 seats. If each seat is occupied, the answer is obvious, 1,500 people. What we have done is to set up a one-to-one correspondence, or bijection, from seats to people. We formalize in a definition.%
+\begin{definition}[Cardinality.]\label{def-cardinality}
+\index{Cardinality.}\label{notation-4}
+Two sets are said to have the same cardinality if there exists a bijection between them. If a set has the same cardinality as the set \(\{1,2,3,\ldots , n\}\), then we say its cardinality is \(n\).  %
+\end{definition}
+\par
+The function \(f\) that opened this section serves to show that the two sets \(A=\{1, 2, 3, 4\}\) and \(B=\{a, b, c, d\}\) have the same cardinality. Notice in applying the definition of cardinality, we don't actually appear to count either set, we just match up the elements. However, matching the letters in \(B\) with the numbers 1, 2, 3, and 4 is precisely how we count the letters.%
+\begin{definition}[ Countable Set.]\label{def-countable-set.}
+\index{Countable Set}If a set is finite or has the same cardinality as the set of positive integers, it is called a countable set.%
+\end{definition}
+\begin{example}[Counting the Alphabet]\label{ex-the-alphabet}
+ The alphabet \(\{A, B, C, . . . , Z\}\) has cardinality 26 through the following bijection into the set \(\{1,2,3,\ldots ,26\}\)
+\begin{equation*}
+\begin{array}{ccccc}
+ A & B & C & \cdots  & Z \\
+ \downarrow  & \downarrow  & \downarrow  & \cdots  & \downarrow  \\
+ 1 & 2 & 3 & \cdots  & 26 \\
+\end{array}
+\end{equation*}%
+\end{example}
+\par
+Recall that \(2\mathbb{P}= \{b\in \mathbb{P} \mid b= 2k \textrm{ for some } k \in \mathbb{P} \}\)%
+\begin{example}[As many evens as all positive integers]\label{ex-evens-eq-all}
+Paradoxically, the set \(2\mathbb{P}\) of even positive integers has the same cardinality as the set \(\mathbb{P}\) of positive integers. To prove this, we must find a bijection from \(\mathbb{P}\) to \(2\mathbb{P}\).  Such a function isn't unique, but this one is the simplest: \(f:\mathbb{P} \rightarrow  2\mathbb{P}\) where \(f(m) = 2m\).  Two statements must be proven to justify our claim that \(f\) is a bijection:%
+\par
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{} \(f\) is one-to-one.%
+\par
+Proof: Let \(a, b \in  \mathbb{P}\) and assume that \(f(a) = f(b)\). We must prove that \(a = b\). 
+\begin{equation*} f(a) = f(b) \Longrightarrow  2a = 2b \Longrightarrow  a = b.\end{equation*} %
+\item{}\( f \) is onto.%
+\par
+Proof:  Let \(b \in  2\mathbb{P}\). We want to show that there exists an element \(a \in  \mathbb{P}\) such that \(f(a) = b\). If \(b \in 
+2\mathbb{P}\), \(b = 2k\) for some \(k \in  \mathbb{P}\) by the definition of \(2\mathbb{P}\). So we have \(f(k) = 2k = b\). Hence, each element
+of 2\(\mathbb{P}\) is the image of some element of \(\mathbb{P}\). %
+\end{itemize}
+%
+\end{example}
+\par
+An even easier way to look at any function with \(\mathbb{P}\) as its domain by creating a list of the form \(f(1),f(2), f(3), \ldots\), which is \(2, 4, 6, \ldots\) for the function we've just defined.  This infinite list clearly has no duplicate entries and every even positive integer
+appears in the list eventually.%
+\par
+A function \(f:\mathbb{P}\to A\) is a bijection if the infinite list \(f(1), f(2), f(3), \ldots\) contains no duplicates, and every element of \(A\) appears on in the list.  In this case, we say the \(A\) is \terminology{infinitely countable}%
+\par
+Readers who have studied real analysis should recall that the set of rational numbers is a countable set, while the set of real numbers is not a
+countable set. See the exercises at the end of this section for an another example of such a set.%
+\par
+We close this section with an theorem called the Pigeonhole Principle, which has numerous applications even though it is an obvious, common-sense statement. Never underestimate the importance of simple ideas. The Pigeonhole Principle states that if there are more pigeons than
+pigeonholes, then two or more pigeons must share the same pigeonhole. A more rigorous mathematical statement of the principle follows.%
+\begin{theorem}[The Pigeonhole Principle]\label{th-pigeonhole-principle}
+\index{Pigeonhole Principle}Let \(f\) be a function from a finite set \(X\) into a finite set \(Y\). If \(n\geq 1\) and \(\lvert X\rvert > n\lvert Y\rvert\), then there exists an element of \(Y\) that is the image under \(f\) of at least \(n + 1\) elements of X.%
+\end{theorem}
+\begin{proof}\hypertarget{proof-1}{}
+Assume no such element exists. For each \(y \in Y\), let \(A_y = \{x\in X \mid f(x) =y \}\).  Then it must be that \(\lvert A_y \rvert \leq n\).  Furthermore, the set of nonempty \(A_y\) form a partition of \(Y\).   Therefore,  
+\[ \lvert X \rvert = \sum_{y\in Y}{\lvert A_y\rvert} \lte n \lvert y \rvert \]
+which is a contradiction.%
+\end{proof}
+\begin{example}[A duplicate name is assured]\label{ex-names}
+Assume that a room contains four students with the first names John, James, and Mary. Prove that two students have the same first name. We can visualize a mapping from the set of students to the set of first names; each student has a first name. The pigeonhole principle applies with \(n = 1\), and we can conclude that at least two of the students have the same first name.%
 \end{example}
 \typeout{************************************************}
-\typeout{Exercises 1.2.1 Exercises}
+\typeout{Exercises 1.2.1 Exercises for Section 7.2 }
 \typeout{************************************************}
-\subsection[Exercises]{Exercises}\label{exercises-6-2}
+\subsection[Exercises for Section 7.2 ]{Exercises for Section 7.2 }\label{exercises-7-2}
 \hypertarget{exercisegroup-3}{}\typeout{************************************************}
 \typeout{Introduction  }
 \typeout{************************************************}
 A Exercises%
 \begin{exercisegroup}
-\item[1.]\hypertarget{exercise-7}{} Let \(A = \{1, 2, 3, 4\}\), and let \(r\) be the relation \(\leq\) on \(A\) Draw a digraph for \(r\).%
+\item[1.]\hypertarget{exercise-9}{} Determine which of the functions in Exercise 1 of Section 7.1 are one- to-one and which are onto.%
 \par\smallskip
 \par\smallskip
 \noindent\textbf{Answer.}\hypertarget{answer-4}{}\quad
-\leavevmode%
-\begin{figure}
-\centering
-\includegraphics[width=1\linewidth]{images/fig-sol-6-2-1.png}
-\end{figure}
-\item[2.]\hypertarget{exercise-8}{} Let \(B = \{1,2, 3, 4, 6, 8, 12, 24\}\), and let \(s\) be the relation ``divides,'' on \(B\). Draw a digraph for \(s\). %
+ The only one-to-one function and the only onto function is \(f\).%
+\item[2.]\hypertarget{exercise-10}{}\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-29}{} Determine all bijections from the \(\{1, 2, 3\}\) into \(\{a, b, c\}\).%
+\item\hypertarget{li-30}{}Determine all bijections from \(\{1, 2, 3\}\) into \(\{a, b, c, d\}\).%
+\end{enumerate}
+%
 \par\smallskip
-\item[3.]\hypertarget{exercise-9}{}  Let \(A=\{1,2,3,4,5\}\). Define \(t\) on \(A\) by \(a t b\) if and only if \(b - a\) is even. Draw a digraph for \(t\).%
+\item[3.]\hypertarget{exercise-11}{} Which of the following are one-to-one, onto, or both?%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-31}{} \(f_1:\mathbb{R} \rightarrow \mathbb{R}\) defined by \(f_1(x) = x^3 - x\).%
+\item\hypertarget{li-32}{} \(f_2 :\mathbb{Z} \rightarrow  \mathbb{Z}\) defined by \(f_2(x)= -x + 2\).%
+\item\hypertarget{li-33}{} \(f_3:\mathbb{N} \times \mathbb{N}\to \mathbb{N}\) defined by \(f_3(j, k) =2^j3^k\).%
+\item\hypertarget{li-34}{} \(f_4 :\mathbb{P} \rightarrow  \mathbb{P}\) defined by \(f_4(n)=\lceil n/2\rceil\), where \(\lceil x\rceil\) is the ceiling of \(x\),
+the smallest integer greater than or equal to \(x\).%
+\item\hypertarget{li-35}{} \(f_5 :\mathbb{N} \rightarrow  \mathbb{N}\) defined by \(f_5(n)=n^2+n\).%
+\item\hypertarget{li-36}{}\(\text{  }f_6:\mathbb{N} \rightarrow  \mathbb{N} \times  \mathbb{N}\) defined by \(f_6(n)= (2n, 2n+1)\).%
+\end{enumerate}
+%
 \par\smallskip
 \par\smallskip
 \noindent\textbf{Answer.}\hypertarget{answer-5}{}\quad
- See Figure 13.1.1 of Section 13.1.%
-\item[4.]\hypertarget{exercise-10}{}\leavevmode%
+\leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-21}{}Let \(A\) be the set of strings of 0's and 1's of length 3 or less. Define the relation of \(d\) on A by \(x d y\) if \(x\) is contained within \(y\). For example, \(01 d 101\). Draw a digraph for this relation. %
-\item\hypertarget{li-22}{} Do the same for the relation \(p\) defined by \(x p y\) if \(x\) is a prefix of \(y\). For example, \(10 p 101\), but \(01 p 101\) is false.%
+\item\hypertarget{li-37}{} onto but not one-to-one: \(f_1(0)=f_1(1)\).%
+\item\hypertarget{li-38}{} one-to-one and onto\\%
+\item\hypertarget{li-39}{} one-to-one but not onto\\%
+\item\hypertarget{li-40}{} onto but not one-to-one\\%
+\item\hypertarget{li-41}{} one-to-one but not onto\\%
+\item\hypertarget{li-42}{} one-to-one but not onto%
+\end{enumerate}
+%
+\item[4.]\hypertarget{exercise-12}{} Which of the following are injections, surjections, or bijections on \(\mathbb{R}\), the set of real numbers?%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-43}{} \(f(x) = -2x\).%
+\item\hypertarget{li-44}{} \(g(x) = x^2- 1\).%
+\item\hypertarget{li-45}{} \(h(x)=\left\{ \begin{array}{cc}
+ x & x < 0 \\
+ x^2 & x\geq 0 \\
+\end{array} \right.\)%
+\item\hypertarget{li-46}{} \(q(x)=2^x\)%
+\item\hypertarget{li-47}{} \(r(x) =x^3\)%
+\item\hypertarget{li-48}{} \(s(x) = x^3-x\)%
+\end{enumerate}
+%
+\par\smallskip
+\item[5.]\hypertarget{exercise-13}{} Suppose that \(m\) pairs of socks are mixed up in your sock drawer. Use the Pigeonhole Principle to explain why, if you pick \(m + 1\)
+socks at random, at least two will make up a matching pair%
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-6}{}\quad
+ Let \(X=\{\textrm{socks selected}\}\) and \(Y=\{\textrm{pairs of socks}\}\) and define \(f:X \to Y\) where \(f(x) =\)the pair of socks that \(x\) belongs to . By the Pigeonhole principle, there exist two socks that were selected from the same pair.%
+\item[6.]\hypertarget{exercise-14}{} In your own words explain the statement ``The sets of integers and even integers have the same cardinality.''%
+\par\smallskip
+\item[7.]\hypertarget{exercise-15}{}Let \(A =\text{  }\{1, 2, 3, 4, 5\}\). Find functions, if they exist that have the properties specified below.%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-49}{} A function that is one-to-one and onto.%
+\item\hypertarget{li-50}{} A function that is neither one-to-one nor onto%
+\item\hypertarget{li-51}{} A function that is one-to-one but not onto.%
+\item\hypertarget{li-52}{} A function that is onto but not one-to-one.%
+\end{enumerate}
+%
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-7}{}\quad
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-53}{} \(f(n)=n\), for example%
+\item\hypertarget{li-54}{} \(f(n)=1\), for example%
+\item\hypertarget{li-55}{} None exist.%
+\item\hypertarget{li-56}{} None exist.%
+\end{enumerate}
+%
+\item[8.]\hypertarget{exercise-16}{}\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-57}{} Define functions, if they exist, on the positive integers, \(\mathbb{P}\), with the same properties as in Exercise 7 (if possible).%
+\item\hypertarget{li-58}{}Let A and B be finite sets where \(|A|=|B|\). Is it possible to define a function \(f:A \rightarrow  B\) that is one-to-one butnot onto? Is it possible to find a function  \(g:A \rightarrow  B\) that is onto but not one-to-one?%
 \end{enumerate}
 %
 \par\smallskip
@@ -625,374 +793,315 @@ A Exercises%
 \typeout{************************************************}
 B Exercises%
 \begin{exercisegroup}
-\item[5.]\hypertarget{exercise-11}{} Recall the relation in Exercise 5 of Section 6.1, \(\rho\) defined on the power set, \(\mathcal{P}(S)\), of a set \(S\). The definition
-was \((A,B) \in \rho\) iff \(A\cap  B = \emptyset\). Draw the digraph for \(\rho\) where \(S = \{a, b\}\). %
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-6}{}\quad
- A Hasse diagram cannot be used because not every set is related to itself. Also, \(\{a\}\) and \(\{b\}\) are related in both directions.
+\item[9.]\hypertarget{exercise-17}{}\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-59}{} Prove that the set of natural numbers is countable.%
+\item\hypertarget{li-60}{}Prove that the set of integers is countable.%
+\item\hypertarget{li-61}{}Prove that the set of rational numbers is countable.%
+\end{enumerate}
 %
-\item[6.]\hypertarget{exercise-12}{} Let \(C= \{1,2, 3, 4, 6, 8, 12, 24\}\) and define \(t\) on \(C\) by
-\(a t b\) if and only if \(a\) and \(b\) share a common divisor greater than 1.  Draw a digraph for \(t\).%
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-8}{}\quad
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-62}{} Use \(s:\mathbb{N}\to \mathbb{P}\) defined by \(s(x)=x+1\).%
+\item\hypertarget{li-63}{} Use the function\(f:\mathbb{N}\to \mathbb{Z}\) defined by \(f(\text{x0}=x/2\) if \(x\) is even and \(f(x)=-(x+1)/2\) if \(x\) is odd.%
+\item\hypertarget{li-64}{}The proof is due to Georg Cantor (1845-1918), and involves listing the rationals
+ through a definite procedure so that none are omitted and duplications are avoided.
+  In the first row list all nonnegative rationals with denominator 1,
+   in the second all nonnegative rationals with denominator 2, etc.
+    In this listing, of course, there are duplications, for example, \(0/1=0/2=0\),
+     \(1/1=3/3=1\), \(6/4=9/6=3/2\), etc. To obtain a list without duplications follow the arrows in \hyperref[fig-sol-7-2-9]{Figure~\ref{fig-sol-7-2-9}}, listing only the circled numbers.%
+\par
+We obtain: \(0,1,1/2,2,3,1/3,1/4,2/3,3/2,4/1,\ldots\) Each nonnegative rational appears in this list exactly once.
+  We now must insert in this list the negative rationals, and follow the same scheme to obtain:
+   \(0,1,-1,1/2,-1/2,2,-2,3,-3,1/3,-1/3, \ldots\), which can be paired off with the elements of \(\mathbb{N}\).%
+\end{enumerate}
+%
+\leavevmode%
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{images/fig-sol-7-2-9.png}
+\caption{Enumeration of the rational numbers.
+				 \label{fig-sol-7-2-9}}
+\end{figure}
+\item[10.]\hypertarget{exercise-18}{}\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-65}{} Prove that the set of finite strings of 0's and 1's is countable.%
+\item\hypertarget{li-66}{}Prove that the set of odd integers is countable.%
+\item\hypertarget{li-67}{}Prove that the set  \(\mathbb{N}\times  \mathbb{N}\) is countable.%
+\end{enumerate}
+%
+\par\smallskip
+\item[11.]\hypertarget{exercise-19}{} Use the Pigeonhole Principle to prove that an injection cannot exist between a finite set \(A\) and a finite set \(B\) if the
+cardinality of \(A\) is greater than the cardinality of \(B\).%
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-9}{}\quad
+ Let \(f\) be any function from \(A\) into \(B\). By the Pigeonhole principle with \(n=1\), there exists an element of \(B\) that is the image of at least two elements of \(A\). Therefore, \(f\) is not an injection.
+%
+\item[12.]\hypertarget{exercise-20}{} The important properties of relations are not generally of interest for functions. Most functions are not reflexive, symmetric, antisymmetric,
+or transitive. Can you give examples of functions that do have these properties?%
+\par\smallskip
+\item[13.]\hypertarget{exercise-21}{} Prove that the set of all infinite sequences of 0's and 1's is not a countable set (i. e., that it is an uncountable set). %
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-10}{}\quad
+ The proof is indirect and follows a technique called the Cantor diagonal process.
+ Assume to the contrary that the set is countable, then the elements can be listed:
+
+ \(n_1,n_2,n_3,\ldots\) where each \(n_i\) is an infinite sequence of 0s and 1s. Consider the array:
+\[
+\begin{array}{c}
+n_1=n_{11}n_{12}n_{13}\cdots\\
+n_2=n_{21}n_{22}n_{23}\cdots\\
+n_3=n_{31}n_{32}n_{33}\cdots\\
+\quad \vdots\\
+\end{array}
+\] 
+%
+\par
+We assume that this array contains all infinite sequences of 0s and 1s. Consider the sequence \(s\) defined by
+
+\(s_i=\begin{cases}
+ 0 & \textrm{ if } n_{\textrm{ii}}=1 \\
+ 1 & \textrm{ if } n_{\textrm{ii}}=0
+\end{cases}\)
+%
+\par
+Notice that \(s\) differs from each \(n_i\) in the \(i\)th position and so cannot be in the list. This is a contradiction, which completes our proof.%
+\item[13.]\hypertarget{exercise-22}{} Prove that the set of all functions on the integers is an uncountable set.%
 \par\smallskip
 \end{exercisegroup}
 \par\smallskip\noindent
 \typeout{************************************************}
-\typeout{Section 1.3 Properties of Relations}
+\typeout{Section 1.3 Function Composition}
 \typeout{************************************************}
-\section[Properties of Relations]{Properties of Relations}\label{s-properties-of-relations}
+\section[Function Composition]{Function Composition}\label{s-function-composition}
 \typeout{************************************************}
-\typeout{Subsection 1.3.1 Individual Properties}
+\typeout{Introduction  }
 \typeout{************************************************}
-\subsection[Individual Properties]{Individual Properties}\label{ss-individual-properties}
-Consider the set \(B = \{1, 2, 3, 4, 6, 12, 36, 48\}\) and the relations ``divides'' and \(\leq \) on \(B\). We notice that these two relations on \(B\) have three properties in common:%
-\par
-\leavevmode%
-\begin{itemize}[label=\textbullet]
-\item{}Every element in \(B\) divides itself and is less than or equal to itself. This is called the reflexive property.%
-\item{}If we search for two elements from \(B\) where the first divides the second and the second divides the first, then we are forced to choose the the two numbers to be the same. In other words, no two \emph{different} numbers are related in both directions. The reader can verify that a similar fact is true for the relation \(\leq \) on \(B\). This is called the antisymmetric property.%
-\item{}Next if we choose three numbers from \(B\) such that the first divides the second and the second divides the third, then we always find that the first number to divides the third.  Again, the same is true if we replace ``divides'' with ``is less than or equal to.'' This is called the transitive property.%
-\end{itemize}
-%
-\par
-Relations that satisfy these properties are of special interest to us. Formal definitions of the properties follow.%
-\begin{definition}[Reflexive Relation]\label{def-reflexive-relation}
-\index{Reflexive Relation}Let \(A\) be a set and let \(r\) be a relation on \(A\).
-r is \terminology{reflexive} if and only if \(a r a\) for all \(a \in A\).%
+Now that we have a good understanding of what a function is, our next step is to consider an important operation on functions. Our purpose is not
+to develop the algebra of functions as completely as we did for the algebras of logic, matrices, and sets, but the reader should be aware of the
+similarities between the algebra of functions and that of matrices. We first define equality of functions.%
+\typeout{************************************************}
+\typeout{Subsection 1.3.1 Function Equality}
+\typeout{************************************************}
+\subsection[Function Equality]{Function Equality}\label{ss-function-equality}
+\begin{definition}[Equality of Functions]\label{def-equality-of-functions.}
+\index{Function!Equality} Let \(f, g:A \rightarrow  B\); that is, let f and g both be functions from A into B.  Then f is
+equal to g (i. e., \(f=g\)) if and only if \(f(x) = g(x)\) for all \(x \in  A\).%
 \end{definition}
-\begin{definition}[Antisymmetric Relation]\label{def-antisymmetric-relation}
-\index{Antisymmetric Relation}Let \(A\) be a set and let \(r\) be a relation on \(A\).  Then \(r\) is \terminology{antisymmetric} if and only if whenever \(a r b\) and \(a \neq  b\) then \(b r a\) is false.%
-\end{definition}
+Two functions that have different domains cannot be equal. For example,  \(f: \mathbb{Z}\to \mathbb{Z}\) defined by \(f(x)=x^2\) and \(g: \mathbb{R}\to
+\mathbb{R}\) defined by \(g(x)=x^2\) are not equal even though the formula that defines them is the same.%
 \par
-An equivalent condition for antisymmetry is that if \(a r b\) and  \(b r a\) then \(a = b\). You are encouraged to convince yourself that this is true.  This condition is often more convenient to prove than the definition, even thought the definition is probably easier to understand.%
-\par
-A word of warning about antisymmetry: Students frequently find it difficult to understand this definition. Keep in mind that this term is defined through an ``If . .. then . . .'' statement. The question that you must ask is: Is it true that whenever there are elements \(a\) and \(b\) from \(A\) where \(a r b\) and \(a \neq  b\), it follows that \(b\) is not related to \(a\)? If so, then the relation  is antisymmetric.%
-\par
-Another way to determine whether a relation is antisymmetric is to examine (or imagine) its digraph. The relation is not antisymmetric if there exists a pair of vertices that are connected by edges in both directions.%
-\begin{definition}[Transitive Relation]\label{def-transitive-relation}
-\index{Transitive Relation}Let \(A\) be a set and let \(r\) be a relation on \(A\).
-r is \terminology{transitive} if and only if whenever \(a r b\) and \(b r c\) then \(a r c\).%
-\end{definition}
+On the other hand, it is not uncommon for two functions to be equal even though they are defined differently. For example consider the functions
+\(h\) and \( k\), where \(h: \{-1,0,1,2\}\to \{0,1,2\}\) is defined by \(h(x)=|x|\) and \(k: \{-1,0,1,2\}\to \{0,1,2\}\)
+is defined by \(k(x) = -\frac{x^3}{3}+x^2+\frac{x}{3}\) appear to be very different functions. However, they are equal because \(h(x)= k(x)\)
+for \(x = -1, 0, 1, \text{and} 2\).%
 \typeout{************************************************}
-\typeout{Subsection 1.3.2 Partial Orderings}
+\typeout{Subsection 1.3.2 Function Composition}
 \typeout{************************************************}
-\subsection[Partial Orderings]{Partial Orderings}\label{ss-partial-ordering}
-Not all relations have all three of the properties discussed above, but those that do are a special type of relation.%
-\begin{definition}[Partial Ordering]\label{partial-ordering}
-\index{Partial Ordering}A relation on a set \(A\) that is reflexive, antisymmetric, and transitive is called a partial ordering on \(A\). A set on which there is a partial ordering relation defined is called a \terminology{partially ordered set}\index{Partially ordered set} or \terminology{poset}\index{Poset}.%
-\end{definition}
-\begin{example}[Set Containment as a Partial Ordering]\label{ex-subset-partial-ordering}
-Let \(A\) be a set. Then \(\mathcal{P}(A)\) together with the relation \(\subseteq\) (set containment) is a poset.
-To prove this we observe that the three properties hold, as discussed in Chapter 4.%
-\par
-\leavevmode%
-\begin{itemize}[label=\textbullet]
-\item{}Let \(B \in  \mathcal{P}(A)\). The fact that \(B \subseteq  B\) follows from the definition of subset. Hence, set containment is reflexive.%
-\item{}Let \(B_1, B_2 \in \mathcal{P}(A)\) and assume that \(B_1\subseteq  B_2\) and \(B_1\neq  B_2\) . Could it be that \(B_2\subseteq  B_1\)? No.
-There must be some element \(a\in A\) such that \(a \notin B_1\), but \(a\in B_2\). This is exactly what we need to conclude that \(B_2\) is not contained in \(B_1\).  Hence, set containment is antisymmetric.%
-\item{}Let \(B_1, B_2,B_3 \in \mathcal{P}(A)\) and assume that \(B_1 \subseteq  B_2\) and \(B_2 \subseteq  B_3\) . Does it follow that \(B_1 \subseteq B_3\) ? Yes, if \(a\in B_1\), then \(a\in B_2\) because \(B_1 \subseteq  B_2\). Now that we have \(a\in B_2\) and we have assumed \(B_2 \subseteq B_3\), we conclude that \(a\in B_3\).  Therefore, \(B_1\subseteq B_3\) and so set containment is transitive.%
-\end{itemize}
-%
-\par
-\hyperref[fig-graph-6-2-subsets-2]{Figure~\ref{fig-graph-6-2-subsets-2}} is the graph for the ``set containment'' relation on \(\{1,2\}\).%
-\end{example}
-\par
-\hyperref[fig-graph-6-2-subsets-2]{Figure~\ref{fig-graph-6-2-subsets-2}} is helpful insofar as it reminds us that each set is a subset of itself and shows us at a glance the relationship between the various subsets in \(\mathcal{P} (\{1,2\})\). However, when a relation is a partial ordering, we can streamline a graph like this one.  The streamlined
-form of a graph is called a \terminology{Hasse diagram} or \terminology{ordering diagram}.  A Hasse diagram takes into account the following facts.%
-\par
-\leavevmode%
-\begin{itemize}[label=\textbullet]
-\item{} By the reflexive property, each vertex must be related to itself, so the arrows from a vertex to itself (called ``self-loops'') are
-not drawn in a Hasse diagram. They are simply assumed.%
-\item{}  By the antisymmetry property, connections between two distinct elements in a directed graph can only go one way, if at all.  When there
-is a connection, we agree to always place the second element above the first (as we do above with the connection from \(\{1\}\) to \(\{1,2\}\)).
-For this reason, we can just draw a connection without an arrow, just a line.%
-\item{} By the transitive property, if there are edges connecting one element up to a second element and the second element up to a third element,
-then there will be a direct connection from the first to the third. We see this in \hyperref[fig-graph-6-2-subsets-2]{Figure~\ref{fig-graph-6-2-subsets-2}} with \(\emptyset\) connected to \(\{1\}\)\(\)and
-then \(\{1\}\) connected to \(\{1,2\}\). Notice the edge connecting \(\emptyset\) to \(\{1,2\}\).  Whenever we identify this situation, remove
-the connection from the first to the third in a Hasse diagram and simply observe that an upward path of any length implies that the lower element
-is related to the upper one.
-%
-\end{itemize}
-%
-\par
-Using these observations as a guide, we can draw a Hasse diagram for \(\subseteq\) on \(\{1,2\}\) as in Figure 6.3.2.%
-\leavevmode%
-\begin{figure}
-\centering
-\includegraphics[width=1\linewidth]{images/subsets_2_hasse.png}
-\caption{Hasse diagram for set containment on subsets of \(\{1,2\}\)
-                \label{subsets_2_hasse}}
-\end{figure}
-\begin{example}[Definition of a relation using a Hasse diagram]\label{ex-def-by-hasse}
-Consider the partial ordering relation \(s\) whose Hasse diagram is \hyperref[fig-pentagonal-hasse]{Figure~\ref{fig-pentagonal-hasse}}.%
-\leavevmode%
-\begin{figure}
-\centering
-\includegraphics[width=1\linewidth]{images/pentagonal-hasse.png}
-\caption{Hasse diagram for for the pentagonal poset
-                \label{fig-pentagonal-hasse}}
-\end{figure}
-\par
-How do we read this diagram? What is \(A\)? What is \(s\)? What does the digraph of s look like? Certainly \(A = \{1,2,3,4,5\}\) and
-\(1 s 2\), \(3 s 4\), \(1 s 4\), \(1 s 5\), etc., Notice that \(1 s 5\) is implied by the fact that there is a path of length three upward
-from 1 to 5. This follows from the edges that are shown and the transitive property that is presumed in a poset.  Since \(1 s 3\) and \(3 s
-4\), we know that \(1 s 4\). We then combine \(1 s 4\) with \(4 s 5\) to infer \(1 s 5\).  Without going into details why, here is
-a complete list of pairs defined by \(s\).
-\[s = \{(1,1),(2,2),(3,3),(4,4),(5,5),(1,3),(1,4),(1,5),(1,2),(3,4),(3,5),(4,5),(2,5)\}\]%
-\par
-A digraph for \(s\) is \hyperref[fig-pentagonal-digraph]{Figure~\ref{fig-pentagonal-digraph}}. It is certainly more complicated to read and difficult to draw than the Hasse diagram.%
-\leavevmode%
-\begin{figure}
-\centering
-\includegraphics[width=1\linewidth]{images/pentagonal-digraph.png}
-\caption{Digraph for for the pentagonal poset
-                \label{fig-pentagonal-digraph}}
-\end{figure}
-\end{example}
-\par
-A classic example of a partial ordering relation is \(\leq \) on the real numbers, \(\mathbb{R}\). Indeed, when graphing partial ordering relations,
-it is natural to ``plot'' the elements from the given poset starting with the ``least'' element to the ``greatest'' and to use terms
-like ``least,'' ``greatest,'' etc. Because of this the reader should be forewarned that some texts use the symbol \(\leq\) for arbitrary
-partial orderings. This can be quite confusing for the novice, so we continue to use generic letters \(r\), \(s\), etc.
-%
-\typeout{************************************************}
-\typeout{Subsection 1.3.3 Equivalence Relations}
-\typeout{************************************************}
-\subsection[Equivalence Relations]{Equivalence Relations}\label{ss-equivalence-relations}
-\index{Equivalence Relations}Another common property of relations is symmetry.%
-\begin{definition}[Symmetric Relation]\label{def-symmetric-relation}
-\index{Symmetric 
-Relation}Let \(r\) be a relation on a set \(A\). \(r\) is \terminology{symmetric} if and only if whenever \(a r b\), it follows that \(b r a\).%
+\subsection[Function Composition]{Function Composition}\label{ss-composition}
+One of the most important operations on functions is that of composition.%
+\begin{definition}[Composition of Functions.]\label{def-composition-of-functions}
+\index{Composition of Functions}\index{Function!Composition}\label{notation-5}
+Let \(f:A \rightarrow  B\) and \(g:B \rightarrow  C\). Then the composition of f followed by g, written \(g\circ f\) is a function from A into C defined by \((g \circ f)(x) = g(f(x))\), which is read `` \(g\) of \(f\) of \(x\).''%
 \end{definition}
 \par
-Consider the relation of equality defined on any set \(A\). Certainly \(a = b\) implies that\(b = a\) so equality is a symmetric relation on \(A\).%
+The reader should note that it is traditional to write the composition of functions from right to left. Thus, in the above definition, the first function performed in computing \(g \circ f\), which is \(f\). On the other hand, for relations, the composition \(r s\) is read from left
+to right, so that the first relation is\(  r\).%
+\begin{example}[A basic example]\label{ex-simple-composition}
+Let \(f:\{1, 2, 3\}\rightarrow  \{a, b\}\) be defined by \(f(1) = a\), \(f(2) = a\), and \(f(3) = b\). Let \(g:\{a, b\} \rightarrow  \{5, 6, 7\}\) be defined by \(g(a) = 5\) and \(g(b) = 7\). Then \(g\circ f: \{1, 2, 3\}\rightarrow  \{5, 6, 7\}\) is defined by \((g\circ f)(1)= 5\),
+\((g\circ f)(2)= 5,\) and \((g\circ f)(3)= 7\). For example, \((g\circ f)(1)= g(f(l)) = g(a) = 5\). Note that f\(circ\)g is not defined. Why?%
 \par
-Surprisingly, equality is also an antisymmetric relation on \(A\). This is due to the fact that the condition that defines the antisymmetry property, \(a = b\) and \(a \neq  b\), is a contradiction. Remember, a conditional proposition is always true when the condition is false. So a relation can be both symmetric and antisymmetric on a set! Again recall that these terms are \emph{not} negatives of one other. That said, there are very few important relations other than equality that are both symmetric and antisymmetric.%
-\begin{definition}[Equivalence Relation]\label{def-equivalence-relation}
-\index{Equivalence Relation}A relation \(r\) on a set \(A\) is called an equivalence relation if and only if it is reflexive, symmetric, and transitive.%
-\end{definition}
-\par
-The classic example of an equivalence relation is equality on a set \(A\). In fact, the term equivalence relation is used because those relations which satisfy the definition behave quite like the equality relation. Here is another important equivalence relation.%
-\begin{example}[Equivalent Fractions]\label{ex-fraction-equivalence}
-Let \(\mathbb{Z}\)* be the set of nonzero integers. One of the most basic equivalence relations in mathematics is the relation \(q\) on \(\mathbb{Z}\times \mathbb{Z}^*\) defined by \((a, b) q(c, d)\) if and only if \(a d = b c\). We will leave it to the reader to, verify
-that \(q\) is indeed an equivalence relation. Be aware that since the elements of \(\mathbb{Z}\times \mathbb{Z}^*\) are ordered pairs, proving symmetry involves four numbers and transitivity involves six numbers. Two ordered pairs, \((a, b)\) and \((c, d)\), are related if the fractions \(\frac{a}{b}\) and \(\frac{c}{d}\) are numerically equal.
+ Let \(f:\mathbb{R} \rightarrow  \mathbb{R}\) be defined by \(f(x) = x^3\) and let \(g:\mathbb{R} \rightarrow  \mathbb{R}\) be defined by \(g(x)
+= 3x+1\). Then, since
+
+\quad \quad  \((g\circ f)(x) = g(f(x)) = g\left(x^3\right) = 3x^3 + 1\), 
+
+we have \(g\circ f: \mathbb{R} \rightarrow  \mathbb{R}\) is defined by\((g\circ f)(x)= 3x^3 + 1\). Here \(f\circ g\) is also defined and \(f\circ
+g:\mathbb{R}\rightarrow \mathbb{R}\) is defined by \((f\circ g)(x)=(3x + 1)^3\) . Moreover, since \(3x ^3+ 1 \neq (3x + 1)^3\) for at least
+one real number, \(g\circ f \neq  f\circ g\).  Therefore, the commutative law is not true for functions under the operation of composition.
+However, the associative law is true for functions under the operation of composition.
 %
 \end{example}
+\begin{theorem}[Function composition is associative]\label{function-composition-associative}
+If \(f:A\rightarrow B\),\(g:B\to C\), and \(h:C\rightarrow D\), then \(h\circ (g\circ f) = (h\circ g)\circ f\).%
+\end{theorem}
+\begin{proof}\hypertarget{proof-2}{}
+Note: In order to prove that two functions are equal, we must use the definition of equality of functions. Assuming that the functions
+have the same domain, they are equal if, for each domain element, the images of that element under the two functions are equal.%
 \par
-Our next example involves the following fundamental relations on the set of integers.%
-\begin{definition}[Congruence Modulo \(m\)]\label{def-congruence-mod-m}
-\index{Congruence Modulo m}\label{notation-4}
-Let \(m\) be a positive integer, \(m\geq 2\).  We define \terminology{congruence modulo m} to be the relation \(\equiv_m\) defined on the integers by 
-	\[a \equiv_m b \Leftrightarrow m \mid (a-b)\]
+We wish to prove that \((h\circ (g\circ f))(x) = ((h\circ g)\circ f)(x)\) for all \(x \in  A\), which is the domain of both functions.%
+\par
+
+\((h\circ (g\circ f))(x)= h((g\circ f) (x))\textrm{   by the definition of composition}\\
+\\
+\quad \quad =h(g(f(x)))\textrm{   by the definition of composition}\)%
+\par
+Similarly,
+\begin{equation*}((h\circ g)\circ f)(x)= (h\circ g)(f(x))\textrm{  by the definition of composition}\\
+\\
+\quad \quad =h(g(f(x)))\text{  }\textrm{  by the definition of composition}\end{equation*}%
+\par
+Notice that no matter how the functions the expression \(h\circ g\circ f\) is grouped, the final image of any element of \(x\in A\) is \(h(g(f(x)))\)
+and so \(h\circ (g\circ f) = (h\circ g)\circ f\).  \(\square\)%
+\end{proof}
+\par
+If \(f\) is a function from a set \(A\) onto itself, we can find \(f\circ  f\), \(f\circ  f\circ  f\), \(ldots\) ,which we write as
+\(f^2\) , \(f^3\) , .... This idea can be expressed more elegantly as follows; If \(f: A \rightarrow  A\), the repeated composition of \textit{
+f} with itself is defined recursively as;%
+\begin{definition}[Powers of Functions]\label{def-powers-of-functions}
+\index{Powers of Functions}\label{notation-6}
+Let \(f: A\to A\).%
+\par
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{} \(f^1= f\);  that is, \(f^1(a) = f(a)\), for \(a \in A\).%
+\item{} For \(n\geq 1\), \(f^{n+1}= f\circ f^n\);  that is, \(f^{n+1}(a)=f\left( f^n(a)\right)\) for \(a \in A\).%
+\end{itemize}
 %
 \end{definition}
 \par
-We observe the following about congurence modulo \(m\):%
+Two useful theorems concerning composition are given below. The proofs are left for the exercises.%
+\begin{theorem}[The composition of injections is an injection]\label{theorem-composition-of-injections}
+If \(f: A \rightarrow  B\) and \(g : B \rightarrow  C\) are injections, then \(g\circ f : A \rightarrow  C\) is an injection.%
+\end{theorem}
+\begin{theorem}[title>The composition of surjections is a surjection]\label{theorem-composition-of-surjections}
+ If \(f : A \rightarrow  B\) and \(g: B \rightarrow C\) are surjections, then \(g\circ f: A \rightarrow  C\) is a surjection.%
+\end{theorem}
 \par
-\leavevmode%
-\begin{itemize}[label=\textbullet]
-\item{}This relation is reflexive, for if \(a \in  \mathbb{Z} \),  \(m \mid (a-a) \Rightarrow  a\equiv_ma \).%
-\item{}This relation is symmetric. We can prove this through the following chain of implications. 
-\begin{equation*}
-\begin{split}
-a \equiv_m b &\Rightarrow   m \mid (a-b)\\
-   & \Rightarrow \textrm{For  some } k \in \mathbb{Z}, a-b = m k \\
-	& \Rightarrow b-a = m (-k)\\
-	& \Rightarrow  m \mid (b-a)\\
-	& \Rightarrow b \equiv_m a 
-\end{split}
-\end{equation*}%
-\item{} Finally, this relation is transitive.  We leave it to the reader to prove that if \(a \equiv _mb \) and \(b\equiv _mc\), then \(a \equiv _mc\).%
-\end{itemize}
-%
+We would now like to define the concepts of identity and inverse for functions under composition. The motivation and descriptions of the definitions
+of these terms come from the definitions of the terms in the set of real numbers and for matrices. For real numbers, the numbers 0 and 1 play the
+unique role that \(x + 0 = 0 + x = x\) and \(x \cdot 1 = 1 \cdot  x = x\) for any real number \(x\).  0 and 1 are the identity elements
+for the reals under the operations of addition and multiplication, respectively. Similarly, the \(n \times  n\) zero matrix 0 and the \(n \times
+ n\) identity matrix \(I\) are such that for any \(n \times  n\) matrix \(A\), \(A + 0 = 0 + A=A\) and \(A I = I A = I\). Hence, an
+elegant way of defining the identity function under the operation of composition would be to imitate the above well-known facts.%
+\begin{definition}[Identity Function]\label{def-identity-function}
+\index{Identity Function}\label{notation-7}
+For any set A, the identity function on A is a function from A onto A, denoted by i (or, more specifically, \(i_A\)) such that \(i(a) = a\)  for all \(a\in A\)%
+\end{definition}
 \par
-Frequently, you will see the equivalent notation \(a \equiv b (\textrm{mod } m)\) for congruence modulo \(m\).%
-\begin{example}[Random Relations usually have no properties]\label{ex-no-propery-relation}
-Consider the relation s described by the digraph in \hyperref[fig-graph-6-3-5]{Figure~\ref{fig-graph-6-3-5}}. This was created by randomly selecting whether or not two elements from \(\{a,b,c\}\) were related or not. %
-\par
-\leavevmode%
-\begin{itemize}[label=\textbullet]
-\item{}This relation is not reflexive, Why?%
-\item{}It is not antisymmetric, Why?%
-\item{}Also, it is not symmetric, Why?%
-\item{}It is not transitive, Why?%
-\item{}Is \(s\) an equivalence relation or a partial ordering? %
-\end{itemize}
-%
-\leavevmode%
-\begin{figure}
-\centering
-\IfFileExists{images/graph-6-3-5.pdf}%
-{\includegraphics[width=1\linewidth]{images/graph-6-3-5.pdf}}%
-{\includegraphics[width=1\linewidth]{images/graph-6-3-5.png}}
-\caption{Digraph of a random relation \(r\)\label{fig-graph-6-3-5}}
-\end{figure}
-\par
-Not every random choice of a relation will be so totally negative, but as the underlying set increases, the likelihood any of the properties are true begins to vanish.%
+Based on the definition of \(i\), we can show that for all functions \(f:A\to A\), \(f\circ i=i\circ f = f\).%
+\begin{example}[The identity function on \(\{1,2,3\}\)]\label{ex-an-identity-function}
+ If \(A = \{1, 2, 3\}\), then the identity function\(i : A \to  A\) is defined by \(i(1) = 1\), \(i(2) = 2,\) and \(i(3)= 3\).%
+\end{example}
+\begin{example}[The identity function on \(\mathbb{R}\)]\label{ex-identity-on-reals}
+The identity function on \(\mathbb{R}\) is \(i : \mathbb{R} \rightarrow  \mathbb{R}\) defined by \(i(x) = x\).%
 \end{example}
 \typeout{************************************************}
-\typeout{Exercises 1.3.4 Exercises}
+\typeout{Subsection 1.3.3 Inverse Functions}
 \typeout{************************************************}
-\subsection[Exercises]{Exercises}\label{exercises-6-3}
+\subsection[Inverse Functions]{Inverse Functions}\label{ss-inverse-functions}
+We will introduce the inverse of a function with a special case: the inverse of a function on a set. After you've taken the time to understand this
+concept, you can read about the inverse of a function from one set into another. The reader is encouraged to reread the definition of the inverse
+of a matrix in Section 5.2 ({$\langle\langle$Unresolved xref, reference "def-matrix-inverse"; check spelling or use "provisional" attribute$\rangle\rangle$}) to see that the following definition of the inverse function is a direct analogue of that definition.%
+\begin{definition}[ Inverse of a Function on a Set]\label{def-inverse-function}
+\index{Inverse Function!of a function on a set}\label{notation-8}
+ Let \(f: A\rightarrow  A\). If there exists a function \(g : A \rightarrow  A\) such that \(g\circ f = f\circ g = i\), then g is called the inverse of f and is denoted by \(f^{-1}\) , read ``f inverse.''%
+\end{definition}
+\par
+Notice that in the definition we refer to ``the inverse'' as opposed to ``an inverse.''  It can be proven that a function can never have
+more than one inverse (see exercises).%
+\par
+An alternate description of the inverse of a function, which can be proven from the definition, is as follows:  Let \(f: A \rightarrow  A\) be such that \(f(a) = b\). Then when it exists, \(f^{-1}\) is a function from \(A\) to \(A\) such that \(f^{-1}(b)=a\).
+Note that \(f^{-1}\) ``undoes'' what \(f\) does. %
+\begin{example}[The inverse of a function on \(\{1,2,3\}\)]\label{ex-simple-inverse}
+Let \(A = \{1, 2, 3\}\) and let \(f\) be the function defined on \(A\) such that \(f(1) = 2\), \(f(2) = 3\), and
+\(f(3) = 1\). Then \(f^{-1} : A \rightarrow  A\) is defined by \(f^{-1}(I) = 3\), \(f^{-1}(2) = 1\), and \(f^{-1}(3) = 2\).%
+\end{example}
+\begin{example}[Inverse of a real function]\label{ex-inverse-of-a-real-function}
+If \(g : \mathbb{R} \rightarrow  \mathbb{R}\) is defined by \(g(x) =x^3\) , then \(g^{-1}\) is the function that undoes what
+\(g\) does. Since \(g\) cubes real numbers, \(g^{-1}\) must be the ``reverse'' process, namely, takes cube roots. Therefore, \(g^{-1}
+: \mathbb{R} \rightarrow  \mathbb{R}\) is defined by \(g^{-1}(x)=\sqrt[3]{x}\). We should show that \(g^{-1}\circ g = i\) and \(g\circ g^{-1}=i\).
+We will do the first, and the reader is encouraged to do the second.
+
+\(\left(g^{-1}\circ g\right)(x)= g^{-1}(g(x)) \quad \textrm{ Definition of composition}\\
+\\
+\text{       }= g^{-1}\left(x^3\right)\quad \text{Definition of } g\\
+\\
+\text{                       }=\sqrt[3]{x^3}\quad\textrm{Definition of } g^{-1}\\
+\\
+\text{                      }= x\quad\text{Definition of cube root}\\
+\\
+\text{     }= i(x)\quad\text{Definition of the identity function}\)%
+\par
+Therefore, \(g^{-1}\circ g = i\). Why?
+%
+\end{example}
+\par
+The definition of the inverse of a function alludes to the fact that not all functions have inverses. How do we determine when the inverse of a function
+exists?%
+\begin{theorem}[Bijections have inverses]\label{theorem-bijections-have-inverses}
+Let \(f: A\rightarrow  A\).  \(f^{-1}\) exists if and only if f is a bijection; i. e. f is one-to-one and onto.%
+\end{theorem}
+\begin{proof}\hypertarget{proof-3}{}
+(\(\Rightarrow\))  In this half of the proof, assume that \(f^{-1}\) exists and we must prove that \(f\) is one-to-one and onto.
+To do so, it is convenient for us to use the relation notation, where \(f(s)=t\) is equivalent to \((s,t)\in f\). To prove that \(f\) is
+one-to-one, assume that \(f(a)=f(b) = c\). Alternatively, that means \((a, c)\) and \((b, c)\) are elements of \(f\) . We must show
+that \(a =b\). Since \((a, b), (c, b) \in \text{  }f\), \((c, a)\) and \((c,b)\) are in \(f^{-1}\) . By the fact that \(f^{-1}\) is a function
+and \(c\) cannot have two images, \(a\) and \(b\) must be equal, so \(f\) is one-to-one. %
+\par
+Next, to prove that \(f\) is onto, observe that for \(f^{-1}\) to be a function, it must use all of its domain, namely A. Let \(b\)
+be any element of \(A\). Then b has an image under \(f^{-1}\) , \(f^{-1}(b)\). Another way of writing this is \(\left(b,f^{-1}(b)\right)\in
+f^{-1}\), By the definition of the inverse, this is equivalent to \(\left(f^{-1}(b), b\right) \in  f\). Hence, \(b\) is in the range of \(f\). Since \(b\) was chosen arbitrarily, this shows that the range of \( f \) must be all of \(A\).%
+\par
+(\(\Leftarrow\) ) Assume \(f\) is one-to-one and onto and we are to prove \(f^{-1}\) exists. We leave this half of the proof to the reader.
+\(\square\)%
+\end{proof}
+\begin{definition}[Permutation]\label{def-Permutation}
+\index{Permutation}A bijection of a set \(A\) into itself is called a permutation of \(A\).%
+\end{definition}
+\par
+Next, we will consider the situation where \(f: A \rightarrow B\) and \(B\) is not necessarily equal to \(A\). How do we define the inverse in this case?%
+\begin{definition}[Inverse of a Function (General Case) ]\label{def-general-inverse-function}
+Let \(f:A \rightarrow  B\), If there exists a function \(g:B \rightarrow  A\) such that \(g \circ f = i_A\) and \(f\circ  g = i_B\) , then g is called the inverse of f and is denoted by \(f^{-1}\) , read ``f inverse.''%
+\end{definition}
+\par
+Note the slightly more complicated condition for the inverse in this case because the domains of \(f\circ  g\) and \(g \circ f\) are different if
+A and B are different. The proof of the following theorem isn't really very different from the special case where \(A=B\).%
+\begin{theorem}[When does a function have an inverse?]\label{theorem-inverse-function-condition}
+ Let\(f:A \rightarrow  B\). \(f^{-1}\) exists if and only if f is a bijection.%
+\end{theorem}
+\begin{example}[Another inverse]\label{example-inverse-another}
+Let \(A =\{1,2, 3\}\) and \(B = \{a, b, c\}\). Define \(f:A \rightarrow  B\) by \(f(1) = a\), \(f(2) = b\), and {
+}\(f(3) = c\). Then \(g: B \rightarrow  A\) defined by \(g(a) = 1\), \(g(b) = 2\), and \(g(c) = 3\) is the inverse of \(f\).
+
+\[\left.
+\begin{array}{c}
+ (g\circ f)(1)= 1 \\
+ (g\circ f)(2)=2 \\
+ (g\circ f)(3)=3 \\
+\end{array}
+\right\}\Rightarrow \text{  }g\circ f = i_A \textrm{ and } \left.
+\begin{array}{c}
+ (f\circ g)(a)=a \\
+ (f\circ g)(b)=b \\
+ (f\circ g)(c)=c \\
+\end{array}
+\right\}\Rightarrow \text{  }f\circ g = i_B\]%
+\end{example}
+\typeout{************************************************}
+\typeout{Exercises 1.3.4 Exercises for Section 7.3 }
+\typeout{************************************************}
+\subsection[Exercises for Section 7.3 ]{Exercises for Section 7.3 }\label{exercises-7-3}
 \hypertarget{exercisegroup-5}{}\typeout{************************************************}
 \typeout{Introduction  }
 \typeout{************************************************}
 A Exercises%
 \begin{exercisegroup}
-\item[1.]\hypertarget{exercise-13}{}\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-40}{}Let \(B = \{a, b\}\) and \(U = \mathcal{P}(B)\). Draw a Hasse diagram for \(\subseteq \) on \(U\).%
-\item\hypertarget{li-41}{}Let \(A = \{1,2, 3, 6\}\). Show that divides, \(\mid \), is a partial ordering on \(A\). %
-\item\hypertarget{li-42}{}Draw a Hasse diagram for divides on \(A\).%
-\item\hypertarget{li-43}{}Compare the graphs of parts a and c.%
-\end{enumerate}
-%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-7}{}\quad
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-44}{}\leavevmode%
-\begin{figure}
-\centering
-\includegraphics[width=1\linewidth]{images/fig-sol-6-3-1.png}
-\end{figure}
-%
-\item\hypertarget{li-45}{} The graphs are the same if we disregard the names of the vertices.%
-\end{enumerate}
-%
-\item[2.]\hypertarget{exercise-14}{}Repeat Exercise 1 with \(B = \{a, b, c\}\) and \( A = \{1, 2, 3, 5, 6, 10, 15, 30\}\).
-%
-\par\smallskip
-\item[3.]\hypertarget{exercise-15}{}\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-46}{}Consider the relations defined by the digraphs in \hyperref[fig-exercises-6-digraphs]{Figure~\ref{fig-exercises-6-digraphs}}. Determine whether the given relations are reflexive, symmetric, antisymmetric,
-or transitive. Try to develop procedures for determining the validity of these properties from the graphs, %
-\item\hypertarget{li-47}{}Which of the graphs are of equivalence relations or of partial orderings?%
-\end{enumerate}
-%
-\leavevmode%
-\begin{figure}
-\centering
-\includegraphics[width=1\linewidth]{images/exercises-6-digraphs.png}
-\caption{Some digraphs of relations\label{fig-exercises-6-digraphs}}
-\end{figure}
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-8}{}\quad
-\leavevmode%
-\begin{enumerate}[label=\roman*]
-\item\hypertarget{li-48}{}\leavevmode%
-\begin{table}
-\centering
-\begin{tabular}{lllll}
-Part&reflexive?&symetric?&antisymmetric?&transitive?\tabularnewline[0pt]
-i&yes&no&no&yes\tabularnewline[0pt]
-ii&yes&no&yes&yes\tabularnewline[0pt]
-iii&no&yes&no&yes\tabularnewline[0pt]
-iv&no&yes&yes&yes\tabularnewline[0pt]
-v&yes&yes&no&yes\tabularnewline[0pt]
-vi&yes&no&yes&yes\tabularnewline[0pt]
-vii&no&no&no&no
-\end{tabular}
-\end{table}
-%
-\item\hypertarget{li-49}{} Graphs ii and vi show partial ordering relations. Graph v is of an equivalence relation. %
-\end{enumerate}
-%
-\item[4.]\hypertarget{exercise-16}{}Determine which of the following are equivalence relations and/or partial ordering relations for the given sets:%
+\item[1.]\hypertarget{exercise-23}{}Let \(A = \{1,2, 3, 4, 5\}\), \(B = \{a, b, c, d, e,f\}\), and \(C = \{+, -\}\). Define \(f: A \to  B\) by \(f(k)\) equal to the \(k^{th}\)
+letter in the alphabet, and define \(g : B \rightarrow  C\) by \(g(\alpha ) = +\) \textrm{ if }\(alpha\) is a vowel and \(g(\alpha ) = -\) \textrm{ if } \textit{
+\(alpha\)} is a consonant.%
 \par
 \leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-50}{} \(A = \{\textrm{ lines in the plane}\}\): \(x r y\) if and only if \(x\) is parallel to \(y\).%
-\item\hypertarget{li-51}{} \(A = \mathbb{R}\); \(x r y\) if and only if \(\lvert x -y \rvert \leq  7\).%
-\end{enumerate}
-%
-\par\smallskip
-\item[5.]\hypertarget{exercise-17}{}Consider the  relation on \(\{1, 2, 3, 4, 5, 6\}\) defined by  \(r = \{(i,j): \mid i - j\mid  = 2\}\).%
-\par
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-52}{} Is \(r\) reflexive?%
-\item\hypertarget{li-53}{} Is \(r\) symmetric?%
-\item\hypertarget{li-54}{} Is \(r\) transitive?%
-\item\hypertarget{li-55}{} Draw a graph of \(r\).%
-\end{enumerate}
-%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-9}{}\quad
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-56}{} No, since \(\mid 1-1\mid =0\neq 2\), for example%
-\item\hypertarget{li-57}{} Yes, because \(\mid i-j\mid =\)\(\mid j-i\mid \).%
-\item\hypertarget{li-58}{} No, since \(\mid 2-4\mid =2\) and \(\mid 4-6\mid =2\), but \(\mid 2-6\mid =4\neq 2\), for example.%
-\item\hypertarget{li-59}{}\leavevmode%
-\begin{figure}
-\centering
-\includegraphics[width=1\linewidth]{images/fig-sol-6-3-5.png}
-\end{figure}
-%
-\end{enumerate}
-%
-\item[6.]\hypertarget{exercise-18}{}For the set of cities on a map, consider the relation \(x r y\) if and only if city \(x\) is connected by a road to city \(y\). A city is considered to be connected to itself, and two cities are connected even though there are cities on the road between them. Is this an equivalence
-relation or a partial ordering? Explain.%
-\par\smallskip
-\item[7.]\hypertarget{exercise-19}{} Let \(A = \{0, 1, 2, 3\}\) and let
-\[r = \{(0, 0), (1, 1), (2, 2), (3, 3), (1, 2),(2, 1), (3, 2), (2, 3), (3, 1), (1, 3)\}\]%
-\par
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-60}{}Verify that \(r\) is an equivalence relation on \(A\).%
-\item\hypertarget{li-61}{}Let \(a \in A\) and define \(c(a) = \{b \in A \mid a r b\}\)\label{notation-5}
-. \(c(a)\) is called the \terminology{equivalence class of \(a\) under \(r\)}\index{Equivalence Class}. Find \(c(a)\) for each element \(a \in A\).%
-\item\hypertarget{li-62}{}Show that \(\{c(a) \mid  a \in A\}\) forms a partition of A for this set A.%
-\item\hypertarget{li-63}{}Let \(r\) be an equivalence relation on an arbitrary set \(A\). Prove that the set of all equivalence classes under \(r\) constitutes a partition of \(A\).
-%
-\end{enumerate}
-%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-10}{}\quad
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-64}{}%
-\item\hypertarget{li-65}{} \(c(0)=\{0\}, c(1)=\{1,2,3\}=c(2)=c(3)\)%
-\item\hypertarget{li-66}{} \(c(0)\cup c(1)=A\) and \(c(0)\cap c(1)=\emptyset\)%
-\item\hypertarget{li-67}{} Let \(A\) be any set and let \(r\) be an equivalence relation on \(A\). Let \(a\) be any element of \(A\). \(a\in c(a)\) since \(r\) is reflexive, so each element of \(A\) is in some equivalence class. Therefore, the union of all equivalence classes equals \(A\). Next we show that any two equivalence classes are either identical or disjoint and we are done. Let \(c(a)\) and \(c(b)\) be two equivalence classes, and assume that \(c(a)\cap c(b)\neq \emptyset\). We want to show that \(c(a)=c(b)\). To show that \(c(a)\subseteq c(b)\), let \(x\in c(a)\). \(x\in c(a) \Rightarrow a r x \). Also, there exists an element, \(y\), of \(A\) that is in the intersection of \(c(a)\)
-and \(c(b)\) by our assumption. Therefore,
-  \[
-  \begin{split}
-  a r y \land b r y &\Rightarrow  a r y \land y r b \quad r\textrm{  is symmetric}\\
-			&\Rightarrow  a r b  \quad \textrm{ transitivity of }r \\
-	\end{split}
-	\]%
-\par
- Next,
-     \begin{equation*}
-     \begin{split}
-     a r x \land a r b &\Rightarrow x r a \land a r b\\
-		&\Rightarrow  x r b\\
-		&\Rightarrow  b r x\\
-		& \Rightarrow  x \in c(b)\\
-		\end{split}
-		\end{equation*}
-		%
-\par
- Similarly, \(c(b)\subseteq c(a)\)  \(\square\) %
-\end{enumerate}
-%
-\item[8.]\hypertarget{exercise-20}{}Define \(r\) on the power set of \(\{1, 2, 3\}\) by \(A r B \Leftrightarrow  \lvert A \rvert = \lvert B \rvert \). Prove that \(r\) is an equivalence
-relation. What are the equivalence classes under \(r\)?%
-\par\smallskip
-\item[9.]\hypertarget{exercise-21}{}Consider the following relations on \(\mathbb{Z}_8= \{0, 1, . . . , 7\}\). Which are equivalence relations? For the equivalence relations, list the equivalence classes.%
-\par
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-68}{} \(a r b\) iff the English spellings of a and b begin with the same letter.%
-\item\hypertarget{li-69}{} \(a s b\) iff \(a - b\) is a positive integer.%
-\item\hypertarget{li-70}{} \(a t b\) iff \(a-b\) is an even integer.%
+\item\hypertarget{li-70}{} Find \(g\circ  f\).%
+\item\hypertarget{li-71}{} Does it make sense to discuss \(f\circ g\)? If not, why not?%
+\item\hypertarget{li-72}{} Does \(f^{-1}\) exist? Why?%
+\item\hypertarget{li-73}{} Does \(g^{-1}\) exist? Why?%
 \end{enumerate}
 %
 \par\smallskip
@@ -1000,22 +1109,140 @@ relation. What are the equivalence classes under \(r\)?%
 \noindent\textbf{Answer.}\hypertarget{answer-11}{}\quad
 \leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-71}{}Equivalence Relation,
- \(c(0)=\{0\},c(1)=\{1\},c(2)=\{2,3\} =c(3),c(4)=\{4,5\}=c(5)\), and
- \(c(6)=\{6,7\}=c(7)\)%
-\item\hypertarget{li-72}{}  Not an Equivalence Relation.%
-\item\hypertarget{li-73}{}  Equivalence Relation,
- \(c(0)=\{0,2,4,6\}=c(2)=c(4)=c(6)\)  and 
- \(c(1)=\{1,3,5,7\}=c(3)=c(5)=c(7)\)%
+\item\hypertarget{li-74}{}  \(g\circ f:A\to C\) is defined by \((g\circ f)(k)=\begin{cases}
+ + & \text{if} k=1 \text{or} k=5 \\
+ - & \text{if} k=2,3,4
+\end{cases}\)%
+\item\hypertarget{li-75}{} No, since the domain of \(f\) is not equal to the codomain of \(g\).%
+\item\hypertarget{li-76}{} No, since \(f\) is not surjective.%
+\item\hypertarget{li-77}{} No, since \(g\) is not injective.%
 \end{enumerate}
 %
-\item[10.]\hypertarget{exercise-22}{}\leavevmode%
+\item[2.]\hypertarget{exercise-24}{} Let \(A = \{1, 2, 3\}\). Define\(f:A\rightarrow A\) by \(f(1) = 2\), \(f(2) = 1\), and \(f(3) = 3\). Find \(f^2\) , \(f^3\) , \(f^4\) and
+\(f^{-1}\).%
+\par\smallskip
+\item[3.]\hypertarget{exercise-25}{}Let \(A = \{1, 2, 3\}\).%
+\par
+\leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-74}{}Prove that conguence modulo \(m\) is a transitive?%
-\item\hypertarget{li-75}{}What are the equivalence classes under conguence modulo 2?%
-\item\hypertarget{li-76}{} What are the equivalence classes under conguence modulo 10? %
+\item\hypertarget{li-78}{} List all permutations of \(A\).%
+\item\hypertarget{li-79}{} Find the inverse of each of the permutations of part a.%
+\item\hypertarget{li-80}{} Find the square of each of the permutations of part a.%
+\item\hypertarget{li-81}{} Show that the composition of any two permutations of \(A\) is a permutation of \( A\).%
+\item\hypertarget{li-82}{} Prove that if \(A\) be any set where the \(|A|=\text{\textit{$n$}}\), then the number of permutations of \(A\) is \(n!\).%
 \end{enumerate}
 %
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-12}{}\quad
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-83}{} The permutations of \(A\) are \(i,r_1,r_2,f_1,f_2,\) and \(f_3\), defined in section 15.3
+%
+\item\hypertarget{li-84}{}    
+ \[\begin{array}{ccc}
+g  & g^{-1} & g^2 \\
+ i & i & i \\
+r_1 & r_2 & r_2 & \\
+r_2 & r_1 & r_1 & \\
+f_1 & f_1 & i & \\
+f_2 & f_2 & i & \\
+f_3 & f_3 & i & \\
+\end{array}\]%
+\item\hypertarget{li-85}{} Apply both Theorems 7.3.3 and 7.3.4: If \(f\) and \(g\) are permutations of \(A\), then they are both  \\
+ injections and their composition, \(f\circ g\), is a injection, by Theorem 7.3.3. By 7.3.4, \(f\circ g\) is also a \\
+ surjection; therefore, \(f\circ g\) is a bijection on \(A\), a permutation.%
+\item\hypertarget{li-86}{} Proof by induction: Basis: \((n=1)\).  The number of permutations of \(A\) is one, the identity function, and 1! \(=1\).%
+\par
+Induction: Assume that the number of permutations on a set with \(n\) elements,
+ \(n\geq 1\), is \(n\)!. Furthermore, assume that \(|A|=\)\(\text{  }n+1\) and that \(A\) contains
+  an element called \(x\). Let \(A'=A-\{x\}\). We can reduce the definition of a permutation, \(f\),
+   on \(A\) to two steps. First, we select any one of the \(n\)! permutations on \(A'\).
+    (Note the use of the induction hypothesis.) Call it \(g\). This permutation almost
+     completely defines a permutation on \(A\) by \(f\) for all
+      \(a\) in \(A'\), Next, we select the image of \(x\), which can be done \(n+1\) different ways.
+       To keep our function bijective, we must adjust \(f\) as follows: If we select \(f(x)=y\),
+        then we must find the element, \(z\), of \(A\) such that \(g(z)=y\), and redefine the image
+         of \(z\) to \(f(z)=x\). If we had selected \(f(x)=x\), then there is really no adjustment needed.
+          By the rule of products, the number of ways that we can define \(f\) is \(n!(n+1)=(n+1)!\) \(\square\)%
+\end{enumerate}
+%
+\item[4.]\hypertarget{exercise-26}{} Define \(s\), \(u\), and \(d\), all functions on the integers, by \(s(n) = n^2\) , \(u(n) = n + 1\), and \(d(n) = n-1\). Determine:%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-87}{} \(u \circ  s \circ  d\)%
+\item\hypertarget{li-88}{} \(s \circ  u\circ  d\)%
+\item\hypertarget{li-89}{} \(d \circ  s \circ  u\)%
+\end{enumerate}
+%
+\par\smallskip
+\item[5.]\hypertarget{exercise-27}{} Based on the definition of the identity function, show that for all functions \(f:A\to A\), \(f\circ i=i\circ f = f\).%
+\par\smallskip
+\item[6.]\hypertarget{exercise-28}{}\terminology{Inverse images.} If \(f\) is any function from \(A\) into \(B\), we can describe the inverse image of from \textit{
+B }into \(\mathcal{P}(A)\), which is also commonly denoted \(f^{-1}\). If \(b \in  B\), \(\left.f^{-1}(b) = \{a \in A | f(a) = b\right)\). If
+\(f\) does have an inverse, the inverse image of \(b\) is \(\left\{f^{-1}(b)\right\}\).%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-90}{} Let \(g : \mathbb{R} \to  \mathbb{R}\) be defined by \(g(x) = x^2\). What are \(g^{-1}(4)\), \(g^{-1}(0)\) and \(g^{-1}(-1)\)?%
+\item\hypertarget{li-91}{} If \(r: \mathbb{R}\to \mathbb{Z}\), where \(r(x) = \lceil x\rceil\),  what is \(r^{-1}(1)\)?%
+\end{enumerate}
+%
+\par\smallskip
+\item[7.]\hypertarget{exercise-29}{} Let \( f,\)  \(g\), and \(h\) all be functions from \(\mathbb{Z}\) into \(\mathbb{Z}\) defined by \(f(n) = n + 5\), \(g(n) = n - 2,\)
+and \(h(n)=n^2\). Define:%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-92}{} \(f\circ g\)%
+\item\hypertarget{li-93}{} \(f^3\)%
+\item\hypertarget{li-94}{} \(f\circ h\)%
+\end{enumerate}
+%
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-13}{}\quad
+\leavevmode%
+\begin{multicols}{3}
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-95}{} \(f\circ g(n)=n+3\)%
+\item\hypertarget{li-96}{} \(f^3(n)=n+15\)   %
+\item\hypertarget{li-97}{} \(f\circ h(n)=n^2+5\) %
+\end{enumerate}
+\end{multicols}
+%
+\item[8.]\hypertarget{exercise-30}{}Define the following functions on the integers by \(f(k) = k + 1\), \(g(k) = 2k\), and \(h(k)=\lceil k/2\rceil\) %
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-98}{} Which of these functions are one-to-one?%
+\item\hypertarget{li-99}{} Which of these functions are onto?%
+\item\hypertarget{li-100}{} Express in simplest terms the compositions \(f\circ g\), \(g \circ f\), \(g \circ  h\), \(h \circ  g\), and \(h^2\) ,%
+\end{enumerate}
+%
+\par\smallskip
+\item[9.]\hypertarget{exercise-31}{} Let \(A\) be a nonempty set. Prove that if \( f \) is a bijection on \(A\) and \(f\circ f=f\), then \( f \)is the identity
+function, \(i\) %
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Hint.}\hypertarget{hint-1}{}\quad
+You have seen a similar proof in matrix algebra.%
+\item[10.]\hypertarget{exercise-32}{} For the real matrix \(A=\left(
+\begin{array}{cc}
+ a & b \\
+ c & d \\
+\end{array}
+\right), \text{\textit{\det }} A=\text{\textit{ad}-\text{bc}}\).%
+\par
+Recall that a  \terminology{bijection} from a set to itself is also referred to as a \terminology{permutation} of the set. Let \(\pi\) be a permutation of \(\{a,b,c,d\}\) such that \(a\) becomes \(\pi (a)\), \(b\) becomes \(\pi (b)\), etc.%
+\par
+Let \(B=\left(
+\begin{array}{cc}
+ \pi(a)& \pi(b)\\
+ \pi(c)& \pi(d)\\
+\end{array}
+\right)\). How many permutations of \(pi\) leave the determinant of \(A\) invariant, that is, \(\det  A = \det  B\)?%
 \par\smallskip
 \end{exercisegroup}
 \par\smallskip\noindent
@@ -1024,32 +1251,53 @@ relation. What are the equivalence classes under \(r\)?%
 \typeout{************************************************}
 B Exercises%
 \begin{exercisegroup}
-\item[11.]\hypertarget{exercise-23}{}In this exercise, we prove that implication is a partial ordering. Let \(A\) be any set of propositions.%
+\item[11.]\hypertarget{exercise-33}{}State and prove a theorem on inverse functions analogous to the one that says that f a matrix hais an inverse, that inverse is unique.%
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-14}{}\quad
+If \(f:A\to B\) and \(f\) has an inverse, then that inverse is unique.%
 \par
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-77}{} Verify that \(q \to  q\) is a tautology, thereby showing that \(\Rightarrow\) is a reflexive relation on \(A\).%
-\item\hypertarget{li-78}{} Prove that \(\Rightarrow\) is antisymmetric on A. Note: we do not use = when speaking of propositions, but rather equivalence, \(\Leftrightarrow\).%
-\item\hypertarget{li-79}{} Prove that \(\Rightarrow\) is transitive on \(A\).%
-\item\hypertarget{li-80}{} Given that \(q_i\) is the proposition \(n < i\) on \(\mathbb{N}\), draw the Hasse diagram for the relation \(\Rightarrow\) on \(\{q_1, q_2, q_3,\ldots \}\).%
-\end{enumerate}
-%
+Proof:  Suppose that \(g\) and \(h\) are both inverses of \(f\).
+
+\[
+\begin{split}g &= g\circ i_A \\
+		& =g\circ (f\circ h)\\
+		& =(g\circ f)\circ h\\
+		& =i_A\circ h\\
+		& = =h\quad \Rightarrow g=h \quad \square
+\end{split}
+\]
+		%
+\item[12.]\hypertarget{exercise-34}{} Let \(f\) and \(g\) be functions whose inverses exist. Prove that \((f\circ g)^{-1}= g^{-1}\circ f^{-1}\).%
 \par\smallskip
 \par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-12}{}\quad
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-81}{}%
-\item\hypertarget{li-82}{} The proof follows from the biconditional equivalence in Table 3.4.2.%
-\item\hypertarget{li-83}{} Apply the chain rule.%
-\item\hypertarget{li-84}{}\leavevmode%
-\begin{figure}
-\centering
-\includegraphics[width=1\linewidth]{images/fig-sol-6-3-11.png}
-\end{figure}
-%
-\end{enumerate}
-%
+\noindent\textbf{Hint.}\hypertarget{hint-2}{}\quad
+See Exercise 3 of Section 5.4.%
+\item[13.]\hypertarget{exercise-35}{} Prove \hyperref[theorem-composition-of-injections]{Theorem~\ref{theorem-composition-of-injections}} and \hyperref[theorem-composition-of-surjections]{Theorem~\ref{theorem-composition-of-surjections}}.%
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-15}{}\quad
+ Let \(x,x'\) be elements of \(A\) such that \(g\circ f(x)=g\circ f(x')\); that is, \(g(f(x))=g(f(x'))\). Since \(g\) is injective, \(f(x)=f(x')\) and since \(f\) is injective, \(x=x'\). \(\square\)%
+\par
+ Let \(x\) be an element of \(C\). We must show that there exists an element of \(A\) whose image under \(g\circ f\) is \(x\). Since \(g\) is surjective, there exists an element of \(B\), \(y\), such that \(g(y)=x\). Also, since \(f\) is a surjection, there exists an element of \(A\), \(z\), such that \(f(z)=y\), \(g\circ f(z)=g(f(z))=g(y)=x\).\(\square\)%
+\item[14.]\hypertarget{exercise-36}{} Prove the second half of \hyperref[theorem-bijections-have-inverses]{Theorem~\ref{theorem-bijections-have-inverses}}.%
+\par\smallskip
+\item[15.]\hypertarget{exercise-37}{} Prove by induction that if \(n\geq  2\) and \(f_1\), \(f_2\) , \ldots  , \(f_n\) are invertible functions on some nonempty set A, then {
+}\(\left( f_1\circ  f_2\circ  \cdots  \circ  f_n \right){}^{-1}= f_n^{-1}\circ \cdots \circ f_2^{-1}\circ f_1^{-1}\). The basis has been taken
+care of in Exercise 10.%
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-16}{}\quad
+Basis: \((n=2)\): \(\left(f_1\circ f_2\right){}^{-1}=f_2{}^{-1}\circ f_1{}^{-2}\) by exercise 10. %
+\par
+Induction: Assume \(n\geq 2\) and \(\left(f_1\circ f_2\circ \cdots \circ f_n\right){}^{-1}=\)\\
+ \(f_n{}^{-1}\circ \cdots \circ f_2{}^{-1}\circ f_1{}^{-1}\)\\
+ Consider \(\left(f_1\circ f_2\circ \cdots \circ f_{n+1}\right){}^{-1}\).
+  \(\left(f_1\circ f_2\circ \cdots \circ f_{n+1}\right){}^{-1}\) \(=\left(\left(f_1\circ f_2\circ \cdots \circ f_n\right)\circ f_{n+1}\right){}^{-1}\)\\
+  by the Basis   \(=f_{n+1}{}^{-1}\circ \left(f_1\circ f_2\circ \cdots \circ f_n\right){}^{-1}\)\\
+  by Induction hypothesis  \(=f_{n+1}{}^{-1}\circ \left(f_n{}^{-1}\circ \cdots \circ f_2{}^{-1}\circ f_1{}^{-1}\right)\)\\
+ \(=f_{n+1}{}^{-1}\circ \cdots \circ f_2{}^{-1}\circ f_1{}^{-1}\). \(\square\)
+ %
 \end{exercisegroup}
 \par\smallskip\noindent
 \hypertarget{exercisegroup-7}{}\typeout{************************************************}
@@ -1057,873 +1305,16 @@ B Exercises%
 \typeout{************************************************}
 C Exercises%
 \begin{exercisegroup}
-\item[12.]\hypertarget{exercise-6-3-12}{}Let \(S = \{1,2,3,4,5,6,7\}\) be a poset \((S, \leq )\) with the Hasse diagram shown below. Another relation \(r \subseteq  S\times S\) is defined as follows: \((x, y) \in  r\) if and only if there exists \(z \in S\) such that \(z < x\) and \(z < y\) in the poset \((S, \leq )\).%
-\par
-\leavevmode%
+\item[16.]\hypertarget{exercise-38}{}\leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-85}{} Prove that \(r\) is reflexive.%
-\item\hypertarget{li-86}{} Prove that \(r\) is symmetric.%
-\item\hypertarget{li-87}{} A compatible with respect to relation \(r\) is any subset \(Q\) of set \(S\) such that \(x \in  Q \textrm{ and } y \in Q \Rightarrow  (x, y) \in r\). A compatible \(g\) is a maximal compatible if \(Q\) is not a proper subset of another compatible. Give all maximal compatibles with respect to relation \(r\) defined above.%
-\item\hypertarget{li-88}{} Discuss a characterization of the set of maximal compatibles for relation \(r\) when \((S, \leq )\) is a general finite poset. What conditions, if any, on a general finite poset \((S, \leq )\) will make r an equivalence relation?%
-\end{enumerate}
-%
-\leavevmode%
-\begin{figure}
-\centering
-\includegraphics[width=1\linewidth]{images/exercise-6-12.png}
-\caption{Hasse diagram for \(r\) exercise 12.
-                \label{fig-exercise-6-12}}
-\end{figure}
-\par\smallskip
-\end{exercisegroup}
-\par\smallskip\noindent
-\typeout{************************************************}
-\typeout{Section 1.4 Matrices of Relations}
-\typeout{************************************************}
-\section[Matrices of Relations]{Matrices of Relations}\label{s-matrices-of-relations}
-We have discussed two of the many possible ways of representing a relation, namely as a digraph or as a set of ordered pairs. In this section we will discuss the representation of relations by matrices.%
-\begin{definition}[Adjacency Matrix]\label{def-adjacency-matrix}
-\index{Adjacency Matrix}Let \(A = \{a_1,a_2,\ldots , a_m\}\) and \(B= \{b_1,b_2,\ldots , b_n\}\) be finite sets of cardinality \(m\) and \(n\), respectively. Let \(r\) be a relation from \(A\) into \(B\). Then \(r\) can be represented by the \(m\times n\) matrix \(R\) defined by
-
-\begin{equation*}R_{ij}= \left\{
-		\begin{array}{cc}
-		 1 & \textrm{   if } a_i r b_j \\
-		 0 & \textrm{   otherwise}     \\
-		\end{array}\right.
-\end{equation*}
- \(R\) is called the \terminology{adjacency matrix} (or the relation matrix) of \(r\).%
-\end{definition}
-\par
-For example, let \(A = \{2, 5, 6\}\) and let \(r\) be the relation \(\{(2, 2), (2, 5), (5, 6), (6, 6)\}\) on \(A\). Since \(r\) is a relation from \(A\) into the same set \(A\) (the \(B\) of the definition), we have \(a_1= 2\), \(a_2=5\), and \(a_3=6\), while \(b_1= 2\), \(b_2=5\), and \(b_3=6\). Next, since%
-\par
-\leavevmode%
-\begin{itemize}[label=\textbullet]
-\item{}\(2 r 2\), we have \(R_{11}= 1\)%
-\item{}\(2 r 5\), we have \(R_{12}= 1\)%
-\item{}\(5 r 6\), we have \(R_{23}= 1\) %
-\item{}\(6 r 6\), we have \(R_{33}= 1\)%
-\end{itemize}
-%
-\par
-All other entries of \(R\) are zero, so
-
-\(R =\left(
-\begin{array}{ccc}
- 1 & 1 & 0 \\
- 0 & 0 & 1 \\
- 0 & 0 & 1 \\
-\end{array}
-\right)\)
-%
-\par
-From the definition of \(r\) and of composition, we note that
-
-\begin{equation*}r^2 = \{(2, 2), (2, 5), (2, 6), (5, 6), (6, 6)\}\end{equation*}
-
-The adjacency matrix of \(r^2\) is
-
-\begin{equation*}R^2 =\left(
-\begin{array}{ccc}
- 1 & 1 & 1 \\
- 0 & 0 & 1 \\
- 0 & 0 & 1 \\
-\end{array}
-\right)\end{equation*}%
-\par
-We do not write \(R^2\) only for notational purposes. In fact, \(R^2\) can be obtained from the matrix product \(R R\); however, we must use a slightly different form of arithmetic.%
-\begin{definition}[Boolean Arithmetic]\label{def-boolean-arithmetic}
-\index{Boolean Arithmetic}Boolean arithmetic is the arithmetic defined on \(\{0,1\}\) using Boolean addition and Boolean multiplication, defined by%
-\leavevmode%
-\begin{table}
-\centering
-\begin{tabular}{lll}
-\(0 + 0 = 0\)&\(0+1 = 1 + 0=1\)     &\(1 + 1 = 1\)\tabularnewline[0pt]
-\(0\cdot 0=0\) & \(0 \cdot  1 = 1 \cdot  0 = 0\)&\(1 \cdot  1 = 1\)
-\end{tabular}
-\end{table}
-\end{definition}
-\par
-Notice that from Chapter 3, this is the ``arithmetic of logic,'' where \(+\) replaces ``or'' and \(\cdot\) replaces ``and.''%
-\begin{example}[Composition by Multiplication]\label{ex-composition-matrices}
-If  \(R=\left(
-\begin{array}{cccc}
- 0 & 1 & 0 & 0 \\
- 1 & 0 & 1 & 0 \\
- 0 & 1 & 0 & 1 \\
- 0 & 0 & 1 & 0 \\
-\end{array}
-\right)\)  and  \(S=\left(
-\begin{array}{cccc}
- 0 & 1 & 1 & 1 \\
- 0 & 0 & 1 & 1 \\
- 0 & 0 & 0 & 1 \\
- 0 & 0 & 0 & 0 \\
-\end{array}
-\right)\).
-
-Then using Boolean arithmetic, \(R S =\left(
-\begin{array}{cccc}
- 0 & 0 & 1 & 1 \\
- 0 & 1 & 1 & 1 \\
- 0 & 0 & 1 & 1 \\
- 0 & 0 & 0 & 1 \\
-\end{array}
-\right)\)  and \(S R=\left(
-\begin{array}{cccc}
- 1 & 1 & 1 & 1 \\
- 0 & 1 & 1 & 1 \\
- 0 & 0 & 1 & 0 \\
- 0 & 0 & 0 & 0 \\
-\end{array}
-\right)\).
-%
-\end{example}
-\begin{theorem}[Composition is Matrix Multiplication]\label{theorem-composition-is-multiplication}
-Let \(A_1\), 
-\(A_2\), and \(A_3\) be finite sets where \(r_1\) is a relation from \(A_1\) into \(A_2\) and \(r_2\)
-is a relation from \(A_2\) into \(A_3\). If \(R_1\) and \(R_2\) are the adjacency matrices of \(r_1\) and \(r_2\) , respectively, then the product
-\(R_1R_2\) using Boolean arithmetic is the adjacency matrix of the composition \(r_1r_2\).%
-\end{theorem}
-\par
-Remark: A convenient help in constructing the adjacency matrix of a relation from a set \(A\) into a set \(B\) is to write the elements from \(A\) in a column preceding the first column of the adjacency matrix, and the elements of \(B\) in a row above the first row. Initially, \(R\) in Example 6.4.1 would be
-
-\begin{equation*}
-\begin{array}{cc}
-   & 
-\begin{array}{ccc}
- 2 & 5 & 6 \\
-\end{array}
- \\
- 
-\begin{array}{c}
- 2 \\
- 5 \\
- 6 \\
-\end{array}
- & \left(
-\begin{array}{ccc}
-   &   &   \\
-   &   &   \\
-   &   &   \\
-\end{array}
-\right) \\
-\end{array}\end{equation*} 
-
-To fill in the matrix, \(R_{ij}\) is 1 if and only if\(\left(a_i,b_j\right) \in r\). So that, since the pair \((2, 5) \in r\), the entry of \(R\) corresponding to the row labeled 2 and the column labeled 5 in the matrix is a 1.%
-\begin{example}[Relations and Information]\label{ex-relations-information}
-This final example gives an insight into how relational data base programs can systematically answer questions pertaining to large masses of information. Matrices \(R\) (on the left) and \(S\) (on the right) define the relations \(r\) and \(s\) where
-\(a r b\) if software \(a\) can be run with operating system \(b\), and \(b s c\) if operating system \(b\) can run on computer \(c\).
-
-\begin{equation*}
-\begin{array}{cc}
- 
-     & 
-          \begin{array}{cccc}
-               \text{OS1} & \text{OS2} & \text{OS3} & \text{OS4} 
-           \end{array} \\ 
-
-      \begin{array}{c}
-				 \text{P1} \\
-				 \text{P2} \\
-				 \text{P3} \\
-				 \text{P4}
-				\end{array}
-					&
-    \left(
-		\begin{array}{cccc}
- 			 1  &  0  &  1  &  0  \\
- 			 1  &  1  & 0 & 0 \\
- 			 0 & 0 & 0 &  1  \\
- 			 0 & 0 &  1  &  1
-		\end{array}
-	\right) 
-	\end{array}\) \end{equation*}
-  
-\begin{equation*}   \(\begin{array}{cc}
-
-   & 
-\begin{array}{ccc}
- \text{C1} & \text{C2} & \text{C3}
-\end{array} \\
-
-					\begin{array}{c}
-					 \text{OS1} \\
-					 \text{OS2} \\
-					 \text{OS3} \\
-					 \text{OS4} \\
-					\end{array}
-					 & \left(
-					\begin{array}{ccc}
-					  1  &  1  & 0 \\
-					 0 &  1  & 0 \\
-					 0 & 0 &  1  \\
-					 0 &  1  &  1 
-					\end{array}
-					\right)
-\end{array}
-\end{array}
-\end{equation*}
-
-Although the relation between the software and computers is not implicit from the data given, we can easily compute this information. The matrix of \(rs\) is \(RS\), which is
-
- \begin{equation*}\begin{array}{cc}
-   & 
-\begin{array}{ccc}
- \text{C1} & \text{C2} & \text{C3} \\
-\end{array}
- \\
- 
-\begin{array}{c}
- \text{P1} \\
- \text{P2} \\
- \text{P3} \\
- \text{P4} \\
-\end{array}
- & \left(
-\begin{array}{ccc}
-  1  &  1  & 1 \\
- 1 &  1  & 0 \\
- 1 & 1 &  1  \\
- 0 &  1  &  1 
-\end{array}
-\right) \\
-\end{array}\end{equation*}
-This matrix tells us at a glance which software will run on the computers listed. In this case, all software will run on all computers with the exception of program P2, which will not run on the computer C3, and program P4, which will not run on the computer C1.%
-\end{example}
-\typeout{************************************************}
-\typeout{Exercises 1.4.1 Exercises}
-\typeout{************************************************}
-\subsection[Exercises]{Exercises}\label{exercises-6-4}
-\hypertarget{exercisegroup-8}{}\typeout{************************************************}
-\typeout{Introduction  }
-\typeout{************************************************}
-A Exercises%
-\begin{exercisegroup}
-\item[1.]\hypertarget{exercise-25}{}Let \(A_1 = \{1,2, 3, 4\}\), \(A_2 = \{4, 5, 6\}\), and \(A_3 = \{6, 7, 8\}\). Let \(r_1\) be the relation from \(A_1\) into \(A_2\) defined by
-\(r_1 = \{(x, y)  \mid  y - x = 2\}\), and let \(r_2\) be the relation from \(A_2\) into \(A_3\) defined by \(r_2 = \{(x, y) \mid  y - x = 1\}\).%
-\par
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-93}{} Determine the adjacency matrices of \(r_1\) and \(r_2\).%
-\item\hypertarget{li-94}{} Use the definition of composition to find \(r_1r_2\).%
-\item\hypertarget{li-95}{} Verify the result in part by finding the product of the adjacency matrices of \(r_1\) and \(r_2\).%
+\item\hypertarget{li-101}{} Our definition of cardinality states that two sets, \(A\) and \(B\), have the same cardinality if there exists a bijection
+between the two sets. Why does it not matter whether the bijection is from \(A\) into \(B\) or \(B\) into \(A\)?%
+\item\hypertarget{li-102}{}Prove that ``has the same cardinality as'' is an equivalence relation on sets.%
 \end{enumerate}
 %
 \par\smallskip
+\item[17.]\hypertarget{exercise-39}{}Construct a table listing as many ``Laws of Function Composition'' as you can identify. Use previous lists of laws as a guide.%
 \par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-13}{}\quad
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-96}{} \(\begin{array}{cc}
-   & 
-\begin{array}{ccc}
- 4 & 5 & 6 \\
-\end{array}
- \\
- 
-\begin{array}{c}
- 1 \\
- 2 \\
- 3 \\
- 4 \\
-\end{array}
- & \left(
-\begin{array}{ccc}
- 0 & 0 & 0 \\
- 1 & 0 & 0 \\
- 0 & 1 & 0 \\
- 0 & 0 & 1 \\
-\end{array}
-\right) \\
-\end{array}\)  and \(\begin{array}{cc}
-   & 
-\begin{array}{ccc}
- 6 & 7 & 8 \\
-\end{array}
- \\
- 
-\begin{array}{c}
- 4 \\
- 5 \\
- 6 \\
-\end{array}
- & \left(
-\begin{array}{ccc}
- 0 & 0 & 0 \\
- 1 & 0 & 0 \\
- 0 & 1 & 0 \\
-\end{array}
-\right) \\
-\end{array}\)%
-\item\hypertarget{li-97}{}\( r_1r_2 =\{(3,6),(4,7)\}\)%
-\item\hypertarget{li-98}{} \(\begin{array}{cc}
-   & 
-\begin{array}{ccc}
- 6 & 7 & 8 \\
-\end{array}
- \\
- 
-\begin{array}{c}
- 1 \\
- 2 \\
- 3 \\
- 4 \\
-\end{array}
- & \left(
-\begin{array}{ccc}
- 0 & 0 & 0 \\
- 0 & 0 & 0 \\
- 1 & 0 & 0 \\
- 0 & 1 & 0 \\
-\end{array}
-\right) \\
-\end{array}\)
-%
-\end{enumerate}
-%
-\item[2.]\hypertarget{exercise-26}{}\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-99}{} Determine the adjacency matrix of each relation given via the digraphs in Exercise 3 of Section 6.3.%
-\item\hypertarget{li-100}{} Using the matrices found in part (a) above, find \(r^2\) of each relation in Exercise 3 of Section 6.3.%
-\item\hypertarget{li-101}{} Find the digraph of \(r^2\) directly from the given digraph and compare your results with those of part (b).%
-\end{enumerate}
-%
-\par\smallskip
-\item[3.]\hypertarget{exercise-27}{}Suppose that the matrices in \hyperref[ex-composition-matrices]{Example~\ref{ex-composition-matrices}} are relations on \(\{1, 2, 3, 4\}\). What relations do \(R\) and \(S\) describe?%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-14}{}\quad
-\leavevmode%
-\begin{table}
-\centering
-\begin{tabular}{l}
-R : \(x r y\) if and only if \( \lvert x -y \rvert = 1\)\tabularnewline[0pt]
-S : \(x s y\) if and only if \(x\) is less than \(y\). 
-\end{tabular}
-\end{table}
-\item[4.]\hypertarget{exercise-28}{}Let \(D\) be the set of weekdays, Monday through Friday, let \(W\) be a set of employees \(\{1, 2, 3\}\) of a tutoring center, and let \(V\) be a set
-of computer languages for which tutoring is offered,  \(\{A(PL), B(asic), C(++), J(ava), L(isp), P(ython)\}\). We define \(s\) (schedule)
-from \(D\) into \(W\) by \(d s w\) if \(w\) is scheduled to work on day \(d\). We also define \(r\) from \(W\)
-into \(V\) by \(w r l\) if \(w\) can tutor students in language \(l\). If \(s\) and \(r\) are defined by matrices%
-\par
-
-\begin{equation*} 
-S = 
-\begin{array}{cc}
-   & 
-		\begin{array}{ccc}
-		1 & 2 & 3 \\
-		\end{array}
-		 \\
- 
-	\begin{array}{c}
-			 M \\
-			 T \\
-			 W \\
-			 R \\
-			 F \\
-	\end{array}
-     & 
-     \left(
-			\begin{array}{ccc}
-				 1 & 0 & 1 \\
-				 0 & 1 & 1 \\
-				 1 & 0 & 1 \\
-				 0 & 1 & 0 \\
-				 1 & 1 & 0 \\
-			\end{array}
-		\right) \\
-		\end{array}
-\textrm{ and }R=
-	\begin{array}{cc}
-   & 
-	\begin{array}{cccccc}
-		 A & B & C & J & L & P \\
-	\end{array}
- \\
- 
-\begin{array}{c}
- 1 \\
- 2 \\
- 3 \\
-\end{array}
- & \left(
-\begin{array}{cccccc}
- 0 & 1 & 1 & 0 & 0 & 1 \\
- 1 & 1 & 0 & 1 & 0 & 1 \\
- 0 & 1 & 0 & 0 & 1 & 1 \\
-\end{array}
-\right) \\
-\end{array}\end{equation*}
-%
-\par
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-102}{} compute \(S R\) using Boolean arithmetic and give an interpretation of the relation it defines, and%
-\item\hypertarget{li-103}{} compute \(S R\) using regular arithmetic and give an interpretation of what the result describes.%
-\end{enumerate}
-%
-\par\smallskip
-\item[5.]\hypertarget{exercise-29}{} How many different reflexive, symmetric relations are there on a set with three elements?%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Hint.}\hypertarget{hint-1}{}\quad
-Consider the possible matrices.%
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-15}{}\quad
- The diagonal entries of the matrix for such a relation must be 1. When the three entries above the diagonal are determined, the entries below are also determined. Therefore, there are \(2^3\) fitting the description.%
-\item[6.]\hypertarget{exercise-30}{}Let \(A = \{a, b, c, d\}\).  Let \(r\) be the relation on \(A\) with adjacency matrix
-
-\(\begin{array}{cc}
-   & 
-\begin{array}{cccc}
- a & b & c & d \\
-\end{array}
- \\
- 
-\begin{array}{c}
- a \\
- b \\
- c \\
- c \\
-\end{array}
- & \left(
-\begin{array}{cccc}
- 1 & 0 & 0 & 0 \\
- 0 & 1 & 0 & 0 \\
- 1 & 1 & 1 & 0 \\
- 0 & 1 & 0 & 1 \\
-\end{array}
-\right) \\
-\end{array}\)%
-\par
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-104}{} Explain why \(r\) is a partial ordering on \(A\).%
-\item\hypertarget{li-105}{} Draw its Hasse diagram.%
-\end{enumerate}
-%
-\par\smallskip
-\item[7.]\hypertarget{exercise-31}{}Define relations \(p\) and \(q\) on \(\{1, 2, 3, 4\}\) by \(p = \{(a, b) \mid \lvert a-b\rvert=1\}\) and \(q=\{(a,b) \mid a-b \textrm{ is even}\}\).%
-\par
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-106}{} Represent \(p\) and \(q\) as both graphs and matrices.%
-\item\hypertarget{li-107}{} Determine \(p q\), \(p^2\), and \(q^2\); and represent them clearly in any way.%
-\end{enumerate}
-%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-16}{}\quad
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-108}{} \(\begin{array}{cc}
-  & 
-\begin{array}{cccc}
- 1 & 2 & 3 & 4 \\
-\end{array}
- \\
- 
-\begin{array}{c}
- 1 \\
- 2 \\
- 3 \\
- 4 \\
-\end{array}
- & \left(
-\begin{array}{cccc}
- 0 & 1 & 0 & 0 \\
- 1 & 0 & 1 & 0 \\
- 0 & 1 & 0 & 1 \\
- 0 & 0 & 1 & 0 \\
-\end{array}
-\right) \\
-\end{array}\) and \(\begin{array}{cc}
-   & 
-\begin{array}{cccc}
- 1 & 2 & 3 & 4 \\
-\end{array}
- \\
- 
-\begin{array}{c}
- 1 \\
- 2 \\
- 3 \\
- 4 \\
-\end{array}
- & \left(
-\begin{array}{cccc}
- 1 & 0 & 1 & 0 \\
- 0 & 1 & 0 & 1 \\
- 1 & 0 & 1 & 0 \\
- 0 & 1 & 0 & 1 \\
-\end{array}
-\right) \\
-\end{array}\)%
-\item\hypertarget{li-109}{}  \(P Q=
-\begin{array}{cc}
-   & 
-\begin{array}{cccc}
- 1 & 2 & 3 & 4 \\
-\end{array}
- \\
- 
-\begin{array}{c}
- 1 \\
- 2 \\
- 3 \\
- 4 \\
-\end{array}
- & \left(
-\begin{array}{cccc}
- 0 & 1 & 0 & 0 \\
- 1 & 0 & 1 & 0 \\
- 0 & 1 & 0 & 1 \\
- 0 & 0 & 1 & 0 \\
-\end{array}
-\right) \\
-\end{array}\)
-
- \(P^2 =\text{  }
-\begin{array}{cc}
-   & 
-\begin{array}{cccc}
- 1 & 2 & 3 & 4 \\
-\end{array}
- \\
- 
-\begin{array}{c}
- 1 \\
- 2 \\
- 3 \\
- 4 \\
-\end{array}
- & \left(
-\begin{array}{cccc}
- 0 & 1 & 0 & 0 \\
- 1 & 0 & 1 & 0 \\
- 0 & 1 & 0 & 1 \\
- 0 & 0 & 1 & 0 \\
-\end{array}
-\right) \\
-\end{array}\)\(=Q^2\)
-%
-\end{enumerate}
-%
-\end{exercisegroup}
-\par\smallskip\noindent
-\hypertarget{exercisegroup-9}{}\typeout{************************************************}
-\typeout{Introduction  }
-\typeout{************************************************}
-B Exercises%
-\begin{exercisegroup}
-\item[8.]\hypertarget{exercise-32}{}\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-110}{}Prove that if \(r\) is a transitive relation on a set \(A\), then \(r^2 \subseteq  r\). %
-\item\hypertarget{li-111}{} Find an example of a transitive relation for which \(r^2\neq r\).%
-\end{enumerate}
-%
-\par\smallskip
-\item[9.]\hypertarget{exercise-33}{} We define \(\leq\) on the set of all \(n\times n\) relation matrices by the rule that if \(R\) and \(S\) are any two \(n\times n\)
-relation matrices, \(R \leq  S\) if and only if \(R_{ij} \leq S_{ij}\) for all \(1 \leq  i, j \leq  n\).%
-\par
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-112}{} Prove that \(\leq\) is a partial ordering on all \(n\times n\) relation matrices.%
-\item\hypertarget{li-113}{} Prove that \(R \leq  S  \Rightarrow   R^2\leq S^2\) , but the converse is not true.%
-\item\hypertarget{li-114}{} If \(R\) and \(S\) are matrices of equivalence relations and \(R \leq  S\), how are the equivalence classes defined by \(R\) related to the equivalence classes defined by \(S\)?%
-\end{enumerate}
-%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-17}{}\quad
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-115}{}Reflexive: \(R_{ij}=R_{ij}\) for all \(i,j\), therefore \(R_{ij}\leq R_{ij}\)%
-\par
- Antisymmetric: Assume \(R_{ij}\leq S_{ij}\) and \(S_{ij}\leq R_{ij}\) for all \(1\leq i,j\leq n\). Therefore, \(R_{ij} = S_{ij}\) for all \(1\leq i,j\leq n\)  and so \(R=S\)%
-\par
-Transitive: Assume \(R, S,\) and \(T\) are matrices where \(R_{ij}\leq S_{ij}\) and \(S_{ij}\leq T_{ij}\), for all \(1\leq i,j\leq n\). Then \(R_{ij}\leq T_{ij}\) for all \(1\leq i,j\leq n\), and so \(R\leq T\).%
-\item\hypertarget{li-116}{}\begin{equation*}
-\begin{split}
- \left(R^2\right)_{ij}&=R_{i1}R_{1j}+R_{i2}R_{2j}+\cdots +R_{in}R_{nj}\\
-       &\leq S_{i1}S_{1j}+S_{i2}S_{2j}+\cdots +S_{in}S_{nj}\\
-       &=\left(S^2\right)_{ij} \Rightarrow R^2\leq S^2
-\end{split}
-\end{equation*}%
-\par
-To verify that the converse is not true we need only one example. For \(n=2\), let \(R_{12}=1\) and all other entries equal \(0\), and let \(S\) be the zero matrix. Since \(R^2\) and \(S^2\) are both the zero matrix, \(R^2\leq S^2\), but since \(R_{12}>S_{12}, R\leq S\) is false.%
-\item\hypertarget{li-117}{} The matrices are defined on the same set \(A=\left\{a_1,a_2,\ldots  ,a_n\right\}\). Let \(c\left(a_i\right), i=1,2,\ldots  ,n\) be the equivalence classes defined by \(R\) and let \(d\left(a_i\right)\) be those defined by \(S\). Claim: \(c\left(a_i\right)\subseteq d\left(a_i\right)\). 
-	\begin{equation*}\begin{split}
-	 a_j\in c\left(a_i\right)&\Rightarrow a_i r a_j\\
-	 		&\Rightarrow R_{ij}=1 \Rightarrow S_{ij}=1\\
-	 		&\Rightarrow a_i s a_j\\ 
-	 		& \Rightarrow a_j \in d\left(a_i\right)\\
-	 		\end{split}
-	 \end{equation*}%
-\end{enumerate}
-%
-\end{exercisegroup}
-\par\smallskip\noindent
-\typeout{************************************************}
-\typeout{Section 1.5 Closure Operations on Relations}
-\typeout{************************************************}
-\section[Closure Operations on Relations]{Closure Operations on Relations}\label{s-closure-operations-on-relations}
-In Section 6.1, we studied relations and one important operation on relations, namely composition. This operation enables us to generate new relations from previously known relations. In Section 6.3, we discussed some key properties of relations. We now wish to consider the situation of constructing a new relation \(r^+\) from an existing relation \(r\) where, first, \(r^+\) contains \(r\) and, second, \(r^{+ }\) satisfies the transitive property.%
-\par
-Consider a telephone network in which the main office \(a\) is connected to, and can communicate to, individuals \(b\) and \(c\).  Both \(b\) and \(c\) can communicate to another person, \(d\); however, the main office cannot communicate with \(d\). Assume communication is only one way, as indicated. This situation can be described by the relation \(r = \{(a, b), (a, c), (b, d), (c, d)\}\). We would like to change the system so that the main office \(a\) can communicate with person \(d\) and still maintain the previous system. We, of course, want the most economical system.%
-\par
-This can be rephrased as follows; Find the smallest relation \(r^{+ }\)which contains \(r\) as a subset and which is transitive; \(r^+ =\{(a, b), (a, c), (b, d), (c, d), (a, d)\}\).%
-\begin{definition}[Transitive Closure]\label{def-transitive-closure}
-\index{Transitive Closure}\label{notation-6}
-Let \(A\) be a set and \(r\) be a relation on \(A\). The transitive closure of \(r\), denoted by \(r^+\) , is the smallest transitive relation that contains \(r\) as a subset.%
-\end{definition}
-\par
-Let \(A = \{1, 2, 3, 4\}\), and let \(\mathcal{S} = \{(1, 2), (2, 3), (3, 4)\}\) be a relation on \(A\). This relation is called the successor relation on \(A\) since each element is related to its successor. How do we compute \(\mathcal{S}^+\)?  By inspection we note that \((1, 3)\) must be in \(\mathcal{S}^+\) . Let's analyze why. This is so because \((1,2) \in \mathcal{S}\) and \((2, 3) \in \mathcal{S}\), and the transitive property forces \((1,3)\) to be in \(\mathcal{S}^+\). %
-\par
-In general, it follows that if \((a, b) \in \mathcal{S}\) and \((b, c) \in S,\) then \((a, c) \in \mathcal{S}^+ \). This condition is exactly the membership requirement for the pair \((a, c)\) to be in the composition \(\mathcal{S}\mathcal{S} = \mathcal{S}^2\). So every element in \(\mathcal{S}^2\) must be an element in \(\mathcal{S}^+\) . So we now know that, \(\mathcal{S}^+\) contains at least \(\mathcal{S} \cup  \mathcal{S}^2\) . In particular, for this example, since \(\mathcal{S} = \{(1, 2), (2, 3), (3, 4)\}\) and \(\mathcal{S}^2 = \{(1, 3), (2, 4)\}\), we have 
-
-\[\mathcal{S} \cup  \mathcal{S}^2 =\{(1, 2), (2, 3), (3, 4), (1, 3), (2, 4)\}\]
-%
-\par
-Is the relation \(\mathcal{S} \cup  \mathcal{S}^2\) transitive? Again, by inspection, \((1, 4)\) is not an element of \(\mathcal{S} \cup  \mathcal{S}^2\), but  \((1,3) \in \mathcal{S}^2\) and \((3, 4) \in \mathcal{S}\). Therefore, the composition \(\mathcal{S}^2 \mathcal{S} = \mathcal{S}^3\) produces \((1, 4)\), and it must be an element of \(\mathcal{S}^+\) since \((1,3)\) and \((3, 4)\) are required to be in \(\mathcal{S}^+\).  This shows that \(\mathcal{S}^3 \subseteq  \mathcal{S} ^+\) . This process must be continued until the resulting relation is transitive. If A is finite, as is true in this example, the transitive closure will be obtained in a finite number of steps. For this example, 
-
- \[\mathcal{S}^+ =\mathcal{S}\cup \mathcal{S} ^2\cup  \mathcal{S} ^3=\{(1, 2), (2, 3), (3, 4),(1, 3),(2, 4),(1,4)\}\]
- %
-\begin{theorem}[Transitive Closure on a Finite Set]\label{theorem-transitive-closure-formula}
-If \(r\) is a relation on a set \(A\) and \(\lvert A \rvert = n\), then the transitive closure of \(r\) is the union of the first \(n\) powers of
-r.  That is, 
-\[r^+ = r \cup  r^2 \cup  r ^3 \cup \cdots  \cup  r^n\].%
-\end{theorem}
-\par
-Let's now consider the matrix analogue of the transitive closure.%
-\par
-Consider the relation 
-
-\(r = \{(1, 4), (2, 1), (2, 2), (2, 3),(3, 2), (4, 3), (4, 5), (5, 1)\}\) 
-
-on the set \(A = \{1,2, 3, 4, 5\}\). The matrix of \(r\) is
-
-
-
- \(R=\left(
-\begin{array}{ccccc}
- 0 & 0 & 0 & 1 & 0 \\
- 1 & 1 & 1 & 0 & 0 \\
- 0 & 1 & 0 & 0 & 0 \\
- 0 & 0 & 1 & 0 & 1 \\
- 1 & 0 & 0 & 0 & 0 \\
-\end{array}
-\right)\)%
-\par
-Recall that \(r^2, r^3, \ldots\)  can be determined through computing the matrix powers \(R^2, R^3, \ldots\).  For our example,%
-\leavevmode%
-\begin{table}
-\centering
-\begin{tabular}{ll}
-
- \(R^2=\left(
-\begin{array}{ccccc}
- 0 & 0 & 1 & 0 & 1 \\
- 1 & 1 & 1 & 1 & 0 \\
- 1 & 1 & 1 & 0 & 0 \\
- 1 & 1 & 0 & 0 & 0 \\
- 0 & 0 & 0 & 1 & 0 \\
-\end{array}
-\right)\) & \(R^3=\left(
-\begin{array}{ccccc}
- 1 & 1 & 0 & 0 & 0 \\
- 1 & 1 & 1 & 1 & 1 \\
- 1 & 1 & 1 & 1 & 0 \\
- 1 & 1 & 1 & 1 & 0 \\
- 0 & 0 & 1 & 0 & 1 \\
-\end{array}
-\right)\)\tabularnewline[0pt]
-
- \(R^4=\left(
-\begin{array}{ccccc}
- 1 & 1 & 1 & 1 & 0 \\
- 1 & 1 & 1 & 1 & 1 \\
- 1 & 1 & 1 & 1 & 1 \\
- 1 & 1 & 1 & 1 & 1 \\
- 1 & 1 & 0 & 0 & 0 \\
-\end{array}
-\right)\)&\(R^5=\left(
-\begin{array}{ccccc}
- 1 & 1 & 1 & 1 & 1 \\
- 1 & 1 & 1 & 1 & 1 \\
- 1 & 1 & 1 & 1 & 1 \\
- 1 & 1 & 1 & 1 & 1 \\
- 1 & 1 & 1 & 1 & 0 \\
-\end{array}
-\right)\)
-\end{tabular}
-\end{table}
-\par
-How do we relate \(\underset{i=1}{\overset{5}{\cup }}r^i\) to the powers of \(R\)?%
-\begin{theorem}[Matrix of a Transitive Closure]\label{theorem-matrix-transitive-closure}
-Let \(r\) be a relation on a finite set and let \(R^+\) be the matrix of \(r^+\) , the transitive closure of \(r\).  Then \(R^+
-= R + R^2 + \cdots + R^n\), using Boolean arithmetic.%
-\end{theorem}
-\par
-Using this theorem, we find \(R^+\) is the \(5\times 5\) matrix consisting of all \(1's\), thus, \(r^+\) is all of \(A \times A\).%
-\par
-Let \(r\) be a relation on the set \(\{1, 2, \dots , n\}\) with relation matrix \(R\). The matrix of the transitive closure \(R^+\), can be computed by the equation \(R^+ = R + R ^2 + \cdots  + R^n\). By using ordinary polynomial evaluation methods, you can compute \(R^+\) with \(n -1\) matrix multiplications: 
-\[R^+ = R(I + R(I +( \cdots  R(I+ R) \cdots )))\]%
-\par
-For example, if \(n = 3\), \(R = R(I + R(I + R))\).%
-\par
-We can make use of the fact that if \(T\) is a relation matrix, \(T + T = T\) due to the fact that \(1 + 1 = 1\) in Boolean arithmetic. Let \(S_k = R + R^2 + \cdots  + R^k\) . Then %
-\par
-\begin{equation*}
-\begin{split}
-R &= S_1\\
-S_1(I+S_1)&=R(I+R)=R+R^2 = S_2 \\
-S_2(I+S_2)&=(R+R^2)(I+R+R^2) \\
-			&=(R+R^2)+(R^2+R^3)+(R^3+R^4) \\
-			&=R+R^2+R^3+R^4 = S_4 
-\end{split}
-\end{equation*}%
-\par
-Similarly,
-\[S_4(I+S_4)=S_8\]
-and by induction we can prove
-\[S_{2^k}(I+S_{2^k})=S_{2^{k+1}}\]
-%
-\par
-Notice how each matrix multiplication doubles the number of terms that have been added to the sum that you currently have computed. In algorithmic form, we can compute \(R^+\) as follows.%
-\begin{algorithm}[Transitive Closure Algorithm]\label{alg-trans-closure}
- Let \(R\) be a relation matrix and let \(R^+\) be its transitive closure matrix, which is to be computed as matrix \(T\)%
-\begin{lstlisting}[style=genericinput]
-1.0. S = R
-2.0  T= S*(I+S)
-3.0 While T != S
-		3.1 S = T
-		3.2 T= S*(I+S) // using Boolean arithmetic
-4.0 Return T
-\end{lstlisting}
-\end{algorithm}
-\begin{note}[]\label{note-1}
-\leavevmode%
-\begin{itemize}[label=\textbullet]
-\item{} Often the higher-powered terms in \(S_n\) do not contribute anything to \(R^+\). When the condition \(T = S\) becomes true in Step 3, this is an indication that no higher-powered terms are needed.%
-\item{} To compute \(R^+\) using this algorithm, you need to perform no more than \(\lceil \log_2 n \rceil\) matrix multiplications, where
-\(\lceil x \rceil\) is the least integer that is greater than or equal to \(x\). For example, if \(r\) is a relation on 25 elements,
-no more than \(\lceil \log_2 25 \rceil = 5\) matrix multiplications are needed.%
-\end{itemize}
-%
-\end{note}
-\par
-A second algorithm, Warshall's Algorithm, reduces computation time to the time that it takes to perform one matrix multiplication.%
-\begin{algorithm}[Warshall's Algorithm]\label{alg-warshall}
-Let \(R\) be an \(n \times n\) relation matrix and let \(R^+\) be its transitive closure matrix, which is to be computed as matrix \(T\) using boolean arithmetic%
-\begin{lstlisting}[style=genericinput]
-1.0 T = R
-2.0 for k = 1 to n:
-     for i = 1 to n:
-      for j = 1 to n:
-        T[i,j]= T[i,j] + T[i,k] * T[k,j]
-3.0 Return T
-\end{lstlisting}
-\end{algorithm}
-\typeout{************************************************}
-\typeout{Exercises 1.5.1 Exercises}
-\typeout{************************************************}
-\subsection[Exercises]{Exercises}\label{exercises-6-5}
-\hypertarget{exercisegroup-10}{}\typeout{************************************************}
-\typeout{Introduction  }
-\typeout{************************************************}
-A Exercises%
-\begin{exercisegroup}
-\item[1.]\hypertarget{exercise-34}{} Let \(A\) and \(\mathcal{S}\) be as defined above. Compute \(\mathcal{S}^+\) using the matrix representation of \(\mathcal{S}\). Verify your results by checking against the result obtained directly from the definition of transitive closure.%
-\par\smallskip
-\item[2.]\hypertarget{exercise-35}{}Let \(A=\{1,2,3,4,6,12\}\) and \(t=\{(a,b)\mid b/a \textrm{ is a prime number}\}\). determine \(t^+\) by any means but represent it as a matrix.%
-\par\smallskip
-\item[3.]\hypertarget{exercise-36}{}\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-120}{}Draw digraphs of the relations \(\mathcal{S}\), \(\mathcal{S}^2\), \(\mathcal{S}^3\) , and \(\mathcal{S}^+\)  where \(\mathcal{S}\) is defined above.%
-\item\hypertarget{li-121}{} Verify that in terms of the graph of \(\mathcal{S}\), \(a \mathcal{S}^+ b\) if and only if \(b\) is reachable from \(a\) along a
-path of any finite nonzero length.%
-\end{enumerate}
-%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-18}{}\quad
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-122}{}\leavevmode%
-\begin{figure}
-\centering
-\includegraphics[width=1\linewidth]{images/fig-sol-6-5-3.png}
-\end{figure}
-%
-\item\hypertarget{li-123}{}  Example, \(1s 4\) and using \(S\) one can go from 1 to 4 using a path of length 3.%
-\end{enumerate}
-%
-\item[4.]\hypertarget{exercise-37}{} Let \(r\) be the relation represented by the following digraph.%
-\par
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-124}{} Find \(r^+\) using the definition based on order pairs.%
-\item\hypertarget{li-125}{} Determine the digraph of \(r^+\) directly from the digraph of \(r\).%
-\item\hypertarget{li-126}{} Verify your result in part (b) by computing the digraph from your result in part (a).%
-\end{enumerate}
-%
-\leavevmode%
-\begin{figure}
-\centering
-\includegraphics[width=1\linewidth]{images/fig-exercise-6-5-4.png}
-\caption{Digraph of \(r\) in exercise 4. 
-			 \label{figure-18}}
-\end{figure}
-\par\smallskip
-\item[5.]\hypertarget{exercise-38}{}\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-127}{}Define reflexive closure and symmetric closure by imitating the definition of transitive closure.%
-\item\hypertarget{li-128}{} Use your definitions to compute the reflexive and symmetric closures of examples in the text.%
-\item\hypertarget{li-129}{} What are the transitive reflexive closures of these examples?%
-\item\hypertarget{li-130}{} Convince yourself that the reflexive closure of the relation \(<\) on the set of positive integers \(\mathbb{P}\) is \(\leq\).%
-\end{enumerate}
-%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-19}{}\quad
-Definition: Reflexive Closure.  Let \(r\) be a relation on \(A\). The reflexive closure of \(r\) is the smallest reflexive relation that contains \(r\).%
-\par
-Theorem: The reflexive closure of \(r\) is the union of \(r\) with \(\{(x, x) : x\in A\}\) 
-%
-\item[6.]\hypertarget{exercise-39}{} What common relations on \(\mathbb{Z}\) are the transitive closures of the following relations?%
-\par
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-131}{} \(a S b\) if and only if \(a + 1 = b\).%
-\item\hypertarget{li-132}{} \(a R b\) if and only if \(| a - b | = 2\).%
-\end{enumerate}
-%
-\par\smallskip
-\end{exercisegroup}
-\par\smallskip\noindent
-\hypertarget{exercisegroup-11}{}\typeout{************************************************}
-\typeout{Introduction  }
-\typeout{************************************************}
-B Exercises%
-\begin{exercisegroup}
-\item[7.]\hypertarget{exercise-40}{}\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-133}{}Let \(A\) be any set and \(r\) a relation on \(A\), prove that \(\left(r^+\right)^+=r^+\).%
-\item\hypertarget{li-134}{}Is the transitive closure of a symmetric relation always both symmetric and reflexive? Explain.%
-\end{enumerate}
-%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-20}{}\quad
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-135}{}  By the definition of transitive closure, \(r^+\) is the smallest relation which contains \(r\); therefore, it is transitive. The transitive closure of \(r^+\), \(\left(r^+\right)^+\) , is the smallest transitive relation that contains \(r^+\). Since \(r^+\) is transitive, \(\left(r^+\right)^+=r^+\). %
-\item\hypertarget{li-136}{}  The transitive closure of a symmetric relation is symmetric, but it may not be reflexive. If one element is not related to any elements, then the transitive closure will not relate that element to others.
-%
-\end{enumerate}
-%
 \end{exercisegroup}
 \par\smallskip\noindent
 %
