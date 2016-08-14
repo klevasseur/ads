@@ -1,6 +1,6 @@
 %**************************************%
 %* Generated from MathBook XML source *%
-%*    on 2016-08-14T13:17:45-04:00    *%
+%*    on 2016-08-14T13:22:57-04:00    *%
 %*                                    *%
 %*   http://mathbook.pugetsound.edu   *%
 %*                                    *%
@@ -89,6 +89,8 @@
 %% Semantic Macros
 %% To preserve meaning in a LaTeX file
 %% Only defined here if required in this document
+%% Used for inline definitions of terms
+\newcommand{\terminology}[1]{\textbf{#1}}
 %% Subdivision Numbering, Chapters, Sections, Subsections, etc
 %% Subdivision numbers may be turned off at some level ("depth")
 %% A section *always* has depth 1, contrary to us counting from the document root
@@ -109,6 +111,7 @@
 %% Style is like a theorem, and for statements without proofs
 %% Numbering: all theorem-like numbered consecutively
 %% i.e. Corollary 4.3 follows Theorem 4.2
+\newtheorem{algorithm}[theorem]{Algorithm}
 %% Definition-like environments, normal text
 %% Numbering is in sync with theorems, etc
 \theoremstyle{definition}
@@ -116,7 +119,7 @@
 %% Remark-like environments, normal text
 %% Numbering is in sync with theorems, etc
 \theoremstyle{definition}
-\newtheorem{observation}[theorem]{Observation}
+\newtheorem{note}[theorem]{Note}
 %% Example-like environments, normal text
 %% Numbering is in sync with theorems, etc
 \theoremstyle{definition}
@@ -126,7 +129,6 @@
 \theoremstyle{definition}
 \newtheorem{exercise}[theorem]{Exercise}
 %% Localize LaTeX supplied names (possibly none)
-\renewcommand*{\proofname}{Proof}
 \renewcommand*{\chaptername}{Chapter}
 %% For improved tables
 \usepackage{array}
@@ -192,8 +194,35 @@
 %% \resizebox sometimes used for images in side-by-side layout
 \usepackage{graphicx}
 %%
-%% Multiple column, column-major lists
-\usepackage{multicol}
+%% Program listing support, for inline code, Sage code
+\usepackage{listings}
+%% We define the listings font style to be the default "ttfamily"
+%% To fix hyphens/dashes rendered in PDF as fancy minus signs by listing
+%% http://tex.stackexchange.com/questions/33185/listings-package-changes-hyphens-to-minus-signs
+\makeatletter
+\lst@CCPutMacro\lst@ProcessOther {"2D}{\lst@ttfamily{-{}}{-{}}}
+\@empty\z@\@empty
+\makeatother
+\ifthenelse{\boolean{xetex}}{}{%
+%% begin: pdflatex-specific listings configuration
+%% translate U+0080 - U+00F0 to their textmode LaTeX equivalents
+%% Data originally from https://www.w3.org/Math/characters/unicode.xml, 2016-07-23
+%% Lines marked in XSL with "$" were converted from mathmode to textmode
+\lstset{extendedchars=true}
+\lstset{literate={ }{{~}}{1}{¡}{{\textexclamdown }}{1}{¢}{{\textcent }}{1}{£}{{\textsterling }}{1}{¤}{{\textcurrency }}{1}{¥}{{\textyen }}{1}{¦}{{\textbrokenbar }}{1}{§}{{\textsection }}{1}{¨}{{\textasciidieresis }}{1}{©}{{\textcopyright }}{1}{ª}{{\textordfeminine }}{1}{«}{{\guillemotleft }}{1}{¬}{{\textlnot }}{1}{­}{{\-}}{1}{®}{{\textregistered }}{1}{¯}{{\textasciimacron }}{1}{°}{{\textdegree }}{1}{±}{{\textpm }}{1}{²}{{\texttwosuperior }}{1}{³}{{\textthreesuperior }}{1}{´}{{\textasciiacute }}{1}{µ}{{\textmu }}{1}{¶}{{\textparagraph }}{1}{·}{{\textperiodcentered }}{1}{¸}{{\c{}}}{1}{¹}{{\textonesuperior }}{1}{º}{{\textordmasculine }}{1}{»}{{\guillemotright }}{1}{¼}{{\textonequarter }}{1}{½}{{\textonehalf }}{1}{¾}{{\textthreequarters }}{1}{¿}{{\textquestiondown }}{1}{À}{{\`{A}}}{1}{Á}{{\'{A}}}{1}{Â}{{\^{A}}}{1}{Ã}{{\~{A}}}{1}{Ä}{{\"{A}}}{1}{Å}{{\AA }}{1}{Æ}{{\AE }}{1}{Ç}{{\c{C}}}{1}{È}{{\`{E}}}{1}{É}{{\'{E}}}{1}{Ê}{{\^{E}}}{1}{Ë}{{\"{E}}}{1}{Ì}{{\`{I}}}{1}{Í}{{\'{I}}}{1}{Î}{{\^{I}}}{1}{Ï}{{\"{I}}}{1}{Ð}{{\DH }}{1}{Ñ}{{\~{N}}}{1}{Ò}{{\`{O}}}{1}{Ó}{{\'{O}}}{1}{Ô}{{\^{O}}}{1}{Õ}{{\~{O}}}{1}{Ö}{{\"{O}}}{1}{×}{{\texttimes }}{1}{Ø}{{\O }}{1}{Ù}{{\`{U}}}{1}{Ú}{{\'{U}}}{1}{Û}{{\^{U}}}{1}{Ü}{{\"{U}}}{1}{Ý}{{\'{Y}}}{1}{Þ}{{\TH }}{1}{ß}{{\ss }}{1}{à}{{\`{a}}}{1}{á}{{\'{a}}}{1}{â}{{\^{a}}}{1}{ã}{{\~{a}}}{1}{ä}{{\"{a}}}{1}{å}{{\aa }}{1}{æ}{{\ae }}{1}{ç}{{\c{c}}}{1}{è}{{\`{e}}}{1}{é}{{\'{e}}}{1}{ê}{{\^{e}}}{1}{ë}{{\"{e}}}{1}{ì}{{\`{\i}}}{1}{í}{{\'{\i}}}{1}{î}{{\^{\i}}}{1}{ï}{{\"{\i}}}{1}{ð}{{\dh }}{1}{ñ}{{\~{n}}}{1}{ò}{{\`{o}}}{1}{ó}{{\'{o}}}{1}{ô}{{\^{o}}}{1}{õ}{{\~{o}}}{1}{ö}{{\"{o}}}{1}{÷}{{\textdiv }}{1}{ø}{{\o }}{1}{ù}{{\`{u}}}{1}{ú}{{\'{u}}}{1}{û}{{\^{u}}}{1}{ü}{{\"{u}}}{1}{ý}{{\'{y}}}{1}{þ}{{\th }}{1}{ÿ}{{\"{y}}}{1}}
+%% end: pdflatex-specific listings configuration
+}
+%% End of generic listing adjustments
+%% Generic input, listings package: boxed, white, line breaking, language per instance
+%% Colors match a subset of Google prettify "Default" style
+%% Set latex.print='yes" to get all black
+%% http://code.google.com/p/google-code-prettify/source/browse/trunk/src/prettify.css
+\definecolor{identifiers}{rgb}{0.375,0,0.375}
+\definecolor{comments}{rgb}{0.5,0,0}
+\definecolor{strings}{rgb}{0,0.5,0}
+\definecolor{keywords}{rgb}{0,0,0.5}
+\lstdefinestyle{genericinput}{breaklines=true,breakatwhitespace=true,columns=fixed,frame=single,xleftmargin=4ex,xrightmargin=4ex,
+basicstyle=\small\ttfamily,identifierstyle=\color{identifiers},commentstyle=\color{comments},stringstyle=\color{strings},keywordstyle=\color{keywords}}
 %% More flexible list management, esp. for references and exercises
 %% But also for specifying labels (i.e. custom order) on nested lists
 \usepackage{enumitem}
@@ -327,512 +356,156 @@ Lowell MA
 %% end:   table of contents
 \mainmatter
 \typeout{************************************************}
-\typeout{Chapter 1 Introduction to Matrix Algebra}
+\typeout{Chapter 1 Relations}
 \typeout{************************************************}
-\chapter[Introduction to Matrix Algebra]{Introduction to Matrix Algebra}\label{c-chapter_5}
+\chapter[Relations]{Relations}\label{chapter_6}
 \typeout{************************************************}
 \typeout{Introduction  }
 \typeout{************************************************}
-The purpose of this chapter is to introduce you to matrix algebra, which has many applications. You are already familiar with several algebras: elementary algebra, the algebra of logic, the algebra of sets. We hope that as you studied the algebra of logic and the algebra of sets, you compared them with elementary algebra and noted that the basic laws of each are similar. We will see that matrix algebra is also similar. As in previous discussions, we begin by defining the objects in question and the basic operations.%
+One understands a set of objects completely only if the structure of that set is made clear by the interrelationships between its elements. For example, the individuals in a crowd can be compared by height, by age, or through any number of other criteria. In mathematics, such comparisons are called relations. The goal of this chapter is to develop the language, tools, and concepts of relations.%
 \typeout{************************************************}
-\typeout{Section 1.1 Basic Definitions and Operations}
+\typeout{Section 1.1 Basic Definitions}
 \typeout{************************************************}
-\section[Basic Definitions and Operations]{Basic Definitions and Operations}\label{s-basic-matrix-definitions}
-\typeout{************************************************}
-\typeout{Subsection 1.1.1 Matrix Order and Equality}
-\typeout{************************************************}
-\subsection[Matrix Order and Equality]{Matrix Order and Equality}\label{ss-order-equality}
-\begin{definition}[matrix]\label{def-matrix}
-A matrix is a rectangular array of elements of the form 
-\begin{equation*}A = \left(
-\begin{array}{ccccc}
- a_{11} & a_{12} & a_{13} & \cdots  & a_{1n} \\
- a_{21} & a_{22} & a_{23} & \cdots  & a_{2n} \\
- a_{31} & a_{32} & a_{33} & \cdots  & a_{3n} \\
- \vdots  & \vdots  & \vdots  & \ddots & \vdots  \\
- a_{m1} & a_{m2} & a_{m3} & \cdots  & a_{mn} \\
-\end{array} \right)\end{equation*}
-%
+\section[Basic Definitions]{Basic Definitions}\label{s-basic-definitions}
+In Chapter 1 we introduced the concept of the Cartesian product of sets. Let's assume that a person owns three shirts and two pairs of slacks. More
+precisely, let \(A = \{\textrm{blue shirt}, \textrm{tan shirt}, \textrm{mint green shirt}\}\) and \(B = \{\textrm{grey slacks}, \textrm{tan slacks}\}\). Then \(A\times B\) is the set of all six possible combinations of shirts and slacks that the individual could wear. However, an individual may wish to restrict himself or herself to combinations which are color coordinated, or ``related.'' This may not be all possible pairs in \(A\times B\) but will certainly be a subset of \(A\times B\). For example, one such subset may be \(\{(\textrm{blue shirt}, \textrm{grey slacks}), (\textrm{blue shirt},  \textrm{tan slacks}), (\textrm{mint green shirt}, \textrm{tan slacks})\}\).%
+\begin{definition}[Relation]\label{Relation}
+\index{Relation} Let A and B be sets. A relation from A into B is any subset of \(A\times B\).%
 \end{definition}
-A convenient way of describing a matrix in general is to designate each entry via its position in the array. That is, the entry \(a_{34}\) is the entry in the third row and fourth column of the matrix A. Depending on the situation, we will decide in advance to which set the entries in a matrix will belong. For example, we might assume that each entry \(a_{\text{ij}}\) (\(1 \leq i\leq  m\), \(1 \leq  j \leq  n\)) is a real number. In
-that case we would use \(M_{m\times n}(\mathbb{R})\) to stand for the set of all \(m\) by \(n\) matrices whose entries are real numbers. If we decide that the entries in a matrix must come from a set \(S\), we use \(M_{m\times n}(S)\) to denote all such matrices.%
-\begin{definition}[The Order of a Matrix]\label{def-matrix-order}
-A matrix \(A\) that has m rows and n columns is called an \(m\times n\) (read ``m by n'') matrix, and is said to have order \(m \times  n\).%
-\end{definition}
-\par
-Since it is rather cumbersome to write out the large rectangular array above each time we wish to discuss the generalized form of a matrix, it is common practice to replace the above by \(A = \left(a_{\text{ij}}\right)\). In general, matrices are often given names that are capital letters and the corresponding lower case letter is used for individual entries. For example the entry in the third row, second column of a matrix called C would be \(c_{32}\).%
-\begin{example}[Orders of Some Matrices]\label{example-orders-of-matrices}
-\(A =\left(
-\begin{array}{cc}
- 2 & 3 \\
- 0 & -5 \\
-\end{array}
-\right)\) , \(B =\left(
-\begin{array}{c}
- 0 \\
- \frac{1}{2} \\
- 15 \\
-\end{array}
-\right)\) , and \(D =\left(
-\begin{array}{ccc}
- 1 & 2 & 5 \\
- 6 & -2 & 3 \\
- 4 & 2 & 8 \\
-\end{array}
-\right)\)
-are \(2\times 2\), \(3\times 1\), and \(3\times 3\) matrices, respectively.%
+\begin{example}[A simple example]\label{ex-simple-relation}
+Let \(A = \{1, 2, 3\}\) and \(B = \{4, 5\}\). Then \(\{(1, 4), (2, 4), (3, 5)\}\) is a relation from \(A\) into \(B\). Of course, there are many others we could describe; 64, to be exact.%
 \end{example}
-\par
-Since we now understand what a matrix looks like, we are in a position to investigate the operations of matrix algebra for which users have found the most applications.%
-\par
-First we ask ourselves: Is the matrix \(A =\left(
-\begin{array}{cc}
- 1 & 2 \\
- 3 & 4 \\
-\end{array}
-\right)\) equal to the matrix \(B =\left(
-\begin{array}{cc}
- 1 & 2 \\
- 3 & 5 \\
-\end{array}
-\right)\)? No, they are not because the corresponding entries in the second row, second column of the two matrices are not equal.%
-\par
-Next, is
- \(A =\left(
-\begin{array}{ccc}
- 1 & 2 & 3 \\
- 4 & 5 & 6 \\
-\end{array}
-\right)\) equal to \(B=\left(
-\begin{array}{cc}
- 1 & 2 \\
- 4 & 5 \\
-\end{array}
-\right)\)? No, although the corresponding entries in the first two columns are identical, \(B\) doesn't have a third column to compart to that of \(A\). We formalize these observations in the following definition.%
-\begin{definition}[Equality of Matrices]\label{def-matrix-equality}
-A matrix A is said to be equal to matrix B (written \(A = B\)) if and only if:%
-\par
-\leavevmode%
-\begin{enumerate}[label=\arabic*]
-\item\hypertarget{li-1}{} A and B have the same order, and%
-\item\hypertarget{li-2}{} all corresponding entries are equal: that is, \(a_{\text{ij}}\) = \(b_{\text{ij}}\) for all appropriate i and j.%
-\end{enumerate}
+\begin{example}[Divisibility Example]\label{ex-divides-example}
+ Let \(A = \{2, 3, 5, 6\}\) and define a relation \(r\) from \(A\) into \(A\) by \((a, b) \in r\) if and only if \(a\) divides evenly into \(b\). The set of pairs that qualify for membership is \(r = \{(2, 2), (3, 3), (5, 5), (6, 6), (2, 6), (3, 6)\}\).
 %
-\end{definition}
-\typeout{************************************************}
-\typeout{Subsection 1.1.2 Matrix Addition and Scalar Multiplication}
-\typeout{************************************************}
-\subsection[Matrix Addition and Scalar Multiplication]{Matrix Addition and Scalar Multiplication}\label{ss-matrix-addition-scalarmult}
-The first two operations we introduce are very natural and are not likely cause much confusion. The first is matrix addition. It seems natural that if
-
-\(A =\left(
-\begin{array}{cc}
- 1 & 0 \\
- 2 & -1 \\
-\end{array}
-\right)\)
-and 
-\(B =\left(
-\begin{array}{cc}
- 3 & 4 \\
- -5 & 2 \\
-\end{array}
-\right)\) , then \begin{equation*}A + B =\left(
-\begin{array}{cc}
- 1+3 & 0+4 \\
- 2-5 & -1+2 \\
-\end{array}
-\right)=\left(
-\begin{array}{cc}
- 4 & 4 \\
- -3 & 1 \\
-\end{array}
-\right). 
-\end{equation*}
-%
-\par
-
-However, if \(A=\left(
-\begin{array}{ccc}
- 1 & 2 & 3 \\
- 0 & 1 & 2 \\
-\end{array}
-\right)\) and \(B = \left(
-\begin{array}{cc}
- 3 & 0 \\
- 2 & 8 \\
-\end{array}
-\right)\), is there a natural way to add them to give us \(A+B\)? No, the orders of the two matrices must be identical.%
-\begin{definition}[Matrix Addition]\label{def-matrix-addition}
-\index{Matrix Addition}Let \(A\) and \(B\) be \(m\times n\) matrices. Then \(A+B\) is an \(m\times n\) matrix where\((A
-+ B)_{\text{ij}} = a_{\text{ij}} + b_{\text{ij}}\) (read ``The ith jth entry of the matrix \(A + B\) is obtained by adding the ith jth entry of \(A\) to the ith jth entry of \(B\)).'' If the orders of \(A\) and \(B\) are not identical, \(A+B\) is not defined.%
-\end{definition}
-\par
- In short,  \(A + B\) is defined if and only if \(A\) and \(B\) are of the same order.%
-\par
-Another frequently used operation is that of multiplying a matrix by a number, commonly called a scalar in this context. Scalars normally come from the same set as the entries in a matrix. For example, if \(A\in M_{m\times n}(\mathbb{R})\), a scalar can be any real number.%
-\begin{example}[A Scalar Product]\label{ex-scalar-mult}
- If \(c = 3\) and if \(A =\left(
-\begin{array}{cc}
- 1 & -2 \\
- 3 & 5 \\
-\end{array}
-\right)\) and we wish to find \(c A\), it seems natural to multiply each entry of \(A\) by 3 so that \(3 A =\left(
-\begin{array}{cc}
- 3 & -6 \\
- 9 & 15 \\
-\end{array}
-\right)\) , and this is precisely the way scalar multiplication is defined.%
 \end{example}
-\begin{definition}[Scalar Multiplication]\label{def-scalar-multiplication}
-\index{Scalar Multiplication}Let \(A\) be an \(m \times  n\) matrix and \(c\) a scalar. Then \(c A\) is the \(m\times n\) matrix
-obtained by multiplying \(c\) times each entry of \(A\); that is \((c A)_{ij} = c a_{ij}\).%
-\end{definition}
-\typeout{************************************************}
-\typeout{Subsection 1.1.3 Matrix Multiplication}
-\typeout{************************************************}
-\subsection[Matrix Multiplication]{Matrix Multiplication}\label{ss-matrix-multiplication}
-For a video introduction to matrix multiplication, go to  \href{http://faculty.uml.edu/klevasseur/ads2/videos/matrixmultiplication}{http://faculty.uml.edu/klevasseur/ads2/videos/matrixmultiplication}
-%
-\par
-A definition that is more awkward to motivate (and we will not attempt to do so here) is the product of two matrices. In time, the reader will see that the following definition of the product of matrices will be very useful, and will provide an algebraic system that is quite similar to elementary algebra.%
-\begin{definition}[Matrix Multiplication]\label{def-matrix-multiplication}
-\index{Matrix Multiplication}Let \(A\) be an \(m\times n\) matrix and let \(B\) be an \(n\times p\) matrix. The product of \(A\)and \(B\), denoted
-by \(AB\), is an \(m\times p\) matrix whose ith row jth column entry is
-\begin{equation*}\begin{split}
-(A B)_{ij}&= a_{i 1}b_{1 j}+a_{i 2}b_{2 j}+ \cdots +a_{i n}b_{n j}\\
-&= \sum_{k=1}^n a_{i k} b_{k j}
-\end{split}
-\end{equation*}
-for \(1\leq i\leq m\) and \(1\leq j\leq p\).%
+\begin{definition}[Relation on a Set]\label{relation-on-a-set}
+\index{Relation on a Set}A relation from a set A into itself is called a relation on A.%
 \end{definition}
 \par
-The mechanics of computing one entry in the product of two matrices is illustrated in \hyperref[fig-one-matrix-product-entry]{Figure~\ref{fig-one-matrix-product-entry}}.%
+The relation ``divides'' in \hyperref[ex-divides-example]{Example~\ref{ex-divides-example}} is will appear throughout the book. Here is a general definition on the whole set of integers.%
+\begin{definition}[Divides]\label{Divides}
+\index{Divides}\label{notation-1}
+Let \(a, b \in \mathbb{Z}\).  
+We say that \(a\) divides \(b\), denoted \(a \mid b\),  if and only if there exists an integer \(k\) such that \(a k = b\).%
+\end{definition}
+\par
+Be very careful in writing about the relation ``divides.''  The vertical line symbol use for this relation, if written carelessly, can look like division.  While \(a \mid b\) is either true or false, \(a/b\) is a number. %
+\par
+Based on the equation \(a k = b\), we can say that \(a|b\) is equivalent to \(k= \frac{b}{a}\), or \(a\) divides evenly into \(b\). In fact the ``divides'' is short for ``divides evenly into.'' You might find the equation \(k= \frac{b}{a}\) initially easier to understand, but in the long run we will find the equation \(a k = b\) more convenient. %
+\par
+Sometimes it is helpful to illustrate a relation with a graph. Consider \hyperref[ex-simple-relation]{Example~\ref{ex-simple-relation}}.  A graph of \(r\) can be drawn as in \hyperref[graph-6-1-1-relation]{Figure~\ref{graph-6-1-1-relation}}. The arrows indicate that 1 is related to 4 under \(r\). Also, 2 is related to 4 under \(r\), and 3 is related to 5, while the upper arrow denotes that \(r\) is a relation from the whole set \(A\) into the set \(B\). %
 \leavevmode%
 \begin{figure}
 \centering
-\includegraphics[width=1\linewidth]{images/fig-one-matrix-product-entry.png}
-\caption{Computation of one entry in the product of two 3 by 3 matrices
-                \label{fig-one-matrix-product-entry}}
+\includegraphics[width=1\linewidth]{images/graph-6-1-relation-graph.png}
+\caption{The graph of a relation\label{graph-6-1-1-relation}}
 \end{figure}
 \par
-The computation of a product 
-can take a considerable amount of time in comparison to the time required to add two matrices. Suppose that \(A\) and \(B\) are \(n\times n\) matrices; then \((A B)_{ij}\) is determined performing \(n\) multiplications and \(n-1\) additions. The full product takes \(n^3\) multiplications and \(n^3 - n^2\) additions. This compares with \(n^2\) additions for the sum of two \(n\times n\) matrices. The product of two 10 by 10 matrices will require 1,000 multiplications and 900 additions, clearly a job that you would assign to a computer. The sum of two matrices requires a more modest 100 additions. This analysis is based on the assumption that matrix multiplication will be done using the formula that is given in the definition. There are more advanced methods that, in theory, reduce operation counts. For example, Strassen's algorithm (\href{https://en.wikipedia.org/wiki/Strassen_algorithm}{https://en.wikipedia.org/wiki/Strassen\_algorithm}) computes the product of two \(n\) by \(n\) matrices in \(7\cdot 7^{\log _2n}-6\cdot  4^{\log _2n}\approx  7 n^{2.808}\) operations. There are practical issues involved in actually using the algorithm in many situations.  For example, round-off error can be more of a problem than with the standard formula. %
-\begin{example}[A Matrix Product]\label{ex-matrix-product}
-  Let \(A =\left(
-\begin{array}{cc}
- 1 & 0 \\
- 3 & 2 \\
- -5 & 1 \\
-\end{array}
-\right)\), a \(3\times 2\) matrix, an let \(B =\left(
-\begin{array}{c}
- 6 \\
- 1 \\
-\end{array}
-\right)\), a \(2\times 1\) matrix. Then \(A B\) is a \(3 \times  1\) matrix:
-\begin{equation*}(A B = \left(
-\begin{array}{cc}
- 1 & 0 \\
- 3 & 2 \\
- -5 & 1 \\
-\end{array}
-\right) \left(
-\begin{array}{c}
- 6 \\
- 1 \\
-\end{array}
-\right) = \left(
-\begin{array}{c}
- 1\cdot 6+0\cdot 1 \\
- 3 \cdot 6 + 2\cdot 1 \\
- -5 \cdot 6 + 1\cdot 1 \\
-\end{array}
-\right) = \left(
-\begin{array}{c}
- 6 \\
- 20 \\
- -29 \\
-\end{array}
-\right)\end{equation*}
+A typical element in a relation \(r\) is an ordered pair \((x, y)\). In some cases, \(r\) can be described by actually listing the pairs which are in \(r\), as in the previous examples. This may not be convenient if \(r\) is relatively large. Other notations are used with certain well-known relations. Consider the ``less than or equal'' relation on the real numbers. We could define it as a set of ordered pairs this way:
+\[\le = \{(x, y) | x \leq  y\}\].
+However, the notation \(x \leq  y\) is clear and self-explanatory; it is a more natural, and hence preferred, notation to use than \((x, y) \in \le\).%
+\par
+Many of the relations we will work with ``resemble'' the relation \(\leq\), so \(x s y\) is a common way to express the fact that \(x\) is related to \(y\) through the relation \(s\).%
+\par
+\emph{Relation Notation}\index{Relation Notation} Let \(s\) be a relation from a set \(A\) into a set \(B\). Then the fact that \((x, y) \in s\) is frequently
+written \(x s y\).\label{notation-2}
 %
-\end{example}
 \par
-Remarks:%
+With \(A = \{2, 3, 5, 8\}\), \(B = \{4, 6, 16\}\), and \(C = \{1, 4, 5, 7\}\), let \(r\) be the relation ``divides,''
+from \(A\) into \(B\); and let \(s\) be the relation \(\leq\) from \(B\) into \(C\). So \(r = \{(2, 4), (2, 6), (2,16), (3, 6), (8, 16)\}\) and \(s = \{(4, 4), (4, 5), (4, 7), (6, 7)\}\).%
 \par
+Notice that in \hyperref[graph-6-1-relation-composition]{Figure~\ref{graph-6-1-relation-composition}} that we can, for certain elements of \(A\), go through elements in \(B\) to results in \(C\). That is:%
 \leavevmode%
-\begin{enumerate}[label=\arabic*]
-\item\hypertarget{li-3}{} The product \(A B\) is defined only if \(A\) is an \(m\times n\) matrix and \(B\) is an \(n\times p\) matrix; that is, the two ``inner'' numbers must be the equal. Furthermore, the order of the product matrix \(A B\) is the ``outer'' numbers, in
-this case \(m\times p\).
-%
-\item\hypertarget{li-4}{}It is wise to first determine the order of a product matrix. For example, if \(A\) is a \(3\times 2\) matrix and \(B\) is a \(2\times 2\) matrix, then \(A B\) is a \(3\times 2\) matrix of the form
-
-\[A B =\left(
-\begin{array}{cc}
- c_{11} & c_{12} \\
- c_{21} & c_{22} \\
- c_{31} & c_{32} \\
-\end{array}
-\right)\] 
-
-Then to obtain, for example, \(C_{31}\), we multiply corresponding entries in the third row of \(A\) times the first column of \(B\)
-and add the results.%
-\end{enumerate}
-%
-\begin{example}[Multiplication with a diagonal matrix]\label{ex-diagonal-product}
-
-
-Let \(A =\left(
-\begin{array}{cc}
- -1 & 0 \\
- 0 & 3 \\
-\end{array}
-\right)\), and \(B =\left(
-\begin{array}{cc}
- 3 & 10 \\
- 2 & 1 \\
-\end{array}
-\right)\) . Then
-
-\(A B =\left(
-\begin{array}{cc}
- -1\cdot 3 + 0\cdot 2 & -1\cdot 10+0\cdot 1 \\
- 0\cdot 3+3\cdot 2 & 0\cdot 10+3\cdot 1 \\
-\end{array}
-\right)= \left(
-\begin{array}{cc}
- -3 & -10 \\
- 6 & 3 \\
-\end{array}
-\right)\)
-%
-\par
-The net effect is to multiply the first row of \(B\) by -1 and the second row of \(B\) by 3.%
-\par
-Note: \(B A =\left(
-\begin{array}{cc}
- -3 & 30 \\
- -	2 & 3 \\
-\end{array}
-\right) \neq A B\).   The columns of \(B\) are multiplied by -1 and 3 when the order is switched.
-%
-\end{example}
-\par
-Remarks:%
-\par
+\begin{table}
+\centering
+\begin{tabular}{c}
+\(2 | 4 \textrm{ and } 4 \leq  4\)\tabularnewline[0pt]
+\(2 | 4 \textrm{ and } 4 \leq  5\)\tabularnewline[0pt]
+\(2 | 4 \textrm{ and } 4 \leq  7\)\tabularnewline[0pt]
+\(2| 6 \textrm{ and } 6 \leq 7\)\tabularnewline[0pt]
+\(3| 6 \textrm{ and } 6 \leq  7\)
+\end{tabular}
+\end{table}
 \leavevmode%
-\begin{itemize}[label=\textbullet]
-\item{} An \(n\times n\) matrix is called a \emph{square matrix}.%
-\item{} If \(A\) is a square matrix, \(A A\) is defined and is denoted by \(A^2\) , and \(A A A = A^3\), etc. %
-\item{} The \(m\times n\) matrices whose entries are all 0 are denoted by \(\pmb{0}_{m\times n}\), or simply \(\pmb{ 0}\), when no confusion arises regarding the order.\label{notation-1}
-%
-\end{itemize}
-%
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{images/graph-6-1-relation-composition.png}
+\caption{Relation Composition - a graphical view\label{graph-6-1-relation-composition}}
+\end{figure}
+\par
+Based on this observation, we can define a new relation, call it \(rs\), from \(A\) into \(C\). In order for \((a, c)\)
+to be in \(rs\), it must be possible to travel along a path in Figure 6.1.2 from \(a\) to \(c\). In other words, \((a, c) \in rs\) if and only if \((\exists b)_B(a r b \textrm{ and } b s c)\). The name \(rs\) was chosen because it reminds us that this new relation was formed by the two previous relations \(r\) and \(s\). The complete listing of all elements in \(rs\) is \(\{(2, 4), (2, 5), (2, 7), (3, 7)\}\). We summarize in a definition.%
+\begin{definition}[Composition of Relations]\label{def-composition-of-relations}
+\index{Composition of Relations}\label{notation-3}
+Let \(r\) be a relation from a set \(A\) into a set \(B\), and let \(s\) be a relation from \(B\) into a set \(C\). The composition of \(r\) with \(s\), written \(rs\), is the set of pairs of the form \((a, c) \in A\times C\), where \((a, c) \in rs\) if and only if there exists \(b \in B\) such that \((a, b) \in r\) and \((b, c) \in s\).%
+\end{definition}
+\par
+Remark: A word of warning to those readers familiar with composition of functions. (For those who are not, disregard this remark. It will be repeated at an appropriate place in the next chapter.) As indicated above, the traditional way of describing a composition of two relations is \(rs\) where \(r\) is the first relation and \(s\) the second. However, function composition is traditionally expressed in the opposite order; that is, \(s\circ r\), where \(r\) is the first function and \(s\) is the second.%
 \typeout{************************************************}
-\typeout{Exercises 1.1.4 Exercises}
+\typeout{Exercises 1.1.1 Exercises}
 \typeout{************************************************}
-\subsection[Exercises]{Exercises}\label{exercises-5-1}
+\subsection[Exercises]{Exercises}\label{exercises-6-1}
 \hypertarget{exercisegroup-1}{}\typeout{************************************************}
 \typeout{Introduction  }
 \typeout{************************************************}
 A Exercises%
 \begin{exercisegroup}
-\item[1.]\hypertarget{exercise-1}{}Let \(A=\left(
-\begin{array}{cc}
- 1 & -1 \\
- 2 & 3 \\
-\end{array}
-\right)\), \(B =\left(
-\begin{array}{cc}
- 0 & 1 \\
- 3 & -5 \\
-\end{array}
-\right)\) , and \(C=\left(
-\begin{array}{ccc}
- 0 & 1 & -1 \\
- 3 & -2 & 2 \\
-\end{array}
-\right)\) %
+\item[1.]\hypertarget{exercise-1}{} For each of the following relations \(r\) defined on \(\mathbb{P}\), determine which of the given ordered pairs belong to \(r\)%
 \par
 \leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-8}{} Compute \(A B\) and \(B A\).%
-\item\hypertarget{li-9}{} Compute \(A + B\) and \(B + A\).%
-\item\hypertarget{li-10}{} If \(c = 3\), show that \(c(A + B) = c A + c B\).%
-\item\hypertarget{li-11}{} Show that \((A B)C = A(B C)\).%
-\item\hypertarget{li-12}{} Compute \(A^2 C\).%
-\item\hypertarget{li-13}{}  Compute \(B + \pmb{0}\)%
-\item\hypertarget{li-14}{} Compute \(A \pmb{0}_{2\times 2}\) and \(\pmb{0}_{2\times 2} A\), where \(\pmb{0}_{2\times 2}\) is the \(2\times 2\) zero matrix%
-\item\hypertarget{li-15}{} Compute \(0A\), where 0 is the real number (scalar) zero.%
-\item\hypertarget{li-16}{} Let \(c = 2\) and \(d = 3\). Show that\((c + d)A = c A + d A\).%
+\item\hypertarget{li-1}{} \(x r y\) iff \(x|y\);  (2, 3), (2, 4), (2, 8), (2, 17)%
+\item\hypertarget{li-2}{} \(x r y\) iff \(x \leq  y\); (2, 3), (3, 2), (2, 4), (5, 8)%
+\item\hypertarget{li-3}{} \(x r y\) iff \(y =x^2\) ; (1,1), (2, 3), (2, 4), (2, 6)%
 \end{enumerate}
 %
 \par\smallskip
 \par\smallskip
 \noindent\textbf{Answer.}\hypertarget{answer-1}{}\quad
- For parts c, d and i of this exercise, only a verification is needed. Here, we supply the result that will appear on both sides of the equality.%
-\par
 \leavevmode%
-\begin{multicols}{1}
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-17}{}  \(AB=\left(
-\begin{array}{cc}
- -3 &6 \\
- 9 & -13 \\
-\end{array}
-\right) \quad BA=\left(
-\begin{array}{cc}
- 2 & 3 \\
- -7 & -18 \\
-\end{array}
-\right)\)  %
-\item\hypertarget{li-18}{}  \(\left(
-\begin{array}{cc}
- 1 & 0 \\
- 5 & -2 \\
-\end{array}
-\right)\)%
-\item\hypertarget{li-19}{} \(\left(
-\begin{array}{cc}
- 3 & 0 \\
- 15 & -6 \\
-\end{array}
-\right)\)%
-\item\hypertarget{li-20}{} \(\left(
-\begin{array}{ccc}
- 18 & -15 & 15 \\
- -39 & 35 & -35 \\
-\end{array}
-\right)\)%
-\item\hypertarget{li-21}{} \(\left(
-\begin{array}{ccc}
- -12 & 5 & -5 \\
- 5 & -25 & 25 \\
-\end{array}
-\right)\)%
-\item\hypertarget{li-22}{}\(B+0=B\)%
-\item\hypertarget{li-23}{}\(\left(
-\begin{array}{cc}
- 0 & 0 \\
- 0 & 0 \\
-\end{array}
-\right)\) %
-\item\hypertarget{li-24}{}  \(\left(
-\begin{array}{cc}
- 0 & 0 \\
- 0 & 0 \\
-\end{array}
-\right)\) %
-\item\hypertarget{li-25}{}  \(\left(
-\begin{array}{cc}
- 5 & -5 \\
- 10 & 15 \\
-\end{array}
-\right)\)%
+\item\hypertarget{li-4}{} \((2,4), (2,8)\)   %
+\item\hypertarget{li-5}{} \((2, 3), (2, 4), (5,8)\)   %
+\item\hypertarget{li-6}{} \((1,1), (2,4)\)%
 \end{enumerate}
-\end{multicols}
 %
-\item[2.]\hypertarget{exercise-2}{} Let \(A = \left(
-\begin{array}{ccc}
- 1 & 0 & 2 \\
- 2 & -1 & 5 \\
- 3 & 2 & 1 \\
-\end{array}
-\right)\) , \(B =\left(
-\begin{array}{ccc}
- 0 & 2 & 3 \\
- 1 & 1 & 2 \\
- -1 & 3 & -2 \\
-\end{array}
-\right)\) , and \(C=\left(
-\begin{array}{cccc}
- 2 & 1 & 2 & 3 \\
- 4 & 0 & 1 & 1 \\
- 3 & -1 & 4 & 1 \\
-\end{array}
-\right)\)
-Compute, if possible;%
+\item[2.]\hypertarget{exercise-2}{} The following relations are on \(\{\{1, 3, 5\}\}\). Let \(r\) be the relation \(x r y\) iff \(y = x + 2\) and \(s\) the
+relation \(x s y\) iff \(x \leq  y\).%
 \par
 \leavevmode%
-\begin{multicols}{2}
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-26}{} \(A - B\)%
-\item\hypertarget{li-27}{} \(A B\) %
-\item\hypertarget{li-28}{} \(A C - B C\) %
-\item\hypertarget{li-29}{} \(A(B C)\)%
-\item\hypertarget{li-30}{} \(C A - C B\)%
-\item\hypertarget{li-31}{} \(C \left(
-\begin{array}{c}
- x \\
- y \\
- z \\
- w \\
-\end{array}
-\right)\)%
+\item\hypertarget{li-7}{} List all elements in  \(rs\).%
+\item\hypertarget{li-8}{} List all elements in  \(sr\).%
+\item\hypertarget{li-9}{} Illustrate \(rs\) and \(sr\) via a diagram.%
+\item\hypertarget{li-10}{} Is the relation (set) \(rs\) equal to the relation \(sr\)? Why?%
 \end{enumerate}
-\end{multicols}
 %
 \par\smallskip
-\item[3.]\hypertarget{exercise-3}{} Let \(A =\left(
-\begin{array}{cc}
- 2 & 0 \\
- 0 & 3 \\
-\end{array}
-\right)\) . Find a matrix B such that \(A B = I\) and \(B A = I\), where \(I = \left(
-\begin{array}{cc}
- 1 & 0 \\
- 0 & 1 \\
-\end{array}
-\right)\)%
+\item[3.]\hypertarget{exercise-3}{} Let \(A = \{1,2,3,4,5\}\) and define \(r\) on A by \(x r y\) iff \(x + 1 = y\). We
+define \(r^2 = r r\) and \(r^3 = r^2 r\). Find:%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-11}{} \(r\)%
+\item\hypertarget{li-12}{} \(r^2\)%
+\item\hypertarget{li-13}{} \(r^3\)%
+\end{enumerate}
+%
 \par\smallskip
 \par\smallskip
 \noindent\textbf{Answer.}\hypertarget{answer-2}{}\quad
-  \(\left(
-\begin{array}{cc}
- 1/2 & 0 \\
- 0 & 1/3 \\
-\end{array}
-\right)\)
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-14}{} \(r=\{(1,2), (2,3), (3,4), (4,5)\}\)%
+\item\hypertarget{li-15}{} \(r^2 = \{(1,3), (2,4), (3,5)\}=\{(x,y) : y=x+2, x,y\in A\}\)%
+\item\hypertarget{li-16}{} \(r^3=\{(1,4), (2,5)\}=\{(x,y) : y=x+3, x,y \in  A\}\) %
+\end{enumerate}
 %
-\item[4.]\hypertarget{exercise-4}{} Find \(A I\) and \(B I\) where \(I\) is as in Exercise 3, where
-\(A = \left(
-\begin{array}{cc}
- 1 & 8 \\
- 9 & 5 \\
-\end{array}
-\right)\) and \(B = \left(
-\begin{array}{cc}
- -2 & 3 \\
- 5 & -7 \\
-\end{array}
-\right)\). 
- What do you notice?%
+\item[4.]\hypertarget{exercise-4}{} Given \(s\) and \(t\), relations on \(\mathbb{Z}\),\( s = \{(1, n) : n \in \mathbb{Z}\}\) and \(t= \{(n, 1) : n \in  \mathbb{Z}\}\),
+what are \(st\) and \(ts\)? Hint: Even when a relation involves infinite sets, you can often get insights into them by drawing
+partial graphs.%
 \par\smallskip
-\item[5.]\hypertarget{exercise-5}{} Find \(A^3\) if \(A=\left(
-\begin{array}{ccc}
- 1 & 0 & 0 \\
- 0 & 2 & 0 \\
- 0 & 0 & 3 \\
-\end{array}
-\right)\) . What is \(A^{15}\) equal to?
-%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-3}{}\quad
-  \(A^3=\left(
-\begin{array}{ccc}
- 1 & 0 & 0 \\
- 0 & 8 & 0 \\
- 0 & 0 & 27 \\
-\end{array}
-\right)\)  \(A^{15}=\left(
-\begin{array}{ccc}
- 1 & 0 & 0 \\
- 0 & 32768 & 0 \\
- 0 & 0 & 14348907 \\
-\end{array}
-\right)\)
-%
 \end{exercisegroup}
 \par\smallskip\noindent
 \hypertarget{exercisegroup-2}{}\typeout{************************************************}
@@ -840,504 +513,111 @@ Compute, if possible;%
 \typeout{************************************************}
 B Exercises%
 \begin{exercisegroup}
-\item[6.]\hypertarget{exercise-6}{}\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-32}{} Determine \(I^2\) and \(I^3 \text{if}\) \(I = \left(
-\begin{array}{ccc}
- 1 & 0 & 0 \\
- 0 & 1 & 0 \\
- 0 & 0 & 1 \\
-\end{array}
-\right)\).%
-\item\hypertarget{li-33}{} What is \(I^n\) equal to for any \(n\geq 1\)?%
-\item\hypertarget{li-34}{} Prove your answer to part (b) by induction.%
-\end{enumerate}
-%
-\par\smallskip
-\item[7.]\hypertarget{exercise-7}{}\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-35}{}If \(A =\left(
-\begin{array}{cc}
- 2 & 1 \\
- 1 & -1 \\
-\end{array}
-\right)\), \(X =\left(
-\begin{array}{c}
- x_1 \\
- x_2 \\
-\end{array}
-\right)\), and \(B =\left(
-\begin{array}{c}
- 3 \\
- 1 \\
-\end{array}
-\right)\) , show that \(A X =B\) is a way of expressing the system  
-    \(2x_1 + x_2 = 3\\ \\ x_1 - x_2= 1\)  using matrices.%
-\item\hypertarget{li-36}{} Express the following systems of equations using matrices:%
+\item[5.]\hypertarget{exercise-5}{} Let \(\rho\) be the relation on the power set, \(\mathcal{P}(S )\), of a finite set S of cardinality \(n\). Define \(\rho\) by \((A,B)
+\in \rho\) iff \(A\cap  B = \emptyset\).%
 \par
-%
-\begin{multicols}{2}
-\begin{enumerate}[label=\roman*]
-\item\hypertarget{li-37}{}  \(2 x_1- x_2= 4\\
-				\\
-				\text{   }x_1+ x_2= 0\)%
-\item\hypertarget{li-38}{}  \(x_1+ x_2+ 2 x_3= 1\\
-				\\
-				x_1+ 2 x_2-x_3= -1\\
-				\\
-				x_1+ 3 x_2+x_3= 5\)%
-\item\hypertarget{li-39}{}  \(x_1+x_2\text{             }= 3\\
-				\\
-				\text{          }x_2\text{              }= 5\\
-				\\
-				x_1\text{         }+ 3x_3= 6\)
-				%
-\end{enumerate}
-\end{multicols}
-
-%
-\end{enumerate}
-%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-4}{}\quad
 \leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-40}{} \(Ax=\left(
-\begin{array}{c}
- 2x_1+1x_2 \\
- 1x_1-1x_2 \\
-\end{array}
-\right)\) equals \(\left(
-\begin{array}{c}
- 3 \\
- 1 \\
-\end{array}
-\right)\) if and only if both of the equalities 
-     \(2x_1+x_2=3 \textrm{ and } x_1-x_2=1\) are true.%
-\item\hypertarget{li-41}{} (i)  \(A=\left(
-\begin{array}{cc}
- 2 & -1 \\
- 1 & 1 \\
-\end{array}
-\right)\)   \(x=\left(
-\begin{array}{c}
- x_1 \\
- x_2 \\
-\end{array}
-\right)\)   \(B=\left(
-\begin{array}{c}
- 4 \\
- 0 \\
-\end{array}
-\right)\)
-%
-\item\hypertarget{li-42}{}  \(A=\left(
-\begin{array}{ccc}
- 1 & 1 & 2 \\
- 1 & 2 & -1 \\
- 1 & 3 & 1 \\
-\end{array}
-\right)\) \(x=\left(
-\begin{array}{c}
- x_1 \\
- x_2 \\
- x_3 \\
-\end{array}
-\right)\)   \(B=\left(
-\begin{array}{c}
- 1 \\
- -1 \\
- 5 \\
-\end{array}
-\right)\)
-%
-\item\hypertarget{li-43}{}   \(A=\left(
-\begin{array}{ccc}
- 1 & 1 & 0 \\
- 0 & 1 & 0 \\
- 1 & 0 & 3 \\
-\end{array}
-\right)\)  \(x=\left(
-\begin{array}{c}
- x_1 \\
- x_2 \\
- x_3 \\
-\end{array}
-\right)\)    \(B=\left(
-\begin{array}{c}
- 3 \\
- 5 \\
- 6 \\
-\end{array}
-\right)\)
-%
+\item\hypertarget{li-17}{} Consider the specific case \(n = 3\), and determine the cardinality of the set \(\rho\).%
+\item\hypertarget{li-18}{} What is the cardinality of \(\rho\) for an arbitrary \(n\)? Express your answer in terms of \(n\). (Hint: There are three places that each element of S can go in building an element of \(\rho\).)%
 \end{enumerate}
 %
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-3}{}\quad
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-19}{} When \(n=3\), there are 27 pairs in the relation.%
+\item\hypertarget{li-20}{} Imagine building a pair of disjoint subsets of \(S\). For each element of \(S\) there are three places that it can go: into the first set of the ordered pair, into the second set, or into neither set. Therefore the number of pairs in the relation is \(3^n\), by the product rule.%
+\end{enumerate}
+%
+\item[6.]\hypertarget{exercise-6}{} Let \(r_1\), \(r_2\), and \(r_3\) be relations on any set \(A\). Prove that if \(r_1\subseteq r_2\)then \(r_1r_3\subseteq r_2r_3\).%
+\par\smallskip
 \end{exercisegroup}
 \par\smallskip\noindent
 \typeout{************************************************}
-\typeout{Section 1.2 Special Types of Matrices}
+\typeout{Section 1.2 Graphs of Relations on a Set}
 \typeout{************************************************}
-\section[Special Types of Matrices]{Special Types of Matrices}\label{s-special-matrices}
-We have already investigated, in exercises in the previous section, one special type of matrix. That was the  zero matrix, and found that it behaves in matrix algebra 
-in an analogous fashion to the real number 0; that is, as the additive identity. We will now investigate the properties of a few other special matrices.%
-\begin{definition}[Diagonal Matrix]\label{def-diagonal-matrix}
-A square matrix D is called a diagonal matrix if \(d_{i j}\) = 0 whenever \(i \neq  j\).%
-\end{definition}
-\begin{example}[Some diagonal matrices]\label{example-diagonal-matrices}
-   \(A = \left(
-\begin{array}{ccc}
- 1 & 0 & 0 \\
- 0 & 2 & 0 \\
- 0 & 0 & 5 \\
-\end{array}
-\right)\), \(B= \left(
-\begin{array}{ccc}
- 3 & 0 & 0 \\
- 0 & 0 & 0 \\
- 0 & 0 & -5 \\
-\end{array}
-\right)\), and \(I = \left(
-\begin{array}{ccc}
- 1 & 0 & 0 \\
- 0 & 1 & 0 \\
- 0 & 0 & 1 \\
-\end{array}
-\right)\) are all diagonal matrices.
-%
-\end{example}
+\section[Graphs of Relations on a Set]{Graphs of Relations on a Set}\label{s-graphs-of-relations-on-a-set}
+In this section we introduce directed graphs as a way to visualize relations on a set. %
 \par
-In the example above, the \(3\times 3\) diagonal matrix \(I\) whose diagonal entries are all 1's has the distinctive property that for any other \(3\times 3\) matrix \(A\) we have \(A I = I A = A\). For example:%
-\begin{example}[Multiplying by the Identity Matrix]\label{ex-matrix-identity-product}
-If \(A = \left(
-\begin{array}{ccc}
- 1 & 2 & 5 \\
- 6 & 7 & -2 \\
- 3 & -3 & 0 \\
-\end{array}
-\right)\), then
-
-\(A I =\left(
-\begin{array}{ccc}
- 1 & 2 & 5 \\
- 6 & 7 & -2 \\
- 3 & -3 & 0 \\
-\end{array}
-\right)\) and
-
-\(I A = \left(
-\begin{array}{ccc}
- 1 & 2 & 5 \\
- 6 & 7 & -2 \\
- 3 & -3 & 0 \\
-\end{array}
-\right)\).
-%
-\end{example}
-\par
-In other words, the matrix \(I\) behaves in matrix algebra like the real number 1; that is, as a multiplicative identity. In matrix algebra, the matrix \(I\) is called simply the identity matrix. Convince yourself that if A is any \(n\times n\) matrix \(A I = I A = A\).%
-\begin{definition}[Identity Matrix]\label{def-identity-matrix}
-\index{Identity Matrix}\label{notation-2}
-The \(n\times n\) diagonal matrix \(I_n\) whose 
-diagonal components are all 1's is called the identity matrix.  If the context is clear, simply \(I\).%
-\end{definition}
-\par
-In the set of real numbers we recall that, given a nonzero real number \(x\), there exists a real number \(y\) such that \(x y = y x
-=1\). We know that real numbers commute under multiplication so that the two equations can be summarized as \(x y = 1\). Further we know that \(y =x^{-1}= \frac{1}{x}\). Do we have an analogous situation in \(M_{n\times n}(\mathbb{R})\)? Can we define the multiplicative inverse of an \(n\times n\) matrix \(A\)? It seems natural to imitate the definition of multiplicative inverse in the real numbers.%
-\begin{definition}[Matrix Inverse]\label{def-matrix-inverse}
-\index{Inverse!Matrix}\label{notation-3}
-Let A be an \(n\times n\) matrix. If there exists 
-an \(n\times n\) matrix B such that \(A B = B A =I\), then B is a multiplicative inverse of A (called simply an inverse of A) and is denoted by \(A^{-1}\)%
-\end{definition}
-\par
-When we are doing computations involving matrices, it would be helpful to know that when we find \(A^{-1}\), the answer we 
-obtain is the only inverse of the given matrix.  This would let us refer to \emph{the} inverse of a matrix.  We refrained from saying that in the definition, but the theorem below justifies it. %
-\par
-Remark: Those unfamiliar with the laws of matrices should go over the proof of Theorem 5.4.1 after they have familiarized themselves with the Laws of Matrix Algebra in Section 5.5.%
-\begin{theorem}[Inverses are unique]\label{theorem-unique-inverse}
-The inverse of an \(n\times n\) matrix A, when it exists, is unique.%
-\end{theorem}
-\begin{proof}\hypertarget{proof-1}{}
-Let \(A\) be an \(n\times n\) matrix. Assume to the contrary, that \(A\) has two (different) inverses, say \(B\) and \(C\). Then
-\begin{equation*}
-\begin{split}
-B &= B I  & \textrm{ Identity property of } I\\
-& =B (A  ) & \textrm{ Assumption that } C \textrm{ is an inverse of } A\\
-& = (B A) C & \textrm{ Associativity of matrix multiplication}\\
-& = I C  & \textrm{ Assumption that } B \textrm{ is an inverse of } A\\
-& = C & \textrm{ Identity property of } I
-\end{split}
-\end{equation*}%
-\end{proof}
-\par
-Let \(A =\left(
-\begin{array}{cc}
- 2 & 0 \\
- 0 & 3  \\
-\end{array}
-\right)\) .  What is \(A^{-1}\) ? Without too much difficulty, by trial and error, we determine that \(A^{-1}= \left(
-\begin{array}{cc}
- \frac{1}{2} & 0 \\
- 0 & \frac{1}{3} \\
-\end{array}
-\right)\) . This might lead us to guess that the inverse is found by taking the reciprocal of all nonzero entries of a matrix. Alas, it isn't
-that easy!%
-\par
-If \(A =\left(
-\begin{array}{cc}
- 1 & 2 \\
- -3 & 5 \\
-\end{array}
-\right)\) , the ``reciprocal rule'' would tell us that the inverse of \(A\) is \(B=\left(
-\begin{array}{cc}
- 1 & \frac{1}{2} \\
- \frac{-1}{3} & \frac{1}{5} \\
-\end{array}
-\right)\). Try computing \(A B\) and you will see that you don't get the identity matrix.  So, what \emph{is} \(A^{-1}\)? In order to understand more completely the notion of the inverse of a matrix, it would be beneficial to have a formula that would enable us to compute the inverse of at least a \(2\times 2\) matrix. To do this, we introduce the definition of the determinant of a \(2\times 2\) matrix. Appendix A gives a more complete description of the determinant of a \(2\times 2\) and higher-order matrices.%
-\begin{definition}[Determinant of a 2 by 2 Matrix]\label{determinant-2by2}
-\label{notation-4}
- Let \(A =\left(
-\begin{array}{cc}
- a & b \\
- c & d \\
-\end{array}
-\right)\). The determinant of A is the number \(\det  A = a d - b c\).%
-\end{definition}
-\par
-In addition to \(\det  A\), common notation for the determinant of matrix \(A\)is \(\lvert A \rvert\).  This is particularly common when writing outthe whole matrix, which case we would write \(\left|
-\begin{array}{cc}
- a & b \\
- c & d \\
-\end{array}
-\right|\) for the determinant of the general \(2 \times 2\) matrix.%
-\begin{example}[Some Determinants of two by two matrices]\label{ex-some-determinants}
-If \(A =\left(
-\begin{array}{cc}
- 1 & 2 \\
- -3 & 5 \\
-\end{array}
-\right)\)  then \(\det  A = 1\cdot 5 -2\cdot  (-3)=11\). 
-
-If \(B =\left(
-\begin{array}{cc}
- 1 & 2 \\
- 2 & 4 \\
-\end{array}
-\right)\)  then \(\det  B = 1\cdot 4 -2\cdot 2=0\)
-%
-\end{example}
-\begin{theorem}[Inverse of 2 by 2 Matrix]\label{theorem-inverse-two-by-two}
- Let \(A =\left(
-\begin{array}{cc}
- a & b \\
- c & d \\
-\end{array}
-\right)\).  If \(\det  A\neq  0\), then \(A^{-1} =\frac{1}{\det  A}\left(
-\begin{array}{cc}
- d & -b \\
- -c & a \\
-\end{array}
-\right)\)%
-\end{theorem}
-\begin{proof}\hypertarget{proof-2}{}
-See Exercise 4 at the end of this section.%
-\end{proof}
-\begin{example}[Finding Inverses]\label{ex-finding-inverses}
-Can we find the inverses of the matrices in \hyperref[ex-some-determinants]{Example~\ref{ex-some-determinants}}? 
-
-If \(A =\left(
-\begin{array}{cc}
- 1 & 2 \\
- -3 & 5 \\
-\end{array}
-\right)\)  then 
-\begin{equation*}A^{-1}= \frac{1}{11}\left(
-\begin{array}{cc}
- 5 & -2 \\
- 3 & 1 \\
-\end{array}
-\right)=\left(
-\begin{array}{cc}
- \frac{5}{11} & -\frac{2}{11} \\
- \frac{3}{11} & \frac{1}{11} \\
-\end{array}
-\right)\end{equation*}
-
-The reader should verify that \(A A^{-1}=A^{-1}A = I\).%
-\par
-The second matrix, \(B\) has a determinant equal to zero. We we tried to apply the formula in \hyperref[theorem-inverse-two-by-two]{Theorem~\ref{theorem-inverse-two-by-two}}, we would be dividing by zero.
-For this reason, the formula can't be applied and in fact \(B^{-1}\) does not exist. 
-%
-\end{example}
-\par
-Remarks:%
-\par
+Let \(A = \{0, 1,2,3\}\), and let  \[r = \{(0, 0), (0, 3), (1, 2), (2, 1), (3, 2), (2, 0)\}\]
+In representing this relation as a graph, elements of \(A\) are called the vertices of the graph. They are typically represented by labeled points or small circles. We connect vertex \(a\) to vertex \(b\) with an arrow, called an edge, going from vertex \(a\) to vertex \(b\) if and only if \(a r b\).  This type of graph of a relation \(r\) is called a \terminology{directed graph} or \terminology{digraph}. \hyperref[fig-graph-6-2-1]{Figure~\ref{fig-graph-6-2-1}} is a digraph for \(r\). Notice that since 0 is related to itself, we draw a ``self-loop'' at 0.\index{Directed graph}\index{Digraph}%
 \leavevmode%
-\begin{itemize}[label=\textbullet]
-\item{} In general, if \(A\) is a \(2\times 2\) matrix and if \(\det  A = 0\), then \(A^{-1}\) does not exist.%
-\item{} A formula for the inverse of \(n\times n\) matrices \(n\geq  3\) can be derived that also involves \(\det  A\), Hence, in general, if the determinant of a matrix is zero, the matrix does not have an inverse. However the formula for even a \(3 \times  3\) matrix is very long and is not the most efficient way to compute the inverse of a matrix.%
-\item{} In Chapter 12 we will develop a technique to compute the inverse of a higher-order matrix, if it exists.%
-\item{} Matrix inversion comes first in the hierarchy of matrix operations; therefore, \(A B^{-1}\) is \(A (B^{-1})\).%
-\end{itemize}
-%
+\begin{figure}
+\centering
+\IfFileExists{images/graph-6-2-1.pdf}%
+{\includegraphics[width=1\linewidth]{images/graph-6-2-1.pdf}}%
+{\includegraphics[width=1\linewidth]{images/graph-6-2-1.png}}
+\caption{Digraph of a relation \label{fig-graph-6-2-1}}
+\end{figure}
+\par
+The actual location of the vertices in a digraph is immaterial. The actual location of vertices we choose is called an \terminology{embedding of a graph}\index{Embedding of a graph}. The main idea is to place the vertices in such a way that the graph is easy to read. After drawing a rough-draft graph of a relation, we may decide to relocate the vertices so that the final result will be neater. \hyperref[fig-graph-6-2-1]{Figure~\ref{fig-graph-6-2-1}} could also
+be presented as in \hyperref[fig-graph-6-2-2]{Figure~\ref{fig-graph-6-2-2}}.%
+\leavevmode%
+\begin{figure}
+\centering
+\IfFileExists{images/graph-6-2-2.pdf}%
+{\includegraphics[width=1\linewidth]{images/graph-6-2-2.pdf}}%
+{\includegraphics[width=1\linewidth]{images/graph-6-2-2.png}}
+\caption{Alternate embedding of of the previous directed graph\label{fig-graph-6-2-2}}
+\end{figure}
+\par
+A vertex of a graph is also called a node, point, or a junction. An edge of a graph is also referred to as an arc, a line, or a branch. Do not be concerned if two graphs of a given relation look different as long as the connections between vertices are are the same in two graphs.%
+\begin{example}[Another directed graph.]\label{ex-another-simple-graph}
+Consider the relation \(s\) whose digraph is \hyperref[fig-graph-6-2-3]{Figure~\ref{fig-graph-6-2-3}}. What information does this give us? The graph tells us that \(s\) is a relation on \(A = \{1, 2, 3\}\) and that \(s = \{(1, 2), (2, 1), (1, 3), (3, 1), (2, 3), (3, 3)\}\),%
+\leavevmode%
+\begin{figure}
+\centering
+\IfFileExists{images/graph-6-2-3.pdf}%
+{\includegraphics[width=1\linewidth]{images/graph-6-2-3.pdf}}%
+{\includegraphics[width=1\linewidth]{images/graph-6-2-3.png}}
+\caption{Digraph of the relation \(s\)\label{fig-graph-6-2-3}}
+\end{figure}
+\end{example}
+\begin{example}[Ordering subsets of a two element universe]\label{ex-subsets-2-ordering}
+ Let \(B = \{1,2\}\), and let \(A = \mathcal{P}(B) = \{0, \{1\}, \{2\}, \{1,2\}\}\). Then \(\subseteq\) is a relation on \(A\) whose digraph is \hyperref[fig-graph-6-2-subsets-2]{Figure~\ref{fig-graph-6-2-subsets-2}}.%
+\leavevmode%
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{images/graph-6-2-subsets-2.png}
+\caption{Graph for set containment on subsets of \(\{1,2\}\) \label{fig-graph-6-2-subsets-2}}
+\end{figure}
+\par
+We will see in the next section that since \(\subseteq\) has certain structural properties that describe ``partial orderings.'' We will be able to draw a much simpler type graph than this one, but for now the graph above serves our purposes.%
+\end{example}
 \typeout{************************************************}
 \typeout{Exercises 1.2.1 Exercises}
 \typeout{************************************************}
-\subsection[Exercises]{Exercises}\label{exercises-5-4}
+\subsection[Exercises]{Exercises}\label{exercises-6-2}
 \hypertarget{exercisegroup-3}{}\typeout{************************************************}
 \typeout{Introduction  }
 \typeout{************************************************}
 A Exercises%
 \begin{exercisegroup}
-\item[1.]\hypertarget{exercise-8}{} For the given matrices \(A\) find \(A^{-1}\) if it exists and verify that \(A A^{-1}=A^{-1}A = I\).  If \(A^{-1}\) does not exist
-explain why.%
-\par
+\item[1.]\hypertarget{exercise-7}{} Let \(A = \{1, 2, 3, 4\}\), and let \(r\) be the relation \(\leq\) on \(A\) Draw a digraph for \(r\).%
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-4}{}\quad
 \leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-48}{}  \(A = \left(
-\begin{array}{cc}
- 1 & 3 \\
- 2 & 1 \\
-\end{array}
-\right)\) 
-%
-\item\hypertarget{li-49}{} \(A=\left(
-\begin{array}{cc}
- 6 & -3 \\
- 8 & -4 \\
-\end{array}
-\right)\)
-%
-\item\hypertarget{li-50}{} \(A = \left(
-\begin{array}{cc}
- 1 & -3 \\
- 0 & 1 \\
-\end{array}
-\right)\)
-%
-\item\hypertarget{li-51}{}  \(A = \left(
-\begin{array}{cc}
- 1 & 0 \\
- 0 & 1 \\
-\end{array}
-\right)\)
-%
-\item\hypertarget{li-52}{} Use the definition of the inverse of a matrix to find \(A^{-1}\):
- \(A=\left(
-\begin{array}{ccc}
- 3 & 0 & 0 \\
- 0 & \frac{1}{2} & 0 \\
- 0 & 0 & -5 \\
-\end{array}
-\right)\)
-%
-\end{enumerate}
-%
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{images/fig-sol-6-2-1.png}
+\end{figure}
+\item[2.]\hypertarget{exercise-8}{} Let \(B = \{1,2, 3, 4, 6, 8, 12, 24\}\), and let \(s\) be the relation ``divides,'' on \(B\). Draw a digraph for \(s\). %
+\par\smallskip
+\item[3.]\hypertarget{exercise-9}{}  Let \(A=\{1,2,3,4,5\}\). Define \(t\) on \(A\) by \(a t b\) if and only if \(b - a\) is even. Draw a digraph for \(t\).%
 \par\smallskip
 \par\smallskip
 \noindent\textbf{Answer.}\hypertarget{answer-5}{}\quad
-\leavevmode%
-\begin{multicols}{2}
+ See Figure 13.1.1 of Section 13.1.%
+\item[4.]\hypertarget{exercise-10}{}\leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-53}{} \(\left(
-\begin{array}{cc}
- -1/5 & 3/5 \\
- 2/5 & -1/5 \\
-\end{array}
-\right)\)%
-\item\hypertarget{li-54}{} \(\left(
-\begin{array}{cc}
- 1 & 3 \\
- 0 & 1 \\
-\end{array}
-\right)\) %
-\item\hypertarget{li-55}{}  No inverse exists.%
-\item\hypertarget{li-56}{} \(A^{-1}=A\)   %
-\item\hypertarget{li-57}{} \(\left(
-\begin{array}{ccc}
- 1/3 & 0 & 0 \\
- 0 & 2 & 0 \\
- 0 & 0 & -1/5 \\
-\end{array}
-\right)\)
-%
-\end{enumerate}
-\end{multicols}
-%
-\item[2.]\hypertarget{exercise-9}{} For the given matrices \(A\) find \(A^{-1}\) if it exists and verify that \(A A^{-1}=A^{-1}A = I\) If \(A^{-1}\) does not exist
-explain why.%
-\par
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-58}{} \(A =\left(
-\begin{array}{cc}
- 2 & -1 \\
- -1 & 2 \\
-\end{array}
-\right)\)
-%
-\item\hypertarget{li-59}{} \(A = \left(
-\begin{array}{cc}
- 0 & 1 \\
- 0 & 2 \\
-\end{array}
-\right)\)
-%
-\item\hypertarget{li-60}{}  \(A= \left(
-\begin{array}{cc}
- 1 & c \\
- 0 & 1 \\
-\end{array}
-\right)\)
-%
-\item\hypertarget{li-61}{}  \(A = \left(
-\begin{array}{cc}
- a & b \\
- b & a \\
-\end{array}
-\right)\), were \(a > b>0\).
-%
+\item\hypertarget{li-21}{}Let \(A\) be the set of strings of 0's and 1's of length 3 or less. Define the relation of \(d\) on A by \(x d y\) if \(x\) is contained within \(y\). For example, \(01 d 101\). Draw a digraph for this relation. %
+\item\hypertarget{li-22}{} Do the same for the relation \(p\) defined by \(x p y\) if \(x\) is a prefix of \(y\). For example, \(10 p 101\), but \(01 p 101\) is false.%
 \end{enumerate}
 %
 \par\smallskip
-\item[3.]\hypertarget{prob-5-2-3}{}\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-62}{} Let \(A = \left(
-\begin{array}{cc}
- 2 & 3 \\
- 1 & 4 \\
-\end{array}
-\right)\) and \(B =\left(
-\begin{array}{cc}
- 3 & -3 \\
- 2 & 1 \\
-\end{array}
-\right)\). Verify that \((A B)^{-1}= B^{-1}A^{-1}\) . 
-%
-\item\hypertarget{li-63}{} Let \(A\) and \(B\) be \(n\times n\) invertible matrices. Prove that \((A B)^{-1}= B^{-1}A^{-1}\). Why is the right side of the above statement written ``backwards''? Is this necessary? Hint: Use \hyperref[theorem-unique-inverse]{Theorem~\ref{theorem-unique-inverse}}%
-\end{enumerate}
-%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-6}{}\quad
- Let A and B be \(n\) by \(n\) invertible matrices.%
-\par
-
-\begin{equation*}
-\begin{split}
-\left(B^{-1}A^{-1}\right)(AB)&=\left(B^{-1}\right)\left(A^{-1}(AB)\right)\\
-   &= \left(B^{-1}\right) \left(\left(A^{-1} A\right) B\right)\\
-   &=(\left(B^{-1}\right)I B )\\
-    &=B^{-1}(B)\\
-    &=I 
-\end{split}
-\end{equation*}
-%
-\par
-Similarly, \((AB)\left(B^{-1}A^{-1}\right)=I\).%
-\par
-By \hyperref[theorem-unique-inverse]{Theorem~\ref{theorem-unique-inverse}}, \(B^{-1}A^{-1}\) is the only inverse of \(AB\). If we tried to invert \(AB\) with \(A^{-1}B^{-1}\), we would be unsuccessful since we cannot rearrange the order of the matrices. %
 \end{exercisegroup}
 \par\smallskip\noindent
 \hypertarget{exercisegroup-4}{}\typeout{************************************************}
@@ -1345,88 +625,299 @@ By \hyperref[theorem-unique-inverse]{Theorem~\ref{theorem-unique-inverse}}, \(B^
 \typeout{************************************************}
 B Exercises%
 \begin{exercisegroup}
-\item[4.]\hypertarget{exercise-11}{} Let Let \(A =\left(
-\begin{array}{cc}
- a & b \\
- c & d \\
-\end{array}
-\right)\). Derive the formula for \(A^{-1}\).%
+\item[5.]\hypertarget{exercise-11}{} Recall the relation in Exercise 5 of Section 6.1, \(\rho\) defined on the power set, \(\mathcal{P}(S)\), of a set \(S\). The definition
+was \((A,B) \in \rho\) iff \(A\cap  B = \emptyset\). Draw the digraph for \(\rho\) where \(S = \{a, b\}\). %
 \par\smallskip
-\item[5.]\hypertarget{prob-5-2-5}{}(Linearity of Determinants)\space\space{}\leavevmode%
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-6}{}\quad
+ A Hasse diagram cannot be used because not every set is related to itself. Also, \(\{a\}\) and \(\{b\}\) are related in both directions.
+%
+\item[6.]\hypertarget{exercise-12}{} Let \(C= \{1,2, 3, 4, 6, 8, 12, 24\}\) and define \(t\) on \(C\) by
+\(a t b\) if and only if \(a\) and \(b\) share a common divisor greater than 1.  Draw a digraph for \(t\).%
+\par\smallskip
+\end{exercisegroup}
+\par\smallskip\noindent
+\typeout{************************************************}
+\typeout{Section 1.3 Properties of Relations}
+\typeout{************************************************}
+\section[Properties of Relations]{Properties of Relations}\label{s-properties-of-relations}
+\typeout{************************************************}
+\typeout{Subsection 1.3.1 Individual Properties}
+\typeout{************************************************}
+\subsection[Individual Properties]{Individual Properties}\label{ss-individual-properties}
+Consider the set \(B = \{1, 2, 3, 4, 6, 12, 36, 48\}\) and the relations ``divides'' and \(\leq \) on \(B\). We notice that these two relations on \(B\) have three properties in common:%
+\par
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{}Every element in \(B\) divides itself and is less than or equal to itself. This is called the reflexive property.%
+\item{}If we search for two elements from \(B\) where the first divides the second and the second divides the first, then we are forced to choose the the two numbers to be the same. In other words, no two \emph{different} numbers are related in both directions. The reader can verify that a similar fact is true for the relation \(\leq \) on \(B\). This is called the antisymmetric property.%
+\item{}Next if we choose three numbers from \(B\) such that the first divides the second and the second divides the third, then we always find that the first number to divides the third.  Again, the same is true if we replace ``divides'' with ``is less than or equal to.'' This is called the transitive property.%
+\end{itemize}
+%
+\par
+Relations that satisfy these properties are of special interest to us. Formal definitions of the properties follow.%
+\begin{definition}[Reflexive Relation]\label{def-reflexive-relation}
+\index{Reflexive Relation}Let \(A\) be a set and let \(r\) be a relation on \(A\).
+r is \terminology{reflexive} if and only if \(a r a\) for all \(a \in A\).%
+\end{definition}
+\begin{definition}[Antisymmetric Relation]\label{def-antisymmetric-relation}
+\index{Antisymmetric Relation}Let \(A\) be a set and let \(r\) be a relation on \(A\).  Then \(r\) is \terminology{antisymmetric} if and only if whenever \(a r b\) and \(a \neq  b\) then \(b r a\) is false.%
+\end{definition}
+\par
+An equivalent condition for antisymmetry is that if \(a r b\) and  \(b r a\) then \(a = b\). You are encouraged to convince yourself that this is true.  This condition is often more convenient to prove than the definition, even thought the definition is probably easier to understand.%
+\par
+A word of warning about antisymmetry: Students frequently find it difficult to understand this definition. Keep in mind that this term is defined through an ``If . .. then . . .'' statement. The question that you must ask is: Is it true that whenever there are elements \(a\) and \(b\) from \(A\) where \(a r b\) and \(a \neq  b\), it follows that \(b\) is not related to \(a\)? If so, then the relation  is antisymmetric.%
+\par
+Another way to determine whether a relation is antisymmetric is to examine (or imagine) its digraph. The relation is not antisymmetric if there exists a pair of vertices that are connected by edges in both directions.%
+\begin{definition}[Transitive Relation]\label{def-transitive-relation}
+\index{Transitive Relation}Let \(A\) be a set and let \(r\) be a relation on \(A\).
+r is \terminology{transitive} if and only if whenever \(a r b\) and \(b r c\) then \(a r c\).%
+\end{definition}
+\typeout{************************************************}
+\typeout{Subsection 1.3.2 Partial Orderings}
+\typeout{************************************************}
+\subsection[Partial Orderings]{Partial Orderings}\label{ss-partial-ordering}
+Not all relations have all three of the properties discussed above, but those that do are a special type of relation.%
+\begin{definition}[Partial Ordering]\label{partial-ordering}
+\index{Partial Ordering}A relation on a set \(A\) that is reflexive, antisymmetric, and transitive is called a partial ordering on \(A\). A set on which there is a partial ordering relation defined is called a \terminology{partially ordered set}\index{Partially ordered set} or \terminology{poset}\index{Poset}.%
+\end{definition}
+\begin{example}[Set Containment as a Partial Ordering]\label{ex-subset-partial-ordering}
+Let \(A\) be a set. Then \(\mathcal{P}(A)\) together with the relation \(\subseteq\) (set containment) is a poset.
+To prove this we observe that the three properties hold, as discussed in Chapter 4.%
+\par
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{}Let \(B \in  \mathcal{P}(A)\). The fact that \(B \subseteq  B\) follows from the definition of subset. Hence, set containment is reflexive.%
+\item{}Let \(B_1, B_2 \in \mathcal{P}(A)\) and assume that \(B_1\subseteq  B_2\) and \(B_1\neq  B_2\) . Could it be that \(B_2\subseteq  B_1\)? No.
+There must be some element \(a\in A\) such that \(a \notin B_1\), but \(a\in B_2\). This is exactly what we need to conclude that \(B_2\) is not contained in \(B_1\).  Hence, set containment is antisymmetric.%
+\item{}Let \(B_1, B_2,B_3 \in \mathcal{P}(A)\) and assume that \(B_1 \subseteq  B_2\) and \(B_2 \subseteq  B_3\) . Does it follow that \(B_1 \subseteq B_3\) ? Yes, if \(a\in B_1\), then \(a\in B_2\) because \(B_1 \subseteq  B_2\). Now that we have \(a\in B_2\) and we have assumed \(B_2 \subseteq B_3\), we conclude that \(a\in B_3\).  Therefore, \(B_1\subseteq B_3\) and so set containment is transitive.%
+\end{itemize}
+%
+\par
+\hyperref[fig-graph-6-2-subsets-2]{Figure~\ref{fig-graph-6-2-subsets-2}} is the graph for the ``set containment'' relation on \(\{1,2\}\).%
+\end{example}
+\par
+\hyperref[fig-graph-6-2-subsets-2]{Figure~\ref{fig-graph-6-2-subsets-2}} is helpful insofar as it reminds us that each set is a subset of itself and shows us at a glance the relationship between the various subsets in \(\mathcal{P} (\{1,2\})\). However, when a relation is a partial ordering, we can streamline a graph like this one.  The streamlined
+form of a graph is called a \terminology{Hasse diagram} or \terminology{ordering diagram}.  A Hasse diagram takes into account the following facts.%
+\par
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{} By the reflexive property, each vertex must be related to itself, so the arrows from a vertex to itself (called ``self-loops'') are
+not drawn in a Hasse diagram. They are simply assumed.%
+\item{}  By the antisymmetry property, connections between two distinct elements in a directed graph can only go one way, if at all.  When there
+is a connection, we agree to always place the second element above the first (as we do above with the connection from \(\{1\}\) to \(\{1,2\}\)).
+For this reason, we can just draw a connection without an arrow, just a line.%
+\item{} By the transitive property, if there are edges connecting one element up to a second element and the second element up to a third element,
+then there will be a direct connection from the first to the third. We see this in \hyperref[fig-graph-6-2-subsets-2]{Figure~\ref{fig-graph-6-2-subsets-2}} with \(\emptyset\) connected to \(\{1\}\)\(\)and
+then \(\{1\}\) connected to \(\{1,2\}\). Notice the edge connecting \(\emptyset\) to \(\{1,2\}\).  Whenever we identify this situation, remove
+the connection from the first to the third in a Hasse diagram and simply observe that an upward path of any length implies that the lower element
+is related to the upper one.
+%
+\end{itemize}
+%
+\par
+Using these observations as a guide, we can draw a Hasse diagram for \(\subseteq\) on \(\{1,2\}\) as in Figure 6.3.2.%
+\leavevmode%
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{images/subsets_2_hasse.png}
+\caption{Hasse diagram for set containment on subsets of \(\{1,2\}\)
+                \label{subsets_2_hasse}}
+\end{figure}
+\begin{example}[Definition of a relation using a Hasse diagram]\label{ex-def-by-hasse}
+Consider the partial ordering relation \(s\) whose Hasse diagram is \hyperref[fig-pentagonal-hasse]{Figure~\ref{fig-pentagonal-hasse}}.%
+\leavevmode%
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{images/pentagonal-hasse.png}
+\caption{Hasse diagram for for the pentagonal poset
+                \label{fig-pentagonal-hasse}}
+\end{figure}
+\par
+How do we read this diagram? What is \(A\)? What is \(s\)? What does the digraph of s look like? Certainly \(A = \{1,2,3,4,5\}\) and
+\(1 s 2\), \(3 s 4\), \(1 s 4\), \(1 s 5\), etc., Notice that \(1 s 5\) is implied by the fact that there is a path of length three upward
+from 1 to 5. This follows from the edges that are shown and the transitive property that is presumed in a poset.  Since \(1 s 3\) and \(3 s
+4\), we know that \(1 s 4\). We then combine \(1 s 4\) with \(4 s 5\) to infer \(1 s 5\).  Without going into details why, here is
+a complete list of pairs defined by \(s\).
+\[s = \{(1,1),(2,2),(3,3),(4,4),(5,5),(1,3),(1,4),(1,5),(1,2),(3,4),(3,5),(4,5),(2,5)\}\]%
+\par
+A digraph for \(s\) is \hyperref[fig-pentagonal-digraph]{Figure~\ref{fig-pentagonal-digraph}}. It is certainly more complicated to read and difficult to draw than the Hasse diagram.%
+\leavevmode%
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{images/pentagonal-digraph.png}
+\caption{Digraph for for the pentagonal poset
+                \label{fig-pentagonal-digraph}}
+\end{figure}
+\end{example}
+\par
+A classic example of a partial ordering relation is \(\leq \) on the real numbers, \(\mathbb{R}\). Indeed, when graphing partial ordering relations,
+it is natural to ``plot'' the elements from the given poset starting with the ``least'' element to the ``greatest'' and to use terms
+like ``least,'' ``greatest,'' etc. Because of this the reader should be forewarned that some texts use the symbol \(\leq\) for arbitrary
+partial orderings. This can be quite confusing for the novice, so we continue to use generic letters \(r\), \(s\), etc.
+%
+\typeout{************************************************}
+\typeout{Subsection 1.3.3 Equivalence Relations}
+\typeout{************************************************}
+\subsection[Equivalence Relations]{Equivalence Relations}\label{ss-equivalence-relations}
+\index{Equivalence Relations}Another common property of relations is symmetry.%
+\begin{definition}[Symmetric Relation]\label{def-symmetric-relation}
+\index{Symmetric 
+Relation}Let \(r\) be a relation on a set \(A\). \(r\) is \terminology{symmetric} if and only if whenever \(a r b\), it follows that \(b r a\).%
+\end{definition}
+\par
+Consider the relation of equality defined on any set \(A\). Certainly \(a = b\) implies that\(b = a\) so equality is a symmetric relation on \(A\).%
+\par
+Surprisingly, equality is also an antisymmetric relation on \(A\). This is due to the fact that the condition that defines the antisymmetry property, \(a = b\) and \(a \neq  b\), is a contradiction. Remember, a conditional proposition is always true when the condition is false. So a relation can be both symmetric and antisymmetric on a set! Again recall that these terms are \emph{not} negatives of one other. That said, there are very few important relations other than equality that are both symmetric and antisymmetric.%
+\begin{definition}[Equivalence Relation]\label{def-equivalence-relation}
+\index{Equivalence Relation}A relation \(r\) on a set \(A\) is called an equivalence relation if and only if it is reflexive, symmetric, and transitive.%
+\end{definition}
+\par
+The classic example of an equivalence relation is equality on a set \(A\). In fact, the term equivalence relation is used because those relations which satisfy the definition behave quite like the equality relation. Here is another important equivalence relation.%
+\begin{example}[Equivalent Fractions]\label{ex-fraction-equivalence}
+Let \(\mathbb{Z}\)* be the set of nonzero integers. One of the most basic equivalence relations in mathematics is the relation \(q\) on \(\mathbb{Z}\times \mathbb{Z}^*\) defined by \((a, b) q(c, d)\) if and only if \(a d = b c\). We will leave it to the reader to, verify
+that \(q\) is indeed an equivalence relation. Be aware that since the elements of \(\mathbb{Z}\times \mathbb{Z}^*\) are ordered pairs, proving symmetry involves four numbers and transitivity involves six numbers. Two ordered pairs, \((a, b)\) and \((c, d)\), are related if the fractions \(\frac{a}{b}\) and \(\frac{c}{d}\) are numerically equal.
+%
+\end{example}
+\par
+Our next example involves the following fundamental relations on the set of integers.%
+\begin{definition}[Congruence Modulo \(m\)]\label{def-congruence-mod-m}
+\index{Congruence Modulo m}\label{notation-4}
+Let \(m\) be a positive integer, \(m\geq 2\).  We define \terminology{congruence modulo m} to be the relation \(\equiv_m\) defined on the integers by 
+	\[a \equiv_m b \Leftrightarrow m \mid (a-b)\]
+%
+\end{definition}
+\par
+We observe the following about congurence modulo \(m\):%
+\par
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{}This relation is reflexive, for if \(a \in  \mathbb{Z} \),  \(m \mid (a-a) \Rightarrow  a\equiv_ma \).%
+\item{}This relation is symmetric. We can prove this through the following chain of implications. 
+\begin{equation*}
+\begin{split}
+a \equiv_m b &\Rightarrow   m \mid (a-b)\\
+   & \Rightarrow \textrm{For  some } k \in \mathbb{Z}, a-b = m k \\
+	& \Rightarrow b-a = m (-k)\\
+	& \Rightarrow  m \mid (b-a)\\
+	& \Rightarrow b \equiv_m a 
+\end{split}
+\end{equation*}%
+\item{} Finally, this relation is transitive.  We leave it to the reader to prove that if \(a \equiv _mb \) and \(b\equiv _mc\), then \(a \equiv _mc\).%
+\end{itemize}
+%
+\par
+Frequently, you will see the equivalent notation \(a \equiv b (\textrm{mod } m)\) for congruence modulo \(m\).%
+\begin{example}[Random Relations usually have no properties]\label{ex-no-propery-relation}
+Consider the relation s described by the digraph in \hyperref[fig-graph-6-3-5]{Figure~\ref{fig-graph-6-3-5}}. This was created by randomly selecting whether or not two elements from \(\{a,b,c\}\) were related or not. %
+\par
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{}This relation is not reflexive, Why?%
+\item{}It is not antisymmetric, Why?%
+\item{}Also, it is not symmetric, Why?%
+\item{}It is not transitive, Why?%
+\item{}Is \(s\) an equivalence relation or a partial ordering? %
+\end{itemize}
+%
+\leavevmode%
+\begin{figure}
+\centering
+\IfFileExists{images/graph-6-3-5.pdf}%
+{\includegraphics[width=1\linewidth]{images/graph-6-3-5.pdf}}%
+{\includegraphics[width=1\linewidth]{images/graph-6-3-5.png}}
+\caption{Digraph of a random relation \(r\)\label{fig-graph-6-3-5}}
+\end{figure}
+\par
+Not every random choice of a relation will be so totally negative, but as the underlying set increases, the likelihood any of the properties are true begins to vanish.%
+\end{example}
+\typeout{************************************************}
+\typeout{Exercises 1.3.4 Exercises}
+\typeout{************************************************}
+\subsection[Exercises]{Exercises}\label{exercises-6-3}
+\hypertarget{exercisegroup-5}{}\typeout{************************************************}
+\typeout{Introduction  }
+\typeout{************************************************}
+A Exercises%
+\begin{exercisegroup}
+\item[1.]\hypertarget{exercise-13}{}\leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-64}{}Let \(A\) and \(B\) be as in \hyperlink{prob-5-2-3}{Exercise~1.2.1.3}. Show that \(\det (A B) =(\det  A)(\det  B)\).
-%
-\item\hypertarget{li-65}{} It can be shown that the statement in part (a) is true for all \(n\times n\) matrices. Let \(A\) be any invertible \(n\times n\) matrix. Prove that \(\det \left(A^{-1}\right) =(\det  A)^{-1}\). Note: The determinant of the identity matrix \(I_n\) is 1 for all \(n\).
-%
-\item\hypertarget{li-66}{} Verify that the equation in part (b) is true for the matrix in exercise l(a) of this section.
-%
+\item\hypertarget{li-40}{}Let \(B = \{a, b\}\) and \(U = \mathcal{P}(B)\). Draw a Hasse diagram for \(\subseteq \) on \(U\).%
+\item\hypertarget{li-41}{}Let \(A = \{1,2, 3, 6\}\). Show that divides, \(\mid \), is a partial ordering on \(A\). %
+\item\hypertarget{li-42}{}Draw a Hasse diagram for divides on \(A\).%
+\item\hypertarget{li-43}{}Compare the graphs of parts a and c.%
 \end{enumerate}
 %
 \par\smallskip
 \par\smallskip
 \noindent\textbf{Answer.}\hypertarget{answer-7}{}\quad
- \(1=\det  I=\det \left(AA^{-1}\right)=\det  A\text{  }\det  A^{-1}\). Now solve for \(\det  A^{-1}\). 
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-44}{}\leavevmode%
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{images/fig-sol-6-3-1.png}
+\end{figure}
 %
-\item[6.]\hypertarget{exercise-13}{} Prove by induction that for \(n \geq 1\), \(\left(
-\begin{array}{cc}
- a & 0 \\
- 0 & b \\
-\end{array}
-\right)^n= \left(
-\begin{array}{cc}
- a^n & 0 \\
- 0 & b^n \\
-\end{array}
-\right)\).
+\item\hypertarget{li-45}{} The graphs are the same if we disregard the names of the vertices.%
+\end{enumerate}
+%
+\item[2.]\hypertarget{exercise-14}{}Repeat Exercise 1 with \(B = \{a, b, c\}\) and \( A = \{1, 2, 3, 5, 6, 10, 15, 30\}\).
 %
 \par\smallskip
-\item[7.]\hypertarget{exercise-14}{} Use the assumptions in \hyperlink{prob-5-2-5}{Exercise~1.2.1.5} to prove by induction that if \(n \geq 1\), \(\det \left(A^n\right) = (\det  A)^n\).%
+\item[3.]\hypertarget{exercise-15}{}\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-46}{}Consider the relations defined by the digraphs in \hyperref[fig-exercises-6-digraphs]{Figure~\ref{fig-exercises-6-digraphs}}. Determine whether the given relations are reflexive, symmetric, antisymmetric,
+or transitive. Try to develop procedures for determining the validity of these properties from the graphs, %
+\item\hypertarget{li-47}{}Which of the graphs are of equivalence relations or of partial orderings?%
+\end{enumerate}
+%
+\leavevmode%
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{images/exercises-6-digraphs.png}
+\caption{Some digraphs of relations\label{fig-exercises-6-digraphs}}
+\end{figure}
 \par\smallskip
 \par\smallskip
 \noindent\textbf{Answer.}\hypertarget{answer-8}{}\quad
-Basis: \((n=1): \det  A^1=\det  A =(\det  A )^1\)%
-\par
-Induction: Assume \(\det  A^n=(\det  A)^n\) for some \(n\geq 1\).%
-\par
-
-\begin{equation*}
-\begin{split}
- \det  A^{n+1} & =\det \left(A^nA\right)\quad \textrm{ by the definition of exponents}\\
-   &=\det \left(A^n\right)\det (A)\quad \textrm{ by exercise 5} \\
-   &=det  A)^n(\det  A)\quad \textrm{ by the induction hypothesis }\\
-  &=(\det  A)^{n+1}
-\end{split}
-\end{equation*}
+\leavevmode%
+\begin{enumerate}[label=\roman*]
+\item\hypertarget{li-48}{}\leavevmode%
+\begin{table}
+\centering
+\begin{tabular}{lllll}
+Part&reflexive?&symetric?&antisymmetric?&transitive?\tabularnewline[0pt]
+i&yes&no&no&yes\tabularnewline[0pt]
+ii&yes&no&yes&yes\tabularnewline[0pt]
+iii&no&yes&no&yes\tabularnewline[0pt]
+iv&no&yes&yes&yes\tabularnewline[0pt]
+v&yes&yes&no&yes\tabularnewline[0pt]
+vi&yes&no&yes&yes\tabularnewline[0pt]
+vii&no&no&no&no
+\end{tabular}
+\end{table}
 %
-\item[8.]\hypertarget{exercise-15}{}Prove: If the determinant of a matrix \(A\) is zero, then \(A\) does not have an inverse. Hint: Use the indirect method of proof and exercise 5.%
-\par\smallskip
-\end{exercisegroup}
-\par\smallskip\noindent
-\hypertarget{exercisegroup-5}{}\typeout{************************************************}
-\typeout{Introduction  }
-\typeout{************************************************}
-C Exercises%
-\begin{exercisegroup}
-\item[9.]\hypertarget{exercise-16}{}\leavevmode%
+\item\hypertarget{li-49}{} Graphs ii and vi show partial ordering relations. Graph v is of an equivalence relation. %
+\end{enumerate}
+%
+\item[4.]\hypertarget{exercise-16}{}Determine which of the following are equivalence relations and/or partial ordering relations for the given sets:%
+\par
+\leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-67}{} Let \(A, B, \textrm{ and } D\) be \(n\times n\) matrices. Assume that \(B\) is invertible. If \(A = B D B^{-1}\) , prove by induction
-that \(A^m= B D^m B^{-1}\) is true for \(m \geq  1\).%
-\item\hypertarget{li-68}{}Given that \(A = \left(
-\begin{array}{cc}
- -8 & 15 \\
- -6 & 11 \\
-\end{array}
-\right) = B \left(
-\begin{array}{cc}
- 1 & 0 \\
- 0 & 2 \\
-\end{array}
-\right) B^{-1}\) where \(B=\left(
-\begin{array}{cc}
- 5 & 3 \\
- 3 & 2 \\
-\end{array}
-\right)\) what is \(A^{10}\)?%
+\item\hypertarget{li-50}{} \(A = \{\textrm{ lines in the plane}\}\): \(x r y\) if and only if \(x\) is parallel to \(y\).%
+\item\hypertarget{li-51}{} \(A = \mathbb{R}\); \(x r y\) if and only if \(\lvert x -y \rvert \leq  7\).%
+\end{enumerate}
+%
+\par\smallskip
+\item[5.]\hypertarget{exercise-17}{}Consider the  relation on \(\{1, 2, 3, 4, 5, 6\}\) defined by  \(r = \{(i,j): \mid i - j\mid  = 2\}\).%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-52}{} Is \(r\) reflexive?%
+\item\hypertarget{li-53}{} Is \(r\) symmetric?%
+\item\hypertarget{li-54}{} Is \(r\) transitive?%
+\item\hypertarget{li-55}{} Draw a graph of \(r\).%
 \end{enumerate}
 %
 \par\smallskip
@@ -1434,137 +925,74 @@ that \(A^m= B D^m B^{-1}\) is true for \(m \geq  1\).%
 \noindent\textbf{Answer.}\hypertarget{answer-9}{}\quad
 \leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-69}{} Assume \(A=B D B^{-1}\)%
-\par
-Basis:  \((m=1\)): \(A^{1}=A=B D^1 B^{-1} \) is given.%
-\par
-Induction: Assume that for some positive integer \(m\), \(A^m=BD^mB^{-1}\)%
-\par
-\begin{equation*}
-\begin{split}
-A^{m+1} &=A^mA\\
- &=(B D^m B^{-1})(BDB^{-1})\quad \textrm{ by the induction hypothesis} \\
- &=(BD^m(B^{-1} B ) (DB^{-1}) \quad \textrm{ by associativity} \\
- &=B D^m  D B^{-1}  \quad \textrm{ by the definition of inverse}\\
- &=B D^{m+1} B^{-1} \quad \square
-\end{split}
-\end{equation*}
+\item\hypertarget{li-56}{} No, since \(\mid 1-1\mid =0\neq 2\), for example%
+\item\hypertarget{li-57}{} Yes, because \(\mid i-j\mid =\)\(\mid j-i\mid \).%
+\item\hypertarget{li-58}{} No, since \(\mid 2-4\mid =2\) and \(\mid 4-6\mid =2\), but \(\mid 2-6\mid =4\neq 2\), for example.%
+\item\hypertarget{li-59}{}\leavevmode%
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{images/fig-sol-6-3-5.png}
+\end{figure}
 %
-\item\hypertarget{li-70}{} \(A^{10}=BD^{10}B^{-1}= \left(
-\begin{array}{cc}
- -9206 & 15345 \\
- -6138 & 10231 \\
-\end{array}
-\right)\)%
 \end{enumerate}
 %
-\end{exercisegroup}
-\par\smallskip\noindent
-\typeout{************************************************}
-\typeout{Section 1.3 Laws of Matrix Algebra}
-\typeout{************************************************}
-\section[Laws of Matrix Algebra]{Laws of Matrix Algebra}\label{s-laws-of-matrix-algebra}
-\index{Laws of Matrix Algebra}The following is a summary of the basic laws of matrix operations. Assume that the indicated operations are defined; that is, that the orders of the matrices \(A\), \(B\) and \(C\) are such that the operations make sense.%
-\leavevmode%
-\begin{table}
-\centering
-\begin{tabular}{ccc}
-(1)&Communtative Law of Addition&\(A + B = B + A\)\tabularnewline[0pt]
-(2)&Associative Law of Addition&\(A + (B + C) = (A + B) + C\)\tabularnewline[0pt]
-(3)&Distrutive Law of a Scalar over Matrices &\(c(A + B) = c A + c B\), where \(c \in  \mathbb{R}\).\tabularnewline[0pt]
-(4)&Distrutive Law of Scalars over a Matrix &\(\left(c_1 + c_2 \right)A = c_1A +c_2 A\), where \(c_1, c_2 \in  \mathbb{R}\).\tabularnewline[0pt]
-(5)&Associative Law of Scalar Multiplication&\(c_1 \left(c_2 A\right) =\left(c_1 \cdot c_2 \right)A\), where \(c_1, c_2 \in  \mathbb{R}\).\tabularnewline[0pt]
-(6)&Zero Matrix Annihilates all Products&\(\pmb{0}A = \pmb{0}\), where \pmb{ 0} is the zero matrix.\tabularnewline[0pt]
-(7)&Zero Scalar Annihilates all Products &\(0 A =\pmb{0}\), where 0 on the left is the scalar zero.\tabularnewline[0pt]
-(8)&Zero Matrix is an identity for Addition&\(A + 0 = A\). \tabularnewline[0pt]
-(9)&Negation produces additive inverses&\(A + (-1)A = \pmb{0}\). \tabularnewline[0pt]
-(10)&Right Distrutive Law of Matrix Multiplication&\(A(B + C) = A B + A C\). \tabularnewline[0pt]
-(11)&Left  Distrutive Law of Matrix Multiplication&\((B + C)A = B A + C A\). \tabularnewline[0pt]
-(12)&Associative Law of Multiplication&\(A(B C) = (A B)C\).\tabularnewline[0pt]
-(13)&Identity Matrix is a Multiplicative Identity&\(I A = A\) and \(A I = A\).\tabularnewline[0pt]
-(14)&Involution Property of Inverses&If \(A^{-1}\) exists,\(\left(A^{-1} \right)^{-1} = A\).\tabularnewline[0pt]
-(15)&Inverse of Product Rule&If \(A^{-1}\) and \(B^{-1}\) exist, \((A B)^{-1}= B^{-1}A^{-1}\) 
-\end{tabular}
-\caption{Laws of Matrix Algebra\label{table-matrix-laws}}
-\end{table}
-\begin{example}[More Precise Statement of one Law]\label{ex-statement-precise}
- If we wished to write out each of the above laws more completely, we would specify the orders of the matrices. For example, Law 10 should read:%
-\begin{quote}Let \(A\), \(B\), and \(C\) be \(m\times n\), \(n\times p\), and \(n\times p\) matrices, respectively, then \(A(B + C) = A B + A C\)%
-\end{quote}
-\end{example}
-\par
-Remarks:%
+\item[6.]\hypertarget{exercise-18}{}For the set of cities on a map, consider the relation \(x r y\) if and only if city \(x\) is connected by a road to city \(y\). A city is considered to be connected to itself, and two cities are connected even though there are cities on the road between them. Is this an equivalence
+relation or a partial ordering? Explain.%
+\par\smallskip
+\item[7.]\hypertarget{exercise-19}{} Let \(A = \{0, 1, 2, 3\}\) and let
+\[r = \{(0, 0), (1, 1), (2, 2), (3, 3), (1, 2),(2, 1), (3, 2), (2, 3), (3, 1), (1, 3)\}\]%
 \par
 \leavevmode%
-\begin{itemize}[label=\textbullet]
-\item{} Notice the absence of the ``law'' \(A B = B A\). Why? %
-\item{} Is it really necessary to have both a right (No. 11) and a left (No. 10) distributive law? Why?%
-\end{itemize}
-
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-60}{}Verify that \(r\) is an equivalence relation on \(A\).%
+\item\hypertarget{li-61}{}Let \(a \in A\) and define \(c(a) = \{b \in A \mid a r b\}\)\label{notation-5}
+. \(c(a)\) is called the \terminology{equivalence class of \(a\) under \(r\)}\index{Equivalence Class}. Find \(c(a)\) for each element \(a \in A\).%
+\item\hypertarget{li-62}{}Show that \(\{c(a) \mid  a \in A\}\) forms a partition of A for this set A.%
+\item\hypertarget{li-63}{}Let \(r\) be an equivalence relation on an arbitrary set \(A\). Prove that the set of all equivalence classes under \(r\) constitutes a partition of \(A\).
 %
-\typeout{************************************************}
-\typeout{Exercises 1.3.1 Exercises}
-\typeout{************************************************}
-\subsection[Exercises]{Exercises}\label{exercises-5-5}
-\hypertarget{exercisegroup-6}{}\typeout{************************************************}
-\typeout{Introduction  }
-\typeout{************************************************}
-A Exercises%
-\begin{exercisegroup}
-\item[1.]\hypertarget{exercise-17}{} Rewrite the above laws specifying as in \hyperref[ex-statement-precise]{Example~\ref{ex-statement-precise}} the orders of the matrices.%
+\end{enumerate}
+%
 \par\smallskip
 \par\smallskip
 \noindent\textbf{Answer.}\hypertarget{answer-10}{}\quad
 \leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-73}{} Let \(A\) and \(B\) be \(m\) by \(n\) matrices. Then \(A+B=B+A\),%
-\item\hypertarget{li-74}{} Let \(A\), \(B\), and \(C\) be \(m\) by \(n\) matrices. Then \(A+(B+C)=(A+B)+C\).%
-\item\hypertarget{li-75}{} Let \(A\) and \(B\) be \(m\) by \(n\) matrices, and let \(c\in \mathbb{R}\). Then \(c(A+B)=cA+cB\),%
-\item\hypertarget{li-76}{} Let \(A\) be an \(m\) by \(n\) matrix, and let \(c_1,c_2\in \mathbb{R}\). Then \(\left(c_1+c_2\right)A=c_1A+c_2A\).%
-\item\hypertarget{li-77}{} Let \(A\) be an \(m\) by \(n\) matrix, and let \(c_1,c_2\in \mathbb{R}\). Then \(c_1\left(c_2A\right)=\left(c_1c_2\right)A\)%
-\item\hypertarget{li-78}{} Let \(\pmb{0}\) be the zero matrix, of size \(m \textrm{ by } n\), and let \(A\) be a matrix of size \(n \textrm{ by } r\). Then \(\pmb{0}A=\pmb{0}=\textrm{ the } m \textrm{ by } r \textrm{ zero matrix}\).%
-\item\hypertarget{li-79}{} Let \(A\) be an \(m \textrm{ by } n\) matrix, and \(0 = \textrm{ the number zero}\). Then \(0A=0=\textrm{ the } m \textrm{ by } n \textrm{ zero matrix}\).%
-\item\hypertarget{li-80}{} Let \(A\) be an \(m \textrm{ by } n\) matrix, and let \(\pmb{0}\) be the \(m \textrm{ by } n\) zero matrix. Then \(A+\pmb{0}=A\). %
-\item\hypertarget{li-81}{} Let \(A\) be an \(m \textrm{ by } n\) matrix. Then \(A+(- 1)A=\pmb{0}\), where \(\pmb{0}\) is the \(m \textrm{ by } n\) zero matrix.%
-\item\hypertarget{li-82}{} Let \(A\), \(B\), and \(C\) be \(m \textrm{ by } n\), \(n \textrm{ by } r\), and \(n \textrm{ by } r\) matrices respectively. Then \(A(B+C)=AB+AC\).%
-\item\hypertarget{li-83}{} Let \(A\), \(B\), and \(C\) be \(m \textrm{ by } n\), \(r \textrm{ by } m\), and \(r \textrm{ by } m\) matrices respectively.
- Then \((B+C)A=BA+CA\).%
-\item\hypertarget{li-84}{} Let \(A\), \(B\), and \(C\) be \(m \textrm{ by } n\), \(n \textrm{ by } r\), and \(r \textrm{ by } p\) matrices respectively.
- Then \(A(BC)=(AB)C\).%
-\item\hypertarget{li-85}{}Let \(A\) be an \(m \textrm{ by } n\) matrix, \(I_m\) the \(m \textrm{ by } m\) identity matrix,
- and \(I_n\) the \(n \textrm{ by } n\) identity matrix. Then \(I_mA=AI_n=A\)%
-\item\hypertarget{li-86}{} Let \(A\) be an \(n \textrm{ by } n\) matrix. Then if \(A^{-1}\) exists,
- \(\left(A^{-1}\right)^{-1}=A\).%
-\item\hypertarget{li-87}{} Let \(A\) and \(B\) be \(n \textrm{ by } n\) matrices.
- Then if \(A^{-1}\) and \(B^{-1}\) exist, \((AB)^{-1}=B^{-1}A^{-1}\).%
+\item\hypertarget{li-64}{}%
+\item\hypertarget{li-65}{} \(c(0)=\{0\}, c(1)=\{1,2,3\}=c(2)=c(3)\)%
+\item\hypertarget{li-66}{} \(c(0)\cup c(1)=A\) and \(c(0)\cap c(1)=\emptyset\)%
+\item\hypertarget{li-67}{} Let \(A\) be any set and let \(r\) be an equivalence relation on \(A\). Let \(a\) be any element of \(A\). \(a\in c(a)\) since \(r\) is reflexive, so each element of \(A\) is in some equivalence class. Therefore, the union of all equivalence classes equals \(A\). Next we show that any two equivalence classes are either identical or disjoint and we are done. Let \(c(a)\) and \(c(b)\) be two equivalence classes, and assume that \(c(a)\cap c(b)\neq \emptyset\). We want to show that \(c(a)=c(b)\). To show that \(c(a)\subseteq c(b)\), let \(x\in c(a)\). \(x\in c(a) \Rightarrow a r x \). Also, there exists an element, \(y\), of \(A\) that is in the intersection of \(c(a)\)
+and \(c(b)\) by our assumption. Therefore,
+  \[
+  \begin{split}
+  a r y \land b r y &\Rightarrow  a r y \land y r b \quad r\textrm{  is symmetric}\\
+			&\Rightarrow  a r b  \quad \textrm{ transitivity of }r \\
+	\end{split}
+	\]%
+\par
+ Next,
+     \begin{equation*}
+     \begin{split}
+     a r x \land a r b &\Rightarrow x r a \land a r b\\
+		&\Rightarrow  x r b\\
+		&\Rightarrow  b r x\\
+		& \Rightarrow  x \in c(b)\\
+		\end{split}
+		\end{equation*}
+		%
+\par
+ Similarly, \(c(b)\subseteq c(a)\)  \(\square\) %
 \end{enumerate}
 %
-\item[2.]\hypertarget{exercise-18}{} Verify each of the Laws of Matrix Algebra using examples.%
+\item[8.]\hypertarget{exercise-20}{}Define \(r\) on the power set of \(\{1, 2, 3\}\) by \(A r B \Leftrightarrow  \lvert A \rvert = \lvert B \rvert \). Prove that \(r\) is an equivalence
+relation. What are the equivalence classes under \(r\)?%
 \par\smallskip
-\item[3.]\hypertarget{exercise-19}{} Let \(A = \left(
-\begin{array}{cc}
- 1 & 2 \\
- 0 & -1 \\
-\end{array}
-\right)\), \(B= \left(
-\begin{array}{ccc}
- 3 & 7 & 6 \\
- 2 & -1 & 5 \\
-\end{array}
-\right)\), and \(C= \left(
-\begin{array}{ccc}
- 0 & -2 & 4 \\
- 7 & 1 & 1 \\
-\end{array}
-\right)\). Compute the following as efficiently as possible by using any of the Laws of Matrix Algebra:%
+\item[9.]\hypertarget{exercise-21}{}Consider the following relations on \(\mathbb{Z}_8= \{0, 1, . . . , 7\}\). Which are equivalence relations? For the equivalence relations, list the equivalence classes.%
 \par
 \leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-88}{} \(A B + A C\)%
-\item\hypertarget{li-89}{} \(A^{-1}\)%
-\item\hypertarget{li-90}{} \(A(B + C)\)%
-\item\hypertarget{li-91}{}  \(\left(A^2\right)^{-1}\)%
-\item\hypertarget{li-92}{}  \((C + B)^{-1}A^{-1}\)%
+\item\hypertarget{li-68}{} \(a r b\) iff the English spellings of a and b begin with the same letter.%
+\item\hypertarget{li-69}{} \(a s b\) iff \(a - b\) is a positive integer.%
+\item\hypertarget{li-70}{} \(a t b\) iff \(a-b\) is an even integer.%
 \end{enumerate}
 %
 \par\smallskip
@@ -1572,123 +1000,306 @@ A Exercises%
 \noindent\textbf{Answer.}\hypertarget{answer-11}{}\quad
 \leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-93}{} \(AB+AC=\left(
-\begin{array}{ccc}
- 21 & 5 & 22 \\
- -9 & 0 & -6 \\
-\end{array}
-\right)\)%
-\item\hypertarget{li-94}{} \(A(B+C)=A B+ B C\)%
-\item\hypertarget{li-95}{} \(A^{-1}=\left(
-\begin{array}{cc}
- 1 & 2 \\
- 0 & -1 \\
-\end{array}
-\right)=A\)%
-\item\hypertarget{li-96}{} \(\left(A^2\right)^{-1}=(AA)^{-1}=(A^{-1}A)=I^{-1}=I \quad \) by part c%
+\item\hypertarget{li-71}{}Equivalence Relation,
+ \(c(0)=\{0\},c(1)=\{1\},c(2)=\{2,3\} =c(3),c(4)=\{4,5\}=c(5)\), and
+ \(c(6)=\{6,7\}=c(7)\)%
+\item\hypertarget{li-72}{}  Not an Equivalence Relation.%
+\item\hypertarget{li-73}{}  Equivalence Relation,
+ \(c(0)=\{0,2,4,6\}=c(2)=c(4)=c(6)\)  and 
+ \(c(1)=\{1,3,5,7\}=c(3)=c(5)=c(7)\)%
 \end{enumerate}
 %
-\item[4.]\hypertarget{exercise-20}{} Let \(A =\left(
-\begin{array}{cc}
- 7 & 4 \\
- 2 & 1 \\
-\end{array}
-\right)\) and \(B =\left(
-\begin{array}{cc}
- 3 & 5 \\
- 2 & 4 \\
-\end{array}
-\right)\). Compute the following as efficiently as possible by using any of the Laws of Matrix Algebra:%
-\par
-\leavevmode%
+\item[10.]\hypertarget{exercise-22}{}\leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-97}{} \(A B\) %
-\item\hypertarget{li-98}{} \(A + B\) %
-\item\hypertarget{li-99}{} \(A^2 + A B + B A + B ^2\)%
-\item\hypertarget{li-100}{}  \(B^{-1}A^{-1}\)%
-\item\hypertarget{li-101}{} \(A^2 + A B\)%
+\item\hypertarget{li-74}{}Prove that conguence modulo \(m\) is a transitive?%
+\item\hypertarget{li-75}{}What are the equivalence classes under conguence modulo 2?%
+\item\hypertarget{li-76}{} What are the equivalence classes under conguence modulo 10? %
 \end{enumerate}
 %
 \par\smallskip
-\item[5.]\hypertarget{exercise-21}{} Let \(A\) and \(B\) be \(n\times n\) matrices of real numbers. Is \(A^2-B^2= (A-B)(A+B)\)?  Explain%
-\par\smallskip
 \end{exercisegroup}
 \par\smallskip\noindent
-\typeout{************************************************}
-\typeout{Section 1.4 Matrix Oddities}
-\typeout{************************************************}
-\section[Matrix Oddities]{Matrix Oddities}\label{s-matrix-oddities}
-\index{Matrix Oddities}We have seen that matrix algebra is similar in many ways to elementary algebra. Indeed, if we want to solve the matrix equation \(A X = B\) for the unknown \(X\), we imitate the procedure used in elementary algebra for solving the equation \(a x = b\). Notice how exactly the same properties are used in the following detailed solutions of both equations.%
-\leavevmode%
-\begin{table}
-\centering
-\begin{tabular}{ccc}
-Equation in the real algebra& &Equation in  matrix algebra\tabularnewline[0pt]
-\(a x = b\)&&\(A X = B\)\tabularnewline[0pt]
-\(a^{-1}(a x) =a^{-1}b\) if \(a \neq  0\)&&\(A^{-1}(A X) = A^{-1}B\) if \(A^{-1 }\) exists\tabularnewline[0pt]
-\(\left(a^{-1} a\right)x = a^{-1} b\)&Associative Property&\(\left(A^{-1} A\right)X = A^{-1} B\)\tabularnewline[0pt]
-\(1x = a^{-1} b\)&Inverse Property&\(I X = A^{-1} B\)\tabularnewline[0pt]
-\(x = a^{-1} b\)&Identity Property&\(X = A^{-1} B\) 
-\end{tabular}
-\end{table}
-\par
-Certainly the solution process for \(A X = B\) is the same as that of \(a x = b\).%
-\par
-The solution of \(x a = b\) is \(x = b a^{-1} = a^{-1}b\). In fact, we usually write the solution of both equations as x = \(\frac{b}{a}\). In matrix algebra, the solution of \(X A = B\) is \(X = B A^{-1}\) , which is not necessarily equal to \(A^{-1} B\). So in matrix algebra, since the commutative law (under multiplication) is not true, we have to be more careful in the methods we use to solve equations.%
-\par
-It is clear from the above that if we wrote the solution of \(A X = B\) as \(X=\frac{B}{A}\), we would not know how to interpret \(\frac{B}{A}\). Does it mean \(A^{-1} B\) or \(B A^{-1}\)?  Because of this, \(A^{-1}\) is never written as \(\frac{1}{A}\).%
-\begin{observation}[Matrix Oddities]\label{ss-matrix-oddities}
-Some of the main dissimilarities between matrix algebra and elementary algebra are that in matrix algebra:%
-\par
-\leavevmode%
-\begin{enumerate}[label=\arabic*]
-\item\hypertarget{li-102}{} \(A B\) may be different from \(B A\).%
-\item\hypertarget{li-103}{} There exist matrices \(A\) and \(B\) such that \(A B = \pmb{0}\), and yet \(A\neq \pmb{0}\) and \(B\neq \pmb{0}\).%
-\item\hypertarget{li-104}{} There exist matrices \(A\) where \(A \neq  \pmb{0}\), and yet \(A^2 = \pmb{0}\).%
-\item\hypertarget{li-105}{} There exist matrices \(A\) where \(A^2-A\) with \(A\neq I\) and \(A\neq \pmb{0}\)%
-\item\hypertarget{li-106}{} There exist matrices \(A\) where \(A^2=I\), where \(A\neq I\) and \(A\neq -I\)%
-\end{enumerate}
-%
-\end{observation}
-\typeout{************************************************}
-\typeout{Exercises 1.4.1 Exercises}
-\typeout{************************************************}
-\subsection[Exercises]{Exercises}\label{exercises-5-6}
-\hypertarget{exercisegroup-7}{}\typeout{************************************************}
-\typeout{Introduction  }
-\typeout{************************************************}
-A Exercises%
-\begin{exercisegroup}
-\item[1.]\hypertarget{exercise-22}{} Discuss each of the ``Matrix Oddities'' with respect to elementary algebra.%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-12}{}\quad
- In elementary algebra (the algebra of real numbers), each of the given oddities does not exist.%
-\par
-\leavevmode%
-\begin{itemize}[label=\textbullet]
-\item{} \(AB\) may be different from \(BA\). Not so in elementary algebra, since \(a b = b a\) by the commutative law of multiplication.%
-\item{}There exist matrices \(A\) and \(B\) such that \(AB = \pmb{0}\), yet \(A\neq \pmb{0}\)and \(B\neq \pmb{0}\). In elementary algebra, the only way \(ab = 0\)  is if either \(a\) or \(b\) is zero. There are no exceptions.%
-\item{}There exist matrices \(A\), \(A\neq \pmb{0}\), yet \(A^2=\pmb{0}\). In elementary algebra, \(a^2=0\Leftrightarrow a=0\).%
-\item{}There exist matrices \(A^2=A\). where \(A\neq \pmb{0}\) and \(A\neq I\). In elementary algebra, \(a^2=a\Leftrightarrow a=0 \textrm{ or } 1\).%
-\item{} There exist matrices \(A\) where \(A^2=I\) but \(A\neq I\) and \(A\neq -I\). In elementary algebra, \(a^2=1\Leftrightarrow a=1\textrm{ or 	}-1\).%
-\end{itemize}
-%
-\item[2.]\hypertarget{exercise-23}{} Determine \(2\times 2\) matrices which show that each of the ``Matrix Oddities'' are true.%
-\par\smallskip
-\end{exercisegroup}
-\par\smallskip\noindent
-\hypertarget{exercisegroup-8}{}\typeout{************************************************}
+\hypertarget{exercisegroup-6}{}\typeout{************************************************}
 \typeout{Introduction  }
 \typeout{************************************************}
 B Exercises%
 \begin{exercisegroup}
-\item[3.]\hypertarget{exercise-24}{} Prove the following implications, if possible:%
+\item[11.]\hypertarget{exercise-23}{}In this exercise, we prove that implication is a partial ordering. Let \(A\) be any set of propositions.%
 \par
 \leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-112}{} \(A^2= A\) and \(\det  A \neq  0 \Rightarrow  A =I\)%
-\item\hypertarget{li-113}{} \(A^2 = I \textrm{ and } \det A \neq  0 \Rightarrow  A = I \textrm{ or } A = -I\).%
+\item\hypertarget{li-77}{} Verify that \(q \to  q\) is a tautology, thereby showing that \(\Rightarrow\) is a reflexive relation on \(A\).%
+\item\hypertarget{li-78}{} Prove that \(\Rightarrow\) is antisymmetric on A. Note: we do not use = when speaking of propositions, but rather equivalence, \(\Leftrightarrow\).%
+\item\hypertarget{li-79}{} Prove that \(\Rightarrow\) is transitive on \(A\).%
+\item\hypertarget{li-80}{} Given that \(q_i\) is the proposition \(n < i\) on \(\mathbb{N}\), draw the Hasse diagram for the relation \(\Rightarrow\) on \(\{q_1, q_2, q_3,\ldots \}\).%
+\end{enumerate}
+%
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-12}{}\quad
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-81}{}%
+\item\hypertarget{li-82}{} The proof follows from the biconditional equivalence in Table 3.4.2.%
+\item\hypertarget{li-83}{} Apply the chain rule.%
+\item\hypertarget{li-84}{}\leavevmode%
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{images/fig-sol-6-3-11.png}
+\end{figure}
+%
+\end{enumerate}
+%
+\end{exercisegroup}
+\par\smallskip\noindent
+\hypertarget{exercisegroup-7}{}\typeout{************************************************}
+\typeout{Introduction  }
+\typeout{************************************************}
+C Exercises%
+\begin{exercisegroup}
+\item[12.]\hypertarget{exercise-6-3-12}{}Let \(S = \{1,2,3,4,5,6,7\}\) be a poset \((S, \leq )\) with the Hasse diagram shown below. Another relation \(r \subseteq  S\times S\) is defined as follows: \((x, y) \in  r\) if and only if there exists \(z \in S\) such that \(z < x\) and \(z < y\) in the poset \((S, \leq )\).%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-85}{} Prove that \(r\) is reflexive.%
+\item\hypertarget{li-86}{} Prove that \(r\) is symmetric.%
+\item\hypertarget{li-87}{} A compatible with respect to relation \(r\) is any subset \(Q\) of set \(S\) such that \(x \in  Q \textrm{ and } y \in Q \Rightarrow  (x, y) \in r\). A compatible \(g\) is a maximal compatible if \(Q\) is not a proper subset of another compatible. Give all maximal compatibles with respect to relation \(r\) defined above.%
+\item\hypertarget{li-88}{} Discuss a characterization of the set of maximal compatibles for relation \(r\) when \((S, \leq )\) is a general finite poset. What conditions, if any, on a general finite poset \((S, \leq )\) will make r an equivalence relation?%
+\end{enumerate}
+%
+\leavevmode%
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{images/exercise-6-12.png}
+\caption{Hasse diagram for \(r\) in \hyperlink{exercise-6-3-12}{Exercise~1.3.4.12}
+                \label{fig-exercise-6-12}}
+\end{figure}
+\par\smallskip
+\end{exercisegroup}
+\par\smallskip\noindent
+\typeout{************************************************}
+\typeout{Section 1.4 Matrices of Relations}
+\typeout{************************************************}
+\section[Matrices of Relations]{Matrices of Relations}\label{s-matrices-of-relations}
+We have discussed two of the many possible ways of representing a relation, namely as a digraph or as a set of ordered pairs. In this section we will discuss the representation of relations by matrices.%
+\begin{definition}[Adjacency Matrix]\label{def-adjacency-matrix}
+\index{Adjacency Matrix}Let \(A = \{a_1,a_2,\ldots , a_m\}\) and \(B= \{b_1,b_2,\ldots , b_n\}\) be finite sets of cardinality \(m\) and \(n\), respectively. Let \(r\) be a relation from \(A\) into \(B\). Then \(r\) can be represented by the \(m\times n\) matrix \(R\) defined by
+
+\begin{equation*}R_{ij}= \left\{
+		\begin{array}{cc}
+		 1 & \textrm{   if } a_i r b_j \\
+		 0 & \textrm{   otherwise}     \\
+		\end{array}\right.
+\end{equation*}
+ \(R\) is called the \terminology{adjacency matrix} (or the relation matrix) of \(r\).%
+\end{definition}
+\par
+For example, let \(A = \{2, 5, 6\}\) and let \(r\) be the relation \(\{(2, 2), (2, 5), (5, 6), (6, 6)\}\) on \(A\). Since \(r\) is a relation from \(A\) into the same set \(A\) (the \(B\) of the definition), we have \(a_1= 2\), \(a_2=5\), and \(a_3=6\), while \(b_1= 2\), \(b_2=5\), and \(b_3=6\). Next, since%
+\par
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{}\(2 r 2\), we have \(R_{11}= 1\)%
+\item{}\(2 r 5\), we have \(R_{12}= 1\)%
+\item{}\(5 r 6\), we have \(R_{23}= 1\) %
+\item{}\(6 r 6\), we have \(R_{33}= 1\)%
+\end{itemize}
+%
+\par
+All other entries of \(R\) are zero, so
+
+\(R =\left(
+\begin{array}{ccc}
+ 1 & 1 & 0 \\
+ 0 & 0 & 1 \\
+ 0 & 0 & 1 \\
+\end{array}
+\right)\)
+%
+\par
+From the definition of \(r\) and of composition, we note that
+
+\begin{equation*}r^2 = \{(2, 2), (2, 5), (2, 6), (5, 6), (6, 6)\}\end{equation*}
+
+The adjacency matrix of \(r^2\) is
+
+\begin{equation*}R^2 =\left(
+\begin{array}{ccc}
+ 1 & 1 & 1 \\
+ 0 & 0 & 1 \\
+ 0 & 0 & 1 \\
+\end{array}
+\right)\end{equation*}%
+\par
+We do not write \(R^2\) only for notational purposes. In fact, \(R^2\) can be obtained from the matrix product \(R R\); however, we must use a slightly different form of arithmetic.%
+\begin{definition}[Boolean Arithmetic]\label{def-boolean-arithmetic}
+\index{Boolean Arithmetic}Boolean arithmetic is the arithmetic defined on \(\{0,1\}\) using Boolean addition and Boolean multiplication, defined by%
+\leavevmode%
+\begin{table}
+\centering
+\begin{tabular}{lll}
+\(0 + 0 = 0\)&\(0+1 = 1 + 0=1\)     &\(1 + 1 = 1\)\tabularnewline[0pt]
+\(0\cdot 0=0\) & \(0 \cdot  1 = 1 \cdot  0 = 0\)&\(1 \cdot  1 = 1\)
+\end{tabular}
+\end{table}
+\end{definition}
+\par
+Notice that from Chapter 3, this is the ``arithmetic of logic,'' where \(+\) replaces ``or'' and \(\cdot\) replaces ``and.''%
+\begin{example}[Composition by Multiplication]\label{ex-composition-matrices}
+If  \(R=\left(
+\begin{array}{cccc}
+ 0 & 1 & 0 & 0 \\
+ 1 & 0 & 1 & 0 \\
+ 0 & 1 & 0 & 1 \\
+ 0 & 0 & 1 & 0 \\
+\end{array}
+\right)\)  and  \(S=\left(
+\begin{array}{cccc}
+ 0 & 1 & 1 & 1 \\
+ 0 & 0 & 1 & 1 \\
+ 0 & 0 & 0 & 1 \\
+ 0 & 0 & 0 & 0 \\
+\end{array}
+\right)\).
+
+Then using Boolean arithmetic, \(R S =\left(
+\begin{array}{cccc}
+ 0 & 0 & 1 & 1 \\
+ 0 & 1 & 1 & 1 \\
+ 0 & 0 & 1 & 1 \\
+ 0 & 0 & 0 & 1 \\
+\end{array}
+\right)\)  and \(S R=\left(
+\begin{array}{cccc}
+ 1 & 1 & 1 & 1 \\
+ 0 & 1 & 1 & 1 \\
+ 0 & 0 & 1 & 0 \\
+ 0 & 0 & 0 & 0 \\
+\end{array}
+\right)\).
+%
+\end{example}
+\begin{theorem}[Composition is Matrix Multiplication]\label{theorem-composition-is-multiplication}
+Let \(A_1\), 
+\(A_2\), and \(A_3\) be finite sets where \(r_1\) is a relation from \(A_1\) into \(A_2\) and \(r_2\)
+is a relation from \(A_2\) into \(A_3\). If \(R_1\) and \(R_2\) are the adjacency matrices of \(r_1\) and \(r_2\) , respectively, then the product
+\(R_1R_2\) using Boolean arithmetic is the adjacency matrix of the composition \(r_1r_2\).%
+\end{theorem}
+\par
+Remark: A convenient help in constructing the adjacency matrix of a relation from a set \(A\) into a set \(B\) is to write the elements from \(A\) in a column preceding the first column of the adjacency matrix, and the elements of \(B\) in a row above the first row. Initially, \(R\) in Example 6.4.1 would be
+
+\begin{equation*}
+\begin{array}{cc}
+   & 
+\begin{array}{ccc}
+ 2 & 5 & 6 \\
+\end{array}
+ \\
+ 
+\begin{array}{c}
+ 2 \\
+ 5 \\
+ 6 \\
+\end{array}
+ & \left(
+\begin{array}{ccc}
+   &   &   \\
+   &   &   \\
+   &   &   \\
+\end{array}
+\right) \\
+\end{array}\end{equation*} 
+
+To fill in the matrix, \(R_{ij}\) is 1 if and only if\(\left(a_i,b_j\right) \in r\). So that, since the pair \((2, 5) \in r\), the entry of \(R\) corresponding to the row labeled 2 and the column labeled 5 in the matrix is a 1.%
+\begin{example}[Relations and Information]\label{ex-relations-information}
+This final example gives an insight into how relational data base programs can systematically answer questions pertaining to large masses of information. Matrices \(R\) (on the left) and \(S\) (on the right) define the relations \(r\) and \(s\) where
+\(a r b\) if software \(a\) can be run with operating system \(b\), and \(b s c\) if operating system \(b\) can run on computer \(c\).
+
+\begin{equation*}\begin{array}{cc}
+   & 
+\begin{array}{cccc}
+ \text{OS1} & \text{OS2} & \text{OS3} & \text{OS4} \\
+\end{array}
+ \\ 
+\begin{array}{c}
+ \text{P1} \\
+ \text{P2} \\
+ \text{P3} \\
+ \text{P4} \\
+\end{array}
+ & \left(
+\begin{array}{cccc}
+  1  &  0  &  1  &  0  \\
+  1  &  1  & 0 & 0 \\
+ 0 & 0 & 0 &  1  \\
+ 0 & 0 &  1  &  1  \\
+\end{array}
+\right) \\
+\end{array}\)       \(\begin{array}{cc}
+   & 
+\begin{array}{ccc}
+ \text{C1} & \text{C2} & \text{C3} \\
+\end{array}
+ \\
+ 
+\begin{array}{c}
+ \text{OS1} \\
+ \text{OS2} \\
+ \text{OS3} \\
+ \text{OS4} \\
+\end{array}
+ & \left(
+\begin{array}{ccc}
+  1  &  1  & 0 \\
+ 0 &  1  & 0 \\
+ 0 & 0 &  1  \\
+ 0 &  1  &  1  \\
+\end{array}
+\right) \\
+\end{array}\end{equation*}
+
+Although the relation between the software and computers is not implicit from the data given, we can easily compute this information. The matrix of \(rs\) is \(RS\), which is
+
+ \begin{equation*}\begin{array}{cc}
+   & 
+\begin{array}{ccc}
+ \text{C1} & \text{C2} & \text{C3} \\
+\end{array}
+ \\
+ 
+\begin{array}{c}
+ \text{P1} \\
+ \text{P2} \\
+ \text{P3} \\
+ \text{P4} \\
+\end{array}
+ & \left(
+\begin{array}{ccc}
+  1  &  1  & 1 \\
+ 1 &  1  & 0 \\
+ 1 & 1 &  1  \\
+ 0 &  1  &  1  \\
+\end{array}
+\right) \\
+\end{array}\end{equation*}
+This matrix tells us at a glance which software will run on the computers listed. In this case, all software will run on all computers with the exception of program P2, which will not run on the computer C3, and program P4, which will not run on the computer C1.%
+\end{example}
+\typeout{************************************************}
+\typeout{Exercises 1.4.1 Exercises}
+\typeout{************************************************}
+\subsection[Exercises]{Exercises}\label{exercises-6-4}
+\hypertarget{exercisegroup-8}{}\typeout{************************************************}
+\typeout{Introduction  }
+\typeout{************************************************}
+A Exercises%
+\begin{exercisegroup}
+\item[1.]\hypertarget{exercise-25}{}Let \(A_1 = \{1,2, 3, 4\}\), \(A_2 = \{4, 5, 6\}\), and \(A_3 = \{6, 7, 8\}\). Let \(r_1\) be the relation from \(A_1\) into \(A_2\) defined by
+\(r_1 = \{(x, y)  \mid  y - x = 2\}\), and let \(r_2\) be the relation from \(A_2\) into \(A_3\) defined by \(r_2 = \{(x, y) \mid  y - x = 1\}\).%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-93}{} Determine the adjacency matrices of \(r_1\) and \(r_2\).%
+\item\hypertarget{li-94}{} Use the definition of composition to find \(r_1r_2\).%
+\item\hypertarget{li-95}{} Verify the result in part by finding the product of the adjacency matrices of \(r_1\) and \(r_2\).%
 \end{enumerate}
 %
 \par\smallskip
@@ -1696,128 +1307,616 @@ B Exercises%
 \noindent\textbf{Answer.}\hypertarget{answer-13}{}\quad
 \leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-114}{} \(\det  A \neq 0\Rightarrow A^{-1}\) exists, and if you multiply the equation \(A^2=A\) on both sides by \(A^{-1}\) , you obtain \(A=I\).%
-\item\hypertarget{li-115}{} Counterexample: \(A=\left(
-\begin{array}{cc}
- 1 & 0 \\
- 0 & -1 \\
+\item\hypertarget{li-96}{} \(\begin{array}{cc}
+   & 
+\begin{array}{ccc}
+ 4 & 5 & 6 \\
 \end{array}
-\right)\)
+ \\
+ 
+\begin{array}{c}
+ 1 \\
+ 2 \\
+ 3 \\
+ 4 \\
+\end{array}
+ & \left(
+\begin{array}{ccc}
+ 0 & 0 & 0 \\
+ 1 & 0 & 0 \\
+ 0 & 1 & 0 \\
+ 0 & 0 & 1 \\
+\end{array}
+\right) \\
+\end{array}\)  and \(\begin{array}{cc}
+   & 
+\begin{array}{ccc}
+ 6 & 7 & 8 \\
+\end{array}
+ \\
+ 
+\begin{array}{c}
+ 4 \\
+ 5 \\
+ 6 \\
+\end{array}
+ & \left(
+\begin{array}{ccc}
+ 0 & 0 & 0 \\
+ 1 & 0 & 0 \\
+ 0 & 1 & 0 \\
+\end{array}
+\right) \\
+\end{array}\)%
+\item\hypertarget{li-97}{}\( r_1r_2 =\{(3,6),(4,7)\}\)%
+\item\hypertarget{li-98}{} \(\begin{array}{cc}
+   & 
+\begin{array}{ccc}
+ 6 & 7 & 8 \\
+\end{array}
+ \\
+ 
+\begin{array}{c}
+ 1 \\
+ 2 \\
+ 3 \\
+ 4 \\
+\end{array}
+ & \left(
+\begin{array}{ccc}
+ 0 & 0 & 0 \\
+ 0 & 0 & 0 \\
+ 1 & 0 & 0 \\
+ 0 & 1 & 0 \\
+\end{array}
+\right) \\
+\end{array}\)
 %
 \end{enumerate}
 %
-\item[4.]\hypertarget{exercise-25}{} Let \(M_{n\times n}(\mathbb{R})\) be the set of real \(n\times n\) matrices. Let \(P \subseteq  M_{n\times n}(\mathbb{R})\) be the subset of matrices defined by \(A \in  P\) if and only if \(A^2 = A\). Let \(Q \subseteq  P\) be defined by \(A\in Q\) if and only if \(\det A \neq  0\).%
-\par
-\leavevmode%
+\item[2.]\hypertarget{exercise-26}{}\leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-116}{} Determine the cardinality of \(Q\).%
-\item\hypertarget{li-117}{} Consider the special case \(n = 2\) and prove that a sufficient condition for \(A \in  P \subseteq  M_{2\times 2}(\mathbb{R})\) is that \(A\) has a zero determinant (i.e., \(A\) is singular) and \(tr(A) = 1\) where \(tr(A) = a_{11}+ a _{22}\) is the sum of the main diagonal elements of \(A\).%
-\item\hypertarget{li-118}{} Is the condition of part b a necessary condition?%
+\item\hypertarget{li-99}{} Determine the adjacency matrix of each relation given via the digraphs in Exercise 3 of Section 6.3.%
+\item\hypertarget{li-100}{} Using the matrices found in part (a) above, find \(r^2\) of each relation in Exercise 3 of Section 6.3.%
+\item\hypertarget{li-101}{} Find the digraph of \(r^2\) directly from the given digraph and compare your results with those of part (b).%
 \end{enumerate}
 %
 \par\smallskip
+\item[3.]\hypertarget{exercise-27}{}Suppose that the matrices in \hyperref[ex-composition-matrices]{Example~\ref{ex-composition-matrices}} are relations on \(\{1, 2, 3, 4\}\). What relations do \(R\) and \(S\) describe?%
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-14}{}\quad
+\leavevmode%
+\begin{table}
+\centering
+\begin{tabular}{l}
+R : \(x r y\) if and only if \( \lvert x -y \rvert = 1\)\tabularnewline[0pt]
+S : \(x s y\) if and only if \(x\) is less than \(y\). 
+\end{tabular}
+\end{table}
+\item[4.]\hypertarget{exercise-28}{}Let \(D\) be the set of weekdays, Monday through Friday, let \(W\) be a set of employees \(\{1, 2, 3\}\) of a tutoring center, and let \(V\) be a set
+of computer languages for which tutoring is offered,  \(\{A(PL), B(asic), C(++), J(ava), L(isp), P(ython)\}\). We define \(s\) (schedule)
+from \(D\) into \(W\) by \(d s w\) if \(w\) is scheduled to work on day \(d\). We also define \(r\) from \(W\)
+into \(V\) by \(w r l\) if \(w\) can tutor students in language \(l\). If \(s\) and \(r\) are defined by matrices%
+\par
+
+\begin{equation*} 
+S = 
+\begin{array}{cc}
+   & 
+		\begin{array}{ccc}
+		1 & 2 & 3 \\
+		\end{array}
+		 \\
+ 
+	\begin{array}{c}
+			 M \\
+			 T \\
+			 W \\
+			 R \\
+			 F \\
+	\end{array}
+     & 
+     \left(
+			\begin{array}{ccc}
+				 1 & 0 & 1 \\
+				 0 & 1 & 1 \\
+				 1 & 0 & 1 \\
+				 0 & 1 & 0 \\
+				 1 & 1 & 0 \\
+			\end{array}
+		\right) \\
+		\end{array}
+\textrm{ and }R=
+	\begin{array}{cc}
+   & 
+	\begin{array}{cccccc}
+		 A & B & C & J & L & P \\
+	\end{array}
+ \\
+ 
+\begin{array}{c}
+ 1 \\
+ 2 \\
+ 3 \\
+\end{array}
+ & \left(
+\begin{array}{cccccc}
+ 0 & 1 & 1 & 0 & 0 & 1 \\
+ 1 & 1 & 0 & 1 & 0 & 1 \\
+ 0 & 1 & 0 & 0 & 1 & 1 \\
+\end{array}
+\right) \\
+\end{array}\end{equation*}
+%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-102}{} compute \(S R\) using Boolean arithmetic and give an interpretation of the relation it defines, and%
+\item\hypertarget{li-103}{} compute \(S R\) using regular arithmetic and give an interpretation of what the result describes.%
+\end{enumerate}
+%
+\par\smallskip
+\item[5.]\hypertarget{exercise-29}{} How many different reflexive, symmetric relations are there on a set with three elements?%
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Hint.}\hypertarget{hint-1}{}\quad
+Consider the possible matrices.%
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-15}{}\quad
+ The diagonal entries of the matrix for such a relation must be 1. When the three entries above the diagonal are determined, the entries below are also determined. Therefore, there are \(2^3\) fitting the description.%
+\item[6.]\hypertarget{exercise-30}{}Let \(A = \{a, b, c, d\}\).  Let \(r\) be the relation on \(A\) with adjacency matrix
+
+\(\begin{array}{cc}
+   & 
+\begin{array}{cccc}
+ a & b & c & d \\
+\end{array}
+ \\
+ 
+\begin{array}{c}
+ a \\
+ b \\
+ c \\
+ c \\
+\end{array}
+ & \left(
+\begin{array}{cccc}
+ 1 & 0 & 0 & 0 \\
+ 0 & 1 & 0 & 0 \\
+ 1 & 1 & 1 & 0 \\
+ 0 & 1 & 0 & 1 \\
+\end{array}
+\right) \\
+\end{array}\)%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-104}{} Explain why \(r\) is a partial ordering on \(A\).%
+\item\hypertarget{li-105}{} Draw its Hasse diagram.%
+\end{enumerate}
+%
+\par\smallskip
+\item[7.]\hypertarget{exercise-31}{}Define relations \(p\) and \(q\) on \(\{1, 2, 3, 4\}\) by \(p = \{(a, b) \mid \lvert a-b\rvert=1\}\) and \(q=\{(a,b) \mid a-b \textrm{ is even}\}\).%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-106}{} Represent \(p\) and \(q\) as both graphs and matrices.%
+\item\hypertarget{li-107}{} Determine \(p q\), \(p^2\), and \(q^2\); and represent them clearly in any way.%
+\end{enumerate}
+%
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-16}{}\quad
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-108}{} \(\begin{array}{cc}
+  & 
+\begin{array}{cccc}
+ 1 & 2 & 3 & 4 \\
+\end{array}
+ \\
+ 
+\begin{array}{c}
+ 1 \\
+ 2 \\
+ 3 \\
+ 4 \\
+\end{array}
+ & \left(
+\begin{array}{cccc}
+ 0 & 1 & 0 & 0 \\
+ 1 & 0 & 1 & 0 \\
+ 0 & 1 & 0 & 1 \\
+ 0 & 0 & 1 & 0 \\
+\end{array}
+\right) \\
+\end{array}\) and \(\begin{array}{cc}
+   & 
+\begin{array}{cccc}
+ 1 & 2 & 3 & 4 \\
+\end{array}
+ \\
+ 
+\begin{array}{c}
+ 1 \\
+ 2 \\
+ 3 \\
+ 4 \\
+\end{array}
+ & \left(
+\begin{array}{cccc}
+ 1 & 0 & 1 & 0 \\
+ 0 & 1 & 0 & 1 \\
+ 1 & 0 & 1 & 0 \\
+ 0 & 1 & 0 & 1 \\
+\end{array}
+\right) \\
+\end{array}\)%
+\item\hypertarget{li-109}{}  \(P Q=
+\begin{array}{cc}
+   & 
+\begin{array}{cccc}
+ 1 & 2 & 3 & 4 \\
+\end{array}
+ \\
+ 
+\begin{array}{c}
+ 1 \\
+ 2 \\
+ 3 \\
+ 4 \\
+\end{array}
+ & \left(
+\begin{array}{cccc}
+ 0 & 1 & 0 & 0 \\
+ 1 & 0 & 1 & 0 \\
+ 0 & 1 & 0 & 1 \\
+ 0 & 0 & 1 & 0 \\
+\end{array}
+\right) \\
+\end{array}\)
+
+ \(P^2 =\text{  }
+\begin{array}{cc}
+   & 
+\begin{array}{cccc}
+ 1 & 2 & 3 & 4 \\
+\end{array}
+ \\
+ 
+\begin{array}{c}
+ 1 \\
+ 2 \\
+ 3 \\
+ 4 \\
+\end{array}
+ & \left(
+\begin{array}{cccc}
+ 0 & 1 & 0 & 0 \\
+ 1 & 0 & 1 & 0 \\
+ 0 & 1 & 0 & 1 \\
+ 0 & 0 & 1 & 0 \\
+\end{array}
+\right) \\
+\end{array}\)\(=Q^2\)
+%
+\end{enumerate}
+%
 \end{exercisegroup}
 \par\smallskip\noindent
 \hypertarget{exercisegroup-9}{}\typeout{************************************************}
 \typeout{Introduction  }
 \typeout{************************************************}
-C Exercises%
+B Exercises%
 \begin{exercisegroup}
-\item[5.]\hypertarget{exercise-26}{} Write each of the following systems in the form \(A X = B\), and then solve the systems using matrices.%
-\par
-\leavevmode%
-\begin{multicols}{2}
+\item[8.]\hypertarget{exercise-32}{}\leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-119}{} \(2x_1+x_2=3\\
-x_1-x_2= 1\)%
-\item\hypertarget{li-120}{} \(\text2x_1-x_2=4\\
-x_1 -x_2= 0\)%
-\item\hypertarget{li-121}{} \(2x_1+x_2=1\\
-x_1 -x_2= 1\)%
-\item\hypertarget{li-122}{} \(2x_1+x_2=1\\
-x_1 -x_2= -1\)%
-\item\hypertarget{li-123}{} \(3x_1+2x_2=1 \\
-6 x_1 +4x_2= -1\) %
-\end{enumerate}
-\end{multicols}
-%
-\par\smallskip
-\par\smallskip
-\noindent\textbf{Answer.}\hypertarget{answer-14}{}\quad
-\leavevmode%
-\begin{enumerate}[label=\alph*]
-\item\hypertarget{li-124}{} \(A^{-1}=\left(
-\begin{array}{cc}
- 1/3 & 1/3 \\
- 1/3 & -2/3 \\
-\end{array}
-\right)\)  \(x_1=4/3\), and \(x_2=1/3\)%
-\item\hypertarget{li-125}{} \(A^{-1}=\left(
-\begin{array}{cc}
- 1 & -1 \\
- 1 & -2 \\
-\end{array}
-\right)\)  \(x_1=4\), and \(x_2=4\)%
-\item\hypertarget{li-126}{} \(A^{-1}=\left(
-\begin{array}{cc}
- 1/3 & 1/3 \\
- 1/3 & -2/3 \\
-\end{array}
-\right)\)  \(x_1=2/3\), and \(x_2=-1/3\)%
-\item\hypertarget{li-127}{} \(A^{-1}=\left(
-\begin{array}{cc}
- 1/3 & 1/3 \\
- 1/3 & -2/3 \\
-\end{array}
-\right)\)  \(x_1=0\), and \(x_2=1\)%
-\item\hypertarget{li-128}{} The matrix of coefficients for this system has a zero determinant; therefore,
- it has no inverse. The system cannot
- be solved by this method. In fact, the system has no solution.%
+\item\hypertarget{li-110}{}Prove that if \(r\) is a transitive relation on a set \(A\), then \(r^2 \subseteq  r\). %
+\item\hypertarget{li-111}{} Find an example of a transitive relation for which \(r^2\neq r\).%
 \end{enumerate}
 %
-\item[6.]\hypertarget{exercise-27}{} Recall that \(p(x) = x^2- 5x + 6\) is called a polynomial, or more specifically, a polynomial over \(\mathbb{R}\), where the
-coefficients are elements of \(\mathbb{R}\) and \(x \in  \mathbb{R}\). Also, think of the method of solving, and solutions of, \(x^2- 5x + 6= 0\).
-We would like to define the analogous situation for \(2\times 2\) matrices. First define where \(A\) is a \(2\times 2\) matrix \(p(A) =
-A^2 - 5A + 6I\). Discuss the method of solving and the solutions of \(A^2 - 5A + 6I=\pmb{0}\).%
 \par\smallskip
-\item[7.]\hypertarget{exercise-28}{}For those who know calculus:%
+\item[9.]\hypertarget{exercise-33}{} We define \(\leq\) on the set of all \(n\times n\) relation matrices by the rule that if \(R\) and \(S\) are any two \(n\times n\)
+relation matrices, \(R \leq  S\) if and only if \(R_{ij} \leq S_{ij}\) for all \(1 \leq  i, j \leq  n\).%
 \par
 \leavevmode%
 \begin{enumerate}[label=\alph*]
-\item\hypertarget{li-129}{} Write the series expansion for \(e^a\) centered around \(a=0\).%
-\item\hypertarget{li-130}{} Use the idea of exercise 6 to write what would be a plausible definion of \(e^A\) where \(A\) is an \(n \times  n\) matrix.%
-\item\hypertarget{li-131}{} If \(A=\left(
-\begin{array}{cc}
- 1 & 1 \\
- 0 & 0 \\
-\end{array}
-\right)\) and \(B =\left(
-\begin{array}{cc}
- 0 & -1 \\
- 0 & 0 \\
-\end{array}
-\right)\) , use the series in part (b) to show that \(e^A= \left(
-\begin{array}{cc}
- e & e-1 \\
- 0 & 1 \\
-\end{array}
-\right)\)and \(e^B= \left(
-\begin{array}{cc}
- 1 & -1 \\
- 0 & 1 \\
-\end{array}
-\right)\).%
-\item\hypertarget{li-132}{} Show that \(e^Ae^B\neq e^Be^A\)%
-\item\hypertarget{li-133}{}Show that  \(e^{A+B}= \left(
-\begin{array}{cc}
- e & 0 \\
- 0 & 1 \\
+\item\hypertarget{li-112}{} Prove that \(\leq\) is a partial ordering on all \(n\times n\) relation matrices.%
+\item\hypertarget{li-113}{} Prove that \(R \leq  S  \Rightarrow   R^2\leq S^2\) , but the converse is not true.%
+\item\hypertarget{li-114}{} If \(R\) and \(S\) are matrices of equivalence relations and \(R \leq  S\), how are the equivalence classes defined by \(R\) related to the equivalence classes defined by \(S\)?%
+\end{enumerate}
+%
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-17}{}\quad
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-115}{}Reflexive: \(R_{ij}=R_{ij}\) for all \(i,j\), therefore \(R_{ij}\leq R_{ij}\)%
+\par
+ Antisymmetric: Assume \(R_{ij}\leq S_{ij}\) and \(S_{ij}\leq R_{ij}\) for all \(1\leq i,j\leq n\). Therefore, \(R_{ij} = S_{ij}\) for all \(1\leq i,j\leq n\)  and so \(R=S\)%
+\par
+Transitive: Assume \(R, S,\) and \(T\) are matrices where \(R_{ij}\leq S_{ij}\) and \(S_{ij}\leq T_{ij}\), for all \(1\leq i,j\leq n\). Then \(R_{ij}\leq T_{ij}\) for all \(1\leq i,j\leq n\), and so \(R\leq T\).%
+\item\hypertarget{li-116}{}\begin{equation*}
+\begin{split}
+ \left(R^2\right)_{ij}&=R_{i1}R_{1j}+R_{i2}R_{2j}+\cdots +R_{in}R_{nj}\\
+       &\leq S_{i1}S_{1j}+S_{i2}S_{2j}+\cdots +S_{in}S_{nj}\\
+       &=\left(S^2\right)_{ij} \Rightarrow R^2\leq S^2
+\end{split}
+\end{equation*}%
+\par
+To verify that the converse is not true we need only one example. For \(n=2\), let \(R_{12}=1\) and all other entries equal \(0\), and let \(S\) be the zero matrix. Since \(R^2\) and \(S^2\) are both the zero matrix, \(R^2\leq S^2\), but since \(R_{12}>S_{12}, R\leq S\) is false.%
+\item\hypertarget{li-117}{} The matrices are defined on the same set \(A=\left\{a_1,a_2,\ldots  ,a_n\right\}\). Let \(c\left(a_i\right), i=1,2,\ldots  ,n\) be the equivalence classes defined by \(R\) and let \(d\left(a_i\right)\) be those defined by \(S\). Claim: \(c\left(a_i\right)\subseteq d\left(a_i\right)\). 
+	\begin{equation*}\begin{split}
+	 a_j\in c\left(a_i\right)&\Rightarrow a_i r a_j\\
+	 		&\Rightarrow R_{ij}=1 \Rightarrow S_{ij}=1\\
+	 		&\Rightarrow a_i s a_j\\ 
+	 		& \Rightarrow a_j \in d\left(a_i\right)\\
+	 		\end{split}
+	 \end{equation*}%
+\end{enumerate}
+%
+\end{exercisegroup}
+\par\smallskip\noindent
+\typeout{************************************************}
+\typeout{Section 1.5 Closure Operations on Relations}
+\typeout{************************************************}
+\section[Closure Operations on Relations]{Closure Operations on Relations}\label{s-closure-operations-on-relations}
+In Section 6.1, we studied relations and one important operation on relations, namely composition. This operation enables us to generate new relations from previously known relations. In Section 6.3, we discussed some key properties of relations. We now wish to consider the situation of constructing a new relation \(r^+\) from an existing relation \(r\) where, first, \(r^+\) contains \(r\) and, second, \(r^{+ }\) satisfies the transitive property.%
+\par
+Consider a telephone network in which the main office \(a\) is connected to, and can communicate to, individuals \(b\) and \(c\).  Both \(b\) and \(c\) can communicate to another person, \(d\); however, the main office cannot communicate with \(d\). Assume communication is only one way, as indicated. This situation can be described by the relation \(r = \{(a, b), (a, c), (b, d), (c, d)\}\). We would like to change the system so that the main office \(a\) can communicate with person \(d\) and still maintain the previous system. We, of course, want the most economical system.%
+\par
+This can be rephrased as follows; Find the smallest relation \(r^{+ }\)which contains \(r\) as a subset and which is transitive; \(r^+ =\{(a, b), (a, c), (b, d), (c, d), (a, d)\}\).%
+\begin{definition}[Transitive Closure]\label{def-transitive-closure}
+\index{Transitive Closure}\label{notation-6}
+Let \(A\) be a set and \(r\) be a relation on \(A\). The transitive closure of \(r\), denoted by \(r^+\) , is the smallest transitive relation that contains \(r\) as a subset.%
+\end{definition}
+\par
+Let \(A = \{1, 2, 3, 4\}\), and let \(\mathcal{S} = \{(1, 2), (2, 3), (3, 4)\}\) be a relation on \(A\). This relation is called the successor relation on \(A\) since each element is related to its successor. How do we compute \(\mathcal{S}^+\)?  By inspection we note that \((1, 3)\) must be in \(\mathcal{S}^+\) . Let's analyze why. This is so because \((1,2) \in \mathcal{S}\) and \((2, 3) \in \mathcal{S}\), and the transitive property forces \((1,3)\) to be in \(\mathcal{S}^+\). %
+\par
+In general, it follows that if \((a, b) \in \mathcal{S}\) and \((b, c) \in S,\) then \((a, c) \in \mathcal{S}^+ \). This condition is exactly the membership requirement for the pair \((a, c)\) to be in the composition \(\mathcal{S}\mathcal{S} = \mathcal{S}^2\). So every element in \(\mathcal{S}^2\) must be an element in \(\mathcal{S}^+\) . So we now know that, \(\mathcal{S}^+\) contains at least \(\mathcal{S} \cup  \mathcal{S}^2\) . In particular, for this example, since \(\mathcal{S} = \{(1, 2), (2, 3), (3, 4)\}\) and \(\mathcal{S}^2 = \{(1, 3), (2, 4)\}\), we have 
+
+\[\mathcal{S} \cup  \mathcal{S}^2 =\{(1, 2), (2, 3), (3, 4), (1, 3), (2, 4)\}\]
+%
+\par
+Is the relation \(\mathcal{S} \cup  \mathcal{S}^2\) transitive? Again, by inspection, \((1, 4)\) is not an element of \(\mathcal{S} \cup  \mathcal{S}^2\), but  \((1,3) \in \mathcal{S}^2\) and \((3, 4) \in \mathcal{S}\). Therefore, the composition \(\mathcal{S}^2 \mathcal{S} = \mathcal{S}^3\) produces \((1, 4)\), and it must be an element of \(\mathcal{S}^+\) since \((1,3)\) and \((3, 4)\) are required to be in \(\mathcal{S}^+\).  This shows that \(\mathcal{S}^3 \subseteq  \mathcal{S} ^+\) . This process must be continued until the resulting relation is transitive. If A is finite, as is true in this example, the transitive closure will be obtained in a finite number of steps. For this example, 
+
+ \[\mathcal{S}^+ =\mathcal{S}\cup \mathcal{S} ^2\cup  \mathcal{S} ^3=\{(1, 2), (2, 3), (3, 4),(1, 3),(2, 4),(1,4)\}\]
+ %
+\begin{theorem}[Transitive Closure on a Finite Set]\label{theorem-transitive-closure-formula}
+If \(r\) is a relation on a set \(A\) and \(\lvert A \rvert = n\), then the transitive closure of \(r\) is the union of the first \(n\) powers of
+r.  That is, 
+\[r^+ = r \cup  r^2 \cup  r ^3 \cup \cdots  \cup  r^n\].%
+\end{theorem}
+\par
+Let's now consider the matrix analogue of the transitive closure.%
+\par
+Consider the relation 
+
+\(r = \{(1, 4), (2, 1), (2, 2), (2, 3),(3, 2), (4, 3), (4, 5), (5, 1)\}\) 
+
+on the set \(A = \{1,2, 3, 4, 5\}\). The matrix of \(r\) is
+
+
+
+ \(R=\left(
+\begin{array}{ccccc}
+ 0 & 0 & 0 & 1 & 0 \\
+ 1 & 1 & 1 & 0 & 0 \\
+ 0 & 1 & 0 & 0 & 0 \\
+ 0 & 0 & 1 & 0 & 1 \\
+ 1 & 0 & 0 & 0 & 0 \\
 \end{array}
 \right)\)%
-\item\hypertarget{li-134}{}  Is \(e^Ae^B=e^{A+B}\)?%
+\par
+Recall that \(r^2, r^3, \ldots\)  can be determined through computing the matrix powers \(R^2, R^3, \ldots\).  For our example,%
+\leavevmode%
+\begin{table}
+\centering
+\begin{tabular}{ll}
+
+ \(R^2=\left(
+\begin{array}{ccccc}
+ 0 & 0 & 1 & 0 & 1 \\
+ 1 & 1 & 1 & 1 & 0 \\
+ 1 & 1 & 1 & 0 & 0 \\
+ 1 & 1 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 1 & 0 \\
+\end{array}
+\right)\) & \(R^3=\left(
+\begin{array}{ccccc}
+ 1 & 1 & 0 & 0 & 0 \\
+ 1 & 1 & 1 & 1 & 1 \\
+ 1 & 1 & 1 & 1 & 0 \\
+ 1 & 1 & 1 & 1 & 0 \\
+ 0 & 0 & 1 & 0 & 1 \\
+\end{array}
+\right)\)\tabularnewline[0pt]
+
+ \(R^4=\left(
+\begin{array}{ccccc}
+ 1 & 1 & 1 & 1 & 0 \\
+ 1 & 1 & 1 & 1 & 1 \\
+ 1 & 1 & 1 & 1 & 1 \\
+ 1 & 1 & 1 & 1 & 1 \\
+ 1 & 1 & 0 & 0 & 0 \\
+\end{array}
+\right)\)&\(R^5=\left(
+\begin{array}{ccccc}
+ 1 & 1 & 1 & 1 & 1 \\
+ 1 & 1 & 1 & 1 & 1 \\
+ 1 & 1 & 1 & 1 & 1 \\
+ 1 & 1 & 1 & 1 & 1 \\
+ 1 & 1 & 1 & 1 & 0 \\
+\end{array}
+\right)\)
+\end{tabular}
+\end{table}
+\par
+How do we relate \(\underset{i=1}{\overset{5}{\cup }}r^i\) to the powers of \(R\)?%
+\begin{theorem}[Matrix of a Transitive Closure]\label{theorem-matrix-transitive-closure}
+Let \(r\) be a relation on a finite set and let \(R^+\) be the matrix of \(r^+\) , the transitive closure of \(r\).  Then \(R^+
+= R + R^2 + \cdots + R^n\), using Boolean arithmetic.%
+\end{theorem}
+\par
+Using this theorem, we find \(R^+\) is the \(5\times 5\) matrix consisting of all \(1's\), thus, \(r^+\) is all of \(A \times A\).%
+\par
+Let \(r\) be a relation on the set \(\{1, 2, \dots , n\}\) with relation matrix \(R\). The matrix of the transitive closure \(R^+\), can be computed by the equation \(R^+ = R + R ^2 + \cdots  + R^n\). By using ordinary polynomial evaluation methods, you can compute \(R^+\) with \(n -1\) matrix multiplications: 
+\[R^+ = R(I + R(I +( \cdots  R(I+ R) \cdots )))\]%
+\par
+For example, if \(n = 3\), \(R = R(I + R(I + R))\).%
+\par
+We can make use of the fact that if \(T\) is a relation matrix, \(T + T = T\) due to the fact that \(1 + 1 = 1\) in Boolean arithmetic. Let \(S_k = R + R^2 + \cdots  + R^k\) . Then %
+\par
+\begin{equation*}
+\begin{split}
+R &= S_1\\
+S_1(I+S_1)&=R(I+R)=R+R^2 = S_2 \\
+S_2(I+S_2)&=(R+R^2)(I+R+R^2) \\
+			&=(R+R^2)+(R^2+R^3)+(R^3+R^4) \\
+			&=R+R^2+R^3+R^4 = S_4 
+\end{split}
+\end{equation*}%
+\par
+Similarly,
+\[S_4(I+S_4)=S_8\]
+and by induction we can prove
+\[S_{2^k}(I+S_{2^k})=S_{2^{k+1}}\]
+%
+\par
+Notice how each matrix multiplication doubles the number of terms that have been added to the sum that you currently have computed. In algorithmic form, we can compute \(R^+\) as follows.%
+\begin{algorithm}[Transitive Closure Algorithm]\label{alg-trans-closure}
+ Let \(R\) be a relation matrix and let \(R^+\) be its transitive closure matrix, which is to be computed as matrix \(T\)%
+\begin{lstlisting}[style=genericinput]
+1.0. S = R
+2.0  T= S*(I+S)
+3.0 While T != S
+		3.1 S = T
+		3.2 T= S*(I+S) // using Boolean arithmetic
+4.0 Return T
+\end{lstlisting}
+\end{algorithm}
+\begin{note}[]\label{note-1}
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{} Often the higher-powered terms in \(S_n\) do not contribute anything to \(R^+\). When the condition \(T = S\) becomes true in Step 3, this is an indication that no higher-powered terms are needed.%
+\item{} To compute \(R^+\) using this algorithm, you need to perform no more than \(\lceil \log_2 n \rceil\) matrix multiplications, where
+\(\lceil x \rceil\) is the least integer that is greater than or equal to \(x\). For example, if \(r\) is a relation on 25 elements,
+no more than \(\lceil \log_2 25 \rceil = 5\) matrix multiplications are needed.%
+\end{itemize}
+%
+\end{note}
+\par
+A second algorithm, Warshall's Algorithm, reduces computation time to the time that it takes to perform one matrix multiplication.%
+\begin{algorithm}[Warshall's Algorithm]\label{alg-warshall}
+Let \(R\) be an \(n \times n\) relation matrix and let \(R^+\) be its transitive closure matrix, which is to be computed as matrix \(T\) using boolean arithmetic%
+\begin{lstlisting}[style=genericinput]
+1.0 T = R
+2.0 for k = 1 to n:
+     for i = 1 to n:
+      for j = 1 to n:
+        T[i,j]= T[i,j] + T[i,k] * T[k,j]
+3.0 Return T
+\end{lstlisting}
+\end{algorithm}
+\typeout{************************************************}
+\typeout{Exercises 1.5.1 Exercises}
+\typeout{************************************************}
+\subsection[Exercises]{Exercises}\label{exercises-6-5}
+\hypertarget{exercisegroup-10}{}\typeout{************************************************}
+\typeout{Introduction  }
+\typeout{************************************************}
+A Exercises%
+\begin{exercisegroup}
+\item[1.]\hypertarget{exercise-34}{} Let \(A\) and \(\mathcal{S}\) be as defined above. Compute \(\mathcal{S}^+\) using the matrix representation of \(\mathcal{S}\). Verify your results by checking against the result obtained directly from the definition of transitive closure.%
+\par\smallskip
+\item[2.]\hypertarget{exercise-35}{}Let \(A=\{1,2,3,4,6,12\}\) and \(t=\{(a,b)\mid b/a \textrm{ is a prime number}\}\). determine \(t^+\) by any means but represent it as a matrix.%
+\par\smallskip
+\item[3.]\hypertarget{exercise-36}{}\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-120}{}Draw digraphs of the relations \(\mathcal{S}\), \(\mathcal{S}^2\), \(\mathcal{S}^3\) , and \(\mathcal{S}^+\)  where \(\mathcal{S}\) is defined above.%
+\item\hypertarget{li-121}{} Verify that in terms of the graph of \(\mathcal{S}\), \(a \mathcal{S}^+ b\) if and only if \(b\) is reachable from \(a\) along a
+path of any finite nonzero length.%
 \end{enumerate}
 %
 \par\smallskip
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-18}{}\quad
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-122}{}\leavevmode%
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{images/fig-sol-6-5-3.png}
+\end{figure}
+%
+\item\hypertarget{li-123}{}  Example, \(1s 4\) and using \(S\) one can go from 1 to 4 using a path of length 3.%
+\end{enumerate}
+%
+\item[4.]\hypertarget{exercise-37}{} Let \(r\) be the relation represented by the following digraph.%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-124}{} Find \(r^+\) using the definition based on order pairs.%
+\item\hypertarget{li-125}{} Determine the digraph of \(r^+\) directly from the digraph of \(r\).%
+\item\hypertarget{li-126}{} Verify your result in part (b) by computing the digraph from your result in part (a).%
+\end{enumerate}
+%
+\leavevmode%
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{images/fig-exercise-6-5-4.png}
+\caption{Digraph of \(r\) in exercise 4. 
+			 \label{figure-18}}
+\end{figure}
+\par\smallskip
+\item[5.]\hypertarget{exercise-38}{}\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-127}{}Define reflexive closure and symmetric closure by imitating the definition of transitive closure.%
+\item\hypertarget{li-128}{} Use your definitions to compute the reflexive and symmetric closures of examples in the text.%
+\item\hypertarget{li-129}{} What are the transitive reflexive closures of these examples?%
+\item\hypertarget{li-130}{} Convince yourself that the reflexive closure of the relation \(<\) on the set of positive integers \(\mathbb{P}\) is \(\leq\).%
+\end{enumerate}
+%
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-19}{}\quad
+Definition: Reflexive Closure.  Let \(r\) be a relation on \(A\). The reflexive closure of \(r\) is the smallest reflexive relation that contains \(r\).%
+\par
+Theorem: The reflexive closure of \(r\) is the union of \(r\) with \(\{(x, x) : x\in A\}\) 
+%
+\item[6.]\hypertarget{exercise-39}{} What common relations on \(\mathbb{Z}\) are the transitive closures of the following relations?%
+\par
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-131}{} \(a S b\) if and only if \(a + 1 = b\).%
+\item\hypertarget{li-132}{} \(a R b\) if and only if \(| a - b | = 2\).%
+\end{enumerate}
+%
+\par\smallskip
+\end{exercisegroup}
+\par\smallskip\noindent
+\hypertarget{exercisegroup-11}{}\typeout{************************************************}
+\typeout{Introduction  }
+\typeout{************************************************}
+B Exercises%
+\begin{exercisegroup}
+\item[7.]\hypertarget{exercise-40}{}\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-133}{}Let \(A\) be any set and \(r\) a relation on \(A\), prove that \(\left(r^+\right)^+=r^+\).%
+\item\hypertarget{li-134}{}Is the transitive closure of a symmetric relation always both symmetric and reflexive? Explain.%
+\end{enumerate}
+%
+\par\smallskip
+\par\smallskip
+\noindent\textbf{Answer.}\hypertarget{answer-20}{}\quad
+\leavevmode%
+\begin{enumerate}[label=\alph*]
+\item\hypertarget{li-135}{}  By the definition of transitive closure, \(r^+\) is the smallest relation which contains \(r\); therefore, it is transitive. The transitive closure of \(r^+\), \(\left(r^+\right)^+\) , is the smallest transitive relation that contains \(r^+\). Since \(r^+\) is transitive, \(\left(r^+\right)^+=r^+\). %
+\item\hypertarget{li-136}{}  The transitive closure of a symmetric relation is symmetric, but it may not be reflexive. If one element is not related to any elements, then the transitive closure will not relate that element to others.
+%
+\end{enumerate}
+%
 \end{exercisegroup}
 \par\smallskip\noindent
 %
