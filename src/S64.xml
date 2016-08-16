@@ -129,55 +129,62 @@ To fill in the matrix, \(R_{ij}\) is 1 if and only if\(\left(a_i,b_j\right) \in 
 <example xml:id="ex-relations-information"><title>Relations and Information</title><statement><p>This final example gives an insight into how relational data base programs can systematically answer questions pertaining to large masses of information. Matrices <m>R</m> (on the left) and <m>S</m> (on the right) define the relations <m>r</m> and <m>s</m> where
 \(a r b\) if software <m>a</m> can be run with operating system <m>b</m>, and \(b s c\) if operating system <m>b</m> can run on computer <m>c</m>.
 
-<me>\begin{array}{cc}
-   &amp; 
-\begin{array}{cccc}
- \text{OS1} &amp; \text{OS2} &amp; \text{OS3} &amp; \text{OS4} \\
+<me>
+\begin{array}{cc}
+\begin{array}{cc}
+<!-- row 1 --> 
+     &amp; 
+          \begin{array}{cccc}
+               \text{OS1} &amp; \text{OS2} &amp; \text{OS3} &amp; \text{OS4} 
+           \end{array} \\ 
+<!-- row 2 -->
+      \begin{array}{c}
+				 \text{P1} \\
+				 \text{P2} \\
+				 \text{P3} \\
+				 \text{P4}
+				\end{array}
+					&amp;
+    \left(
+		\begin{array}{cccc}
+ 			 1  &amp;  0  &amp;  1  &amp;  0  \\
+ 			 1  &amp;  1  &amp; 0 &amp; 0 \\
+ 			 0 &amp; 0 &amp; 0 &amp;  1  \\
+ 			 0 &amp; 0 &amp;  1  &amp;  1
+		\end{array}
+	\right) 
+	\end{array}
+<!-- 	second array  -->     \begin{array}{cc}
+<!-- row 1 -->
+			&amp; 
+		\begin{array}{ccc}
+		 \text{C1} &amp; \text{C2} &amp; \text{C3}
+		\end{array} \\
+<!--  row 2 -->
+					\begin{array}{c}
+					 \text{OS1} \\
+					 \text{OS2} \\
+					 \text{OS3} \\
+					 \text{OS4} \\
+					\end{array}
+					 &amp; \left(
+					\begin{array}{ccc}
+					  1  &amp;  1  &amp; 0 \\
+					 0 &amp;  1  &amp; 0 \\
+					 0 &amp; 0 &amp;  1  \\
+					 0 &amp;  1  &amp;  1 
+					\end{array}
+					\right)
+	\end{array}
 \end{array}
- \\ 
-\begin{array}{c}
- \text{P1} \\
- \text{P2} \\
- \text{P3} \\
- \text{P4} \\
-\end{array}
- &amp; \left(
-\begin{array}{cccc}
-  1  &amp;  0  &amp;  1  &amp;  0  \\
-  1  &amp;  1  &amp; 0 &amp; 0 \\
- 0 &amp; 0 &amp; 0 &amp;  1  \\
- 0 &amp; 0 &amp;  1  &amp;  1  \\
-\end{array}
-\right) \\
-\end{array}\)       \(\begin{array}{cc}
-   &amp; 
-\begin{array}{ccc}
- \text{C1} &amp; \text{C2} &amp; \text{C3} \\
-\end{array}
- \\
- 
-\begin{array}{c}
- \text{OS1} \\
- \text{OS2} \\
- \text{OS3} \\
- \text{OS4} \\
-\end{array}
- &amp; \left(
-\begin{array}{ccc}
-  1  &amp;  1  &amp; 0 \\
- 0 &amp;  1  &amp; 0 \\
- 0 &amp; 0 &amp;  1  \\
- 0 &amp;  1  &amp;  1  \\
-\end{array}
-\right) \\
-\end{array}</me>
+</me>
 
 Although the relation between the software and computers is not implicit from the data given, we can easily compute this information. The matrix of <m>rs</m> is <m>RS</m>, which is
 
  <me>\begin{array}{cc}
    &amp; 
 \begin{array}{ccc}
- \text{C1} &amp; \text{C2} &amp; \text{C3} \\
+ \text{C1} &amp; \text{C2} &amp; \text{C3}
 \end{array}
  \\
  
@@ -185,16 +192,16 @@ Although the relation between the software and computers is not implicit from th
  \text{P1} \\
  \text{P2} \\
  \text{P3} \\
- \text{P4} \\
+ \text{P4}
 \end{array}
  &amp; \left(
 \begin{array}{ccc}
   1  &amp;  1  &amp; 1 \\
  1 &amp;  1  &amp; 0 \\
  1 &amp; 1 &amp;  1  \\
- 0 &amp;  1  &amp;  1  \\
+ 0 &amp;  1  &amp;  1 
 \end{array}
-\right) \\
+\right) 
 \end{array}</me>
 This matrix tells us at a glance which software will run on the computers listed. In this case, all software will run on all computers with the exception of program P2, which will not run on the computer C3, and program P4, which will not run on the computer C1.</p></statement></example> 
 
