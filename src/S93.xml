@@ -4,7 +4,7 @@
 <index><main>Connectivity in Graphs</main></index>
 <introduction>
 <p>This section is devoted to a question that, when posed in relation to the graphs that we have examined, seems trivial. That question is: Given two
-vertices, <m>s</m> and <m>t</m>, of a graph, is there a path from <m>s</m> to  t?  If \(s = t\), this question is interpreted
+vertices, <m>s</m> and <m>t</m>, of a graph, is there a path from <m>s</m> to  <m>t</m>?  If \(s = t\), this question is interpreted
 as asking whether there is a circuit of positive length starting at <m>s</m>. Of course, for the graphs we have seen up to now, this question
 can be answered after a brief examination.</p>
 </introduction>
@@ -26,7 +26,7 @@ undirected graph, in which edges can be used in either direction, the notions of
 
 <theorem xml:id="theorem-9.3.1"><title>Maximal Path Theorem</title>
 <statement><p>If a graph has <m>n</m> vertices and vertex <m>u</m> is connected to vertex <m>w</m>, then there exists a path from <m>u</m> to <m>w</m> of length no more than
-<m>n</m>.</p></statement><proof><p>(Indirect): Suppose <m>u</m> is connected to <m>w</m>, but the shortest path from <m>u</m> to <m>w</m> has length <m>m</m>, where \(m>n\). A vertex list for a path of length <m>m</m> will have \(m + 1\) vertices. This path can be represented as \(\left(v_0,v_1,\ldots, v_m\right)\), where \(v_0=u\) and \(v_m= w\). Note that since there are only <m>n</m> vertices in the graph and m vertices are listed in the path after \(v_0\), we can apply the pigeonhole principle and be assured that there must be some duplication in the last <m>m</m> vertices of the vertex list, which represents a circuit in the path. This means that our path of minimum length can be reduced, which is a contradiction.</p>
+<m>n</m>.</p></statement><proof><p>(Indirect): Suppose <m>u</m> is connected to <m>w</m>, but the shortest path from <m>u</m> to <m>w</m> has length <m>m</m>, where \(m>n\). A vertex list for a path of length <m>m</m> will have \(m + 1\) vertices. This path can be represented as \(\left(v_0,v_1,\ldots, v_m\right)\), where \(v_0=u\) and \(v_m= w\). Note that since there are only <m>n</m> vertices in the graph and <m>m</m> vertices are listed in the path after \(v_0\), we can apply the pigeonhole principle and be assured that there must be some duplication in the last <m>m</m> vertices of the vertex list, which represents a circuit in the path. This means that our path of minimum length can be reduced, which is a contradiction.</p>
 </proof></theorem>
  
 
@@ -52,15 +52,15 @@ of <m>r</m> with itself, \(r^2\) , is defined by \(v r^2 w\) if there exists a v
 \(v r^k w\) if and only if there is a path of length <m>k</m> from <m>v</m> to <m>w</m>. Since the transitive closure, \(r^+\) , is the
 union of <m>r</m>, \(r^2\) \(,r^3,\ldots\), we can answer our connectivity question by determining the transitive closure of <m>r</m>, which
 can be done most easily by keeping our relation in matrix form. <xref ref="theorem-9.3.1" autoname="yes"/> is significant in our calculations because it tells us that we need
-only go as far as \(E^n\) to determine the matrix of the transitive closure. </p>
+only go as far as \(G^n\) to determine the matrix of the transitive closure. </p>
 </statement>
 </algorithm>
 
 
 
 <p>The main advantage of the adjacency matrix method is that the transitive closure matrix can answer all questions about the existence of paths between any 
-vertices. If \(G^+\)is the matrix of the transitive closure, \(v_i\), is connected to \(v_j\) if \(\left(E^+\right)_{i j }=1\) . A directed
-graph is connected if \(\left(E^+\right)_{i j }=1\) or \(\left(E^+\right)_{j i}=1\) for each \(i\neq j\). A directed graph is strongly connected
+vertices. If \(G^+\)is the matrix of the transitive closure, \(v_i\) is connected to \(v_j\) if \(\left(G^+\right)_{i j }=1\). A directed
+graph is connected if \(\left(G^+\right)_{i j }=1\) or \(\left(G^+\right)_{j i}=1\) for each \(i\neq j\). A directed graph is strongly connected
 if its transitive closure matrix has no zeros.</p>
 
 
@@ -76,7 +76,7 @@ if its transitive closure matrix has no zeros.</p>
 
 
 
-<p> The football team at Mediocre State University (MSU) has had a bad year, 2 wins and 9 losses. Thirty days after the end of the football season, the university trustees is meeting to decide whether to rehire the head coach; things look bad for him. However, on the day
+<p> The football team at Mediocre State University (MSU) has had a bad year, 2 wins and 9 losses. Thirty days after the end of the football season, the university trustees are meeting to decide whether to rehire the head coach; things look bad for him. However, on the day
 of the meeting, the coach issues the following press release with results from the past year:</p>
 
 <list><title>Press Release: MSU complete successful season</title>
@@ -141,7 +141,7 @@ algorithm is commonly called a  breadth-first search.</p>
 
 <algorithm xml:id="alg-breadth-first"><title>Breadth-first Search</title>
 <index><main>Breadth-first Search</main></index>
-<statement><p>A broadcasting algorithm for finding a path between vertex <m>i</m> and vertex <m>j</m> of a graph having <m>n</m> vertices. The each item \(V_k\) of a list \(V=\left\{V_1, V_2, \ldots , V_n\right\}\), consist of a Boolean field \(V_k.\text{found}\) and an
+<statement><p>A broadcasting algorithm for finding a path between vertex <m>i</m> and vertex <m>j</m> of a graph having <m>n</m> vertices. Each item \(V_k\) of a list \(V=\left\{V_1, V_2, \ldots , V_n\right\}\), consist of a Boolean field \(V_k.\text{found}\) and an
 integer field \(V_k.\text{from}\). The sets \(D_1\), \(D_2\), \dots, called  depth sets, have the property that if <m>k</m> is in
 \(D_r\) , then the shortest path from vertex <m>i</m> to vertex <m>k</m> is of length <m>r</m>. In Step 5, a stack is used to put the vertex list for the path from the vertex <m>i</m> to vertex <m>j</m> in the proper order.</p>
 <p><ol label="1">
@@ -158,7 +158,7 @@ integer field \(V_k.\text{from}\). The sets \(D_1\), \(D_2\), \dots, called  dep
 					<p><m>\quad \quad \quad </m>\(D_{r+1}=D_{r+1}\cup \{t\}\)</p></li>
 				<li><p><m>r = r + 1</m></p></li>
 				</ul></p></li>		
-<li><p>if \(V_j.\text{found} = \text{True}\):</p>
+<li><p>if \(V_j.\text{found}\):</p>
 		<p><ul><li><p><m>S = Empty Stack</m></p></li>
 			<li><p><m>k=j</m></p></li>
 			<li><p>while <m>V_k.\text{from} \neq  i</m>:</p>
@@ -178,7 +178,7 @@ If more than one path of this length exists, then the one that is produced depen
 which the elements of \(D_r\) are examined in Step 4.</p></li>
 <li><p> The condition \(D_{r }\neq \emptyset\) is analogous to the condition that if no mail is sent in a given stage of the process, in which
 case MSU cannot be connected to ESU.</p></li>
-<li><p> This algorithm can be easily revised to find paths to all vertices that can be reached from vertex i. Step 5 would be put off until a specific
+<li><p> This algorithm can be easily revised to find paths to all vertices that can be reached from vertex <m>i</m>. Step 5 would be put off until a specific
 path to a vertex is needed since the information in <m>V</m> contains an efficient list of all paths. The algorithm can also be extended further
 to find paths between any two vertices.</p></li>
 </ul>
@@ -197,7 +197,7 @@ After a few seconds, you should be able to find two paths of length four. Algori
 
 
 <p>Suppose that the edges from each vertex are sorted in ascending order by terminal vertex. For example, the edges from vertex 3 would be in the order
-\((3, 1), (3, 4), (3, 5)\). In addition, assume that in the body of Step 4 of the algorithm, the elements of \(D_r\) are used in ascending order.  Then at the end of Step 4, the value of V will be
+\((3, 1), (3, 4), (3, 5)\). In addition, assume that in the body of Step 4 of the algorithm, the elements of \(D_r\) are used in ascending order.  Then at the end of Step 4, the value of <m>V</m> will be
 
  \[\begin{array}{cccccccc}
  k &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp;   \\
@@ -295,22 +295,18 @@ in edge lists and elements of the depth sets are put into ascending order, as we
  V[k].\text{from} &amp; 2 &amp; 5 &amp; 6 &amp; * &amp; * &amp; 5 \\
  \text{Depth} \text{Set} &amp; 2 &amp; 1 &amp; 2 &amp; * &amp; * &amp; 1 \\
 \end{array}\) \(\text{(*} = \text{undefined})\)
-
 </p></answer></exercise>
-
 <exercise number="2"><statement><p> Apply <xref ref="alg-breadth-first" autoname="yes"/> to find a path from <m>d</m> to <m>c</m>  in the road graph in <xref ref="ex-undirected-1" autoname="yes"/> using the edge list in that example. Assume that the elements
 of the depth sets are put into ascending order.</p></statement></exercise>
 <exercise number="3"><statement><p> In a simple undirected graph with no self-loops, what is the maximum number of edges you can have, keeping the graph unconnected? What is the
 minimum number of edges that will assure that the graph is connected?</p></statement>
-<answer><p> If the number of vertices is <m>n</m>, there can be \(\frac{(n-1)(n-2)}{2}\) vertices with one vertex not connected to any of the others. One
-more edge and connectivity is assured.
-
-</p></answer></exercise>
+<answer><p>If the number of vertices is <m>n</m>, there can be \(\frac{(n-1)(n-2)}{2}\) vertices with one vertex not connected to any of the others. One more edge and connectivity is assured.</p></answer></exercise>
 <exercise number="4"><statement> <p>Use a broadcasting algorithm to determine the shortest path from vertex a to vertex i in the graphs shown in the <xref ref="fig-exercise-9-3-4" autoname="yes"/> below. List the depth sets
 and the stack that is created.</p>
 
 <figure xml:id="fig-exercise-9-3-4">
-	 <image width="100%" source="images/fig-exercise-9-3-4.png">
+	  <caption>Shortest paths from <m>a</m> to <m>i</m>?</caption>
+	  <image width="100%" source="images/fig-exercise-9-3-4.png">
 		  <description>Graphs for exercise 9-3-4</description>
 	 </image>
 </figure>
