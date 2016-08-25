@@ -18,7 +18,7 @@ or basis) that complete the definition of <m>S</m>.</p></statement></definition>
 <m>F</m>. Recall that the sequence <m>C</m> in Section 8.2, <xref ref="ex-three-sequences"/>, can be defined with the same recurrence relation, but with different initial conditions.</p></li>
 <li><p> The relation \(T(k) = 2T(k - 1)^2 - k T(k - 3)\) is a third-order recurrence relation. If values of \(T(0)\), \(T(1)\), and \(T(2)\)
 are specified, then <m>T</m> is completely defined.</p></li>
-<li><p> The recurrence relation \(S(n) = S(\lfloor n/2\rfloor ) + 5\), <m>n > 0</m>, with \(S(0)=0\) has infinite order. To determine \(S(n)\) when <m>n</m> is even, you must go back \(n/2\) terms. Since   \(n/2\)grows unbounded with <m>n</m>, no finite order can be given to <m>S</m>.</p></li>
+<li><p> The recurrence relation \(S(n) = S(\lfloor n/2\rfloor ) + 5\), <m>n > 0</m>, with \(S(0)=0\) has infinite order. To determine \(S(n)\) when <m>n</m> is even, you must go back \(n/2\) terms. Since \(n/2\) grows unbounded with <m>n</m>, no finite order can be given to <m>S</m>.</p></li>
 </ol></p></example> 
 </subsection>
 <subsection xml:id="ss-solving-recurrence-relations"><title>Solving Recurrence Relations</title><index><main>Recurrence Relations</main><sub>Solving</sub></index>
@@ -30,8 +30,8 @@ be solved. The relation that defines <m>T</m> above is one such example. Most of
 the future are classified as finite order linear recurrence relations with constant coefficients. This class is the one that we will spend most of
 our time with in this chapter.</p>
 
-<definition xml:id="def-n-th-order-rr"><title><m>n^{th}</m> Order Linear Recurrence Relation</title> <index><main>Order of a Recurrence Relation</main></index><statement><p>Let S be a sequence of numbers with domain \(k\geq 0\).An \(n^{\textrm{th}}\)
-order linear recurrence relation on S with constant coefficients is a recurrence relation that can be written in the form
+<definition xml:id="def-n-th-order-rr"><title><m>n^{th}</m> Order Linear Recurrence Relation</title> <index><main>Order of a Recurrence Relation</main></index><statement><p>Let \(S\) be a sequence of numbers with domain \(k\geq 0\). An \(n^{\textrm{th}}\)
+order linear recurrence relation on \(S\) with constant coefficients is a recurrence relation that can be written in the form
 
 \[S(k) + C_1 S(k - 1) + . . . + C_n S(k - n) = f(k)\textrm{  for  }k \geq  n\]
 
@@ -43,7 +43,7 @@ where \(C_1, C_2, \ldots , C_n\) are constants and <m>f</m> is a numeric functio
 <example xml:id="ex-some-finite-order-rr"><title>Some Finite Order Linear  Relations</title>
 <p><ol label="a">
 <li><p>The Fibonacci sequence is defined by the second-order linear relation because \(F_k- F_{k-1}- F_{k-2}=0\)</p></li>
-<li><p> The relation \(P(j) + 2P(j - 3) = j^2\) is a third-order linear relation.In this case, \(C_1= C_2= 0\).</p></li>
+<li><p> The relation \(P(j) + 2P(j - 3) = j^2\) is a third-order linear relation. In this case, \(C_1= C_2= 0\).</p></li>
 <li><p> The relation \(A(k)= 2(A(k - 1) + k)\) can be written as \(A(k) - 2A(k - 1) = 2k\). Therefore, it is a first-order linear relation.
 </p></li>
 </ol></p>
@@ -65,13 +65,18 @@ condition for <m>D</m>.</p>
 <p>As a second example, consider \(C(k) =3^{k-1}+2^{k+1}+k\) , \(k \geq  0\). Quite a bit more algebraic manipulation is required to get our result:</p>
 <table>
 <tabular top="major" halign="left">
-<row><cell><m>C(k) =3^{k-1}+2^{k+1}+k</m></cell><cell>Original equation</cell></row>
-<row><cell><m>3C(k-1) =3^{k-1}+3\cdot 2^k+3(k-1)</m></cell><cell><m> \textrm{Substitute } k-1 \textrm{ for } k \textrm{ and multipy by } 3</m></cell></row>
-<row><cell><m></m></cell><cell>Subtract the second equation from the first</cell></row>
-<row><cell><m>C(k)-3C(k-1)=-2^k-2k+3</m></cell><cell><m>3^{k-1} \textrm{ term  is eliminated. This is  a  first order relation.} </m></cell></row>
-<row><cell><m>2C(k-1)-6C(k-2)=-2^k-2(2(k-1)+3)</m></cell><cell><m>\textrm{Substitute } k-1 \textrm{ for } k \textrm{ in the third equation, mult. by 2.}</m></cell></row>
-<row><cell><m></m></cell><cell>Subtract the fourth equation from the third equation.</cell></row>
-<row><cell><m> C(k)-5C(k-1)+6C(k-2)=2k-5</m></cell><cell><m>2^{k+1}\textrm{term is eliminated. This is 2nd order relation.}</m></cell></row>
+<row><cell><m>C(k) =3^{k-1}+2^{k+1}+k</m></cell><cell><m> \textrm{Original equation}</m></cell></row>
+<row><cell><m>3C(k-1) =3^{k-1}+3\cdot 2^k+3(k-1)</m></cell><cell><m> \textrm{Substitute } k-1 \textrm{ for } k </m></cell></row>
+<row><cell></cell><cell><m>\textrm{ and multipy by } 3</m></cell></row>
+<row><cell><m></m></cell><cell><m>\textrm{Subtract the second equation}</m></cell></row>
+<row><cell></cell><cell><m>\textrm{from the first.}</m></cell></row>
+<row><cell><m>C(k)-3C(k-1)=-2^k-2k+3</m></cell><cell><m>3^{k-1} \textrm{ term  is eliminated.} </m></cell></row>
+<row><cell></cell><cell><m> \textrm{ This is  a  first order relation}</m>.</cell></row>
+<row><cell><m>2C(k-1)-6C(k-2)=-2^k-2(2(k-1)+3)</m></cell><cell><m>\textrm{Substitute } k-1 \textrm{ for } k \textrm{ in the}</m></cell></row>
+<row><cell></cell><cell><m>\textrm{third equation, multiply. by } 2</m>.</cell></row>
+<row><cell><m></m></cell><cell><m>\textrm{Subtract the 4th equation from the 3rd.}</m></cell></row>
+<row><cell><m> C(k)-5C(k-1)+6C(k-2)=2k-5</m></cell><cell><m>2^{k+1}\textrm{term is eliminated.}</m></cell></row>
+<row><cell></cell><cell><m>\textrm{This is 2nd order relation.}</m></cell></row>
 </tabular>
 </table>
 <p>The recurrence relation that we have just obtained, defined for <m>k \geq  2</m>, together with the initial conditions \(C(0) = 7/3\) and \(C(1) = 5\),
@@ -79,7 +84,7 @@ define \(C\). We could do more algebra to derive a third-order linear relation i
 </p>
 
 <p><xref ref="table-reverse-solutions-rr" autoname="yes"/> summarizes our results together with a few other examples that we will let the reader derive. Based on these results, we might conjecture
-that any closed form expression for a sequence that combinesexponential expressions and polynomial expressions will be solutions of finite order
+that any closed form expression for a sequence that combines exponential expressions and polynomial expressions will be solutions of finite order
 linear relations. Not only is this true, but the converse is true: a finite order linear relation defines a closed form expression that is similar
 to the ones that were just examined. The only additional information that is needed is a set of initial conditions.</p>
 
@@ -153,7 +158,7 @@ real numbers. This set of sequences is called the general solution of the recurr
 </p></example>
 
 <definition xml:id="def-characteristic-equation."><title>Characteristic Equation</title><index><main>Characteristic Equation</main></index>
-<index><main>Characteristic Roots</main></index><statement><p>The characteristic equation of the homogeneous \(n^{\textrm{th}}\) order linear relation \(S(k) + C_1 S(k- 1) +\ldots + C_n S(k - n) =0\)is the nth degree polynomial equation
+<index><main>Characteristic Roots</main></index><statement><p>The characteristic equation of the homogeneous \(n^{\textrm{th}}\) order linear relation \(S(k) + C_1 S(k- 1) +\ldots + C_n S(k - n) =0\) is the <m>n</m>th degree polynomial equation
 
 \[a^n+\sum_{j=1}^n C_j a^{n-j}=a^n+ C_1a^{n-1}+\cdots +C_{n-1}a+C_n=0\] 
 
@@ -162,7 +167,7 @@ The left-hand side of this equation is called the characteristic polynomial.  Th
  
 <example xml:id="ex-some-char-equations"><title>Some characteristic equations</title> <p><ol label="a">
 <li><p>The characteristic equation of \(F(k) - F(k - 1) - F(k - 2) = 0\) is \(a^2-a-1=0\).</p></li>
-<li><p> The characteristic equation of \(Q(k) + 2Q(k - 1) - 3Q(k - 2) - 6 Q(k- 4) = 0\) is \(a^4+ 2a^3 - 3a^2 - 6 = 0.\)Note that the absence of
+<li><p> The characteristic equation of \(Q(k) + 2Q(k - 1) - 3Q(k - 2) - 6 Q(k- 4) = 0\) is \(a^4+ 2a^3 - 3a^2 - 6 = 0.\) Note that the absence of
 a \(Q(k - 3)\) term means that there is not an \(x^{4-3}=x\) term appearing in the characteristic equation.</p>
 </li>
 </ol></p>

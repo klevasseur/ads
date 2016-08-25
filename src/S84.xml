@@ -73,7 +73,7 @@ T(8) = \text{ }1 + T(4) = 4
 
 The pattern that is established makes it clear that \(T\left(2^m\right) = m + 1\). This result would seem to indicate that every time you double the size of your list, the search time increases by only one unit.</p>
 
-<p>A more complete solution can be obtained if we represent n in binary form. For each \(n\geq 1\), there exists a non-negative integer <m>r</m> such that
+<p>A more complete solution can be obtained if we represent <m>n</m> in binary form. For each \(n\geq 1\), there exists a non-negative integer <m>r</m> such that
 
 <mdn><mrow xml:id="eq-inequality-84">\quad \quad 2^{r-1}\leq n &lt; 2^r</mrow></mdn> 
 
@@ -102,26 +102,24 @@ T(n) &amp;= T\left(a_1a_2\ldots  a_r\right)\\
 expect that most readers would be satisfied with the argument above. Any skeptics are invited to provide the inductive proof. </p>
 <p>For those who prefer to see a numeric example, suppose \(n = 21\).
 
-<m>\quad \quad </m>\(T(21) = T(10101) \\
-\\
-\quad = 1 + T(1010) \\
-\\
-\quad = 1 + (1 + T(101)) \\
-\\
-\quad = 1 + (1 + (1 + T(10))) \\
-\\
-\quad = 1 + (1 + (1 + (1 + T(1))))\\
-\\
-\quad = 1 + (1 + (1 + (1 + (1 +T(0)))))\\
-\\
-\quad = 5\)
+<me>
+\begin{split}
+T(21) &amp;= T(10101) \\
+		&amp; = 1 + T(1010) \\
+		&amp;  = 1 + (1 + T(101)) \\
+		&amp;  = 1 + (1 + (1 + T(10))) \\
+		&amp;  = 1 + (1 + (1 + (1 + T(1))))\\
+		&amp;  = 1 + (1 + (1 + (1 + (1 +T(0)))))\\
+		&amp;  = 5
+\end{split}
+</me>
 </p>
 
 <p>Our general conclusion is that the solution to <xref ref="eq-bin-search-recursion"/>  and <xref ref="eq-bin-search-basis"/> is that for \(n\geq 1\), \(T(n) = r\), where \(2^{r-1}\leq n &lt; 2^r\).</p>
 
 <p>A less cumbersome statement of this fact is that \(T(n)=\left\lfloor \log_{2}n\right\rfloor +1\). For example, { }\(T(21) = \left\lfloor \log_2 21\right\rfloor + 1 = 4 + 1 = 5\). </p>
 </subsubsection>
-<subsubsection xml:id="sss-review-of-logarithms"><title>review of logarithms</title><index><main>Review of logarithms</main></index>
+<subsubsection xml:id="sss-review-of-logarithms"><title>Review of Logarithms</title><index><main>Logarithms</main></index>
 <p>Any discussion of logarithms must start by establishing a base, which can be any positive number other than 1. With the exception of Theorem 8.4.1,
 our base will be 2. We will see that the use of a different base (10 and \(e\approx  2.171828\) are the other common ones) only has the effect of
 multiplying each logarithm by a constant. Therefore, the base that you use really isn't very important. Our choice of base 2 logarithms is convenient
@@ -140,7 +138,7 @@ for the problems that we are considering.</p>
 </figure>
 
 
-<p>For example, \(\log_2 8 = 3\) because \(2^3 = 8\) and \(\log_21.414\approx 0.5\) because \(2^{0.5}\approx 1.414\) . A graph of the function \(f(x)
+<p>For example, \(\log_2 8 = 3\) because \(2^3 = 8\) and \(\log_21.414\approx 0.5\) because \(2^{0.5}\approx 1.414\). A graph of the function \(f(x)
 = \log_2 x\) in <xref ref="fig-log-2-plot" autoname="yes"/> shows that if \(a &lt; b\), the \(\log_2a &lt; \log_2 b\); that is, when <m>x</m> increases, \(\log_2 x\) also increases.
 However, if we move <m>x</m> from \(2^{10} = 1024\) to \(2^{11} = 2048\), \(\log_2 x\) only increases from 10 to 11. This slow rate of increase
 of the logarithm function is an important point to remember. An algorithm acting on <m>n</m> pieces of data that can be executed in \(\log_2{n}\)
@@ -361,7 +359,7 @@ as <m>n</m> grows, \(\frac{D(n)}{n!}\) hardly changes at all. If this quotient i
 in so many places in mathematics that it has its own name, <m>e</m>. An approximate solution of our recurrence relation on <m>D</m> is then \(D(n)\approx \frac{n!}{e}\)</p>
 <p>
 <me>\begin{array}{lll}
- \text{n} &amp; \text{D(n)} &amp; \text{D(n)/n!} \\
+ n &amp; D(n) &amp; D(n)/n! \\
  1 &amp; 0 &amp; 0 \\
  2 &amp; 1 &amp; 0.50000000 \\
  3 &amp; 2 &amp; 0.33333333 \\
@@ -425,7 +423,7 @@ in so many places in mathematics that it has its own name, <m>e</m>. An approxim
 </statement><hint><p>Prove by induction on <m>r</m>.</p></hint></exercise>
 
 <exercise number="5"><statement><p> Use the substitution \(S(n) = T(n + 1)/T(n)\) to solve
-\(T(n)T(n-2)-T(n)^2=1\) for \(n \geq  2\), with \(T(0) = 1\), \(T(1) = 6\), and\(T(n) \geq  0\).</p>
+\(T(n)T(n-2)-T(n)^2=1\) for \(n \geq  2\), with \(T(0) = 1\), \(T(1) = 6\), and \(T(n) \geq  0\).</p>
 </statement><answer><p> The indicated substitution yields \(S(n)=S(n+1)\). Since \(S(0)=T(1)/T(0)=6\), \(S(n)=6\) for all \(n\). Therefore \(T(n+1)=6T(n)\Rightarrow T(n)=6^n\).</p></answer>
 </exercise>
 
