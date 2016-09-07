@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="s-algebraic-systems">
+<title>Algebraic Systems</title>
+<index><main>Algebraic Systems</main></index>
+
+<p>An algebraic system is a mathematical system consisting of a set called the domain and one or more operations on the domain. If <m>V</m> is the
+domain and \(*_1, *_2, \ldots , *_n\) are the operations, \(\left[V;*_1, *_2, \ldots , *_n\right]\) denotes the mathematical system. If the context
+is clear, this notation is abbreviated to <m>V</m>.<p>
+
+<example xml:id="ex-11.2.1."><title>11.2.1.</title><p></p></example><ol label="a">
+<li><p>  Let \(B^*\) be the set of all finite strings of 0's and 1's including the null (or empty) string, \lambda . An algebraic system is obtained
+by adding the operation of concatenation. The concatenation of two strings is simply the linking of the two strings together in the order indicated.
+The concatenation of strings <m>a</m> with <m>b</m> is denoted \(a<>b\).  For example, \(01101<>101 =01101101\) and \(\lambda <>100 = 100\).
+Note that concatenation is an associative operation and that \lambda  is the identity for concatenation.
+
+Note on Notation:  There isn't a standard symbol for concatenation.  We have chosen \(<>\) to be consistant with the notation used in \textit{
+Mathematica} for the \(StringJoin\) function, which does concatenation.   Many programming languages use the plus sign for concatenation, but others
+use $\&amp;$ or $||$.</p></li>
+<li><p> Let <m>M</m> be any nonempty set and let * be any operation on <m>M</m> that is associative and has in identity in <m>M</m>.  Our
+second example might seem strange, but we include it to illustrate a point. The algebraic system \(\left[B^*;<>\right]\) is a special case of \([M;*]\).
+ Most of us are much more comfortable with \(B^*\) than with <m>M</m>.  No doubt, the reason is that the elements in \(B^*\) are more concrete.
+We know what they look like and exactly how they are combined. The description of <m>M</m> is so vague that we don't even know what the elements
+are, much less how they are combined. Why would anyone want to study <m>M</m>? The reason is related to this question: What theorems are of interest
+in an algebraic system? Answering this question is one of our main objectives in this chapter.  Certain properties of algebraic systems are called
+algebraic properties, and any theorem that says something about the algebraic properties of a system would be of interest. The ability to identify
+what is algebraic and what isn't is one of the skills that you should learn from this chapter.
+
+
+
+Now, back to the question of why we study <m>M</m>. Our answer is to illustrate the usefulness of <m>M</m> with a theorem about <m>M</m>.
+
+<theorem xml:id="theorem-11.2.1."><title>11.2.1.</title><index><main>11.2.1.</main></index><statement></statement><proof></proof></theorem> If a, b are elements of M and \(a * b = b * a\), then \((a * b) * (a * b) = (a * a) * (b * b)\).
+
+
+
+Proof:
+
+
+
+\(\text (a*b)*(a*b)=a*(b*(a*b)) \quad \quad =a* ((b*a)*b)\quad \quad = a*((a*b)*b)\quad \quad = a*(a*(b*b))\quad \quad = (a*a)*(b*b)\)
+ \(\textrm{     }\textrm{ Why}?\textrm{ Why}?\textrm{ Why}?\textrm{ Why}?\textrm{ Why}?\)
+
+
+
+The power of this theorem is that it can be applied to any algebraic system that <m>M</m> describes. Since \(B^*\) is one such system, we can
+apply Theorem 11.2.1 to any two strings that commute$---$for example, 01 and 0101. Although a special case of this theorem could have been proven
+for \(B^*\), it would not have been any easier to prove, and it would not have given us any insight into other special cases of M .
+
+
+
+<example xml:id="ex-11.2.2."><title>11.2.2.</title><p></p></example> Consider the set of \(2\times 2\) real matrices, \(M_{2\times 2}(\mathbb{R})\), with the operation of matrix multiplication.
+In this context, Theorem 11.2.1 can be interpreted as saying that if \(A B = B A\),  then \((A B)^2= A^2B^2\).  One pair of matrices that this
+theorem applies to is \(\left(
+\begin{array}{cc}
+ 2 &amp; 1 \\
+ 1 &amp; 2 \\
+\end{array}
+\right)\) and \(\left(
+\begin{array}{cc}
+ 3 &amp; -4 \\
+ -4 &amp; 3 \\
+\end{array}
+\right)\).
+
+
+
+<subsection xml:id="ss-LEVELS OF ABSTRACTION"><title>LEVELS OF ABSTRACTION</title><index><main>LEVELS OF ABSTRACTION</main></index>
+
+
+
+One of the fundamental tools in mathematics is abstraction. There are three levels of abstraction that we will identify for algebraic systems: concrete,
+axiomatic, and universal.
+
+
+
+\pmb{ Concrete Level.} Almost all of the mathematics that you have done in the past was at the concrete level. As a rule, if you can give examples
+of a few typical elements of the domain and describe how the operations act on them, you are describing a concrete algebraic system. Two examples
+of concrete systems are \(B^*\) and \(M_{2\times 2}(\mathbb{R})\). A few others are:
+
+<ol label="a">
+<li><p>  The integers with addition. Of course, addition isn't the only standard operation that we could include. Technically, if we were to add multiplication,
+we would have a different system.</p></li>
+<li><p>  The subsets of the natural numbers, with union, intersection, and complementation.</p></li>
+<li><p>  The complex numbers with addition and multiplication.
+
+
+
+\pmb{ Axiomatic Level.} The next level of abstraction is the axiomatic level. At this level, the elements of the domain are not specified, but certain
+axioms are stated about the number of operations and their properties. The system that we called <m>M</m> is an axiomatic system. Some combinations
+of axioms are so common that a name is given to any algebraic system  to which they apply. Any system with the properties of <m>M</m> is called
+a monoid. . The study of <m>M</m> would be called monoid theory. The assumptions that we made about <m>M</m>, associativity and the
+existence of an identity, are called the monoid axioms. One of your few brushes with the axiomatic level may have been in your elementary algebra
+course. Many algebra texts identify the properties of the real numbers with addition and multiplication as the field axioms. As we will see in Chapter
+16, <q>Rings and Fields,</q> the real numbers share these axioms with other concrete systems, all of which are called fields.
+
+
+
+\pmb{ Universal Level.} The final level of abstraction is the universal level. There are certain concepts, called universal algebra concepts, that
+can be applied to the study of all algebraic systems. Although a purely universal approach to algebra would be much too abstract for our purposes,
+defining concepts at this level should make it easier to organize the various algebraic theories in your own mind. In this chapter, we will consider
+the concepts of isomorphism, subsystem, and direct product.
+
+
+
+
+
+<subsection xml:id="ss-GROUPS"><title>GROUPS</title><index><main>GROUPS</main></index>
+
+
+
+To illustrate the axiomatic level and the universal concepts, we will consider yet another kind of axiomatic system, the group. In Chapter 5 we noted
+that the simplest equation in matrix algebra that we are often called upon to solve is \(A X = B\), where <m>A</m> and <m>B</m> are known square
+matrices and <m>X</m> is an unknown matrix. To solve this equation, we need the associative, identity, and inverse laws. We call the systems that
+have these properties groups.
+
+<definition xml:id="def-Group."><title>Group.</title><index><main>Group.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+
+ A group consists of a nonempty set G and an operation \(*\) on G satisfying the properties<ol label="a">
+<li><p> \(*\) is associative on G:     \((a*b)*c=a*(b*c)\)   for all \(a, b, c \in G\).</p></li>
+<li><p>  There exists an identity element, \(e \in G\) such that \(a*e=e*a=a\)  for all \(a \in  G\).</p></li>
+<li><p>For all \(a \in  G\), there exists an inverse, there exist \(b\in G\) such that \(a *b = b*a=e\).
+
+
+
+A group is usually denoted by its set's name, <m>G</m>, or occasionally by \([G; * ]\) to emphasize the operation. At the concrete level, most
+sets have a standard operation associated with them that will form a group. As we will see below, the integers with addition is a group. Therefore,
+in group theory \(\mathbb{Z}\) always stands for \([\mathbb{Z}; +]\).
+
+
+
+\pmb{ Generic Symbols.} At the axiomatic and universal levels, there are often symbols that have a special meaning attached to them. In group theory,
+the letter <m>e</m> is used to denote the identity element of whatever group is being discussed. A little later, we will prove that the inverse
+of a group element, <m>a</m>, is unique and it is inverse is usually denoted \(a^{-1}\) and is read <q>a inverse.</q> When a concrete group is
+discussed, these symbols are dropped in favor of concrete symbols. These concrete symbols may or may not be similar to the generic symbols. For example,
+the identity element of the group of integers is 0, and the inverse of <m>n</m> is denoted by \(-n\), the additive inverse of <m>n</m>.
+
+
+
+The asterisk could also be considered a generic symbol since it is used to denote operations on the axiomatic level.
+
+<example xml:id="ex-11.2.3."><title>11.2.3.</title><p></p></example><ol label="a">
+<li><p>  The integers with addition is a group. We know that addition is associative.  Zero is the identity for addition: \(0 + n = n + 0 = n\) for
+all integers <m>n</m>. The additive inverse of any integer is obtained by negating it.  Thus the inverse of <m>n</m> is \(-n\).</p></li>
+<li><p>  The integers with multiplication is not a group. Although multiplication is associative and 1 is the identity for multiplication, not all
+integers have a multiplicative inverse in \(\mathbb{Z}\).  For example, the multiplicative inverse of 10 is \(\frac{1}{10}\), but \(\frac{1}{10}\)
+is not an integer.</p></li>
+<li><p>  The power set of any set <m>U</m> with the operation of symmetric difference, $\oplus $, is a group. If <m>A</m> and <m>B</m> are
+sets, then \(A\oplus B=(A\cup B)-(A\cap B)\). We will leave it to the reader to prove that \(\oplus\) is associative over \(\mathcal{P}(U)\). The
+identity of the group is the empty set: \(A\oplus  \emptyset  = A\). Every set is its own inverse since \(A \oplus  A = \emptyset\). Note that \(\mathcal{P}(U)\)
+is not a group with union or intersection.
+
+<definition xml:id="def-Abelian Group."><title>Abelian Group.</title><index><main>Abelian Group.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+
+ A group is abelian if its operation is commutative. 
+
+
+
+Most of the groups that we will discuss in this book will be abelian. The term abelian is used to honor the Norwegian mathematician N. Abel (1802-29),
+who helped develop group theory.
+
+
+\caption{Norwegian Stamp honoring Abel}
+
+
+<exercises xml:id="exercises-11-2">
+<title>Exercises for Section 11.2</title>
+
+
+
+<exercisegroup>
+<introduction><p>A Exercises</p></introduction>
+
+<exercise number="1"><statement>  Discuss the analogy between the terms generic and concrete for algebraic systems and the terms generic and trade for prescription drugs.
+</statement></exercise>
+<exercise number="2"><statement>  Discuss the connection between groups and monoids. Is every monoid a group? Is every group a monoid?
+</statement></exercise>
+<exercise number="3"><statement>  Which of the following are groups?
+
+<ol label="a">
+<li><p>  \(B^*\) with concatenation (Example 11.2.1a).</p></li>
+<li><p>  \(M_{2\times 3}(\mathbb{R})\) with matrix addition.</p></li>
+<li><p>  \(M_{2\times 3}(\mathbb{R})\) with matrix multiplication.</p></li>
+<li><p>  The positive real numbers, \(\mathbb{R}^+,\)with multiplication.</p></li>
+<li><p>  The nonzero real numbers, \(\mathbb{R}^*\), with multiplication.</p></li>
+<li><p>  \(\{1, -1\}\) with multiplication.</p></li>
+<li><p> The positive integers with the operation <m>M</m> defined by \(a M b = \textrm{ larger} \textrm{ of} a \textrm{ and} b\).
+</statement></exercise>
+<exercise number="4"><statement> Prove that, \(\oplus\), defined by \(A \oplus  B = (A \cup  B) - (A \cap  B)\) is an associative operation on \(\mathcal{P}(U)\).
+</statement></exercise>
+<exercise number="5"><statement>  The following problem supplies an example of a non-abelian group. A rook matrix is a matrix that has only 0's and 1's as entries such that
+each row has exactly one 1 and each column has exactly one 1. The term rook matrix is derived from the fact that each rook matrix represents the
+placement of <m>n</m> rooks on an \(n\times n\) chessboard such that none of the rooks can attack one another. A rook in chess can move only vertically
+or horizontally, but not diagonally. Let \(R_n\) be the set of \(n\times n\) rook matrices. There are six \(3\times 3\) rook matrices:
+
+
+
+  \(\begin{array}{ccc}
+ I=\left(
+\begin{array}{ccc}
+ 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 \\
+\end{array}
+\right) &amp; R_1=\left(
+\begin{array}{ccc}
+ 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 \\
+ 1 &amp; 0 &amp; 0 \\
+\end{array}
+\right) &amp; R_2=\left(
+\begin{array}{ccc}
+ 0 &amp; 0 &amp; 1 \\
+ 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 \\
+\end{array}
+\right) \\
+ F_1=\left(
+\begin{array}{ccc}
+ 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 \\
+ 0 &amp; 1 &amp; 0 \\
+\end{array}
+\right) &amp; F_2=\left(
+\begin{array}{ccc}
+ 0 &amp; 0 &amp; 1 \\
+ 0 &amp; 1 &amp; 0 \\
+ 1 &amp; 0 &amp; 0 \\
+\end{array}
+\right) &amp; F_3=\left(
+\begin{array}{ccc}
+ 0 &amp; 1 &amp; 0 \\
+ 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 \\
+\end{array}
+\right) \\
+\end{array}\)
+
+<ol label="a">
+<li><p>  List the \(2\times 2\) rook matrices. They form a group, \(R_2,\) under matrix multiplication. Write out the multiplication table. Is the
+group abelian?</p></li>
+<li><p>  Write out the multiplication table for \(R_3\) . This is another group. Is it abelian?</p></li>
+<li><p>  How many \(4\times 4\) rook matrices are there? How many \(n\times  n\) rook matrices are there?
+</statement></exercise>
+<exercise number="6"><statement> For each of the following sets, identify the standard operation that results in a group. What is the identity of each group?
+
+<ol label="a">
+<li><p>  The set of all \(2\times 2\)matrices with real entries and nonzero determinants.</p></li>
+<li><p> The set of \(2 \times  3\) matrices with rational entries.
+
+
+</exercisegroup>
+<exercisegroup>
+<introduction><p>B Exercises</p></introduction>
+</statement></exercise>
+<exercise number="7"><statement> Let \(V = \{e,a,b, c\}\).  Let \(*\) be defined (partially) by \(x * x = e\) for all \(x \in  V\). Write a complete table for \(*\) so that
+\([V; * ]\) is a group.
+
