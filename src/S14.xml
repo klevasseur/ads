@@ -2,7 +2,7 @@
 <section xml:id="Binary_Representation_of_Positive_Integers">
 <title>Binary Representation of Positive Integers </title><index><main>Binary Representation</main></index>
 <p>Recall that the set of positive integers, <m>\mathbb{P}</m>, is <m>\{1, 2, 3, . . . \}</m>. Positive integers are naturally used to count things. There are many ways to count and many ways to record, or represent, the results of counting. For example, if we wanted to count five hundred twenty-three apples, we might group the apples by tens. There would be fifty-two groups of ten with three single apples left over. The fifty-two groups of ten could be put into five groups of ten tens (hundreds), with two tens left over. The five hundreds, two tens, and three units is recorded as 523. This system of counting is called the base ten positional system, or decimal system. It is quite natural for us to do grouping by tens, hundreds, thousands, <m>\dots</m> since it is the method that all of us use in everyday life. </p>
-<p> The term positional refers to the fact that each digit in the decimal representation of a number has a significance based on its position. Of course this means that rearranging digits will change the number being described. You may have learned of numeraton systems in which the position of symbols does not have any significance (e.g., the ancient Egyptian system). Most of these systems are merely curiosities to us now.</p>
+<p> The term positional refers to the fact that each digit in the decimal representation of a number has a significance based on its position. Of course this means that rearranging digits will change the number being described. You may have learned of numeration systems in which the position of symbols does not have any significance (e.g., the ancient Egyptian system). Most of these systems are merely curiosities to us now.</p>
 <p>The binary number system differs from the decimal number system in that units are grouped by twos, fours, eights, etc. That is, the group sizes are powers of two instead of powers of ten. For example, twenty-three can be grouped into eleven groups of two with one left over. The eleven twos can be grouped into five groups of four with one group of two left over. Continuing along the same lines, we find that twenty-three can be described as one sixteen, zero eights, one four, one two, and one one, which is abbreviated <m>10111_{\textrm{two}}</m>, or simply <m>10111</m> if the
 context is clear. </p>
 <p>The process that we used to determine the binary representation of <m>23</m> can be described in general terms to determine the binary representation of any positive integer <m>n</m>. A general description of a process such as this one is called an algorithm. Since this is the first algorithm in the book, we will first write it out using less formal language than usual, and then introduce some <q>algorithmic notation.</q>  If you are unfamiliar with algorithms, we refer you to <xref ref="app-alg1" autoname="yes" /></p> 
@@ -42,13 +42,13 @@ context is clear. </p>
    <p><ol label="a">
    	<li><p> q := k div 2		<m>\qquad  </m>	//divide k by 2</p></li>
       <li><p> r:= k mod 2 </p></li>
-   	<li><p>L: = prepend r to L <m>\qquad  </m> //Add r to the front of L </p></li>
+   	<li><p>L: = prepend r to L <m>\qquad  </m> //add r to the front of L </p></li>
     	<li><p> k:= q   			<m>\qquad  </m>	//reassign k</p></li>
 </ol></p></li>
 </ol></p>
 </statement>
 </algorithm>
-<p>Here is a Sage version of the algorithm with two alterations. It outputs a the binary representation as a string, and it handles all integers, not just positive ones.</p>
+<p>Here is a Sage version of the algorithm with two alterations. It outputs the binary representation as a string, and it handles all integers, not just positive ones.</p>
 <sage>
 <input>
 def binary_rep(n):
@@ -114,10 +114,9 @@ binary_rep(41)
 <p><ol label="a" cols="2"><li><p> 100001</p></li><li><p> 1001001</p></li><li><p>1000000000</p></li><li><p>1001110000 </p></li></ol></p>
 </statement> </exercise>
 <exercise number="5"><statement> 
-<p>The number of bits in the binary representations of integers increase by one as the numbers double.  Using this fact, determine how many bits the binary representations of the following decimal numbers have without actually doing the full conversion. 
-<m> \quad (a) 2017  \quad (b)  4000   \quad (c) 4500   \quad (d) 2^{50}</m></p> 
+<p>The number of bits in the binary representations of integers increases by one as the numbers double.  Using this fact, determine how many bits the binary representations of the following decimal numbers have without actually doing the full conversion. <ol label="a" cols="4"><li><p>2017</p></li><li><p>4000 </p></li><li><p>4500</p></li><li><p>2^{50}</p></li></ol></p> 
 </statement>
-<answer><p>There is a bit for each power of 2 up to the largest one needed to represent an integer, and you start counting with the zeroth power. For example, 2017 is between \(2^{10}=1024\) and \(2^{11}=2048\), and so the largest power needed is \(2^{10}\). Therefore there are \(11\) bits in binary 2017</p>
+<answer><p>There is a bit for each power of 2 up to the largest one needed to represent an integer, and you start counting with the zeroth power. For example, 2017 is between \(2^{10}=1024\) and \(2^{11}=2048\), and so the largest power needed is \(2^{10}\). Therefore there are \(11\) bits in binary 2017.</p>
 <p><ol label="a" cols="2">
 <li><p> \(11\)</p></li>
 <li><p> \(12\)</p></li>
@@ -133,7 +132,7 @@ binary_rep(41)
 and largest values that <m>m</m> could have? </p>
 </statement> </exercise>
 <exercise number="7"><statement> 
-<p>If a positive integer is a multiple of 100, we can identify this fact from its decimal representation, since it will end with two zeros. What can you say about a positive integer if its binary representation ends with two zeros? What if i ends in <m>k</m> zeros?</p>
+<p>If a positive integer is a multiple of 100, we can identify this fact from its decimal representation, since it will end with two zeros. What can you say about a positive integer if its binary representation ends with two zeros? What if it ends in <m>k</m> zeros?</p>
 </statement> 
 <answer><p>A number must be a multiple of four if its binary representation ends in two zeros. If it ends in <m>k</m> zeros, it must be a multiple of <m>2^k</m>.</p>
 </answer>
