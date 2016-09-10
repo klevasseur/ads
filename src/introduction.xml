@@ -30,6 +30,10 @@ the dial makes with east is approximately \({45k}^{\circ}\).</p>
                 </caption>
                 <image width="50%" source="images/fig-a-d-dial.png">
                     <description>Analog-Digitial Dial</description>
+                    <sageplot>
+                    dial=plot(sqrt(1-x^2),(x,-1,1),axes=False)+circle([0,0],1)+sum(map(lambda t:line([(cos(t),sin(t)),(-cos(t),-sin(t))]),[0,pi/4,pi/2,3*pi/4]))+circle([0,0],0.25)+sum(map(lambda c:text(str(c),(0.6*cos(pi*(c+0.5)/4),0.6*sin(-pi*(c+0.5)/4))),srange(0,8)))
+						  dial
+                    </sageplot>
                 </image>
             </figure>
 
@@ -65,8 +69,14 @@ which is consistent with the original objective that a positioning of the dial o
         <figure xml:id="fig-intro-dial-coating">
                 <caption>Coating scheme for the Analog-Digitial Dial
                 </caption>
-                <image width="100%" source="images/fig-intro-dial-coating.png">
+                <image width="70%" source="images/fig-intro-dial-coating.png">
                     <description>Analog-Digitial Dial</description>
+						<sageplot>
+						legend=(polygon([(1.2,0), (1.2,0.1), (1.5,0.1),(1.5,0)], rgbcolor='white',edgecolor='black')+polygon([(1.2,0.5), (1.2,0.6), (1.5,0.6),(1.5,0.5)], rgbcolor='orange',edgecolor='black')+text('no coating = 0',(1.4,-0.05))
+								 +text('coating = 1',(1.4,0.45)))
+						dial2=plot(sqrt(1-x^2),(x,-1,1),axes=False)+circle([0,0],1)+sum(map(lambda t:line([(cos(t),sin(t)),(-cos(t),-sin(t))]),[0,pi/4,pi/2,3*pi/4]))+circle([0,0],0.25)+circle([0,0],0.5)+circle([0,0],0.75)+polar_plot(0.25, 0, pi/4, fill=1.0, fillcolor='orange')+polar_plot(0.5, pi/4, pi/2, fill=1.0, fillcolor='orange')+polar_plot(0.25, pi/2, 3*pi/4, fill=0.5, fillcolor='orange')+polar_plot(0.75, pi/2, 3*pi/4, fill=1, fillcolor='orange')+polar_plot(0.75, 3*pi/4, pi, fill=1, fillcolor='orange')+polar_plot(0.25, pi, 5*pi/4, fill=0.75, fillcolor='orange')+polar_plot(0.5, 5*pi/4,3*pi/2, fill=0.75, fillcolor='orange')+polar_plot(0.25, 3*pi/2,7*pi/4, fill=0.5, fillcolor='orange')+text('Inner ring = units bit',(0,-1.25))+text('Middle ring = two\'s bit',(0,-1.35))+text('Outer ring = four\'s bit',(0,-1.45))+legend
+						dial2
+						</sageplot>
                 </image>
             </figure>
 
