@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="s-gcds-and-zsubn">
+<title>Greatest Common Divisors { </title>
+<index><main>Greatest Common Divisors { </main></index>and \(\mathbb{Z}_n\), the Integers Modulo n}
+
+
+
+<introduction><p>In this section introduce the greatest common divisor operation, and  introduce an important family of concrete groups, the integers modulo <m>n</m>. </p></introduction>
+
+
+<subsection xml:id="ss-greatest-common-divisors"><title>Greatest Common Divisors</title>
+
+
+<p>We start with a theorem about integer division that is intuitively clear.  We leave the proof as an  exercise.<p>
+
+<theorem xml:id="th-division-property"><title>The Division Property for Integers</title><index><main>Division Property for Integers</main></index><\
+statement><p>If \(m, n\in \mathbb{Z}\), \(n>0\), then there exist two unique integers, <m>q</m> (the quotient) and <m>r</m> (the remainder), such that \(m = n q + r\) and \(0 \leq  r < n\).</p></statement></theorem>
+
+<note><p>The division property says that if <m>m</m> is divided by <m>n</m>, you will obtain a quotient and a remainder, where the remainder is less than <m>n</m>. This is a fact that most elementary school students learn when they are introduced to long division. In doing the division problem \(1986 \div  97\), you obtain a quotient of 20 and a remainder of 46.  This result could either be written \(\frac{1986}{97}= 20+\frac{46}{97}\) or  \(1986 = 97\cdot 20 + 46\).  The latter form is how the division property is normally expressed in higher mathematics</p></note>
+
+<!-- 
+<dl>
+                    <li>
+                        <title>Central Processing Unit (CPU)</title>
+                        <p>Controls most of the activities of the computer, performs the arithmetic and logical operations, and contains a small amount of very fast memory.</p>
+                    </li>
+
+                    <li>
+                        <title>Memory</title>
+                        <p>Provides storage for the instructions for the CPU and the data they manipulate.</p>
+                    </li>
+
+                    <li>
+                        <title>Input/Output (I/O)</title>
+                        <p>Communicates with the outside world and with mass storage devices (<eg />, disks).</p>
+                    </li>
+
+                    <li>
+                        <title>Bus</title>
+                        <p>A communication pathway with a protocol specifying exactly how the pathway is used.</p>
+                    </li>
+                </dl>
+ -->
+<list xml:id="divisability-terms"><notation><usage>b \mid a</usage><description><m>b</m> divides (evenly into) <m>a</m></descripiton>
+<introduction>We now remind the reader of some interchangeable terminology that is sued when 
+ \(r=0\), i. e.,  \(a = b q\).  All of the following say the same thing, just from slightly different points of view.</introduction>
+ <dl>
+ <li><title>divides</title><p><m>b</m> divides <m>a</m></p></li>
+ <li><title>multiple</title><p><m>a</m> is a multiple of <m>b</m></p></li>
+ <li><title>factor</title><p><m>b</m> is a factor of <m>a</m></p></li>
+ <li><title>divisor</title><p><m>b</m> is a divisor of <m>a</m></p></li>
+</dl>
+<conclusion><p> We use the notation   \(b | a\)  if  <m>b</m>  divides <m>a</m></p></conclusion>
+</list>
+
+
+<p> For example  \(2|18\)   and \(9|18\) ,
+but  \(4\nmid 18\)   </p>
+
+<p>Caution:  Don't confuse the <q>divides</q> symbol with the <q>divided by</q> symbol.  The former is vertical while the later is slanted.   Notice however that the statement \(2|18\) is related to the fact that \(18/2\) is a whole number.</p>
+
+<definition xml:id="def-gcd"><title>Greatest Common Divisor</title>
+<index><main>Greatest Common Divisor (<m>\gcd</m>) </main></index>
+<notation><usage>\gcd(a,b)</usage><description>the greatest common divisor of <m>a</m> and <m>b</m></description></notation><statement><p>Given two integers, <m>a</m> and <m>b</m>, not both zero.  The greatest common divisor of <m>a</m> and <m>b</m> is the positive integer
+<m>g=\gcd(a,b)</m> such that  \(g|a\),  \(g|b\), and
+\( c|a \textrm{ and} c|b \Rightarrow c|g\)
+</p></statement></definition>
+
+
+<p>A little simpler way to think of \(\gcd (a,b)\) is as the largest positive integer that is a divisor of both <m>a</m> and <m>b</m>.  However, our definition is easier to apply in proving properties of greatest common divisors.</p>
+
+<p>For small numbers, a simple way to determine the greatest common divisior is to use factorization.  For example if we want the greatest common divisor of 660 and 350, you can factor the two integers:  \(660=2^2\times 3\ 5\ 11\) and \(350 = 2\ 5^2\times 7\).     Single factors of 2 and 5 are the only ones that appear in both factorizations, so the greatest common divisor is \(2\ 5 =10\).</p>
+
+
+<p>Some pairs of integers have no common divisors other than 1.  Such pairs are called <em>relatively prime
+pairs</em>.</p>
+<definition xml:id="def-def-rel-prime"><title>Relatively Prime</title>
+<index><main>Relatively Prime</main></index>
+<statement><p>A pair of integers, <m>a</m> and <m>b</m> are relatively prime if <m>gcd(a, b)=1</m></p></statement></definition>
+
+<p>For example, \(128=2^7\) and \(135=3^3\) 5\(\textrm{ }\) are relatively prime.    Notice that neither 128 nor 135 are primes.   In general, <m>a</m> and <m>b</m> need not be prime in order to be relatively prime.  However, if you start with a prime, like 23, for example, it will be relatively prime to everything but its multiples.  This theorem, which we prove later generalizes this observation.</p>
+
+<theorem xml:id="th-primes-are-mostly-relprime">
+<statement><p>If <m>p</m>. is a prime and <m>a</m> is any integer such that \(p\nmid a\)  then \(\gcd (a, p) = 1\)</p></statement></theorem>
+
+</subsection>
+
+
+<subsubsection xml:id="sss-euclidean-algorithm"><title>The Euclidean Algorithm</title><index><main>Euclidean Algorithm, The </main></index>
+
+<p>As early as Euclid's time it was known that factorization wasn't  the best way to compute greatest common divisors.</p>
+
+
+
+<p>The Euclidean Algorithm is based on the following properties of the greatest common divisor\\
+\\
+\(\gcd (a,0)= a\)   for \(a\neq 0\)\\
+\(\gcd (a, b)= \gcd (b, r)\textrm{    }\textrm{ if} b\neq 0\textrm{    }\textrm{ and}\text a = b q + r\)\\
+\\
+To compute \(\gcd (a,b)\), we divide <m>b</m> into <m>a</m> and get a remainder <m>r</m> such that \(0\leq  r<|b|\).  By the property
+above, \(\gcd (a, b)= \gcd (b, r)\).  We repeat the process until  we get zero for a remainder.  The last nonzero number that is the second
+entry in our pairs is the greatest common divisior.   This is inevitable because the second number in each pair is smaller than the previous one.
+
+
+
+Here is the computation to verify that gcd(99, 53) = 1.   At each line, the value of <m>a</m> is divided by the value of <m>b</m>.   The
+quotient is placed on the next line along with the new value of <m>a</m>, which is the previous b;.  and the remainder, which is the new
+value of <m>b</m>. 
+
+
+
+If you were allowed to pick two numbers less than 100, which would you pick in order to force Euclid to work hardest?   Here's a hint
+
+
+
+For fixed values of <m>a</m> and <m>b</m>, consider integers of the form \(a x+b y\) where <m>x</m> and <m>y</m> can be any two integers.
+ For example if <m>a</m> = 36 and <m>b</m> = 27,  some of these results are tabulated below with <m>x</m> values along the left column
+and the <m>y</m> values on top.\\
+\\
+Notice any patterns?   What is the smallest positive value the you see in this table?  How is it connected to 36 and 27
+
+<theorem xml:id="theorem-11.4.1. { "><title>11.4.1. { </title><index><main>11.4.1. { </main></index><statement></statement><proof></proof></theorem>If <m>a</m> and b . are positive integers, the smallest positive value of \(a x + b y\) is the greatest common
+divisor of <m>a</m> and <m>b</m>, \(\gcd (a,b)\).}
+
+
+
+\pmb{ Proof: }If  \(g = \gcd (a, b)\), then \(g|a\text \textrm{ and} \textrm{ \textit{$ $}}g|b\text \Rightarrow g|(a x + b y)\) for any \textit{
+x} and <m>y</m>, so \(a x + b y\) can't be less than <m>g</m>.  To show that <m>g</m> is exactly the least positive value, we show that
+<m>g</m> can be attained by extending the Euclidean Algorithm.  Performing the extended algorithm involves building a table of numbers. There
+are many variations on the way that this table arranged, so if your book has this algorithm it may look slightly different.  
+
+
+
+The table for gcd(152,53) is below.   In the $\texttt{"}$<m>r</m> column, you will find 152 and 53, and then the successive remainders from
+division.  So each number in <m>r</m>$\texttt{"}$ after the first two is the remainder after dividing the number immediately above it into the
+next number up.  To the left of each remainder is the quotient from the division.   So in this case the third row of the table tells us that
+\(152 = 53\ 2 + 46\). The last nonzero value in <m>r</m> is the greatest common divisor.  
+
+
+
+The <q>s</q> and <q>t</q> columns are new.  The values of s and t in each row are maintained so that\\
+152s + 53t is equal to the number in the <q>r</q> column.   Notice that\\
+\(\quad 152 = 152\ 1+ 53\ 0\quad 53 =152\ 0 + 53\ 1\quad 46 = 152\ 1 + 53 (-2)\quad \textrm{ ...}\quad 1 = 152\ 15 + 53 (-43)\quad 0 = 152 (-53)
++ 53\ 152\)\\
+
+
+
+
+The next-to-last equation is what we're looking for in the end!  The main problem is to identify how to determine these values after the first
+two rows.  The first two rows in these columns will always be the same.\\
+\\
+Let's look at the general case of computing gcd(a,b).  If the s and t values in rows \(i - 1\) and  \(i - 2\) are correct, we have
+
+
+
+  \((A)\textrm{        }\left\{
+\begin{array}{c}
+ a s_{i-2}+b t_{i-2}=r_{i-2} \\
+ a s_{i-1}+b t_{i-1}=r_{i-1} \\
+\end{array}
+\right.\)
+
+
+
+\(\textrm{ In} \textrm{ addition},\textrm{ we} \textrm{ know} \textrm{ that}\)
+
+
+
+\(r_{i-2}=r_{i-1} q_i+r_i\textrm{    }\Rightarrow \textrm{     }r_i=r_{i-2}-r_{i-1} q_i\)
+
+
+
+If you substitute the expressions for \(r_{i-1}\) and \(r_{i-2}\) from (A) into this last equation and then collect the <m>a</m> and \textit{
+b} terms separately you get \\
+\(r_i= a\left(s_{i-2}- q_is_{i-1}\right) + b\left(t_{i-2} - q_it_{i-1}\right)\)
+
+
+
+or \\
+\(s_{i }=s_{i-2}- q_is_{i-1}\text \)   and   \(t_i= t_{i-2} - q_it_{i-1}\)
+
+
+
+Look closely at the equations for \(r_i, s_i, \textrm{ and} t_i\).  Their forms are all the same.  With a little bit of practice you should be able
+to compute s and t values quickly.
+
+
+
+<subsection xml:id="ss-Modular Arithmetic"><title>Modular Arithmetic</title><index><main>Modular Arithmetic</main></index>
+
+
+
+If two numbers, <m>a</m> and <m>b</m>, share the same remainder after dividing by <m>n</m>. we say that they are congruent modulo \textit{
+n}, denoted \(a \equiv  b(\textrm{ mod} n)\). For example, \(13 \equiv  38(\textrm{ mod} 5)\) because \(13 = 5\cdot 2 + 3\) and 38= 5$\cdot $ + 3.
+
+\pmb{ \(\textrm{ Modular} \textrm{ Arithmetic}.\)} If <m>n</m> is a positive integer, we define the operations of addition modulo <m>n</m> \(\left(+_n\right.\))
+and multiplication modulo <m>n</m> \(\left(\times _n\right.\)) as follows. If \(a, b \in  \mathbb{Z}\),
+
+\(a +_n b = \textrm{ the} \textrm{ remainder} \textrm{ after} a + b \textrm{ is} \textrm{ divided} \textrm{ by} n\)
+
+\(a \times _n b = \textrm{ the} \textrm{ remainder} \textrm{ after} a \cdot  b\text \textrm{ is} \textrm{ divided} \textrm{ by} n\).
+
+Notes:<ol label="a">
+<li><p>  The result of doing arithmetic modulo <m>n</m> is always an integer between 0 and \(n-1\), by the Division Property. This observation implies
+that \(\{0, 1,\textrm{ ...}, n-1\}\) is closed under modulo <m>n</m> arithmetic.</p></li>
+<li><p>  It is always true that \(a +_n b \equiv  (a + b) (\textrm{ mod} n)\) and \(a\times _n b \equiv  (a \cdot  b) (\textrm{ mod} n)\).   For example,
+$\quad \quad $\(4 +_7 5 = 2 \equiv  9 (\textrm{ mod} 7)\) and  
+
+\(4 \times _7 5 \equiv  6 \equiv  20 (\textrm{ mod} 7)\).</p></li>
+<li><p>  We will use the notation \(\mathbb{Z}_n\) to denote the set \(\{0, 1, 2,. . ., n-1\}\).
+
+
+
+<subsection xml:id="ss-Properties of Modular Arithmetic on \(\mathbb{Z"><title>Properties of Modular Arithmetic on \(\mathbb{Z</title><index><main>Properties of Modular Arithmetic on \(\mathbb{Z</main></index>_n\)}
+
+
+
+Addition modulo <m>n</m> is always commutative and associative; 0 is the identity for \(+_n\) and every element of \(\mathbb{Z}_n\) has an additive
+inverse.
+
+
+
+Multiplication modulo <m>n</m> is always commutative and associative, and 1 is the identity for \(\times _n\).
+
+<theorem xml:id="theorem-11.4.2."><title>11.4.2.</title><index><main>11.4.2.</main></index><statement></statement><proof></proof></theorem>  If \(a \in  \mathbb{Z}_n\), \(a\neq 0\), then the additive inverse of a is \(n - a\).
+
+Proof: \(a + (n - a) =n\equiv 0(\textrm{ mod} n)\), since  \(n = n\cdot 1 + 0\).  Therefore,  \(a+_n(n-a)=0\) $\blacksquare $
+
+
+
+Note: The algebraic properties of \(+_n\) and \(\times _n\) on \(\mathbb{Z}_n\) are identical to the properties of addition and multiplication on
+<m>\mathbb{ZQ}</m>.
+
+
+
+\pmb{ The Group }\pmb{ \(\mathbb{Z}_n\)}\pmb{ .} For each \(n\geq 1\), \(\left[\mathbb{Z}_n; +_n\right]\) is a group. Henceforth, we will use the
+abbreviated notation \(\mathbb{Z}_n\) when referring to this group. Figure 11.4.1 contains the tables for \(\mathbb{Z}_1\) through \(\mathbb{Z}_6\).
+
+
+\caption{\pmb{ Figure 11.4.1\\
+Addition tables for \(\mathbb{Z}_n, 1\leq n\leq 6\).}}
+
+<example xml:id="ex-11.4.1."><title>11.4.1.</title><p></p></example><ol label="a">
+<li><p> We are all somewhat familiar with \(\mathbb{Z}_{12}\) since the hours of the day are counted using this group, except for the fact that 12 is
+used in place of 0.  Military time uses the mod 24 system and does begin at 0.  If someone started a four-hour trip at hour 21, the time at which
+she would arrive is \(21 +_{24} 4 = 1\). If a satellite orbits the earth every four hours and starts its first orbit at hour 5, it would end its
+first orbit at time  \(5 +_{24}4 =9\). Its tenth orbit would end at \(5 +_{24} 7\times _{24}4 =9\) hours on the clock</p></li>
+<li><p> Virtually all computers represent unsigned integers in binary form with a fixed number of digits. A very small computer might reserve seven bits
+to store the value of an integer. There are only \(2^7\) different values that can be stored in seven bits. Since the smallest value is 0, represented
+as 0000000, the maximum value will be \(2^7 - 1 = 127\), represented as 1111111. When a command is given to add two integer values, and the two values
+have a sum of 128 or more, overflow occurs. For example, if we try to add 56 and 95, the sum is an eight-digit binary integer 10010111. One common
+procedure is to retain the seven lowest-ordered digits. The result of adding 56 and 95 would be \(0010111_{\textrm{ two}} = 23 \equiv  56 + 95(\textrm{ mod}
+128)\). Integer arithmetic with this computer would actually be modulo 128 arithmetic.
+
+
+
+<subsubsection xml:id="sss-\(\) { "><title>\(\) { </title><index><main>\(\) { </main></index>Mathematica.  Note}
+
+
+
+In Mathematica.  you can get the gcd of two numbers using the function \(GCD\):
+
+
+
+GCD[660, 350]
+
+
+
+A related function, \(ExtendedGCD\), provides the <m>x</m> and <m>y</m> values guaranteed in Theorem 11.4.2.
+
+
+
+ExtendedGCD[1001, 231]
+
+
+
+Most computer languages have a <q>mod</q> function that computes the remainder when one integer is divided by another.   Mathematica. 
+is no exception.  To determine the remainder upon dividing 1986 by 97 we can evaluate
+
+
+
+Mod[1986, 97]
+
+
+
+A mod 6 addition function can be defined based on \(Mod\) with the following input:
+
+
+
+Plus6[a$\_$, b$\_$] := Mod[a + b, 6]
+
+
+
+There is a free package called \(AbstractAlgebra. \) that is available at https://sites.google.com/site/eaamhl/eaam.  It contains a function
+that will generate the operation tables, also called Cayley Tables,.  such you see in Figure 11.4.1.  First load the package, as instructed:
+
+
+
+$<<$ AbstractAlgebra\` Master\` 
+
+
+
+We can form a the group \(\mathbb{Z}_6\) using the \(FormGroupoid\) function:
+
+
+
+G = FormGroupoid[Range[0, 5], Plus6]
+
+
+
+Then the function called \(CayleyTable\) generates the table for the group \(\mathbb{Z}_6\):
+
+
+
+CayleyTable[G, BodyColored -$>$ False, HeadingsColored -$>$ False, ShowExtraCayleyInformation -$>$ False]
+
+Note:  The rules \pmb{ BodyColored $\to $ False, HeadingsColored $\to $ False, ShowExtraCayleyInformation $\to $ False}  are included in the
+input above for easier black and white readability. They would not be normally included when using \(CayleyTable\).\( \)
+
+
+
+It's actually even easier to generate these tables because the family of \(\mathbb{Z}_n's\) is part of the package.  Here is the table for \(\mathbb{Z}_9\):
+
+
+
+CayleyTable[Z[9], BodyColored -$>$ False, HeadingsColored -$>$ False, ShowExtraCayleyInformation -$>$ False]
+
+
+
+<subsubsection xml:id="sss-\(\) { "><title>\(\) { </title><index><main>\(\) { </main></index>Sage Note}
+
+
+
+In Sage, \(gcd\) is the greatest common divisor function.  It can be used in two ways.  For the gcd of 2343 and 4319 we can evaluate the expression
+\(gcd(2343,4319)\).   If we are working with a fixed modulus <m>m</m> that has a value established in your Sage session, the expression \(m.gcd(k)\)
+to compute the gcd of m . and any integer value <m>k</m>. 
+
+
+
+Sage has some extremely powerful tool for working with groups.  The integers modulo <m>n</m> are represented by the expression \(Integers(n)\)
+and the addition and multiplications tables can be generated as follows.
+
+R = Integers(6)\\
+print R.addition$\_$table('elements')\\
+print R.multiplication$\_$table('elements')
+
+
+\caption{\texttt{ +  0 1 2 3 4 5\\
+\hspace*{0.5ex} +------------\\
+0$|$ 0 1 2 3 4 5\\
+1$|$ 1 2 3 4 5 0\\
+2$|$ 2 3 4 5 0 1\\
+3$|$ 3 4 5 0 1 2\\
+4$|$ 4 5 0 1 2 3\\
+5$|$ 5 0 1 2 3 4\\
+\\
+*  0 1 2 3 4 5\\
+\hspace*{0.5ex} +------------\\
+0$|$ 0 0 0 0 0 0\\
+1$|$ 0 1 2 3 4 5\\
+2$|$ 0 2 4 0 2 4\\
+3$|$ 0 3 0 3 0 3\\
+4$|$ 0 4 2 0 4 2\\
+5$|$ 0 5 4 3 2 1}}
+
+
+
+
+Once we have assigned \(R\) a value of \(Integers(6)\),  we can do calculations by wrapping \(R()\) around the integers 0 through 5.  Here is
+a list containing the mod 6 sum and product, respectively, of 5 and 4:
+
+[R(5)+R(4), R(5)*R(4)]\pmb{ \\
+}\texttt{ }\([3,2]\)
+
+
+<exercises xml:id="exercises-11-4">
+<title>Exercises for Section 11.4</title>
+
+
+
+<exercisegroup>
+<introduction><p>A Exercises</p></introduction>
+
+<exercise number="1"><statement>  Determine the greatest common divisors of the following pairs of integers without using any computational assistance.
+
+<ol label="a">
+<li><p>  \(2^33^25\)   and  \(2^23^  5^27\)</p></li>
+<li><p>   \(2\ 3\ 4\ 5\ 6\ 7\)  and  \(3\ 5\ 7\ 9\ 11\ 13\)</p></li>
+<li><p>  \(19^4\)  and  \(19^5\)</p></li>
+<li><p>  12112 and 0
+</statement></exercise>
+<exercise number="2"><statement>  Find all possible values of the following, assuming that <m>m</m> is a positive integer.
+
+<ol label="a">
+<li><p>  \(\gcd (m+1,m)\)</p></li>
+<li><p>  \(\gcd (m+2,m)\)</p></li>
+<li><p>  \(\gcd (m+4,m)\)
+</statement></exercise>
+<exercise number="3"><statement>  Calculate:
+
+<ol label="a">
+<li><p> \(7 +_83\)</p></li>
+<li><p> \(7 \times _8 3\)</p></li>
+<li><p> \(4\times _84\)</p></li>
+<li><p> \(10+_{12}2\)</p></li>
+<li><p> \(6\times _82 +_86\times _85\)</p></li>
+<li><p> \(6\times _8\left(2 +_85\right)\)</p></li>
+<li><p>  \(3 \times _5 3 \times _5 3 \times _5 3 \equiv  3^4 (\textrm{ mod} 5)\) </p></li>
+<li><p>  \(2 \times _{11}7\)</p></li>
+<li><p>    \(2 \times _{14}7\)
+</statement></exercise>
+<exercise number="4"><statement>  List the additive inverses of the following elements:
+
+<ol label="a">
+<li><p>  4, 6, 9 in \(\mathbb{Z}_{10}\)</p></li>
+<li><p> 16, 25, 40 in \(\mathbb{Z}_{50}\)
+</statement></exercise>
+<exercise number="5"><statement> In the group \(\mathbb{Z}_{11}\) , what are:
+
+<ol label="a">
+<li><p>  3(4)?</p></li>
+<li><p>  36(4)?</p></li>
+<li><p> How could you efficiently compute \(m(4)\), \(m \in  \mathbb{Z}\)?
+</statement></exercise>
+<exercise number="6"><statement>Prove that $\{$1, 2, 3, 4$\}$ is a group under the operation \(\times _5\).
+</statement></exercise>
+<exercise number="7"><statement>A student is asked to solve the following equations under the requirement that all arithmetic should be done in \(\mathbb{Z}_2\). List all solutions.
+
+<ol label="a">
+<li><p>  \(x^2 + 1 = 0\).</p></li>
+<li><p>  \(x^2 + x + 1 = 0\).
+</statement></exercise>
+<exercise number="8"><statement>  Determine the solutions of the same equations as in Exercise 5 in \(\mathbb{Z}_5\). 
+
+
+</exercisegroup>
+<exercisegroup>
+<introduction><p>B Exercises</p></introduction>
+</statement></exercise>
+<exercise number="9"><statement>  Prove the division property by induction on <m>m</m>.
+</statement></exercise>
+<exercise number="10"><statement>  Prove that congruence modulo <m>n</m> is an equivalence relation on the integers. Describe the set of equivalence classes
+that congruence modulo <m>n</m> defines.
+
+\end{document}
