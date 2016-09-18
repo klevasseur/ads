@@ -67,7 +67,7 @@ but  \(4\nmid 18\)   </p>
 </p></statement></definition>
 
 
-<p>A little simpler way to think of \(\gcd (a,b)\) is as the largest positive integer that is a divisor of both <m>a</m> and <m>b</m>.  However, our definition is easier to apply in proving properties of greatest common divisors.</p>
+<p>A little simpler way to think of \(\grd(a,b)\) is as the largest positive integer that is a divisor of both <m>a</m> and <m>b</m>.  However, our definition is easier to apply in proving properties of greatest common divisors.</p>
 
 <p>For small numbers, a simple way to determine the greatest common divisior is to use factorization.  For example if we want the greatest common divisor of 660 and 350, you can factor the two integers:  \(660=2^2\times 3\ 5\ 11\) and \(350 = 2\ 5^2\times 7\).     Single factors of 2 and 5 are the only ones that appear in both factorizations, so the greatest common divisor is \(2\ 5 =10\).</p>
 
@@ -81,7 +81,7 @@ pairs</em>.</p>
 <p>For example, \(128=2^7\) and \(135=3^3\) 5\(\textrm{ }\) are relatively prime.    Notice that neither 128 nor 135 are primes.   In general, <m>a</m> and <m>b</m> need not be prime in order to be relatively prime.  However, if you start with a prime, like 23, for example, it will be relatively prime to everything but its multiples.  This theorem, which we prove later generalizes this observation.</p>
 
 <theorem xml:id="th-primes-are-mostly-relprime">
-<statement><p>If <m>p</m>. is a prime and <m>a</m> is any integer such that \(p\nmid a\)  then \(\gcd (a, p) = 1\)</p></statement></theorem>
+<statement><p>If <m>p</m>. is a prime and <m>a</m> is any integer such that \(p\nmid a\)  then \(\grd(a, p) = 1\)</p></statement></theorem>
 
 </subsection>
 
@@ -92,127 +92,171 @@ pairs</em>.</p>
 
 
 
-<p>The Euclidean Algorithm is based on the following properties of the greatest common divisor\\
-\\
-\(\gcd (a,0)= a\)   for \(a\neq 0\)\\
-\(\gcd (a, b)= \gcd (b, r)\textrm{    }\textrm{ if} b\neq 0\textrm{    }\textrm{ and}\text a = b q + r\)\\
-\\
-To compute \(\gcd (a,b)\), we divide <m>b</m> into <m>a</m> and get a remainder <m>r</m> such that \(0\leq  r<|b|\).  By the property
-above, \(\gcd (a, b)= \gcd (b, r)\).  We repeat the process until  we get zero for a remainder.  The last nonzero number that is the second
-entry in our pairs is the greatest common divisior.   This is inevitable because the second number in each pair is smaller than the previous one.
+<p>The Euclidean Algorithm is based on the following properties of the greatest common divisor.
+<mdn>
+<mrow xml:id="eq-euclid-basis">\grd(a,0)= a \textrm{  for  } a\neq 0</mrow>
+<mrow xml:id="eq-euclid-recursion">\gcd(a, b)= \gcd(b, r)\textrm{   if } b\neq 0\textrm{   and}a = b q + r</mrow>
+</mdn></p>
+
+
+<p>To compute \(\gcd(a,b)\), we divide <m>b</m> into <m>a</m> and get a remainder <m>r</m> such that \(0\leq  r<|b|\).  By the property above, \(\grd(a, b)= \grd(b, r)\).  We repeat the process until  we get zero for a remainder.  The last nonzero number that is the second entry in our pairs is the greatest common divisior.   This is inevitable because the second number in each pair is smaller than the previous one.  <xref ref="table-euclidean-example" autoname="yes" /> shows an example of how this calculation can be systematically performed.</p>
+
+<table xml:id="table-euclidean-example">
+<caption>A Table to Compute \(\gcd(99,53)\)</caption>
+<tabular top="major" halign="center">
+<row><cell><m>q</m></cell><cell><m>a</m></cell><cell><m>b</m></cell></row>
+<row><cell>-</cell><cell>99</cell><cell>53</cell></row>
+<row><cell>1</cell><cell>53</cell><cell>46</cell></row>
+<row><cell>1</cell><cell>46</cell><cell>7</cell></row>
+<row><cell>6</cell><cell>7</cell><cell>4</cell></row>
+<row><cell>1</cell><cell>4</cell><cell>3</cell></row>
+<row><cell>1</cell><cell>3</cell><cell>1</cell></row>
+<row><cell>3</cell><cell>1</cell><cell>0</cell></row>
+</tabular>
+
+<p>Here is a Sage computation to verify that <m>\gcd(99, 53) = 1</m>.   At each line, the value of <m>a</m> is divided by the value of <m>b</m>.   The quotient is placed on the next line along with the new value of <m>a</m>, which is the previous <m>b</m>;.  and the remainder, which is the new value of <m>b</m>.  Recall that in Sage, <c>a%b</c> is the remainder when dividing <c>b</c> into <c>a</c>. 
+<sage>
+<input>
+a=99
+b=53
+while b>0:
+    print 'computing gcd of '+str(a)+' and '+str(b)
+    [a,b]=[b,a%b]
+print 'result is '+str(a)</input>
+<output>
+computing gcd of 99 and 53
+computing gcd of 53 and 46
+computing gcd of 46 and 7
+computing gcd of 7 and 4
+computing gcd of 4 and 3
+computing gcd of 3 and 1
+result is 1
+</output>
+</sage>
+
+<investigation><statement><p>If you were allowed to pick two numbers less than 100, which would you pick in order to force Euclid to work hardest? Here's a hint:  The size of the quotient at each step determines how quickly the numbers decrease.</p> </statement><solution><p>If quotient in division is 1, then we get the slowest possible completion.   If <m>a = b + r</m>, then working backwards, each remainder would be the sum of the two previous remainders.  This described a sequence like the Fibonacci sequence and indeed, the greatest common divisor of two consecutive Fibonacci numbers will take the most steps to reach a final value of 1.</p>
+</solution></investigation> 
 
 
 
-Here is the computation to verify that gcd(99, 53) = 1.   At each line, the value of <m>a</m> is divided by the value of <m>b</m>.   The
-quotient is placed on the next line along with the new value of <m>a</m>, which is the previous b;.  and the remainder, which is the new
-value of <m>b</m>. 
+<p>For fixed values of <m>a</m> and <m>b</m>, consider integers of the form \(a x+b y\) where <m>x</m> and <m>y</m> can be any two integers.  For example if <m>a</m> = 36 and <m>b</m> = 27,  some of these results are tabulated below with <m>x</m> values along the left column
+and the <m>y</m> values on top.</p>
+  <figure xml:id="fig-integer-linear-comb">
+                <caption>Linear combinations of 36 and 27
+                </caption>
+                <image width="75%" source="images/fig-integer-linear-comb.png">
+                    <description>Linear combinations of 36 and 27</description>
+                </image>
+            </figure>
+<p>Do you notice any patterns?   What is the smallest positive value the you see in this table?  How is it connected to 36 and 27</p>
+
+<theorem xml:id="theorem-11-4-1"><title></title>
+<statement><p>If <m>a</m> and <m>b</m> are positive integers, the smallest positive value of \(a x + b y\) is the greatest common
+divisor of <m>a</m> and <m>b</m>, \(\gcd(a,b)\).</p></statement>
+<proof><p>If  \(g = \gcd(a, b)\), then \(g|a \land g|b \Rightarrow g|(a x + b y)\) for any integers <m>x</m> and <m>y</m>, so \(a x + b y\) can't be less than <m>g</m>.  To show that <m>g</m> is exactly the least positive value, we show that <m>g</m> can be attained by extending the Euclidean Algorithm.  Performing the extended algorithm involves building a table of numbers.  The way in which it is built  maintains an invariant, and by the <xref ref="th-invariant-relation-theorem" autoname="title" />, we can be sure that the desired values of <m>x</m> and <m>y</m> are produced. </p>
 
 
 
-If you were allowed to pick two numbers less than 100, which would you pick in order to force Euclid to work hardest?   Here's a hint
+  
 
 
 
-For fixed values of <m>a</m> and <m>b</m>, consider integers of the form \(a x+b y\) where <m>x</m> and <m>y</m> can be any two integers.
- For example if <m>a</m> = 36 and <m>b</m> = 27,  some of these results are tabulated below with <m>x</m> values along the left column
-and the <m>y</m> values on top.\\
-\\
-Notice any patterns?   What is the smallest positive value the you see in this table?  How is it connected to 36 and 27
+<p>To illustrate the algorithm, <xref ref="table-x-euclidean-example" autoname="yes" /> displays how to compute <m>\gcd(152,53)</m>.   In the <m>r</m> column, you will find 152 and 53, and then the successive remainders from division.  So each number in <m>r</m> after the first two is the remainder after dividing the number immediately above it into the next number up.  To the left of each remainder is the quotient from the division.  In this case the third row of the table tells us that \(152 = 53\cdot 2 + 46\). The last nonzero value in <m>r</m> is the greatest common divisor.  </p>
 
-<theorem xml:id="theorem-11.4.1. { "><title>11.4.1. { </title><index><main>11.4.1. { </main></index><statement></statement><proof></proof></theorem>If <m>a</m> and b . are positive integers, the smallest positive value of \(a x + b y\) is the greatest common
-divisor of <m>a</m> and <m>b</m>, \(\gcd (a,b)\).}
+<table xml:id="table-x-euclidean-example">
+<caption>The extended Euclidean algorithm to compute <m>\gcd(152,53)</m></caption>
+<tabular top="major" halign="center">
+<row><cell><m>q</m></cell><cell><m>r</m></cell><cell><m>s</m></cell><cell><m>t</m></cell></row>
+<row><cell>-</cell><cell>153</cell><cell>1</cell><cell>0</cell></row>
+<row><cell>-</cell><cell>53</cell><cell>0</cell><cell>1</cell></row>
+<row><cell>2</cell><cell>46</cell><cell>1</cell><cell>-2</cell></row>
+<row><cell>1</cell><cell>7</cell><cell>-1</cell><cell>3</cell></row>
+<row><cell>6</cell><cell>4</cell><cell>7</cell><cell>-20</cell></row>
+<row><cell>1</cell><cell>3</cell><cell>-8</cell><cell>23</cell></row>
+<row><cell>1</cell><cell>1</cell><cell>15</cell><cell>-43</cell></row>
+<row><cell>3</cell><cell>0</cell><cell>-53</cell><cell>152</cell></row>
+</tabular>
+</table>
 
+<p>The <q><m>s</m></q> and <q><m>t</m></q> columns are new.  The values of <m>s</m> and <m>t</m> in each row are maintained so that <m>152s + 53t</m> is equal to the number in the <q>r</q> column.   Notice that</p>
 
-
-\pmb{ Proof: }If  \(g = \gcd (a, b)\), then \(g|a\text \textrm{ and} \textrm{ \textit{$ $}}g|b\text \Rightarrow g|(a x + b y)\) for any \textit{
-x} and <m>y</m>, so \(a x + b y\) can't be less than <m>g</m>.  To show that <m>g</m> is exactly the least positive value, we show that
-<m>g</m> can be attained by extending the Euclidean Algorithm.  Performing the extended algorithm involves building a table of numbers. There
-are many variations on the way that this table arranged, so if your book has this algorithm it may look slightly different.  
-
-
-
-The table for gcd(152,53) is below.   In the $\texttt{"}$<m>r</m> column, you will find 152 and 53, and then the successive remainders from
-division.  So each number in <m>r</m>$\texttt{"}$ after the first two is the remainder after dividing the number immediately above it into the
-next number up.  To the left of each remainder is the quotient from the division.   So in this case the third row of the table tells us that
-\(152 = 53\ 2 + 46\). The last nonzero value in <m>r</m> is the greatest common divisor.  
-
-
-
-The <q>s</q> and <q>t</q> columns are new.  The values of s and t in each row are maintained so that\\
-152s + 53t is equal to the number in the <q>r</q> column.   Notice that\\
-\(\quad 152 = 152\ 1+ 53\ 0\quad 53 =152\ 0 + 53\ 1\quad 46 = 152\ 1 + 53 (-2)\quad \textrm{ ...}\quad 1 = 152\ 15 + 53 (-43)\quad 0 = 152 (-53)
-+ 53\ 152\)\\
-
-
-
-
-The next-to-last equation is what we're looking for in the end!  The main problem is to identify how to determine these values after the first
-two rows.  The first two rows in these columns will always be the same.\\
-\\
-Let's look at the general case of computing gcd(a,b).  If the s and t values in rows \(i - 1\) and  \(i - 2\) are correct, we have
+<table xml:id="table-invarients-11">
+<caption>Invarient in computing <m>\gcd(152,53)</m></caption>
+<tabular top="major" halign="center">
+<row><cell>\(152 = 152\cdot 1+ 53\cdot 0\)</cell></row>
+<row><cell>\(53 =152\cdot 0 + 53\cdot 1\)</cell></row>
+<row><cell>\(46 = 152\cdot 1 + 53\cdot (-2)\)</cell></row>
+<row><cell>\(\vdots\)</cell></row>
+<row><cell>\(1 = 152\cdot 15 + 53\cdot (-43)\)</cell></row>
+<row><cell>\(0 = 152 \cdot (-53) + 53\cdot 152\)</cell></row>
+</tabular>
+</table>
 
 
 
-  \((A)\textrm{        }\left\{
+
+<p>The next-to-last equation is what we're looking for in the end!  The main problem is to identify how to determine these values after the first two rows.  The first two rows in these columns will always be the same. Let's look at the general case of computing <m>\gcd(a,b)</m>.  If the <m>s</m> and <m>t</m> values in rows \(i - 1\) and  \(i - 2\) are correct, we have
+
+
+
+  \[(A)\textrm{        }\left\{
 \begin{array}{c}
  a s_{i-2}+b t_{i-2}=r_{i-2} \\
  a s_{i-1}+b t_{i-1}=r_{i-1} \\
 \end{array}
-\right.\)
+\right.\]
+
+In addition, we know that
+
+
+\[r_{i-2}=r_{i-1} q_i+r_i\textrm{    }\Rightarrow \textrm{     }r_i=r_{i-2}-r_{i-1} q_i\]
 
 
 
-\(\textrm{ In} \textrm{ addition},\textrm{ we} \textrm{ know} \textrm{ that}\)
+If you substitute the expressions for \(r_{i-1}\) and \(r_{i-2}\) from (A) into this last equation and then collect the <m>a</m> and <m>b</m> terms separately you get
+\[r_i= a\left(s_{i-2}- q_is_{i-1}\right) + b\left(t_{i-2} - q_it_{i-1}\right)\)]
 
+or
 
-
-\(r_{i-2}=r_{i-1} q_i+r_i\textrm{    }\Rightarrow \textrm{     }r_i=r_{i-2}-r_{i-1} q_i\)
-
-
-
-If you substitute the expressions for \(r_{i-1}\) and \(r_{i-2}\) from (A) into this last equation and then collect the <m>a</m> and \textit{
-b} terms separately you get \\
-\(r_i= a\left(s_{i-2}- q_is_{i-1}\right) + b\left(t_{i-2} - q_it_{i-1}\right)\)
-
-
-
-or \\
-\(s_{i }=s_{i-2}- q_is_{i-1}\text \)   and   \(t_i= t_{i-2} - q_it_{i-1}\)
-
-
+\[s_{i }=s_{i-2}- q_is_{i-1}\textrm{  and  } t_i= t_{i-2} - q_it_{i-1}\]
 
 Look closely at the equations for \(r_i, s_i, \textrm{ and} t_i\).  Their forms are all the same.  With a little bit of practice you should be able
-to compute s and t values quickly.
-
-
-
+to compute <m>s</m> and <m>t</m> values quickly.</p>
+</proof></theorem>
+</subsection>
 <subsection xml:id="ss-Modular Arithmetic"><title>Modular Arithmetic</title><index><main>Modular Arithmetic</main></index>
+<p>Recall the relation on the integers that we call <xref ref="def-congruence-mod-m" autoname="yes" />.
+If two numbers, <m>a</m> and <m>b</m>, differ by a multiple of <m>n</m>. we say that they are congruent modulo <m>n</m>, denoted \(a \equiv  b(\textrm{ mod} n)\). For example, \(13 \equiv  38(\textrm{mod} 5)\) because <m>13-38 = 25</m>, which is a multiple of 5.
+
+<definition xml:id="def-def-modular-addition"><title>Modular Addition</title>
+<index><main>Modular Addition</main></index>
+<notation><usage>a +_n b</usage><description>the mod <m>n</m> sum of <m>a</m> and <m>b</m></description></notation>
+<statement><p>If <m>n</m> is a positive integer, we define addition modulo <m>n</m> \(\left(+_n\right.\))
+ as follows. If \(a, b \in  \mathbb{Z}\),
+\[a +_n b = \textrm{ the remainder after } a + b \textrm{ is divided by } n\]</p>
+</statement></definition>
+
+<definition xml:id="def-def-modular-multiplication"><title>Modular Multiplication</title>
+<index><main>Modular Multiplication</main></index>
+<notation><usage>a \times_n b</usage><description>the mod <m>n</m> product of <m>a</m> and <m>b</m></description></notation>
+<statement><p>If <m>n</m> is a positive integer, we define  multiplication modulo <m>n</m> \(\left(\times _n\right.\)) as follows. If \(a, b \in  \mathbb{Z}\),
+\[a \times_n b = \textrm{ the remainder after } a \cdot b \textrm{ is divided by } n\]</p>
+</statement></definition>
 
 
+<note><p><ol label="a">
+<li><p>  The result of doing arithmetic modulo <m>n</m> is always an integer between 0 and \(n-1\), by the Division Property. This observation implies that \(\{0, 1,\dots, n-1\}\) is closed under modulo <m>n</m> arithmetic.</p></li>
+<li><p>  It is always true that \(a +_n b \equiv  (a + b) (\textrm{mod} n)\) and \(a\times _n b \equiv  (a \cdot  b) (\textrm{mod} n)\).   For example,
+\(4 +_7 5 = 2 \equiv  9 (\textrm{mod} 7)\) and  
 
-If two numbers, <m>a</m> and <m>b</m>, share the same remainder after dividing by <m>n</m>. we say that they are congruent modulo \textit{
-n}, denoted \(a \equiv  b(\textrm{ mod} n)\). For example, \(13 \equiv  38(\textrm{ mod} 5)\) because \(13 = 5\cdot 2 + 3\) and 38= 5$\cdot $ + 3.
-
-\pmb{ \(\textrm{ Modular} \textrm{ Arithmetic}.\)} If <m>n</m> is a positive integer, we define the operations of addition modulo <m>n</m> \(\left(+_n\right.\))
-and multiplication modulo <m>n</m> \(\left(\times _n\right.\)) as follows. If \(a, b \in  \mathbb{Z}\),
-
-\(a +_n b = \textrm{ the} \textrm{ remainder} \textrm{ after} a + b \textrm{ is} \textrm{ divided} \textrm{ by} n\)
-
-\(a \times _n b = \textrm{ the} \textrm{ remainder} \textrm{ after} a \cdot  b\text \textrm{ is} \textrm{ divided} \textrm{ by} n\).
-
-Notes:<ol label="a">
-<li><p>  The result of doing arithmetic modulo <m>n</m> is always an integer between 0 and \(n-1\), by the Division Property. This observation implies
-that \(\{0, 1,\textrm{ ...}, n-1\}\) is closed under modulo <m>n</m> arithmetic.</p></li>
-<li><p>  It is always true that \(a +_n b \equiv  (a + b) (\textrm{ mod} n)\) and \(a\times _n b \equiv  (a \cdot  b) (\textrm{ mod} n)\).   For example,
-$\quad \quad $\(4 +_7 5 = 2 \equiv  9 (\textrm{ mod} 7)\) and  
-
-\(4 \times _7 5 \equiv  6 \equiv  20 (\textrm{ mod} 7)\).</p></li>
-<li><p>  We will use the notation \(\mathbb{Z}_n\) to denote the set \(\{0, 1, 2,. . ., n-1\}\).
-
+\(4 \times _7 5 \equiv  6 \equiv  20 (\mod 7)\).</p></li>
+<li><p>  We will use the notation \(\mathbb{Z}_n\) to denote the set \(\{0, 1, 2,. . ., n-1\}\).</p></li>
+</ol>
+</p>
+</note>
 
 
 <subsection xml:id="ss-Properties of Modular Arithmetic on \(\mathbb{Z"><title>Properties of Modular Arithmetic on \(\mathbb{Z</title><index><main>Properties of Modular Arithmetic on \(\mathbb{Z</main></index>_n\)}
-
 
 
 Addition modulo <m>n</m> is always commutative and associative; 0 is the identity for \(+_n\) and every element of \(\mathbb{Z}_n\) has an additive
@@ -392,9 +436,9 @@ a list containing the mod 6 sum and product, respectively, of 5 and 4:
 <exercise number="2"><statement>  Find all possible values of the following, assuming that <m>m</m> is a positive integer.
 
 <ol label="a">
-<li><p>  \(\gcd (m+1,m)\)</p></li>
-<li><p>  \(\gcd (m+2,m)\)</p></li>
-<li><p>  \(\gcd (m+4,m)\)
+<li><p>  \(\grd(m+1,m)\)</p></li>
+<li><p>  \(\grd(m+2,m)\)</p></li>
+<li><p>  \(\grd(m+4,m)\)
 </statement></exercise>
 <exercise number="3"><statement>  Calculate:
 
