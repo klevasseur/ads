@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <section xml:id="s-gcds-and-zsubn">
-<title>Greatest Common Divisors { </title>
-<index><main>Greatest Common Divisors { </main></index>and \(\mathbb{Z}_n\), the Integers Modulo n}
-
-
-
+<title>Greatest Common Divisors  and the Integers Modulo <m>n</m></title>
+ 
 <introduction><p>In this section introduce the greatest common divisor operation, and  introduce an important family of concrete groups, the integers modulo <m>n</m>. </p></introduction>
 
 
@@ -13,12 +10,13 @@
 
 <p>We start with a theorem about integer division that is intuitively clear.  We leave the proof as an  exercise.</p>
 
-<theorem xml:id="th-division-property"><title>The Division Property for Integers</title><index><main>Division Property for Integers</main></index><\
-statement><p>If \(m, n\in \mathbb{Z}\), \(n>0\), then there exist two unique integers, <m>q</m> (the quotient) and <m>r</m> (the remainder), such that \(m = n q + r\) and \(0 \leq  r < n\).</p></statement></theorem>
+<theorem xml:id="th-division-property"><title>The Division Property for Integers</title>
+<index><main>Division Property for Integers</main></index>
+<statement><p>If \(m, n\in \mathbb{Z}\), \(n>0\), then there exist two unique integers, <m>q</m> (the quotient) and <m>r</m> (the remainder), such that \(m = n q + r\) and \(0 \leq  r &lt; n\).</p></statement></theorem>
 
 <note><p>The division property says that if <m>m</m> is divided by <m>n</m>, you will obtain a quotient and a remainder, where the remainder is less than <m>n</m>. This is a fact that most elementary school students learn when they are introduced to long division. In doing the division problem \(1986 \div  97\), you obtain a quotient of 20 and a remainder of 46.  This result could either be written \(\frac{1986}{97}= 20+\frac{46}{97}\) or  \(1986 = 97\cdot 20 + 46\).  The latter form is how the division property is normally expressed in higher mathematics</p></note>
 
-<list xml:id="divisability-terms"><notation><usage>b \mid a</usage><description><m>b</m> divides (evenly into) <m>a</m></descripiton></notation>
+<list xml:id="divisability-terms">
 <introduction><p>We now remind the reader of some interchangeable terminology that is sued when 
  \(r=0\), i. e.,  \(a = b q\).  All of the following say the same thing, just from slightly different points of view.</p></introduction>
  <dl>
@@ -27,7 +25,7 @@ statement><p>If \(m, n\in \mathbb{Z}\), \(n>0\), then there exist two unique int
  <li><title>factor</title><p><m>b</m> is a factor of <m>a</m></p></li>
  <li><title>divisor</title><p><m>b</m> is a divisor of <m>a</m></p></li>
 </dl>
-<conclusion><p> We use the notation   \(b | a\)  if  <m>b</m>  divides <m>a</m></p></conclusion>
+<conclusion><p> We use the notation   \(b \mid a\)  if  <m>b</m>  divides <m>a</m></p></conclusion>
 </list>
 
 
@@ -62,21 +60,16 @@ pairs</em>.</p>
 
 </subsection>
 
+<subsection xml:id="sss-euclidean-algorithm"><title>The Euclidean Algorithm</title><index><main>Euclidean Algorithm, The </main></index>
 
-<subsubsection xml:id="sss-euclidean-algorithm"><title>The Euclidean Algorithm</title><index><main>Euclidean Algorithm, The </main></index>
-
-<p>As early as Euclid's time it was known that factorization wasn't  the best way to compute greatest common divisors.</p>
-
-
-
+<p>As early as Euclid's time it was known that factorization wasn't the best way to compute greatest common divisors.</p>
 <p>The Euclidean Algorithm is based on the following properties of the greatest common divisor.
 <mdn>
 <mrow xml:id="eq-euclid-basis">\grd(a,0)= a \textrm{  for  } a\neq 0</mrow>
 <mrow xml:id="eq-euclid-recursion">\gcd(a, b)= \gcd(b, r)\textrm{   if } b\neq 0\textrm{   and}a = b q + r</mrow>
 </mdn></p>
 
-
-<p>To compute \(\gcd(a,b)\), we divide <m>b</m> into <m>a</m> and get a remainder <m>r</m> such that \(0\leq  r<|b|\).  By the property above, \(\grd(a, b)= \grd(b, r)\).  We repeat the process until  we get zero for a remainder.  The last nonzero number that is the second entry in our pairs is the greatest common divisior.   This is inevitable because the second number in each pair is smaller than the previous one.  <xref ref="table-euclidean-example" autoname="yes" /> shows an example of how this calculation can be systematically performed.</p>
+<p>To compute \(\gcd(a,b)\), we divide <m>b</m> into <m>a</m> and get a remainder <m>r</m> such that \(0\leq  r &lt;\lvert b\rvert \).  By the property above, \(\grd(a, b)= \grd(b, r)\).  We repeat the process until  we get zero for a remainder.  The last nonzero number that is the second entry in our pairs is the greatest common divisior.   This is inevitable because the second number in each pair is smaller than the previous one.  <xref ref="table-euclidean-example" autoname="yes" /> shows an example of how this calculation can be systematically performed.</p>
 
 <table xml:id="table-euclidean-example">
 <caption>A Table to Compute \(\gcd(99,53)\)</caption>
@@ -90,8 +83,9 @@ pairs</em>.</p>
 <row><cell>1</cell><cell>3</cell><cell>1</cell></row>
 <row><cell>3</cell><cell>1</cell><cell>0</cell></row>
 </tabular>
+</table>
 
-<p>Here is a Sage computation to verify that <m>\gcd(99, 53) = 1</m>.   At each line, the value of <m>a</m> is divided by the value of <m>b</m>.   The quotient is placed on the next line along with the new value of <m>a</m>, which is the previous <m>b</m>;.  and the remainder, which is the new value of <m>b</m>.  Recall that in Sage, <c>a%b</c> is the remainder when dividing <c>b</c> into <c>a</c>. 
+<p>Here is a Sage computation to verify that <m>\gcd(99, 53) = 1</m>.   At each line, the value of <m>a</m> is divided by the value of <m>b</m>.   The quotient is placed on the next line along with the new value of <m>a</m>, which is the previous <m>b</m>;.  and the remainder, which is the new value of <m>b</m>.  Recall that in Sage, <c>a%b</c> is the remainder when dividing <c>b</c> into <c>a</c>. </p>
 <sage>
 <input>
 a=99
@@ -131,14 +125,15 @@ and the <m>y</m> values on top.</p>
 <statement><p>If <m>a</m> and <m>b</m> are positive integers, the smallest positive value of \(a x + b y\) is the greatest common
 divisor of <m>a</m> and <m>b</m>, \(\gcd(a,b)\).</p></statement>
 <proof><p>If  \(g = \gcd(a, b)\), then \(g|a \land g|b \Rightarrow g|(a x + b y)\) for any integers <m>x</m> and <m>y</m>, so \(a x + b y\) can't be less than <m>g</m>.  To show that <m>g</m> is exactly the least positive value, we show that <m>g</m> can be attained by extending the Euclidean Algorithm.  Performing the extended algorithm involves building a table of numbers.  The way in which it is built  maintains an invariant, and by the <xref ref="th-invariant-relation-theorem" autoname="title" />, we can be sure that the desired values of <m>x</m> and <m>y</m> are produced. </p>
-
+</proof></theorem>
 
 
   
 
 
 
-<p>To illustrate the algorithm, <xref ref="table-x-euclidean-example" autoname="yes" /> displays how to compute <m>\gcd(152,53)</m>.   In the <m>r</m> column, you will find 152 and 53, and then the successive remainders from division.  So each number in <m>r</m> after the first two is the remainder after dividing the number immediately above it into the next number up.  To the left of each remainder is the quotient from the division.  In this case the third row of the table tells us that \(152 = 53\cdot 2 + 46\). The last nonzero value in <m>r</m> is the greatest common divisor.  </p>
+<p>To illustrate the algorithm, <xref ref="table-x-euclidean-example" autoname="yes" /> displays how to compute
+ <m>\gcd(152,53)</m>.   In the <m>r</m> column, you will find 152 and 53, and then the successive remainders from division.  So each number in <m>r</m> after the first two is the remainder after dividing the number immediately above it into the next number up.  To the left of each remainder is the quotient from the division.  In this case the third row of the table tells us that \(152 = 53\cdot 2 + 46\). The last nonzero value in <m>r</m> is the greatest common divisor.  </p>
 
 <table xml:id="table-x-euclidean-example">
 <caption>The extended Euclidean algorithm to compute <m>\gcd(152,53)</m></caption>
@@ -168,10 +163,6 @@ divisor of <m>a</m> and <m>b</m>, \(\gcd(a,b)\).</p></statement>
 <row><cell>\(0 = 152 \cdot (-53) + 53\cdot 152\)</cell></row>
 </tabular>
 </table>
-
-
-
-
 <p>The next-to-last equation is what we're looking for in the end!  The main problem is to identify how to determine these values after the first two rows.  The first two rows in these columns will always be the same. Let's look at the general case of computing <m>\gcd(a,b)</m>.  If the <m>s</m> and <m>t</m> values in rows \(i - 1\) and  \(i - 2\) are correct, we have
 
 
@@ -199,11 +190,11 @@ or
 
 Look closely at the equations for \(r_i, s_i, \textrm{ and} t_i\).  Their forms are all the same.  With a little bit of practice you should be able
 to compute <m>s</m> and <m>t</m> values quickly.</p>
-</proof></theorem>
+
 </subsection>
-<subsection xml:id="ss-Modular Arithmetic"><title>Modular Arithmetic</title><index><main>Modular Arithmetic</main></index>
+<subsection xml:id="ss-modular-arithmetic"><title>Modular Arithmetic</title><index><main>Modular Arithmetic</main></index>
 <p>Recall the relation on the integers that we call <xref ref="def-congruence-mod-m" autoname="yes" />.
-If two numbers, <m>a</m> and <m>b</m>, differ by a multiple of <m>n</m>. we say that they are congruent modulo <m>n</m>, denoted \(a \equiv  b(\textrm{ mod} n)\). For example, \(13 \equiv  38(\textrm{mod} 5)\) because <m>13-38 = 25</m>, which is a multiple of 5.
+If two numbers, <m>a</m> and <m>b</m>, differ by a multiple of <m>n</m>. we say that they are congruent modulo <m>n</m>, denoted \(a \equiv  b(\textrm{ mod} n)\). For example, \(13 \equiv  38(\textrm{mod} 5)\) because <m>13-38 = 25</m>, which is a multiple of 5.</p>
 
 <definition xml:id="def-def-modular-addition"><title>Modular Addition</title>
 <index><main>Modular Addition</main></index>
@@ -220,7 +211,6 @@ If two numbers, <m>a</m> and <m>b</m>, differ by a multiple of <m>n</m>. we say 
 \[a \times_n b = \textrm{ the remainder after } a \cdot b \textrm{ is divided by } n\]</p>
 </statement></definition>
 
-
 <note><p><ol label="a">
 <li><p>  The result of doing arithmetic modulo <m>n</m> is always an integer between 0 and \(n-1\), by the Division Property. This observation implies that \(\{0, 1,\dots, n-1\}\) is closed under modulo <m>n</m> arithmetic.</p></li>
 <li><p>  It is always true that \(a +_n b \equiv  (a + b) (\textrm{mod} n)\) and \(a\times _n b \equiv  (a \cdot  b) (\textrm{mod} n)\).   For example,
@@ -231,7 +221,6 @@ If two numbers, <m>a</m> and <m>b</m>, differ by a multiple of <m>n</m>. we say 
 </ol>
 </p>
 </note>
-
 </subsection>
 <subsection xml:id="ss-properties-modular-arithmetic"><title>Properties of Modular Arithmetic</title><index><main>Modular Arithmetic</main><sub>Properties</sub></index>
 
@@ -240,11 +229,11 @@ If two numbers, <m>a</m> and <m>b</m>, differ by a multiple of <m>n</m>. we say 
 inverse.  These properties can be summarized by noting that for each \(n\geq 1\), \(\left[\mathbb{Z}_n; +_n\right]\) is a group.  Henceforth, we will use the abbreviated notation \(\mathbb{Z}_n\) when referring to this group, which we call <q>The group of integers modulo <m>n</m>.</q></p>
 
 <theorem xml:id="theorem-modular-add-inverse"><title>Additive Inverses in \(\mathbb{Z}_n\)</title>
-<statement><p>If \(a \in  \mathbb{Z}_n\), \(a\neq 0\), then the additive inverse of a is \(n - a\).</p></statement><proof>\(a + (n - a) =n\equiv 0(\textrm{ mod} n)\), since  \(n = n\cdot 1 + 0\).  Therefore,  \(a+_n(n-a)=0\).</proof></theorem>  
+<statement><p>If \(a \in  \mathbb{Z}_n\), \(a\neq 0\), then the additive inverse of a is \(n - a\).</p></statement><proof><p>\(a + (n - a) =n\equiv 0(\textrm{ mod} n)\), since  \(n = n\cdot 1 + 0\).  Therefore,  \(a+_n(n-a)=0\).</p></proof></theorem>  
 
 <p>Multiplication modulo <m>n</m> is always commutative and associative, and 1 is the identity for \(\times_n\).</p>
 
-<p>Notice that the algebraic properties of \(+_n\) and \(\times _n\) on \(\mathbb{Z}_n\) are identical to the properties of addition and multiplication on <m>\mathbb{ZQ}</m>.
+<p>Notice that the algebraic properties of \(+_n\) and \(\times _n\) on \(\mathbb{Z}_n\) are identical to the properties of addition and multiplication on <m>\mathbb{ZQ}</m>.</p>
 
 <example xml:id="ex-11-4-modular"><title>Some Examples</title><p><ol label="a">
 <li><p> We are all somewhat familiar with \(\mathbb{Z}_{12}\) since the hours of the day are counted using this group, except for the fact that 12 is
@@ -380,7 +369,7 @@ a list containing the mod 6 sum and product, respectively, of 5 and 4:</p>
 <li><p> How could you efficiently compute \(m(4)\), \(m \in  \mathbb{Z}\)?</p></li>
 </ol>
 </p></statement></exercise>
-<exercise number="6"><statement>Prove that $\{$1, 2, 3, 4$\}$ is a group under the operation \(\times _5\).
+<exercise number="6"><statement><p>Prove that $\{$1, 2, 3, 4$\}$ is a group under the operation \(\times _5\).
 </p></statement></exercise>
 <exercise number="7"><statement><p>A student is asked to solve the following equations under the requirement that all arithmetic should be done in \(\mathbb{Z}_2\). List all solutions.
 
@@ -394,7 +383,7 @@ a list containing the mod 6 sum and product, respectively, of 5 and 4:</p>
 </exercisegroup>
 <exercisegroup>
 <introduction><p>B Exercises</p></introduction>
-<exercise number="9"><statement><p> Prove the division property by induction on <m>m</m>.
+<exercise number="9"><statement><p> Prove the division property, <xref ref="th-division-property" autoname="yes"/> by induction on <m>m</m>.
 </p></statement></exercise>
 <exercise number="10"><statement><p> Prove that congruence modulo <m>n</m> is an equivalence relation on the integers. Describe the set of equivalence classes that congruence modulo <m>n</m> defines.</p>
 </statement></exercise>
