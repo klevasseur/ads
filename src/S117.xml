@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="s-isomorphisms">
+<title>Isomorphisms</title>
+<index><main>Isomorphisms</main></index>
+<p>The following informal definition of isomorphic systems should be memorized. No matter how technical a discussion about isomorphic
+systems becomes, keep in mind that this is the essence of the concept.<p>
+
+<definition xml:id="def-isomorphism-informal"><title>Isomorphic Systems/Isomorphism - Informal Version</title>
+<statement><p>Two algebraic systems are isomorphic if there exists a translation rule between them so that any
+true statement in one system can be translated to a true statement in the other.</p></statement></definition>
+
+ 
+
+<example xml:id="ex-11.7.1."><title>11.7.1.</title><p>Imagine that you are an six-year-old child who has been reared in an English-speaking family, has moved to Greece, and has been enrolled in a Greek school. Suppose that your new teacher asks the class to do the following addition problem that has been written out in Greek.
+  \[\tau \rho \unicode{03af}\alpha \text \sigma \upsilon \nu   \tau \unicode{03ad}\sigma \sigma \varepsilon \rho \alpha \textrm{  
+}\textrm{ $\iota \sigma $o$\unicode{03cd}\tau \alpha \iota $} \_\_\_\]
+The natural thing for you to do is to take out your Greek-English/English-Greek dictionary and translate the Greek words to English, as outlined
+in <xref ref="fig-greek-sum" autoname="yes" /> After you've solved the problem, you can consult the same dictionary to obtain the proper Greek word that the teacher wants. Although
+this is not the recommended method of learning a foreign language, it will surely yield the correct answer to the problem. Mathematically, we may
+say that the system of Greek integers with addition (\(\sigma \upsilon \nu\)) is isomorphic to English integers with addition (plus). The problem
+of translation between natural languages is more difficult than this though, because two complete natural languages are not isomorphic, or at least
+the isomorphism between them is not contained in a simple dictionary.</p>
+
+		<figure xml:id="fig-greek-sum">
+					 <caption>Solution of a Greek arithmetic problem
+					 </caption>
+					 <image width="70%" source="images/fig-greek-sum.png">
+						  <description>Solution of a Greek arithmetic problem</description>
+					 </image>
+		</figure>
+</example>	
+<example xml:id="ex-set-isomorphism"><title>Software Implementation of Sets</title>
+<p>In this example, we will describe how set  variables can be implemented on a computer.
+We will describe the two systems first and then describe the isomorphism between them.</p>
+
+<p>System 1: The power set of \(\{1, 2, 3, 4, 5\}\) with the operation union, \(\cup\). For simplicity, we will only discuss union. However, the other
+operations are implemented in a similar way.</p>
+
+<p>System 2: Strings of five bits of computer memory with an OR gate. Individual bit values are either zero or one, so the elements of this system can
+be visualized as sequences of five 0's and 1's. An OR gate, <xref ref="fig-set-isomorphism" autoname="yes" />, is a small piece of computer hardware that accepts two bit values at any one time and outputs either a zero or one, depending on the inputs. The output of an OR gate is one, except when the two bit values that it accepts are both zero, in which case the output is zero. The operation on this system actually consists of sequentially inputting the values of two bit strings into the OR gate. The result will be a new string of five 0's and 1's. An alternate method of operating in this system is to use five OR gates and to input corresponding pairs of bits from the input strings into the gates concurrently.</p>
+
+<figure xml:id="fig-set-isomorphism">
+			 <caption>Translation between sets and strings of bits
+			 </caption>
+			 <image width="70%" source="images/fig-set-isomorphism.png">
+				  <description>Translation between sets and strings of bits</description>
+			 </image>
+</figure>
+<p>The Isomorphism: Since each system has only one operation, it is clear that union and the OR gate translate into one another. The translation between
+sets and bit strings is easiest to describe by showing how to construct a set from a bit string. If \(a_1a_2a_3a_4a_5\), is a bit string in System
+2, the set that it translates to contains the number <m>k</m> if and only if \(a_k\) equals 1. For example, \(10001\) is translated to the set
+\(\{1, 5\}\), while the set \(\{1, 2\}\) is translated to \(11000.\) Now imagine that your computer is like the child who knows English and must
+do a Greek problem. To execute a program that has code that includes the set expression \(\{1, 2\} \cup  \{1, 5\}\), it will follow the same procedure
+as the child to obtain the result, as shown in <xref ref="fig-set-calculation" autoname="yes" />.</p>
+
+          <figure xml:id="fig-set-calculation">
+                <caption>Translation of a problem in set theory
+                </caption>
+                <image width="70%" source="images/fig-set-calculation.png">
+                    <description>Translation of a problem in set theory</description>
+                </image>
+            </figure>
+</example> 
+
+<example xml:id="ex-log-multiplication"><title>Multiplying without doing multiplication</title>
+<p>This isomorphism is between\(\left[\mathbb{R}^+ ; \cdot \right]\) and [<m>\mathbb{R}</m>;+]. Until the 1970s, when the price of calculators dropped, multiplication and exponentiation were performed with an isomorphism between these systems. The isomorphism \(\left(\mathbb{R}^+\right.\) to \(\mathbb{R}\)) between the two groups is that \(\cdot\) is translated into \(+\) and any positive real
+number <m>a</m> is translated to the logarithm of <m>a</m>. To translate back from <m>\mathbb{R}</m> to \(\mathbb{R}^+\) , you invert the logarithm
+function. If base ten logarithms are used, an element of <m>\mathbb{R}</m>, <m>b</m>, will be translated to \(10^b\).  In pre-calculator days, the
+translation was done with a table of logarithms or with a slide rule. An example of how the isomorphism is used appears in <xref ref="fig-log-mult" autoname="yes" />.</p>
+            <figure xml:id="fig-log-mult">
+                <caption>Multiplication using logarithms
+                </caption>
+                <image width="70%" source="images/fig-log-mult.png">
+                    <description>Multiplication using logarithms</description>
+                </image>
+            </figure>
+</example>
+
+<p>The following definition of an isomorphism between two groups is a more formal one that appears in most abstract algebra texts. At first glance,
+it appears different, it is really a slight variation on the informal definition. It is the common definition because it is easy to apply; that is,
+given a function, this definition tells you what to do to determine whether that function is an isomorphism.</p>
+
+
+
+
+<definition xml:id="def-group-isomorphism"><title>Group Isomorphism</title>
+<index><main>Isomorphism</main><sub>Group</sub></index>
+<notation><usage>G_1 \cong G_2</usage><description>\(G_1\) is isomorphic to \(G_2\)</description></notation>
+<statement><p>If \(\left[G_1 ; *_1\right]\) and \(\left[G_2 ; *_2\right]\) are groups, \(f: G_1 \to G_2\) is an isomorphism
+from \(G_1\) into \(G_2\) if: 
+<ol label="1">
+<li><p> f is a bijection, and</p></li>
+<li><p> \(f\left(a *_1 b\right) = f(a) *_2f(b)\)   for all \(a, b\in  G_1\) </p></li>
+</ol></p> 
+<p>If such a function exists, then we say \(G_1\) is isomorphic to \(G_2\), denoted \(G_1 \cong G_2\).</p></statement>
+</definition>
+
+  
+        <figure xml:id="fig-steps-iso">
+                <caption>Steps in proving that \(G_1\) and \(G_2\) are isomorphic
+                </caption>
+                <image width="70%" source="images/fig-steps-iso.png">
+                    <description>Steps in proving that \(G_1\) and \(G_2\) are isomorphic</description>
+                </image>
+            </figure>
+
+ <note>
+<p><ol label="a">
+<li><p>  There could be several different isomorphisms between the same pair of groups. Thus, if you are asked to demonstrate that two groups are isomorphic, your answer need not be unique.</p></li>
+<li><p>  Any application of this definition requires a procedure outlined in <xref ref="fig-steps-iso" autoname="yes" />.
+The first condition, that an isomorphism be a bijection, reflects the fact that every true statement in the first group should have exactly one corresponding
+true statement in the second group. This is exactly why we run into difficulty in translating between two natural languages. To see how Condition
+(b) of the formal definition is consistent with the informal definition, consider the function \(L:\mathbb{R}^+\to  \mathbb{R}\) defined by \(L(x)
+= \log _{10}x\). The translation diagram between \(\mathbb{R}^+\) and <m>\mathbb{R}</m> for the multiplication problem \(a \cdot  b\) appears in <xref ref="fig-log-mult-general" autoname="yes" />. We arrive at the same result by computing \(L^{-1} (L(a) + L(b))\) as we do by computing \(a \cdot  b\). If we apply the function \(L\) to the two results, we get the same image:
+
+<mdn> 
+ <mrow xml:id="eq-iso">       \(L(a \cdot  b) = L\left(L^{-1}(L(a) + L(b))\right) = L(a) + L(b)\) </mrow>
+</mdn>
+
+since \(L\left(L^{-1}(x)\right) = x\). Note that <xref ref="eq-iso" autoname="no" /> is exactly Condition b of the formal definition applied to the two groups \(\mathbb{R}^+\) and <m>\mathbb{R}</m>.</p></li>
+</ol></p>
+
+            <figure xml:id="fig-log-mult-general">
+                <caption>General Multiplication using logarithms
+                </caption>
+                <image width="70%" source="images/fig-log-mult.png">
+                    <description>General Multiplication using logarithms</description>
+                </image>
+            </figure>
+</note>
+
+<example xml:id="ex-11.7.4."><title>11.7.4.</title><p> Consider  \(G= \left\{\left.\left(
+\begin{array}{cc}
+ 1 &amp; a \\
+ 0 &amp; 1 \\
+\end{array}
+\right) \right| a \in \mathbb{R}\right\}\) with matrix multiplication.   The group \([\mathbb{R};+]\) is isomorphic to <m>G</m>.   Our translation
+rule is the function \(f: \mathbb{R} \to G\) defined by \(f(a)=\left(
+\begin{array}{cc}
+ 1 &amp; a \\
+ 0 &amp; 1 \\
+\end{array}
+\right)\).  Since groups have only one operation, there is no need to state explicitly that addition is translated to matrix multiplication. That
+<m>f</m> is a bijection is clear from its definition. If <m>a</m> and <m>b</m> are any real numbers,
+
+
+
+<me>
+\begin{split}
+f(a) f(b) &amp; = \left(
+\begin{array}{cc}
+ 1 &amp; a \\
+ 0 &amp; 1 \\
+\end{array}
+\right)\left(
+\begin{array}{cc}
+ 1 &amp; b \\
+ 0 &amp; 1 \\
+\end{array}
+\right)\\
+&amp; = \left(
+\begin{array}{cc}
+ 1 &amp; a + b \\
+ 0 &amp; 1 \\
+\end{array}
+\right)\\
+&amp; = f(a + b)\)
+\end{split}
+</me>
+
+
+
+<p>We can apply this translation rule to determine the inverse of a matrix in G. We know that \(a + (-a)=0\) is a true statement in <m>\mathbb{R}</m>. Using
+<m>f</m> to translate this statement, we get
+
+
+
+\[f(a) f(-a) = f(0)\]
+or
+\[\left(
+\begin{array}{cc}
+ 1 &amp; a \\
+ 0 &amp; 1 \\
+\end{array}
+\right)\left(
+\begin{array}{cc}
+ 1 &amp; -a \\
+ 0 &amp; 1 \\
+\end{array}
+\right)=\left(
+\begin{array}{cc}
+ 1 &amp; 0 \\
+ 0 &amp; 1 \\
+\end{array}
+\right)\]
+
+therefore,
+
+
+
+\[\left(
+\begin{array}{cc}
+ 1 &amp; a \\
+ 0 &amp; 1 \\
+\end{array}
+\right)^{-1}= \left(
+\begin{array}{cc}
+ 1 &amp; -a \\
+ 0 &amp; 1 \\
+\end{array}
+\right)\]
+</p></example>
+
+
+<p>The next theorem summarizes some of the general facts about group isomorphisms that are used most often in applications.  We leave the proof to the reader.</p>
+
+<theorem xml:id="theorem-isomorphism-properties"><title>Properties of Isomorphisms</title>
+<statement><p>If \([G;*]\) and \([H,\diamond ]\) are groups with identities <m>e</m> and e'. , respectively, and \(T : G \to
+ H\) is an isomorphism from <m>G</m> into <m>H</m>, then:<ol label="a">
+<li><p> \(T(e) = e'\),\\
+(b) \(T(a)^{-1} = T\left(a^{-1}\right)\) for all \(a \in G\), and\\
+(c) If <m>K</m> is a subgroup of <m>G</m>, then \(T(K) = \{T(a) : a \in K\}\) is a subgroup of <m>H</m> and is isomorphic to <m>K</m>.</p>
+</statement></theorem>  
+
+
+<p><q>Is isomorphic to</q> is an equivalence relation on the set of all groups. Therefore, the set of all groups is partitioned into equivalence classes, each equivalence class containing groups that are isomorphic to one another.</p>
+
+
+
+<subsection xml:id="ss-Procedures for showing groups are not isomorphic"><title>Procedures for showing groups are not isomorphic</title><index><main>Procedures for showing groups are not isomorphic</main></index>
+
+
+
+How do you decide that two groups are not.  isomorphic to one another? The negation of $\texttt{"}$<m>G</m> and <m>H</m> are isomorphic$\texttt{"}$
+is that no translation rule between <m>G</m> and <m>H</m> exists. If <m>G</m> and <m>H</m> have different cardinalities, then no bijection
+from <m>G</m> into <m>H</m> can exist. Hence they are not isomorphic. Given that \(\left| G\right| =\left| H\right|\), it is usually impractical
+to list all bijections from <m>G</m> into <m>H</m> and show that none of them satisfy Condition b of the formal definition. The best way to
+prove that two groups are not isomorphic is to find a true statement about one group that is not true about the other group. We illustrate this method
+in the following checklist that you can apply to most pairs of non-isomorphic groups in this book.
+
+
+
+Assume that \([G;*]\) and \([H;\diamond ]\) are groups. The following are reasons for <m>G</m> and <m>H</m> to be not isomorphic.
+
+<ol label="a">
+<li><p>  <m>G</m> and <m>H</m> do not have the same cardinality. For example, \(\mathbb{Z}_{12} \times  \mathbb{Z}_5\) can't be isomorphic to
+\(\mathbb{Z}_{50}\) and \([\mathbb{R};+]\) can't be isomorphic to \(\left[\mathbb{Q}^+ ; \cdot \right]\),</p></li>
+<li><p>  <m>G</m> is abelian and <m>H</m> is not abelian since \(a * b = b * a\) is always true in G, but \(T(a) \diamond  T(b) = T(b) \diamond
+ T(a)\) would not always be true. Two groups with six elements each are \(\mathbb{Z}_6\) and the set of \(3 \times  3\) rook matrices (see Exercise
+5 in Section 11.2). The second group is non-abelian, therefore it can't be isomorphic to \(\mathbb{Z}_6\) .</p></li>
+<li><p>  <m>G</m> has a certain kind of subgroup that <m>H</m> doesn't have. Theorem 11.7.1(c) states that this cannot happen if <m>G</m>
+is isomorphic to <m>H</m>. \(\left[\mathbb{R}^* ; \cdot \right]\) and \(\left[\mathbb{R}^+ ; \cdot \right]\) are not isomorphic since \(\mathbb{R}^*\)
+has a subgroup with two elements, \(\{-1, 1\}\), while the proper subgroups of \(\mathbb{R}^+\) are all infinite (Convince yourself of this fact!).</p></li>
+<li><p>  The number of solutions of \(x * x = e\) in <m>G</m> is not equal to the number of solutions of \(y \diamond  y = e'\) in <m>H</m>.
+  \(\mathbb{Z}_8\) is not isomorphic to \(\mathbb{Z}_2{}^3\) since \(x +_8 x = 0\) has two solutions, 0 and 4, while \(y + y = (0, 0, 0)\) is true
+for all \(y\in \mathbb{Z}_2{}^3\). If the operation in <m>G</m> is defined by a table, then the number of solutions of \(x * x = e\) will be the
+number of occurrences of <m>e</m> in the main diagonal of the table. The equations \(x^3 = e\), \(x^4= e\), $\ldots $  can also be used in the
+same way to identify non-isomorphic groups.</p></li>
+<li><p>  One of the cyclic subgroups of <m>G</m> equals <m>G</m> (i. e., <m>G</m> is cyclic), while none of <m>H</m>'s cyclic subgroups
+equals <m>H</m> (i. e., H is noncyclic). This is a special case of Condition c. <m>\mathbb{ZQ}</m> and \(\mathbb{Z} \times  \mathbb{Z}\) are not isomorphic
+since \(\mathbb{Z} = \langle 1\rangle\) and \(\mathbb{Z} \times  \mathbb{Z}\) is not cyclic.
+
+
+
+<subsubsection xml:id="sss-EXERCISES FOR SECTION 11.7"><title>EXERCISES FOR SECTION 11.7</title><index><main>EXERCISES FOR SECTION 11.7</main></index>
+
+
+<exercisegroup>
+<introduction><p>A Exercises</p></introduction>
+
+<exercise number="1"><statement>  State whether each pair of groups below is isomorphic. If it is, give an isomorphism; if it is not, give your reason.
+
+<ol label="a">
+<li><p> \(\mathbb{Z} \times  \mathbb{R}\) and\(\mathbb{R} \times  \mathbb{Z}\)</p></li>
+<li><p> \(\mathbb{Z}_2\times \mathbb{Z}\)  and \(\mathbb{Z} \times  \mathbb{Z}\)</p></li>
+<li><p>  <m>\mathbb{R}</m> and \(\mathbb{Q} \times  \mathbb{Q}\)</p></li>
+<li><p>  \(\mathcal{P}(\{1, 2\})\) with symmetric difference and \(\mathbb{Z}_2{}^2\)</p></li>
+<li><p>  \(\mathbb{Z}_2{}^2\) and \(\mathbb{Z}_4\)</p></li>
+<li><p>   \(\mathbb{R}^4\) and \(M_{2\times 2}(\mathbb{R})\) with matrix addition</p></li>
+<li><p>  \(\mathbb{R}^2\) and \(\mathbb{R} \times  \mathbb{R}^+\) </p></li>
+<li><p>   \(\mathbb{Z}_2\) and the \(2 \times  2\) rook matrices</p></li>
+<li><p>   \(\mathbb{Z}_6\) and \(\mathbb{Z}_2\times  \mathbb{Z}_3\) 
+</statement></exercise>
+<exercise number="2"><statement>  If you know two natural languages, show that they are not isomorphic.
+</statement></exercise>
+<exercise number="3"><statement>  Prove that the relation <q>is isomorphic to</q> on groups is transitive.
+</statement></exercise>
+<exercise number="4"><statement> (a) Write out the operation table for \(G = [\{1, --- 1, i, -i\}, \cdot ]\) where \(i\) is the complex number for which \(i^2 = - 1\). Show that
+<m>G</m> is isomorphic to \(\left[\mathbb{Z}_4;+_4\right]\). 
+
+
+
+    (b) Solve \(x^2= -1\) in <m>G</m> by first translating to \(\mathbb{Z}_4\) , solving the equation in \(\mathbb{Z}_4\) , and then translating
+back to <m>G</m>.
+
+
+</exercisegroup>
+<exercisegroup>
+<introduction><p>B Exercises</p></introduction>
+</statement></exercise>
+<exercise number="5"><statement>  It can be shown that there are five non-isomorphic groups of order eight. You should be able to describe at least three of them. Do so without
+use of tables. Be sure to explain why they are not isomorphic.
+</statement></exercise>
+<exercise number="6"><statement>  Prove Theorem 11.7.1.
+</statement></exercise>
+<exercise number="7"><statement>  Prove that all infinite cyclic groups are isomorphic to <m>\mathbb{ZQ}</m>.
+</statement></exercise>
+<exercise number="8"><statement> (a) Prove that \(\mathbb{R}^*\) is isomorphic to \(\mathbb{Z}_2 \times  \mathbb{R}\).</p></li>
+<li><p> Describe how multiplication of nonzero real numbers can be accomplished doing only additions and translations.
+</statement></exercise>
+<exercise number="9"><statement>  Prove that if <m>G</m> is any group and <m>g</m> is some fixed element of <m>G</m>, then the function \(\phi _g\) defined by \(\phi
+_g(x) = g*x*g^{-1}\) is an isomorphism from <m>G</m> into itself.  An isomorphism of this type is called an automorphism.. 
+
