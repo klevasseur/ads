@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="s-Matrix Inversion">
+<title>Matrix Inversion</title>
+<index><main>Matrix Inversion</main></index>
+
+
+
+In Chapter 5 we defined the inverse of an \(n \times  n\) matrix. We noted that not all matrices have inverses, but when the inverse of a matrix
+exists, it is unique. This enables us to define the inverse of an n $\times $ n matrix A as the unique matrix B such that \(A B = B A =I\), where
+<m>I</m> is the \(n \times  n\) identity matrix. In order to get some practical experience, we developed a formula that allowed us to determine
+the inverse of invertible \(2\times 2\) matrices. We will now use the Gauss-Jordan procedure for solving systems of linear equations to compute the
+inverses, when they exist, of \(n\times n\) matrices, \(n \geq  2\). The following procedure for a \(3\times 3\) matrix can be generalized for \(n\times
+n\) matrices, \(n\geq 2\).
+
+
+
+Example 12.2.1.   Given the matrix 
+
+
+
+ $\quad \quad $\(A = \left(
+\begin{array}{ccc}
+ 1 &amp; 1 &amp; 2 \\
+ 2 &amp; 1 &amp; 4 \\
+ 3 &amp; 5 &amp; 1 \\
+\end{array}
+\right)\)
+
+
+
+we want to find the matrix
+
+
+
+$\quad \quad $\(B=\left(
+\begin{array}{ccc}
+ x_{11} &amp; x_{12} &amp; x_{13} \\
+ x_{21} &amp; x_{22} &amp; x_{23} \\
+ x_{31} &amp; x_{32} &amp; x_{33} \\
+\end{array}
+\right)\),
+
+
+
+if it exists, such that (a) \(A B = I\) and (b) \(B A = I\). We will concentrate on finding a matrix that satisfies Equation (a) and then verify
+that B also satisfies Equation (b).
+
+
+
+\(\left(
+\begin{array}{ccc}
+ 1 &amp; 1 &amp; 2 \\
+ 2 &amp; 1 &amp; 4 \\
+ 3 &amp; 5 &amp; 1 \\
+\end{array}
+\right)\left(
+\begin{array}{ccc}
+ x_{11} &amp; x_{12} &amp; x_{13} \\
+ x_{21} &amp; x_{22} &amp; x_{23} \\
+ x_{31} &amp; x_{32} &amp; x_{33} \\
+\end{array}
+\right)= \left(
+\begin{array}{ccc}
+ 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 \\
+\end{array}
+\right)\)
+
+
+
+is equivalent to 
+
+
+
+ \(\left(
+\begin{array}{ccc}
+ x_{11}+x_{21}+2 x_{31} &amp; x_{12}+x_{22}+2 x_{32} &amp; x_{13}+x_{23}+2 x_{33} \\
+ 2 x_{11}+x_{21}+4 x_{31} &amp; 2 x_{12}+x_{22}+4 x_{32} &amp; 2 x_{13}+x_{23}+4 x_{33} \\
+ 3 x_{11}+5 x_{21}+x_{31} &amp; 3 x_{12}+5 x_{22}+x_{32} &amp; 3 x_{13}+5 x_{23}+x_{33} \\
+\end{array}
+\right)= \left(
+\begin{array}{ccc}
+ 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 \\
+\end{array}
+\right)\)   (12.2.a)
+
+
+
+By definition of equality of matrices, this gives us three systems of equations to solve. The augmented matrix of one of the 12.2a systems, the one
+equating the first columns of the two matrices is:
+
+
+
+ $\quad \quad $\(\left(
+\begin{array}{cccc}
+ 1 &amp; 1 &amp; 2 &amp; 1 \\
+ 2 &amp; 1 &amp; 4 &amp; 0 \\
+ 3 &amp; 5 &amp; 1 &amp; 0 \\
+\end{array}
+\right)\) $\quad \quad \quad \quad $ (12.2.b)
+
+
+
+Using the Gauss-Jordan technique of Section 12.1, we have:
+
+
+
+ \(\left(
+\begin{array}{cccc}
+ 1 &amp; 1 &amp; 2 &amp; 1 \\
+ 2 &amp; 1 &amp; 4 &amp; 0 \\
+ 3 &amp; 5 &amp; 1 &amp; 0 \\
+\end{array}
+\right)\textrm{      }\overset{-2 R_1+R_2}{\text \longrightarrow }\textrm{        }\left(
+\begin{array}{cccc}
+ 1 &amp; 1 &amp; 2 &amp; 1 \\
+ 0 &amp; -1 &amp; 0 &amp; -2 \\
+ 3 &amp; 5 &amp; 1 &amp; 0 \\
+\end{array}
+\right) \overset{-3 R_1+R_3}{\text \longrightarrow }\textrm{        }\left(
+\begin{array}{cccc}
+ 1 &amp; 1 &amp; 2 &amp; 1 \\
+ 0 &amp; -1 &amp; 0 &amp; -2 \\
+ 0 &amp; 2 &amp; -5 &amp; -3 \\
+\end{array}
+\right)\\
+\\
+\textrm{ $\quad \quad $ }\overset{-1 R_2}{\text \longrightarrow }\textrm{             }\left(
+\begin{array}{cccc}
+ 1 &amp; 1 &amp; 2 &amp; 1 \\
+ 0 &amp; 1 &amp; 0 &amp; 2 \\
+ 0 &amp; 2 &amp; -5 &amp; -3 \\
+\end{array}
+\right)\textrm{      }\overset{-R_2+R_1\textrm{ and} -2R_2+R_3}{\text \longrightarrow }\textrm{    }\left(
+\begin{array}{cccc}
+ 1 &amp; 0 &amp; 2 &amp; -1 \\
+ 0 &amp; 1 &amp; 0 &amp; 2 \\
+ 0 &amp; 0 &amp; -5 &amp; -7 \\
+\end{array}
+\right)\quad \quad \\
+\\
+\quad \quad \overset{-\frac{1}{5} R_3}{\text \longrightarrow }\textrm{      } \left(
+\begin{array}{cccc}
+ 1 &amp; 0 &amp; 2 &amp; -1 \\
+ 0 &amp; 1 &amp; 0 &amp; 2 \\
+ 0 &amp; 0 &amp; 1 &amp; 7/5 \\
+\end{array}
+\right)\text \overset{-2 R_3+R_1}{\text \longrightarrow }\textrm{    }\left(
+\begin{array}{cccc}
+ 1 &amp; 0 &amp; 0 &amp; -\frac{19}{5} \\
+ 0 &amp; 1 &amp; 0 &amp; 2 \\
+ 0 &amp; 0 &amp; 1 &amp; \frac{7}{5} \\
+\end{array}
+\right)\)
+
+
+
+So \(x_{11}= -19/5, x_{21}=2\) and \(x_{31}=7/5\), which gives us the first column of the matrix <m>B</m>. The matrix form of the system to obtain
+\(x_{12}\), \(x_{22}\), and \(x_{32}\) , the second column of B, is:
+
+
+
+ \(\left(
+\begin{array}{cccc}
+ 1 &amp; 1 &amp; 2 &amp; 0 \\
+ 2 &amp; 1 &amp; 4 &amp; 1 \\
+ 3 &amp; 5 &amp; 1 &amp; 0 \\
+\end{array}
+\right)\)$\quad \quad \quad \quad \quad $(12.2.c)
+
+
+
+which reduces to
+
+
+
+ \(\left(
+\begin{array}{cccc}
+ 1 &amp; 0 &amp; 0 &amp; \frac{9}{5} \\
+ 0 &amp; 1 &amp; 0 &amp; -1 \\
+ 0 &amp; 0 &amp; 1 &amp; -\frac{2}{5} \\
+\end{array}
+\right)\)$\quad \quad \quad \quad $(12.2.d)
+
+
+
+The critical idea to note here is that the coefficient matrix in 12.2c is the same as the matrix in 12.2b, hence the sequence of row operations that
+we used to reduce the matrix in 12.2b can be used to reduce the matrix in 12.2c. To determine the third column of B, we reduce
+
+
+
+ \(\left(
+\begin{array}{cccc}
+ 1 &amp; 1 &amp; 2 &amp; 0 \\
+ 2 &amp; 1 &amp; 4 &amp; 0 \\
+ 3 &amp; 5 &amp; 1 &amp; 1 \\
+\end{array}
+\right)\)
+
+
+
+to obtain \(x_{13}= 2/5, x_{23}=0\) and \(x_{33}=-1/5\),. Here again it is important to note that the sequence of row operations used to <q>solve</q>
+this system is exactly the same as those we used in the first system. Why not save ourselves a considerable amount of time and effort and solve all
+three systems simultaneously? This we can effect by augmenting the coefficient matrix by the identity matrix <m>I</m>. We then have
+
+
+
+  \(\left(
+\begin{array}{cccccc}
+ 1 &amp; 1 &amp; 2 &amp; 1 &amp; 0 &amp; 0 \\
+ 2 &amp; 1 &amp; 4 &amp; 0 &amp; 1 &amp; 0 \\
+ 3 &amp; 5 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+\end{array}
+\right)\textrm{      }\overset{\textrm{ Same} \textrm{ sequence} \textrm{ of} \textrm{ row}\textrm{ operations} \textrm{ as} \textrm{ above}\text }{\text \longrightarrow
+}\textrm{         }\left(
+\begin{array}{cccccc}
+ 1 &amp; 0 &amp; 0 &amp; -\frac{19}{5} &amp; \frac{9}{5} &amp; \frac{2}{5} \\
+ 0 &amp; 1 &amp; 0 &amp; 2 &amp; -1 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 &amp; \frac{7}{5} &amp; -\frac{2}{5} &amp; -\frac{1}{5} \\
+\end{array}
+\right)\)
+
+
+
+So that
+
+
+
+  $\quad \quad \quad $\(B =\textrm{    }\left(
+\begin{array}{ccc}
+ -\frac{19}{5} &amp; \frac{9}{5} &amp; \frac{2}{5} \\
+ 2 &amp; -1 &amp; 0 \\
+ \frac{7}{5} &amp; -\frac{2}{5} &amp; -\frac{1}{5} \\
+\end{array}
+\right)\)
+
+
+
+The reader should verify that \(B A = I\) so that \(A ^{-1} = B\).
+
+
+
+As the following theorem indicates, the verification that \(B A = I\) is not necessary.  The proof of the theorem is beyond the scope of this text.
+The interested reader can find it in most linear algebra texts.
+
+<theorem xml:id="theorem-12.2.1."><title>12.2.1.</title><index><main>12.2.1.</main></index><statement></statement><proof></proof></theorem> Let <m>A</m> be an \(n \times  n\) matrix. If a matrix <m>B</m> can be found such that \(A B = I\), then \(B A = I\),
+so that  \(B = A^{-1}\). In fact, to find \(A^{-1}\), we need only find a matrix <m>B</m> that satisfies one of the two conditions \(A B = I\)
+or \(B A = I\).
+
+
+
+It is clear from Chapter 5 and our discussions in this chapter that not all \(n \times  n\) matrices have inverses. How do we determine whether a
+matrix has an inverse using this method? The answer is quite simple: the technique we developed to compute inverses is a matrix approach to solving
+several systems of equations simultaneously.
+
+
+
+<example xml:id="ex-12.2.2."><title>12.2.2.</title><p></p></example> The reader can verify that if
+
+
+
+  \(A=\left(
+\begin{array}{ccc}
+ 1 &amp; 2 &amp; 1 \\
+ -1 &amp; -2 &amp; -1 \\
+ 0 &amp; 5 &amp; 8 \\
+\end{array}
+\right)\)
+
+
+
+then the augmented matrix
+
+
+
+ \(\left(
+\begin{array}{cccccc}
+ 1 &amp; 2 &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\
+ -1 &amp; -2 &amp; -2 &amp; 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 5 &amp; 8 &amp; 0 &amp; 0 &amp; 1 \\
+\end{array}
+\right)\)
+
+
+
+reduces to
+
+
+
+ \(\left(
+\begin{array}{cccccc}
+ 1 &amp; 2 &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 \\
+ 0 &amp; 5 &amp; 8 &amp; 0 &amp; 0 &amp; 1 \\
+\end{array}
+\right)\)$\quad \quad \quad \quad $(12.2.e)
+
+
+
+Although this matrix can be row-reduced further, it is not necessary to do so since in equation form we have:</p></li>
+<li><p>  \(\begin{array}{l}
+ x_{11}+2 x_{21}+x_{31}=1 \\
+ \textrm{                                   }0=1 \\
+ \textrm{           }5 x_{21}+8 x_{31}=0 \\
+\end{array}\)     (ii)  \(\begin{array}{l}
+ x_{12}+2 x_{22}+x_{32}=0 \\
+ \textrm{                                    }0=1 \\
+ \textrm{            }5 x_{22}+8 x_{32}=0 \\
+\end{array}\)     (iii) \(\begin{array}{l}
+ x_{13}+2 x_{23}+x_{33}=0 \\
+ \textrm{                                   }0=0 \\
+ \textrm{           }5 x_{23}+8 x_{33}=1 \\
+\end{array}\)
+
+
+
+Clearly, there is no solution to Systems (i) and (ii),  therefore \(A^{-1}\) does not exist. From this discussion it should be obvious to the reader
+that the zero row of the coefficient matrix together with the nonzero entry in the fourth column of that row in matrix 12.2e tells us that \(A^{-1}\)
+does not exist.
+
+
+<exercises xml:id="exercises-12-2">
+<title>Exercises for Section 12.2</title>
+
+
+
+<exercisegroup>
+<introduction><p>A Exercises</p></introduction>
+
+<exercise number="1"><statement>  In order to develop an understanding of the technique of this section, work out all the details of Example 12.2.1.
+</statement></exercise>
+<exercise number="2"><statement>  Use the method of this section to find the inverses of the following matrices whenever possible. If an inverse does not exist, explain why.
+
+<ol label="a">
+<li><p>   \(\left(
+\begin{array}{cc}
+ 1 &amp; 2 \\
+ -1 &amp; 3 \\
+\end{array}
+\right)\)$\quad \quad \quad $(b)   \(\left(
+\begin{array}{cccc}
+ 0 &amp; 3 &amp; 2 &amp; 5 \\
+ 1 &amp; -1 &amp; 4 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 &amp; 1 \\
+ 0 &amp; 1 &amp; 3 &amp; -1 \\
+\end{array}
+\right)\)</p></li>
+<li><p>   \(\left(
+\begin{array}{ccc}
+ 2 &amp; -1 &amp; 0 \\
+ -1 &amp; 2 &amp; -1 \\
+ 0 &amp; -1 &amp; 2 \\
+\end{array}
+\right)\)$\quad \quad $(d)   \(\left(
+\begin{array}{ccc}
+ 1 &amp; 2 &amp; 1 \\
+ -2 &amp; -3 &amp; -1 \\
+ 1 &amp; 4 &amp; 4 \\
+\end{array}
+\right)\)</p></li>
+<li><p>   \(\left(
+\begin{array}{ccc}
+ 6 &amp; 7 &amp; 2 \\
+ 4 &amp; 2 &amp; 1 \\
+ 6 &amp; 1 &amp; 1 \\
+\end{array}
+\right)\)$\quad \quad \quad $(f)   \(\left(
+\begin{array}{ccc}
+ 2 &amp; 1 &amp; 3 \\
+ 4 &amp; 2 &amp; 1 \\
+ 8 &amp; 2 &amp; 4 \\
+\end{array}
+\right)\)
+</statement></exercise>
+<exercise number="3"><statement>  Same as question 2:
+
+<ol label="a">
+<li><p>   \(\left(
+\begin{array}{cc}
+ \frac{1}{3} &amp; 2 \\
+ \frac{1}{5} &amp; -1 \\
+\end{array}
+\right)\)$\quad \quad \quad $(b)   \(\left(
+\begin{array}{cccc}
+ 1 &amp; 0 &amp; 0 &amp; 3 \\
+ 2 &amp; -1 &amp; 0 &amp; 6 \\
+ 0 &amp; 2 &amp; 1 &amp; 0 \\
+ 0 &amp; -1 &amp; 3 &amp; 2 \\
+\end{array}
+\right)\)</p></li>
+<li><p>   \(\left(
+\begin{array}{ccc}
+ 1 &amp; -1 &amp; 0 \\
+ -1 &amp; 2 &amp; -1 \\
+ 0 &amp; -1 &amp; 1 \\
+\end{array}
+\right)\)$\quad \quad $(d)   \(\left(
+\begin{array}{ccc}
+ 1 &amp; 0 &amp; 0 \\
+ 2 &amp; 2 &amp; -1 \\
+ 1 &amp; -1 &amp; 1 \\
+\end{array}
+\right)\)</p></li>
+<li><p>   \(\left(
+\begin{array}{ccc}
+ 2 &amp; 3 &amp; 4 \\
+ 3 &amp; 4 &amp; 5 \\
+ 4 &amp; 5 &amp; 6 \\
+\end{array}
+\right)\)$\quad \quad $(f)   \(\left(
+\begin{array}{ccc}
+ 1 &amp; \frac{1}{2} &amp; \frac{1}{3} \\
+ \frac{1}{2} &amp; \frac{1}{3} &amp; \frac{1}{4} \\
+ \frac{1}{3} &amp; \frac{1}{4} &amp; \frac{1}{5} \\
+\end{array}
+\right)\)
+</statement></exercise>
+<exercise number="4"><statement>  (a) Find the inverses of the following matrices.
+
+
+
+(i)  \(\left(
+\begin{array}{ccc}
+ 2 &amp; 0 &amp; 0 \\
+ 0 &amp; 3 &amp; 0 \\
+ 0 &amp; 0 &amp; 5 \\
+\end{array}
+\right)\)      (ii)   \(\left(
+\begin{array}{cccc}
+ -1 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; \frac{5}{2} &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; \frac{1}{7} &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; \frac{3}{4} \\
+\end{array}
+\right)\)
+
+
+
+    (b) If <m>D</m> is a diagonal matrix whose diagonal entries are nonzero, what is \(D^{-1}\) ?
+</statement></exercise>
+<exercise number="5"><statement>  Express each system of equations in Exercise 1, Section 12.1, in the form \(A x = B\). Solve each system by first finding \(A^{-1}\) whenever
+possible.
