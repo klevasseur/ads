@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<section xml:id="s-Matrix Inversion">
+<section xml:id="s-matrix-inversion">
 <title>Matrix Inversion</title>
 <index><main>Matrix Inversion</main></index>
 
@@ -156,7 +156,7 @@ So \(x_{11}= -19/5, x_{21}=2\) and \(x_{31}=7/5\), which gives us the first colu
 which reduces to
 
 <mdn>
-<mrow id="col-2-inverse">\left(
+<mrow xml:id="col-2-inverse">\left(
 \begin{array}{cccc}
  1 &amp; 0 &amp; 0 &amp; \frac{9}{5} \\
  0 &amp; 1 &amp; 0 &amp; -1 \\
@@ -226,11 +226,11 @@ The reader should verify that \(B A = I\) so that \(A ^{-1} = B\).</p>
 <p>As the following theorem indicates, the verification that \(B A = I\) is not necessary.  The proof of the theorem is beyond the scope of this text.  The interested reader can find it in most linear algebra texts.</p>
 
 <theorem xml:id="theorem-12-2-1">
-<statement>Let <m>A</m> be an \(n \times  n\) matrix. If a matrix <m>B</m> can be found such that \(A B = I\), then \(B A = I\),so that  \(B = A^{-1}\). In fact, to find \(A^{-1}\), we need only find a matrix <m>B</m> that satisfies one of the two conditions \(A B = I\) or \(B A = I\).</statement></theorem> 
+<statement><p>Let <m>A</m> be an \(n \times  n\) matrix. If a matrix <m>B</m> can be found such that \(A B = I\), then \(B A = I\),so that  \(B = A^{-1}\). In fact, to find \(A^{-1}\), we need only find a matrix <m>B</m> that satisfies one of the two conditions \(A B = I\) or \(B A = I\).</p></statement></theorem> 
 
 
 
-<p>It is clear from Chapter 5 and our discussions in this chapter that not all \(n \times  n\) matrices have inverses. How do we determine whether a matrix has an inverse using this method? The answer is quite simple: the technique we developed to compute inverses is a matrix approach to solving several systems of equations simultaneously.
+<p>It is clear from Chapter 5 and our discussions in this chapter that not all \(n \times  n\) matrices have inverses. How do we determine whether a matrix has an inverse using this method? The answer is quite simple: the technique we developed to compute inverses is a matrix approach to solving several systems of equations simultaneously.</p>
 
 
 
@@ -267,35 +267,43 @@ reduces to
 
 
 
- \(\left(
+<mdn>
+<mrow xml:id="reduced-with-zero">\left(
 \begin{array}{cccccc}
  1 &amp; 2 &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\
  0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 \\
  0 &amp; 5 &amp; 8 &amp; 0 &amp; 0 &amp; 1 \\
 \end{array}
-\right)\)$\quad \quad \quad \quad $(12.2.e)
+\right)
+</mrow>
+</mdn>
+</p>
 
 
 
-Although this matrix can be row-reduced further, it is not necessary to do so since in equation form we have:</p></li>
-<li><p>  \(\begin{array}{l}
+<p>Although this matrix can be row-reduced further, it is not necessary to do so since, in equation form, we have: </p>
+<table>
+<tabular>
+<row><cell>\(\begin{array}{l}
  x_{11}+2 x_{21}+x_{31}=1 \\
  \textrm{                                   }0=1 \\
  \textrm{           }5 x_{21}+8 x_{31}=0 \\
-\end{array}\)     (ii)  \(\begin{array}{l}
+\end{array}\)</cell><cell>\(\begin{array}{l}
  x_{12}+2 x_{22}+x_{32}=0 \\
  \textrm{                                    }0=1 \\
  \textrm{            }5 x_{22}+8 x_{32}=0 \\
-\end{array}\)     (iii) \(\begin{array}{l}
+\end{array}\) </cell><cell>\(\begin{array}{l}
  x_{13}+2 x_{23}+x_{33}=0 \\
  \textrm{                                   }0=0 \\
  \textrm{           }5 x_{23}+8 x_{33}=1 \\
-\end{array}\)
+\end{array}\)</cell></row>   
+</tabular>
+</table>
 
 
 
-Clearly, there is no solution to Systems (i) and (ii),  therefore \(A^{-1}\) does not exist. From this discussion it should be obvious to the reader
-that the zero row of the coefficient matrix together with the nonzero entry in the fourth column of that row in matrix 12.2e tells us that \(A^{-1}\)
+<p>Clearly, there are no solutions to the first two systems,  therefore \(A^{-1}\) does not exist. From this discussion it should be obvious to the reader
+that the zero row of the coefficient matrix together with the nonzero entry in the fourth column of that row in matrix <xref ref="reduced-with-zero" autoname="yes" /> tells us that \(A^{-1}\)
 does not exist.</p></example>
 
 
@@ -306,11 +314,9 @@ does not exist.</p></example>
 
 <exercisegroup>
 <introduction><p>A Exercises</p></introduction>
-
-<exercise number="1"><statement>  In order to develop an understanding of the technique of this section, work out all the details of Example 12.2.1.
+<exercise number="1"><statement><p> In order to develop an understanding of the technique of this section, work out all the details of <xref ref="ex-no-inverse-reduction" autoname="yes" />.</p>
 </statement></exercise>
-<exercise number="2"><statement>  Use the method of this section to find the inverses of the following matrices whenever possible. If an inverse does not exist, explain why.
-
+<exercise number="2"><statement><p>Use the method of this section to find the inverses of the following matrices whenever possible. If an inverse does not exist, explain why.
 <ol label="a">
 <li><p>   \(\left(
 \begin{array}{cc}
@@ -350,9 +356,11 @@ does not exist.</p></example>
  4 &amp; 2 &amp; 1 \\
  8 &amp; 2 &amp; 4 \\
 \end{array}
-\right)\)
+\right)\)</p></li>
+</ol>
+</p>
 </statement></exercise>
-<exercise number="3"><statement>  Same as question 2:
+<exercise number="3"><statement><p>Use the method of this section to find the inverses of the following matrices whenever possible. If an inverse does not exist, explain why.
 
 <ol label="a">
 <li><p>   \(\left(
@@ -393,30 +401,36 @@ does not exist.</p></example>
  \frac{1}{2} &amp; \frac{1}{3} &amp; \frac{1}{4} \\
  \frac{1}{3} &amp; \frac{1}{4} &amp; \frac{1}{5} \\
 \end{array}
-\right)\)
+\right)\)</p></li>
+</ol>
+</p>
 </statement></exercise>
-<exercise number="4"><statement>  (a) Find the inverses of the following matrices.
-
-
-
-(i)  \(\left(
-\begin{array}{ccc}
- 2 &amp; 0 &amp; 0 \\
- 0 &amp; 3 &amp; 0 \\
- 0 &amp; 0 &amp; 5 \\
-\end{array}
-\right)\)      (ii)   \(\left(
-\begin{array}{cccc}
- -1 &amp; 0 &amp; 0 &amp; 0 \\
- 0 &amp; \frac{5}{2} &amp; 0 &amp; 0 \\
- 0 &amp; 0 &amp; \frac{1}{7} &amp; 0 \\
- 0 &amp; 0 &amp; 0 &amp; \frac{3}{4} \\
-\end{array}
-\right)\)
-
-
-
-    (b) If <m>D</m> is a diagonal matrix whose diagonal entries are nonzero, what is \(D^{-1}\) ?
+<exercise number="4"><statement><p>
+<ol label="a">
+	<li><p> Find the inverses of the following matrices.
+	<ol label="i" cols="2">
+	<li><p> \(\left(
+			\begin{array}{ccc}
+			 2 &amp; 0 &amp; 0 \\
+			 0 &amp; 3 &amp; 0 \\
+			 0 &amp; 0 &amp; 5 \\
+			\end{array}
+			\right)\) </p></li>
+			<li><p>   \(\left(
+			\begin{array}{cccc}
+			 -1 &amp; 0 &amp; 0 &amp; 0 \\
+			 0 &amp; \frac{5}{2} &amp; 0 &amp; 0 \\
+			 0 &amp; 0 &amp; \frac{1}{7} &amp; 0 \\
+			 0 &amp; 0 &amp; 0 &amp; \frac{3}{4} \\
+			\end{array}
+			\right)\)</p></li>
+		</ol>
+		</p></li>
+	<li><p> If <m>D</m> is a diagonal matrix whose diagonal entries are nonzero, what is \(D^{-1}\)?</p></li>
+	</ol></p>
 </statement></exercise>
-<exercise number="5"><statement>  Express each system of equations in Exercise 1, Section 12.1, in the form \(A x = B\). Solve each system by first finding \(A^{-1}\) whenever
-possible.
+<exercise number="5"><statement><p>  Express each system of equations in <xref ref="exercise-12-1-1" autoname="yes" /> in the form \(A x = B\). When possible, solve each system by first finding the inverse of the matrix of coefficients.</p>
+</statement></exercise>
+</exercisegroup>
+</exercises>
+</section>
