@@ -1,34 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<section xml:id="s-An Introduction to Vector Spaces">
-<title>An Introduction to Vector Spaces</title>
-<index><main>An Introduction to Vector Spaces</main></index>
-
-
-
-When we encountered various types of matrices in Chapter 5, it became apparent that a particular kind of matrix, the diagonal matrix, was much easier
+<section xml:id="s-intro-to-vector-spaces">
+<title>An Introduction to Vector Spaces and Diagonalization</title>
+<index><main>Vector Spaces</main></index>
+\(\renewcommand{\vec}[1]{\mathbf{#1}}\)
+<p>When we encountered various types of matrices in Chapter 5, it became apparent that a particular kind of matrix, the diagonal matrix, was much easier
 to use in computations. For example, if \(A =\left(
 \begin{array}{cc}
  2 &amp; 1 \\
  2 &amp; 3 \\
 \end{array}
 \right)\), then \(A^5\) can be found, but its computation is tedious.  If
-
-
-
- $\quad \quad $\(D =\left(
+\(D =\left(
 \begin{array}{cc}
  1 &amp; 0 \\
  0 &amp; 4 \\
 \end{array}
 \right)\)
 
-
-
 then
 
-
-
-$\quad \quad $\(D^5 =\left(
+\[D^5 =\left(
 \begin{array}{cc}
  1 &amp; 0 \\
  0 &amp; 4 \\
@@ -43,173 +34,166 @@ $\quad \quad $\(D^5 =\left(
  1 &amp; 0 \\
  0 &amp; 1024 \\
 \end{array}
-\right)\)
+\right)\]
+Even when presented with a non-diagonal matrix, we will see that it is sometimes possible to do a bit of work to be able to work with a diagonal matrix.  This process is called <term>diagonalization</term>.
+</p>
+
+<p>In a variety of applications it is beneficial to be able to diagonalize a matrix. In this section we will investigate what this means and consider a few applications. In order to understand when the diagonalization process can be performed, it is necessary to develop several of the underlying
+concepts of linear algebra. </p>
 
 
 
-In a variety of applications it is beneficial to be able to diagonalize a matrix. In this section we will investigate what this means and consider
-a few applications. In order to understand when the diagonalization process can be performed, it is necessary to develop several of the underlying
-concepts of linear algebra. .
-
-
-
-By now, you realize that mathematicians tend to generalize. Once we have found a <q>good thing,</q> something that is useful, we apply it to as
+<p>By now, you realize that mathematicians tend to generalize. Once we have found a <q>good thing,</q> something that is useful, we apply it to as
 many different concepts as possible. In doing so, we frequently find that the <q>different concepts</q> are not really different but only look different.
 Four sentences in four different languages might look dissimilar, but when they are translated into a common language, they might very well express
-the exact same idea.
+the exact same idea.</p>
 
+<p>Early in the development of mathematics, the concept of a vector led to a variety of applications in physics and engineering. We can certainly picture vectors, or <q>arrows,</q> in the \(x y-\textrm{ plane}\) and even in the three-dimensional space. Does it make sense to talk about vectors in four-dimensional space, in ten-dimensional space, or in any other mathematical situation? If so, what is the essence of a vector? Is it its shape or  the rules it follows? The shape in two- or three-space is just a picture, or geometric interpretation, of a vector. The essence is the rules, or properties,
+we wish vectors to follow so we can manipulate them algebraically. What follows is a definition of what is called a vector space. It is a list of all the essential properties of vectors, and it is the basic definition of the branch of mathematics  called linear algebra.</p>
 
-
-Early in the development of mathematics, the concept of a vector led to a variety of applications in physics and engineering. We can certainly picture
-vectors, or <q>arrows,</q> in the \(x y-\textrm{ plane}\) and even in the three-dimensional space. Does it make sense to talk about vectors in four-dimensional
-space, in ten-dimensional space, or in any other mathematical situation? If so, what is the essence of a vector? Is it its shape or  the rules
-it follows? The shape in two- or three-space is just a picture, or geometric interpretation, of a vector. The essence is the rules, or properties,
-we wish vectors to follow so we can manipulate them algebraically. What follows is a definition of what is called a vector space. . It is
-a list of all the essential properties of vectors, and it is the basic definition of the branch of mathematics  called linear algebra.
-
-<definition xml:id="def-Vector Space."><title>Vector Space.</title><index><main>Vector Space.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
-
+<definition xml:id="def-vector-space"><title>Vector Space</title><index><main>Vector Space</main></index><statement><p>
  Let \(V\) be any nonempty set of objects. Define on \(V\) an operation, called addition, for any two elements \(\overset{\rightharpoonup
-}{x}, \overset{\rightharpoonup }{y} \in  V\), and denote this operation by \(\overset{\rightharpoonup }{x}+ \overset{\rightharpoonup }{y}\). Let
-scalar multiplication be defined for a real number \(a \in \mathbb{R}\) and any element \(\overset{\rightharpoonup }{x}\in V\) and denote this operation
+}{x}, \overset{\rightharpoonup }{y} \in  V\), and denote this operation by \(\overset{\rightharpoonup }{x}+ \overset{\rightharpoonup }{y}\). Let scalar multiplication be defined for a real number \(a \in \mathbb{R}\) and any element \(\overset{\rightharpoonup }{x}\in V\) and denote this operation
 by \(a \overset{\rightharpoonup }{x}\). The set <m>V</m> together with operations of addition and scalar multiplication is called a vector space
 over \(\mathbb{R}\) if the following hold for all \(\overset{\rightharpoonup }{x}, \overset{\rightharpoonup }{y}, \overset{\rightharpoonup }{z}\in
-V\) , and \(a,b \in \mathbb{R}\):<ol label=“1”>
+V\) , and \(a,b \in \mathbb{R}\):
+<ol label=“1”>
 <li><p>  \(\overset{\rightharpoonup }{x}+ \overset{\rightharpoonup }{y}= \overset{\rightharpoonup }{y}+ \overset{\rightharpoonup }{x}\)</p></li>
 <li><p> \(\left(\overset{\rightharpoonup }{x}+ \overset{\rightharpoonup }{y}\right)+ \overset{\rightharpoonup }{z}= \overset{\rightharpoonup }{x}+\left(
 \overset{\rightharpoonup }{y}+\overset{\rightharpoonup }{z}\right)\)</p></li>
 <li><p> There exists a vector  \(\overset{\rightharpoonup }{0}\in V\), such that it \(\overset{\rightharpoonup }{x}+\overset{\rightharpoonup }{0} =
-\overset{\rightharpoonup }{x}\) </p></li>
+\overset{\rightharpoonup }{x}\)</p></li>
 <li><p>For each vector  \(\overset{\rightharpoonup }{x}\in V\), there exists a unique vector \(-\overset{\rightharpoonup }{x}\in V\), such that \(-\overset{\rightharpoonup
-}{x} +\overset{\rightharpoonup }{x}\in V= 0\) .
-
-These are the main properties associated with the operation of addition. They can be summarized by saying that \([V; +]\) is an abelian group.
-
-The next five properties are associated with the operation of scalar multiplication and how it relates to vector addition.</p></li>
+}{x} +\overset{\rightharpoonup }{x}\in V= 0\).</p></li>
+</ol>
+These are the main properties associated with the operation of addition. They can be summarized by saying that \([V; +]\) is an abelian group.</p>
+<p>
+The next five properties are associated with the operation of scalar multiplication and how it relates to vector addition.
+<ol label="5">
 <li><p> \(a\left(\overset{\rightharpoonup }{x}+ \overset{\rightharpoonup }{y} \right) =a \overset{\rightharpoonup }{x}+a \overset{\rightharpoonup }{y}\)
 </p></li>
 <li><p> \((a +b)\overset{\rightharpoonup }{x}= a \overset{\rightharpoonup }{x} + b \overset{\rightharpoonup }{x}\) </p></li>
 <li><p> \(a \left(b \overset{\rightharpoonup }{x}\right) = (a b)\overset{\rightharpoonup }{x}\)</p></li>
-<li><p> \(1\overset{\rightharpoonup }{x} = \overset{\rightharpoonup }{x}\).
-
-In a vector space it is common to call the elements of \(V\) vectors and those from \(\mathbb{R}\) scalars.  Vector spaces over the real numbers
-are also called real vector spaces.
-
+<li><p> \(1\overset{\rightharpoonup }{x} = \overset{\rightharpoonup }{x}\).</p></li>
+</ol>
+</p></statement></definition>
 
 
-<example xml:id="ex-12.3.1."><title>12.3.1.</title><p></p></example> Let \(V = M_{2\times 3}(\mathbb{R})\) and let the operations of addition and scalar multiplication be the usual operations
-of addition and scalar multiplication on matrices. Then \(V\) together with these operations is a  real vector space. The reader is strongly encouraged
-to verify the definition for this example before proceeding further (see Exercise 3 of this section). Note we can call the elements of \(M_{2\times
-3}(\mathbb{R})\) vectors even though they are not arrows.
+<p>In a vector space it is common to call the elements of \(V\) vectors and those from \(\mathbb{R}\) scalars.  Vector spaces over the real numbers are also called real vector spaces.</p>
 
 
 
-<example xml:id="ex-12.3.2."><title>12.3.2.</title><p></p></example> Let \(\mathbb{R}^2 = \left\{\left(a_1, a_2 \right)|a_1,a_2 \in  \mathbb{R}\right\}\). If we define addition and scalar multiplication
-the natural way, that is, as we would on \(1\times 2\) matrices, then \(\mathbb{R}^2\) is a vector space over R. (See Exercise 4 of this section.
+<example xml:id="ex-matrices-as-vectors"><title>A Vector Space of Matrices</title><p>Let \(V = M_{2\times 3}(\mathbb{R})\) and let the operations of addition and scalar multiplication be the usual operations of addition and scalar multiplication on matrices. Then \(V\) together with these operations is a  real vector space. The reader is strongly encouraged
+to verify the definition for this example before proceeding further (see Exercise 3 of this section). Note we can call the elements of \(M_{2\times 3}(\mathbb{R})\) vectors even though they are not arrows.
+</p></example> 
 
 
+<example xml:id="ex-vector-space-r2"><title>The Vector Space \(\mathbb{R}^2\)</title><p>Let \(\mathbb{R}^2 = \left\{\left(a_1, a_2 \right) \mid a_1,a_2 \in  \mathbb{R}\right\}\). If we define addition and scalar multiplication the natural way, that is, as we would on \(1\times 2\) matrices, then \(\mathbb{R}^2\) is a vector space over \(\mathbb{R}\). See <xref ref="exercise-12-3-4" autoname="yes" />Exercise 4 of this section.</p>
 
-In this example, we have the <q>bonus</q> that we can illustrate the algebraic concept geometrically. In mathematics, a <q>geometric bonus</q>
+<p>In this example, we have the <q>bonus</q> that we can illustrate the algebraic concept geometrically. In mathematics, a <q>geometric bonus</q>
 does not always occur and is not necessary for the development or application of the concept. However, geometric illustrations are quite useful in
-helping us understand concepts and should be utilized whenever available.
+helping us understand concepts and should be utilized whenever available.</p>
 
-
-
-Let's consider some illustrations of the vector space \(\mathbb{R}^2\) . Let  \(\overset{\rightharpoonup }{x}= (1, 4)\) and \(\overset{\rightharpoonup
-}{y} = (3, 1)\).$\backslash $
-
-
-
-We illustrate the vector \(\left(a_1, a_2\right)\) as a directed line segment, or <q>arrow,</q> from the point \((0, 0)\) to the point\(\textrm{  
+            <figure xml:id="fig-vector-addition">
+                <caption>Sum of two vectors in \(\mathbb{R}^2\)
+                </caption>
+                <image width="60%" source="images/fig-vector-addition.png">
+                    <description>Sum of two vectors in \(\mathbb{R}^2\)</description>
+                </image>
+            </figure>
+<p>Let's consider some illustrations of the vector space \(\mathbb{R}^2\) . Let  \(\overset{\rightharpoonup }{x}= (1, 4)\) and \(\overset{\rightharpoonup
+}{y} = (3, 1)\). We illustrate the vector \(\left(a_1, a_2\right)\) as a directed line segment, or <q>arrow,</q> from the point \((0, 0)\) to the point\(\textrm{  
 }\left(a_1, a_2\right)\).  The vectors \(\overset{\rightharpoonup }{x}\) and \(\overset{\rightharpoonup }{y}\) are as pictured in Figure 12.3.1
 together with \(\overset{\rightharpoonup }{x}+ \overset{\rightharpoonup }{y} = (1, 4) + (3, 1) = (4, 5)\), which also has the geometric representation
-as pictured in Figure 12.3.1. The vector \(2 \overset{\rightharpoonup }{x} = 2(1, 4) = (2, 8)\) is a vector in the same direction as \(\overset{\rightharpoonup
+as pictured in <xref ref="fig-vector-addition" autoname="yes" />. The vector \(2 \overset{\rightharpoonup }{x} = 2(1, 4) = (2, 8)\) is a vector in the same direction as \(\overset{\rightharpoonup
 }{x}\), but with twice its length.
+</p>
+</example> 
 
 
-\caption{\pmb{ Figure 12.3.1\\
-Addition in \(\mathbb{R}^2\)}}
 
-Remarks:<ol label=“1”>
+
+
+
+
+
+<note><p><ol label=“1”>
 <li><p> We will henceforth drop the arrow above a vector name and use the common convention that boldface letters toward the end of the alphabet are
 vectors, while letters early in the alphabet are scalars.</p></li>
 <li><p> The vector \(\left(a_1,a_2,\ldots ,a_n\right)\in \mathbb{R}^n\) is referred to as an <m>n</m>-tuple.</p></li>
-<li><p> For those familiar with vector calculus, we are expressing the vector \(x = a_1 \vect{i}+ a_2 \vect{j} + a_3\vect{k} \in \mathbb{R}^3\) as \(\left(a_1,a_2,a_3\right)\).
-This allows us to discuss vectors in \(\mathbb{R}^n\) in much simpler notation.
+<li><p> For those familiar with vector calculus, we are expressing the vector \(x = a_1 \vec{i}+ a_2 \vec{j} + a_3\vec{k} \in \mathbb{R}^3\) as \(\left(a_1,a_2,a_3\right)\).
+This allows us to discuss vectors in \(\mathbb{R}^n\) in much simpler notation.</p></li>
+</ol>
+</p>
+</note>
 
 
 
-In many situations a vector space <m>V</m> is given and we would like to describe the whole vector space by the smallest number of essential reference
-vectors. An example of this is the description of \(\mathbb{R}^2\) , the xy.  plane, via the <m>x</m> and <m>y</m> axes. Again our
-concepts must be algebraic in nature so we are not restricted solely to geometric considerations.
+<p>In many situations a vector space <m>V</m> is given and we would like to describe the whole vector space by the smallest number of essential reference
+vectors. An example of this is the description of \(\mathbb{R}^2\) , the <m>x y</m>-plane, via the <m>x</m> and <m>y</m> axes. Again our
+concepts must be algebraic in nature so we are not restricted solely to geometric considerations.</p>
 
-<definition xml:id="def-Linear Combination."><title>Linear Combination.</title><index><main>Linear Combination.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+<definition xml:id="def-Linear Combination."><title>Linear Combination.</title><index><main>Linear Combination.</main></index><notation><usage></usage><description></description></notation><statement><p> A vector \pmb{ <m>y</m>}  in vector space <m>V</m> (over <m>\mathbb{R}</m>) is a linear combination of the vectors \(\vec{x}_1\), \(\vec{x}_2\), $\ldots $, \(\vec{x}_n\) if there exist scalars \(a_1,a_2,\ldots ,a_n\) in <m>\mathbb{R}</m> such that \(\vec{y}
+= a_1\vec{x}_1+ a_2\vec{x}_2+\ldots +a_n\vec{x}_n\)
+</p></statement></definition>
 
- A vector \pmb{ <m>y</m>}  in vector space <m>V</m> (over <m>\mathbb{R}</m>) is a linear combination of
-the vectors \(\vect{x}_1\), \(\vect{x}_2\), $\ldots $, \(\vect{x}_n\) if there exist scalars \(a_1,a_2,\ldots ,a_n\) in <m>\mathbb{R}</m> such that \(\vect{y}
-= a_1\vect{x}_1+ a_2\vect{x}_2+\ldots +a_n\vect{x}_n\)
 
-<example xml:id="ex-12.3.3"><title>12.3.3</title><p></p></example> The vector \((2, 3)\) in \(\mathbb{R}^2\) is a linear combination of the vectors \((1, 0)\) and \((0, 1)\) since \((2, 3) =
+<example xml:id="ex-basic-linear-combination"><title>A Basic Example</title><p>The vector \((2, 3)\) in \(\mathbb{R}^2\) is a linear combination of the vectors \((1, 0)\) and \((0, 1)\) since \((2, 3) =
 2(1, 0) + 3(0, 1)\).
+</p></example>
+ 
+<example xml:id="ex-lc-less-obvious"><title>A little less obvious example</title>
+<p>Prove that the vector (5, 4) is a linear combination of the vectors (4, 1) and (1, 3).</p>  
+<p>By the definition we must show that there exist scalars \(a_1\) and \(a_2\) such that:
 
-<example xml:id="ex-12.3.4."><title>12.3.4.</title><p></p></example>  Prove that the vector (5, 4) is a linear combination of the vectors (4, 1) and (1, 3).  By the definition we must show
-that there exist scalars \(a_1\) and \(a_2\) such that:
+<me>
+\begin{array}{ccc}
+\begin{split}
+(5, 4) &amp;= a_1(4, 1) + a_2 (1, 3)\\ 
+ 	&amp; = \left(4a_1+ a_2 , a_1+3a_2\right)
+\end{split} &amp;\Rightarrow &amp; 
+		\begin{array}{c}
+			4a_1+ a_2 =5\\
+			a_1+ 3a_2 =4\\
+		\end{array}\\
+		\\
+\end{array}
+</me>
 
-$\quad \quad $\((5, 4) = a_1(4, 1) + a_2 (1, 3)\), 
+This system has the solution \(a_1=1\), \(a_2=1\).</p>
 
-which reduces to
-
-$\quad \quad $\((5, 4) = \left(4a_1+ a_2 , a_1+3a_2\right)\), 
-
-which gives us the system of linear equations
-
- $\quad \quad $\(4a_1\textrm{    }+ a_2 =5\\
-\\
-\textrm{     }a_1+3a_2 =4\)
-
-which has solution  \(a_1=1\), \(a_2=1\).
-
-Another way of looking at the above example is if we replace \(a_1\) and \(a_2\) both by 1, then the two vectors (4, 1) and (1, 3) produce, or generate,
-the vector (5,4). Of course, if we replace \(a_1\) and \(a_2\) by different scalars, we can generate more vectors from \(\mathbb{R}^2\) . If \(a
+<p>Hence, if we replace \(a_1\) and \(a_2\) both by 1, then the two vectors (4, 1) and (1, 3) produce, or generate,
+the vector (5,4). Of course, if we replace \(a_1\) and \(a_2\) by different scalars, we can generate more vectors from \(\mathbb{R}^2\) . If, for example, \(a
 _1 = 3\) and \(a_2 = -2\), then 
-
-$\quad \quad $\(a_1(4, 1) + a_2 (1, 3) = 3 (4, 1) +(-2) (1,3) \\
-\\
-\quad \quad \quad = (12, 3) +(-2,-6)\\
-\\
-\quad \quad \quad = (12-2,3-6) = (10, -3)\)
+\[a_1(4, 1) + a_2 (1, 3) = 3 (4, 1) +(-2) (1,3) = (12, 3) +(-2,-6) = (10, -3)\]
+</p></example>  
 
 
-
-<example xml:id="ex-12.3.5."><title>12.3.5.</title><p></p></example>   Will the vectors \((4, 1)\) and \((1,3)\) generate any vector we choose in \(\mathbb{R}^2\)?  To see if this is so,
- we let \(\left(b_1,b_2\right)\) be an arbitrary vector in \(\mathbb{R}^2\) and see if we can always find scalars \(a_1\) and \(a_2\) such that
-\(a_1(4, 1) + a_2 (1, 3)= \left(b_1,b_2\right)\). This is equivalent to solving the following system of equations:
+<p>Will the vectors \((4, 1)\) and \((1,3)\) generate any vector we choose in \(\mathbb{R}^2\)?  To see if this is so, we let \(\left(b_1,b_2\right)\) be an arbitrary vector in \(\mathbb{R}^2\) and see if we can always find scalars \(a_1\) and \(a_2\) such that \(a_1(4, 1) + a_2 (1, 3)= \left(b_1,b_2\right)\). This is equivalent to solving the following system of equations:
 
 
 
- $\quad \quad $\(4a_1\textrm{    }+ a_2 =b_1\\
-\\
-\textrm{     }a_1+3a_2 =b_2\)
+<me>
+4a_1+ a_2 =b_1\\
+a_1+3a_2 =b_2\)\\
+</me>
 
 
 
-which always has solutions for \(a_1\) and \(a_2\)  regardless of the values of the real numbers \(b_1\) and \(b_2\). Why?   We formalize in
-a definition:
+which always has solutions for \(a_1\) and \(a_2\) , regardless of the values of the real numbers \(b_1\) and \(b_2\). Why?   We formalize this situation in a definition:</p>
 
-<definition xml:id="def-Generate"><title>Generate</title><index><main>Generate</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
-
-. Let \(\left\{\vect{x}_1,\vect{x}_2, \ldots ,\vect{x}_n\right\}\) be a set of vectors in a vector space <m>V</m> over
-<m>\mathbb{R}</m>. This set is said to generate, or span, <m>V</m> if, for any given vector \pmb{ y} $\in $V, we can always find scalars \(a_1\), \(a_2\),
-$\ldots $, \(a_n\) such that \(y = a_1 \vect{x}_1+a_2 \vect{x}_2+\ldots +a_n \vect{x}_n\).  A set that generates a vector space is called a \textit{
-generating set}.
+<definition xml:id="def-generate"><title>Generate, or Span, a Vector Space</title>
+<index><main>Generate</main></index><index><main>Span</main></index>
+<statement><p>Let \(\left\{\vec{x}_1,\vec{x}_2, \ldots ,\vec{x}_n\right\}\) be a set of vectors in a vector space <m>V</m> over <m>\mathbb{R}</m>. This set is said to <term>generate</term>, or span, <m>V</m> if, for any given vector \(\pmb{y} \in V\), we can always find scalars \(a_1\), \(a_2,
+\ldots\), \(a_n\) such that \(y = a_1 \vec{x}_1+a_2 \vec{x}_2+\ldots +a_n \vec{x}_n\).  A set that generates a vector space is called a <term>
+generating set</term>.</p></statement></definition>
 
 
-
-We now give a geometric interpretation of the above.
+<p>We now give a geometric interpretation of the above.</p>
 
 
 
-We know that the standard coordinate system, <m>x</m> axis and <m>y</m> axis, were introduced in basic algebra in order to describe all points
+<p>We know that the standard coordinate system, <m>x</m> axis and <m>y</m> axis, were introduced in basic algebra in order to describe all points
 in the xy.  plane geometrically. It is also quite clear that to describe any point in the plane we need exactly two axes. Form a new coordinate
 system the following way:
 
@@ -217,7 +201,7 @@ system the following way:
 
 Draw the vector \((4, 1)\) and an axis from the origin through (4, 1) and label it the \(x'\) axis. Also draw the vector \((1,3)\) and an axis from
 the origin through \((1,3)\) to be labeled the \(y'\) axis. Draw the coordinate grid for the axis, that is, lines parallel, and let the unit lengths
-of this <q>new</q> plane be the lengths of the respective vectors, \((4, 1)\) and \((1, 3)\), so that we obtain Figure 12.3.2.
+of this <q>new</q> plane be the lengths of the respective vectors, \((4, 1)\) and \((1, 3)\), so that we obtain Figure 12.3.2.</p>
 
 
 
@@ -250,28 +234,28 @@ We formalize the above discussion in two definitions and a theorem.
 
 <definition xml:id="def-Linear Independence/Linear Dependence."><title>Linear Independence/Linear Dependence.</title><index><main>Linear Independence/Linear Dependence.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
 
- The set of vectors \(\left\{\vect{x}_1,\vect{x}_2, \ldots ,\vect{x}_n\right\}\)  a vector
-space <m>V</m> (over <m>\mathbb{R}</m>) is linearly independent.  if the only solution to the equation \(a_1 \vect{x}_1+a_2 \vect{x}_2+\ldots
-+a_3 \vect{x}_3= \vect{0}\) is  \(a_1 = a_2 = \ldots  = a_n = 0\). Otherwise the set is called a linearly dependent.  set.
+ The set of vectors \(\left\{\vec{x}_1,\vec{x}_2, \ldots ,\vec{x}_n\right\}\)  a vector
+space <m>V</m> (over <m>\mathbb{R}</m>) is linearly independent.  if the only solution to the equation \(a_1 \vec{x}_1+a_2 \vec{x}_2+\ldots
++a_3 \vec{x}_3= \vec{0}\) is  \(a_1 = a_2 = \ldots  = a_n = 0\). Otherwise the set is called a linearly dependent.  set.
 
 <definition xml:id="def-Basis."><title>Basis.</title><index><main>Basis.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
 
- A set of vectors \(B=\left\{\vect{x}_1,\vect{x}_2, \ldots ,\vect{x}_n\right\}\) is a basis for a vector space V (over <m>\mathbb{R}</m>)
+ A set of vectors \(B=\left\{\vec{x}_1,\vec{x}_2, \ldots ,\vec{x}_n\right\}\) is a basis for a vector space V (over <m>\mathbb{R}</m>)
 if:\\
 (1)  <m>B</m> generates V, and\\
 (2)  <m>B</m> is linearly independent.
 
 
 
-<theorem xml:id="theorem-12.3.1."><title>12.3.1.</title><index><main>12.3.1.</main></index><statement></statement><proof></proof></theorem> If \(\left\{\vect{x}_1,\vect{x}_2, \ldots ,\vect{x}_n\right\}\) is a basis for a vector space V over <m>\mathbb{R}</m>, then any vector
-\(y \in V\) can be uniquely expressed as a linear combination of the \(\vect{x}_i\textrm{ \textit{$'$}}\textrm{ \textit{$s$}}\).
+<theorem xml:id="theorem-12.3.1."><title>12.3.1.</title><index><main>12.3.1.</main></index><statement></statement><proof></proof></theorem> If \(\left\{\vec{x}_1,\vec{x}_2, \ldots ,\vec{x}_n\right\}\) is a basis for a vector space V over <m>\mathbb{R}</m>, then any vector
+\(y \in V\) can be uniquely expressed as a linear combination of the \(\vec{x}_i\textrm{ \textit{$'$}}\textrm{ \textit{$s$}}\).
 
 
 
-Proof: Assume that \(\left\{\vect{x}_1,\vect{x}_2, \ldots ,\vect{x}_n\right\}\) is a basis for V over <m>\mathbb{R}</m>. We must prove two facts:
+Proof: Assume that \(\left\{\vec{x}_1,\vec{x}_2, \ldots ,\vec{x}_n\right\}\) is a basis for V over <m>\mathbb{R}</m>. We must prove two facts:
 
 <ol label=“1”>
-<li><p> each vector \(y \in V\) can be expressed as a linear combination of the \(\vect{x}_i\textrm{ \textit{$'$}}\textrm{ \textit{$s$}}\), and</p></li>
+<li><p> each vector \(y \in V\) can be expressed as a linear combination of the \(\vec{x}_i\textrm{ \textit{$'$}}\textrm{ \textit{$s$}}\), and</p></li>
 <li><p>  each such expression is unique.
 
 
@@ -285,7 +269,7 @@ there are two different ways of expressing <m>y</m>, namely
 
 
 
-\(y = a_1 \vect{x}_1+a_2 \vect{x}_2+\ldots +a_n \vect{x}_n\)
+\(y = a_1 \vec{x}_1+a_2 \vec{x}_2+\ldots +a_n \vec{x}_n\)
 
 
 
@@ -293,7 +277,7 @@ and
 
 
 
-\(y = b_1 \vect{x}_1+b_2 \vect{x}_2+\ldots +b_n \vect{x}_n\)
+\(y = b_1 \vec{x}_1+b_2 \vec{x}_2+\ldots +b_n \vec{x}_n\)
 
 
 
@@ -301,7 +285,7 @@ where at least one \(a_i\) is different from the corresponding \(b_i\).   Then e
 
 
 
-\(a_1 \vect{x}_1+a_2 \vect{x}_2+\ldots +a_n \vect{x}_n=b_1 \vect{x}_1+b_2 \vect{x}_2+\ldots +b_n \vect{x}_n\)
+\(a_1 \vec{x}_1+a_2 \vec{x}_2+\ldots +a_n \vec{x}_n=b_1 \vec{x}_1+b_2 \vec{x}_2+\ldots +b_n \vec{x}_n\)
 
 
 
@@ -309,13 +293,13 @@ so that
 
 
 
-\(\left(a_1-b_1\right) \vect{x}_1+\left(a_2-b_2\right) \vect{x}_2+\ldots +\left(a_n-b_n\right) \vect{x}_n=\vect{0}\) 
+\(\left(a_1-b_1\right) \vec{x}_1+\left(a_2-b_2\right) \vec{x}_2+\ldots +\left(a_n-b_n\right) \vec{x}_n=\vec{0}\) 
 
 
 
-Now a crucial observation: since the \(\vect{x}_i's\) form a linearly independent set, the only solution to the previous equation is that each of
+Now a crucial observation: since the \(\vec{x}_i's\) form a linearly independent set, the only solution to the previous equation is that each of
 the coefficients must equal zero, so \(a_i-b_i=0\) for \(i = 1, 2, \ldots  ,n\).   Hence \(a_i=b_i\), for all <m>i</m>. This contradicts our
-assumption that at least one \(a_i\) is different from the corresponding \(b_i\), so each vector \(\vect{y}\pmb \in  V\) can be expressed in one
+assumption that at least one \(a_i\) is different from the corresponding \(b_i\), so each vector \(\vec{y}\pmb \in  V\) can be expressed in one
 and only one way.     \(\blacksquare\)
 
 
@@ -362,7 +346,7 @@ Therefore, the set is linearly independent.
 
 
 
-To explain the results geometrically, note through Exercise 12, part a, that the coordinates of each vector \(\vect{y} \in \mathbb{R}^2\) can be determined
+To explain the results geometrically, note through Exercise 12, part a, that the coordinates of each vector \(\vec{y} \in \mathbb{R}^2\) can be determined
 uniquely using the vectors (1,1) and (-1, 1). The concept of dimension is quite obvious for those vector spaces that have an immediate geometric
 interpretation.  For example, the dimension of \(\mathbb{R}^2\) is two and that of \(\mathbb{R}^3\) is three. How can we define the concept of
 dimension algebraically so that the resulting definition correlates with that of \(\mathbb{R}^2\) and \(\mathbb{R}^3\) ? First we need a theorem,
@@ -375,7 +359,7 @@ n} elements.
 
 
 
-Definition: Dimension. Let V be a vector space over <m>\mathbb{R}</m> with basis \(\left\{\vect{x}_1,\vect{x}_2, \ldots ,\vect{x}_n\right\}\). Then the dimension
+Definition: Dimension. Let V be a vector space over <m>\mathbb{R}</m> with basis \(\left\{\vec{x}_1,\vec{x}_2, \ldots ,\vec{x}_n\right\}\). Then the dimension
 of V is <m>n</m>.   We use the notation  \(\dim  V = n\) to indicate that <m>V</m> is <m>n</m>-dimensional
 
 
@@ -412,13 +396,13 @@ of V is <m>n</m>.   We use the notation  \(\dim  V = n\) to indicate that <m>V</
 
 verify that all properties of the definition of a vector space are true for \(M_{2\times 3}\textrm{ (<m>\mathbb{R}</m>)}\) with these values.
 </statement></exercise>
-<exercise number="2"><statement> Let \(a = 3\), \(b = 4\), \(\vect{x}\pmb = (-1, 3)\), \(\vect{y} = (2, 3)\),and \(\vect{z} = (1, 0)\). Verify that all properties of the definition
+<exercise number="2"><statement> Let \(a = 3\), \(b = 4\), \(\vec{x}\pmb = (-1, 3)\), \(\vec{y} = (2, 3)\),and \(\vec{z} = (1, 0)\). Verify that all properties of the definition
 of a vector space are true for \(\mathbb{R}^2\) for these values.
 </statement></exercise>
 <exercise number="3"><statement>  (a) Verify that \(M_{2\times 3}\textrm{ (<m>\mathbb{R}</m>)}\) is a vector space over <m>\mathbb{R}</m>.</p></li>
 <li><p> Is \(M_{m\times n}\textrm{ (<m>\mathbb{R}</m>)}\) a vector space over <m>\mathbb{R}</m>?
 </statement></exercise>
-<exercise number="4"><statement>  (a) Verify that \(\mathbb{R}^2\) is a vector space over <m>\mathbb{R}</m>.</p></li>
+<exercise number="4" xml:id="exercise-12-3-4"><statement>  (a) Verify that \(\mathbb{R}^2\) is a vector space over <m>\mathbb{R}</m>.</p></li>
 <li><p> Is \(\mathbb{R}^n\) a vector space over <m>\mathbb{R}</m> for every positive integer <m>n</m>?
 </statement></exercise>
 <exercise number="5"><statement>  Let \(P^3= \left\{a_0 + a_1x + a_2x^2 + a_3x^3| a_0,a_1,a_2,a_3\in \mathbb{R}\right\}\); that is, \(P^3\) is the set of all polynomials in
@@ -427,9 +411,9 @@ of a vector space are true for \(\mathbb{R}^2\) for these values.
 <exercise number="6"><statement>  For each of the following, express the vector \pmb{ y} as a linear combination of the vectors \(x_1\) and \(x_2\).
 
 <ol label="a">
-<li><p> \(\vect{y} = (5, 6)\),  \(\vect{x}_1 =(1, 0)\), and \(\vect{x}_2 = (0, 1)\)</p></li>
-<li><p> \(\vect{y} = (2, 1)\),  \(\vect{x}_1 =(2, 1)\), and  \(\vect{x}_2 = (1, 1)\)</p></li>
-<li><p> \(\vect{y} = (3,4)\),   \(\vect{x}_1 = (1, 1)\), and  \(\vect{x}_2 = (-1, 1)\)
+<li><p> \(\vec{y} = (5, 6)\),  \(\vec{x}_1 =(1, 0)\), and \(\vec{x}_2 = (0, 1)\)</p></li>
+<li><p> \(\vec{y} = (2, 1)\),  \(\vec{x}_1 =(2, 1)\), and  \(\vec{x}_2 = (1, 1)\)</p></li>
+<li><p> \(\vec{y} = (3,4)\),   \(\vec{x}_1 = (1, 1)\), and  \(\vec{x}_2 = (-1, 1)\)
 </statement></exercise>
 <exercise number="7"><statement>Express the vector  \(\left(
 \begin{array}{cc}
@@ -464,9 +448,9 @@ of a vector space are true for \(\mathbb{R}^2\) for these values.
 </statement></exercise>
 <exercise number="8"><statement>  Express the vector \(x{}^{\wedge}3-4x^2+3\in P^3\) as a linear combination of the vectors 1, \(x\), \(x^2\) , and \(x^3\).
 </statement></exercise>
-<exercise number="9"><statement> (a) Show that the set \(\left\{\vect{x}_1,\vect{x}_2\right\}\) generates \(\mathbb{R}^2\) for each of the parts in Exercise 6 of this section.</p></li>
-<li><p>  Show that \(\left\{\vect{x}_1,\vect{x}_2,\vect{x}_3\right\}\) generates \(\mathbb{R}^2\) where \(\vect{x}_1= (1, 1)\), \(\textrm{ }\vect{x}_2= (3,4)\),
-and \(\vect{x}_3 = (-1, 5)\).</p></li>
+<exercise number="9"><statement> (a) Show that the set \(\left\{\vec{x}_1,\vec{x}_2\right\}\) generates \(\mathbb{R}^2\) for each of the parts in Exercise 6 of this section.</p></li>
+<li><p>  Show that \(\left\{\vec{x}_1,\vec{x}_2,\vec{x}_3\right\}\) generates \(\mathbb{R}^2\) where \(\vec{x}_1= (1, 1)\), \(\textrm{ }\vec{x}_2= (3,4)\),
+and \(\vec{x}_3 = (-1, 5)\).</p></li>
 <li><p>  Create a set of four or more vectors that generates \(\mathbb{R}^2\) .</p></li>
 <li><p>  What is the smallest number of vectors needed to generate \(\mathbb{R}^2\)?   \(\mathbb{R}^n\)?</p></li>
 <li><p>  Show that the set of matrices containing
@@ -512,7 +496,7 @@ of \(\mathbb{R}^3\). Interpret your results geometrically, </p></li>
 <li><p> Determine the coordinates of the points or vector \((3, 5, 6)\) with respect to the basis \(\{(1, 0, 0), (0, 1, 0), (0, 0, 1)\}\). Explain why
 this basis is called the standard basis for \(\mathbb{R}^3\) .
 </statement></exercise>
-<exercise number="13"><statement> (a) Let \(\vect{y}_1= (1,3, 5, 9)\),  \(\vect{y}_2= (5,7, 6, 3)\), and \(c = 2\).  Find \(\vect{y}_1+\vect{y}_2\) and \(c \vect{y}_1\).</p></li>
+<exercise number="13"><statement> (a) Let \(\vec{y}_1= (1,3, 5, 9)\),  \(\vec{y}_2= (5,7, 6, 3)\), and \(c = 2\).  Find \(\vec{y}_1+\vec{y}_2\) and \(c \vec{y}_1\).</p></li>
 <li><p> Let  \(f_1(x) = 1 + 3x + 5x^2 + 9x^3\) , \(f_2(x)=5 + 7x+6x^2+3x^3\) and \(c = 2\). Find \(f_1(x)+f_2(x)\) and \(c f_1(x)\).</p></li>
 <li><p>  Let \(A =\left(
 \begin{array}{cc}
