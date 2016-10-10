@@ -1,111 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<section xml:id="s-Some Applications">
+<section xml:id="s-some-applications">
 <title>Some Applications</title>
-<index><main>Some Applications</main></index>
 
-
-
-A large and varied number of applications involve computations of powers of matrices. These applications can be found in science, the social sciences,
+<p>A large and varied number of applications involve computations of powers of matrices. These applications can be found in science, the social sciences,
 economics, the analysis of relationships with groups, engineering, and, indeed, any area where mathematics is used and, therefore,
-where programs are to be developed. We will consider a few diverse examples here. 
+where programs are to be developed. We will consider a few diverse examples here.</p> 
 
 
+<p>We begin by developing a helpful technique for computing \(A^m\),  \(m > 1\).  If <m>A</m> can be diagonalized, then there is a matrix <m>P</m> such that \(P^{-1}A P = D\),  where <m>D</m> is a diagonal matrix and 
 
-To aid your understanding of the following examples, we develop a helpful technique to compute \(A^m\),  \(m > 1\).  If <m>A</m> can be diagonalized,
-then there is a matrix <m>P</m> such that \(P^{-1}A P = D\),  where <m>D</m> is a diagonal matrix and 
+<mdn>
+<mrow xml:id="eq-matrix-power">A^m= P D^m P^{-1}\)  for all \(m\geq 1\)</mrow>
+</mdn>                        
+</p>
 
+<p>The proof of <xref ref="eq-matrix-power" autoname="yes" /> was an exercise in Section 5.4.  The condition that <m>D</m> be a diagonal matrix is not necessary but when
+it is, the calculation on the right side is particularly easy to perform.  Although the formal proof  is done by induction, the reason why it is true is easily seen by writing out an example such as \(m=3\):
 
-
-$\quad \quad $\(A^m= P D^mP^{-1}\)  for all \(m\geq 1\).                        (12.5 a)
-
-
-
-You are asked to prove this equation in Exercise 9 of Section 5.4.  The condition that <m>D</m> be a diagonal matrix is not necessary but when
-it is, the calculation on the right side is particularly easy to perform.  Although the formal proof of equation 12.4a is done by induction, the
-reason why.  it is true is easily seen by writing out an example such as \(m=3\):
-
-
-
-\(A^m= \left(P D P^{-1}\right)^m\textrm{       }\textrm{ To} \textrm{ get} \textrm{ this}, \textrm{ solve} P^{-1}A P = D\text \textrm{ for} A \textrm{ and}
-\textrm{ substitute} \\
-\\
-\quad =\left(P D P^{-1}\right)\left(P D P^{-1}\right)\left(P D P^{-1}\right)\\
-\\
-\quad = P D \left(P^{-1}P\right) D \left(P^{-1}P \right)D P^{-1}\textrm{     }\textrm{ by} \textrm{ associativity} \textrm{ of} \textrm{ matrix} \textrm{ mult}.\textrm{ 
-   }= P D I D I D P^{-1}\\
-\\
-\quad = P D D D P^{-1}\\
-\\
-\quad =\text P D^3P^{-1}\)
+<me>
+\begin{split}
+A^3   &amp; = \left(P D P^{-1}\right)^3\\
+		&amp; =\left(P D P^{-1}\right)\left(P D P^{-1}\right)\left(P D P^{-1}\right)\\
+		&amp;= P D \left(P^{-1}P\right) D \left(P^{-1}P \right)D P^{-1}\quad\textrm{ by associativity of matrix mult}\\
+		&amp;= P D I D I D P^{-1}\\
+		&amp;= P D D D P^{-1}\\	
+		&amp; P D^3 P^{-1}\\
+\end{split}
+</me>
+</p>
 
 
-
-<example xml:id="ex-12.5.1: { "><title>12.5.1: { </title><p></p></example>Recursion.}  Consider the computation of terms of the Fibonacci sequence, which we examined in  Example
-8.1.5:
-
-
-
-\(F_0= 1, F_1= 1\)
-
-
-
+<example xml:id="ex-fibonnaci-matrix"><title>Application to Recursion: Matrix Computation of the Fibonnaci Sequence</title>
+<p> Consider the computation of terms of the Fibonnaci Sequence, which we considered in <xref ref="ex-fibonacci-sequence" autoname="yes" />.  Recall that  \(F_0= 1, F_1= 1\) and 
 \(F_k= F_{k-1}+F_{k-2}\)  for \(k\geq 2\).
+</p>
 
+<p>In order to formulate the calculation in matrix form, we introduced the <q>dummy equation</q> \(F_{k-1}= F_{k-1}\) so that now we have two equations
 
-
-In order to formulate the calculation in matrix form, we introduced the <q>dummy equation</q> \(F_{k-1}= F_{k-1}\) so that now we have two equations
-
-
-
-$\quad \quad $\(\)\(F_k\textrm{      }= F_{k-1}+F_{k-2}\\
+<me>
+F_k= F_{k-1}+F_{k-2}\\
 \\
-F_{k-1}= F_{k-1}\)
+F_{k-1}= F_{k-1}\\
+</me>
 
 
 
-These two equations can be expressed in matrix form as
+If \( A = \left(
+\begin{array}{cc}
+ 1 &amp; 1 \\
+ 1 &amp; 0 \\
+\end{array}
+\right)\), these two equations can be expressed in matrix form as
 
+<me>
+/begin{split}
 
-
- $\quad \quad $\(\textrm{               }\left(
+ \left(
 \begin{array}{c}
  F_k \\
  F_{k-1} \\
 \end{array}
-\right)=\left(
-\begin{array}{cc}
- 1 &amp; 1 \\
- 1 &amp; 0 \\
-\end{array}
-\right)\left(
-\begin{array}{c}
- F_{k-1} \\
- F_{k-2} \\
-\end{array}
-\right)\textrm{     }\textrm{ if} k\geq 2\quad \quad = A \left(
-\begin{array}{c}
- F_{k-1} \\
- F_{k-2} \\
-\end{array}
-\right)\textrm{    }\textrm{ if}\text A = \left(
-\begin{array}{cc}
- 1 &amp; 1 \\
- 1 &amp; 0 \\
-\end{array}
-\right)\quad \quad = A^2\left(
-\begin{array}{c}
- F_{k-2} \\
- F_{k-3} \\
-\end{array}
-\right)\textrm{     }\textrm{ if}\text k\geq 3\quad \quad \textrm{ etc}.\textrm{       }\textrm{ if} k \textrm{ is} \textrm{ large} \textrm{ enough}\)
-
-
+\right) &amp;=\left(
+				\begin{array}{cc}
+				 1 &amp; 1 \\
+				 1 &amp; 0 \\
+				\end{array}
+				\right)\left(
+				\begin{array}{c}
+				 F_{k-1} \\
+				 F_{k-2} \\
+				\end{array}
+				\right)\\quad\textrm{ if} k\geq 2\\
+			&amp;= A \left(
+				\begin{array}{c}
+				 F_{k-1} \\
+				 F_{k-2} \\
+				\end{array}
+				\right)\\
+			&amp;= A^2\left(
+				\begin{array}{c}
+				 F_{k-2} \\
+				 F_{k-3} \\
+				\end{array}
+				\right)\quad\textrm{ if } k\geq 3\\
+			&amp; etc.\\
+	\end{split}
+</me>
 
 We can use induction to prove that if \(k\geq 2\), 
 
 
 
-$\quad \quad $\(\left(
+\[\left(
 \begin{array}{c}
  F_k \\
  F_{k-1} \\
@@ -115,37 +101,33 @@ $\quad \quad $\(\left(
  1 \\
  1 \\
 \end{array}
-\right)\)
+\right)\]
+</p>
+
+
+<p>Next, by diagonalizing <m>A</m> and using the fact that \(A^{m }= P D^m P^{-1}\). we can show that
 
 
 
-Next, by diagonalizing <m>A</m> and using the fact that \(A^{m }= P D^m P^{-1}\). we can show that
+\[F_k= \frac{1}{\sqrt{5}}\left( \left(\frac{1+\sqrt{5}}{2}\right)^k- \left(\frac{1-\sqrt{5}}{2}\right)^k\right)\]
+</p>
 
 
 
-$\quad \quad $\(F_k= \frac{1}{\sqrt{5}}\left( \left(\frac{1+\sqrt{5}}{2}\right)^k- \left(\frac{1-\sqrt{5}}{2}\right)^k\right)\)
-
-
-
-See Exercise la of this section.
-
-
-
-Comments:
-
-<ol label=“1”>
+<p>Some comments on this example:
+<ol label="1">
 <li><p> An equation of the form \(F_k = a F_{k-1} + b F_{k-2}\) , where <m>a</m> and <m>b</m> are given constants, is  referred to linear
 homogeneous second-order difference equation. The conditions \(F_0=c_0\) and \(F_1= c_1\) , where \(c_1\) and \(c_2\) are constants, are called initial
 conditions. Those of you who are familiar with differential equations may recognize that the this language parallels what is used in differential
-equations. Difference (AKA recurrence) equations move forward discretely$---$that is, in a finite number of positive steps$---$while a differential
-equation moves continuously$---$that is, takes an infinite number of infinitesimal steps.</p></li>
-<li><p>  A recurrence relationship of the form \(F_k = a F_{k-1} + b\), where <m>a</m> and <m>b</m> are constants, is called a first-order difference
+equations. Difference (AKA recurrence) equations move forward discretely; that is, in a finite number of positive steps.  On the other hand,  a differential
+equation moves continuously; that is, takes an infinite number of infinitesimal steps.</p></li>
+<li><p>  A recurrence relationship of the form \(S_k = a S_{k-1} + b\), where <m>a</m> and <m>b</m> are constants, is called a first-order difference
 equation. In order to write out the sequence, we need to know one initial condition.  Equations of this type can be solved similarly to the method
-outlined in Example 12.5.1 by introducing the superfluous equation \(1 =0\text F_{k-1}+1\) to obtain in matrix equation:
+outlined in the example by introducing the superfluous equation \(1 =0\cdot F_{k-1}+1\) to obtain in matrix equation:
 
 
 
-$\quad \quad $\(\left(
+\(\left(
 \begin{array}{c}
  F_k \\
  1 \\
@@ -157,7 +139,7 @@ $\quad \quad $\(\left(
 \end{array}
 \right)\left(
 \begin{array}{c}
- F_{k-1} \\
+ S_{k-1} \\
  1 \\
 \end{array}
 \right)\textrm{     }\Rightarrow \text \left(
@@ -175,52 +157,58 @@ $\quad \quad $\(\left(
  F_0 \\
  1 \\
 \end{array}
-\right)\text \text \)
+\right)\text \text \)</p></li>
+</ol>
+</p>
+</example>
 
-<example xml:id="ex-12.5.2: Graph Theory."><title>12.5.2: Graph Theory.</title><p></p></example> Consider the graph in Figure 12.5.1.
+<p>In the next example, we apply following theorem, which can be proven by induction.</p>
 
 
-\caption{Figure 12.5.1}
+<theorem xml:id="theorem-12.5.1."><title>Path Counting Theorem</title><statement><p>If \(A\) is the adjacency matrix of a graph with vertices \(\{v_1, v_2, \dots,v_n\}\), then the entry \(\left(A^k\right)_{ij}\)  is the number of paths of length <m>k</m> from node \(v_i\), to node
+\(v_j\).</p></statement></theorem>
 
- From the procedures outlined in Section 6.4, the adjacency matrix of this graph is
+<example xml:id="ex-diagonalization-in-graph-theory">
+<title>Counting Paths with Diagonalization</title>
+<p> Consider the graph in Figure 12.5.1.</p>
 
-$\quad \quad $\(A=\left(
+          <figure xml:id="fig-graph-12-5-1">
+                <caption>Counting Numbers of Paths
+                </caption>
+                <image width="70%" source="images/fig-graph-12-5-1.png">
+                    <description>Counting Numbers of Paths</description>
+                </image>
+            </figure>
+
+<p>As we saw in Section 6.4, the adjacency matrix of this graph is
+
+\(A=\left(
 \begin{array}{ccc}
  1 &amp; 1 &amp; 0 \\
  1 &amp; 0 &amp; 1 \\
  0 &amp; 1 &amp; 1 \\
 \end{array}
-\right)\)
+\right)\).</p>
 
-Recall that \(A^k\) is the adjacency matrix of the relation\(r^k\) , where <m>r</m> is the relation \(\{(a, a), (a, b), (b, a), (b, c), (c, b), (c, c)\}\) of the above graph. Also recall that in computing \(A^k\), we used Boolean arithmetic. What happens if we use <q>regular</q> arithmetic?
-For example,
+<p>Recall that \(A^k\) is the adjacency matrix of the relation\(r^k\) , where <m>r</m> is the relation \(\{(a, a), (a, b), (b, a), (b, c), (c, b), (c, c)\}\) of the above graph. Also recall that in computing \(A^k\), we used Boolean arithmetic. What happens if we use <q>regular</q> arithmetic?  If we square \(A\) we get
 
-$\quad \quad $\(A = \left(
+\(A^2 = \left(
 \begin{array}{ccc}
  2 &amp; 1 &amp; 1 \\
  1 &amp; 2 &amp; 1 \\
  1 &amp; 1 &amp; 2 \\
 \end{array}
 \right)\)
+</p>
+<p>How can we interpret this? We note that \(A_{33} = 2\) and that there are two paths of length two from <m>c</m> (the third node) to <m>c</m>.
+ Also, \(A_{13} = 1\), and there is one path of length 2 from <m>a</m> to  <m>c</m>. The reader should verify these claims by examining the graph. </p> 
 
-How can we interpret this? We note that \(A_{33} = 2\) and that there are two paths of length two from <m>c</m> (the third node) to <m>c</m>.
- Also, \(A_{13} = 1\), and there is one path of length 2 from <m>a</m> to  <m>c</m>. The reader should verify these claims from the graph
-in Figure 12.5.1.
-
-
-
-<theorem xml:id="theorem-12.5.1."><title>12.5.1.</title><index><main>12.5.1.</main></index><statement></statement><proof></proof></theorem> The entry \(\left(A^k\right){}_{i j}\)  is the number of paths, or walks, of length <m>k</m> from node \(v_i\), to node
-\(v_j\) .
+<p>How do we compute \(A^k\) for possibly large values of <m>k</m>? From the discussion at the beginning of this section, we know that \(A^k= P D^kP^{-1}\)
+if <m>A</m> is diagonalizable. We leave to the reader to show that \(\lambda  = 1, 2,\textrm{ and}\text -1\) are eigenvalues of <m>A</m> with eigenvectors
 
 
 
-How do we find \(A^k\) for possibly large values of <m>k</m>? From the discussion at the beginning of this section, we know that \(A^k= P D^kP^{-1}\)
-if <m>A</m> is diagonalizable. We leave to the reader to show that \(\lambda  = 1, 2,\textrm{ and}\text -1\) are eigenvalues of <m>A</m> with
-eigenvectors
-
-
-
- $\quad \quad \quad $\(\left(
+ \[\left(
 \begin{array}{c}
  1 \\
  0 \\
@@ -238,21 +226,18 @@ eigenvectors
  -2 \\
  1 \\
 \end{array}
-\right)\)
+\right)\]
+</p>
 
 
-
-respectively, so that
-
-
-
- $\quad \quad $\(A^k= P \left(
+<p> Then
+ \[A^k= P \left(
 \begin{array}{ccc}
  1 &amp; 0 &amp; 0 \\
  0 &amp; 2^k &amp; 0 \\
  0 &amp; 0 &amp; (-1)^k \\
 \end{array}
-\right)P^{-1}\)
+\right)P^{-1}\]
 
 
 
@@ -269,56 +254,45 @@ where  \(P=\left(
  \frac{1}{6} &amp; -\frac{1}{3} &amp; \frac{1}{6} \\
 \end{array}
 \right)\)
+</p>
 
 
-
-See Exercise 5 of this section for the completion of this example.
-
-
-
-<example xml:id="ex-12.5.3: Matrix Calculus."><title>12.5.3: Matrix Calculus.</title><p></p></example> Those who have studied calculus recall that the Maclaurin series is a useful way of expressing
-many common functions. For example,
-
-
-
- $\quad \quad $\(e^x=\sum _{k=0}^{\infty } \frac{x^k}{k!}\)
-
-
-
+<p>See <xref ref="exercise-12-5-5" autoname="yes" /> of this section for the completion of this example.</p>
+</example>
+<example xml:id="ex-matrix-calculus"><title>Matrix Calculus - Exponentials</title>
+<p>Those who have studied calculus recall that the Maclaurin series is a useful way of expressing
+many common functions. For example, \(e^x=\sum _{k=0}^{\infty } \frac{x^k}{k!}\).
 Indeed, calculators and computers use these series for calculations. Given a polynomial \(f(x)\), we defined the matrix-polynomial \(f(A)\) for square
-matrices in Chapter 5. Hence, we are in a position to describe \(e^A\) for an \(n \times  n\) matrix <m>A</m> as a limit of polynomial.   Formally,
+matrices in Chapter 5. Hence, we are in a position to describe \(e^A\) for an \(n \times  n\) matrix <m>A</m> as a limit of polynomials, the partial sums of the series.   Formally,
 we write
 
 
 
- $\quad \quad $\(e^A= I + A + \frac{A^2}{2! }+ \frac{A^3}{3!}+ \cdots  = \sum _{k=0}^{\infty } \frac{A^k}{k!}\)
+ \[e^A= I + A + \frac{A^2}{2! }+ \frac{A^3}{3!}+ \cdots  = \sum _{k=0}^{\infty } \frac{A^k}{k!}\]
+</p>
 
 
-
-Again we encounter the need to compute high powers of a matrix.  Let <m>A</m> be an \(n\times n\) diagonalizable matrix. Then there exists an
+<p>Again we encounter the need to compute high powers of a matrix.  Let <m>A</m> be an \(n\times n\) diagonalizable matrix. Then there exists an
 invertible \(n\times n\) matrix <m>P</m> such that \(P^{-1}A P = D\), a diagonal matrix, so that
 
+<me>
+\begin{split}
+e^A &amp;=e^{P D P^{-1} }\\
+	&amp; =\sum _{k=0}^{\infty } \frac{\left(P D P^{-1}\right)^k}{k!} \\
+	&amp; = P \left(\sum _{k=0}^{\infty } \frac{ D^k}{k!}\right)P^{-1}
+\end{split}
+</me>
+</p>
 
 
- $\quad \quad $\(e^A=e^{P D P^{-1} }\\
-\\
-\quad =\sum _{k=0}^{\infty } \frac{\left(P D P^{-1}\right)^k}{k!} \\
-\\
-\quad = P \left(\sum _{k=0}^{\infty } \frac{ D^k}{k!}\right)P^{-1}\)
-
-
-
-The infinite sum in the middle of this final expression can be easily evaluated if <m>D</m> is diagonal.  All entries of powers off the diagonal
+<p>The infinite sum in the middle of this final expression can be easily evaluated if <m>D</m> is diagonal.  All entries of powers off the diagonal
 are zero and the \(i^{\textrm{ th}}\) entry of the diagonal is 
 
 
 
-\(\left(\sum _{k=0}^{\infty } \frac{ D^k}{k!}\right){}_{i i}=\text \sum _{k=0}^{\infty } \frac{ D_{i i}{}^k}{k!}= e^{D_{i i}}\)$\quad
-$
+\[\left(\sum _{k=0}^{\infty } \frac{ D^k}{k!}\right){}_{i i}=\text \sum _{k=0}^{\infty } \frac{ D_{i i}{}^k}{k!}= e^{D_{ii}}\]</p>
 
-
-
-For example, if \(A=\left(
+<p>For example, if \(A=\left(
 \begin{array}{cc}
  2 &amp; 1 \\
  2 &amp; 3 \\
@@ -333,56 +307,54 @@ For example, if \(A=\left(
  1 &amp; 0 \\
  0 &amp; 4 \\
 \end{array}
-\right)\).  Therefore, 
+\right)\).</p>
+<p>Therefore, 
+ <me>
+ \begin{split}
+ 	e^A &amp;=\left(
+					\begin{array}{cc}
+					 1 &amp; 1 \\
+					 -1 &amp; 2 \\
+					\end{array}
+					\right) \left(
+					\begin{array}{cc}
+					 e &amp; 0 \\
+					 0 &amp; e^4 \\
+					\end{array}
+					\right) \left(
+					\begin{array}{cc}
+					 \frac{2}{3} &amp; -\frac{1}{3} \\
+					 \frac{1}{3} &amp; \frac{1}{3} \\
+					\end{array}
+					\right)\\
+	&amp;= \left(
+				\begin{array}{cc}
+				 \frac{2 e}{3}+\frac{e^4}{3} &amp; -\frac{e}{3}+\frac{e^4}{3} \\
+				 -\frac{2 e}{3}+\frac{2 e^4}{3} &amp; \frac{e}{3}+\frac{2 e^4}{3} \\
+				\end{array}
+				\right)\\
+	&amp; \approx  \left(
+			\begin{array}{cc}
+			 20.0116 &amp; 17.2933 \\
+			 34.5866 &amp; 37.3049 \\
+			\end{array}
+			\right)
+\end{split}
+</me>
+</p>
+
+<p>Some comments on this example:
+<ol label="1">
+<li><p>  Many of the ideas of calculus can be developed using matrices.  For example, if 
 
 
 
- $\quad \quad $\(e^A=\left(
-\begin{array}{cc}
- 1 &amp; 1 \\
- -1 &amp; 2 \\
-\end{array}
-\right) \left(
-\begin{array}{cc}
- e &amp; 0 \\
- 0 &amp; e^4 \\
-\end{array}
-\right) \left(
-\begin{array}{cc}
- \frac{2}{3} &amp; -\frac{1}{3} \\
- \frac{1}{3} &amp; \frac{1}{3} \\
-\end{array}
-\right)\\
-\\
-\quad = \left(
-\begin{array}{cc}
- \frac{2 e}{3}+\frac{e^4}{3} &amp; -\frac{e}{3}+\frac{e^4}{3} \\
- -\frac{2 e}{3}+\frac{2 e^4}{3} &amp; \frac{e}{3}+\frac{2 e^4}{3} \\
-\end{array}
-\right)\\
-\\
-\quad \approx  \left(
-\begin{array}{cc}
- 20.0116 &amp; 17.2933 \\
- 34.5866 &amp; 37.3049 \\
-\end{array}
-\right)\)
-
-
-
-Comments on Example 12.5.3:
-
-<ol label=“1”>
-<li><p> Many of the ideas of calculus can be developed using matrices.  For example, if 
-
-
-
-$\quad \quad $\(A(t) = \left(
+\[A(t) = \left(
 \begin{array}{cc}
  t^3 &amp; 3 t^2+8t \\
  e^t &amp; 2 \\
 \end{array}
-\right)\)
+\right)\]
 
 
 
@@ -390,12 +362,12 @@ then
 
 
 
-$\quad \quad $\(\frac{d A(t)}{d t}=\left(
+\[\frac{d A(t)}{d t}=\left(
 \begin{array}{cc}
  3 t^2 &amp; 6 t+8 \\
  e^t  &amp; 0 \\
 \end{array}
-\right)\)</p></li>
+\right)\]</p></li>
 <li><p>  Many of the basic formulas in calculus are true in matrix calculus. For example,
 
 
@@ -410,57 +382,33 @@ and if <m>A</m> is a constant matrix,
 
   \(\frac{d e^{A t}}{d t}= A e^{A t}\)</p></li>
 <li><p> Matrix calculus can be used to solve systems of differential equations in a similar manner   to the procedure used in ordinary differential
-equations. 
+equations.</p></li>
+</ol>
+</p> 
+</example> 
 
-
-
-<subsubsection xml:id="sss-\(\) { "><title>\(\) { </title><index><main>\(\) { </main></index>Mathematica.  Note}
-
-
-
-Mathematica. 's matrix exponential function is \(MatrixExp\).
-
-\begin{doublespace}
-\noindent\(\pmb{\textrm{ MatrixExp}\left[\left(
-\begin{array}{cc}
- 2 &amp; 1 \\
- 2 &amp; 3 \\
-\end{array}
-\right)\right]}\)
-\end{doublespace}
-
-
-
-<subsubsection xml:id="sss-\(\) { "><title>\(\) { </title><index><main>\(\) { </main></index>Sage Note}
-
-
-
-Sage's matrix exponential method is called \(exp\).
-
-A=Matrix(QQ,[[2,1],[2,3]]);\\
-A.exp()\\
-    \texttt{ [ 2/3*e + 1/3*e${}^{\wedge}$4 -1/3*e + 1/3*e${}^{\wedge}$4]\\
-[-2/3*e + 2/3*e${}^{\wedge}$4  1/3*e + 2/3*e${}^{\wedge}$4]\\
-}
-
-
+<note><title>Sage Note - Matrix Exponential</title>
+<index><main>Sage Note</main><sub>Matrix Exponential</sub></index>
+<p>
+Sage's matrix exponential method is <c>exp</c>.</p>
+<sage>
+<input>
+A=Matrix(QQ,[[2,1],[2,3]])
+A.exp()
+</input>
+<output>
+[1/3*e^4 + 2/3*e 1/3*e^4 - 1/3*e]
+[2/3*e^4 - 2/3*e 2/3*e^4 + 1/3*e]
+</output>
+</sage>
+</note>
 <exercises xml:id="exercises-12-5">
 <title>Exercises for Section 12.5</title>
-
-
-
 <exercisegroup>
 <introduction><p>A Exercises</p></introduction>
-
-<exercise number="1"><statement>  (a) Write out all the details of Example 12.5.1 to show that the formula for \(F_k\) given in the text is correct.
-
-
-
- (b) Use induction to prove the assertion made in Example 12.5.1 that
-
-
-
-$\quad \quad $\(\left(
+<exercise number="1" xml:id="exercise-12-5-1"><statement><p><ol label="a"><li><p> Write out all the details of Example 12.5.1 to show that the formula for \(F_k\) given in the text is correct.</p></li>
+<li><p> Use induction to prove the assertion made in <xref ref="ex-fibonnaci-matrix" autoname="yes" /> that
+\(\left(
 \begin{array}{c}
  F_k \\
  F_{k-1} \\
@@ -470,53 +418,229 @@ $\quad \quad $\(\left(
  1 \\
  1 \\
 \end{array}
-\right)\)
+\right)\)</p></li>
+</ol>
+</p>
 </statement></exercise>
-<exercise number="2"><statement>  (a) Do Example 8.3.8 of Chapter 8 using the method outlined in Example 12.5.1. Note that the terminology characteristic equation, characteristic
+<exercise number="2"><statement><p><ol label="a"><li><p> Do Example 8.3.8 of Chapter 8 using the method outlined in Example 12.5.1. Note that the terminology characteristic equation, characteristic
 polynomial, and so on, introduced in Chapter 8, comes from the language of matrix algebra, </p></li>
-<li><p> What is the significance of Algorithm 8.3.1, part c, with respect to this section?
+<li><p> What is the significance of Algorithm 8.3.1, part c, with respect to this section?</p></li>
+</ol>
+</p>
 </statement></exercise>
-<exercise number="3"><statement>  Solve \(S(k) = 5S(k - 1) + 4\), with \(S(0) = 0\), using the method of this section.
+<exercise number="3"><statement><p>  Solve \(S(k) = 5S(k - 1) + 4\), with \(S(0) = 0\), using the method of this section.</p>
 </statement></exercise>
-<exercise number="4"><statement>  How many paths are there of length 6 between vertex 1 and vertex 3 in Figure 12.5.2? How many paths from vertex 2 to vertex 2 of length 6 are
-there? Hint: The characteristic polynomial of the adjacency matrix is \(\lambda ^4\).
+<exercise number="4"><statement> <p> How many paths are there of length 6 between vertex 1 and vertex 3 in <xref ref="fig-graph-12-5-2" autoname="yes" />? How many paths from vertex 2 to vertex 2 of length 6 are there? </p>
 
-
-\begin{center}\(\)
-\end{center}
-
-
-\caption{Figure 12.5.2}
-</statement></exercise>
-<exercise number="5"><statement> Use the matrix <m>A</m> of Example 12.5.2 to:
-
+            <figure xml:id="fig-graph-12-5-2">
+                <caption>Graph for exercise 4
+                </caption>
+                <image width="70%" source="images/fig-graph-12-5-2.png">
+                    <description>Graph for exercise 4</description>
+                </image>
+            </figure>
+            
+</statement>
+<hint><p> The characteristic polynomial of the adjacency matrix is \(\lambda ^4 - 4 \lambda^2\).</p></hint></exercise>
+<exercise number="5" xml:id="exercise-12-5-5">
+<statement><p>Regarding <xref ref="diagonalization-in-graph-theory" autoname="yes" />,
 <ol label="a">
-<li><p> Determine the number of paths of length 1 that exist from vertex <m>a</m> to each of the vertices in Example 12.5.2. Verify using the graph.
-Do the same for vertices <m>b</m> and <m>c</m>.</p></li>
-<li><p> Verify all the details of Example 12.5.2.</p></li>
-<li><p>  Use Example 12.5.2 to determine the number of paths of length 4 there are from each node in the graph of Figure 12.5.1 to every node in the
-graph. Verify your results using the graph.
-</statement></exercise>
-<exercise number="6"><statement>   Let \(A =\left(
+<li><p>Use matrices to determine the number of paths of length 1 that exist from vertex <m>a</m> to each of the vertices in the given graph. Verify using the graph. Do the same for vertices <m>b</m> and <m>c</m>.</p></li>
+<li><p> Verify all the details provided in the example.</p></li>
+<li><p>Use matrices to determine the number of paths of length 4 there between each pair of nodes in the graph. Verify your results using the graph.</p></li>
+</ol>
+</p>
+</statement>
+<answer><p><ol label="a">
+<li><p> Since   \(A=A^1= \left(
+\begin{array}{ccc}
+ 1 &amp; 1 &amp; 0 \\
+ 1 &amp; 0 &amp; 1 \\
+ 0 &amp; 1 &amp; 1 \\
+\end{array}
+\right)\),  there are 0 paths of length 1 from: node c to node a, node b to node b, and node a to node c; and there is 1 path of length
+1 for every other pair of nodes.</p></li>
+<li><p> The characteristic polynomial is
+
+
+
+\(\left| A-c I\right|  = \left\left| 
+\begin{array}{ccc}
+ 1-c &amp; 1 &amp; 0 \\
+ 1 &amp; -c &amp; 1 \\
+ 0 &amp; 1 &amp; 1-c \\
+\end{array}
+\right\right| = -c^3+2 c^2+c-2\)</p>
+
+
+
+<p>Solving the characteristic equation \(-c^3+2 c^2+c-2=0\) we find solutions 1, 2, and -1.</p>
+<p>If \(c=1\), we find the associated eigenvector by finding a nonzero solution to 
+
+
+
+\(\left(
+\begin{array}{ccc}
+ 0 &amp; 1 &amp; 0 \\
+ 1 &amp; -1 &amp; 1 \\
+ 0 &amp; 1 &amp; 0 \\
+\end{array}
+\right)\left(
+\begin{array}{c}
+ x_1 \\
+ x_2 \\
+ x_3 \\
+\end{array}
+\right)=\left(
+\begin{array}{c}
+ 0 \\
+ 0 \\
+ 0 \\
+\end{array}
+\right)\) 
+
+
+
+One of these, which will be the first column of <m>P</m>, is \(\left(
+\begin{array}{c}
+ 1 \\
+ 0 \\
+ -1 \\
+\end{array}
+\right)\)
+</p>
+
+
+<p>If \(c=2\), the system \(\left(
+\begin{array}{ccc}
+ -1 &amp; 1 &amp; 0 \\
+ 1 &amp; -2 &amp; 1 \\
+ 0 &amp; 1 &amp; -1 \\
+\end{array}
+\right)\left(
+\begin{array}{c}
+ x_1 \\
+ x_2 \\
+ x_3 \\
+\end{array}
+\right)=\left(
+\begin{array}{c}
+ 0 \\
+ 0 \\
+ 0 \\
+\end{array}
+\right)\)  yields eigenvectors, including \(\left(
+\begin{array}{c}
+ 1 \\
+ 1 \\
+ 1 \\
+\end{array}
+\right)\), which will be the second column of <m>P</m>. 
+</p>
+
+
+<p>If  \(c = -1\), then the system determining the eigenvectors is 
+
+
+
+\(\left(
+\begin{array}{ccc}
+ 2 &amp; 1 &amp; 0 \\
+ 1 &amp; 1 &amp; 1 \\
+ 0 &amp; 1 &amp; 2 \\
+\end{array}
+\right)\left(
+\begin{array}{c}
+ x_1 \\
+ x_2 \\
+ x_3 \\
+\end{array}
+\right)=\left(
+\begin{array}{c}
+ 0 \\
+ 0 \\
+ 0 \\
+\end{array}
+\right)\) 
+
+
+
+and we can select \(\left(
+\begin{array}{c}
+ 1 \\
+ -2 \\
+ 1 \\
+\end{array}
+\right)\),  although any nonzero multiple of this vector could be the third column of <m>P</m>. </p></li>
+<li><p> Assembling the results of part (b) we have \(P=\left(
+\begin{array}{ccc}
+ 1 &amp; 1 &amp; 1 \\
+ 0 &amp; 1 &amp; -2 \\
+ -1 &amp; 1 &amp; 1 \\
+\end{array}
+\right)\) .
+</p>
+
+<p>
+<me>
+\begin{split}
+A^4  &amp; = P \left(
+				\begin{array}{ccc}
+				 1^4 &amp; 0 &amp; 0 \\
+				 0 &amp; 2^4 &amp; 0 \\
+				 0 &amp; 0 &amp; (-1)^{4 } \\
+				\end{array}
+				\right)P^{-1}= P \left(
+				\begin{array}{ccc}
+				 1 &amp; 0 &amp; 0 \\
+				 0 &amp; 16 &amp; 0 \\
+				 0 &amp; 0 &amp; 1 \\
+				\end{array}
+				\right)P^{-1}\\
+	&amp;=\left(
+				\begin{array}{ccc}
+				 1 &amp; 16 &amp; 1 \\
+				 0 &amp; 16 &amp; -2 \\
+				 -1 &amp; 16 &amp; 1 \\
+				\end{array}
+				\right)\left(
+				\begin{array}{ccc}
+				 \frac{1}{2} &amp; 0 &amp; -\frac{1}{2} \\
+				 \frac{1}{3} &amp; \frac{1}{3} &amp; \frac{1}{3} \\
+				 \frac{1}{6} &amp; -\frac{1}{3} &amp; \frac{1}{6} \\
+				\end{array}
+				\right)\\
+	&amp;=\left(
+			\begin{array}{ccc}
+			 6 &amp; 5 &amp; 5 \\
+			 5 &amp; 6 &amp; 5 \\
+			 5 &amp; 5 &amp; 6 \\
+			\end{array}
+			\right)\\
+\end{split}
+</me>
+</p>
+
+
+
+<p>Hence there are five different paths of length 4 between distinct vertices, and six different paths that start and end at the same vertex.  The
+reader can verify these facts from <xref ref="fig-12-5-1" autoname="yes"/></p></li>
+</ol>
+</p></answer>
+</exercise>
+<exercise number="6"><statement><p>   Let \(A =\left(
 \begin{array}{cc}
  2 &amp; -1 \\
  -1 &amp; 2 \\
 \end{array}
 \right)\)
-
-
-
- (a)  Find \(e^A\)
-
-
-
- (b)Recall that \(\sin  x = \sum _{k=0}^{\infty } \frac{(-1)^k x^k}{(2 k+1)!}\)  and compute \(\sin  A\).
-
-
-
- (d) Formulate a reasonable definition of the natural logarithm of a matrix and compute \(\ln  A\).
+<ol label="a"><li><p> Find \(e^A\)</p></li>
+<li><p>Recall that \(\sin  x = \sum _{k=0}^{\infty } \frac{(-1)^k x^k}{(2 k+1)!}\)  and compute \(\sin  A\).</p></li>
+<li><p>Formulate a reasonable definition of the natural logarithm of a matrix and compute \(\ln  A\).</p></li>
+</ol>
+</p>
 </statement></exercise>
-<exercise number="7"><statement>  We noted in Chapter 5 that since matrix algebra is not commutative under multiplication, certain difficulties arise.  Let \(A=\left(
+<exercise number="7"><statement><p> We noted in Chapter 5 that since matrix algebra is not commutative under multiplication, certain difficulties arise.  Let \(A=\left(
 \begin{array}{cc}
  1 &amp; 1 \\
  0 &amp; 0 \\
@@ -527,28 +651,76 @@ graph. Verify your results using the graph.
  0 &amp; 2 \\
 \end{array}
 \right)\). 
-
 <ol label="a">
 <li><p>    Compute   \(e^A\), \(e^{B }\), and \(e^{A+B}\).   Compare \(e^A\)\(e^{B }\), \(e^B\)\(e^A\) and \(e^{A+B}\) .</p></li>
-<li><p> Show that if \pmb{ 0} is the \(2\times 2\)zero matrix, then \(e^{\vect{0}}= I\).</p></li>
+<li><p> Show that if \(\pmb{0}\) is the \(2\times 2\) zero matrix, then \(e^{\vect{0}}= I\).</p></li>
 <li><p> Prove that if \(A\) and \(B\) are two matrices that do commute, then  \(e^{A+B}=e^Ae^B\), thereby proving that \(e^A\) and \(e^B\) commute.</p></li>
-<li><p> Prove that for any matrix <m>A</m>,  \(\left(e^A\right)^{-1}= e^{-A}\). 
-</statement></exercise>
-<exercise number="8"><statement>  Another observation for adjacency matrices: For the matrix in Example 12.5.2, note that the sum of the elements in the row corresponding to
-the node <m>a</m> (that is, the first row) gives the outdegree of <m>a</m>. Similarly, the sum of the elements in any given column gives the
-indegree of the node corresponding to that column.
-
-
-\begin{center}\(\)
-\end{center}
-
-
-\caption{Figure 12.5.3}
-
-<ol label="a">
-<li><p>  Using the matrix <m>A</m> of Example 12.5.2, find the outdegree and the indegree of each node. Verify by the graph.</p></li>
-<li><p>  Repeat part (a) for the directed graphs in Figure 12.5.3.</p></li>
+<li><p> Prove that for any matrix <m>A</m>,  \(\left(e^A\right)^{-1}= e^{-A}\). </p></li>
 </ol>
+</p>
+</statement>
+<answer><p>
+<ol label="a">
+<li><p>  \(e^A=\left(
+\begin{array}{cc}
+ e &amp; e \\
+ 0 &amp; 0 \\
+\end{array}
+\right)\) ,  \(e^B=\left(
+\begin{array}{cc}
+ 0 &amp; 0 \\
+ 0 &amp; e^2 \\
+\end{array}
+\right)\),  and  \(e^{A+B}=\left(
+\begin{array}{cc}
+ e &amp; e^2-e \\
+ 0 &amp; e^2 \\
+\end{array}
+\right)\)</p></li>
+<li><p> Let \pmb{ 0} be the zero matrix, \(e^{\pmb{0}}=I + \pmb{0}+\frac{\pmb{0}^2}{2}+\frac{\pmb{0}^3}{6}+\ldots =I\) .</p></li>
+<li><p>  Assume that <m>A</m> and <m>B</m> commute. We will examine the first few terms in the product \(e^A e^B\). The pattern that is established
+does continue in general. In what follows, it is important that \(A B = B A\). For example, in the last step,   \((A+B)^2\) expands to \(A^2+A
+B + B A + B^2\), not \(A^2+ 2 A B + B^2\),  if we can't assume commutativity.
+
+
+<me>
+\begin{split}
+e^Ae^B &amp;= \left(\sum _{k=0}^{\infty } \frac{A^k}{k!}\right) \left(\sum _{k=0}^{\infty } \frac{B^k}{k!}\right)\\
+		&amp; =\left(I + A+\frac{A^2}{2\text }+ \frac{A^3}{6}+ \cdots \right)\left(I +B+\frac{B^2}{2\text }+ \frac{B^3}{6}+ \cdots \right)\\
+		&amp;= I + A + B+ \frac{A^2}{2}+ A B + \frac{B^2}{2}+\frac{A^3}{6}+ \frac{A^2B}{2}+\frac{A B^2}{2}+ \frac{B^3}{6}+\cdots \\
+		&amp;= I + (A+B) + \frac{1}{2}\left(A^2+ 2 A B + B^2\right)+ \frac{1}{6}\left(A^3+ 3A^2B+ 3A B^2+ B^3\right)+\cdots \\
+		&amp;=I + (A+B)+ \frac{1}{2}(A+B)^2+ \frac{1}{6}(A+B)^3+\cdots \text \\
+		&amp; =e^{A+B}
+\end{split}
+</me>
+</p></li>
+<li><p> Since A and \(-A\)commute, we can apply part d;
+<me>
+\begin{split}
+e^Ae^{-A} &amp;= e^{A+(-A)}\\
+		&amp; =e^{\pmb{0}}\\
+		&amp;=I\\
+\end{split}
+</me>
+</p></li>
+</ol>
+</p>
+</answer>
+</exercise>
+<exercise number="8"><statement> <p> Another observation for adjacency matrices: For the matrix in <xref ref="diagonalization-in-graph-theory" autoname="yes" />, note that the sum of the elements in the row corresponding to the node <m>a</m> (that is, the first row) gives the outdegree of <m>a</m>. Similarly, the sum of the elements in any given column gives the indegree of the node corresponding to that column.</p>
+
+       <figure xml:id="fig-graph-12-5-3">
+                <caption>Graph for exercise 8
+                </caption>
+                <image width="70%" source="images/fig-graph-12-5-3.png">
+                    <description>Graph for exercise 8</description>
+                </image>
+          </figure>
+<p><ol label="a">
+<li><p>  Using the matrix <m>A</m> of <xref ref="diagonalization-in-graph-theory" autoname="yes" />, find the outdegree and the indegree of each node. Verify by the graph.</p></li>
+<li><p>  Repeat part (a) for the directed graphs in <xref ref="" autoname="yes" />.</p></li>
+</ol>
+</p>
 </statement>
 </exercise>
 </exercisegroup>
