@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="s-Automata, Finite-State Machines">
+<title>Automata, Finite-State Machines</title>
+<index><main>Automata, Finite-State Machines</main></index>
+
+
+
+In this section, we will introduce the concept of an abstract machine. The machines we will examine will (in theory) be capable of performing many
+of the tasks associated with digital computers. One such task is solving the recognition problem for a language. We will concentrate on one class
+of machines, finite-state machines (finite automata). And we will see that they are precisely the machines that are capable of recognizing strings
+in a regular grammar.
+
+
+
+Given an alphabet <m>X</m>, we will imagine a string in X*.  to be encoded on a tape that we will call an input tape. .
+When we refer to a tape, we might imagine a strip of material that is divided into segments, each of which can contain either a letter or a blank.
+
+
+
+The typical abstract machine includes an input device, the read head. , which is capable of reading the symbol from the segment of
+the input tape that is currently in the read head. Some more advanced machines have a read/write head that can also write symbols onto the tape.
+The movement of the input tape after reading a symbol depends on the machine. With a finite-state machine, the next segment of the input tape is
+always moved into the read head after a symbol has been read. Most machines (including finite-state machines) also have a separate output tape that
+is written on with a write head. . The output symbols come from an output alphabet, <m>Z</m>, that may or may not be equal to the input
+alphabet. The most significant component of an abstract machine is its memory structure. . This structure can range from a finite number
+of bits of memory (as in a finite-state machine) to an infinite amount of memory that can be sorted in the form of a tape that can be read from and
+written on (as in a Turing machine).
+
+\pmb{ Definition:} Finite-State Machine. A finite-state machine is defined by a quintet.  \((S, X, Z, w, t)\) where
+
+(1).   \(S=\left\{s_1, s_2,\ldots  , s_r\right\}\) \textit{ is the state set, a finite set that corresponds to the set of memory configurations
+that the machines can have at any time.}
+
+(2).  \(X=\left\{x_1, x_2, \ldots  ,x_m\right\}\) is the input alphabet.. 
+
+(3).  \(Z=\left\{z_1,z_2, \ldots  ,z_n\right\}\) is the output alphabet.. 
+
+(4) . \(w: X\times S\to Z\) is the output function, which specifies which output symbol.  \(w(x, s) \in Z\) \textit{ is written onto
+the output tape when the machine is in state s and the input symbol x is read.}
+
+(5).   \(t:X\times S\to S\) is the next-state (or transition) function, which specifies which state. \(t(x, s) \in S\) \textit{
+the machine should enter when it is in state s and it reads the symbol x.}
+
+
+
+<example xml:id="ex-14.3.1."><title>14.3.1.</title><p></p></example> Many mechanical devices, such as simple vending machines, can be thought of as finite-state machines. For simplicity, assume
+that a vending machine dispenses packets of gum, spearmint (S). , peppermint (P). , and bubble (B). , for 25$\not{c}$ each.
+We can define the input alphabet to be \(\{\textrm{ deposit} 25\not{c}, \textrm{ press} S, \textrm{ press} P, \textrm{ press} B\}\) and the state set to be \(\{\textrm{ Locked},
+\textrm{ Select}\}\), where the deposit of a quarter unlocks the release mechanism of the machine and allows you to select a flavor of gum. We will
+leave it to the reader to imagine what the output alphabet, output function, and next-state function would be. You are also invited to let your imagination
+run wild and include such features as a coin-return lever and change maker.
+
+
+
+<example xml:id="ex-14.3.2."><title>14.3.2.</title><p></p></example> The following machine is called a parity checker. . It recognizes whether or not a string in B*.  contains
+an even number of 1s. The memory structure of this machine reflects the fact that in order to check the parity of a string, we need only keep track
+of whether an odd or even number of 1s has been detected.
+
+<ol label=“1”>
+<li><p> The input alphabet is \(B=\{0,1\}.\)</p></li>
+<li><p>  The output alphabet is also<m>B</m>.</p></li>
+<li><p>  The state set is $\{$even, odd$\}$.
+
+
+
+(4, 5) The following table defines the output and next-state functions:
+
+
+
+$\quad \quad $\(\begin{array}{c|ccc}
+ x &amp; s &amp; w(x,s) &amp; t(x,s) \\
+\hline
+ 
+\begin{array}{c}
+ 0 \\
+ 0 \\
+ 1 \\
+ 1 \\
+\end{array}
+ &amp; 
+\begin{array}{c}
+ \textrm{ even} \\
+ \textrm{ odd} \\
+ \textrm{ even} \\
+ \textrm{ odd} \\
+\end{array}
+ &amp; 
+\begin{array}{c}
+ 0 \\
+ 1 \\
+ 1 \\
+ 0 \\
+\end{array}
+ &amp; 
+\begin{array}{c}
+ \textrm{ even} \\
+ \textrm{ odd} \\
+ \textrm{ odd} \\
+ \textrm{ even} \\
+\end{array}
+ \\
+\end{array}\)
+
+
+
+Note how the value of the most recent output at any time is an indication of the current state of the machine. Therefore, if we start in the even
+state and read any finite input tape, the last output corresponds to the final state of the parity checker and tells us the parity of the string
+on the input tape. For example, if the string 11001010 is read from left to right, the output tape, also from left to right, will be 10001100. Since
+the last character is a 0, we know that the input string has even parity.
+
+
+
+An alternate method for defining a finite-state machine is with a transition diagram. A transition diagram.  is a directed graph that contains
+a node for each state and edges that indicate the transition and output functions. An edge \(\left(s_i,s_j\right)\) that is labeled \(x/z\) indicates
+that in state \(s_i\) the input <m>x</m> results in an output of <m>z</m> and the next state is \(s_j\). That is, \(w\left(x, s_i\right)=z\)
+and \(t\left(x, s_i\right)=s_j\). The transition diagram for the parity checker appears in Figure 14.3.1. In later examples, we will see that if
+different inputs, \(x_i\) and \(x_j\), while in the same state, result in the same transitions and outputs, we label a single edge \(x_i, \left.x_j\right/z\)
+instead of drawing two edges with labels \(\left.x_i\right/z\) and \(\left.x_j\right/z\).
+
+
+
+One of the most significant features of a finite-state machine is that it retains no information about its past states that can be accessed by the
+machine itself. For example, after we input a tape encoded with the symbols 01101010 into the parity checker, the current state will be even, but
+we have no indication within the machine whether or not it has always been in even state. Note how the output tape is not considered part of the
+machine{'}s memory. In this case, the output tape does contain a <q>history</q> of the parity checker's past states. We  assume that the finite-state
+machine has no way of recovering the output sequence for later use.
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ Figure 14.3.1\\
+Transition Diagram for a parity checker}}
+
+
+
+<example xml:id="ex-14.3.3."><title>14.3.3.</title><p></p></example> Consider the following simplified version of the game of baseball. To be precise, this machine describes one half-inning of
+a simplified baseball game. Suppose that in addition to home plate, there is only one base instead of the usual three bases. Also, assume that there
+are only two outs per inning instead of the usual three. Our input alphabet will consist of the types of hits that the batter could have: out (O),
+double play (DP), single (S), and home run (HR). The input DP is meant to represent a batted ball that would result in a double play (two outs),
+if possible. The input DP can then occur at any time. The output alphabet is the numbers 0, 1, and 2 for the number of runs that can be scored as
+a result of any input. The state set contains the current situation in the inning, the number of outs, and whether a base runner is currently on
+the base. The list of possible states is then 00 (for 0 outs and 0 runners), 01, 10, 11, and end (when the half-inning is over). The transition diagram
+for this machine appears in Figure 14.3.2.
+
+
+
+Let's concentrate on one state. If the current state is 01, 0 outs and 1 runner on base, each input results in a different combination of output
+and next-state. If the batter hits the ball poorly (a double play) the output is zero runs and the inning is over (the limit of two outs has been
+made). A simple out also results in an output of 0 runs and the next state is 11, one out and one runner on base. If the batter hits a single, one
+run scores (output = 1) while the state remains 01. If a home run is hit, two runs are scored (output = 2) and the next state is 00. If we had allowed
+three outs per inning, this graph would only be marginally more complicated. The usual game with three bases would be quite a bit more complicated,
+however.
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ Figure 14.3.2\\
+Transition Diagram for a simplified game of baseball}}
+
+
+
+
+
+
+
+\pmb{ RECOGNITION IN REGULAR LANGUAGES}
+
+
+
+As we mentioned at the outset of this section, finite-state machines can recognize strings in a regular language. Consider the language \textit{
+L} over \(\{a,b,c\}\) that contains the strings of positive length in which each <m>a</m> is followed by <m>b</m> and each <m>b</m> is followed
+by <m>c</m>. One such string is bccabcbc. . This language is regular. A grammar for the language would be nonterminal symbols \(\{A,B,C\}\)
+with starting symbol <m>C</m> and production rules \(A\to \textrm{ bB}, \textrm{ cC}, C\textrm{ \textit{$\to $}}\textrm{ \textit{$a$}}A, C\to \textrm{ \textit{cC}}\textrm{ \textit{$
+$}}\textrm{ and}\textrm{ \textit{$ $}}\textrm{ \textit{$C$}}\to \textrm{ \textit{$c$}}\). A finite-state machine (Figure 14.3.3) that recognizes this language
+can be constructed with one state for each nonterminal symbol and an additional state (Reject) that is entered if any invalid production takes place.
+At the end of an input tape that encodes a string in \(\{a,b,c\}^*\), we will know when the string belongs to <m>L</m> based on the final output.
+If the final output is 1, the string belongs to <m>L</m> and if it is 0, the string does not belong to <m>L</m>. In addition, recognition can
+be accomplished by examining the final state of the machine. The input string belongs to the language if and only if the final state is \textit{
+C}.
+
+
+
+The construction of this machine is quite easy: note how each production rule translates into an edge between states other than Reject. For
+example, \(C\to bB\) indicates that in State <m>C</m>, an input of <m>b</m> places the machine into State <m>B</m>. Not all sets of production
+rules can be as easily translated to a finite-state machine. Another set of production rules for <m>L</m> is \(A\to \textrm{ aB}, \textrm{ \textit{$B$}}\textrm{ \textit{$\to
+$}}\textrm{ \textit{$b$}}C, C\to \textrm{ cA}, C\to \textrm{ cB}, C\to \textrm{ \textit{cC}}\) and \(C\to c\). Techniques for constructing finite-state machines
+from production rules is not our objective here. Hence we will only expect you to experiment with production rules until appropriate ones are found.
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ Figure 14.3.3}}
+
+
+
+<example xml:id="ex-14.3.4."><title>14.3.4.</title><p></p></example> A finite-state machine can be designed to add positive integers of any size. Given two integers in binary form, \(a=a_na_{n-1}
+\cdots  a_1a_0\) and \(b=b_nb_{n-1}\cdots  b_1b_0\), the machine will read the input sequence, which is obtained from the digits of <m>a</m> and
+<m>b</m> reading from right to left,
+
+
+
+\(a_0b_0\left(a_0+_2b_0\right) , \ldots  , a_nb_n\left(a_n+_2b_n\right),\)
+
+
+
+followed by the special input 111. Note how all possible inputs except the last one must even parity (contain an even number of ones). The output
+sequence is the sum of <m>a</m> and <m>b</m>, starting with the units digit, and comes from the set \(\{0,1,\lambda \}\). The transition diagram
+for this machine appears in Figure 14.3.4.
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ Figure 14.3.4\\
+Transition Diagram for a binary adder}}
+
+
+
+
+<exercises xml:id="exercises-14-3">
+<title>Exercises for Section 14.3</title>
+
+
+
+
+A Exercises
+
+<exercise number="1"><statement>  Draw a transition diagram for the vending machine described in Example
+</statement></exercise>
+<exercise number="14"><statement>3.1.
+</statement></exercise>
+<exercise number="2"><statement>  Construct finite-state machines that recognize the regular languages that you identified in Section 14.2.
+</statement></exercise>
+<exercise number="3"><statement>  What is the input set for the machine in Example 14.3.4?
+</statement></exercise>
+<exercise number="4"><statement>  What input sequence would be used to compute the sum of 1101 and 0111 (binary integers)? What would the output sequence be?
+
+
+
+B Exercise
+</statement></exercise>
+<exercise number="5"><statement>  The Gray Code Decoder. . The finite-state machine defined by the following figure has an interesting connection with the Gray Code
+(Section 9.4).
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ Figure 14.3.5\\
+Gray Code Decoder}}
+
+
+
+ Given a string \(x=x_1x_2\cdots  x_n\in B^n\), we may ask where <m>x</m> appears in \(G_n\). Starting in Copy state, the input string \textit{
+x} will result in an output string \(z\in B^n\), which is the binary form of the position of <m>x</m> in \(G_n\) Positions are numbered from 0
+to \(2^n-1\).
+
+<ol label="a">
+<li><p>  In what positions \((0-31)\) do 10110, 00100, and 11111 appear in \(G_5\)?</p></li>
+<li><p>  Prove that the Gray Code Decoder always works.
+</p></statement></exercise>
+</exercises>
+</section>

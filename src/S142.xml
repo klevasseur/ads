@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="s-Free Monoids and Languages">
+<title>Free Monoids and Languages</title>
+<index><main>Free Monoids and Languages</main></index>
+
+
+
+In this section, we will introduce the concept of a language. Languages are subsets of a certain type of monoid, the free monoid over an alphabet.
+After defining a free monoid, we will discuss languages and some of the basic problems relating to them. We will also discuss the common ways in
+which languages are defined.
+
+
+
+Let <m>A</m> be a nonempty set, which we will call an alphabet. . Our primary interest will be in the case where <m>A</m> is finite;
+however, <m>A</m> could be infinite for most of the situations that we will describe. The elements of <m>A</m> are called \textit{ letters
+or symbols}. Among the alphabets that we will use are \(B=\{0,1\}\), \(\textrm{ ASCII}=\textrm{ the} \textrm{ set} \textrm{ of} \textrm{ ASCII} \textrm{ characters}\),
+and\(\textrm{ PAS}=\textrm{ the} \textrm{ Pascal} \textrm{ character} \textrm{ set} (\textrm{ whichever} \textrm{ one} \textrm{ you} \textrm{ use})\).
+
+\pmb{ Definition:} Strings over an Alphabet. <m>A</m> string of length . \(n,n\geqslant 1\)\textit{ , over A is a sequence of n letters
+from }\(A:a_1a_2\ldots \textrm{ \textit{$a$}}_n\). The null string, . \lambda \textit{ , is defined as the string of length zero containing
+no letters. The set of strings of length n over A is denoted by }\(A^n\). The set of all strings over A. is denoted A*.. 
+
+
+
+Notes:
+
+<ol label="a">
+<li><p> If the length of string <m>s</m> is <m>n</m>, we write \(\left| s\right| =n\).</p></li>
+<li><p> The null string is not the same as the empty set, although they are similar in many ways.</p></li>
+<li><p> \(A^*=A^0\cup A^1\cup A^2\cup A^3\cup \textrm{ $\cdots $and} \textrm{ if} i\neq j,A^i\cap A^j=\emptyset ; \textrm{ that} \textrm{ is}, \left\{A^0,A^1,A^2,A^3,\ldots
+\right\} \textrm{ is} a \textrm{ partition} \textrm{ of} A^*.\)</p></li>
+<li><p>  An element of <m>A</m> can appear any number of times in a string.
+
+<theorem xml:id="theorem-14.2.1."><title>14.2.1.</title><index><main>14.2.1.</main></index><statement></statement><proof></proof></theorem> If A is countable, then A* is countable.. 
+
+Proof:  Case 1. Given the alphabet \(B=\{0,1\}\), we can define a bijection from the positive integers into \(B^*\). Each positive integer has
+a binary expansion \(d_kd_{k-1}\cdots  d_1d_0\), where each \(d_j\) is 0 or 1 and \(d_k=1\). If <m>n</m> has such a binary expansion, then \(2^k\leqslant
+n<2^{k+1}\). We define \(f:P\to B^*\textrm{ by} f(n)=f\left(d_kd_{k-1}\cdots  d_1d_0\right)=d_{k-1}\cdots  d_1d_0, \textrm{ where} f(1)=\lambda .\) Every
+one of the \(2^k\) strings of length <m>k</m> are the images of exactly one of the integers between \(2^k\textrm{ and} 2^{k+1}-1.\) From its definition,
+\(f\) is clearly a bijection; therefore, \(B^*\) is countable.
+
+Case 2: <m>A</m> is Finite. We will describe how this case is handled with an example first and then give the general proof. If \(A=\{a,b,c,d,e),\)
+then we can code the letters in <m>A</m> into strings from \(B^3\). One of the coding schemes (there are many) is \(a\leftrightarrow 000, b\leftrightarrow
+001, c\leftrightarrow 010, d\leftrightarrow 011, \textrm{ and} e\leftrightarrow 100\). Now every string in \(A^*\) corresponds to a different string
+in \(B^*\); for example, ace.  would correspond with \(000010100\). The cardinality of \(A^*\) is equal to the cardinality of the set of
+strings that can be obtained from this encoding system. The possible coded strings must be countable, since they are a subset of a countable set
+\(\left(B^*\right);\) therefore, \(A^*\) is countable.
+
+If \(\left| A\right| =m\), then the letters in <m>A</m> can be coded using a set of fixed-length strings from \(B^*\). If \(2^{k-1}<m\leqslant
+2^k\), then there are at least as many strings of length <m>k</m> in \(B^k\) as there are letters in <m>A</m>. Now we can associate each letter
+in <m>A</m> with an element of \(B^k\). Then any string in A*.  corresponds to a string in B*. . By the same reasoning as in the
+example above, A*.  is countable.
+
+Case 3: <m>A</m> is Countably Infinite. We will leave this case as an exercise. $\blacksquare $
+
+
+
+<subsection xml:id="ss-\pmb{ FREE MONOIDS OVER AN ALPHABET"><title>\pmb{ FREE MONOIDS OVER AN ALPHABET</title><index><main>\pmb{ FREE MONOIDS OVER AN ALPHABET</main></index>}
+
+
+
+The set of strings over any alphabet is a monoid under concatenation.
+
+
+
+\pmb{ Definition:} Concatenation. Let.  \(a=a_1a_2\cdots  a_m \textrm{ and} b=b_1b_2\cdots  b_n\) \textit{ be strings of length m and n, respectively.
+The concatenation of a with b, }\(a<>b\), is the string of length.  \(m+n:a_1a_2\cdots  a_mb_1b_2\cdots  b_n\).
+
+
+
+Notes:
+
+<ol label="a">
+<li><p>  The null string is the identity element of [A*. ; concatenation]. Henceforth, we will denote the monoid of strings
+over <m>A</m> by A*. .</p></li>
+<li><p> Concatenation is noncommutative, provided \(\left| A\right|  > 1\).</p></li>
+<li><p>  If \(\left\left| A_1\right\right|  = \left\left| A_2\right\right|\), then the monoids \(A_1^*\) and \(A_2^*\) are isomorphic. An isomorphism
+can be defined using any bijection\(f:A_1\to A_2. \textrm{ If} a=a_1a_2\cdots  a_n \in  A_1^*, f^*(a)=f\left(a_1\right)f\left(a_2\right)\cdots  f\left(a_n\right)\)
+defines a bijection from \(A_1^*\) into \(A_2^*\). We will leave it to the reader to convince him or herself that for all \(a,b,\in A_1^*,f^*(a<>b)=f^*(a)<>f^*(b)\).
+
+
+
+\pmb{ LANGUAGES}
+
+
+
+The languages of the world$---$English, German, Russian, Chinese, and so forth$---$are called natural languages. In order to communicate in writing
+in any one of them, you must first know the letters of the alphabet and then know how to combine the letters in meaningful ways. A \textit{ formal
+language} is an abstraction of this situation.
+
+
+
+\pmb{ Definition:} Formal Language. If A is an alphabet, a formal language over A is a subset of A*.. 
+
+<example xml:id="ex-14.2.1."><title>14.2.1.</title><p></p></example><ol label="a">
+<li><p> English can be thought of as a language over the set of letters \(A,B,\textrm{ $\cdots $Z}\) (upper and lower case) and other special symbols, such
+as punctuation marks and the blank. Exactly what subset of the strings over this alphabet defines the English language is difficult to pin down exactly.
+This is a characteristic of natural languages that we try to avoid with formal languages.</p></li>
+<li><p>  The set of all ASCII stream files can be defined in terms of a language over ASCII. An ASCII stream file is a sequence of zero or more lines
+followed by an end-of-file symbol. A line is defined as a sequence of ASCII characters that ends with the two characters CR (carriage return) and
+LF (line feed). The end-of-file symbol is system-dependent; for example, CTRL/C is a common one.</p></li>
+<li><p>  The set of all syntactically correct expressions in Mathematica.  is a language over the set of ASCII strings.  </p></li>
+<li><p> A few languages over B . are
+
+ \(L_1=\left\{\left.s\in B^*\right|\textrm{ \textit{$s$}}\textrm{ \textit{$ $}}\textrm{ has} \textrm{ exactly} \textrm{ as} \textrm{ many} 1's\text \textrm{ as}
+\textrm{ it} \textrm{ has} 0's\right\}\), 
+
+\(L_2=\left\{1<>s<>0:s\in B^*\right\}\), and 
+
+\(L_3=\langle 0,01\rangle\) = the submonoid of \(B^*\) generated by \(\{0,01\}\).
+
+
+
+
+
+
+
+<subsubsection xml:id="sss-\pmb{ TWO FUNDAMENTAL PROBLEMS: RECOGNITION AND GENERATION"><title>\pmb{ TWO FUNDAMENTAL PROBLEMS: RECOGNITION AND GENERATION</title><index><main>\pmb{ TWO FUNDAMENTAL PROBLEMS: RECOGNITION AND GENERATION</main></index>}
+
+
+
+The generation and recognition problems are basic to computer programming. Given a language, <m>L</m>, the programmer must know how to write (or
+generate) a syntactically correct program that solves a problem. On the other hand, the compiler must be written to recognize whether a program contains
+any syntax errors.
+
+
+
+\pmb{ The Recognition Problem:} Design an algorithm that determines the truth of \(s\in L\) in a finite number of steps for all \(a\in A^*\). Any
+such algorithm is called a recognition algorithm. .
+
+\pmb{ Definition:} Recursive Language. A language is recursive if there exists a recognition algorithm for it.. 
+
+<example xml:id="ex-14.2.2."><title>14.2.2.</title><p></p></example><ol label="a">
+<li><p>  The language of syntactically correct Mathematica.  expressions is recursive. </p></li>
+<li><p>  The three languages in Example 14.2.1 (d)  are all recursive. Recognition algorithms for \(L_1\) and \(L_2\) should be easy for you to imagine.
+The reason a recognition algorithm for \(L_3\) might not be obvious is that \(L_3'\textrm{ \textit{$s$}}\) definition is more cryptic. It doesn't tell
+us what belongs to \(L_3\), just what can be used to create strings in \(L_3\). This is how many languages are defined. With a second description
+of \(L_3\), we can easily design a recognition algorithm. \(L_3=\left\{s\in B^*; s=\lambda \right.\) or <m>s</m> starts with a 0 and has no consecutive
+1{'}s$\}$.
+
+
+
+\pmb{ Algorithm 14.2.1:} Recognition Algorithm for \(L_3\). Let \(s=s_1s_2\cdots  s_n\in B^*\). This algorithm determines the truth value of \(s\in
+L_3\). The truth value is returned as the value of Word.
+
+<ol label=“1”>
+<li><p>Word \(\textrm{ :=}\) true\\
+(2) If \(n>0\) then\\
+If \(s_1=1\) then Word \(\textrm{ :=}\) false\\
+$\quad \quad $  else for \(i\textrm{ :=}3\) to <m>n</m> \\
+$\quad \quad \quad $if \(s_{i-1}=1 \textrm{ and} s_i=1\) then Word \(\textrm{ :=}\) false
+
+
+
+\pmb{ The Generation Problem.} Design an algorithm that generates or produces any string in <m>L</m>. Here we presume that <m>A</m> is either
+finite or countably infinite; hence, A*.  is countable by Theorem 14.2.1, and \(L \subseteq A^*\) must be countable. Therefore, the generation
+of <m>L</m> amounts to creating a list of strings in <m>L</m>. The list may be either finite or infinite, and you must be able to show that
+every string in <m>L</m> appears somewhere in the list.
+
+
+
+<theorem xml:id="theorem-14.2.2."><title>14.2.2.</title><index><main>14.2.2.</main></index><statement></statement><proof></proof></theorem>
+
+
+
+(a)  If A is countable, then there exists a generating algorithm for A*.. 
+
+
+
+(b)  If L is a recursive language over a countable alphabet, then there exists a generating algorithm for L.. 
+
+
+
+Proof:
+
+<ol label="a">
+<li><p>  Part a follows from the fact that A*.  is countable; therefore, there exists a complete list of strings in A*. .</p></li>
+<li><p>  To generate all strings of <m>L</m>, start with a list of all strings in A*.  and an empty list, <m>W</m>, of strings in \textit{
+L}. For each string <m>s</m>, use a recognition algorithm (one exists since <m>L</m> is recursive) to determine whether \(s\in L\). If \textit{
+s} is in <m>L</m>, add it to <m>W</m>; otherwise <q>throw it out.</q> Then go to the next string in the list of A*. . $\blacksquare
+$
+
+
+
+<example xml:id="ex-14.2.3."><title>14.2.3.</title><p></p></example> Since all of the languages in Example 14.2.2 are recursive, they must have generating algorithms. The one given in the proof
+of Theorem 14.2.2 is not generally the most efficient. You could probably design more efficient generating algorithms for \(L_2\) and \(L_3\); however,
+a better generating algorithm for \(L_1\) is not quite so obvious.
+
+
+
+The recognition and generation problems can vary in difficulty depending on how a language is defined and what sort of algorithms we allow ourselves
+to use. This is not to say that the means by which a language is defined determines whether it is recursive. It just means that the truth of $\texttt{"}$\textit{
+L} is recursive$\texttt{"}$ may be more difficult to determine with one definition than with another. We will close this section with a discussion
+of grammars, which are standard forms of definition for a language. When we restrict ourselves to only certain types of algorithms, we can affect
+our ability to determine whether \(s\in L\) is true. In defining a recursive language, we do not restrict ourselves in any way in regard to the type
+of algorithm that will be used. In Section 14.3, we will consider machines called finite automata. , which can only perform simple algorithms.
+
+
+
+<subsubsection xml:id="sss-\pmb{ PHRASE STRUCTURE GRAMMARS AND LANGUAGES"><title>\pmb{ PHRASE STRUCTURE GRAMMARS AND LANGUAGES</title><index><main>\pmb{ PHRASE STRUCTURE GRAMMARS AND LANGUAGES</main></index>}
+
+
+
+One common way of defining a language is by means of a phrase structure grammar.  (or grammar, for short). The set of strings that can be
+produced using the grammar rules is called the phrase structure language.  (of the grammar).
+
+
+
+<example xml:id="ex-14.2.4."><title>14.2.4.</title><p></p></example> We can define the set of all strings over <m>B</m> for which all 0s precede all 1s as follows. Define the starting symbol
+<m>S</m> and establish rules that <m>S</m> can be replaced with any of the following: \lambda , 0S, or S1. These replacement rules are usually
+called production.  (or rewriting. ) rules.  and are usually written in the format \(S\to \lambda ,S\to 0S, \textrm{ and} S\to
+\textrm{ S1}\). Now define <m>L</m> to be the set of all strings that can be produced by starting with <m>S</m> and applying the production rules
+until <m>S</m> no longer appears. The strings in <m>L</m> are exactly the ones that are described above.
+
+\pmb{ Definition:} Phrase Structure Grammar. A phrase structure grammar consists of four components:. <ol label=“1”>
+<li><p> A nonempty finite set of terminal characters, T. If the grammar is defining a language over A, T is a subset of A*.. \\
+(2)  A finite set of nonterminal characters, N.. \\
+(3)  A starting symbol, . \(S\in N\).\\
+(4)  A finite set of production rules, each of the form \(X\to Y\), where <m>X</m> and <m>Y</m> are strings over \(A\cup N\) such that \(X\neq
+Y\) and <m>X</m> contains at least one nonterminal symbol.
+
+
+
+If <m>G</m> is a phrase structure grammar, L(G).  is the set of strings that can be obtained by starting with <m>S</m> and applying
+the production rules a finite number of times until no nonterminal characters remain. If a language can be defined by a phrase structure grammar,
+then it is called a phrase structure language. .
+
+
+
+<example xml:id="ex-14.2.5."><title>14.2.5.</title><p></p></example> The language over <m>B</m> consisting of strings of alternating 0s and 1s is a phrase structure language. It can be defined
+by the following grammar:
+
+<ol label=“1”>
+<li><p> Terminal characters: \lambda , 0, and 1,</p></li>
+<li><p>  Nonterminal characters: <m>S</m>, <m>T</m>, and <m>U</m>,</p></li>
+<li><p>  Starting symbol: <m>S</m>,</p></li>
+<li><p> Production rules:
+
+
+
+ \(S\to T, S\to U, S\to \lambda , S\to 0, S\to 1, S\to 0T, S\to 1U, T\to 10T, T\to 10, U\to 01U, U\to 01\)
+
+
+
+     These rules can be visualized more easily with a graph:
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{Figure 14.2.1\\
+Production rules for the language of alternating 0{'}s and 1{'}s.}
+
+
+
+We can verify that a string such as 10101 belongs to the language by starting with <m>S</m> and producing 10101 using the production rules a finite
+number of times: \(S\to 1U\to 101U\to 10101\).
+
+<example xml:id="ex-14.2.6."><title>14.2.6.</title><p></p></example> Let <m>G</m> be the grammar with components:<ol label=“1”>
+<li><p> Terminal symbols = all letters of the alphabet (both upper and lower case) and the digits 0 through 9,</p></li>
+<li><p> Nonterminal symbols =$\{$I, X. $\}$,</p></li>
+<li><p>  Starting symbol: <m>I</m></p></li>
+<li><p>  Production rules: \(I\to \alpha\), where $\alpha $ is any letter, \(I\to \textrm{ $\alpha $X}\) for any letter $\alpha $, \(X\to \textrm{ $\beta
+$X}\) for any letter or digit $\beta $, and \(X\to \beta\) for any letter or digit $\beta $.
+
+There are a total of \(176\) production rules for this grammar. The language \(L(G)\) consists of all valid Mathematica.  names.
+
+
+
+\pmb{ Backus-Naur form (BNF)}, A popular alternate form of defining the production rules in a grammar is BNF. If the production rules \(A\to B_1,
+A\to B_2,\ldots  A\to B_n\) are part of a grammar, they would be written in BNF as \(A \textrm{ ::}=B_1\left\left| B_2\right\right| \cdots  \left\left|
+B_n\right.\). The symbol \(|\) in BNF is read as <q>or,</q> while the \(\textrm{ ::}=\) is read as <q>is defined as.</q> Additional notations of BNF
+are that \(\{x\}\), represents zero or more repetitions of <m>x</m> and [<m>y</m>] means that <m>y</m> is optional.
+
+<example xml:id="ex-14.2.7."><title>14.2.7.</title><p></p></example> A BNF version of the production rules for a Mathematica.  name is
+
+letter \(::=a\left| b\left| c \cdots  |z|A|B|\cdots |Z\)
+
+ \(\textrm{ digit}::=0|1|\cdots |9\)
+
+\(I::= \textrm{ letter} \{\textrm{ letter} | \textrm{ digit}\}\)
+
+<example xml:id="ex-14.2.8."><title>14.2.8.</title><p></p></example> An arithmetic expression can be defined in BNF. For simplicity, we will consider only expressions obtained using addition
+and multiplication of integers. The terminal symbols are \((,),+,*,-\), and the digits 0 through 9. The nonterminal symbols are <m>E</m> (for
+expression), <m>T</m> (term), <m>F</m> (factor), and <m>N</m> (number). The starting symbol is <m>E</m>.
+
+\(E\text ::=E+T|T\textrm{ }\) 
+
+\(T ::=T * F | F\) 
+
+\(F ::=(E)|N\) 
+
+\(N ::=[-]\textrm{ digit} \{\textrm{ digit}\}.\)
+
+One particularly simple type of phrase structure grammar is the regular grammar.
+
+
+
+\pmb{ Definition:} Regular Grammar. A regular (right-hand form) grammar is a grammar whose production rules are all of the form . \(A\to
+t\) and . \(A\to \textrm{ \textit{tB}}\), where A and B are nonterminal and t is terminal. A left-hand form grammar allows only . \(A\to
+t\) and . \(A\to \textrm{ \textit{Bt}}\), A language that has a regular phrase structure language is called a regular language.. 
+
+<example xml:id="ex-14.2.9."><title>14.2.9.</title><p></p></example><ol label="a">
+<li><p>  The set of Mathematica.  names is a regular language since the grammar by which we defined the set is a regular grammar.</p></li>
+<li><p>  The language of all strings for which all 0s precede all 1s (Example 14.2.4) is regular; however, the grammar by which we defined this set
+is not regular. Can you define these strings with a regular grammar?</p></li>
+<li><p>  The language of arithmetic expressions is not regular.
+
+
+
+
+<exercises xml:id="exercises-14-2">
+<title>Exercises for Section 14.2</title>
+
+
+
+<exercisegroup>
+<introduction><p>A Exercises</p></introduction>
+
+<exercise number="1"><statement>  (a) If a computer is being designed to operate with a character set of 350 symbols, how many bits must be reserved for each character? Assume
+each character will use the same number of bits. </p></li>
+<li><p> Do the same for 3,500 symbols.
+</statement></exercise>
+<exercise number="2"><statement>  It was pointed out in the text that the null string and the null set are different. The former is a string and the latter is a set, two different
+kinds of objects. Discuss how the two are similar.
+</statement></exercise>
+<exercise number="3"><statement>  What sets of strings are defined by the following grammar?
+
+<ol label="a">
+<li><p>  Terminal symbols: \lambda , 0 and 1</p></li>
+<li><p>  Nonterminal symbols: <m>S</m> and <m>E</m></p></li>
+<li><p>   Starting symbol: S . </p></li>
+<li><p>   Production rules: \(S\to 0\textrm{ S0}, S\to 1\textrm{ S1}, S\to E, E\to \lambda , E\to 0, E\to 1.\)
+</statement></exercise>
+<exercise number="4"><statement>  What sets of strings are defined by the following grammar?
+
+<ol label="a">
+<li><p>  Terminal symbols: \lambda , a, b, . and<m>c</m></p></li>
+<li><p>Nonterminal symbols: \(S, T,U \textrm{ and} E\)</p></li>
+<li><p>Starting symbol: <m>S</m></p></li>
+<li><p>Production rules: \(S\to \textrm{ \textit{aS}}, \textrm{ \textit{$S$}}\to \textrm{ \textit{$T$}}, T\to \textrm{ \textit{bT}}\textrm{ \textit{$,$}}\textrm{ \textit{$
+$}}\textrm{ \textit{$T\to U$}}\textrm{ \textit{$,$}}\textrm{ \textit{$ $}}\textrm{ \textit{$U$}}\to \textrm{ \textit{cU}}\textrm{ \textit{$,$}}\textrm{ \textit{$ $}}\textrm{ \textit{$U$}}\to
+\textrm{ \textit{$E$}}\textrm{ \textit{$,$}}\textrm{ \textit{$ $}}\textrm{ \textit{$E$}}\to \lambda .\)
+</statement></exercise>
+<exercise number="5"><statement>  Define the following languages over B with phrase structure grammars.
+
+
+
+ Which of these languages are regular?
+
+<ol label="a">
+<li><p>  The strings with an odd number of characters.</p></li>
+<li><p>  The strings of length 4 or less.</p></li>
+<li><p>  The palindromes, strings that are the same backwards as forwards.
+</statement></exercise>
+<exercise number="6"><statement>  Define the following languages over B with phrase structure grammars. Which of these languages are regular? 
+
+<ol label="a">
+<li><p>  The strings with more 0s than 1s.</p></li>
+<li><p>  The strings with an even number of 1s.</p></li>
+<li><p> The strings for which all 0s precede all 1s.
+</statement></exercise>
+<exercise number="7"><statement>  Prove that if a language over <m>A</m> is recursive, then its complement is also recursive.
+</statement></exercise>
+<exercise number="8"><statement> Use BNF to define the grammars in Exercises 3 and 4.
+
+
+
+<subsubsection xml:id="sss- B Exercise"><title> B Exercise</title><index><main> B Exercise</main></index>
+</statement></exercise>
+<exercise number="9"><statement>  (a)Prove that if \(X_1, X_2, \ldots\)is a countable sequence of countable sets, the union of these sets, \(\underset{i=1}{\overset{\infty }{\cup
+}}X_i,\) is countable.</p></li>
+<li><p> Using the fact that the countable union of countable sets is countable, prove that if <m>A</m> is countable, then \textit{
+A* }is countable.</p></statement></exercise>
+</exercises>
+</section>
+
