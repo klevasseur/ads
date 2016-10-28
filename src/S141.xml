@@ -3,126 +3,182 @@
 <title>Monoids</title>
 <index><main>Monoids</main></index>
 
-Recall the definition of a monoid:
+<p>Recall the definition of a monoid from Chapter 11.</p>
 
-\pmb{ Definition:} Monoid. A monoid is a set . \(M\) together with a binary operation * with the properties. \\
-\hspace*{1.5ex} (a) \(*\) is associative: . \((a*b)*c=a*(b*c) \textrm{ \textit{for}}\textrm{ \textit{$ $}}\textrm{ \textit{all}}\textrm{ \textit{$ $}}a,b,c\in
-M\), and. \\
-\hspace*{1.5ex} (b) \(*\) has an identity:.  \(\textrm{ \textit{there}}\textrm{ \textit{$ $}}\textrm{ \textit{exists}} e\in M\textrm{ \textit{$ $}}\textrm{ \textit{$\textrm{ such}
-\textrm{ that} \textrm{ for} \textrm{ all} $}}a\in M, a*e=e*a=a .\)
+<definition xml:id="def-monoid"><title>Monoid</title><index><main>Monoid</main></index>
+<statement><p>A monoid is a set \(M\) together with a binary operation \(*\) with the properties
+<ul>
+<li><p> \(*\) is associative:  \((a*b)*c=a*(b*c) \forall a,b,c \in M\), and</p></li>
+<li><p> \(*\) has an identity in \(M\):  \(\exists e\in M\) such that \(a*e=e*a=a \forall a \in M\)</p></li>
+</ul></p></statement></definition> 
 
-Note: Since the requirements for a group contain the requirements for a monoid, every group is a monoid.
+<note><p>Since the requirements for a group contain the requirements for a monoid, every group is a monoid.</p></note>
 
-<subsection xml:id="ss-Example 14.1.1"><title>Example 14.1.1</title><index><main>Example 14.1.1</main></index>.<ol label="a">
+<example xml:id="ex-some-monoids"><title>Some Monoids</title>
+<p><ol label="a">
 <li><p>  The power set of any set together with any one of the operations intersection, union, or symmetric difference is a monoid.</p></li>
-<li><p>  The set of integers, <m>\mathbb{ZQ}</m>, with multiplication, is a monoid. With addition, <m>\mathbb{ZQ}</m> is also a monoid.</p></li>
-<li><p>  The set of \(n\times n\) matrices over the integers, \(M_n(\mathbb{Z})\), \(n\geq 2\), with matrix multiplication, is a monoid. This follows
-from the fact that matrix multiplication is associative and has an identity, \(I_n\). This is an example of a noncommutative monoid since there are
+<li><p>  The set of integers, <m>\mathbb{Z}</m>, with multiplication, is a monoid. With addition, <m>\mathbb{Z}</m> is also a monoid.</p></li>
+<li><p> The set of \(n\times n\) matrices over the integers, \(M_n(\mathbb{Z})\), \(n\geq 2\), with matrix multiplication, is a monoid. This follows from the fact that matrix multiplication is associative and has an identity, \(I_n\). This is an example of a noncommutative monoid since there are
 matrices, <m>A</m> and <m>B</m>, for which \(A B \neq B A\).</p></li>
-<li><p> \(\left[\mathbb{Z}_n,\times _n\right],n\geqslant 2\), is a monoid with identity 1. </p></li>
+<li><p> \(\left[\mathbb{Z}_n,\times_n\right],n\geqslant 2\), is a monoid with identity 1. </p></li>
 <li><p>  Let \(X\) be a nonempty set. The set of all functions from <m>X</m> into <m>X</m>, often denoted \(X^X\) , is a monoid over function
 composition. In Chapter 7, we saw that function composition is associative. The function \(i:X\to X\) defined by \(i(a)=a\) is the identity element
-for this system. This is another example of a noncommutative monoid, provided \(\left| X\right|\) is greater than 1.
+for this system. This is another example of a noncommutative monoid, provided \(\lvert X\rvert\) is greater than 1.
+If <m>X</m> is finite, \(\left\lvert X^X\right\rvert =\lvert X\rvert ^{\lvert X\rvert }\) . For example, if \(B=\{0,1\}, \left\lvert B^B\right\rvert=4\). The functions \(z,u,i,\textrm{ and } t,\) defined by the graphs in <xref ref="fig-functions-on-B2" autoname="yes" />, are the elements of \(B^B\) . This monoid is not a group. Do you know why?</p>
+<p>One reason why \(B^B\) is noncommutative is that \(t \circ z \neq z \circ t\) because \((t\circ z)(0)=t(z(0))=t(0)=1\) while \((z\circ t)(0)=z(t(0))=z(1)=0\).</p></li>
+</ol></p>
+</example>
+            <figure xml:id="fig-functions-on-B2">
+                <caption>The functions on \(B_2\)
+                </caption>
+                <image width="70%" source="images/fig-functions-on-B2.png">
+                    <description>The functions on \(B_2\)</description>
+                </image>
+            </figure>
+<p>Virtually all of the group concepts that were discussed in Chapter 11 are applicable to monoids. When we introduced subsystems, we saw that a submonoid of monoid <m>M</m> is a subset of <m>M</m>; that is, it is a monoid with the operation of <m>M</m>. To prove that a subset is a submonoid, you can apply the following theorem.</p>
 
-If <m>X</m> is finite, \(\left\left| X^X\right\right| =\left| X\right| ^{\left| X\right| }\) . For example, if \(B=\{0,1\}, \left\left| B^B\right\right|
-=4\). The functions \(z,u,i,\textrm{ and} t,\) defined by the graphs in Figure 14.1.1, are the elements of \(B^B\) . This monoid is not a group. Do
-you know why?
+<theorem xml:id="th-submonoid"><title>Submonoid Test</title>
+<statement><p>Let  \([M; *]\)  be a monoid and \(K\) is a nonempty subset of \(M\), \(K\) is a submonoid of \(M\) if and only
+if:
+<ul>
+<li><p>If \(a,b\in K\), then.  \(a*b\in K\); i. e., \(K\)  is closed with under \(*\).</p></li>
+<li><p>the identity of \(M\) belongs to \(K\).</p></li>
+</ul></p></statement>
+</theorem>
 
- One reason that \(B^B\) is noncommutative is that \(\textrm{ \textit{tz}}\neq \textrm{ \textit{zt}}\), since \((\textrm{ \textit{tz}}\textrm{ \textit{$)$}}\textrm{ \textit{$($}}0)=1
-\textrm{ and} (\textrm{ \textit{zt}})(0)=0\).
-\begin{center}\(\)
-\end{center}
-\caption{\pmb{ Figure 14.1.1}\\
-The four elements of \(B^B\)}
+<p>Often we will want to discuss the smallest submonoid that includes a certain subset <m>S</m> of a monoid <m>M</m>. This submonoid can be defined recursively by the following definition.</p>
 
-\pmb{ GENERAL CONCEPTS AND PROPERTIES OF MONOIDS}
+<definition xml:id="def-submonoid-generated-by-a-set"><title>Submonoid Generated by a Set</title><index><main>Submonoid</main><sub>Generated by a Set</sub></index>
+<statement><p>If S is a subset of monoid \([M;*]\), the submonoid generated by S, \(\langle S\rangle\), is defined by:. <ol label="a">
+<li><p>  (Basis) The identity of <m>M</m> belongs to \(\langle
+S\rangle\); and
+ \(a\in S \Rightarrow a\in \langle S \rangle\), and (ii. ) </p></li>
+<li><p> (Recursion). , \(a,b\in \langle S\rangle \Rightarrow a*b\in \langle S\rangle\).</p></li></ol></p></statement></definition>
 
-Virtually all of the group concepts that were discussed in Chapter 11 are applicable to monoids. When we introduced subsystems, we saw that a submonoid
-of monoid <m>M</m> is a subset of <m>M</m> $---$that is, it itself is a monoid with the operation of <m>M</m>. To prove that a subset is
-a submonoid, you can apply the following algorithm.
+ 
 
-\pmb{ Theorem/Algorithm 14.1.1.} Let.  \([M; *]\) \textit{ be a monoid and K is a nonempty subset of M, K is a submonoid of M if and only
-if:}\\
-(a)  If\(a,b\in K\), then.  \(a*b\in K\text (i. e., K \textrm{ \textit{is}}\textrm{ \textit{$ $}}\textrm{ \textit{closed}}\textrm{ \textit{$ $}}\textrm{ \textit{under}}
-\textrm{ *)}\), and. \\
-(b)  the identity of M belongs to K. .
+<note><p> If \(S=\left\{a_1,a_2,\ldots ,a_n\right\}\), we write \(\left\langle a_1,a_2,\ldots ,a_n\right\rangle\) in place of \(\left\langle \left\{a_1,a_2,\ldots
+,a_n\right\}\right\rangle\).</p></note>
 
-Often we will want to discuss the smallest submonoid that includes a certain subset <m>S</m> of a monoid <m>M</m>. This submonoid can be defined
-recursively by the following definition.
+<example xml:id="ex-some-submonoids"><title>Some Submonoids</title><p><ol label="a">
+<li><p>One example of a submonoid of \([\mathbb{Z};+] is \langle 2\rangle =\{0,2,4,6,8,\ldots \}\)</p></li>
+<li><p> The power set of \(\mathbb{Z},\mathcal{P}(\mathbb{Z}),\) over union is a monoid with identity \(\emptyset\). If \(S=\{\{1\},\{2\},\{3\}\}\),then \(\langle S \rangle\) is the power set of \(\{1,2,3\}\). If \(S=\{\{n\}:n\in \mathbb{Z}\},\) then \(\langle S\rangle\) is the set of finite subsets of the integers.</p></li>
+</ol>
+</p></example>
 
-<definition xml:id="def-Submonoid Generated by a Set."><title>Submonoid Generated by a Set.</title><index><main>Submonoid Generated by a Set.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+<p>As you might expect, two monoids are isomorphic if and only if there exists a translation rule between them so that any true proposition in one monoid is translated to a true proposition in the other.</p>
 
- If S is a subset of monoid . \([M;\textrm{ \textit{$*$}}]\)\textit{ , the submonoid generated
-by S, }\(\langle S\rangle\), is defined by:. <ol label="a">
-<li><p>  (Basis) (i) . \(a\in S\Rightarrow a\in \textrm{ $\langle $S$\rangle $}\), and (ii. ) the identity of <m>M</m> belongs to \(\langle
-S\rangle\);</p></li>
-<li><p> (Recursion). , \(a,b\in \langle S\rangle \Rightarrow a*b\in \langle S\rangle\).
-
-Note: If \(S=\left\{a_1,a_2,\ldots ,a_n\right\}\), we write \(\left\langle a_1,a_2,\ldots ,a_n\right\rangle\) in place of \(\left\langle \left\{a_1,a_2,\ldots
-,a_n\right\}\right\rangle\).
-
-<example xml:id="ex-14.1.2."><title>14.1.2.</title><p></p></example>
-
-<ol label="a">
-<li><p> In \([\mathbb{Z};+], \langle 2\rangle =\{0,2,4,6,8,\ldots \}.\)</p></li>
-<li><p>  The power set of \(\mathbb{Z},\mathcal{P}(\mathbb{Z}),\) over union is a monoid with identity $\emptyset $. If \(S=\{\{1\},\{2\},\{3\}\},\)
-then \(\textrm{ $\langle $S$\rangle $}\) is the power set of \(\{1,2,3\}\). If \(S=\{\{n\}:n\in \mathbb{Z}\},\) then \(\langle S\rangle\) is the set
-of finite subsets of the integers.
-
-
-
-\pmb{ MONOID ISOMORPHISMS}
-
-Two monoids are isomorphic.  if and only if there exists a translation rule between them so that any true proposition in one monoid is translated
-to a true proposition in the other.
-
-<example xml:id="ex-14.1.3."><title>14.1.3.</title><p></p></example>  \(M=[\mathcal{P}\{1,2,3\},\cap  ]\) is isomorphic to \(M_2=\left[\mathbb{Z}_2^3;\cdot \right]\), where the operation in
-\(M_2\) is componentwise mod 2.  multiplication. A translation rule is that if \(A\subseteq \{1,2,3\}\), then it is translated to \(\left(d_1,d_2,d_3\right)\)
-where \(d_i=\left\{
+<example xml:id="ex-14.1.3."><title>14.1.3.</title>
+<p>\(M=[\mathcal{P}\{1,2,3\},\cap  ]\) is isomorphic to \(M_2=\left[\mathbb{Z}_2^3;\cdot \right]\), where the operation in \(M_2\) is componentwise mod 2.  multiplication. A translation rule is that if \(A\subseteq \{1,2,3\}\), then it is translated to \(\left(d_1,d_2,d_3\right)\) where 
+<me>d_i=\left\{
 \begin{array}{cc}
- 1 &amp; \textrm{ if} i\in A \\
- 0 &amp; \textrm{ if} i\notin A \\
+ 1 &amp; \textrm{ if } i\in A \\
+ 0 &amp; \textrm{ if } i\notin A \\
 \end{array}
-\right.\).   Two cases of how this translation rule works are:
+\right.</me> 
 
-\(\{1, 2, 3\}\) is the identity for \(M_1\),      and  $\quad \quad $\(\{1, 2\}\textrm{    }\cap  \{ 2, 3\} =\textrm{     }\{2\}\)
+ Two cases of how this translation rule works are:
 
-     $\updownarrow \quad \quad \quad \quad \quad \quad \quad $   $\updownarrow $         $\updownarrow $    $\updownarrow \quad
-$             $\updownarrow $
+<me>
+\begin{array}{lr}
+			\begin{array}{c}
+			\{1, 2, 3\}\quad\textrm{ is the identity for } M_1\\
+			 \updownarrow   \\
+			(1,1,1) \quad\textrm{ is the identity for }M_2\\
+			\end{array} 
+	&amp;     
+		\begin{array}{c}
+		 \{1, 2\}\cap \{ 2, 3\}=\{2\}\\
+			\updownarrow \\       
+		(1, 1, 0) \cdot  (0, 1, 1) = (0, 1, 0)\\
+		\end{array}\\
+               \quad
+\end{array}
+</me></p></example>  
 
-\((1,1,1)\) is the identity for \(M_2\),        and $\quad \quad $\((1, 1, 0) \bullet  (0, 1, 1) = (0, 1, 0)\).
+<p>A more precise definition of a monoid isomorphism is identical to the definition of a group isomorphism, <xref ref="def-group-isomorphism" />.</p>
 
-A more precise definition of a monoid isomorphism is identical to the definition of a group isomorphism (see Section 11.7).
-\subsection{
 <exercises xml:id="exercises-14-1">
 <title>Exercises for Section 14.1</title>
-}
-
-<subsubsection xml:id="sss- A Exercises"><title> A Exercises</title><index><main> A Exercises</main></index>
-
-<exercise number="1"><statement>  For each of the subsets of the indicated monoid, determine whether the subset is a sub monoid.
-
+<exercise number="1"><statement><p>  For each of the subsets of the indicated monoid, determine whether the subset is a sub monoid.
 <ol label="a">
-<li><p> \(S_1=\{0,2,4,6\} \textrm{ and} S_2=\{1,3,5,7\} \textrm{ in} \left[\mathbb{Z}_8;\times _8\right].\)</p></li>
-<li><p> \(\left\{f\in \mathbb{N}^{\mathbb{N}}:f(n)\leqslant n,\forall _n\in \mathbb{N}\right\} \textrm{ and} \left\{f\in \mathbb{N}^{\mathbb{N}}:f(1)=2\right\}\textrm{ in}
-\mathbb{N}^{\mathbb{N}}.\)</p></li>
-<li><p> \(\{A\subseteq \mathbb{Z}:A \textrm{ is} \textrm{ finite}\} \textrm{ and} \left\{A\subseteq \mathbb{Z}:A^c\textrm{ is} \textrm{ finite}\right\}\textrm{ in} [\mathcal{P}(\mathbb{Z});\cup
- ].\)
-</statement></exercise>
-<exercise number="2"><statement>  For each subset, describe the submonoid that it generates.
-
+<li><p> \(S_1=\{0,2,4,6\}\) and  \(S_2=\{1,3,5,7\}\) in \([\mathbb{Z}_8;\times_8].\)</p></li>
+<li><p> \(\{f\in \mathbb{N}^{\mathbb{N}}:f(n) \leqslant n, \forall n \in \mathbb{N}\}\) and  \(\left\{f\in \mathbb{N}^{\mathbb{N}}:f(1)=2\right\}\) in the monoid \([\mathbb{N}^{\mathbb{N}};\circ]\).</p></li>
+<li><p> \(\{A\subseteq \mathbb{Z} \mid A \textrm{ is finite}\} \textrm{ and} \left\{A\subseteq \mathbb{Z} \mid A^c\textrm{ is} \textrm{ finite}\right\}\) in \([\mathcal{P}(\mathbb{Z});\cup].\)</p></li>
+</ol>
+</p></statement>
+<answer><p>
 <ol label="a">
-<li><p>  \(\{3\} \textrm{ and} \{0\} \textrm{ in} \left[\mathbb{Z}_{12};\times _{12}\right]\)</p></li>
-<li><p>  \(\{5\} \textrm{ in} \left[\mathbb{Z}_{25};\times _{25}\right]\)</p></li>
-<li><p>  the set of prime numbers and \(\{2\} \textrm{ in} [\mathbb{P}; \cdot ]\)</p></li>
-<li><p> \(\{3,5\} \textrm{ in} [\mathbb{N}; +]\)
+<li><p> \(S_1\) is not a submonoid since the identity of \(\left[\mathbb{Z}_8 ,\times_8\right]\), which is 1, is not in \(S_1\).   \(S_2\) is a submonoid since \(1 \in  S_2\) and \(S_2\) is closed under multiplication; that is, for all \(a, b \in  S_2\), \(a \times_8 b\) is in \(S_2\).</p></li>
+<li><p>The identity of \(\mathbb{N}^{\mathbb{N}}\) is the identity function \(i:\mathbb{N}\to \mathbb{N}\) defined by \(i(a) = a\), \(\forall a\in \mathbb{N}\).  If \(a \in \mathbb{N}\), \(i(a) = a \leq  a\), thus the identity of \(\mathbb{N}^{\mathbb{N}}\) is in \(S_1\). However, the image of 1 under any
+function in \(S_2\) is 2, and thus the identity of \(\mathbb{N}^{\mathbb{N}}\) is not in \(S_2\), so \(S_2\) is not a submonoid. The composition of any two functions in \(S_1\),  <m>f</m> and <m>g</m>, will be a function in \(S_1\):
+<me>
+\begin{split}
+(f\circ g)(n) &amp; = f(g(n)) \leq g(n)\textrm{      since } f \textrm{ is in } S_1\\
+		&amp; \leq n\textrm{       since } g \textrm{ is in } S_1 \Rightarrow (f\circ g\in S_1\)\\
+\end{split}
+</me>
+and the two conditions of a submonoid are satisfied and \(S_1\) is a submonoid of  \(\mathbb{N}^{\mathbb{N}}\).</p></li>
+<li><p>The first set is a submonoid, but the second is not since the null set has a non-finite complement.</p></li>
+</ol>
+</p></answer>
+</exercise>
+<exercise number="2"><statement><p>  For each subset, describe the submonoid that it generates.
+<ol label="a">
+<li><p>  \(\{3\}\) in \([\mathbb{Z}_{12};\times_{12}]\)</p></li>
+<li><p>  \(\{5\}\) in \([\mathbb{Z}_{25};\times_{25}\right]\)</p></li>
+<li><p>  the set of prime numbers in \([\mathbb{P}; \cdot ]\)</p></li>
+<li><p> \(\{3,5\}\) \textrm{ in} [\mathbb{N}; +]\)</p></li>
+</ol>
+</p></statement></exercise>
+<exercise number="3"><statement><p>An \(n \times n\)  matrix of real numbers is called <term>stochastic</term> if and only if each entry is nonnegative
+and the sum of} entries in each column is  1. Prove that the set of stochastic matrices is a monoid over matrix multiplication.</p></statement>
+<answer><p>The set of \(n \times  n\) real matrices is a monoid under matrix multiplication. This follows from the laws of matrix algebra in Chapter 5. To prove that the set of stochastic matrices is a monoid over matrix multiplication, we need only show that the identity matrix is stochastic (this is obvious) and that the set of stochastic matrices is closed under matrix multiplication. Let <m>A</m> and <m>B</m> be \(n \times  n\) stochastic matrices.
+ \[(AB)_{i j}= \sum _{k=1}^n a_{i k} b_{k j}\]
+</p>
+<p>The sum of the \(j^{\textrm{th}}\) column is
+<me>
+\begin{split}
+\sum_{j=1}^n (AB)_{i j} &amp; =\sum_{k=1}^n a_{1 k} b_{k j}+\sum_{k=1}^n a_{1k} b_{k j}+\cdots +\sum_{k=1}^n a_{n k} b_{k j}\\
+	&amp;=\sum_{k=1}^n \left(a_{1 k} b_{k j}+a_{1k} b_{k j}+\cdots +a_{n k} b_{k j}\right)\\
+	&amp;=\sum _{k=1}^n b_{k j}\left(a_{1 k} +a_{1k}+\cdots +a_{n k} \right)\\
+	&amp;= \sum _{k=1}^n  b_{k j} \quad\textrm{         since } A \textrm{ is stochastic}\\
+	&amp; = 1 \quad\textrm{         since } B \textrm{ is stochastic}\\
+\end{split}
+</me>
+</p></answer>
+</exercise>
+<exercise number="4"><statement><p> A <term>semigroup</term> is an algebraic system \([S; *]\) with the only axiom that \(*\) be associative on \(S\). Prove that if <m>S</m> is a finite set, then there must exist an idempotent element, that is, an \(a \in  S\) such that \(a * a = a\).</p></statement>
+</exercise>
+<exercise number="5"><statement><p>  Let <m>B</m> be a Boolean algebra and <m>M</m> the set of all Boolean functions on <m>B</m>. Let \(*\) be defined on <m>M</m> by \((f * g)(a) = f(a) \land  g(a)\). Prove that \([M,*]\) is a monoid. Construct the operation table of \([M,*]\) for the case of \(B = B_2\).</p>
+</statement>
+<answer><p> Let \(f, g, h \in  M\), and \(a \in  B\).
+<me>
+\begin{split}
+((f*g)*h)(a) &amp; = (f*g)(a) \land  h(a)\\
+		&amp; =  (f(a)\land g(a))\land h(a)\\
+		&amp; =  f(a) \land ( g(a) \land  h(a))\\
+		&amp; =  f(a) \land  (g * h)(a)\\
+		&amp; =  (f * (g * h))(a)\\
+\end{split}
+</me>
 
-B Exercises
-</statement></exercise>
-<exercise number="3"><statement> Definition: Stochastic Matrix. An.  \(n\times n\) \textit{ matrix of real numbers is called stochastic if and only if each entry is nonnegative
-and the sum of} entries in each column is . 1. . Prove that the set of stochastic matrices is a monoid over matrix multiplication.
-</statement></exercise>
-<exercise number="4"><statement> Prove Theorem 14.1.1.</p></statement></exercise>
+Therefore \((f * g) * h =f * (g * h) and  \(*\) is  associative.</p>
+<p>The identity for \(*\) is the function \(u \in  M\) where \(u(a) = 1\) = the <q>one</q> of <m>B</m>. If \(a \in  B\),
+\((f*u)(a) =f(a)\land u(a) = f(a)\land 1 = f(a)\). Therefore \(f * u = f\). Similarly, \(u * f =f\).</p>
+<p>There are \(2^2= 4\) functions in \(M\) for \(B = B _2\). These four functions are named in the text (see <xref ref="fig-functions-on-B2" autoname="yes" />). The table for \(*\) is
+
+\[\begin{array}{c|cccc}
+  * &amp;  z &amp;  i &amp; t &amp;  u\\
+\hline
+ z &amp;z &amp; z &amp; z &amp; z \\
+ i &amp;z &amp; i &amp; z &amp; i \\
+ t &amp;z &amp; z &amp; t &amp; t \\
+ u &amp;z &amp; i &amp; t &amp; u \\
+\end{array}\]
+</p></answer>
+
+</exercise>
 </exercises>
 </section>
 
