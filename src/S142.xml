@@ -1,146 +1,111 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<section xml:id="s-Free Monoids and Languages">
+<section xml:id="s-free-monoids-and-languages">
 <title>Free Monoids and Languages</title>
 <index><main>Free Monoids and Languages</main></index>
 
-
-
-In this section, we will introduce the concept of a language. Languages are subsets of a certain type of monoid, the free monoid over an alphabet.
+<p>In this section, we will introduce the concept of a language. Languages are subsets of a certain type of monoid, the free monoid over an alphabet.
 After defining a free monoid, we will discuss languages and some of the basic problems relating to them. We will also discuss the common ways in
-which languages are defined.
+which languages are defined.</p>
 
 
 
-Let <m>A</m> be a nonempty set, which we will call an alphabet. . Our primary interest will be in the case where <m>A</m> is finite;
-however, <m>A</m> could be infinite for most of the situations that we will describe. The elements of <m>A</m> are called \textit{ letters
-or symbols}. Among the alphabets that we will use are \(B=\{0,1\}\), \(\textrm{ ASCII}=\textrm{ the} \textrm{ set} \textrm{ of} \textrm{ ASCII} \textrm{ characters}\),
-and\(\textrm{ PAS}=\textrm{ the} \textrm{ Pascal} \textrm{ character} \textrm{ set} (\textrm{ whichever} \textrm{ one} \textrm{ you} \textrm{ use})\).
+<p>Let <m>A</m> be a nonempty set, which we will call an alphabet. . Our primary interest will be in the case where <m>A</m> is finite;
+however, <m>A</m> could be infinite for most of the situations that we will describe. The elements of <m>A</m> are called letters or symbols. Among the alphabets that we will use are \(B=\{0,1\}\), and the set of ASCII (American Standard Code for Information Interchange) characters, which we symbolize as \(ASCII\).</p>
 
-\pmb{ Definition:} Strings over an Alphabet. <m>A</m> string of length . \(n,n\geqslant 1\)\textit{ , over A is a sequence of n letters
-from }\(A:a_1a_2\ldots \textrm{ \textit{$a$}}_n\). The null string, . \lambda \textit{ , is defined as the string of length zero containing
-no letters. The set of strings of length n over A is denoted by }\(A^n\). The set of all strings over A. is denoted A*.. 
+<definition xml:id="def-strings-over-alphabet"><title>Strings over an Alphabet</title>
+<index><main>Strings over an Alphabet</main></index>
+<notation><usage>A^*</usage><description>The set of all strings over an alphabet \(A\)</description></notation>
+<notation><usage>A^n</usage><description>The set of all strings of length \(n\)) over an alphabet \(A\)</description></notation>
+<notation><usage>\lambda</usage><description>The empty string</description></notation>
+<statement><p>A string of length \(n\), \(n \geqslant 1\) over alphabet \(A\) is a sequence of \(n\) letters
+from \(A\): \(a_1a_2\ldots a_n\). The null string, \(\lambda\)  is defined as the string of length zero containing
+no letters. The set of strings of length n over A is denoted by }\(A^n\). The set of all strings over A. is denoted A*.</p></statement></definition>
 
 
-
-Notes:
-
+<note><p>
 <ol label="a">
-<li><p> If the length of string <m>s</m> is <m>n</m>, we write \(\left| s\right| =n\).</p></li>
+<li><p> If the length of string <m>s</m> is <m>n</m>, we write \(\lvert s \rvert =n\).</p></li>
 <li><p> The null string is not the same as the empty set, although they are similar in many ways.</p></li>
-<li><p> \(A^*=A^0\cup A^1\cup A^2\cup A^3\cup \textrm{ $\cdots $and} \textrm{ if} i\neq j,A^i\cap A^j=\emptyset ; \textrm{ that} \textrm{ is}, \left\{A^0,A^1,A^2,A^3,\ldots
-\right\} \textrm{ is} a \textrm{ partition} \textrm{ of} A^*.\)</p></li>
-<li><p>  An element of <m>A</m> can appear any number of times in a string.
+<li><p> \(A^*=A^0\cup A^1\cup A^2\cup A^3\cup \textrm{ $\cdots $and} \textrm{ if} i\neq j,A^i\cap A^j=\emptyset ; that is}, \left\{A^0,A^1,A^2,A^3,\ldots \right\} is a partition of \(A^*\).</p></li>
+<li><p>  An element of <m>A</m> can appear any number of times in a string.</p></li>
+</ol>
+</p>
+</note>
 
-<theorem xml:id="theorem-14.2.1."><title>14.2.1.</title><index><main>14.2.1.</main></index><statement></statement><proof></proof></theorem> If A is countable, then A* is countable.. 
-
-Proof:  Case 1. Given the alphabet \(B=\{0,1\}\), we can define a bijection from the positive integers into \(B^*\). Each positive integer has
-a binary expansion \(d_kd_{k-1}\cdots  d_1d_0\), where each \(d_j\) is 0 or 1 and \(d_k=1\). If <m>n</m> has such a binary expansion, then \(2^k\leqslant
-n<2^{k+1}\). We define \(f:P\to B^*\textrm{ by} f(n)=f\left(d_kd_{k-1}\cdots  d_1d_0\right)=d_{k-1}\cdots  d_1d_0, \textrm{ where} f(1)=\lambda .\) Every
-one of the \(2^k\) strings of length <m>k</m> are the images of exactly one of the integers between \(2^k\textrm{ and} 2^{k+1}-1.\) From its definition,
-\(f\) is clearly a bijection; therefore, \(B^*\) is countable.
-
-Case 2: <m>A</m> is Finite. We will describe how this case is handled with an example first and then give the general proof. If \(A=\{a,b,c,d,e),\)
-then we can code the letters in <m>A</m> into strings from \(B^3\). One of the coding schemes (there are many) is \(a\leftrightarrow 000, b\leftrightarrow
-001, c\leftrightarrow 010, d\leftrightarrow 011, \textrm{ and} e\leftrightarrow 100\). Now every string in \(A^*\) corresponds to a different string
-in \(B^*\); for example, ace.  would correspond with \(000010100\). The cardinality of \(A^*\) is equal to the cardinality of the set of
-strings that can be obtained from this encoding system. The possible coded strings must be countable, since they are a subset of a countable set
-\(\left(B^*\right);\) therefore, \(A^*\) is countable.
-
-If \(\left| A\right| =m\), then the letters in <m>A</m> can be coded using a set of fixed-length strings from \(B^*\). If \(2^{k-1}<m\leqslant
-2^k\), then there are at least as many strings of length <m>k</m> in \(B^k\) as there are letters in <m>A</m>. Now we can associate each letter
-in <m>A</m> with an element of \(B^k\). Then any string in A*.  corresponds to a string in B*. . By the same reasoning as in the
-example above, A*.  is countable.
-
-Case 3: <m>A</m> is Countably Infinite. We will leave this case as an exercise. $\blacksquare $
+<theorem xml:id="theorem-14.2.1.">
+<statement><p>If A is countable, then A* is countable.</p></statement><proof>
+<p> Case 1. Given the alphabet \(B=\{0,1\}\), we can define a bijection from the positive integers into \(B^*\). Each positive integer has a binary expansion \(d_kd_{k-1}\cdots d_1d_0\), where each \(d_j\) is 0 or 1 and \(d_k=1\). If <m>n</m> has such a binary expansion, then \(2^k \leq n<2^{k+1}\). We define \(f:\mathbb{P}\to B^*\) by \(f(n)=f\left(d_kd_{k-1}\cdots  d_1d_0\right)=d_{k-1}\cdots d_1d_0,\)  where  \(f(1)=\lambda\). Every
+one of the \(2^k\) strings of length <m>k</m> are the images of exactly one of the integers between \(2^k\textrm{ and} 2^{k+1}-1.\) From its definition, \(f\) is clearly a bijection; therefore, \(B^*\) is countable.</p>
+<p>Case 2: <m>A</m> is Finite. We will describe how this case is handled with an example first and then give the general proof. If \(A=\{a,b,c,d,e),\) then we can code the letters in <m>A</m> into strings from \(B^3\). One of the coding schemes (there are many) is \(a\leftrightarrow 000, b\leftrightarrow
+001, c\leftrightarrow 010, d\leftrightarrow 011, \textrm{ and} e\leftrightarrow 100\). Now every string in \(A^*\) corresponds to a different string in \(B^*\); for example, \(ace\).  would correspond with \(000010100\). The cardinality of \(A^*\) is equal to the cardinality of the set of strings that can be obtained from this encoding system. The possible coded strings must be countable, since they are a subset of a countable set, \(B^*\). Therefore, \(A^*\) is countable.</p>
+<p>If \(\lvert A\rvert =m\), then the letters in <m>A</m> can be coded using a set of fixed-length strings from \(B^*\). If \(2^{k-1} &lt; m \leq 2^k\), then there are at least as many strings of length <m>k</m> in \(B^k\) as there are letters in <m>A</m>. Now we can associate each letter in <m>A</m> with with a different element of \(B^k\). Then any string in A*.  corresponds to a string in B*.  By the same reasoning as in the example above, A* is countable.</p>
+<p>Case 3: <m>A</m> is Countably Infinite. We will leave this case as an exercise.</p></proof></theorem>
 
 
+<definition xml:id="def-concatenation"><title>Concatenation</title>
+<index><main>Concatenation</main></index>
+<notation><usage>s_1+s_2</usage><description>The concatenation of strings \(s_1\) and \(s_2\)</description></notation>
+<statement><p> Let  \(a=a_1a_2\cdots  a_m\) and \(b=b_1b_2\cdots  b_n\) be strings of length \(m\) and \(n\), respectively. The concatenation of a with b, \(a+b\), is the string \(a_1a_2\cdots  a_mb_1b_2\cdots  b_n\) of length  \(m+n\).</p></statement></definition>
 
-<subsection xml:id="ss-\pmb{ FREE MONOIDS OVER AN ALPHABET"><title>\pmb{ FREE MONOIDS OVER AN ALPHABET</title><index><main>\pmb{ FREE MONOIDS OVER AN ALPHABET</main></index>}
-
-
-
-The set of strings over any alphabet is a monoid under concatenation.
-
-
-
-\pmb{ Definition:} Concatenation. Let.  \(a=a_1a_2\cdots  a_m \textrm{ and} b=b_1b_2\cdots  b_n\) \textit{ be strings of length m and n, respectively.
-The concatenation of a with b, }\(a<>b\), is the string of length.  \(m+n:a_1a_2\cdots  a_mb_1b_2\cdots  b_n\).
-
-
-
-Notes:
-
+<p>The set of strings over any alphabet is a monoid under concatenation.</p>
+<note>
+<p>
 <ol label="a">
-<li><p>  The null string is the identity element of [A*. ; concatenation]. Henceforth, we will denote the monoid of strings
-over <m>A</m> by A*. .</p></li>
-<li><p> Concatenation is noncommutative, provided \(\left| A\right|  > 1\).</p></li>
-<li><p>  If \(\left\left| A_1\right\right|  = \left\left| A_2\right\right|\), then the monoids \(A_1^*\) and \(A_2^*\) are isomorphic. An isomorphism
-can be defined using any bijection\(f:A_1\to A_2. \textrm{ If} a=a_1a_2\cdots  a_n \in  A_1^*, f^*(a)=f\left(a_1\right)f\left(a_2\right)\cdots  f\left(a_n\right)\)
-defines a bijection from \(A_1^*\) into \(A_2^*\). We will leave it to the reader to convince him or herself that for all \(a,b,\in A_1^*,f^*(a<>b)=f^*(a)<>f^*(b)\).
-
-
-
-\pmb{ LANGUAGES}
-
-
-
-The languages of the world$---$English, German, Russian, Chinese, and so forth$---$are called natural languages. In order to communicate in writing
-in any one of them, you must first know the letters of the alphabet and then know how to combine the letters in meaningful ways. A \textit{ formal
-language} is an abstraction of this situation.
-
-
-
-\pmb{ Definition:} Formal Language. If A is an alphabet, a formal language over A is a subset of A*.. 
-
-<example xml:id="ex-14.2.1."><title>14.2.1.</title><p></p></example><ol label="a">
-<li><p> English can be thought of as a language over the set of letters \(A,B,\textrm{ $\cdots $Z}\) (upper and lower case) and other special symbols, such
-as punctuation marks and the blank. Exactly what subset of the strings over this alphabet defines the English language is difficult to pin down exactly.
-This is a characteristic of natural languages that we try to avoid with formal languages.</p></li>
-<li><p>  The set of all ASCII stream files can be defined in terms of a language over ASCII. An ASCII stream file is a sequence of zero or more lines
-followed by an end-of-file symbol. A line is defined as a sequence of ASCII characters that ends with the two characters CR (carriage return) and
-LF (line feed). The end-of-file symbol is system-dependent; for example, CTRL/C is a common one.</p></li>
-<li><p>  The set of all syntactically correct expressions in Mathematica.  is a language over the set of ASCII strings.  </p></li>
-<li><p> A few languages over B . are
-
- \(L_1=\left\{\left.s\in B^*\right|\textrm{ \textit{$s$}}\textrm{ \textit{$ $}}\textrm{ has} \textrm{ exactly} \textrm{ as} \textrm{ many} 1's\text \textrm{ as}
-\textrm{ it} \textrm{ has} 0's\right\}\), 
-
-\(L_2=\left\{1<>s<>0:s\in B^*\right\}\), and 
-
-\(L_3=\langle 0,01\rangle\) = the submonoid of \(B^*\) generated by \(\{0,01\}\).
+<li><p>  The null string is the identity element of \([A^*; +]\). Henceforth, we will denote the monoid of strings over <m>A</m> by A*.</p></li>
+<li><p> Concatenation is noncommutative, provided \(\lvert A\rvert  > 1\).</p></li>
+<li><p>  If \( \lvert A_1 \rvert  = \lvert A_2 \rvert\), then the monoids \(A_1^*\) and \(A_2^*\) are isomorphic. An isomorphism can be defined using any bijection \(f:A_1\to A_2\). If a=a_1a_2\cdots  a_n \in  A_1^*, f^*(a)=f(a_1)f(a_2)\cdots  f\(a_n)\) defines a bijection from \(A_1^*\) into \(A_2^*\). We will leave it to the reader to prove that for all \(a,b,\in A_1^*,f^*(a+b)=f^*(a)+f^*(b)\).</p></li>
+</ol>
+</p>
+</note>
 
 
 
 
 
+<p>The languages of the world, English, German, Russian, Chinese, and so forth, are called natural languages. In order to communicate in writing in any one of them, you must first know the letters of the alphabet and then know how to combine the letters in meaningful ways. A  formal language is an abstraction of this situation.</p>
 
 
-<subsubsection xml:id="sss-\pmb{ TWO FUNDAMENTAL PROBLEMS: RECOGNITION AND GENERATION"><title>\pmb{ TWO FUNDAMENTAL PROBLEMS: RECOGNITION AND GENERATION</title><index><main>\pmb{ TWO FUNDAMENTAL PROBLEMS: RECOGNITION AND GENERATION</main></index>}
+<definition xml:id="def-formal-language">
+<title>Formal Language</title>
+<index><main>Formal Language</main></index>
+<statement><p> If A is an alphabet, a formal language over A is a subset of A*. </p></statement></definition>
+
+<example xml:id="ex-some-formal-languages"><title>Some Formal Languages</title>
+<p><ol label="a">
+<li><p> English can be thought of as a language over the set of letters \(A,B,\cdots Z}\) (upper and lower case) and other special symbols, such as punctuation marks and the blank. Exactly what subset of the strings over this alphabet defines the English language is difficult to pin down exactly. This is a characteristic of natural languages that we try to avoid with formal languages.</p></li>
+<li><p> The set of all ASCII stream files can be defined in terms of a language over ASCII. An ASCII stream file is a sequence of zero or more lines followed by an end-of-file symbol. A line is defined as a sequence of ASCII characters that ends with the a <q>new line</q> character. The end-of-file symbol is system-dependent.</p></li>
+<li><p>  The set of all syntactically correct expressions in any computer language is a language over the set of ASCII strings. </p></li>
+<li><p> A few languages over B are
+<ul>
+<li><p> \L_1=\{s\in B^* \mid s \textrm{  has  exactly  as many 1's as it  has 0's\}\), </p></li>
+<li><p>\(L_2=\{1+s+0 \mid s\in B^*\}\), and </p></li>
+<li><p>\(L_3=\langle 0,01\rangle\) = the submonoid of \(B^*\) generated by \(\{0,01\}\).</p></li>
+</ul></p></li>
+</ol></p>
+</example>
+
+<investigation xml:id="invest-language-problems"><title>Two Fundamental Problems: Recognition and Generation</title>
+<statement><p>The generation and recognition problems are basic to computer programming. Given a language, <m>L</m>, the programmer must know how to write (or generate) a syntactically correct program that solves a problem. On the other hand, the compiler must be written to recognize whether a program contains any syntax errors.</p></statement></investigation>
+
+<problem xml:id="prob-recognition"><title>The Recognition Problem</title>
+<index><main>Recognition Problem</main></index>
+<statement>Given a formal language over alphabet \(A\), the Recognition Problem is to design an algorithm that determines the truth of \(s\in L\) in a finite number of steps for all \(a\in A^*\). Any such algorithm is called a recognition algorithm.<statement></problem>
+
+<definition xml:id="def-recursive-language"><title>Recursive Language</title>
+<index><main>Recursive Language</main></index>
+<statement><p> A language is recursive if there exists a recognition algorithm for it.</p></statement></definition>
+
+<example xml:id="ex-some-recursive-languages"><title>Some Recursive Languages</title>
+<p><ol label="a">
+<li><p>The language of syntactically correct propositions over set of propositional variables expressions is recursive. </p></li>
+<li><p>  The three languages in <xref ref="ex-some-formal-languages" autoname="no" />(d)  are all recursive. Recognition algorithms for \(L_1\) and \(L_2\) should be easy for you to imagine.  The reason a recognition algorithm for \(L_3\) might not be obvious is that the definition of \(L_3\)  is more cryptic. It doesn't tell
+us what belongs to \(L_3\), just what can be used to create strings in \(L_3\). This is how many languages are defined. With a second description of \(L_3\), we can easily design a recognition algorithm. You can prove that
+  \(L_3=\{s\in B^* \mid s=\lambda  \textrm{ or }  s \textrm{ starts with a 0 and has no consecutive 1's}\}\).</p></li>
+</ol>
+</p></example>
 
 
-
-The generation and recognition problems are basic to computer programming. Given a language, <m>L</m>, the programmer must know how to write (or
-generate) a syntactically correct program that solves a problem. On the other hand, the compiler must be written to recognize whether a program contains
-any syntax errors.
-
-
-
-\pmb{ The Recognition Problem:} Design an algorithm that determines the truth of \(s\in L\) in a finite number of steps for all \(a\in A^*\). Any
-such algorithm is called a recognition algorithm. .
-
-\pmb{ Definition:} Recursive Language. A language is recursive if there exists a recognition algorithm for it.. 
-
-<example xml:id="ex-14.2.2."><title>14.2.2.</title><p></p></example><ol label="a">
-<li><p>  The language of syntactically correct Mathematica.  expressions is recursive. </p></li>
-<li><p>  The three languages in Example 14.2.1 (d)  are all recursive. Recognition algorithms for \(L_1\) and \(L_2\) should be easy for you to imagine.
-The reason a recognition algorithm for \(L_3\) might not be obvious is that \(L_3'\textrm{ \textit{$s$}}\) definition is more cryptic. It doesn't tell
-us what belongs to \(L_3\), just what can be used to create strings in \(L_3\). This is how many languages are defined. With a second description
-of \(L_3\), we can easily design a recognition algorithm. \(L_3=\left\{s\in B^*; s=\lambda \right.\) or <m>s</m> starts with a 0 and has no consecutive
-1{'}s$\}$.
-
-
-
-\pmb{ Algorithm 14.2.1:} Recognition Algorithm for \(L_3\). Let \(s=s_1s_2\cdots  s_n\in B^*\). This algorithm determines the truth value of \(s\in
+<algorithm xml:id="algorithm-recognition-of-L3"><title>A recognition Algorithm for \(L_3\)</title><statement><p> Let \(s=s_1s_2\cdots  s_n\in B^*\). This algorithm determines the truth value of \(s\in
 L_3\). The truth value is returned as the value of Word.
 
 <ol label=“1”>
@@ -149,8 +114,9 @@ L_3\). The truth value is returned as the value of Word.
 If \(s_1=1\) then Word \(\textrm{ :=}\) false\\
 $\quad \quad $  else for \(i\textrm{ :=}3\) to <m>n</m> \\
 $\quad \quad \quad $if \(s_{i-1}=1 \textrm{ and} s_i=1\) then Word \(\textrm{ :=}\) false
-
-
+</ol>
+</statement>
+</algorithm>
 
 \pmb{ The Generation Problem.} Design an algorithm that generates or produces any string in <m>L</m>. Here we presume that <m>A</m> is either
 finite or countably infinite; hence, A*.  is countable by Theorem 14.2.1, and \(L \subseteq A^*\) must be countable. Therefore, the generation
@@ -269,13 +235,13 @@ There are a total of \(176\) production rules for this grammar. The language \(L
 
 
 \pmb{ Backus-Naur form (BNF)}, A popular alternate form of defining the production rules in a grammar is BNF. If the production rules \(A\to B_1,
-A\to B_2,\ldots  A\to B_n\) are part of a grammar, they would be written in BNF as \(A \textrm{ ::}=B_1\left\left| B_2\right\right| \cdots  \left\left|
+A\to B_2,\ldots  A\to B_n\) are part of a grammar, they would be written in BNF as \(A \textrm{ ::}=B_1\left\lvert B_2\right\rvert \cdots  \left\lvert
 B_n\right.\). The symbol \(|\) in BNF is read as <q>or,</q> while the \(\textrm{ ::}=\) is read as <q>is defined as.</q> Additional notations of BNF
 are that \(\{x\}\), represents zero or more repetitions of <m>x</m> and [<m>y</m>] means that <m>y</m> is optional.
 
 <example xml:id="ex-14.2.7."><title>14.2.7.</title><p></p></example> A BNF version of the production rules for a Mathematica.  name is
 
-letter \(::=a\left| b\left| c \cdots  |z|A|B|\cdots |Z\)
+letter \(::=a\lvert b\lvert c \cdots  |z|A|B|\cdots |Z\)
 
  \(\textrm{ digit}::=0|1|\cdots |9\)
 
