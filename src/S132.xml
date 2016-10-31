@@ -13,8 +13,8 @@ We first introduce some notation.</p>
 <notation><usage>a \land b</usage><description>the meet, or greatest lower bound of <m>a</m> and <m>b</m></description></notation>
 <statement><p>Let \((L, \preceq)\) be a poset, and \(a, b \in  L\). We define:
 <ul>
-<li><p> \(a \lor  b\), read <q>a join b</q>, as the least upper bound of \(a\) and \(b\), if it exists. and</p></li>
-<li><p> \(a \land  b\), read <q>a meet b</q>, as the greatest lower bound of \(a\) and \(b\), if it exists.</p></li>
+<li><p> \(a \lor  b\), read <q>\(a\) join \(b\)</q>, as the least upper bound of \(a\) and \(b\), if it exists. and</p></li>
+<li><p> \(a \land  b\), read <q>\(a\) meet \(b\)</q>, as the greatest lower bound of \(a\) and \(b\), if it exists.</p></li>
 </ul>
 </p></statement></definition>
 
@@ -31,7 +31,8 @@ We first introduce some notation.</p>
 
 <example xml:id="ex-power-set-3-lattice"><title>The power set of a three element set</title><p>  Consider the poset \((\mathcal{P}(A),\subseteq)\) we examined in <xref ref="ex-power-3" autoname="yes" />.  It isn't too surprising that every pair of sets had a greatest lower bound and least upper bound. Thus, we have a lattice in this case; and  \(A\lor B = A \cup  B\) and \(A\land B = A \cap  B\). The reader is encouraged to write out the operation tables \([\mathcal{P}(A); \cup, \cap]\).</p></example>
 
-<p>Our first concrete lattice can be generalized to the case of any set \(A\), producing  the lattice \([\mathcal{P}(A); \lor  ,\land  ]\), where the join operation is the set operation of union and the meet operation is the operation intersection; that is, \(\lor =\cup\) and \(\land =\cap\).</p>
+<p>Our first concrete lattice can be generalized to the case of any set \(A\), producing  
+the lattice \([\mathcal{P}(A); \lor, \land]\), where the join operation is the set operation of union and the meet operation is the operation intersection; that is, \(\lor =\cup\) and \(\land =\cap\).</p>
 
 
 
@@ -53,62 +54,59 @@ a \land  (b \lor  c) = (a \land  b) \lor  (a \land  c)\\
 </p></statement></definition>
 
 <example xml:id="ex-a-nondistributive-lattice"><title>A Nondistributive Lattice</title>
-<p>We now give an example of a lattice where the distributive laws do not hold. Let \(L = \{1, 2, 3, 5, 30\}\). Then \(L\) is a poset under the relation divides. The operation tables for \(\lor\) and \(\land\) on <m>L</m> are:
+<p>We now give an example of a lattice where the distributive laws do not hold. Let \(L = \{\pmb{0},a,b,c,\pmb{1}\}\). Then \(L\) is a poset under the relation divides. The operation tables for \(\lor\) and \(\land\) on <m>L</m> are:
 
 \[\begin{array}{cc}
- 
-		\begin{array}{c|ccccc}
-	 \lor  &amp; 	 1 &amp;  2  &amp; 3  &amp;  5 &amp;  30 \\
+ 		\begin{array}{c|ccccc}
+	 \lor  &amp; 	 \pmb{0} &amp;  a  &amp; b  &amp;  c &amp;  \pmb{1} \\
   \hline
-	1 &amp;	 1 &amp; 2 &amp; 3 &amp; 5 &amp; 30 \\
-	2 &amp; 	 2 &amp; 2 &amp; 30 &amp; 30 &amp; 30 \\
-	3 &amp;	 3 &amp; 30 &amp; 3 &amp; 30 &amp; 30 \\
-	5 &amp;	 5 &amp; 30 &amp; 30 &amp; 5 &amp; 30 \\
-	30 &amp;	 30 &amp; 30 &amp; 30 &amp; 30 &amp; 30 \\
+	\pmb{0} &amp;	 \pmb{0} &amp; a &amp; b &amp; c &amp; \pmb{1} \\
+	a &amp; 	 a &amp; a &amp; \pmb{1} &amp; \pmb{1} &amp; \pmb{1} \\
+	b &amp;	 b &amp; \pmb{1} &amp; b &amp; \pmb{1} &amp; \pmb{1} \\
+	c &amp;	 c &amp; \pmb{1} &amp; \pmb{1} &amp; c &amp; \pmb{1} \\
+	\pmb{1} &amp;	 \pmb{1} &amp; \pmb{1} &amp; \pmb{1} &amp; \pmb{1} &amp; \pmb{1} \\
 		\end{array}
 		 &amp;
 	\begin{array}{c|ccccc}
-	 \land  &amp; 	 1 &amp;  2  &amp; 3  &amp;  5 &amp;  30 \\
+	 \land  &amp; 	 \pmb{0} &amp;  a  &amp; b  &amp;  c &amp;  \pmb{1} \\
    \hline
-	1 &amp;	 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
-	2 &amp; 	  1 &amp; 2 &amp;  1 &amp;  1 &amp;  2 \\
-	3 &amp; 	 1 &amp; 1 &amp; 3 &amp;  1 &amp;  3 \\
-	5 &amp; 	 1 &amp;  1 &amp;  1 &amp; 5 &amp;  5 \\
-	30 &amp;  1 &amp;  2 &amp;  3 &amp;  5 &amp; 30 \\
+	\pmb{0} &amp;	 \pmb{0} &amp; \pmb{0} &amp; \pmb{0} &amp; \pmb{0} &amp; \pmb{0} \\
+	a &amp; 	  \pmb{0} &amp; a &amp;  \pmb{0} &amp;  \pmb{0} &amp;  a \\
+	b &amp; 	 \pmb{0} &amp; \pmb{0} &amp; b &amp;  \pmb{0} &amp;  b \\
+	c &amp; 	 \pmb{0} &amp;  \pmb{0} &amp;  \pmb{0} &amp; c &amp;  c \\
+	\pmb{1} &amp;  \pmb{0} &amp;  a &amp;  b &amp;  c &amp; \pmb{1} \\
 	\end{array}\\
 \end{array}\]
 </p>
-<p>Since every pair of elements in <m>L</m> has both a join and a meet, \([L; \lor  , \land ]\) is a lattice (under divides). Is this lattice distributive? We note that: \(2 \lor  (5 \land  3) = 2 \lor  1 = 2\) and \((2 \lor  5) \land  (2 \lor  3) = 30 \land  30 = 30\).
+<p>Since every pair of elements in <m>L</m> has both a join and a meet, \([L; \lor  , \land ]\) is a lattice (under divides). Is this lattice distributive? We note that: \(a \lor  (c \land  b) = a \lor  \pmb{0} = a\) and \((a \lor  c) \land  (a \lor  b) = \pmb{1} \land  \pmb{1} = \pmb{1}\).
 Therefore, \(a \lor  (b \land  c) \neq  (a \lor  b) \land  (a \lor  c)\) for some values of \(a, b, c \in  L\). Thus, this lattice is not  distributive.
 </p></example>   
 <p>Our next observation uses the term <q>sublattice</q>, which we have not defined at this point, but we would hope that you could anticipate a definition, and we will leave it as an exercises to do so.</p>
 
-<p> It can be shown that a lattice is nondistributive if and only if it contains a sublattice isomorphic to one of the lattices in <xref ref="fig-nondistributive-lattices" autoname="yes" />.</p>
+<p> It can be shown that a lattice is nondistributive if and only if it contains a sublattice isomorphic to one of the lattices in <xref ref="fig-nondistributive-lattices" autoname="yes" />.  The ordering diagram on the right of this figure, produces the <term>diamond lattice</term>, which is precisely the one that is defined in <xref ref="ex-a-nondistributive-lattice" autoname="yes" />.  The lattice based on the left hand poset is called, the <term>pentagon lattice</term></p>
 
             <figure xml:id="fig-nondistributive-lattices">
-                <caption>Nondistributive Lattices
+                <caption>Nondistributive lattices, the pentagon and diamond lattices
                 </caption>
-                <image width="70%" source="images/fig-nondistributive-lattices.png">
+                <image width="50%" source="images/fig-nondistributive-lattices.png">
                     <description>Nondistributive Lattices</description>
                 </image>
             </figure>
-
 <exercises xml:id="exercises-13-2">
 <title>Exercises for Section 13.2</title>
-<exercisegroup>
-<introduction><p>A Exercises</p></introduction>
 <exercise number="1"><statement><p>Let <m>L</m> be the set of all propositions generated by <m>p</m> and <m>q</m>.  What are the meet and join operations in this lattice under implication?   What are the maximum and minimum elements?</p></statement></exercise>
 <exercise number="2"><statement><p>Which of the posets in Exercise 3 of Section 13.1 are lattices? Which of the lattices are distributive?</p></statement></exercise>
-</exercisegroup>
-<exercisegroup>
-<introduction><p>B Exercises</p></introduction>
 <exercise number="3"><statement><p><ol label="a">
 <li><p>State the commutative laws, associative laws, idempotent laws, and absorption laws for lattices.</p></li>
 <li><p> Prove laws you stated.</p></li>
 </ol>
 </p>
 </statement></exercise>
-<exercise number="4"><statement><p>   Let \([L; \lor  , \land ]\) be a lattice based on a partial ordering \(\preceq\).   Prove that if \(a, b, c \in L\),  
+<exercise number="4">
+<statement><p>Demonstrate that the pentagon lattice is nondistributive.</p></statement></exercise>
+<exercise number="5"><statement><p>What is a reasonable definition of the term <term>sublattice</term>?</p></statement>
+<answer><p>One reasonable definition would by this:  Let \([L; \lor, \land ]\) be a lattice and let \(K\) be a nonempty subset of \(L\).  Then \(K\) is a sublattice of \(L\) if and only if \(K\) is closed under both \(\lor\) and \(\land\)</p></answer></exercise>
+<exercise number="6"><statement><p>   Let \([L; \lor  , \land ]\) be a lattice based on a partial ordering \(\preceq\).   Prove that if \(a, b, c \in L\),  
 <ol label="a">
 <li><p>  \(a \preceq a \lor  b \).</p></li>
 <li><p>  \(a \land  b \preceq  a\).</p></li>
@@ -116,9 +114,6 @@ Therefore, \(a \lor  (b \land  c) \neq  (a \lor  b) \land  (a \lor  c)\) for som
 </ol>
 </p>
 </statement></exercise>
-<exercise number="5"><statement><p>What is a reasonable definition of the term <term>sublattice</term>?</p></statement>
-<answer><p>One reasonable definition would by this:  Let \([L; \lor, \land ]\) be a lattice and let \(K\) be a nonempty subset of \(L\).  Then \(K\) is a sublattice of \(L\) if and only if \(K\) is closed under both \(\lor\) and \(\land\)</p></answer></exercise>
-</exercisegroup>
 </exercises>
 </section>
 
