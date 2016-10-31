@@ -32,7 +32,7 @@ no letters. The set of strings of length n over A is denoted by }\(A^n\). The se
 </p>
 </note>
 
-<theorem xml:id="theorem-14.2.1.">
+<theorem xml:id="theorem-14-2-1">
 <statement><p>If A is countable, then A* is countable.</p></statement><proof>
 <p> Case 1. Given the alphabet \(B=\{0,1\}\), we can define a bijection from the positive integers into \(B^*\). Each positive integer has a binary expansion \(d_kd_{k-1}\cdots d_1d_0\), where each \(d_j\) is 0 or 1 and \(d_k=1\). If <m>n</m> has such a binary expansion, then \(2^k \leq n<2^{k+1}\). We define \(f:\mathbb{P}\to B^*\) by \(f(n)=f\left(d_kd_{k-1}\cdots  d_1d_0\right)=d_{k-1}\cdots d_1d_0,\)  where  \(f(1)=\lambda\). Every
 one of the \(2^k\) strings of length <m>k</m> are the images of exactly one of the integers between \(2^k\textrm{ and} 2^{k+1}-1.\) From its definition, \(f\) is clearly a bijection; therefore, \(B^*\) is countable.</p>
@@ -89,7 +89,7 @@ one of the \(2^k\) strings of length <m>k</m> are the images of exactly one of t
 
 <problem xml:id="prob-recognition"><title>The Recognition Problem</title>
 <index><main>Recognition Problem</main></index>
-<statement>Given a formal language over alphabet \(A\), the Recognition Problem is to design an algorithm that determines the truth of \(s\in L\) in a finite number of steps for all \(a\in A^*\). Any such algorithm is called a recognition algorithm.<statement></problem>
+<statement><p>Given a formal language over alphabet \(A\), the Recognition Problem is to design an algorithm that determines the truth of \(s\in L\) in a finite number of steps for all \(a\in A^*\). Any such algorithm is called a recognition algorithm.</p><statement></problem>
 
 <definition xml:id="def-recursive-language"><title>Recursive Language</title>
 <index><main>Recursive Language</main></index>
@@ -105,132 +105,109 @@ us what belongs to \(L_3\), just what can be used to create strings in \(L_3\). 
 </p></example>
 
 
-<algorithm xml:id="algorithm-recognition-of-L3"><title>A recognition Algorithm for \(L_3\)</title><statement><p> Let \(s=s_1s_2\cdots  s_n\in B^*\). This algorithm determines the truth value of \(s\in
+<algorithm xml:id="algorithm-recognition-of-L3"><title>A recognition Algorithm for \(L_3\)</title><statement><p> Let \(s=s_1s_2\cdots s_n\in B^*\). This algorithm determines the truth value of \(s\in
 L_3\). The truth value is returned as the value of Word.
-
 <ol label=“1”>
-<li><p>Word \(\textrm{ :=}\) true\\
-(2) If \(n>0\) then\\
-If \(s_1=1\) then Word \(\textrm{ :=}\) false\\
-$\quad \quad $  else for \(i\textrm{ :=}3\) to <m>n</m> \\
-$\quad \quad \quad $if \(s_{i-1}=1 \textrm{ and} s_i=1\) then Word \(\textrm{ :=}\) false
-</ol>
+<li><p>\(Word = true\)</p></li>
+<li><p>If \(n>0\) then
+	<ol><li><p>If \(s_1=1\) then  \(Word= false\) and exit</p></li>
+		 <li><p>for \(i=3\) to <m>n</m>: </p>
+		 		<p>\(\quad \) if \(s_{i-1}=1\) and \(s_i=1\) then \(Word = false\) and exit</p></li>
+	</ol></p></li>
+</ol></p>
 </statement>
 </algorithm>
 
-\pmb{ The Generation Problem.} Design an algorithm that generates or produces any string in <m>L</m>. Here we presume that <m>A</m> is either
-finite or countably infinite; hence, A*.  is countable by Theorem 14.2.1, and \(L \subseteq A^*\) must be countable. Therefore, the generation
-of <m>L</m> amounts to creating a list of strings in <m>L</m>. The list may be either finite or infinite, and you must be able to show that
-every string in <m>L</m> appears somewhere in the list.
+\pmb{ The Generation Problem.} 
+<problem xml:id="prob-recognition"><title>The Generation Problem</title>
+<index><main>Generation Problem</main></index>
+<statement><p>Design an algorithm that generates or produces any string in <m>L</m>. Here we presume that <m>A</m> is either finite or countably infinite; hence, A*  is countable by Theorem 14.2.1, and \(L \subseteq A^*\) must be countable. Therefore, the generation of <m>L</m> amounts to creating a list of strings in <m>L</m>. The list may be either finite or infinite, and you must be able to show that every string in <m>L</m> appears somewhere in the list.</p><statement></problem>
 
 
 
-<theorem xml:id="theorem-14.2.2."><title>14.2.2.</title><index><main>14.2.2.</main></index><statement></statement><proof></proof></theorem>
-
-
-
-(a)  If A is countable, then there exists a generating algorithm for A*.. 
-
-
-
-(b)  If L is a recursive language over a countable alphabet, then there exists a generating algorithm for L.. 
-
-
-
-Proof:
-
+<theorem xml:id="theorem-14-2-2"><title>Recursive implies Generating</title>
+<statement><p><ol>
+<li><p>If \(A\) is countable, then there exists a generating algorithm for \(A*\).</p></li>
+<li><p>If \(L\) is a recursive language over a countable alphabet, then there exists a generating algorithm for \(L\).</p></li>
+</ol>
+</p>
+</statement><proof>
 <ol label="a">
-<li><p>  Part a follows from the fact that A*.  is countable; therefore, there exists a complete list of strings in A*. .</p></li>
-<li><p>  To generate all strings of <m>L</m>, start with a list of all strings in A*.  and an empty list, <m>W</m>, of strings in \textit{
-L}. For each string <m>s</m>, use a recognition algorithm (one exists since <m>L</m> is recursive) to determine whether \(s\in L\). If \textit{
-s} is in <m>L</m>, add it to <m>W</m>; otherwise <q>throw it out.</q> Then go to the next string in the list of A*. . $\blacksquare
-$
+<li><p>  Part a follows from the fact that \(A*\) is countable; therefore, there exists a complete list of strings in \(A*\). </p></li>
+<li><p>  To generate all strings of <m>L</m>, start with a list of all strings in \(A*\) and an empty list, <m>W</m>, of strings in \(L\). For each string <m>s</m>, use a recognition algorithm (one exists since <m>L</m> is recursive) to determine whether \(s\in L\). If <m>s \in L</m>, add it to <m>W</m>; otherwise <q>throw it out.</q> Then go to the next string in the list of \(A*\).</proof></theorem>
+
+<example xml:id="ex-examples-better-algorithms-q"><p>Since all of the languages in <xref ref="ex-some-formal-languages" autoname="no" />(d) are recursive, they must have generating algorithms. The one given in the proof of <xref ref="theorem-14-2-2" autoname="yes" /> is not usually the most efficient. You could probably design more efficient generating algorithms for \(L_2\) and \(L_3\); however, a better generating algorithm for \(L_1\) is not quite so obvious.</p></example> 
 
 
 
-<example xml:id="ex-14.2.3."><title>14.2.3.</title><p></p></example> Since all of the languages in Example 14.2.2 are recursive, they must have generating algorithms. The one given in the proof
-of Theorem 14.2.2 is not generally the most efficient. You could probably design more efficient generating algorithms for \(L_2\) and \(L_3\); however,
-a better generating algorithm for \(L_1\) is not quite so obvious.
+<p>The recognition and generation problems can vary in difficulty depending on how a language is defined and what sort of algorithms we allow ourselves to use. This is not to say that the means by which a language is defined determines whether it is recursive. It just means that the truth of the statement <q>\(L\) is recursive.</q> may be more difficult to determine with one definition than with another. We will close this section with a discussion of grammars, which are standard forms of definition for a language. When we restrict ourselves to only certain types of algorithms, we can affect our ability to determine whether \(s\in L\) is true. In defining a recursive language, we do not restrict ourselves in any way in regard to the type of algorithm that will be used. In the next section, we will consider machines called finite automata, which can only perform simple algorithms.</p>
 
 
-
-The recognition and generation problems can vary in difficulty depending on how a language is defined and what sort of algorithms we allow ourselves
-to use. This is not to say that the means by which a language is defined determines whether it is recursive. It just means that the truth of $\texttt{"}$\textit{
-L} is recursive$\texttt{"}$ may be more difficult to determine with one definition than with another. We will close this section with a discussion
-of grammars, which are standard forms of definition for a language. When we restrict ourselves to only certain types of algorithms, we can affect
-our ability to determine whether \(s\in L\) is true. In defining a recursive language, we do not restrict ourselves in any way in regard to the type
-of algorithm that will be used. In Section 14.3, we will consider machines called finite automata. , which can only perform simple algorithms.
+<p>One common way of defining a language is by means of a <term>phrase structure grammar</term>  (or grammar, for short). The set of strings that can be produced using set of grammar rules is called a phrase structure language.</p>
 
 
+<example xml:id="ex-psl-0s-before-1s"><title>Zeros before Ones</title><p> We can define the set of all strings over <m>B</m> for which all 0's precede all 1's as follows. Define the starting symbol <m>S</m> and establish rules that <m>S</m> can be replaced with any of the following: \lambda , 0S, or S1. These replacement rules are usually
+called production (or rewriting. ) rules.  They are usually written in the format \(S\to \lambda\), \(S\to 0S\), and \(S\to S1\). Now define <m>L</m> to be the set of all strings that can be produced by starting with <m>S</m> and applying the production rules until <m>S</m> no longer appears. The strings in <m>L</m> are exactly the ones that are described above.
+</p></example>
 
-<subsubsection xml:id="sss-\pmb{ PHRASE STRUCTURE GRAMMARS AND LANGUAGES"><title>\pmb{ PHRASE STRUCTURE GRAMMARS AND LANGUAGES</title><index><main>\pmb{ PHRASE STRUCTURE GRAMMARS AND LANGUAGES</main></index>}
-
-
-
-One common way of defining a language is by means of a phrase structure grammar.  (or grammar, for short). The set of strings that can be
-produced using the grammar rules is called the phrase structure language.  (of the grammar).
-
-
-
-<example xml:id="ex-14.2.4."><title>14.2.4.</title><p></p></example> We can define the set of all strings over <m>B</m> for which all 0s precede all 1s as follows. Define the starting symbol
-<m>S</m> and establish rules that <m>S</m> can be replaced with any of the following: \lambda , 0S, or S1. These replacement rules are usually
-called production.  (or rewriting. ) rules.  and are usually written in the format \(S\to \lambda ,S\to 0S, \textrm{ and} S\to
-\textrm{ S1}\). Now define <m>L</m> to be the set of all strings that can be produced by starting with <m>S</m> and applying the production rules
-until <m>S</m> no longer appears. The strings in <m>L</m> are exactly the ones that are described above.
-
-\pmb{ Definition:} Phrase Structure Grammar. A phrase structure grammar consists of four components:. <ol label=“1”>
-<li><p> A nonempty finite set of terminal characters, T. If the grammar is defining a language over A, T is a subset of A*.. \\
-(2)  A finite set of nonterminal characters, N.. \\
-(3)  A starting symbol, . \(S\in N\).\\
-(4)  A finite set of production rules, each of the form \(X\to Y\), where <m>X</m> and <m>Y</m> are strings over \(A\cup N\) such that \(X\neq
-Y\) and <m>X</m> contains at least one nonterminal symbol.
+<definition xml:id="def-phrase-structure-language"><title>Phrase Structure Grammar</title>
+<index><main>Phrase Structure Grammar</main></index>
+<notation><usage>L(G)</usage><description>Language created by phrase structure grammar \(G\)</description></notation>
+<statement><p>A phrase structure grammar consists of four components:
+ <ol label=“1”>
+<li><p>A nonempty finite set of terminal characters, \(T\). If the grammar is defining a language over \(A\), \(T\) is a subset of \(A*\).</p></li>
+<li><p>A finite set of nonterminal characters, \(N\).</p></li>
+<li><p>A starting symbol,  \(S\in N\).</p></li>
+<li><p>A finite set of production rules, each of the form \(X\to Y\), where <m>X</m> and <m>Y</m> are strings over \(A\cup N\) such that \(X\neq Y\) and <m>X</m> contains at least one nonterminal symbol.</p></li>
+</ol>
+</p>
+<p>If <m>G</m> is a phrase structure grammar, \(L(G)\)  is the set of strings that can be produced by starting with <m>S</m> and applying the production rules a finite number of times until no nonterminal characters remain. If a language can be defined by a phrase structure grammar, then it is called a phrase structure language.</p>
+</statement>
+</definition>
 
 
-
-If <m>G</m> is a phrase structure grammar, L(G).  is the set of strings that can be obtained by starting with <m>S</m> and applying
-the production rules a finite number of times until no nonterminal characters remain. If a language can be defined by a phrase structure grammar,
-then it is called a phrase structure language. .
-
-
-
-<example xml:id="ex-14.2.5."><title>14.2.5.</title><p></p></example> The language over <m>B</m> consisting of strings of alternating 0s and 1s is a phrase structure language. It can be defined
+<example xml:id="ex-alternating-bits"><title>Alternating bits language</title><p>The language over <m>B</m> consisting of strings of alternating 0's and 1's is a phrase structure language. It can be defined
 by the following grammar:
 
 <ol label=“1”>
-<li><p> Terminal characters: \lambda , 0, and 1,</p></li>
-<li><p>  Nonterminal characters: <m>S</m>, <m>T</m>, and <m>U</m>,</p></li>
-<li><p>  Starting symbol: <m>S</m>,</p></li>
+<li><p> Terminal characters: \(\lambda\), \(0\), and \(1\)</p></li>
+<li><p>  Nonterminal characters: <m>S</m>, <m>T</m>, and <m>U</m></p></li>
+<li><p>  Starting symbol: <m>S</m></p></li>
 <li><p> Production rules:
+\[
+\begin{array}{ccc}
+S\to T &amp; S\to U &amp; S\to \lambda\\
+ S\to 0&amp; &amp; S\to 1\\
+  S\to 0T&amp;&amp; S\to 1U \\
+  T\to 10T&amp;&amp; T\to 10\\
+   U\to 01U&amp; &amp; U\to 01\\
+ \end{array}
+ \]
+</p></li>
+</ol>
+</p>
 
+ <p>These rules can be visualized with a graph:</p>
 
+          <figure xml:id="fig-production-rules-alternating-bits">
+                <caption>Production rules for the language of alternating 0's and 1's
+                </caption>
+                <image width="70%" source="images/fig-production-rules-alternating-bits.png">
+                    <description>Production rules for the language of alternating 0's and 1's</description>
+                </image>
+            </figure>
 
- \(S\to T, S\to U, S\to \lambda , S\to 0, S\to 1, S\to 0T, S\to 1U, T\to 10T, T\to 10, U\to 01U, U\to 01\)
+<p>We can verify that a string such as 10101 belongs to the language by starting with <m>S</m> and producing 10101 using the production rules a finite number of times: \(S\to 1U\to 101U\to 10101\).
+</p></example> 
 
-
-
-     These rules can be visualized more easily with a graph:
-
-
-\begin{center}\(\)
-\end{center}
-
-
-\caption{Figure 14.2.1\\
-Production rules for the language of alternating 0{'}s and 1{'}s.}
-
-
-
-We can verify that a string such as 10101 belongs to the language by starting with <m>S</m> and producing 10101 using the production rules a finite
-number of times: \(S\to 1U\to 101U\to 10101\).
-
-<example xml:id="ex-14.2.6."><title>14.2.6.</title><p></p></example> Let <m>G</m> be the grammar with components:<ol label=“1”>
-<li><p> Terminal symbols = all letters of the alphabet (both upper and lower case) and the digits 0 through 9,</p></li>
+<example xml:id="ex-valid-names-names"><title>Valid Variable</title><p>Let <m>G</m> be the grammar with components:<ol label=“1”>
+<li><p> Terminal symbols = all letters of the alphabet (both upper and lower case), digits 0 through 9, and underscore </p></li>
 <li><p> Nonterminal symbols =$\{$I, X. $\}$,</p></li>
 <li><p>  Starting symbol: <m>I</m></p></li>
 <li><p>  Production rules: \(I\to \alpha\), where $\alpha $ is any letter, \(I\to \textrm{ $\alpha $X}\) for any letter $\alpha $, \(X\to \textrm{ $\beta
 $X}\) for any letter or digit $\beta $, and \(X\to \beta\) for any letter or digit $\beta $.
 
-There are a total of \(176\) production rules for this grammar. The language \(L(G)\) consists of all valid Mathematica.  names.
+There are a total of \(176\) production rules for this grammar. The language \(L(G)\) consists of all valid sage variable names.</p></example> 
 
 
 
