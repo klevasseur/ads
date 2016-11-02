@@ -200,29 +200,26 @@ S\to T &amp; S\to U &amp; S\to \lambda\\
 <p>We can verify that a string such as 10101 belongs to the language by starting with <m>S</m> and producing 10101 using the production rules a finite number of times: \(S\to 1U\to 101U\to 10101\).
 </p></example> 
 
-<example xml:id="ex-valid-names-names"><title>Valid Variable</title><p>Let <m>G</m> be the grammar with components:<ol label=“1”>
+<example xml:id="ex-valid-names-names"><title>Valid Sage Variables</title><p>Let <m>G</m> be the grammar with components:<ol label=“1”>
 <li><p> Terminal symbols = all letters of the alphabet (both upper and lower case), digits 0 through 9, and underscore </p></li>
-<li><p> Nonterminal symbols =$\{$I, X. $\}$,</p></li>
+<li><p> Nonterminal symbols: \(\{I, X\}\),</p></li>
 <li><p>  Starting symbol: <m>I</m></p></li>
-<li><p>  Production rules: \(I\to \alpha\), where $\alpha $ is any letter, \(I\to \textrm{ $\alpha $X}\) for any letter $\alpha $, \(X\to \textrm{ $\beta
-$X}\) for any letter or digit $\beta $, and \(X\to \beta\) for any letter or digit $\beta $.
+<li><p>  Production rules: \(I\to \alpha\), where \(\alpha\) is any letter, \(I \to alpha+X}\) for any letter \(\alpha\) ,\(X\to \beta+X}\) for any letter, digit or underscore, \(\beta\), and \(X \to \beta\) for any letter, digit or underscore, \(\beta\).
+There are a total of \(52+52+63+63=230\) production rules for this grammar. The language \(L(G)\) consists of all valid Sage variable names.</p></example> 
 
-There are a total of \(176\) production rules for this grammar. The language \(L(G)\) consists of all valid sage variable names.</p></example> 
+<example xml:id="ex-bnf"><title>Backus-Naur Form</title>
+<p>Backus-Naur form (BNF) is a popular alternate form of defining the production rules in a grammar. If the production rules \(A\to B_1, A\to B_2,\ldots  A\to B_n\) are part of a grammar, they would be written in BNF as \(A ::=B_1 \mid B_2\mid  \cdots \mid  B_n\). The symbol \(|\) in BNF is read as <q>or,</q> while the \(::=\) is read as <q>is defined as.</q> Additional notations of BNF are that \(\{x\}\), represents zero or more repetitions of <m>x</m> and <m>[y]</m>] means that <m>y</m> is optional.</p>
 
+<p> A BNF version of the production rules for a Sage variable, I, is
 
-
-\pmb{ Backus-Naur form (BNF)}, A popular alternate form of defining the production rules in a grammar is BNF. If the production rules \(A\to B_1,
-A\to B_2,\ldots  A\to B_n\) are part of a grammar, they would be written in BNF as \(A \textrm{ ::}=B_1\left\lvert B_2\right\rvert \cdots  \left\lvert
-B_n\right.\). The symbol \(|\) in BNF is read as <q>or,</q> while the \(\textrm{ ::}=\) is read as <q>is defined as.</q> Additional notations of BNF
-are that \(\{x\}\), represents zero or more repetitions of <m>x</m> and [<m>y</m>] means that <m>y</m> is optional.
-
-<example xml:id="ex-14.2.7."><title>14.2.7.</title><p></p></example> A BNF version of the production rules for a Mathematica.  name is
-
-letter \(::=a\lvert b\lvert c \cdots  |z|A|B|\cdots |Z\)
-
- \(\textrm{ digit}::=0|1|\cdots |9\)
-
-\(I::= \textrm{ letter} \{\textrm{ letter} | \textrm{ digit}\}\)
+	\[\begin{array}{l}
+	letter ::=a \mid b \mid c \mid \cdots \mid z\mid A\mid  B\mid \cdots \mid Z\\
+ 	digit::=0 \mid 1 \mid \cdots  \mid 9\\
+	I::= letter\{letter  \mid  digit  \mid  \_\}\\
+	\\
+	\end{array}
+	\]
+</example
 
 <example xml:id="ex-14.2.8."><title>14.2.8.</title><p></p></example> An arithmetic expression can be defined in BNF. For simplicity, we will consider only expressions obtained using addition
 and multiplication of integers. The terminal symbols are \((,),+,*,-\), and the digits 0 through 9. The nonterminal symbols are <m>E</m> (for
