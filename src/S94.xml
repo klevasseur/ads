@@ -25,8 +25,8 @@ Problem is considered by many to represent the birth of graph theory.</p>
 made up the city. The legend of this problem states that the citizens of Koenigsberg searched in vain for a walking tour that passed over each
 bridge exactly once. No one could design such a tour and the search was abruptly abandoned with the publication of Euler's Theorem.</p>
 
-<theorem xml:id="th-euler-theorem-koenigsberg-case"><title>Euler's Theorem - Koenigsberg Case</title><index><main>Euler's Theorem</main><sub>Koenigsberg Case</sub></index>
-<statement><p>No walking tour of <m>K\"onigsberg</m> can be designed so that each bridge is used exactly
+<theorem xml:id="th-euler-theorem-koenigsberg-case"><title>Euler's Theorem: Koenigsberg Case</title><index><main>Euler's Theorem</main><sub>Koenigsberg Case</sub></index>
+<statement><p>No walking tour of <m>Koenigsberg</m> can be designed so that each bridge is used exactly
 once.</p></statement>
 <proof><p>The map of Koenigsberg can be represented as an undirected multigraph, as in Figure 9.4.2. The four land masses are the vertices and each
 edge represents a bridge. </p>
@@ -44,7 +44,7 @@ is desired is possible. </p>
 below, concerned the existence of paths and circuits like those sought in Koenigsberg. These paths and circuits have become associated with Euler's
 name.</p>
 
-<definition xml:id="def-eulerian-paths-circuits-graphs"><title>Eulerian Paths, Circuits, Graphs.</title><index><main>Eulerian Paths, Circuits, Graphs.</main></index><statement><p> A Eulerian path through a graph is a path whose edge list contains each edge of the graph exactly
+<definition xml:id="def-eulerian-paths-circuits-graphs"><title>Eulerian Paths, Circuits, Graphs.</title><index><main>Eulerian Paths, Circuits, Graphs</main></index><statement><p> A Eulerian path through a graph is a path whose edge list contains each edge of the graph exactly
 once. If the path is a circuit, then it is called a Eulerian circuit. A Eulerian graph is a graph that possesses a Eulerian path.</p></statement></definition>
 
 
@@ -61,7 +61,7 @@ degree. This follows from the following theorem.
             </figure>
 </example>  
 
-<theorem xml:id="theorem-euler-theorem-general"><title>Euler's Theorem - General Case</title>
+<theorem xml:id="theorem-euler-theorem-general"><title>Euler's Theorem: PhGeneral Case</title>
 <index><main>Euler's Theorem</main></index>
 <statement><p>An undirected graph is Eulerian if and only if it is connected and has either zero or two vertices with an odd degree. If no vertex has an odd degree, then the graph has a Eulerian circuit.</p></statement>
 <proof><p>It can be proven by induction that the number of vertices in an undirected graph that have an odd degree must be even. We will leave
@@ -86,7 +86,7 @@ path. Consider the graph \(G' = \left(V, E - E_u\right)\).  Note that every vert
 e}, from \(G'.\) Let \(v_a\) and \(v_b\) be the vertices that <m>e</m> connects. Trace a new path starting at \(v_a\) whose first edge is \textit{
 e}. We can be sure that at least one vertex of the new path is also in the current path since \((V, E)\) is connected. Starting at \(v_a\), there
 exists a path in \((V, E)\) to any vertex in the current path. At some point along this path, which we can consider the start of the new path, we
-will have intersected the current path. Since the degree of each vertex in G' is even, any path that we start at \(v_a\) can be continued until it
+will have intersected the current path. Since the degree of each vertex in \(G'\) is even, any path that we start at \(v_a\) can be continued until it
 is a circuit. Now, we simply augment the current path with this circuit. As we travel along the current path, the first time that we intersect the
 new path, we travel along it (see Figure 9.4.3). Once we complete the circuit that is the new path, we resume the traversal of the current path.</p>
 
@@ -157,12 +157,11 @@ of <m>n</m>. For a given algorithm, the value of a depends on the relative times
 paths, the actual execution time for known algorithms is large with 20 vertices. For 1,000 vertices, no algorithm is likely to be practical, and
 for 10,000 vertices, no currently known algorithm could be executed.</p>
 
-<p>It is an unproven but widely held belief that no faster algorithm exists to search for Hamiltonian paths in general groups. A faster algorithm would have to be one
-that takes only polynomial time; that is, \(T(n) &lt; p(n)\), for some polynomial sequence <m>p</m>. To sum up, the problem of determining whether
+<p>It is an unproven but widely held belief that no faster algorithm exists to search for Hamiltonian paths in general graphs.  To sum up, the problem of determining whether
 a graph is Hamiltonian is theoretically possible; however, for large graphs we consider it a practical impossibility. Many of the problems we will discuss in the next section, particularly the Traveling Salesman Problem, are thought to be impossible in the same sense. 
 </p></note>
 
-<definition xml:id="def-n-cube"><title>The <m>n</m>-cube.</title>
+<definition xml:id="def-n-cube"><title>The <m>n</m>-cube</title>
 <index><main>N-cube</main></index><notation><usage>Q_n</usage><description>the <m>n</m>-cube</description></notation><statement><p>Let \(n \geq  1\), and let \(B^n\) be the set of strings of 0's and 1's with length n.  The <m>n</m>-cube is the undirected graph with a vertex for each string in \(B^n\) and an edge connecting each pair of strings that differ in exactly one position. The <m>n</m>-cube is normally denoted <m>Q_n</m>. </p></statement></definition>
 
 <p>The <m>n</m>-cube is among the graphs that are defined within the <c>graphs</c> package of Sage and is created with the expresson <c>graphs.CubeGraph(n)</c>. </p>
@@ -191,8 +190,7 @@ can only happen if a graph as two vertices.</p>
 
 
 <p>Recursive definition of the Gray Code: Given the Gray Code for the <m>n</m>-cube, \(n > 1\), then \(G_{n+1}\) is obtained by (1) listing \(G_n\) with each string prefixed
-with 0, and then (2) reversing the list of strings in \(G_n\) with each string prefixed with 1. Symbolically, the recursion can
-be expressed as
+with 0, and then (2) reversing the list of strings in \(G_n\) with each string prefixed with 1. Symbolically, the recursion can be expressed as follows, where \(G_n^r\) is the reverse of list \(G_n\).
 
 
 
@@ -202,10 +200,7 @@ be expressed as
  1 G_n^r \\
 \end{array}
 \right)\]
-
-
-
-where \(G_n^r\) is the reverse of list \(G_n\).</p>  
+</p>  
 <p>The Gray Codes for the 2-cube and 3-cube are
 
 \[G_2= \left(
@@ -254,7 +249,7 @@ exists for Lowell.
 </p></answer></exercise>
 <exercise number="2"><statement><p> Which of the drawings in <xref ref="fig-drawings-9-4" autoname="yes"/> can be drawn without removing your pencil from the paper and without drawing any line twice?</p>
          <figure xml:id="fig-drawings-9-4">
-                <image width="100%" source="images/fig-drawings-9-4.png">
+                <image width="65%" source="images/fig-drawings-9-4.png">
                     <description>Drawings for exercise 9-4-2</description>
                 </image>
             </figure>
@@ -301,9 +296,8 @@ that were not connected by the first bridge.
 <introduction><p>B Exercises</p></introduction>
 <exercise number="7"><statement><p> Formulate Euler's theorem for directed graphs.</p></statement>
 <answer>
-<p>Let  \(G=(V,E)\) be a directed graph. <m>G</m> has a Eulerian circuit if and only if G is connected and (\text{indeg}(v)=\text{outdeg}(v)\) for all <m>v</m> in <m>V</m>. There exists a Eulerian path from  \(v_1 \textrm{ to } v_2\)  if and only if 
-g is connected, \(\text{indeg}\left(v_1\right)=\text{outdeg}\left(v_1\right)-1\), \(\text{indeg}\left(v_2\right)=\text{outdeg}\left(v_2\right)+1\),
- and for all other vertices in <m>V</m> the indegree and outdegree are equal.</p>
+<p>Let  \(G=(V,E)\) be a directed graph. <m>G</m> has a Eulerian circuit if and only if \(G\) is connected and \(indeg(v)= outdeg(v)\) for all <m>v< \in V</m>. There exists a Eulerian path from  \(v_1 \textrm{ to } v_2\)  if and only if \(G\) is connected, \(indeg(v_1)=outdeg(v_1)-1\),
+ \(indeg(v_2)= outdeg(v_2)+1\), and for all other vertices in <m>V</m> the indegree and outdegree are equal.</p>
 </answer></exercise>
 <exercise number="8"><statement><p> Prove that the number of vertices in an undirected graph with odd degree must be even.</p></statement>
 <hint><p> Prove by induction on the number of edges.</p></hint></exercise>
@@ -315,7 +309,7 @@ g is connected, \(\text{indeg}\left(v_1\right)=\text{outdeg}\left(v_1\right)-1\)
 </statement>
 <answer><p> A round-robin tournament graph is rarely Eulerian. It will be Eulerian if it has an odd number of vertices and each vertex (team) wins exactly
 as many times as it loses. Every round-robin tournament graph has a Hamiltonian path. This can be proven by induction on the number of vertices.</p></answer></exercise>
-<exercise number="10"><statement><p> For what values of <m>n</m> is  n-cube Eulerian.</p>
+<exercise number="10"><statement><p> For what values of <m>n</m> is the \(n\)-cube Eulerian?</p>
 </statement></exercise>
 
 </exercisegroup>

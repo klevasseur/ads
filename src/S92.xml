@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <section xml:id="s-data-structures-for-graphs">
-<title>Data Structures and Computer Generation of Graphs</title>
+<title>Data Structures for Graphs</title>
 <index><main>Graph</main><sub>Data Structures</sub></index>
 <introduction><p>In this section, we will describe data structures that are commonly used to represent graphs. In addition we will introduce the basic syntax for
 graphs in Sage.</p></introduction>
@@ -19,7 +19,7 @@ graphs in Sage.</p></introduction>
 matrix, <m>G</m>, where \(G_{\text{ij}}=1\) if and only if vertex <m>i</m> is connected to vertex <m>j</m> in the graph.  Note
 that this is the same as the adjacency matrix for a relation, with the exception.</p></li>
 <li><p>Edge Dictionary:  For each vertex in our graph, we maintain a list of edges that
-initiate at that vertex. If <m>G</m> represents the graph's edge information, then we denote by \(G_i\) the list of vertices that are terminal vertices  of edges initiating at vertex <m>i</m>. The exact syntax that would be used can vary.  We will use the Python syntax that is adopted be used in Sage.</p></li>
+initiate at that vertex. If <m>G</m> represents the graph's edge information, then we denote by \(G_i\) the list of vertices that are terminal vertices  of edges initiating at vertex <m>i</m>. The exact syntax that would be used can vary.  We will use Sage/Python syntax in our examples.</p></li>
 <li><p>Edge List:  Note that in creating either of the first two data structures, we would presume that a list of
 edges for the graph exists. A simple way to represent the edges is to maintain this list of ordered pairs, or two element sets, depending on whether the graph is intended to be directed or undirected.  We will not work with this data stucture here, other than in the first example.</p></li>
 </ol>
@@ -56,7 +56,7 @@ edges for the graph exists. A simple way to represent the edges is to maintain t
 <p>A natural question to ask is: Which data structure should be used in a given situation? For small graphs, it really doesn't make much difference.  For larger matrices the edge count would be a consideration. If <m>n</m> is large and the
 number of edges is relatively small, it might use less memory to maintain an edge dictionary or  list of edges instead of building an \(n \times  n\) matrix. Some software for working with graphs will make the decision for you.</p>
 
-<example xml:id="ex-ncaa-bb"><title>NCAA Basketball</title><p>Consider the tournament  graph representing a NCAA Division 1 men's (or women's) college basketball season in the United States. There are approximately 350 teams in Division 1. Suppose we constructed the graph with an edge from team A to team B if A beat B at least once in the season; and we label the edge with the number of wins.  Since the average team plays around 30 games in a season, most of which will be against other Division I teams, we could expect around \(\frac{30 \cdot 350}{2}=5,250\) edges in the graph. This would be somewhat reduced by games with lower division teams and cases where two or more wins over the same team produces one edge. Since 5,250 is much smaller than \(350^2=122,500\) entries in an adjacency matrix.  Clearly, an edge dictionary or edge list would be more compact than an adjacency matrix.  Even if we were use software to create an adjacency matrix, many programs will identify the fact that a matrix such as the one in this example would be "sparse" and would leave data in list form and use sparse array methods to work with it.</p></example>
+<example xml:id="ex-ncaa-bb"><title>NCAA Basketball</title><p>Consider the tournament  graph representing a NCAA Division 1 men's (or women's) college basketball season in the United States. There are approximately 350 teams in Division 1. Suppose we constructed the graph with an edge from team A to team B if A beat B at least once in the season; and we label the edge with the number of wins.  Since the average team plays around 30 games in a season, most of which will be against other Division I teams, we could expect around \(\frac{30 \cdot 350}{2}=5,250\) edges in the graph. This would be somewhat reduced by games with lower division teams and cases where two or more wins over the same team produces one edge. Since 5,250 is much smaller than \(350^2=122,500\) entries in an adjacency matrix, an edge dictionary or edge list would be more compact than an adjacency matrix.  Even if we were use software to create an adjacency matrix, many programs will identify the fact that a matrix such as the one in this example would be <q>sparse</q> and would leave data in list form and use sparse array methods to work with it.</p></example>
 
 
 </subsection>
@@ -113,7 +113,7 @@ DiGraph(M).show()</input>
 [1 0 0 0]
 </output>
 </sage>
-<p>The edge list of any directed graph an be easily retrieved.  If you replace <c>edges</c> with <c>edge_iterator</c>, you can iterate through the edge list.  The third coordinate of the items in the edge is the label of the edge, which is None in this case.</p>
+<p>The edge list of any directed graph an be easily retrieved.  If you replace <c>edges</c> with <c>edge_iterator</c>, you can iterate through the edge list.  The third coordinate of the items in the edge is the label of the edge, which is <c>None</c> in this case.</p>
 <sage>
 <input>
 DiGraph(M).edges()
@@ -149,7 +149,7 @@ w.show(vertex_labels=false)
 </input>
 </sage>
 
-<p>There are dozens of graph methods, one of which determines the degree sequence of a graph.  In this case, it's the wheel graph above </p>
+<p>There are dozens of graph methods, one of which determines the degree sequence of a graph.  In this case, it's the wheel graph above.</p>
 
 <sage>
 <input>
@@ -174,7 +174,7 @@ w.degree_sequence()
 <li><p> Vertices: ASCII characters. 
  Edges: connect characters that differ in their binary code by exactly two bits.</p></li>
 <li><p> Vertices: All English words. 
- Edges: An edge connects word x to word y if x is a prefix of y.</p></li>
+ Edges: An edge connects word \(x\) to word \(y\) if \(x\) is a prefix of \(y\).</p></li>
  </ol></p></statement>
  <answer><p><ol label="a">
 
@@ -240,7 +240,7 @@ a variation of the adjacency matrix structure?</p></statement></exercise>
 \end{array}
 \right)\)</p>
 </statement>
-<answer><p> Each graph is isomorphic to itself. In addition, \(G_2 \text{and} G_4\) are isomorphic; and \(G_3,G_5, \text{and and} G_6\) are isomorphic to one another.</p>
+<answer><p> Each graph is isomorphic to itself. In addition, \(G_2 \text{ and } G_4\) are isomorphic; and \(G_3, G_5, \text{ and } G_6\) are isomorphic to one another.</p>
 </answer>
 </exercise>
 <exercise number="4"><statement> <p> The following Sage command verifies that the wheel graph with four vertices is isomorphic to the complete graph with four vertices. </p>

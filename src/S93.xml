@@ -47,9 +47,9 @@ undirected graph, in which edges can be used in either direction, the notions of
 <statement>
 <p>Suppose that the information about edges in a graph is stored in an adjacency matrix, <m>G</m>. The
 relation, <m>r</m>, that <m>G</m> defines is \(v r w\) if there is an edge connecting <m>v</m> to <m>w</m>. Recall that the composition
-of <m>r</m> with itself, \(r^2\) , is defined by \(v r^2 w\) if there exists a vertex <m>y</m> such that \(v r y\) and \(y r w\); that is,
-<m>v</m> is connected to <m>w</m> by a path of length 2. We could prove by induction that the relation \(r^k\) , \(k\geq 1\), is defined by
-\(v r^k w\) if and only if there is a path of length <m>k</m> from <m>v</m> to <m>w</m>. Since the transitive closure, \(r^+\) , is the
+of <m>r</m> with itself, \(r^2\), is defined by \(v r^2 w\) if there exists a vertex <m>y</m> such that \(v r y\) and \(y r w\); that is,
+<m>v</m> is connected to <m>w</m> by a path of length 2. We could prove by induction that the relation \(r^k\), \(k\geq 1\), is defined by
+\(v r^k w\) if and only if there is a path of length <m>k</m> from <m>v</m> to <m>w</m>. Since the transitive closure, \(r^+\), is the
 union of <m>r</m>, \(r^2\) \(,r^3,\ldots\), we can answer our connectivity question by determining the transitive closure of <m>r</m>, which
 can be done most easily by keeping our relation in matrix form. <xref ref="theorem-9.3.1" autoname="yes"/> is significant in our calculations because it tells us that we need
 only go as far as \(G^n\) to determine the matrix of the transitive closure. </p>
@@ -59,7 +59,7 @@ only go as far as \(G^n\) to determine the matrix of the transitive closure. </p
 
 
 <p>The main advantage of the adjacency matrix method is that the transitive closure matrix can answer all questions about the existence of paths between any 
-vertices. If \(G^+\)is the matrix of the transitive closure, \(v_i\) is connected to \(v_j\) if \(\left(G^+\right)_{i j }=1\). A directed
+vertices. If \(G^+\) is the matrix of the transitive closure, \(v_i\) is connected to \(v_j\) if and only if \(\left(G^+\right)_{i j }=1\). A directed
 graph is connected if \(\left(G^+\right)_{i j }=1\) or \(\left(G^+\right)_{j i}=1\) for each \(i\neq j\). A directed graph is strongly connected
 if its transitive closure matrix has no zeros.</p>
 
@@ -119,8 +119,7 @@ messages to the coaches of the two teams that MSU defeated during the season:</p
 </list>
 
 
-<list><title>
-Observations</title>
+<list><title>Observations</title>
 <introduction><p>From the conditions of this message, it should be clear that if everyone cooperates and if coaches participate within a day of receiving
 the message:</p></introduction>
 <ol label="1">
@@ -143,7 +142,7 @@ algorithm is commonly called a  breadth-first search.</p>
 <index><main>Breadth-first Search</main></index>
 <statement><p>A broadcasting algorithm for finding a path between vertex <m>i</m> and vertex <m>j</m> of a graph having <m>n</m> vertices. Each item \(V_k\) of a list \(V=\left\{V_1, V_2, \ldots , V_n\right\}\), consist of a Boolean field \(V_k.\text{found}\) and an
 integer field \(V_k.\text{from}\). The sets \(D_1\), \(D_2\), \dots, called  depth sets, have the property that if <m>k</m> is in
-\(D_r\) , then the shortest path from vertex <m>i</m> to vertex <m>k</m> is of length <m>r</m>. In Step 5, a stack is used to put the vertex list for the path from the vertex <m>i</m> to vertex <m>j</m> in the proper order.</p>
+\(D_r\), then the shortest path from vertex <m>i</m> to vertex <m>k</m> is of length <m>r</m>. In Step 5, a stack is used to put the vertex list for the path from the vertex <m>i</m> to vertex <m>j</m> in the proper order.</p>
 <p><ol label="1">
 <li><p>Set the value \(V_k.\text{found}\) equal to False, \(k = 1, 2, \dots , n\)</p></li>
 <li><p><m>r = 0</m></p></li>
@@ -176,7 +175,7 @@ integer field \(V_k.\text{from}\). The sets \(D_1\), \(D_2\), \dots, called  dep
 <li><p> This algorithm will produce one path from vertex <m>i</m> to vertex <m>j</m>, if one exists, and that path will be as short as possible.
 If more than one path of this length exists, then the one that is produced depends on the order in which the edges are examined and the order in
 which the elements of \(D_r\) are examined in Step 4.</p></li>
-<li><p> The condition \(D_{r }\neq \emptyset\) is analogous to the condition that if no mail is sent in a given stage of the process, in which
+<li><p> The condition \(D_{r }\neq \emptyset\) is analogous to the condition that no mail is sent in a given stage of the process, in which
 case MSU cannot be connected to ESU.</p></li>
 <li><p> This algorithm can be easily revised to find paths to all vertices that can be reached from vertex <m>i</m>. Step 5 would be put off until a specific
 path to a vertex is needed since the information in <m>V</m> contains an efficient list of all paths. The algorithm can also be extended further
@@ -266,7 +265,7 @@ list(Gr.breadth_first_search(0))
 
 
 <p>Generate a list of vertices that would be reached in a depth-first search.
- In this type of search you travel in one direction away from the starting point until no further new vertices. We will discuss this search later.</p>
+ In this type of search you travel in one direction away from the starting point until no further new vertices can be reached. We will discuss this search later.</p>
 <sage>
 <input>
 list(Gr.depth_first_search(0))
@@ -301,12 +300,12 @@ of the depth sets are put into ascending order.</p></statement></exercise>
 <exercise number="3"><statement><p> In a simple undirected graph with no self-loops, what is the maximum number of edges you can have, keeping the graph unconnected? What is the
 minimum number of edges that will assure that the graph is connected?</p></statement>
 <answer><p>If the number of vertices is <m>n</m>, there can be \(\frac{(n-1)(n-2)}{2}\) vertices with one vertex not connected to any of the others. One more edge and connectivity is assured.</p></answer></exercise>
-<exercise number="4"><statement> <p>Use a broadcasting algorithm to determine the shortest path from vertex a to vertex i in the graphs shown in the <xref ref="fig-exercise-9-3-4" autoname="yes"/> below. List the depth sets
+<exercise number="4"><statement> <p>Use a broadcasting algorithm to determine the shortest path from vertex \(a\) to vertex \(i\) in the graphs shown in the <xref ref="fig-exercise-9-3-4" autoname="yes"/> below. List the depth sets
 and the stack that is created.</p>
 
 <figure xml:id="fig-exercise-9-3-4">
 	  <caption>Shortest paths from <m>a</m> to <m>i</m>?</caption>
-	  <image width="100%" source="images/fig-exercise-9-3-4.png">
+	  <image width="60%" source="images/fig-exercise-9-3-4.png">
 		  <description>Graphs for exercise 9-3-4</description>
 	 </image>
 </figure>
@@ -317,24 +316,21 @@ and the stack that is created.</p>
 <exercisegroup>
 <introduction><p>B Exercises</p></introduction>
 <exercise number="5"><statement><p> Prove (by induction on <m>k</m>) that if the relation <m>r</m> on vertices of a graph is defined by \(v r w\) if there is an edge connecting
-<m>v</m> to <m>w</m>, then \(r^k\) ,\(k \geq  1\), is defined by \(v r^kw\) if there is a path of length <m>k</m> from <m>v</m> to
+<m>v</m> to <m>w</m>, then \(r^k\), \(k \geq  1\), is defined by \(v r^kw\) if there is a path of length <m>k</m> from <m>v</m> to
 <m>w</m>.</p>
-</statement><answer><p> Basis: \((k=1)\) Is the relation \(r^1\)defined by \(\text{\textit{vr}}^1w\) if there is a path of length \(l\) from \(v \text{to} w\)? Yes, since
+</statement><answer><p> Basis: \((k=1)\) Is the relation \(r^1\)defined by \(\text{\textit{vr}}^1w\) if there is a path of length 1 from \(v \text{ to } w\)? Yes, since
 \textit{ \(\text{vrw}\)} if and only if an edge, which is a path of length <m>l</m>, connects <m>v</m> to <m>w</m>.</p>
-
-
 
 <p>Induction: Assume that \(\text{\textit{vr}}^kw\) if and only if there is a path of length \textit{ k }from <m>v</m> to <m>w</m>. We must show
 that \(\text{\textit{vr}}^{k+1}w\) if and only if there is a path of length \(k+1\) from <m>v</m> to <m>w</m>.</p>
 
-
+\[v r^{k+1} w \Rightarrow v r^k y \textrm{ and } y r w\textrm{ for some vertex } y\]
 <p>
-\(\text{\textit{vr}}^{k+1}w\Rightarrow \text{\textit{vr}}^ky \text{and} \text{\textit{yrw}}\), for some vertex <m>y</m>. By the induction
-hypothesis, there is a path of length <m>k</m> from \(v \text{to} y\). And by the basis, there is a path of length one from <m>y</m> to \textit{
+. By the induction
+hypothesis, there is a path of length <m>k</m> from \(v \textrm{ to } y\). And by the basis, there is a path of length one from <m>y</m> to \textit{
 w}. If we combine these two paths, we obtain a path of length \(k+1\) from <m>v</m> to <m>w</m>. Of course, if we start with a path of length
 \(k+1\) from <m>v</m> to <m>w</m>, we have a path of length <m>k</m> from <m>v</m> to some vertex <m>y</m> and a path of length\textit{
- l} from <m>y</m> to <m>w</m>. Therefore, \(\text{\textit{vr}}^ky \text{and} \text{\textit{yrw}}\Rightarrow \text{\textit{vr}}^{k+1}w\text{
-   }\square\)
+ l} from <m>y</m> to <m>w</m>. Therefore, \(v r^k y \textrm{ and } y r w \Rightarrow  v r^{k+1} w \square\)
 </p></answer></exercise>
 </exercisegroup>
 </exercises>
