@@ -243,11 +243,10 @@ t\) and . \(A\to tB}\), where A and B are nonterminal and t is terminal. A left-
 t\) and . \(A\to Bt}\), A language that has a regular phrase structure language is called a regular language.</p></statement></definition>
 
 <example xml:id="ex-some-regular-grammars"><p><ol label="a">
-<li><p>  The set of Sage variable names is a regular language since the grammar by which we defined the set is a regular grammar.</p></li>
-<li><p>The language of all strings for which all 0s precede all 1s (Example 14.2.4) is regular; however, the grammar by which we defined this set
-is not regular. Can you define these strings with a regular grammar?</p></li>
+<li><p> The set of Sage variable names is a regular language since the grammar by which we defined the set is a regular grammar.</p></li>
+<li><p>The language of all strings for which all 0s precede all 1s (Example 14.2.4) is regular; however, the grammar by which we defined this set is not regular. Can you define these strings with a regular grammar?</p></li>
 <li><p>The language of arithmetic expressions is not regular.</p></li>
-<ol></p></example>
+</ol></p></example>
 
 
 
@@ -260,19 +259,26 @@ each character will use the same number of bits. </p></li>
 <li><p> Do the same for 3,500 symbols.</p></li>
 </ol>
 </p>
-</statement></exercise>
+</statement>
+<answer><p>
+<ol label="a">
+<li><p> For a character set of 350 symbols, the number of bits needed for each character is the smallest <m>n</m> such that \(2^n\) is greater
+than or equal to 350.  Since   \(2^9= 512 > 350 > 2^8\),  9 bits are needed, </p></li>
+<li><p> \(2^{12}=4096 >3500> 2^{11}\); therefore, 12 bits are needed. </p></li>
+</ol>
+</p></answer></exercise>
 <exercise number="2"><statement><p> It was pointed out in the text that the null string and the null set are different. The former is a string and the latter is a set, two different kinds of objects. Discuss how the two are similar.</p>
 </statement></exercise>
 <exercise number="3"><statement><p>  What sets of strings are defined by the following grammar?
-
 <ol label="a">
 <li><p>  Terminal symbols: \lambda , 0 and 1</p></li>
 <li><p>  Nonterminal symbols: <m>S</m> and <m>E</m></p></li>
 <li><p>   Starting symbol: S . </p></li>
-<li><p>   Production rules: \(S\to 0\textrm{ S0}, S\to 1\textrm{ S1}, S\to E, E\to \lambda , E\to 0, E\to 1.\)</p></li>
+<li><p>   Production rules: \(S\to 0S0, S\to 1S1, S\to E, E\to \lambda, E\to 0, E\to 1.\)</p></li>
 </ol>
 </p>
-</statement></exercise>
+</statement>
+<answer><p> This grammar defines the set of all strings over <m>B</m> for which each string is a palindrome (same string if read forward or backward).</p></answer></exercise>
 <exercise number="4"><statement><p>  What sets of strings are defined by the following grammar?
 <ol label="a">
 <li><p>  Terminal symbols: \(\lambda\), \(a\), \(b\), and <m>c</m></p></li>
@@ -287,26 +293,49 @@ each character will use the same number of bits. </p></li>
 </ol>
 </p>
 </statement></exercise>
-<exercise number="5">å</exercise>
-<exercise number="6"><statement>  Define the following languages over B with phrase structure grammars. Which of these languages are regular? 
-
+<exercise number="5"><statement><p>Define the following languages over B with phrase structure grammars.
+ Which of these languages are regular?
+ <ol label="a">
+<li><p>  The strings with an odd number of characters.</p></li>
+<li><p>  The strings of length 4 or less.</p></li>
+<li><p>  The palindromes, strings that are the same backwards as forwards.</p></li>
+</ol>
+</p>
+</statement>
+<answer><p>
 <ol label="a">
-<li><p>  The strings with more 0s than 1s.</p></li>
-<li><p>  The strings with an even number of 1s.</p></li>
-<li><p> The strings for which all 0s precede all 1s.
-</statement></exercise>
-<exercise number="7"><statement>  Prove that if a language over <m>A</m> is recursive, then its complement is also recursive.
-</statement></exercise>
-<exercise number="8"><statement> Use BNF to define the grammars in Exercises 3 and 4.
+<li><p> Terminal symbols: The null string, 0, and 1.
+        Nonterminal symbols: S, E..  
+         Starting symbol: S.
+         Production rules: \(S\to 00S\), \(S\to 01S\),  \(S\to 10S\),  \(S\to 11S\),  \(S\to E\),  \(E\to 0\),  \(E\to 1\)
+ This is a regular grammar.
 
-
-
-<subsubsection xml:id="sss- B Exercise"><title> B Exercise</title><index><main> B Exercise</main></index>
+</p></li>
+<li><p>Terminal symbols: The null string,  0,  and 1. 
+Nonterminal symbols: <m>S</m>, <m>A</m>, <m>B</m>, <m>C</m> 
+Starting symbol: <m>S</m>
+Production rules: \(S \to  0A\), \(S \to  1A\), S $\to $ \lambda , \(A \to  0B\), \(A \to  1B\), \(A \to  \lambda\), \(B \to  0C\), \(B \to  1C\),
+\(B \to  A\), \(C \to  0\), \(C \to  1\), \(C \to  \lambda\) 
+ This is a regular grammar.
+</p></li>
+<li><p>See Exercise 3. This language is not regular.
+</p></answer></exercise>
+<exercise number="6"><statement><p>  Define the following languages over B with phrase structure grammars. Which of these languages are regular? 
+<ol label="a">
+<li><p>  The strings with more 0's than 1's.</p></li>
+<li><p>  The strings with an even number of 1's.</p></li>
+<li><p> The strings for which all 0's precede all 1's.</p></li>
+</ol>
+</p>
 </statement></exercise>
-<exercise number="9"><statement>  (a)Prove that if \(X_1, X_2, \ldots\)is a countable sequence of countable sets, the union of these sets, \(\underset{i=1}{\overset{\infty }{\cup
-}}X_i,\) is countable.</p></li>
-<li><p> Using the fact that the countable union of countable sets is countable, prove that if <m>A</m> is countable, then \textit{
-A* }is countable.</p></statement></exercise>
+<exercise number="7"><statement><p>Prove that if a language over <m>A</m> is recursive, then its complement is also recursive.</p>
+</statement></exercise>
+<exercise number="8"><statement><p> Use BNF to define the grammars in Exercises 3 and 4.</p>
+</statement></exercise>
+<exercise number="9"><statement><p><ol label="a">
+<li><p> Prove that if \(X_1, X_2, \ldots\)is a countable sequence of countable sets, the union of these sets, \(\underset{i=1}{\overset{\infty }{\cup}}X_i\) is countable.</p></li>
+<li><p> Using the fact that the countable union of countable sets is countable, prove that if <m>A</m> is countable, then \(A*\) is countable.</p></li>
+</ol></p></statement></exercise>
 </exercises>
 </section>
 
