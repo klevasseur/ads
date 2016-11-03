@@ -211,7 +211,6 @@ There are a total of \(52+52+63+63=230\) production rules for this grammar. The 
 <p>Backus-Naur form (BNF) is a popular alternate form of defining the production rules in a grammar. If the production rules \(A\to B_1, A\to B_2,\ldots  A\to B_n\) are part of a grammar, they would be written in BNF as \(A ::=B_1 \mid B_2\mid  \cdots \mid  B_n\). The symbol \(|\) in BNF is read as <q>or,</q> while the \(::=\) is read as <q>is defined as.</q> Additional notations of BNF are that \(\{x\}\), represents zero or more repetitions of <m>x</m> and <m>[y]</m>] means that <m>y</m> is optional.</p>
 
 <p> A BNF version of the production rules for a Sage variable, I, is
-
 	\[\begin{array}{l}
 	letter ::=a \mid b \mid c \mid \cdots \mid z\mid A\mid  B\mid \cdots \mid Z\\
  	digit::=0 \mid 1 \mid \cdots  \mid 9\\
@@ -221,79 +220,74 @@ There are a total of \(52+52+63+63=230\) production rules for this grammar. The 
 	\]
 </example
 
-<example xml:id="ex-14.2.8."><title>14.2.8.</title><p></p></example> An arithmetic expression can be defined in BNF. For simplicity, we will consider only expressions obtained using addition
-and multiplication of integers. The terminal symbols are \((,),+,*,-\), and the digits 0 through 9. The nonterminal symbols are <m>E</m> (for
-expression), <m>T</m> (term), <m>F</m> (factor), and <m>N</m> (number). The starting symbol is <m>E</m>.
-
-\(E\text ::=E+T|T\textrm{ }\) 
-
-\(T ::=T * F | F\) 
-
-\(F ::=(E)|N\) 
-
-\(N ::=[-]\textrm{ digit} \{\textrm{ digit}\}.\)
-
-One particularly simple type of phrase structure grammar is the regular grammar.
+<example xml:id="ex-arithmetic-expressions"><title>The language of simple arithmetic expressions</title><p>An arithmetic expression can be defined in BNF. For simplicity, we will consider only expressions obtained using addition
+and multiplication of integers. The terminal symbols are <c>(</c>,<c>)</c>,<c>+</c>,<c>*</c>, <c>-</c>, and the digits 0 through 9. The nonterminal symbols are <m>E</m> (for expression), <m>T</m> (term), <m>F</m> (factor), and <m>N</m> (number). The starting symbol is <m>E</m>. Production rules are 
+<me>\begin{array}{c}
+E\text ::=E+T \mid T\\
+T ::=T * F \mid F\\
+F ::=(E)\mid N\\ 
+N ::=[-]\textrm{digit} \{\textrm{digit}\}\\
+\\
+\end{array}
+</me></p></example> 
 
 
+<p>One particularly simple type of phrase structure grammar is the regular grammar.</p>
 
-\pmb{ Definition:} Regular Grammar. A regular (right-hand form) grammar is a grammar whose production rules are all of the form . \(A\to
-t\) and . \(A\to \textrm{ \textit{tB}}\), where A and B are nonterminal and t is terminal. A left-hand form grammar allows only . \(A\to
-t\) and . \(A\to \textrm{ \textit{Bt}}\), A language that has a regular phrase structure language is called a regular language.. 
 
-<example xml:id="ex-14.2.9."><title>14.2.9.</title><p></p></example><ol label="a">
-<li><p>  The set of Mathematica.  names is a regular language since the grammar by which we defined the set is a regular grammar.</p></li>
-<li><p>  The language of all strings for which all 0s precede all 1s (Example 14.2.4) is regular; however, the grammar by which we defined this set
+<definition xml:id="def-regular-grammar">
+<title>Regular Grammar</title>
+<index><main>Regular Grammar</main></index>
+<statement><p>A regular (right-hand form) grammar is a grammar whose production rules are all of the form . \(A\to
+t\) and . \(A\to tB}\), where A and B are nonterminal and t is terminal. A left-hand form grammar allows only . \(A \to
+t\) and . \(A\to Bt}\), A language that has a regular phrase structure language is called a regular language.</p></statement></definition>
+
+<example xml:id="ex-some-regular-grammars"><p><ol label="a">
+<li><p>  The set of Sage variable names is a regular language since the grammar by which we defined the set is a regular grammar.</p></li>
+<li><p>The language of all strings for which all 0s precede all 1s (Example 14.2.4) is regular; however, the grammar by which we defined this set
 is not regular. Can you define these strings with a regular grammar?</p></li>
-<li><p>  The language of arithmetic expressions is not regular.
+<li><p>The language of arithmetic expressions is not regular.</p></li>
+<ol></p></example>
 
 
 
 
 <exercises xml:id="exercises-14-2">
 <title>Exercises for Section 14.2</title>
-
-
-
-<exercisegroup>
-<introduction><p>A Exercises</p></introduction>
-
-<exercise number="1"><statement>  (a) If a computer is being designed to operate with a character set of 350 symbols, how many bits must be reserved for each character? Assume
+<exercise number="1"><statement><p><ol label="a">
+<li><p> If a computer is being designed to operate with a character set of 350 symbols, how many bits must be reserved for each character? Assume
 each character will use the same number of bits. </p></li>
-<li><p> Do the same for 3,500 symbols.
+<li><p> Do the same for 3,500 symbols.</p></li>
+</ol>
+</p>
 </statement></exercise>
-<exercise number="2"><statement>  It was pointed out in the text that the null string and the null set are different. The former is a string and the latter is a set, two different
-kinds of objects. Discuss how the two are similar.
+<exercise number="2"><statement><p> It was pointed out in the text that the null string and the null set are different. The former is a string and the latter is a set, two different kinds of objects. Discuss how the two are similar.</p>
 </statement></exercise>
-<exercise number="3"><statement>  What sets of strings are defined by the following grammar?
+<exercise number="3"><statement><p>  What sets of strings are defined by the following grammar?
 
 <ol label="a">
 <li><p>  Terminal symbols: \lambda , 0 and 1</p></li>
 <li><p>  Nonterminal symbols: <m>S</m> and <m>E</m></p></li>
 <li><p>   Starting symbol: S . </p></li>
-<li><p>   Production rules: \(S\to 0\textrm{ S0}, S\to 1\textrm{ S1}, S\to E, E\to \lambda , E\to 0, E\to 1.\)
+<li><p>   Production rules: \(S\to 0\textrm{ S0}, S\to 1\textrm{ S1}, S\to E, E\to \lambda , E\to 0, E\to 1.\)</p></li>
+</ol>
+</p>
 </statement></exercise>
-<exercise number="4"><statement>  What sets of strings are defined by the following grammar?
-
+<exercise number="4"><statement><p>  What sets of strings are defined by the following grammar?
 <ol label="a">
-<li><p>  Terminal symbols: \lambda , a, b, . and<m>c</m></p></li>
-<li><p>Nonterminal symbols: \(S, T,U \textrm{ and} E\)</p></li>
+<li><p>  Terminal symbols: \(\lambda\), \(a\), \(b\), and <m>c</m></p></li>
+<li><p>Nonterminal symbols: \(S, T, U \textrm{ and } E\)</p></li>
 <li><p>Starting symbol: <m>S</m></p></li>
-<li><p>Production rules: \(S\to \textrm{ \textit{aS}}, \textrm{ \textit{$S$}}\to \textrm{ \textit{$T$}}, T\to \textrm{ \textit{bT}}\textrm{ \textit{$,$}}\textrm{ \textit{$
-$}}\textrm{ \textit{$T\to U$}}\textrm{ \textit{$,$}}\textrm{ \textit{$ $}}\textrm{ \textit{$U$}}\to \textrm{ \textit{cU}}\textrm{ \textit{$,$}}\textrm{ \textit{$ $}}\textrm{ \textit{$U$}}\to
-\textrm{ \textit{$E$}}\textrm{ \textit{$,$}}\textrm{ \textit{$ $}}\textrm{ \textit{$E$}}\to \lambda .\)
+<li><p>Production rules:
+	\[\begin{array}{ccc}
+	 S\to aS &amp; S \to T &amp; T\to bT\\
+	 T\to U  &amp; U \to cU &amp; U \to E\\
+	 	&amp; E\to \lambda &amp;\\
+	 \end{array}\]</p></li>
+</ol>
+</p>
 </statement></exercise>
-<exercise number="5"><statement>  Define the following languages over B with phrase structure grammars.
-
-
-
- Which of these languages are regular?
-
-<ol label="a">
-<li><p>  The strings with an odd number of characters.</p></li>
-<li><p>  The strings of length 4 or less.</p></li>
-<li><p>  The palindromes, strings that are the same backwards as forwards.
-</statement></exercise>
+<exercise number="5">å</exercise>
 <exercise number="6"><statement>  Define the following languages over B with phrase structure grammars. Which of these languages are regular? 
 
 <ol label="a">
