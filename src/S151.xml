@@ -105,108 +105,60 @@ that \(\langle c \rangle \neq  H\). Then there exists \(b \in  H\) such that \(b
 
 <p>We now cite a useful theorem for computing the order of cyclic subgroups of a cyclic group:</p>
 
-<theorem xml:id="theorem-order-in-cyclic"><title>The order of elements of a finite cyclic group</title><index><main>Order</main><sub>of elements of a finite cyclic group</index><statement><p>If <m>G</m> is a cyclic group of order <m>n</m> and <m>a</m> is a generator of <m>G</m>, the order of \(k a\) is \(n/d\), where <m>d</m> is the greatest common divisor of <m>n</m> and <m>k</m>.</p></statement><proof><p>The proof of this theorem is left to the reader.</p></proof></theorem> 
+<theorem xml:id="theorem-order-in-cyclic"><title>The order of elements of a finite cyclic group</title><index><main>Order</main><sub>of elements of a finite cyclic group</index><statement><p>If <m>G</m> is a cyclic group of order <m>n</m> and <m>a</m> is a generator of <m>G</m>, the order of \(k a\) is \(n/d\), where <m>d</m> is the greatest common divisor of <m>n</m> and <m>k</m>.</p></statement>
+<proof><p>The proof of this theorem is left to the reader.</p></proof></theorem> 
 
 <example xml:id="ex-order-of-element-cyclic"><title>Computation of an order in a cyclic group</title><p>To compute the order of \(\langle 18 \rangle\) in \(\mathbb{Z}_{30}\), we first observe that 1 is a generator of \(\mathbb{Z}_{30}\)  and \(18= 18(1)\). The greatest common divisor of 18 and 30 is 6. Hence, the order of \(\langle 18 \rangle\) is 30/6, or 5.</p></example>
 
 
-<subsubsection xml:id="sss-APPLICATION: FAST ADDERS"><title>APPLICATION: FAST ADDERS</title><index><main>APPLICATION: FAST ADDERS</main></index>
+
+
+<p>At this point, we will introduce the idea of a fast adder, a relatively modern application (Winograd, 1965) to an ancient theorem, the Chinese Remainder Theorem. We will present only an overview of the theory and rely primarily on examples. The interested reader can refer to Dornhoff and Hohn for details.</p>
 
 
 
-At this point, we will introduce the idea of a fast adder, a relatively modern application (Winograd, 1965) to an ancient theorem, the Chinese Remainder
-Theorem. We will present only an overview of the theory and rely primarily on examples. The interested reader can refer to Dornhoff and Hohn for
-details.
-
-
-
-Out of necessity, integer addition with a computer is addition modulo <m>n</m>, for <m>n</m> some larger number. Consider the case where \textit{
-n} is small, like 64. Then addition involves the addition of six-digit binary numbers. Consider the process of adding 31 and 1. Assume the computer{'}s
+<p>Out of necessity, integer addition with a computer is addition modulo <m>n</m>, for <m>n</m> some larger number. Consider the case where \(n\) is small, like 64. Then addition involves the addition of six-digit binary numbers. Consider the process of adding 31 and 1. Assume the computer{'}s
 adder takes as input two bit strings  \(a = \left\{a_0,a_1,a_2,a_3,a_4,a_5\right\}\) and \(b=\left\{b_0,b_1,b_2,b_3,b_4,b_5\right\}\) and outputs
 \(s = \left\{s_0,s_1,s_2,s_3,s_4,s_5\right\}\), the sum of a and b. Then, if \(a = 31 = (1, 1, 1, 1, 1, 0)\) and \(b = 1 = (1, 0, 0, 0, 0, 0)\),
-<m>s</m> will be (0, 0, 0, 0, 0, 1), or 32. The output \(s_{5 }=1\) cannot be determined until all other outputs have been determined. If addition
-is done with a finite-state machine, as in Example 14.3.5, the time required to obtain <m>s</m> will be six time units, where one time unit is
-the time it takes to get one output from the machine.  In general, the time required to obtain <m>s</m> will be proportional to the number of
-bits   Theoretically, this time can be decreased, but the explanation would require a long digression and our relative results would not change
-that much. We will use the rule that the number of time units needed to perform addition modulo <m>n</m> is proportional to  \(\left\lceil \log
-_2n\right\rceil\).
+<m>s</m> will be (0, 0, 0, 0, 0, 1), or 32. The output \(s_{ }=1\) cannot be determined until all other outputs have been determined. If addition is done with a finite-state machine, as in Example 14.3.5, the time required to get <m>s</m> will be six time units, where one time unit is the time it takes to get one output from the machine.  In general, the time required to obtain <m>s</m> will be proportional to the number of bits   Theoretically, this time can be decreased, but the explanation would require a long digression and our relative results would not change that much. We will use the rule that the number of time units needed to perform addition modulo <m>n</m> is proportional to  \(\left\lceil \log_2n\right\rceil\).</p>
 
 
+<p>Now we will introduce a hypothetical problem that we will use to illustrate the idea of a fast adder. Suppose that we had to add many numbers modulo \(27720 = 8\cdot  9 \cdot \text 5 \cdot \text 7\cdot \text 11\). By the rule above, since \(2^{14} < 27720 < 2^{15}\), each addition would take 15 time units. If the sum is initialized to zero, 1,000 additions would be needed; thus, 15,000 time units would be needed to do the additions. We can improve this time dramatically by applying the Chinese Remainder Theorem.</p>
 
-Now we will introduce a hypothetical problem that we will use to illustrate the idea of a fast adder. Suppose that we had to add many numbers modulo
-\(27720 = 8\cdot  9 \cdot \text 5 \cdot \text 7\cdot \text 11\). By the rule above, since \(2^{14} < 27720 < 2^{15}\), each addition would
-take 15 time units. If the sum is initialized to zero, 1,000 additions would be needed; thus, 15,000 time units would be needed to do the additions.
-We can improve this time dramatically by applying the Chinese Remainder Theorem.
-
-\pmb{ The Chinese Remainder Theorem (CRT).} Let \(n_1\), \(n_2\), \(\ldots\), \(n_p\) be integers that have no common factor greater than one between
+<theorem xml:id="th-crt"><title>Chinese Remainder Theorem (CRT)</title>
+<index><main>Chinese Remainder Theorem</main></index>
+<index><main>CRT</main></index>
+<statement><p>Let \(n_1\), \(n_2\), \(\ldots\), \(n_p\) be integers that have no common factor greater than one between
 any pair of them; i. e., they are relatively prime.  Let \(n = n_1n_2\cdots  n_p\). Define
-
- $\quad \quad $\(\theta:\mathbb{Z}_n\to  \mathbb{Z}_{n_1}\times \mathbb{Z}_{n_2}\times  \cdots \times \mathbb{Z}_{n_p}\)
-
+\[\theta:\mathbb{Z}_n\to  \mathbb{Z}_{n_1}\times \mathbb{Z}_{n_2}\times  \cdots \times \mathbb{Z}_{n_p}\\
 by   
+\[\theta(k) = \left(k_1, k_2, \ldots , k_p\right)\]
+where for \(1\leq i\leq p\),   \(0\leq k_i &lt n_i\)   and  \(k\equiv k_i\left(\textrm{ mod} n_i\right)\).  Then \(\theta\) is an isomorphism from \(\mathbb{Z}_n\) into \(\mathbb{Z}_{n_1}\times \mathbb{Z}_{n_2}\times  \cdots \times \mathbb{Z}_{n_p}\).</p></statement></theorem>
 
-$\quad \quad $\(\theta(k) = \left(k_1, k_2, \ldots , k_p\right)\)
+<p>The Chinese Remainder Theorem can be stated in several different forms, and its proof can be found in many abstract algebra texts.</p>
 
-where for \(1\leq i\leq p\),   \(0\leq k_i<n_i\)   and  \(k\equiv k_i\left(\textrm{ mod} n_i\right)\).  Then \(\theta\) is an isomorphism from
-\(\mathbb{Z}_n\) into \(\mathbb{Z}_{n_1}\times \mathbb{Z}_{n_2}\times  \cdots \times \mathbb{Z}_{n_p}\).
+<p>As we saw in Chapter 11, \(\mathbb{Z}_6\) is isomorphic to \(\mathbb{Z}_2 \times  \mathbb{Z}_3\) . This is the smallest case to which the CRT can be applied. An isomorphism between \(\mathbb{Z}_6\) and \(\mathbb{Z}_2 \times  \mathbb{Z}_3\) is
+<me>\begin{array}{cc}
+\theta(0) = (0,0) &amp; \theta(3) = (1,0)\\
+\theta(1) = (1, 1) &amp; \theta(4) = (0, 1)\\ 
+\theta(2) = (0, 2) &amp; \theta(5) = (1,2)\\
+\end{array}
+</me></p>
 
+<p>Let's consider a somewhat larger case.  We start by selecting a modulus that can be factored into a product of relatively prime integers: \(n=21,600=2^5 3^3 5^2}\).  In this case the factors are \(2^5=32\), \(3^3=27\), and \(5^2=25\).  They need not be powers of primes, but it is easy to break the factors into
+this form to assure relatively prime numbers.  To add in \(\mathbb{Z}_n\), we need \(\left\lceil \log _2n\right\rceil =15\) time units.  Let \(G=\mathbb{Z}_{32}\times \mathbb{Z}_{27}\times \mathbb{Z}_{25}\).   The CRT gives us an isomorphism between \(\mathbb{Z}_{21600}\) and \(G\). The basic idea behind the fast adder, illustrated in Figure 15.1.3, is to make use of this isomorphism. 
 
+<figure></figure>
 
-This theorem can be stated in several different forms, and its proof can be found in many abstract algebra texts.
+<p>Assume we have several integers \(a_1, \ldots , a_m\) to be added.  Here, we assume \(m= 20\).
+</p>
+<sage>
+<input>
+a=[1878,1384,84,2021,784,1509,1740,1201,2363,1774,1865,33,1477,894,690,520,198,1349,1278,650]
+</input>
+</sage>
 
-
-
-<example xml:id="ex-15.1.8."><title>15.1.8.</title><p></p></example> As we saw in Chapter 11, \(\mathbb{Z}_6\) is isomorphic to \(\mathbb{Z}_2 \times  \mathbb{Z}_3\) . This is the smallest case
-to which the CRT can be applied. An isomorphism between \(\mathbb{Z}_6\) and \(\mathbb{Z}_2 \times  \mathbb{Z}_3\) is
-
-
-
-\(\theta(0) = (0,0)\) $\quad \quad $\(\theta(3) = (1,0)\) 
-
-
-
-\(\theta(1) = (1, 1)\) $\quad \quad $\(\theta(4) = (0, 1)\) 
-
-
-
-\(\theta(2) = (0, 2)\) $\quad \quad $\(\theta(5) = (1,2)\)
-
-
-
-Let{'}s consider a somewhat larger case.  We start by selecting a modulus that can be factored into a produce to relatively prime integers.  
-
-\begin{doublespace}
-\noindent\(\pmb{n=2^53^35^2}\)
-\end{doublespace}
-
-\begin{doublespace}
-\noindent\(21600\)
-\end{doublespace}
-
-
-
-In this case the factors are \(2^5=32\), \(3^3=27\), and \(5^2=25\).  They need not be powers of primes, but it is easy to break the factors into
-this form to assure relatively prime numbers.  To add in \(\mathbb{Z}_n\), we need \(\left\lceil \log _2n\right\rceil =15\) time units.  Let
-\(G=\mathbb{Z}_{32}\times \mathbb{Z}_{27}\times \mathbb{Z}_{25}\).   The CRT gives us an isomorphism between \(\mathbb{Z}_{21600}\) and \textit{
-G}. The basic idea behind the fast adder, illustrated in Figure 15.1.3, is to make use of this isomorphism. 
-
-\begin{doublespace}
-\noindent\(\)
-\end{doublespace}
-
-
-
-Assume we have several integers \(a_1, \ldots , a_m\) to be added.  Here, we assume \(m= 20\).
-
-\begin{doublespace}
-\noindent\(\pmb{a=\{1878,1384,84,2021,784,1509,1740,1201,2363,1774,1865,}\\
-\pmb{33,1477,894,690,520,198,1349,1278,650\};}\)
-\end{doublespace}
-
-
-
-After each of the \(s_i's\) is initialized to zero, each summand \(t\) is decomposed into a triple \(\theta(t)=\left(t_1,t_2,t_3\right)\in G\).
- For our example we first define \(\theta\) as a Mathematica.  function and then map it over the list of summands.
+<p>After sums \(s_i's\), \(1 &lte; i &lte; m\), are initialized to zero, each summand \(t\) is decomposed into a triple \(\theta(t)=\left(t_1,t_2,t_3\right)\in G\).  For our example we first define \(\theta\) as a Sage function and then map it over the list of summands.</p>
 
 \begin{doublespace}
 \noindent\(\pmb{\theta[\textrm{ n$\_$}]\textrm{ :=}\{\textrm{ Mod}[n,32],\textrm{ Mod}[n,27],\textrm{ Mod}[n,25]\}}\)
@@ -346,63 +298,46 @@ To further illustrate the potential of fast adders, consider the problem of addi
 
 
 
-Each addition using the usual modulo <m>n</m> addition with full adders would take 72 time units. By decomposing each summand into 15-tuples according
-to the CRT, the time is reduced to \(\left\lceil \log _249\right\rceil =6\) time units per addition.
+<p>Each addition using the usual modulo <m>n</m> addition with full adders would take 72 time units. By decomposing each summand into 15-tuples according
+to the CRT, the time is reduced to \(\left\lceil \log _249\right\rceil =6\) time units per addition.</p>
 
 
 <exercises xml:id="exercises-15-1">
 <title>Exercises for Section 15.1</title>
-
-
-
 <exercisegroup>
 <introduction><p>A Exercises</p></introduction>
-
-<exercise number="1"><statement> What generators besides 1 does \([\mathbb{Z}, +]\) have?
-</statement></exercise>
-<exercise number="2"><statement>  Without doing any multiplications, determine the number of generators of  \([\mathbb{Z}_{11}, +_{11}]\).
-</statement></exercise>
-<exercise number="3"><statement> Prove that if \(\lvert G\rvert >2\) and <m>G</m> is cyclic, <m>G</m> has at least two generators.
-</statement></exercise>
-<exercise number="4"><statement>  If you wanted to list the generators of \(\mathbb{Z}_n\) you would only have to test the first \(n/2\) positive integers. Why?
-</statement></exercise>
-<exercise number="5"><statement>  Which of the following groups are cyclic? Explain.
-
+<exercise number="1"><statement><p> What generators besides 1 does \([\mathbb{Z}, +]\) have?</p></statement></exercise>
+<exercise number="2"><statement><p>  Without doing any multiplications, determine the number of generators of  \([\mathbb{Z}_{11}, +_{11}]\).</p></statement></exercise>
+<exercise number="3"><statement><p> Prove that if \(\lvert G\rvert >2\) and <m>G</m> is cyclic, <m>G</m> has at least two generators.</p></statement></exercise>
+<exercise number="4"><statement><p>  If you wanted to list the generators of \(\mathbb{Z}_n\) you would only have to test the first \(n/2\) positive integers. Why?</p></statement></exercise>
+<exercise number="5"><statement><p>  Which of the following groups are cyclic? Explain.
 <ol label="a">
-<li><p> \([\mathbb{Q}, +]\)
-</p></li>
-<li><p>  \([\mathbb{R}^+,\cdot ]\)
-</p></li>
-<li><p> \([6\mathbb{Z}, +]\) where \(6\mathbb{Z} = \{6n |n \in  \mathbb{Z}\}\)
-</p></li>
-<li><p> \(\mathbb{Z} \times  \mathbb{Z}\)
-</p></li>
-<li><p> \(\mathbb{Z}_2\times  \mathbb{Z}_3 \times  \mathbb{Z}_{25}\)
-</statement></exercise>
-<exercise number="6"><statement>  For each group and element, determine the order of the cyclic subgroup generated by the element:
-
+<li><p> \([\mathbb{Q}, +]\)</p></li>
+<li><p>  \([\mathbb{R}^+,\cdot ]\)</p></li>
+<li><p> \([6\mathbb{Z}, +]\) where \(6\mathbb{Z} = \{6n |n \in  \mathbb{Z}\}\)</p></li>
+<li><p> \(\mathbb{Z} \times  \mathbb{Z}\)</p></li>
+<li><p> \(\mathbb{Z}_2\times  \mathbb{Z}_3 \times  \mathbb{Z}_{25}\)</p></li>
+</ol></p></statement></exercise>
+<exercise number="6"><statement> <p> For each group and element, determine the order of the cyclic subgroup generated by the element:
 <ol label="a">
 <li><p>  \(\mathbb{Z}_{25}\) , 15
 </p></li>
 <li><p> \(\mathbb{Z}_4\times \mathbb{Z}_9\) , \((2, 6)\) (apply Exercise 8)
 </p></li>
-<li><p>  \(\mathbb{Z}_{64}\) , 2
-
-
+<li><p>  \(\mathbb{Z}_{64}\) , 2</p></li>
+</ol></p></statement></exercise>
 </exercisegroup>
 <exercisegroup>
 <introduction><p>B Exercises</p></introduction>
+<exercise number="7"><statement><p>  How can Theorem 15.1.4 be applied to list the generators of \(\mathbb{Z}_n\)? What are the generators of \(\mathbb{Z}_{25}\)? Of \(\mathbb{Z}_{256}\)?</p></statement></exercise>
+<exercise number="8"><statement><p>  Prove that if the greatest common divisor of <m>n</m> and <m>m</m> is 1, then (1, 1) is a generator of \(\mathbb{Z}_n\times \mathbb{Z}_m\), and, hence, \(\mathbb{Z}_n\times \mathbb{Z}_m\) is isomorphic to  \(\mathbb{Z}_{n m}\).</p></statement></exercise>
+<exercise number="9"><statement><p><ol label="a">
+<li><p>Illustrate how the fast adder can be used to add the numbers 21, 5, 7, and 15 using the isomorphism between \(\mathbb{Z}_{77}\) and \(\mathbb{Z}_7\times \mathbb{Z}_{11}\). </p></li>
+<li><p> If the same isomorphism is used to add the numbers 25, 26, and 40, what would the result be, why would it be incorrect, and how would the answer differ from the answer in part a?</p></li>
+</ol>
+</p>
 </statement></exercise>
-<exercise number="7"><statement>  How can Theorem 15.1.4 be applied to list the generators of \(\mathbb{Z}_n\)? What are the generators of \(\mathbb{Z}_{25}\)? Of \(\mathbb{Z}_{256}\)?
-</statement></exercise>
-<exercise number="8"><statement>  Prove that if the greatest common divisor of <m>n</m> and <m>m</m> is 1, then (1, 1) is a generator of \(\mathbb{Z}_n\times \mathbb{Z}_m\),
-and, hence, \(\mathbb{Z}_n\times \mathbb{Z}_m\) is isomorphic to  \(\mathbb{Z}_{n m}\).
-</statement></exercise>
-<exercise number="9"><statement>  (a) Illustrate how the fast adder can be used to add the numbers 21, 5, 7, and 15 using the isomorphism between \(\mathbb{Z}_{77}\) and \(\mathbb{Z}_7\times
-\mathbb{Z}_{11}\). </p></li>
-<li><p> If the same isomorphism is used to add the numbers 25, 26, and 40, what would the result be, why would it be incorrect, and how would the answer
-differ from the answer in part a?
-</statement></exercise>
-<exercise number="10"><statement>   Prove that if G . is a cyclic group of order n . with generator <m>a</m>, and\(p, q \in  \{0, 1, \ldots , n - 1\}\), then
-  
-\((p+q)a = \left(p+_nq\right)a\)
+<exercise number="10"><statement><p>   Prove that if G . is a cyclic group of order n . with generator <m>a</m>, and\(p, q \in  \{0, 1, \ldots , n - 1\}\), then \((p+q)a = \left(p+_nq\right)a\) </p></statement></exercise>
+</exercisegroup>
+</exercises>
+</section>
