@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="s-Normal Subgroups and Group Homomorphisms">
+<title>Normal Subgroups and Group Homomorphisms</title>
+<index><main>Normal Subgroups and Group Homomorphisms</main></index>
+
+
+
+Our goal in this section is to answer an open question and introduce a related concept. The question is: When are left cosets of a subgroup a group
+under the induced operation? This question is open for non-abelian groups. Now that we have some examples to work with, we can try a few experiments.
+
+
+
+<subsection xml:id="ss-NORMAL SUBGROUPS"><title>NORMAL SUBGROUPS</title><index><main>NORMAL SUBGROUPS</main></index>
+
+<example xml:id="ex-15.4.1"><title>15.4.1</title><p></p></example>  \(A_3= \left\{i,r_1,r_2\right\}\) is a subgroup of \(S_3\), and its left cosets are \(A_3\) itself and \(B_3=\left\{f_1,f_2,f_3\right\}\)
+. Whether \(\left\{A_3 , B_3 \right\}\) is a group boils down to determining whether the induced operation is well defined.   Consider the operation
+table for \(S_3\)in Figure 15.4.1.
+
+\includegraphics{C15b_gr1.eps}
+
+
+\caption{\pmb{ Figure 15.4.1\\
+Shaded operation table for }\pmb{ \(S_3\)}}
+
+We have shaded in all occurrences of the elements of \(B_3\) in gray. We will call these elements the gray elements and the elements of \(A_3\) the
+white ones.
+
+Now consider the process of computing the coset product \(A_3\circ B_3\). The  <q>product</q> is obtained by selecting one white element and one
+gray element. Note that white <q>times</q> gray is always gray. Thus, \(A_3\circ B_3\) is well defined. Similarly, the other three possible products
+are well defined. The table for the factor group \(S_3/A_3\) is
+
+   \(\begin{array}{c|c}
+ \circ  &amp; 
+\begin{array}{cc}
+ A_3 &amp; B_3 \\
+\end{array}
+ \\
+\hline
+ 
+\begin{array}{c}
+ A_{3 } \\
+ B_3 \\
+\end{array}
+ &amp; 
+\begin{array}{cc}
+ A_3 &amp; B_3 \\
+ B_3 &amp; A_3 \\
+\end{array}
+ \\
+\end{array}\)
+
+Clearly, \(S_3/A_3\) is isomorphic toe \(\mathbb{Z}_2\).   Note that \(A_3\) and \(B_3\) are also the right cosets of \(A_3\).  This is significant.
+
+<example xml:id="ex-15.4.2."><title>15.4.2.</title><p></p></example> Now let's try the left cosets of \(\left\langle f_1\right\rangle\) in \(S_3\). There are three of them. Will we get a complicated
+version of \(\mathbb{Z}_3\) ? The left cosets are
+
+ \(C_0=\left\langle f_1\right\rangle\), \(C_1= r_1\left\langle f_1\right\rangle = \left\{r_1,f_3\right\}\),  and \(C_2= r_2\left\langle
+f_1\right\rangle = \left\{r_2,f_2\right\}\)
+
+The reader might be expecting something to go wrong eventually, and here it is. To determine \(C_1\circ C_2\) we can choose from four pairs of representatives:
+
+\(r_1\in C_1\), \(r_2\in C_2\)    \(\longrightarrow \text r_1\circ r_2=i\in C_0\)
+
+\(r_1\in C_1\), \(f_2\in C_2\)    \(\longrightarrow \text r_1\circ f_2=f\in C_0\)
+
+\(f_3\in C_1\), \(r_2\in C_2\)    \(\longrightarrow \text f_3\circ r_2=f_2\in C_2\)
+
+\(f_3\in C_1\), \(f_2\in C_2\)    \(\longrightarrow \text f_3\circ f_2=r_2\in C_2\)
+
+This time, we don't get the same coset for each pair of representatives. Therefore, the induced operation is not well defined and no factor group
+is obtained.
+
+
+
+Commentary: This last development changes our course of action. If we had gotten a factor group from \(\left\{C_0,C_1,C_2\right\}\), we might have
+hoped to prove that every collection of left cosets forms a group. Now our question is: How can we determine whether we will get a factor group?
+Of course, this question is equivalent to: When is the induced operation well defined? There was only one step in the proof of Theorem 15.2.3, where
+we used the fact that <m>G</m> was abelian. We repeat the equations here:
+
+
+
+\(a'*b' = \left(a*h_1\right)*\left(b*h_2 \right) = (a*b)*\left(h_1*h_2\right)\),
+
+
+
+since <m>G</m> was abelian.
+
+
+
+The last step was made possible by the fact that \(h_1*b=b*h_1\). As the proof continued, we used the fact that \(h_1*h_2\) was in <m>H</m> and
+so \(a'*b'\) is \((a*b)*h\) for some <m>h</m> in <m>H</m>. All that we really needed in the <q>abelian step</q> was that
+
+
+
+\(h_1*b = b*(\textrm{ something} \textrm{ in} H) = b*h_3\) .
+
+
+
+Then, since <m>H</m> is closed under <m>G</m>'s operation, \(h_3*h_2\) is an element of <m>H</m>. The consequence of this observation is
+included in the following theorem, the proof of which can be found in any abstract algebra text.
+
+<theorem xml:id="theorem-15.4.1."><title>15.4.1.</title><index><main>15.4.1.</main></index><statement></statement><proof></proof></theorem>  If \(H \leq G\), then the operation induced on left cosets of <m>H</m> by the operation of <m>G</m> is well defined
+if and only if  any one of the following conditions is true:<ol label="a">
+<li><p> If \(h \in  H\), \(a \in  G\), then there exists \(h' \in  H\) such that \(h*a = a*h'\).
+
+(b) If \(h \in H\), \(a \in G\), then \(a^{-1}*h*a \in  H\).
+
+(c) Every left coset of <m>H</m> is equal to a right coset of <m>H</m>.
+
+\pmb{ Corollary 15.4.2. }   If \(H \leq G\), then the operation induced on left cosets of <m>H</m> by the operation of <m>G</m> is well defined
+if either of the following two conditions is true.<ol label="a">
+<li><p><m>G</m> is abelian.
+
+(b) \(\left| H\right|  = \frac{\left| G\right| }{2}\).
+
+<example xml:id="ex-15.4.3."><title>15.4.3.</title><p></p></example> The right cosets of \(\left\langle f_1\right\rangle \leq  S_3\) are \(\left\{i, f_1\right\}\), \(\left\{r_1 f_2 \right\}\),
+and \(\left\{r_2 ,f_3\right\}\). These are not the same as the left cosets of \(\left\langle f_1\right\rangle\). In addition, \(f_2{}^{-1}f_1f_2=f_2f_1f_2=f_3\notin
+\left\langle f_1\right\rangle\).  
+
+<definition xml:id="def-Normal Subgroup."><title>Normal Subgroup.</title><index><main>Normal Subgroup.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+
+ If G is a group, \(H \leq  G\), then H is called a normal subgroup of  G, denoted \(H \triangleleft  G\), if
+it satisfies any of the conditions of Theorem 15.4.1.
+
+<example xml:id="ex-15.4.4."><title>15.4.4.</title><p></p></example> The improper subgroups \(\{e\}\) and <m>G</m> of any group <m>G</m> are normal subgroups.  \(G/\{e\}\) is isomorphic
+to <m>G</m>.  All other normal subgroups of a group, if they exist are called proper normal subgroups.. 
+
+<example xml:id="ex-15.4.5."><title>15.4.5.</title><p></p></example> By Condition b of Corollary 15.4.2, \(A_n\) is a normal subgroup of \(S_n\) and \(S_n/A_n\)  is isomorphic
+to \(\mathbb{Z}_2\).
+
+<example xml:id="ex-15.4.6."><title>15.4.6.</title><p></p></example>  \(A_5\), a group in its own right with 60 elements, has many proper subgroups, but none are normal. Although this could
+be done by brute force, the number of elements in the group would make the process tedious.  A far more elegant way to approach the verification
+of this statement is to use the following fact about the cycle structure of permutations.    If \(f\in S_n\) is a permutation with a certain
+cycle structure,  \(\sigma _1\sigma _2\cdots \sigma _k\), where the length of \(\sigma _i\) is \(\ell _i\), then for any \(g\in S_n\),   \(g^{-1}\circ
+f\circ g\) , which is the conjugate of f by g, .  will have a cycle structure with exactly the same cycle lengths.   For example if we
+take \(f=(1,2,3,4)(5,6)(7,8,9)\in S_9\) and conjugate by \(g=(1,3,5,7,9)\),
+
+\(\textrm{              }g^{-1}\circ f\circ g=(1,9,7,5,3)\circ (1,2,3,4)(5,6)(7,8,9)\circ (1,3,5,7,9)\quad \quad = (1,4,9,2)(3,6)(5,8,7)\)
+
+
+
+Notice that the condition for normality of a subgroup H . of <m>G</m> is that the conjugate of any element of H .  by an element
+of <m>G</m> must be remain in <m>H</m>.   
+
+To verify that \(A_5\) has no proper normal subgroups, you can start by cataloging the different cycle structures that occur in \(A_5\) and how many
+elements have those structures.   Then consider what happens when you conjugate these different cycle structures with elements of \(A_5\).  
+An outline of the process is in the exercises.
+
+<example xml:id="ex-15.4.7."><title>15.4.7.</title><p></p></example>  Let G be the set of two by two invertible matrices of real numbers.  That is,
+
+\(G=\left\{\left.\left(
+\begin{array}{cc}
+ a &amp; b \\
+ c &amp; d \\
+\end{array}
+\right)\right| a,b,c,d\in \mathbb{R}, a d-b c\neq  0\right\}\)
+
+We saw in Chapter 11 that <m>G</m> is a group with matrix multiplication.
+
+\(H_1=\left\{\left.\left(
+\begin{array}{cc}
+ a &amp; 0 \\
+ 0 &amp; a \\
+\end{array}
+\right)\right| a \neq 0\right\}\)   and \(H_2=\left\{\left.\left(
+\begin{array}{cc}
+ a &amp; 0 \\
+ 0 &amp; d \\
+\end{array}
+\right)\right| a d \neq 0\right\}\)
+
+are both subgroups of G.   . \(H_1\) a normal subgroup of G, . while \(H_2\) is not normal.
+
+
+
+<subsubsection xml:id="sss-Homomorphisms"><title>Homomorphisms</title><index><main>Homomorphisms</main></index>
+
+
+
+Think of the word isomorphism. . Chances are, one of the first images that comes to mind is an equation something like
+
+
+
+ \(\theta (x * y) = \theta (x) \diamond  \theta (y)\)  $\quad \quad $(H)
+
+
+
+An isomorphism must be a bijection, but equation (H) is the algebraic feature of an isomorphism. Here we will examine functions that satisfy equations
+of this type.
+
+
+
+Many homomorphisms are useful since they point out similarities between the two groups (or, on the universal level, two algebraic systems) involved.
+
+
+
+Consider the groups \(\left[\mathbb{R}^3 , +\right]\) and \(\left[\mathbb{R}^2,+\right]\). Every time you use a camera, you are trying to transfer
+the essence of something three-dimensional onto a photograph$---$that is, something two-dimensional.  If you show a friend a photo you have taken,
+that person can appreciate much of what you saw, even though a dimension is lacking. The <q>picture-taking</q> map is a function \(f : \mathbb{R}^3
+\to  \mathbb{R}^2\) defined by \(f\left(x_1, x_2 , x_3 \right) = \left(x_1,x_2\right)\). This function is not a bijection, but it does satisfy the
+equation \(f(x + y) =f(x) + f(y)\) for \(x = \left(x_1,x_2,x_3\right)\) and \(y = \left(y_1,y_2,y_3\right)\). Such a function is called a homomorphism,
+and when a homomorphism exists between two groups, the groups are called homomorphic that is, they are similar.  A question that arises with groups,
+or other algebraic structures, that we claim are homomorphic, or similar, is: How similar are they? When we say that two groups are isomorphic$---$that
+is, identical$---$the map that we use to prove this is unimportant. However, when we say that two groups are homomorphic, the map used gives us a
+measure of the group's similarities (or dissimilarities). For example, the maps:
+
+
+
+\(f_1: \mathbb{R}^3 \to  \mathbb{R}^3\) defined by \(f_1\left(x_1,x_2,x_3\right)=\left(x_1,x_2,x_3\right)\),
+
+
+
+\(f_2 : \mathbb{R}^3 \to  \mathbb{R}^3\) defined by \(f_2\left(x_1,x_2,x_3\right)=\left(x_1,x_2,0\right)\), and
+
+
+
+\(f_3 : \mathbb{R}^3 \to  \mathbb{R}^3\) defined by \(f_3\left(x_1,x_2,x_3\right)=(0,0,0)\)
+
+
+
+are all homomorphisms. Think of them all as <q>picture-taking</q> maps, or cameras. The first camera gives us a three-dimensional picture, the ideal,
+actually an isomorphism. The second gives us the usual two-dimensional picture, certainly something quite worthwhile. The third collapses the whole
+scene onto a point, a <q>black dot,</q> which gives no idea of the original structure. Hence, the knowledge that two groups are homomorphic doesn{'}t
+give complete information about the similarities in the structures of the two groups.  For this reason, the term homomorphic is rarely used (unlike
+isomorphic), and the functions, the homomorphisms, are studied.
+
+
+
+<definition xml:id="def-Homomorphism."><title>Homomorphism.</title><index><main>Homomorphism.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+
+ Let \([G, *]\) and \([G',\diamond ]\) be groups. \(\theta :G\to G'\) is a homomorphism if \(\theta (x * y) = \theta
+(x) \diamond  \theta (y)\) for all \(x, y \in G\).
+
+
+
+<example xml:id="ex-15.4.8."><title>15.4.8.</title><p></p></example>  Define \(\alpha :\mathbb{Z}_6\to \mathbb{Z}_3\) by \(\alpha (n)=n(1)\), where \(n \in  \mathbb{Z}_6\) and \(n(1)\) is the
+sum of <m>n</m> ones in \(\mathbb{Z}_3\). Therefore, \(\alpha (0) = 0\), \(\alpha (1) = 1\), \(\alpha (2) = 2\), \(\alpha (3) =1 + 1 + 1=0\),
+\(\alpha (4) = 1\), and \(\alpha (5) = 2\). If \(n, m \in \mathbb{Z}_6\),
+
+
+
+\(\textrm{          }\alpha \left(n +_6 m\right) = \left(n +_6 m\right)(1)\quad \quad =n(1)+_3m(1)\quad \quad =\alpha (n)+_3\alpha (m)\)
+
+
+
+<theorem xml:id="theorem-15.4.2."><title>15.4.2.</title><index><main>15.4.2.</main></index><statement></statement><proof></proof></theorem> A few properties of homomorphisms are that if \(\theta : G \rightarrow  G'\) is a homomorphism, then:
+
+<ol label="a">
+<li><p>  \(\theta (e) = \theta (\textrm{ identity} \textrm{ of} G) = \textrm{ identity} \textrm{ of} G' = e'\).
+</p></li>
+<li><p>  \(\theta \left(a ^{-1}\right) = \theta (a)^{-1}\) for all \(a \in  G\).
+</p></li>
+<li><p>If \(H \leq  G\), then \(\theta (H) = \{\theta (h) | h\in H\}\leq G'\).
+
+
+
+Proof:
+
+<ol label="a">
+<li><p>Let <m>a</m> be any element of <m>G</m>. Then \(\theta (a) \in  G'\).
+
+
+
+\(\textrm{                }\theta (a)\diamond  e' = \theta (a)\textrm{                }\textrm{ by} \textrm{ the} \textrm{ definition} \textrm{ of} e'\textrm{ $\quad
+$                 }=\theta  (a*e)\textrm{            }\textrm{ by} \textrm{ the} \textrm{ definition} \textrm{ of} e\textrm{                  }= \theta (a)\diamond
+\theta (e)\textrm{     }\textrm{ by} \textrm{ the} \textrm{ fact} \textrm{ that} \theta  \textrm{ is} a \textrm{ homomorphism}\)
+
+
+
+By cancellation, \(e' = \theta (e)\).</p></li>
+<li><p>Again, let \(a \in G\).
+
+
+
+$\quad \quad $\(e' = \theta (e) = \theta \left(a*a^{-1} \right) = \theta (a)\diamond \theta \left(a^{-1}\right)\).
+
+
+
+Hence, by the uniqueness of inverses,  \(\theta (a) ^{-1}= \theta \left(a^{-1}\right)\).</p></li>
+<li><p> Let \(b_1, b_2 \in  \theta (H)\). Then there exists \(a_1,a_2\in H\) such that \(\theta \left(a_1\right) = b_1\), \(\theta \left(a_2\right) =
+b_2\). Recall that a compact necessary and sufficient condition for \(H \leq  G\) is that \(x*y^{-1}\in H\)  for all \(x, y \in H\).  Now we
+apply the same fact in G' :
+
+
+
+ \(b_1\diamond b_2{}^{-1} = \theta \left(a_1\right)\diamond \theta \left(a_2\right){}^{-1}\\
+\\
+\quad \quad =\theta \left(a_1\right)\diamond \theta \left(a_2{}^{-1}\right)\\
+\\
+\quad \quad =\theta \left(a_1*a_2{}^{-1}\right)\in \theta (H)\)
+
+
+
+since  \(a_1*a_2{}^{-1}\in H\), and so we can conclude that  \(\theta (H)\leq G'\). $\blacksquare $
+
+\pmb{ Corollary}.  Since a homomorphism need not be a surjection and part (c) of Theorem 15.4.2 is true for the case of \(H = G\), the range of
+\(\theta\), \(\theta (G)\), is a subgroup of \(G'\)
+
+<example xml:id="ex-15.4.9."><title>15.4.9.</title><p></p></example> If we define \(\pi : \mathbb{Z} \rightarrow  \mathbb{Z}/4\mathbb{Z}\) by \(\pi (n) = n + 4\mathbb{Z}\). then \(\pi\) is a
+homomorphism. The image of the subgroup \(4\mathbb{Z}\) is the single coset \(0 + 4\mathbb{Z}\), the identity of the factor group. Homomorphisms
+of this type are called natural homomorphisms. . The following theorems will verify that $\pi $ is a homomorphism and also show the connection
+between homomorphisms and normal subgroups. The reader can find more detail and proofs in most abstract algebra texts.
+
+<theorem xml:id="theorem-15.4.3."><title>15.4.3.</title><index><main>15.4.3.</main></index><statement></statement><proof></proof></theorem> If \(H \triangleleft  G\), then the function \(\pi :G\to  G/H\) defined by \(\pi (a) = a H\) is a homomorphism, called the
+natural homomorphism.
+
+
+
+Based on Theorem 15.4.3, every normal subgroup gives us a homomorphism.
+
+<definition xml:id="def-Kernel."><title>Kernel.</title><index><main>Kernel.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+
+  Let  \(\theta : G \to  G'\) be a homomorphism, and let e'be the identity of G'. The kernel of \(\theta\) is the set
+
+
+$\quad \quad \quad $\(\ker  \theta =\{a\in G | \theta (a)=e'\}\)
+
+<theorem xml:id="theorem-15.4.4."><title>15.4.4.</title><index><main>15.4.4.</main></index><statement></statement><proof></proof></theorem> Let \(\theta : G \to  G'\) be a homomorphism from G into G'. The kernel of $\theta $ is a normal subgroup of G.
+
+
+
+Based on Theorem 15.4.4, every homomorphism gives us a normal subgroup.
+
+<theorem xml:id="theorem-15.4.5 : Fundamental Theorem of Group Homomorphisms."><title>15.4.5 : Fundamental Theorem of Group Homomorphisms.</title><index><main>15.4.5 : Fundamental Theorem of Group Homomorphisms.</main></index><statement></statement><proof></proof></theorem>  Let  \(\theta : G \to  G'\) be a homomorphism.  Then \(\theta (G)\) is
+isomorphic to \(G/\ker  \theta\).
+
+<example xml:id="ex-15.4.10."><title>15.4.10.</title><p></p></example> Define  \(\theta : \mathbb{Z} \rightarrow  \mathbb{Z}_{10}\) by \(\theta (n) =\) the remainder from dividing <m>n</m>
+by 10. The three previous theorems imply the following:
+
+(15.4.3)\(\textrm{     }\pi : \mathbb{Z} \rightarrow  \mathbb{Z}/10\mathbb{Z}\) defined by \(\pi (n) = n + 10\mathbb{Z}\) is a homomorphism.
+
+(15.4.4)  \(\{n\in \mathbb{Z}|\theta (n) = 0\} = \{10n|n \in \mathbb{Z}\}= 10\mathbb{Z} \triangleleft  \mathbb{Z}\).
+
+(15.4.5)   \(\mathbb{Z}/10\mathbb{Z}\) is isomorphic to \(\mathbb{Z}_{10}\) .
+
+<example xml:id="ex-15.4.11."><title>15.4.11.</title><p></p></example>  Let <m>G</m> be the same group of two by two invertible real matrices as in Example 15.4.6.  Define \(\Phi : G \rightarrow
+ G\) by \(\Phi (A) = \frac{A}{\sqrt{\left| \det  A\right| }}\). We will let the reader verify that \(\Phi\) is a homomorphism. The theorems above
+imply:
+
+
+
+(15.4.4) \(\ker  \Phi  = \{A|\Phi (A) =I\} = \left\{ \left.\left(
+\begin{array}{cc}
+ a &amp; 0 \\
+ 0 &amp; a \\
+\end{array}
+\right) \right|a\in \mathbb{R},a\neq 0\right\}\triangleleft G\).  This verifies our statement in Example 15.4.6. As in that example, let \(\ker
+ \Phi  = H_1\).
+
+
+
+(15.4.5) \(G\left/H_1\right.\) is isomorphic to \(\{A\in G|\det  A= \pm 1\}\).
+
+
+
+(15.4.3)  \(\pi : G ---> G\left/H_1\right.\) defined, naturally, by \(\pi (A) =A H_1\) is a homomorphism.
+
+
+
+For the remainder of this section, we will be examining certain kinds of homomorphisms that will play a part in our major application to homomorphisms,
+coding theory.
+
+<example xml:id="ex-15.4.12."><title>15.4.12.</title><p></p></example> Consider  \(\Phi :\mathbb{Z}_2{}^2\to \mathbb{Z}_2{}^3\) defined by \(\Phi (a, b) = \left(a, b, a +_2 b\right)\).   If
+\(\left(a_1,b_1\right), \left(a _2 , b_2 \right) \in  \mathbb{Z}_2{}^2\),
+
+\(\Phi \left(\left(a_1,b_1\right)+\left(a _2 , b_2 \right)\right) = \Phi \left(a_1+_2a_2,b_1 +_2 b_2 \right)\\
+\\
+\quad \quad \quad = \left(a_1+_2a_2,b_1 +_2 b_2 ,a_1+_2a_2+_2b_1 +_2 b_2\right)\\
+\\
+\quad \quad \quad = \left(a_1,b_1 , a_1+_2b_1\right)+\left(a_2,b_2 , a_2+_2b_2\right)\\
+\\
+\quad \quad \quad =\Phi \left(a_1,b_1\right)+\Phi \left(a _2 , b_2 \right)\)
+
+Since \(\Phi (a, b)\text = (0, 0, 0)\) implies that \(a = 0\) and \(b = 0\), the kernel of \(\Phi\) is \(\{(0, 0)\}\). By previous theorems, \(\Phi
+\left(\mathbb{Z}_2{}^2\right)= \{(0, 0, 0), (1, 0, 1), (0, 1, 1), (1, 1, 0)\}\) is isomorphic to \(\mathbb{Z}_2{}^2\) .
+
+We can generalize the previous example as follows: If \(n, m \geq  1\) and <m>A</m> an \(m\times  n\) matrix of 0{'}s and 1{'}s (elements of \(\mathbb{Z}_2\)),
+then \(\Phi :\mathbb{Z}_2{}^m\to \mathbb{Z}_2{}^n\) defined by
+
+\(\Phi \left(a_1, a_2 , . . . , a _m \right) = \left(a_1, a_2 , . . . , a _m\right)A\)
+
+is a homomorphism. This is true because matrix multiplication is distributive over addition. The only new idea here is that computation is done in
+\(\mathbb{Z}_2\) where \(1 +_2 1 = 0\).  If \(a=\left(a_1, a_2 , . . . , a _m\right)\) and \(b=\left(b_1, b_2 , . . . , b _m\right)\), \((a + b)A
+= a A + b A\) is true by basic matrix laws.  Therefore, \(\Phi (a + b) = \Phi (a) + \Phi (b)\).
+
+
+<exercises xml:id="exercises-15-4">
+<title>Exercises for Section 15.4</title>
+
+
+
+<exercisegroup>
+<introduction><p>A Exercises</p></introduction>
+
+<exercise number="1"><statement> Which of the following functions are homomorphisms? What are the kernels of those functions that are homomorphisms?
+
+<ol label="a">
+<li><p>  \(\theta _1: \mathbb{R}^* \to  \mathbb{R}^+\) defined by \(\theta _1(a) =\left| a\right|\).</p></li>
+<li><p> \(\theta _2 : \mathbb{Z}_8 \rightarrow  \mathbb{Z}_2\) where \(\theta _2(n) =\left\{
+\begin{array}{cc}
+ 0 &amp; \textrm{ if} n \textrm{ is} \textrm{ even} \\
+ 1 &amp; \textrm{ if} n \textrm{ is} \textrm{ odd} \\
+\end{array}
+ \right.\) .</p></li>
+<li><p> \(\theta _3 : \mathbb{R} \times  \mathbb{R} \rightarrow  \mathbb{R}\), where \(\theta _3(a, b) = a + b\).</p></li>
+<li><p>  \(\theta _4 : S_4 \to S_4\) defined by \(\theta _4(f) = f\circ f=f^2\) .
+</statement></exercise>
+<exercise number="2"><statement> Which of the following functions are homomorphisms? What are the kernels of those functions that are homomorphisms?
+
+<ol label="a">
+<li><p>  \(\alpha _1: M_{2\times 2}(\mathbb{R}) \rightarrow  \mathbb{R}\), defined by \(\alpha _1(A) = A_{11} A_{22} + A_{12} A_{21\textrm{ \ss}}\).</p></li>
+<li><p>  \(\alpha _2 : \left(\mathbb{R}^*\right)^2 \textrm{ -$>$} \mathbb{R}^*\) defined by \(\alpha _2 (a, b) = a b\).</p></li>
+<li><p>  \(\alpha _3 : \left\{\left.A \in  M_{2\times 2}(\mathbb{R}) \right| \det  A \neq  0\right\} \to  \mathbb{R}^*\), where \(\alpha _3(A) = \det
+ A\).</p></li>
+<li><p> \(\alpha _4 : S_4\rightarrow  S_4\)  defined by \(\alpha _4(f)=f^{-1}\).
+</statement></exercise>
+<exercise number="3"><statement>  Show that \(D_4\) has one proper normal subgroup, but that \(\langle (1,4)(2,3)\rangle\) is not normal.
+</statement></exercise>
+<exercise number="4"><statement>  Prove that the function \(\Phi\) in Example 15.4.11 is a homomorphism.
+</statement></exercise>
+<exercise number="5"><statement> Define the two functions  \(\alpha : \mathbb{Z}_2{}^3\rightarrow  \mathbb{Z}_2{}^4\)  and \(\beta :\mathbb{Z}_2{}^4\to \mathbb{Z}_2\) by
+
+
+
+\(\alpha \left(a_1,a_2,a_3 \right) = \left(a_1,a_2,a_3 ,a_1+_2 a_2+_2a_3\right)\), and
+
+
+
+ \(\beta \left(b_1,b_2,b_3,b_4\right)=b_1+b_2+b_3+b_4\)
+
+
+
+    Describe the function \(\beta \circ \alpha\). Is it a homomorphism?
+</statement></exercise>
+<exercise number="6"><statement>  Express \(\Phi\) in Example 15.4.12 in matrix form.
+
+
+</exercisegroup>
+<exercisegroup>
+<introduction><p>B Exercises</p></introduction>
+</statement></exercise>
+<exercise number="7"><statement> Prove that if <m>G</m> is an abelian group, then \(q(x) = x^2\) defines a homomorphism from <m>G</m> into <m>G</m>.  Is <m>q</m>
+ever an isomorphism?
+</statement></exercise>
+<exercise number="8"><statement> Prove that if \(\theta  : G\rightarrow G'\) is a homomorphism, and \(H\triangleleft G\), then \(\theta (H) \triangleleft  \theta (G)\). Is it
+also true that \(\theta (H) \triangleleft  G'\)?
+</statement></exercise>
+<exercise number="9"><statement> Prove that if \(\theta  : G \rightarrow  G'\) is a homomorphism, and \(H' \leq  \theta (G)\), then \(\theta ^{-1}(H') =\{a\in G| \theta
+(a)\in H'\}\leq  G\).
+
+
+</exercisegroup>
+<exercisegroup>
+<introduction><p>C Exercises</p></introduction>
+</statement></exercise>
+<exercise number="10"><statement>  Following up on Example 11.4.6,  prove that \(A_5\) is a simple group; i. e., it has no proper normal subgroups.
+
+<ol label="a">
+<li><p> Make a list of  the different cycle structures that occur in \(A_5\) and how many elements have those structures.  </p></li>
+<li><p>  Within each set of permutations with different cycle structures, identify which subsets are closed with respect to the conjugation operation.
+ With this you will have a partition of \(A_5\) into conjugate classes.  where for each class <m>C</m>, 
+
+
+
+\(f, g\in  C\)   if and only if   \(\exists  \phi  \in A_5\)  such that  \(\phi ^{-1}\circ f\circ  \phi  = g\)</p></li>
+<li><p>   Use the fact that a normal subgroup of \(A_5\) needs to be a union of conjugate classes and verify that no such union exists.
