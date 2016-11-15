@@ -68,7 +68,6 @@ f_3\in C_1, f_2\in C_2    \longrightarrow  f_3\circ f_2=r_2\in C_2\\
 
 This time, we don't get the same coset for each pair of representatives. Therefore, the induced operation is not well defined and no factor group
 is produced.</p></example> 
-
 <observation><p>
 This last example changes our course of action. If we had gotten a factor group from \(\left\{C_0,C_1,C_2\right\}\), we might have
 hoped to prove that every collection of left cosets forms a group. Now our question is: How can we determine whether we will get a factor group?
@@ -78,18 +77,25 @@ we used the fact that <m>G</m> was abelian. We repeat the equations here:
 since <m>G</m> was abelian.</p>
 
 <p>The last step was made possible by the fact that \(h_1*b=b*h_1\). As the proof continued, we used the fact that \(h_1*h_2\) was in <m>H</m> and
-so \(a'*b'\) is \((a*b)*h\) for some <m>h</m> in <m>H</m>. All that we really needed in the <q>abelian step</q> was that \(h_1*b = b*(\textrm{ something in } H) = b*h_3\).  Then, since <m>H</m> is closed under <m>G</m>'s operation, \(h_3*h_2\) is an element of <m>H</m>. The consequence of this observation is included in the following theorem, the proof of which can be found in any abstract algebra text.
+so \(a'*b'\) is \((a*b)*h\) for some <m>h</m> in <m>H</m>. All that we really needed in the <q>abelian step</q> was that \(h_1*b = b*(\textrm{ something in } H) = b*h_3\).  Then, since <m>H</m> is closed under <m>G</m>'s operation, \(h_3*h_2\) is an element of <m>H</m>. The consequence of this observation is that we define a certain kind of subgroup that guarantees that the inducted operation is well-defined.
 </p></observation>
+
+<definition xml:id="def-Normal Subgroup."><title>Normal Subgroup.</title><index><main>Normal Subgroup.</main></index><notation><usage></usage><description></description></notation><statement><p> If \(G\) is a group, \(H \leq  G\), then \(H\) is  a normal subgroup of  \(G\), denoted \(H \triangleleft  G\), if
+and only if every left coset  of \(H\) is a right coset of \(H\); i. e. \(a*H = H*a \quad \forall a \in G\)</p></statement></definition>
+
+
+
+
 
 <theorem xml:id="theorem-normality-conditions">
 <statement><p>If \(H \leq G\), then the operation induced on left cosets of <m>H</m> by the operation of <m>G</m> is well defined if and only if  any one of the following conditions is true:
 <ol label="a">
+<li><p>\(H\) is a normal subgroup of \(G\).</p></li>
 <li><p> If \(h \in  H\), \(a \in  G\), then there exists \(h' \in  H\) such that \(h*a = a*h'\).</p></li>
 <li><p> If \(h \in H\), \(a \in G\), then \(a^{-1}*h*a \in  H\).</p></li>
-<li><p>Every left coset of <m>H</m> is equal to a right coset of <m>H</m>.</p></li>
 </ol>
 </p></statement>
-<proof></proof>
+<proof>We leave the proof of this theorem to the reader.</proof>
 </theorem>  
 
 
@@ -105,10 +111,7 @@ if either of the following two conditions is true.<ol label="a">
 
 
 
-<definition xml:id="def-Normal Subgroup."><title>Normal Subgroup.</title><index><main>Normal Subgroup.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
 
- If G is a group, \(H \leq  G\), then H is called a normal subgroup of  G, denoted \(H \triangleleft  G\), if
-it satisfies any of the conditions of Theorem 15.4.1.
 
 <example xml:id="ex-not-normal"><title>A non-normal subgroup</title><p>The right cosets of \(\left\langle f_1\right\rangle \leq  S_3\) are \(\left\{i, f_1\right\}\), \(\left\{r_1 f_2 \right\}\),
 and \(\left\{r_2 ,f_3\right\}\). These are not the same as the left cosets of \(\left\langle f_1\right\rangle\). In addition, \(f_2{}^{-1}f_1f_2=f_2f_1f_2=f_3\notin
@@ -159,31 +162,25 @@ We saw in Chapter 11 that <m>G</m> is a group with matrix multiplication.</p>
 </subsection>
 
 <subsection xml:id="ss-homomorphism"><title>Homomorphisms</title>
-<p>Think of the word isomorphism. . Chances are, one of the first images that comes to mind is an equation something like
+<p>Think of the word isomorphism. Chances are, one of the first images that comes to mind is an equation something like
+ \[\theta(x * y) = \theta(x) \diamond  \theta(y)\] 
+An isomorphism must be a bijection, but equation the equation above is the algebraic feature of an isomorphism. Here we will examine functions that satisfy equations of this type.<p>
+
+<definition xml:id="def-homomorphism"><title>Homomorphism</title><index><main>Homomorphism</main></index>
+<statement><p>Let \([G, *]\) and \([G',\diamond ]\) be groups. \(\theta:G \to G'\) is a homomorphism if \(\theta(x * y) = \theta(x) \diamond  \theta(y)\) for all \(x, y \in G\).</p></statement></definition>
+
+ 
+<p>Many homomorphisms are useful since they point out similarities between the two groups (or, on the universal level, two algebraic systems) involved.</p>
 
 
 
- \(\theta (x * y) = \theta (x) \diamond  \theta (y)\)  $\quad \quad $(H)
-
-
-
-An isomorphism must be a bijection, but equation (H) is the algebraic feature of an isomorphism. Here we will examine functions that satisfy equations
-of this type.
-
-
-
-Many homomorphisms are useful since they point out similarities between the two groups (or, on the universal level, two algebraic systems) involved.
-
-
-
-Consider the groups \(\left[\mathbb{R}^3 , +\right]\) and \(\left[\mathbb{R}^2,+\right]\). Every time you use a camera, you are trying to transfer
-the essence of something three-dimensional onto a photograph$---$that is, something two-dimensional.  If you show a friend a photo you have taken,
-that person can appreciate much of what you saw, even though a dimension is lacking. The <q>picture-taking</q> map is a function \(f : \mathbb{R}^3
-\to  \mathbb{R}^2\) defined by \(f\left(x_1, x_2 , x_3 \right) = \left(x_1,x_2\right)\). This function is not a bijection, but it does satisfy the
+<!-- 
+<p>Consider the groups \(\left[\mathbb{R}^3 , +\right]\) and \(\left[\mathbb{R}^2,+\right]\). Every time you use a camera, you are trying to transfer the essence of something three-dimensional onto a photograph$~~-that is, something two-dimensional.  If you show a friend a photo you have taken,
+that person can appreciate much of what you saw, even though a dimension is lacking. The <q>picture-taking</q> map is a function \(f : \mathbb{R}^3 \to  \mathbb{R}^2\) defined by \(f\left(x_1, x_2 , x_3 \right) = \left(x_1,x_2\right)\). This function is not a bijection, but it does satisfy the
 equation \(f(x + y) =f(x) + f(y)\) for \(x = \left(x_1,x_2,x_3\right)\) and \(y = \left(y_1,y_2,y_3\right)\). Such a function is called a homomorphism,
 and when a homomorphism exists between two groups, the groups are called homomorphic that is, they are similar.  A question that arises with groups,
-or other algebraic structures, that we claim are homomorphic, or similar, is: How similar are they? When we say that two groups are isomorphic$---$that
-is, identical$---$the map that we use to prove this is unimportant. However, when we say that two groups are homomorphic, the map used gives us a
+or other algebraic structures, that we claim are homomorphic, or similar, is: How similar are they? When we say that two groups are isomorphic$~~-$that
+is, identical$~~-$the map that we use to prove this is unimportant. However, when we say that two groups are homomorphic, the map used gives us a
 measure of the group's similarities (or dissimilarities). For example, the maps:
 
 
@@ -205,78 +202,74 @@ actually an isomorphism. The second gives us the usual two-dimensional picture, 
 scene onto a point, a <q>black dot,</q> which gives no idea of the original structure. Hence, the knowledge that two groups are homomorphic doesn{'}t
 give complete information about the similarities in the structures of the two groups.  For this reason, the term homomorphic is rarely used (unlike
 isomorphic), and the functions, the homomorphisms, are studied.
+ -->
 
 
 
-<definition xml:id="def-Homomorphism."><title>Homomorphism.</title><index><main>Homomorphism.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
-
- Let \([G, *]\) and \([G',\diamond ]\) be groups. \(\theta :G\to G'\) is a homomorphism if \(\theta (x * y) = \theta
-(x) \diamond  \theta (y)\) for all \(x, y \in G\).
 
 
 
-<example xml:id="ex-15.4.8."><title>15.4.8.</title><p></p></example>  Define \(\alpha :\mathbb{Z}_6\to \mathbb{Z}_3\) by \(\alpha (n)=n(1)\), where \(n \in  \mathbb{Z}_6\) and \(n(1)\) is the
-sum of <m>n</m> ones in \(\mathbb{Z}_3\). Therefore, \(\alpha (0) = 0\), \(\alpha (1) = 1\), \(\alpha (2) = 2\), \(\alpha (3) =1 + 1 + 1=0\),
-\(\alpha (4) = 1\), and \(\alpha (5) = 2\). If \(n, m \in \mathbb{Z}_6\),
+<example xml:id="ex-15-4-h1"><title>Decreasing modularity</title><p>Define \(\alpha:\mathbb{Z}_6\to \mathbb{Z}_3\) by \(\alpha(n)=n mod 3\). Therefore, \(\alpha(0) = 0\), \(\alpha(1) = 1\), \(\alpha(2) = 2\), \(\alpha(3) =1 + 1 + 1=0\), \(\alpha(4) = 1\), and \(\alpha(5) = 2\). If \(n, m \in \mathbb{Z}_6\).  We could actually show that \(\alpha\) is a homomorphism by checking all \(6^2=36\) different cases for the formula 
+<mdn><mrow xml:id="">\alpha(n +_6 m) = \alpha(n)+_3\alpha(m)</mrow></mdn>
+ but we will use a line of reasoning that generalizes. We have already encountered the Chinese Remainder Theorem, which implies that the function \(\beta: \mathbb{Z}_6\to \mathbb{Z}_3 \times \mathbb{Z}_2\) defined by \(beta(n)=(n mod 3, n mod 2)\).
+We need only observe that equating the first coordinates of both sides of the equation 
+<mdn><mrow>\beta(n +_6 m) = \beta(n)+_3\beta(m)</mrow></mdn>
+gives us precisely <xref ref="equ-alpha-homomorphism" />.
+</p></example>  
 
 
-
-\(\textrm{          }\alpha \left(n +_6 m\right) = \left(n +_6 m\right)(1)\quad \quad =n(1)+_3m(1)\quad \quad =\alpha (n)+_3\alpha (m)\)
-
-
-
-<theorem xml:id="theorem-15.4.2."><title>15.4.2.</title><index><main>15.4.2.</main></index><statement></statement><proof></proof></theorem> A few properties of homomorphisms are that if \(\theta : G \rightarrow  G'\) is a homomorphism, then:
+<theorem xml:id="theorem-15.4.2."><title>15.4.2.</title><index><main>15.4.2.</main></index><statement></statement><proof></proof></theorem> A few properties of homomorphisms are that if \(\theta: G \rightarrow  G'\) is a homomorphism, then:
 
 <ol label="a">
-<li><p>  \(\theta (e) = \theta (\textrm{ identity} \textrm{ of} G) = \textrm{ identity} \textrm{ of} G' = e'\).
+<li><p>  \(\theta(e) = \theta(\textrm{ identity} \textrm{ of} G) = \textrm{ identity} \textrm{ of} G' = e'\).
 </p></li>
-<li><p>  \(\theta \left(a ^{-1}\right) = \theta (a)^{-1}\) for all \(a \in  G\).
+<li><p>  \(\theta\left(a ^{-1}\right) = \theta(a)^{-1}\) for all \(a \in  G\).
 </p></li>
-<li><p>If \(H \leq  G\), then \(\theta (H) = \{\theta (h) | h\in H\}\leq G'\).
+<li><p>If \(H \leq  G\), then \(\theta(H) = \{\theta(h) | h\in H\}\leq G'\).
 
 
 
 Proof:
 
 <ol label="a">
-<li><p>Let <m>a</m> be any element of <m>G</m>. Then \(\theta (a) \in  G'\).
+<li><p>Let <m>a</m> be any element of <m>G</m>. Then \(\theta(a) \in  G'\).
 
 
 
-\(\textrm{                }\theta (a)\diamond  e' = \theta (a)\textrm{                }\textrm{ by} \textrm{ the} \textrm{ definition} \textrm{ of} e'\textrm{ $\quad
-$                 }=\theta  (a*e)\textrm{            }\textrm{ by} \textrm{ the} \textrm{ definition} \textrm{ of} e\textrm{                  }= \theta (a)\diamond
-\theta (e)\textrm{     }\textrm{ by} \textrm{ the} \textrm{ fact} \textrm{ that} \theta  \textrm{ is} a \textrm{ homomorphism}\)
+\(\textrm{                }\theta(a)\diamond  e' = \theta(a)\textrm{                }\textrm{ by} \textrm{ the} \textrm{ definition} \textrm{ of} e'\textrm{ $\quad
+$                 }=\theta (a*e)\textrm{            }\textrm{ by} \textrm{ the} \textrm{ definition} \textrm{ of} e\textrm{                  }= \theta(a)\diamond
+\theta(e)\textrm{     }\textrm{ by} \textrm{ the} \textrm{ fact} \textrm{ that} \theta \textrm{ is} a \textrm{ homomorphism}\)
 
 
 
-By cancellation, \(e' = \theta (e)\).</p></li>
+By cancellation, \(e' = \theta(e)\).</p></li>
 <li><p>Again, let \(a \in G\).
 
 
 
-$\quad \quad $\(e' = \theta (e) = \theta \left(a*a^{-1} \right) = \theta (a)\diamond \theta \left(a^{-1}\right)\).
+$\quad \quad $\(e' = \theta(e) = \theta\left(a*a^{-1} \right) = \theta(a)\diamond \theta\left(a^{-1}\right)\).
 
 
 
-Hence, by the uniqueness of inverses,  \(\theta (a) ^{-1}= \theta \left(a^{-1}\right)\).</p></li>
-<li><p> Let \(b_1, b_2 \in  \theta (H)\). Then there exists \(a_1,a_2\in H\) such that \(\theta \left(a_1\right) = b_1\), \(\theta \left(a_2\right) =
+Hence, by the uniqueness of inverses,  \(\theta(a) ^{-1}= \theta\left(a^{-1}\right)\).</p></li>
+<li><p> Let \(b_1, b_2 \in  \theta(H)\). Then there exists \(a_1,a_2\in H\) such that \(\theta\left(a_1\right) = b_1\), \(\theta\left(a_2\right) =
 b_2\). Recall that a compact necessary and sufficient condition for \(H \leq  G\) is that \(x*y^{-1}\in H\)  for all \(x, y \in H\).  Now we
 apply the same fact in G' :
 
 
 
- \(b_1\diamond b_2{}^{-1} = \theta \left(a_1\right)\diamond \theta \left(a_2\right){}^{-1}\\
+ \(b_1\diamond b_2{}^{-1} = \theta\left(a_1\right)\diamond \theta\left(a_2\right){}^{-1}\\
 \\
-\quad \quad =\theta \left(a_1\right)\diamond \theta \left(a_2{}^{-1}\right)\\
+\quad \quad =\theta\left(a_1\right)\diamond \theta\left(a_2{}^{-1}\right)\\
 \\
-\quad \quad =\theta \left(a_1*a_2{}^{-1}\right)\in \theta (H)\)
+\quad \quad =\theta\left(a_1*a_2{}^{-1}\right)\in \theta(H)\)
 
 
 
-since  \(a_1*a_2{}^{-1}\in H\), and so we can conclude that  \(\theta (H)\leq G'\). $\blacksquare $
+since  \(a_1*a_2{}^{-1}\in H\), and so we can conclude that  \(\theta(H)\leq G'\). $\blacksquare $
 
 \pmb{ Corollary}.  Since a homomorphism need not be a surjection and part (c) of Theorem 15.4.2 is true for the case of \(H = G\), the range of
-\(\theta\), \(\theta (G)\), is a subgroup of \(G'\)
+\(\theta\), \(\theta(G)\), is a subgroup of \(G'\)
 
 <example xml:id="ex-15.4.9."><title>15.4.9.</title><p></p></example> If we define \(\pi : \mathbb{Z} \rightarrow  \mathbb{Z}/4\mathbb{Z}\) by \(\pi (n) = n + 4\mathbb{Z}\). then \(\pi\) is a
 homomorphism. The image of the subgroup \(4\mathbb{Z}\) is the single coset \(0 + 4\mathbb{Z}\), the identity of the factor group. Homomorphisms
@@ -292,26 +285,26 @@ Based on Theorem 15.4.3, every normal subgroup gives us a homomorphism.
 
 <definition xml:id="def-Kernel."><title>Kernel.</title><index><main>Kernel.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
 
-  Let  \(\theta : G \to  G'\) be a homomorphism, and let e'be the identity of G'. The kernel of \(\theta\) is the set
+  Let  \(\theta: G \to  G'\) be a homomorphism, and let e'be the identity of G'. The kernel of \(\theta\) is the set
 
 
-$\quad \quad \quad $\(\ker  \theta =\{a\in G | \theta (a)=e'\}\)
+$\quad \quad \quad $\(\ker  \theta=\{a\in G | \theta(a)=e'\}\)
 
-<theorem xml:id="theorem-15.4.4."><title>15.4.4.</title><index><main>15.4.4.</main></index><statement></statement><proof></proof></theorem> Let \(\theta : G \to  G'\) be a homomorphism from G into G'. The kernel of $\theta $ is a normal subgroup of G.
+<theorem xml:id="theorem-15.4.4."><title>15.4.4.</title><index><main>15.4.4.</main></index><statement></statement><proof></proof></theorem> Let \(\theta: G \to  G'\) be a homomorphism from G into G'. The kernel of $\theta$ is a normal subgroup of G.
 
 
 
 Based on Theorem 15.4.4, every homomorphism gives us a normal subgroup.
 
-<theorem xml:id="theorem-15.4.5 : Fundamental Theorem of Group Homomorphisms."><title>15.4.5 : Fundamental Theorem of Group Homomorphisms.</title><index><main>15.4.5 : Fundamental Theorem of Group Homomorphisms.</main></index><statement></statement><proof></proof></theorem>  Let  \(\theta : G \to  G'\) be a homomorphism.  Then \(\theta (G)\) is
+<theorem xml:id="theorem-15.4.5 : Fundamental Theorem of Group Homomorphisms."><title>15.4.5 : Fundamental Theorem of Group Homomorphisms.</title><index><main>15.4.5 : Fundamental Theorem of Group Homomorphisms.</main></index><statement></statement><proof></proof></theorem>  Let  \(\theta: G \to  G'\) be a homomorphism.  Then \(\theta(G)\) is
 isomorphic to \(G/\ker  \theta\).
 
-<example xml:id="ex-15.4.10."><title>15.4.10.</title><p></p></example> Define  \(\theta : \mathbb{Z} \rightarrow  \mathbb{Z}_{10}\) by \(\theta (n) =\) the remainder from dividing <m>n</m>
+<example xml:id="ex-15.4.10."><title>15.4.10.</title><p></p></example> Define  \(\theta: \mathbb{Z} \rightarrow  \mathbb{Z}_{10}\) by \(\theta(n) =\) the remainder from dividing <m>n</m>
 by 10. The three previous theorems imply the following:
 
 (15.4.3)\(\textrm{     }\pi : \mathbb{Z} \rightarrow  \mathbb{Z}/10\mathbb{Z}\) defined by \(\pi (n) = n + 10\mathbb{Z}\) is a homomorphism.
 
-(15.4.4)  \(\{n\in \mathbb{Z}|\theta (n) = 0\} = \{10n|n \in \mathbb{Z}\}= 10\mathbb{Z} \triangleleft  \mathbb{Z}\).
+(15.4.4)  \(\{n\in \mathbb{Z}|\theta(n) = 0\} = \{10n|n \in \mathbb{Z}\}= 10\mathbb{Z} \triangleleft  \mathbb{Z}\).
 
 (15.4.5)   \(\mathbb{Z}/10\mathbb{Z}\) is isomorphic to \(\mathbb{Z}_{10}\) .
 
@@ -377,34 +370,34 @@ is a homomorphism. This is true because matrix multiplication is distributive ov
 <exercise number="1"><statement> Which of the following functions are homomorphisms? What are the kernels of those functions that are homomorphisms?
 
 <ol label="a">
-<li><p>  \(\theta _1: \mathbb{R}^* \to  \mathbb{R}^+\) defined by \(\theta _1(a) =\left| a\right|\).</p></li>
-<li><p> \(\theta _2 : \mathbb{Z}_8 \rightarrow  \mathbb{Z}_2\) where \(\theta _2(n) =\left\{
+<li><p>  \(\theta_1: \mathbb{R}^* \to  \mathbb{R}^+\) defined by \(\theta_1(a) =\left| a\right|\).</p></li>
+<li><p> \(\theta_2 : \mathbb{Z}_8 \rightarrow  \mathbb{Z}_2\) where \(\theta_2(n) =\left\{
 \begin{array}{cc}
  0 &amp; \textrm{ if} n \textrm{ is} \textrm{ even} \\
  1 &amp; \textrm{ if} n \textrm{ is} \textrm{ odd} \\
 \end{array}
  \right.\) .</p></li>
-<li><p> \(\theta _3 : \mathbb{R} \times  \mathbb{R} \rightarrow  \mathbb{R}\), where \(\theta _3(a, b) = a + b\).</p></li>
-<li><p>  \(\theta _4 : S_4 \to S_4\) defined by \(\theta _4(f) = f\circ f=f^2\) .
+<li><p> \(\theta_3 : \mathbb{R} \times  \mathbb{R} \rightarrow  \mathbb{R}\), where \(\theta_3(a, b) = a + b\).</p></li>
+<li><p>  \(\theta_4 : S_4 \to S_4\) defined by \(\theta_4(f) = f\circ f=f^2\) .
 </statement></exercise>
 <exercise number="2"><statement> Which of the following functions are homomorphisms? What are the kernels of those functions that are homomorphisms?
 
 <ol label="a">
-<li><p>  \(\alpha _1: M_{2\times 2}(\mathbb{R}) \rightarrow  \mathbb{R}\), defined by \(\alpha _1(A) = A_{11} A_{22} + A_{12} A_{21\textrm{ \ss}}\).</p></li>
-<li><p>  \(\alpha _2 : \left(\mathbb{R}^*\right)^2 \textrm{ -$>$} \mathbb{R}^*\) defined by \(\alpha _2 (a, b) = a b\).</p></li>
-<li><p>  \(\alpha _3 : \left\{\left.A \in  M_{2\times 2}(\mathbb{R}) \right| \det  A \neq  0\right\} \to  \mathbb{R}^*\), where \(\alpha _3(A) = \det
+<li><p>  \(\alpha_1: M_{2\times 2}(\mathbb{R}) \rightarrow  \mathbb{R}\), defined by \(\alpha_1(A) = A_{11} A_{22} + A_{12} A_{21\textrm{ \ss}}\).</p></li>
+<li><p>  \(\alpha_2 : \left(\mathbb{R}^*\right)^2 \textrm{ -$>$} \mathbb{R}^*\) defined by \(\alpha_2 (a, b) = a b\).</p></li>
+<li><p>  \(\alpha_3 : \left\{\left.A \in  M_{2\times 2}(\mathbb{R}) \right| \det  A \neq  0\right\} \to  \mathbb{R}^*\), where \(\alpha_3(A) = \det
  A\).</p></li>
-<li><p> \(\alpha _4 : S_4\rightarrow  S_4\)  defined by \(\alpha _4(f)=f^{-1}\).
+<li><p> \(\alpha_4 : S_4\rightarrow  S_4\)  defined by \(\alpha_4(f)=f^{-1}\).
 </statement></exercise>
 <exercise number="3"><statement>  Show that \(D_4\) has one proper normal subgroup, but that \(\langle (1,4)(2,3)\rangle\) is not normal.
 </statement></exercise>
 <exercise number="4"><statement>  Prove that the function \(\Phi\) in Example 15.4.11 is a homomorphism.
 </statement></exercise>
-<exercise number="5"><statement> Define the two functions  \(\alpha : \mathbb{Z}_2{}^3\rightarrow  \mathbb{Z}_2{}^4\)  and \(\beta :\mathbb{Z}_2{}^4\to \mathbb{Z}_2\) by
+<exercise number="5"><statement> Define the two functions  \(\alpha: \mathbb{Z}_2{}^3\rightarrow  \mathbb{Z}_2{}^4\)  and \(\beta :\mathbb{Z}_2{}^4\to \mathbb{Z}_2\) by
 
 
 
-\(\alpha \left(a_1,a_2,a_3 \right) = \left(a_1,a_2,a_3 ,a_1+_2 a_2+_2a_3\right)\), and
+\(\alpha\left(a_1,a_2,a_3 \right) = \left(a_1,a_2,a_3 ,a_1+_2 a_2+_2a_3\right)\), and
 
 
 
@@ -424,10 +417,10 @@ is a homomorphism. This is true because matrix multiplication is distributive ov
 <exercise number="7"><statement> Prove that if <m>G</m> is an abelian group, then \(q(x) = x^2\) defines a homomorphism from <m>G</m> into <m>G</m>.  Is <m>q</m>
 ever an isomorphism?
 </statement></exercise>
-<exercise number="8"><statement> Prove that if \(\theta  : G\rightarrow G'\) is a homomorphism, and \(H\triangleleft G\), then \(\theta (H) \triangleleft  \theta (G)\). Is it
-also true that \(\theta (H) \triangleleft  G'\)?
+<exercise number="8"><statement> Prove that if \(\theta : G\rightarrow G'\) is a homomorphism, and \(H\triangleleft G\), then \(\theta(H) \triangleleft  \theta(G)\). Is it
+also true that \(\theta(H) \triangleleft  G'\)?
 </statement></exercise>
-<exercise number="9"><statement> Prove that if \(\theta  : G \rightarrow  G'\) is a homomorphism, and \(H' \leq  \theta (G)\), then \(\theta ^{-1}(H') =\{a\in G| \theta
+<exercise number="9"><statement> Prove that if \(\theta : G \rightarrow  G'\) is a homomorphism, and \(H' \leq  \theta(G)\), then \(\theta^{-1}(H') =\{a\in G| \theta
 (a)\in H'\}\leq  G\).
 
 
