@@ -80,7 +80,10 @@ since <m>G</m> was abelian.</p>
 so \(a'*b'\) is \((a*b)*h\) for some <m>h</m> in <m>H</m>. All that we really needed in the <q>abelian step</q> was that \(h_1*b = b*(\textrm{ something in } H) = b*h_3\).  Then, since <m>H</m> is closed under <m>G</m>'s operation, \(h_3*h_2\) is an element of <m>H</m>. The consequence of this observation is that we define a certain kind of subgroup that guarantees that the inducted operation is well-defined.
 </p></observation>
 
-<definition xml:id="def-Normal Subgroup."><title>Normal Subgroup.</title><index><main>Normal Subgroup.</main></index><notation><usage></usage><description></description></notation><statement><p> If \(G\) is a group, \(H \leq  G\), then \(H\) is  a normal subgroup of  \(G\), denoted \(H \triangleleft  G\), if
+<definition xml:id="def-Normal Subgroup."><title>Normal Subgroup.</title>
+<index><main>Normal Subgroup.</main></index>
+<notation><usage>H \triangleleft  G</usage><description>\(H\) is a normal subgroup of \(G\)</description></notation>
+<statement><p> If \(G\) is a group, \(H \leq  G\), then \(H\) is  a normal subgroup of  \(G\), denoted \(H \triangleleft  G\), if
 and only if every left coset  of \(H\) is a right coset of \(H\); i. e. \(a*H = H*a \quad \forall a \in G\)</p></statement></definition>
 
 
@@ -137,7 +140,7 @@ elements have those structures.   Then consider what happens when you conjugate 
 An outline of the process is in the exercises.</p></example>  
 
 
-<example xml:id="ex-15.4.7."><title>15.4.7.</title><p>Let G be the set of two by two invertible matrices of real numbers.  That is,
+<example xml:id="ex-matrix-subgroups-15"><title>15.4.7.</title><p>Let G be the set of two by two invertible matrices of real numbers.  That is,
 
 \[G=\left\{\left(
 \begin{array}{cc}
@@ -218,99 +221,87 @@ gives us precisely <xref ref="equ-alpha-homomorphism" />.
 </p></example>  
 
 
-<theorem xml:id="theorem-15.4.2."><title>15.4.2.</title><index><main>15.4.2.</main></index><statement></statement><proof></proof></theorem> A few properties of homomorphisms are that if \(\theta: G \rightarrow  G'\) is a homomorphism, then:
-
+<theorem xml:id="theorem-homomorphism-properties"><title>Group Homomorphism Properties</title>
+<statement><p>If \(\theta: G \rightarrow  G'\) is a homomorphism, then:
 <ol label="a">
-<li><p>  \(\theta(e) = \theta(\textrm{ identity} \textrm{ of} G) = \textrm{ identity} \textrm{ of} G' = e'\).
+<li><p>  \(\theta(e) =\theta(\textrm{the identity of } G) = \textrm{the identity of } G' = e'\).
 </p></li>
 <li><p>  \(\theta\left(a ^{-1}\right) = \theta(a)^{-1}\) for all \(a \in  G\).
 </p></li>
-<li><p>If \(H \leq  G\), then \(\theta(H) = \{\theta(h) | h\in H\}\leq G'\).
-
-
-
-Proof:
-
-<ol label="a">
+<li><p>If \(H \leq  G\), then \(\theta(H) = \{\theta(h) | h\in H\}\leq G'\).</p></li>
+</ol></p>
+</statement><proof><p><ol label="a">
 <li><p>Let <m>a</m> be any element of <m>G</m>. Then \(\theta(a) \in  G'\).
-
-
-
-\(\textrm{                }\theta(a)\diamond  e' = \theta(a)\textrm{                }\textrm{ by} \textrm{ the} \textrm{ definition} \textrm{ of} e'\textrm{ $\quad
-$                 }=\theta (a*e)\textrm{            }\textrm{ by} \textrm{ the} \textrm{ definition} \textrm{ of} e\textrm{                  }= \theta(a)\diamond
-\theta(e)\textrm{     }\textrm{ by} \textrm{ the} \textrm{ fact} \textrm{ that} \theta \textrm{ is} a \textrm{ homomorphism}\)
-
-
-
+<me>\begin{split}
+\theta(a)\diamond e' &amp;= \theta(a) \quad \textrm{     by the definition of } e'\\
+		&amp;=\theta(a*e)\quad \textrm{     by the definition of } e\\
+		&amp;= \theta(a)\diamond \theta(e)\quad \textrm{    by the fact that } \theta \textrm{ is a homomorphism}\\
+\end{split}
+</me>
 By cancellation, \(e' = \theta(e)\).</p></li>
 <li><p>Again, let \(a \in G\).
-
-
-
-$\quad \quad $\(e' = \theta(e) = \theta\left(a*a^{-1} \right) = \theta(a)\diamond \theta\left(a^{-1}\right)\).
-
-
-
+\(e' = \theta(e) = \theta\left(a*a^{-1} \right) = \theta(a)\diamond \theta\left(a^{-1}\right)\).
 Hence, by the uniqueness of inverses,  \(\theta(a) ^{-1}= \theta\left(a^{-1}\right)\).</p></li>
-<li><p> Let \(b_1, b_2 \in  \theta(H)\). Then there exists \(a_1,a_2\in H\) such that \(\theta\left(a_1\right) = b_1\), \(\theta\left(a_2\right) =
+<li><p> Let \(b_1, b_2 \in  \theta(H)\). Then there exists \(a_1, a_2\in H\) such that \(\theta\left(a_1\right) = b_1\), \(\theta\left(a_2\right) =
 b_2\). Recall that a compact necessary and sufficient condition for \(H \leq  G\) is that \(x*y^{-1}\in H\)  for all \(x, y \in H\).  Now we
-apply the same fact in G' :
+apply the same condition in \(G'\):
+
+<me>\begin{split}
+b_1\diamond b_2{}^{-1} &amp;= \theta\left(a_1\right)\diamond \theta\left(a_2\right){}^{-1}\\
+	&amp; =\theta\left(a_1\right)\diamond \theta\left(a_2{}^{-1}\right)\\
+	&amp; =\theta\left(a_1*a_2{}^{-1}\right)\in \theta(H)\\
+\end{split}
+</me>
+since  \(a_1*a_2{}^{-1}\in H\), and so we can conclude that  \(\theta(H)\leq G'\).</p></proof></theorem> 
 
 
+<corollary xml:id="corollary-15-4-1">
+<statement>Since a homomorphism need not be a surjection and part (c) of <xref ref="theorem-homomorphism-properties" autoname="yes" /> is true for the case of \(H = G\), the range of \(\theta\), \(\theta(G)\), is a subgroup of \(G'\)</statement> </corollary>
 
- \(b_1\diamond b_2{}^{-1} = \theta\left(a_1\right)\diamond \theta\left(a_2\right){}^{-1}\\
-\\
-\quad \quad =\theta\left(a_1\right)\diamond \theta\left(a_2{}^{-1}\right)\\
-\\
-\quad \quad =\theta\left(a_1*a_2{}^{-1}\right)\in \theta(H)\)
-
-
-
-since  \(a_1*a_2{}^{-1}\in H\), and so we can conclude that  \(\theta(H)\leq G'\). $\blacksquare $
-
-\pmb{ Corollary}.  Since a homomorphism need not be a surjection and part (c) of Theorem 15.4.2 is true for the case of \(H = G\), the range of
-\(\theta\), \(\theta(G)\), is a subgroup of \(G'\)
-
-<example xml:id="ex-15.4.9."><title>15.4.9.</title><p></p></example> If we define \(\pi : \mathbb{Z} \rightarrow  \mathbb{Z}/4\mathbb{Z}\) by \(\pi (n) = n + 4\mathbb{Z}\). then \(\pi\) is a
+<example xml:id="ex-natural-homomorphism"><p>If we define \(\pi: \mathbb{Z} \rightarrow  \mathbb{Z}/4\mathbb{Z}\) by \(\pi(n) = n + 4\mathbb{Z}\). then \(\pi\) is a
 homomorphism. The image of the subgroup \(4\mathbb{Z}\) is the single coset \(0 + 4\mathbb{Z}\), the identity of the factor group. Homomorphisms
-of this type are called natural homomorphisms. . The following theorems will verify that $\pi $ is a homomorphism and also show the connection
-between homomorphisms and normal subgroups. The reader can find more detail and proofs in most abstract algebra texts.
+of this type are called natural homomorphisms.  The following theorems will verify that \(\pi\) is a homomorphism and also show the connection between homomorphisms and normal subgroups. The reader can find more detail and proofs in most abstract algebra texts.</p></example> 
 
-<theorem xml:id="theorem-15.4.3."><title>15.4.3.</title><index><main>15.4.3.</main></index><statement></statement><proof></proof></theorem> If \(H \triangleleft  G\), then the function \(\pi :G\to  G/H\) defined by \(\pi (a) = a H\) is a homomorphism, called the
-natural homomorphism.
+<theorem xml:id="theorem-natural-homomorphism"><statement><p>If \(H \triangleleft  G\), then the function \(\pi:G\to  G/H\) defined by \(\pi(a) = a H\) is a homomorphism.</p></statement><proof></proof></theorem>
 
+<definition xml:id="def-natural-homomorphism"><title>Natural Homomorphism</title>
+<index><main>Natural Homomorphism</main></index><statement><p>If \(H \triangleleft  G\), then the function \(\pi:G\to  G/H\) defined by \(\pi(a) = a H\) is called the natural homomorphism.
+</p></statement></definition>
 
+Based on <xref ref="theorem-natural-homomorphism" autoname="yes" />, every normal subgroup gives us a homomorphism.  Next, we see that the converse is true.
 
-Based on Theorem 15.4.3, every normal subgroup gives us a homomorphism.
+<definition xml:id="def-group-kernel"><title>Kernel of a homomorphism</title><index><main>Kernel</main></index>
+<notation><usage>ker \theta</usage><description>the kernel of homomorphism \(\theta\)</description></notation><statement><p>Let  \(\theta: G \to  G'\) be a homomorphism, and let \(e\) and \(e'\) be the identitites of \(G\) and \(G'\), respectively. The kernel of \(\theta\) is the set \(\ker \theta=\{a\in G \mid \theta(a)=e'\}\)
+</p></statement></definition>
 
-<definition xml:id="def-Kernel."><title>Kernel.</title><index><main>Kernel.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+  
+<theorem xml:id="theorem-kernel-normal"><statement><p>Let \(\theta: G \to  G'\) be a homomorphism from  \(G\)  into  \(G'\) . The kernel of \(\theta\) is a normal subgroup of \(G\).</p></statement><proof><p>Let \(K= ker \theta\). We can see that \(K\) is a subgroup of \(G\) by letting \(a,b \in K\) and verify that \(a*b^{-1} \in K\) by computing \(\theta(a*b^{-1}= \theta(a)*\theta(b)^{-1} = e'*e'^(-1}=e'\).  To prove normality, we let \(g\) be any element of \(G\) and \(k \in K\).  We compute \(\theta(g*k*g^{-1})\) to verify that \(g*k*g^{-1}\in K\).
+<me>\begin{split}
+\theta(g*k*g^{-1}) &amp;=\theta(g)*\theta(k)*\theta(g^{-1})\\
+ 	&amp; =\theta(g)*\theta(k)*\theta(g)^{-1}\\
+ 	&amp; =\theta(g)*e'*\theta(g)^{-1}\\
+ 	&amp; =\theta(g)* \theta(g)^{-1}\\
+ 	&amp; =e'\\
+\end{split}
+</me>	
+ </p></proof></theorem> 
 
-  Let  \(\theta: G \to  G'\) be a homomorphism, and let e'be the identity of G'. The kernel of \(\theta\) is the set
+<p>Based on <xref ref="theorem-kernel-normal" autoname="yes" />, every homomorphism gives us a normal subgroup.</p>
 
+<theorem xml:id="theorem-fundamental-group-homomorphism"><title>Fundamental Theorem of Group Homomorphisms\</title><index><main>Fundamental Theorem of Group Homomorphisms</main></index>
+<statement>Let  \(\theta: G \to  G'\) be a homomorphism.  Then \(\theta(G)\) is isomorphic to \(G/\ker \theta\).</statement>
+</theorem>  
 
-$\quad \quad \quad $\(\ker  \theta=\{a\in G | \theta(a)=e'\}\)
+<example xml:id="ex-apply-fundamental-theorem"> 
+<p>Define  \(\theta: \mathbb{Z} \rightarrow  \mathbb{Z}_{10}\) by \(\theta(n) = n mod 10\). The three previous theorems imply the following:
+<ul>
+<li><p>\(\pi: \mathbb{Z} \rightarrow  \mathbb{Z}/10\mathbb{Z}\) defined by \(\pi(n) = n + 10\mathbb{Z}\) is a homomorphism.</p></li>
+<li><p>\(\{n\in \mathbb{Z}|\theta(n) = 0\} = \{10n \mid n \in \mathbb{Z}\}= 10\mathbb{Z} \triangleleft  \mathbb{Z}\).</p></li>
+<li><p>  \(\mathbb{Z}/10\mathbb{Z}\) is isomorphic to \(\mathbb{Z}_{10}\).</p></li>
+</ul></p></example> 
 
-<theorem xml:id="theorem-15.4.4."><title>15.4.4.</title><index><main>15.4.4.</main></index><statement></statement><proof></proof></theorem> Let \(\theta: G \to  G'\) be a homomorphism from G into G'. The kernel of $\theta$ is a normal subgroup of G.
-
-
-
-Based on Theorem 15.4.4, every homomorphism gives us a normal subgroup.
-
-<theorem xml:id="theorem-15.4.5 : Fundamental Theorem of Group Homomorphisms."><title>15.4.5 : Fundamental Theorem of Group Homomorphisms.</title><index><main>15.4.5 : Fundamental Theorem of Group Homomorphisms.</main></index><statement></statement><proof></proof></theorem>  Let  \(\theta: G \to  G'\) be a homomorphism.  Then \(\theta(G)\) is
-isomorphic to \(G/\ker  \theta\).
-
-<example xml:id="ex-15.4.10."><title>15.4.10.</title><p></p></example> Define  \(\theta: \mathbb{Z} \rightarrow  \mathbb{Z}_{10}\) by \(\theta(n) =\) the remainder from dividing <m>n</m>
-by 10. The three previous theorems imply the following:
-
-(15.4.3)\(\textrm{     }\pi : \mathbb{Z} \rightarrow  \mathbb{Z}/10\mathbb{Z}\) defined by \(\pi (n) = n + 10\mathbb{Z}\) is a homomorphism.
-
-(15.4.4)  \(\{n\in \mathbb{Z}|\theta(n) = 0\} = \{10n|n \in \mathbb{Z}\}= 10\mathbb{Z} \triangleleft  \mathbb{Z}\).
-
-(15.4.5)   \(\mathbb{Z}/10\mathbb{Z}\) is isomorphic to \(\mathbb{Z}_{10}\) .
-
-<example xml:id="ex-15.4.11."><title>15.4.11.</title><p></p></example>  Let <m>G</m> be the same group of two by two invertible real matrices as in Example 15.4.6.  Define \(\Phi : G \rightarrow
- G\) by \(\Phi (A) = \frac{A}{\sqrt{\left| \det  A\right| }}\). We will let the reader verify that \(\Phi\) is a homomorphism. The theorems above
-imply:
+<example xml:id="ex-15.4.11."><title>15.4.11.</title><p></p></example>  Let <m>G</m> be the same group of two by two invertible real matrices as in <xref ref="ex-matrix-subgroups-15" autoname="yes" />.  Define \(\Phi : G \rightarrow
+ G\) by \(\Phi (A) = \frac{A}{\sqrt{\left| \det  A\right| }}\). We will let the reader verify that \(\Phi\) is a homomorphism. The theorems above imply:
 
 
 
@@ -328,7 +319,7 @@ imply:
 
 
 
-(15.4.3)  \(\pi : G ---> G\left/H_1\right.\) defined, naturally, by \(\pi (A) =A H_1\) is a homomorphism.
+(15.4.3)  \(\pi: G ---> G\left/H_1\right.\) defined, naturally, by \(\pi(A) =A H_1\) is a homomorphism.
 
 
 
