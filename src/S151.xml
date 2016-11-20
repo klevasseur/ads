@@ -28,8 +28,9 @@ If every third tack were connected, as in <xref ref="fig-string-art" autoname="y
 \[\mathbb{Z} = \langle 1 \rangle = \{n\cdot 1 |n \in  \mathbb{Z}\}\]
 
 This observation does not mean that every integer is the product of an integer times 1. It means that
-\[\mathbb{Z} = \{0\} \cup \left\{\left.\overbrace{1+1+\cdots +1}^{n \textrm{ terms}} \rvert n\in \mathbb{P}\right\}\cup \left\{\left.\overbrace{(-1)+(-1)+\cdots
-+(-1)}^{n \textrm{ terms}} \rvertn \in \mathbb{P}\right\}\]
+\[\mathbb{Z} = \{0\}
+\cup \{\overbrace{1+1+\cdots +1}^{n \textrm{ terms}} \mid  n \in \mathbb{P} \}
+\cup \{\overbrace{(-1)+(-1)+\cdots +(-1)}^{n \textrm{ terms}} \mid n \in \mathbb{P}\}\]
 </p></example> 
 
 <theorem xml:id="cyclic-implies-abelian"><title>Cyclic \(Rightarrow\) Abelian</title>
@@ -48,7 +49,7 @@ b*c &amp;= (m a)*(n a)\\
 <p>Up to now we have used only additive notation to discuss cyclic groups. Theorem 15.1.1 actually justifies this practice since it is customary to
 use additive notation when discussing abelian groups. Of course, some concrete groups for which we employ multiplicative notation are cyclic. If
 one of its elements, <m>a</m>, is a generator,
- \[\langle a \rangle = \left\{\left.a^n\rvert n \in  \mathbb{Z}\right\}\]
+ \[\langle a \rangle = \left\{a^n \mid n \in  \mathbb{Z}\right\}\]
  </p>
 <example xml:id="ex-cyclic-multiplicative"><title>A Cyclic Multiplicative Group</title><p>The group of positive integers modulo 11 with modulo 11 multiplication, \([\mathbb{Z}_{11}^* ;\times_{11}]\),
 is cyclic. One of its generators is 6:  \(6^1 = 6\), \(6^2 = 3\), \(6^3= 7\),\(\ldots\) , \(6^9=2\), and \(6^{10}=1\), the identity of the group.</p></example> 
@@ -114,7 +115,7 @@ adder takes as input two bit strings  \(a = \left\{a_0,a_1,a_2,a_3,a_4,a_5\right
 <index><main>CRT</main></index>
 <statement><p>Let \(n_1\), \(n_2\), \(\ldots\), \(n_p\) be integers that have no common factor greater than one between
 any pair of them; i. e., they are relatively prime.  Let \(n = n_1n_2\cdots  n_p\). Define
-\[\theta:\mathbb{Z}_n\to  \mathbb{Z}_{n_1}\times \mathbb{Z}_{n_2}\times  \cdots \times \mathbb{Z}_{n_p}\\
+\[\theta:\mathbb{Z}_n\to  \mathbb{Z}_{n_1}\times \mathbb{Z}_{n_2}\times  \cdots \times \mathbb{Z}_{n_p}\]
 by   
 \[\theta(k) = \left(k_1, k_2, \ldots , k_p\right)\]
 where for \(1\leq i\leq p\),   \(0\leq k_i &lt; n_i\)   and  \(k\equiv k_i\left(\textrm{ mod} n_i\right)\).  Then \(\theta\) is an isomorphism from \(\mathbb{Z}_n\) into \(\mathbb{Z}_{n_1}\times \mathbb{Z}_{n_2}\times  \cdots \times \mathbb{Z}_{n_p}\).</p></statement></theorem>
@@ -126,8 +127,8 @@ where for \(1\leq i\leq p\),   \(0\leq k_i &lt; n_i\)   and  \(k\equiv k_i\left(
 \theta(2) = (0, 2) &amp; \theta(5) = (1,2)\\
 \end{array}
 </me></p>
-<p>Let's consider a somewhat larger case.  We start by selecting a modulus that can be factored into a product of relatively prime integers: \(n=21,600=2^5 3^3 5^2}\).  In this case the factors are \(2^5=32\), \(3^3=27\), and \(5^2=25\).  They need not be powers of primes, but it is easy to break the factors into
-this form to assure relatively prime numbers.  To add in \(\mathbb{Z}_n\), we need \(\left\lceil \log _2n\right\rceil =15\) time units.  Let \(G=\mathbb{Z}_{32}\times \mathbb{Z}_{27}\times \mathbb{Z}_{25}\).   The CRT gives us an isomorphism between \(\mathbb{Z}_{21600}\) and \(G\). The basic idea behind the fast adder, illustrated in <xref ref="fig-fast-adder" autoname="yes" />, is to make use of this isomorphism. </p>
+<p>Let's consider a somewhat larger case.  We start by selecting a modulus that can be factored into a product of relatively prime integers: \(n=21,600=2^5 3^3 5^2\).  In this case the factors are \(2^5=32\), \(3^3=27\), and \(5^2=25\).  They need not be powers of primes, but it is easy to break the factors into
+this form to assure relatively prime numbers.  To add in \(\mathbb{Z}_n\), we need \(\left\lceil \log _2n\right\rceil =15\) time units.  Let \(G=\mathbb{Z}_{32}\times \mathbb{Z}_{27}\times \mathbb{Z}_{25}\).   The CRT gives us an isomorphism between \(\mathbb{Z}_{21600}\) and \(G\). The basic idea behind the fast adder, illustrated in <xref ref="fig-parallel-sum" autoname="yes" />, is to make use of this isomorphism. </p>
 
         <figure xml:id="fig-parallel-sum">
                 <caption>Fast Adder Scheme
@@ -223,7 +224,8 @@ to the CRT, the time is reduced to \(\left\lceil \log _249\right\rceil =6\) time
 <introduction><p>A Exercises</p></introduction>
 <exercise number="1"><statement><p>What generators besides 1 does \([\mathbb{Z}, +]\) have?</p></statement><answer><p>  The only other generator is \(-1\).
 </p></answer></exercise>
-<exercise number="2"><statement><p>  Without doing any multiplications, determine the number of generators of  \([\mathbb{Z}_{11}, +_{11}]\).</p></statement></exercise>
+<exercise number="2"><statement><p>  Without doing any multiplications, determine the number of generators of  \([\mathbb{Z}_{11}, +_{11}]\).</p></statement>
+</exercise>
 <exercise number="3"><statement><p> Prove that if \(\lvert G\rvert >2\) and <m>G</m> is cyclic, <m>G</m> has at least two generators.</p></statement>
 <answer><p>  If  \(\lvert G\rvert = m\), \(m>2\), and \(G = \langle a \rangle\), then <m>a</m>, \(a^2,\ldots\), \(a^{m-1}\) , \(a^m=e\) are distinct
 elements of <m>G</m>. Furthermore, \(a^{-1}= a^{m-1}\neq a\),  If \(1\leq k\leq m\), \(a^{-1}\) generates \(a^k\):
@@ -236,7 +238,8 @@ a^{-1})^{m-k} &amp;= \left(a^{m-1}\right)^{m-k}\\
 </p>
 <p>Similarly, if <m>G</m> is infinite and \(G = \langle a\rangle\), then \(a^{-1}\) generates <m>G</m>.</p>
 </answer></exercise>
-<exercise number="4"><statement><p>  If you wanted to list the generators of \(\mathbb{Z}_n\) you would only have to test the first \(n/2\) positive integers. Why?</p></statement></exercise>
+<exercise number="4"><statement><p>  If you wanted to list the generators of \(\mathbb{Z}_n\) you would only have to test the first \(n/2\) positive integers. Why?</p></statement>
+</exercise>
 <exercise number="5"><statement><p>  Which of the following groups are cyclic? Explain.
 <ol label="a">
 <li><p> \([\mathbb{Q}, +]\)</p></li>
@@ -268,7 +271,8 @@ a^{-1})^{m-k} &amp;= \left(a^{m-1}\right)^{m-k}\\
 <exercise number="7"><statement><p>  How can <xref ref="theorem-order-in-cyclic" autoname="yes" /> be applied to list the generators of \(\mathbb{Z}_n\)? What are the generators of \(\mathbb{Z}_{25}\)? Of \(\mathbb{Z}_{256}\)?</p></statement>
 <answer><p> <xref ref="theorem-order-in-cyclic" autoname="yes" /> implies that <m>a</m> generates \(\mathbb{Z}_n\) if and only if the greatest common divisor of <m>n</m> and <m>a</m> is 1. Therefore the list of generators of \(\mathbb{Z}_n\) are the integers in \(\mathbb{Z}_n\) that are relatively prime to <m>n</m>. The generators of \(\mathbb{Z}_{25}\) are all of the nonzero elements except 5, 10, 15, and 20. The generators of \(\mathbb{Z}_{256}\) are the odd integers in \(\mathbb{Z}_{256}\)  since 256 is \(2^8\).
 </p></answer></exercise>
-<exercise number="8"><statement><p>  Prove that if the greatest common divisor of <m>n</m> and <m>m</m> is 1, then (1, 1) is a generator of \(\mathbb{Z}_n\times \mathbb{Z}_m\), and, hence, \(\mathbb{Z}_n\times \mathbb{Z}_m\) is isomorphic to  \(\mathbb{Z}_{n m}\).</p></statement></exercise>
+<exercise number="8"><statement><p>  Prove that if the greatest common divisor of <m>n</m> and <m>m</m> is 1, then (1, 1) is a generator of \(\mathbb{Z}_n\times \mathbb{Z}_m\), and, hence, \(\mathbb{Z}_n\times \mathbb{Z}_m\) is isomorphic to  \(\mathbb{Z}_{n m}\).</p></statement>
+</exercise>
 <exercise number="9"><statement><p><ol label="a">
 <li><p>Illustrate how the fast adder can be used to add the numbers 21, 5, 7, and 15 using the isomorphism between \(\mathbb{Z}_{77}\) and \(\mathbb{Z}_7\times \mathbb{Z}_{11}\). </p></li>
 <li><p> If the same isomorphism is used to add the numbers 25, 26, and 40, what would the result be, why would it be incorrect, and how would the answer differ from the answer in part a?</p></li>
@@ -312,7 +316,8 @@ theta ^{-1}(0,3) &amp;= 3 \times_{77}\theta ^{-1}(0,1)\\
 <p>The actual sum is 91. Our result is incorrect, since 91 is not in \(\mathbb{Z}_{77}\).  Notice that 91 and 14 differ by 77. Any error that we get using this technique will be a multiple of 77.</p></li>
 </ol></p>
 </answer></exercise>
-<exercise number="10"><statement><p>   Prove that if G . is a cyclic group of order n . with generator <m>a</m>, and\(p, q \in  \{0, 1, \ldots , n - 1\}\), then \((p+q)a = \left(p+_nq\right)a\) </p></statement></exercise>
+<exercise number="10"><statement><p>   Prove that if G . is a cyclic group of order n . with generator <m>a</m>, and\(p, q \in  \{0, 1, \ldots , n - 1\}\), then \((p+q)a = \left(p+_nq\right)a\) </p></statement>
+</exercise>
 </exercisegroup>
 </exercises>
 </section>
