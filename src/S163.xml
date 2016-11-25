@@ -1,108 +1,90 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<section xml:id="s-Polynomial Rings">
+<section xml:id="s-polynomial-rings">
 <title>Polynomial Rings</title>
-<index><main>Polynomial Rings</main></index>
 
-
-
-In the previous sections we examined the solutions of a few equations over different rings and fields. To solve the equation \(x^2- 2 = 0\) over
+<p>In the previous sections we examined the solutions of a few equations over different rings and fields. To solve the equation \(x^2- 2 = 0\) over
 the field of the real numbers means to find all solutions of this equation that are in this particular field <m>\mathbb{R}</m>. This statement can be
 replaced as follows: Determine all \(a \in  \mathbb{R}\) such that the polynomial \(f(x) = x^2 - 2\) is equal to zero when evaluated at \(x=a\).
  In this section, we will concentrate on  the theory of polynomials. We will develop concepts using the general setting of polynomials over rings
 since results proven over rings are true for fields (and integral domains). The reader should keep in mind that in most cases we are just formalizing
-concepts that he or she learned in high school algebra over the field of reals.
+concepts that he or she learned in high school algebra over the field of reals.</p>
 
-<definition xml:id="def-Polynomial over R"><title>Polynomial over R</title><index><main>Polynomial over R</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+<definition xml:id="def-Polynomial over R"><title>Polynomial over a Ring</title>
+<index><main>Polynomial over a Ring</main></index>
+<notation><usage>deg f(x)</usage><description>the degree of polynomial \(f(x)\)</description></notation>
+<notation><usage>R[x]</usage><description>the set of all polynomials in \(x\) over \(R\)</description></notation>
+<statement><p>Let \([R; +, \cdot ]\) be a ring.  A polynomial, \(f(x)\), over \(R\) is an expression of the form 
+\[f(x)=\sum _{i=0}^n a_i x^i=a_0 + a_1 x+a_2 x^2+ \cdots +a_n x^n\]  where \(n\geq 0\),
+and \(a_0, a_1, a_2, \ldots, a_n \in  R\).  If  \(a_n \neq  0\),  then the degree of \(f(x)\) is \(n\),  If f(x) = 0, then the degree of f(x) is undefined.  If the degree of \(f(x)\) is \(n\), we write \(\deg f(x) = n\). The set of all polynomials in the indeterminate <m>x</m> with coefficients in <m>R</m> is denoted by \(R[x]\).</p></statement></definition>
 
-. Let \([R; +, \cdot ]\) be a ring.  A polynomial, \(f(x)\), over R is an expression of the form 
 
-$\quad \quad $ \(f(x)=\sum _{i=0}^n a_i x^i=a_0 + a_1 x+a_2 x^2+ \cdots +a_n x^n\)  ,  \(n\geq 0\),
-
-where \(a_0,a_1 ,a_2 ,\ldots  , a_n\in  R\).  If  \(a_n \neq  0\),  then the degree of \(f(x)\) is n,  If f(x) = 0, then the degree of f(x)
-is undefined and we assign the value \(-\infty\) to the degree.  If the degree of f(x) is n, we write\(\deg  f(x) = n\).
-
-Comments:</p></li>
-<li><p>The symbol <m>x</m> is an object called an indeterminate. , which is not an element of the ring R.  .  </p></li>
-<li><p>The set of all polynomials in the indeterminate <m>x</m> with coefficients in <m>R</m> is denoted by \(R[x]\).</p></li>
-<li><p>Note that \(R\subseteq  R[x]\), The elements of <m>R</m> are called constant polynomials. , with the nonzero elements of <m>R</m>
-being the polynomials of degree 0.</p></li>
-<li><p> <m>R</m> is called the ground ring.  for \(R[x]\).</p></li>
+<remark><ul>
+<li><p>The symbol <m>x</m> is an object called an indeterminate, which is not an element of the ring \(R\).  </p></li>
+\<li><p>Note that \(R\subseteq  R[x]\), The elements of <m>R</m> are called constant polynomials, with the nonzero elements of <m>R</m> being the polynomials of degree 0.</p></li>
+<li><p><m>R</m> is called the ground, or base, ring for \(R[x]\).</p></li>
 <li><p>  In the definition above, we have written the terms in increasing degree starting with the constant.  The ordering of terms can be reversed
 without changing the polynomial.  For example,  \(1 + 2 x -3x^4\) and  \(-3x^4+2 x+1\) are the same polynomial. </p></li>
-<li><p>   A term of the form \(x^k\) in a polynomial is understood to be \(1x^k\),  
+<li><p>   A term of the form \(x^k\) in a polynomial is understood to be \(1 x^k\).  </p></li>
+</ul></remark>
 
-<example xml:id="ex-16.3.1."><title>16.3.1.</title><p></p></example> \(f(x) = 3\), \(g(x) = 2 - 4x +7x^2\) , and \(h(x) = 2 + x^4\) are all polynomials in \(\mathbb{Z}[x]\). Their degrees are
-0, 2, and 4, respectively.
+<example xml:id="ex-some-polynomials"><p> \(f(x) = 3\), \(g(x) = 2 - 4x +7x^2\) , and \(h(x) = 2 + x^4\) are all polynomials in \(\mathbb{Z}[x]\). Their degrees are
+0, 2, and 4, respectively.</p></example>
 
 
 
-Addition and multiplication of polynomials are performed as in high school algebra. However, we must do our computations in the ground ring over
-which we are considering the polynomials.
+<p>Addition and multiplication of polynomials are performed as in high school algebra. However, we must do our computations in the ground ring of the polynomials.</p>
 
-<example xml:id="ex-16.3.2."><title>16.3.2.</title><p></p></example> In \textrm{ \(\mathbb{Z}_3[\textrm{ \textit{$x$}}]\)}, if \(f(x) = 1+x\) and  \(g(x) = 2+x\), then
-
-\(\textrm{       }f(x) + g(x) = (1+x) + (2+x) \quad \quad = \left(1 +_32\right)+ \left(1 +_31\right) x\quad \quad = 0 + 2x \quad \quad = 2x\)
+<example xml:id="ex-polynomial-operations"><p>In \(\mathbb{Z}_3[x]\), if \(f(x) = 1+x\) and  \(g(x) = 2+x\), then
+<me>\begin{split}
+f(x) + g(x) &amp;= (1+x) + (2+x)\\
+		&amp; = \left(1 +_3 2\right)+ \left(1 +_3 1\right) x\\
+		&amp;  = 0 + 2x  \\
+		&amp; = 2x
+\end{split}
+</me>
 
 
 and
+<me>\begin{split}
+f(x)g(x) &amp;= (1+x) \cdot  (2 +x) \\
+		&amp;= (1+x) \cdot  2 + (1+x) \cdot x\\
+		&amp;= 1\times _32+2x + 1x+x\cdot x\\
+		&amp;=2 + \left(2 +_3 1\right)x + x^2 \\
+		&amp; =2 + x^2
+\end{split}
+</me>
 
-\(\textrm{              }f(x)g(x) = (1+x) \cdot  (2 +x) \quad \quad = (1+x) \cdot  2 + (1+x) \cdot x\quad \quad = 1\times _32+2x + 1x+x\cdot
-x\quad \quad =2 + \left(2 +_31\right)x + x^2 \quad \quad =2 + x^2\).
-
-However, for the same polynomials as above, \(f(x)\) and \(g(x)\) in <m>\mathbb{ZQ}</m>[x], we have
-
-\(\textrm{       }f(x) + g(x) = (1+x) + (2+x) \quad \quad = (1 +2)+ (1 +1) x\quad \quad = 3 + 2x\) 
-
+However, for the same polynomials as above, \(f(x)\) and \(g(x)\) in the more familar setting of <m>\mathbb{Z}</m>[x], we have
+<me>f(x) + g(x) = (1+x) + (2+x)  = (1 +2)+ (1 +1) x = 3 + 2x</me>
 and
+<me>\begin{split}f(x)g(x)\\
+		&amp; =(1+x)\cdot(2 +x)\\
+		&amp;= (1+x)\cdot 2+(1+x)\cdot x\\
+		&amp; = 1\cdot 2+2x + 1x+x\cdot x\\
+		&amp;=2 + (2 +1)x + x^2 \\
+		&amp; =2 +3x + x^2\\
+\end{split}
+</me>
+</p>
+<p>The important fact to keep in mind is that addition and multiplication in \(R[x]\) depends on addition and multiplication in <m>R</m>. The powers of \(x\) merely serve the purpose of <q>place holders.</q> All computations are done over the given ring.  We summarize in the following formal definitions:</p>
 
-\(\textrm{              }f(x)g(x) = (1+x) \cdot  (2 +x) \quad \quad = (1+x) \cdot  2 + (1+x) \cdot x\quad \quad = 1\cdot 2+2x + 1x+x\cdot x\quad
-\quad =2 + (2 +1)x + x^2 \quad \quad =2 +3x + x^2\).
-
-
-
-The important fact to keep in mind is that addition and multiplication in \(R[x]\) depends on addition and multiplication in <m>R</m>. The \textit{
-x}{'}s merely serve the purpose of <q>place holders.</q> All computations are done over the given ring.  We summarize in the following theorem:
-
-<theorem xml:id="theorem-16.3.1."><title>16.3.1.</title><index><main>16.3.1.</main></index><statement></statement><proof></proof></theorem> Let [R, +, $\cdot $] be a ring. Then:</p></li>
-<li><p>R[x] is a ring under the operations of polynomial addition and multiplication, which depend on (are induced by) the operations in R.</p></li>
-<li><p>If R is a commutative ring, then R[x] is a commutative ring.</p></li>
-<li><p>If R is a ring with unity, \textup{ 1}, then R[x] is a ring with unity (the unity in R[x] is \(1 + 0x + 0 x^2 + \cdots\)).</p></li>
-<li><p>If R is an integral domain, then R[x] is an integral domain.</p></li>
-<li><p>If F is a field, then F[x] is not a field. However, F[x] is an integral domain.
-
-
-
-The proofs for Parts 1 through 4 are not difficult but rather long, so we omit them. For those inclined to prove them, we include the formal definitions
-of addition and multiplication in \(R[x]\) below.
+<definition xml:id="def-polynomial-addition"><title>Addition in \(R[x]\)</title>
+<index><main>Polynomial Addition</main></index>
+<statement><p>Let \(f(x) =a_0 + a_1 x+a_2 x^2+ \cdots +a_m x^m\) and \(g(x) =b_0 + b_1 x+b_2 x^2+ \cdots +b_n x^n\)
+be elements in R[x] so that \(a_i \in  R\) and \(b_i\in R\)  for all i. Let \(k\) be the maximum of \(m\) and \(n\).  Then  \(f(x) + g(x) =c_0 + c_1 x+c_2 x^2+ \cdots +c_k x^k\), where \(c_i=a_i+b_i\) for \(i = 0, 1, 2, \ldots , k\).</p></statement></definition>
 
 
 
-Proof Of Part 5: \(F[x]\) is not a field since for \(x \in  F[x]\),  \(x^{-1} = 1/x \notin  F[x]\). Hence not all nonzero elements in \(F[x]\)
-have multiplicative inverses in \(F[x]\). Every field <m>F</m> is an integral domain. By Part 4, \(F[x]\) is an integral domain. $\blacksquare
-$
+<definition xml:id="def-polynomial-multiplication"><title>Multiplication in \(R[x]\)</title>
+<index><main>Polynomial Multiplication</main></index><statement><p>Let \(f(x) =a_0 + a_1 x+a_2 x^2+ \cdots +a_m x^m\) and \(g(x) =b_0 + b_1 x+b_2 x^2+ \cdots +b_n x^n\).  Then
+<me>\begin{array}{c}
+f(x) \cdot  g(x) = d_0 + d_1 x+d_2 x^2+ \cdots +d_p x^p \quad \textrm{ where } p=m+n \textrm{ and }\\
+d_s=\sum_{i=0}^s a_i b_{s-i} =a_0 b_s+a_1 b_{s-1}+a_2 b_{s-2}+\cdots +a_{s-1} b_1+a_s b_0\\
+\textrm{for } \(0\leq s\leq p\\\end{array}
+</me>
+</p></statement></definition>
 
-<definition xml:id="def-Addition in "><title>Addition in </title><index><main>Addition in </main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
-
-\(\pmb{R[x]}\). Let \(f(x) =a_0 + a_1 x+a_2 x^2+ \cdots +a_m x^m\) and \(g(x) =b_0 + b_1 x+b_2 x^2+ \cdots +b_n x^n\)
-be elements in R[x] so that \(a_i \in  R\) and \(b_i\in R\)  for all i. Let k be the maximum of m and n.  Then
-
-\(f(x) + g(x) =c_0 + c_1 x+c_2 x^2+ \cdots +c_k x^k\) 
-
-where \(c_i=a_i+b_i\) for \(i = 0, 1, 2, . . . , k\).
-
-<definition xml:id="def-Multiplication in "><title>Multiplication in </title><index><main>Multiplication in </main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
-
-\(\pmb{R[x]}\). Let \(f(x)\) and \(g(x)\) be as above. Then
-
-\(f(x) \cdot  g\{x) = d_0 + d_1 x+d_2 x^2+ \cdots +d_p x^p\) where
-
-\(p=m+n,\) and 
-
-\(\textrm{            }d_s=\sum _{i=0}^s a_i b_{s-i}\quad =a_0 b_s+a_1 b_{s-1}+a_2 b_{s-2}+\cdots +a_{s-1} b_1+a_s b_0\) 
-
-for \(0\leq s\leq p\).
-
-<example xml:id="ex-16.3.3."><title>16.3.3.</title><p></p></example> Let \(f(x) = 2 + x^2\) and \(g(x) = -1 + 4x + 3x^2\). We will compute \(f(x) \cdot  g(x)\) in \(\mathbb{Z}[x]\). Of course
+<example xml:id="ex-polyomial-mult"><p>Let \(f(x) = 2 + x^2\) and \(g(x) = -1 + 4x + 3x^2\). We will compute \(f(x) \cdot  g(x)\) in \(\mathbb{Z}[x]\). Of course
 this product can be obtained by the usual methods of high school algebra. We will, for illustrative purposes, use the above definition. Using the
 notation of the above definition, \(a_0=2\), \(a_1=0\), \(a_2=1\), \(b_0=-1\), \(b_1= 4\), and \(b_2 = 3\). We want to compute the coefficients \(d_0\),
 \(d_1\), \(d_2\), \(d_3\), and \(d_4\) . We will compute \(d_3\) , the coefficient of the \(x^3\) term of the product, and leave the remainder to
@@ -116,61 +98,63 @@ the reader (see Exercise 2 of this section).  Since the degrees of both factors 
 
 From high school algebra we all learned the standard procedure for dividing a polynomial \(f(x)\) by a second polynomial \(g(x)\). This process of
 polynomial long division is referred to as the division property for polynomials. Under this scheme we continue to divide until the result is a quotient
-\(q(x)\) and a remainder \(r(x)\) whose degree is strictly less than that of the divisor \(g(x)\). This property is valid over any field.
+\(q(x)\) and a remainder \(r(x)\) whose degree is strictly less than that of the divisor \(g(x)\). This property is valid over any field.</p></example> 
 
-<example xml:id="ex-16.3.4."><title>16.3.4.</title><p></p></example> Let \(f(x) = 1 + x + x^3\) and \(g(x) = 1 + x\) be two polynomials in \textrm{ \(\mathbb{Z}_2[x]\)}. Let us divide \(f(x)\)
-by \(g(x)\). Keep in mind that we are in \(\mathbb{Z}_2[x]\) and that, in particular, \(-1=1\) in \(\mathbb{Z}_2\) .  This is a case where reordering
-the terms in decreasing degree is preferred.
+<p>The proofs of the following theorem are not difficult but rather long, so we omit them. </p>
 
-\begin{doublespace}
-\noindent\(\)
-\end{doublespace}
+<theorem xml:id="theorem-polynomial-ring-properties"><title>Properties of Polynomial Rings</title><statement>Let \([R, +, \cdot]\) be a ring. Then:</p></li>
+<li><p>\(R[x]\) is a ring under the operations of polynomial addition and multiplication, which depend on (are induced by) the operations in \(R\).</p></li>
+<li><p>If \(R\) is a commutative ring, then \(R[x]\) is a commutative ring.</p></li>
+<li><p>If \(R\) is a ring with unity, \textup{ 1}, then \(R[x]\) is a ring with unity (the unity in \(R[x]\) is \(1 + 0x + 0 x^2 + \cdots\)).</p></li>
+<li><p>If \(R\) is an integral domain, then \(R[x]\) is an integral domain.</p></li>
+<li><p>If \(F\) is a field, then \(F[x]\) is not a field. However, \(F[x]\) is an integral domain.
+</statement></theorem> 
+<p>Next we turn to division of polynomials, which is not an operation since the result is a pair of polynomials, not a single one. Before giving a formal decription, we consider some examples.</p>
+<example xml:id="ex-poly-division-1"><title>Polynomial Division</title><p>Let \(f(x) = 1 + x + x^3\) and \(g(x) = 1 + x\) be two polynomials in  \(\mathbb{Z}_2[x]\). Let us divide \(f(x)\)
+by \(g(x)\). Keep in mind that we are in \(\mathbb{Z}_2[x]\) and that, in particular, \(-1=1\) in \(\mathbb{Z}_2\) .  This is a case where reordering the terms in decreasing degree is preferred.
 
-Therefore,
-
-
-
-$\quad \quad $\(\frac{x^3 + x + 1}{x+ 1}= x^2+ x + \frac{1}{x + 1}\)
-
+         <figure xml:id="fig-poly-divison-1">
+                <image width="60%" source="images/fig-poly-divison-1.png">
+                    <description>fig-poly-divison-1</description>
+                </image>
+            </figure>
+<p>Therefore,
+\[\frac{x^3 + x + 1}{x+ 1}= x^2+ x + \frac{1}{x + 1}\]
 or equivalently,
+\[x^3 + x + 2= \left( x^2+ x\right)\cdot (x+1) + 1\]
+That is, \(f(x) = g(x)\cdot q(x) + r(x)\) where \(q(x) = x^2+x\) and \(r(x) = 1\).  Notice that  \(\deg (r(x)) = 0\), which is strictly less than the \(\deg (g(x)) = 1\).
+</p></example>
+ 
+<example xml:id="ex-poly-division-2">
+<p>Let \(f(x) = 1 +x^4\) and \(g(x) = 1 + x\) be polynomials in \(\mathbb{Z}_2[x]\).  Let us divide f(x) by g(x):
 
-
-
-$\quad \quad $\(x^3 + x + 2= \left( x^2+ x\right)\cdot (x+1) + 1\)
-
-That is \(f(x) = g(x)\cdot q(x) + r(x)\) where \(q(x) = x^2+x\) and \(r(x) = 1\).  Notice that   \(\deg (r(x)) = 0\), which is strictly less
-than the \(\deg (g(x)) = 1\).
-
-<example xml:id="ex-16.3.5. "><title>16.3.5. </title><p></p></example> Let  \(f(x) = 1 +x^4\) and \(g(x) = 1 + x\) be polynomials in \(\mathbb{Z}_2[x]\).  Let us divide f(x) by g(x):
-
-\begin{doublespace}
-\noindent\(\)
-\end{doublespace}
-
+         <figure xml:id="fig-poly-divison-2">
+                <image width="60%" source="images/fig-poly-divison-2.png">
+                    <description>fig-poly-divison-2</description>
+                </image>
+            </figure>
 Thus \(x^4+ 1 = \left(x^3+x^2+ x + 1\right)(x+1)\text \).
 
 Since we have 0 as a remainder, \(x + 1\) must be a factor of \(x^4+ 1\), as in high school algebra. Also, since \(x + 1\) is a factor of \(x^4 +
 1\),  1 is a zero (or root) of \(x^4 + 1\).   Of course we could have determined that 1 is a root of \(f(x)\) simply by computing   \(f(1)
 =1^4 +_2 1 = 1 +_2 1 = 0\).
-
+</p></example> 
 Before we summarize the main results suggested by the previous examples, we should probably consider what could have happened if we had performed
-divisions of polynomials in the ring <m>\mathbb{ZQ}</m>[x] rather than over the field \(\mathbb{Z}_2\) . For example,\(\text f(x) = x^2 - 1\) and \(g(x)
+divisions of polynomials in the ring <m>\mathbb{Z}</m>[x] rather than over the field \(\mathbb{Z}_2\) . For example,\(\text f(x) = x^2 - 1\) and \(g(x)
 = 2x - 2\) are both elements of the ring <m>\mathbb{ZQ}</m>[x], yet 
-
 
 
  \(\frac{x^2+ 1}{2x-1}= \frac{1}{2}x + \frac{1}{2}\)
 
-The quotient is not a polynomial over <m>\mathbb{ZQ}</m> but a polynomial over the field <m>\mathbb{ZQ}</m>. For this reason it would be wise to describe all
-results over a field <m>F</m> rather than over an arbitrary ring <m>R</m>.
+The quotient is not a polynomial over <m>\mathbb{Z}</m> but a polynomial over the field <m>\mathbb{Q}</m>. For this reason it would be wise to describe all results over a field <m>F</m> rather than over an arbitrary ring <m>R</m>.
 
-<theorem xml:id="theorem-16.3.2. Division Property for "><title>16.3.2. Division Property for </title><index><main>16.3.2. Division Property for </main></index><statement></statement><proof></proof></theorem>\pmb{ \(F[x]\)}\pmb{ .} Let \([F; +, \cdot ]\) be a field and let \(f(x)\) and \(g(x)\) be two elements
+<theorem xml:id="theorem-poly-divison-property"><title>Division Property for Polynomials </title><index><main>Division Property for Polynomials</main></index><statement>\pmb{ \(F[x]\)}\pmb{ .} Let \([F; +, \cdot ]\) be a field and let \(f(x)\) and \(g(x)\) be two elements
 of \(F[x]\) with \(g(x) \neq  0\). Then there exist unique polynomials \(q(x)\) and \(r(x)\) in \(F[x]\) such that \(f(x) = g(x) q(x) + r(x)\), where
-\(\deg  r(x) < \deg  g(x)\).
+\(\deg  r(x) < \deg  g(x)\).</statement><proof>Theorem 16.3.2 can be proven by induction on \(\deg  f(x)\).</proof></theorem>
 
 
 
-Theorem 16.3.2 can be proven by induction on \(\deg  f(x)\).
+
 
 <theorem xml:id="theorem-16.3.3."><title>16.3.3.</title><index><main>16.3.3.</main></index><statement></statement><proof></proof></theorem> Let \([F; +, \cdot ]\) be a field. An element \(a \in  F\) is a zero of \(f(x) \in  F[x]\) if and only if \(x - a\) is a factor
 of \(f(x)\) in \(F[x]\).
@@ -225,7 +209,7 @@ A polynomial is reducible.  over.  <m>F</m> if it is not irreducible over <m>F</
 
 <example xml:id="ex-16.3.8. { "><title>16.3.8. { </title><p></p></example>}Is the polynomial \(f(x) = x^3 + x + 1\) of Example 16.3.4 reducible over \(\mathbb{Z}_2\) ? From Example 16.3.4 we know
 that \(x + 1\) is not a factor of \(x^3 + x + 1\), and from high school algebra we realize that a cubic (also second-degree) polynomial is reducible
-if and only if it has a linear (first-degree) factor. (Why?) Does \(f(x) =x^3 + x + 1\) have any other linear factors? Theorem 16.3.1 gives us a
+if and only if it has a linear (first-degree) factor. (Why?) Does \(f(x) =x^3 + x + 1\) have any other linear factors? <xref ref="theorem-polynomial-ring-properties" autoname="yes" /> gives us a
 quick way of determine this since \(x - a\) is a factor of \(x^3 + x + 1\) over \(\mathbb{Z}_2\) if and only if a $\in $ \(\mathbb{Z}_2\) is a zero
 of \(x^3 + x + 1\). So \(x^3 + x + 1\) is reducible over \(\mathbb{Z}_2\) if and only if it has a zero in \(\mathbb{Z}_2\) . Since \(\mathbb{Z}_2\)
 has only two elements, 0 and 1, this is easy enough to check. 
