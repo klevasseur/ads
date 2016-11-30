@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<section xml:id="s-Power Series">
+<section xml:id="s-power-series">
 <title>Power Series</title>
 
-Earlier in this chapter, we found that a polynomial of degree <m>n</m> over a ring <m>R</m>  is an expression of the form
-\[f(x)=\sum_{i=0}^n a_i x^i=a_0 + a_1 x+a_2 x^2+ \cdots +a_n x^n\)  ,  \(n\geq 0\],
-where each of the \(a_i\) are elements of <m>R</m> and \(a_n\neq 0\). In Section 8.5 we defined a generating function of a sequence <m>s</m>
-with terms \(s_0\), \(s_1\), \(s_2, \ldots\), $\ldots $  as the infinite sum
+<p>Earlier in this chapter, we found that a polynomial of degree <m>n</m> over a ring <m>R</m>  is an expression of the form
+\[f(x)=\sum_{i=0}^n a_i x^i=a_0 + a_1 x+a_2 x^2+ \cdots +a_n x^n\]  
+where  \(n\geq 0\), each of the \(a_i\) are elements of <m>R</m> and \(a_n\neq 0\). In Section 8.5 we defined a generating function of a sequence <m>s</m>
+with terms \(s_0\), \(s_1\), \(s_2, \ldots\)  as the infinite sum
 \[G(s,z)= \sum_{i=0}^{\infty } s_i z^i=s_0 + s_1 z+s_2 z^2+ \cdots\]</p>
 <p>The main difference between these two expressions, disregarding notation, is that the latter is an infinite expression and the former is a finite
 expression. In this section we will extend the algebra of polynomials to the algebra of infinite expressions like \(G(s, z)\),  which are called power series.</p>
@@ -47,10 +47,11 @@ f(x)\cdot g(x)&amp;=\sum_{i=0}^{\infty } d_i x^i \quad \textrm{where }d_i= \sum_
 \end{split}</me></p></statement></definition>
 
 
-<example xml:id="ex-16.5.1."><title>Some Power Series Calcuations</title><p>(Example 8.5.3, Revisited.) Let \(\)  
+<example xml:id="ex-ps-calculations"><title>Some Power Series Calcuations</title>
+<p> Let   
 <me>\begin{array}{c}
-f(x)=\sum_{i=0}^{\infty  i x^i=0 + 1 x+2 x^2+3x^3+ \cdots \quad \textrm{and}\\
-g(x)=\sum_{i=0}^{\infty } 2^i x^i=1 +2 x+4 x^2+8x^3+ \cdots \\
+f(x)=\sum_{i=0}^{\infty}  i x^i=0 + 1 x+2 x^2+3x^3+ \cdots \quad \textrm{and}\\
+g(x)=\sum_{i=0}^{\infty} 2^i x^i=1 +2 x+4 x^2+8x^3+ \cdots \\
 \end{array}</me>
 be elements in \(\mathbb{Z}[[x]]\).  Let us compute \(f(x) + g(x)\) and \(f(x)\cdot g(x)\).  First the sum:
 <me>\begin{split}
@@ -63,7 +64,7 @@ The product is a bit more involved:
  f(x) \cdot g(x) &amp; =\left(\sum_{i=0}^{\infty } i x^i\right)\left(\sum_{i=0}^{\infty } 2^i x^i\right)\\
  	&amp;=\left(0+ 1 x+2 x^2+3x^3+ \cdots \right)\cdot \left(1 +2 x+4 x^2+8x^3+ \cdots \right)\\
 	&amp;=0\cdot 1 + (0\cdot 2 + 1\cdot 1)x + (0\cdot 4+1\cdot 2+2\cdot 1)x^2+ \cdots\\
-	&amp;= x + 4\cdot x^2+  \cdots\\
+	&amp;= x + 4\cdot x^2+ 11 \cdot x^3 + \cdots\\
 	&amp;= \sum_{i=0}^{\infty } d_i x^i\quad\quad\textrm{where } d_i= \sum_{j=0}^i j 2^{i-j}\\
 \end{split}</me>
 We can compute any value of \(d_i\), with the amount of time/work required increasing as \(i\) increases.</p>
@@ -80,247 +81,153 @@ d(20)
 2097130
 </output>
 </sage>
-<p>A closed-form expression for \(d_i\) would be desirable.  Using techniques
-
-For example,
-
-
-
-$\quad \quad $\(\textrm{             }d_3= 0 \cdot  2^3+ 1 \cdot 2^2+ 2\cdot 2^1+3\cdot 2^0\quad =0+4+4+3\quad =11\)
-
-
-
-Hence,
-
-
-
-\(f(x)\cdot g(x) =x + 4x^2+11x^3+ \cdots\)
-
+<p>A closed-form expression for \(d_i\) would be desirable.  Using techniques from Chapter 8, we can derive the formula  \(d_i=2^{i+1}-i-2\), which we leave to the reader as an exercise.  Hence,
+\(f(x)\cdot g(x) =\sum_{i=0}^{\infty } (2^{i+1}-i-2) x^i\)
 </p></example> 
-
-The First few terms of the product do not suggest a pattern but with Mathematica. , we can get a closed form expression for the coefficients.
-
-\begin{doublespace}
-\noindent\(\pmb{\textrm{ Simplify}\left[\sum_{j=0}^i j 2^{i-j}\right]}\)
-\end{doublespace}
-
-\begin{doublespace}
-\noindent\(-i+2^{i+1}-2\)
-\end{doublespace}
-
-
-
-Therefore,   \(d_i=2^{i+1}-i-2\) and 
-
-
-
- \(\textrm{            }f(x)\cdot g(x) =\left(\sum_{i=0}^{\infty } i x^i\right)\left(\sum_{i=0}^{\infty } 2^i x^i\right)\quad \quad = \sum
-_{i=0}^{\infty } \left(2^{i+1}-i-2\right) x^i\)
-
 
 
 <p>We have seen that addition and multiplication in \(R[[x]]\) is virtually identical to that in \(R[x]\). The following theorem parallels <xref ref="theorem-polynomial-ring-properties" autoname="yes" />, establishing the ring properties of \(R[[x]]\).</p>
 
-<theorem xml:id="theorem-power-series-properties"><title>Properties of Power Series</title><statement>Let [R, +, $\cdot $] be a ring. Then:</p></li>
+<theorem xml:id="theorem-power-series-properties"><title>Properties of Power Series</title><statement><p>Let [R, +, $\cdot $] be a ring. Then:<ol label="1">
 <li><p>\(R[[x]]\) is a ring under the operations of power series addition and multiplication, which depend on (are induced by) the operations in R.</p></li>
 <li><p>If R is a commutative ring, then \(R[[x]]\) is a commutative ring.</p></li>
 <li><p>If R is a ring with unity, \textup{ 1}, then \(R[[x]]\) is a ring with unity (the unity in R[x] is \(1 + 0x + 0 x^2 + \cdots\)).</p></li>
 <li><p>If R is an integral domain, then \(R[[x]]\) is an integral domain.</p></li>
-<li><p>If F is a field, then \(F[[x]]\) is not a field. However, \(F[[x]]\) is an integral domain.
+<li><p>If F is a field, then \(F[[x]]\) is not a field. However, \(F[[x]]\) is an integral domain.</p></li>
+</ol>
+</p>
 </statement><proof></proof></theorem> 
 
 
-<p>We are most interested in the situation when the set of coefficients is a field. Theorem 16.5.1  indicates that when F is a field, \(F[[x]]\) is
-an integral domain. A reason that \(F[[x]]\) is not a field is the same as one that we can cite for F[x], namely that <m>x</m> does not have multiplicative
-inverse in \(F[[x]]\).</p>
+<p>We are most interested in the situation when the set of coefficients is a field. The theorem above indicates that when \(F\) is a field, \(F[[x]]\) is
+an integral domain. A reason that \(F[[x]]\) is not a field is the same as one that we can cite for \(F[x]\), namely that <m>x</m> does not have multiplicative inverse in \(F[[x]]\).</p>
 
 <p>With all of these similarities, one might wonder it the rings of polynomials and power series over a field are isomorphic.  It turns out that they are not. The difference between \(F[x]\) and \(F[[x]]\) become apparent when one studies which elements are units (i.e., elements that have multiplicative
 inverses) in each. First we prove that the only units in \(F[x]\) are the nonzero constants; that is, the nonzero elements of <m>F</m>.  Compare that fact with the following theorem.</p>
 
 
-<theorem xml:id="theorem-16.5.2."><title>16.5.2.</title><index><main>16.5.2.</main></index><statement></statement><proof></proof></theorem> Let \([F; +, \cdot ]\) be afield, f(x) is a unit in F[x] if and only f(x) is a nonzero element of F.
-
-Proof: ($\Rightarrow $) Let \(f(x)\) be a unit in \(F[x]\). Then \(f(x)\) has a multiplicative inverse, call it \(g(x)\), such that \(f(x) \cdot
+<theorem xml:id="theorem-polynomial-units"><title>Units of \(F[x]\)</title>
+<statement><p>Let \([F; +, \cdot ]\) be a field, power series \(f(x)\) is a unit in \(F[x]\) if and only  the constant term of \(f(x)\) is a nonzero element of \(F\).</p></statement>
+<proof>
+<case direction="forward">
+<p>Let \(f(x)\) be a unit in \(F[x]\). Then \(f(x)\) has a multiplicative inverse, call it \(g(x)\), such that \(f(x) \cdot
  g(x) = 1\). Hence, the \(\deg  (f(x)\cdot  g(x)) = \deg  (1) = 0\). But \(\deg  (f(x)\cdot  g(x)) = \deg  f(x) + \deg  g(x)\). So \(\deg  f(x) +
 \deg  g(x) = 0\), and since the degree of a polynomial is always nonnegative, this can only happen when the \(\deg  f(x) = \deg  g(x) = 0\). Hence,
-\(f(x)\) is a constant, an element of <m>F</m>, which is a unit if and only if it is nonzero.
-
- ($\Leftarrow $) If \(f(x)\) is a nonzero element of <m>F</m>, then it is a unit since <m>F</m> is a field.  Thus it has an inverse, which
-is also in \(F[x]\) and so \(f(x)\) is a unit of \(F[x]\). $\blacksquare $
-
-
-
-Before we proceed to categorize the units in \(F[[x]]\), we remind the reader that two power series \(a_0 + a_1 x+a_2 x^2+ \cdots\) and \(b_0 + b_1
-x+b_2 x^2+ \cdots\) are equal if and only if corresponding coefficients are equal, \(a_i=b_i \textrm{ for} \textrm{ all} \textrm{ \textit{$i$}}\textrm{ \textit{$\geq
-$}}\textrm{ \textit{$0$}}\).
-
-<theorem xml:id="theorem-16.5.3."><title>16.5.3.</title><index><main>16.5.3.</main></index><statement></statement><proof></proof></theorem> Let \([F; +, \cdot ]\) be a field. Then \(f(x)=\sum_{i=0}^{\infty } a_i x^i\) is a unit of \(F[[x]]\)  if and only if \(a_0\neq
-0\).
-
-Proof: ($\Rightarrow $) If \(f(x)\) is a unit of \(F[[x]]\), then there exists  \(g(x)=\sum_{i=0}^{\infty } b_i x^i\) in \(F[[x]]\) such that
-
-
-$\quad \quad $\(f(x)\cdot g(x)=\left(a_0 + a_1 x+a_2 x^2+ \cdots \right)\cdot \left(b_0 + b_1 x+b_2 x^2+ \cdots \right)\\
-\\
-\quad \quad =1\\
-\\
-\quad \quad = 1 + 0x + 0x^2+ \cdots\)
-
-Since corresponding coefficients in the equation above must be equal, \(a_0\cdot b_0=1\), which implies that \(a_0\neq 0\). 
-
-($\Leftarrow $) Assume that \(a_0\neq 0\). To prove that\(f(x)\) is a unit of \(F[[x]]\) we need to find \(g(x)=\sum_{i=0}^{\infty } b_i x^i\) in
-\(F[[x]]\) such that 
-
-$\quad \quad $\(f(x) \cdot  g(x) =\sum_{i=0}^{\infty } d_i x^i= 1\). 
-
-If we use the formula for the coefficients \(d_0\), \(d_1\), \(d_2\), $\ldots $ of  \(f(x) \cdot g(x)\) and equate coefficients, we will obtain
-
-\(d_0= a_0\cdot  b_0= 1\\
-\\
-d_1= a_0b_1+ a_1b_0=0\\
-\\
-d_2=a_0 b_2+a_1 b_1+a_2 b_0\vdots \\
-\\
-d_s= a_0b_s+ a_1b_{s-1}+ \cdots +a_sb_0\\
-\\
-\textrm{          }\vdots\)
-
-Therefore, the existence of \(g(x)\) is equivalent to the existence of a solution \(b_0\), \(b_1\), \(b_2\), $\ldots $, to the above system of equations.
-Since \(a_0\neq 0\), we can solve the first equation for \(b_0\). Then we can continue to the second equation and solve for \(b_1\), then \(b_2\)
-can be found by solving the third equation, etc.  Hence,
-
-\(b_0=a_0{}^{-1}\\
-\\
-b_1= -a_0{}^{-1}\left(a_1b_0\right)\\
-\\
-b_1=-a_0{}^{-1}\left(a_1b_1+ a_2b_0\right)\\
-\\
-\quad \vdots \\
-\\
-b_s= -a_0{}^{-1}\left(a_1b_{s-1}+ a_2b_{s-2}+ \cdots +a_sb_0\right)\\
-\\
-\quad \vdots\)
-
-Therefore the powers series \(\sum_{i=0}^{\infty } b_i x^i\) is an expression whose coefficients lie in \(F\) and that satisfies the statement \(f(x)
-\cdot  g(x) = 1\). Hence, \(g(x)\) is the multiplicative inverse of \(f(x)\) and \(f(x)\) is a unit..
+\(f(x)\) is a constant, an element of <m>F</m>, which is a unit if and only if it is nonzero.</p></case>
+<case direction="backward">
+<p>If \(f(x)\) is a nonzero element of <m>F</m>, then it is a unit since <m>F</m> is a field.  Thus it has an inverse, which
+is also in \(F[x]\) and so \(f(x)\) is a unit of \(F[x]\).</p></case>
+</proof>
+</theorem> 
 
 
 
-<example xml:id="ex-16.5.2."><title>16.5.2.</title><p></p></example> Let
+<p>Before we proceed to categorize the units in \(F[[x]]\), we remind the reader that two power series \(a_0 + a_1 x+a_2 x^2+ \cdots\) and \(b_0 + b_1
+x+b_2 x^2+ \cdots\) are equal if and only if corresponding coefficients are equal, \(a_i=b_i\) for all \(i \geq 0\).</p>
 
-
-
-$\quad \quad $\(\textrm{       }f(x) =1 + 2x + 3 x^2+ 4 x^3+ \cdots \quad =\sum_{i=0}^{\infty } (i+1) x^i\)
-
-
-
-be an element of \(\mathbb{Q}[[x]]\). Then, by Theorem 16.5.3, since \(a_0=1\neq 0\),  \(f(x)\) is a unit and has an inverse, call it \(g(x)\).
+<theorem xml:id="theorem-power-series-units"><title>Units of \(F[[x]]\)</title>
+<statement><p>Let \([F; +, \cdot ]\) be a field. Then \(f(x)=\sum_{i=0}^{\infty } a_i x^i\) is a unit of \(F[[x]]\)  if and only if \(a_0\neq
+0\).</p></statement>
+<proof>
+<case direction="forward">
+<p>If \(f(x)\) is a unit of \(F[[x]]\), then there exists  \(g(x)=\sum_{i=0}^{\infty } b_i x^i\) in \(F[[x]]\) such that
+<me>\begin{split}
+f(x)\cdot g(x) &amp;=\left(a_0 + a_1 x+a_2 x^2+ \cdots \right)\cdot \left(b_0 + b_1 x+b_2 x^2+ \cdots \right)\\
+		&amp; =1\\
+		&amp; = 1 + 0x + 0x^2+ \cdots\\
+\end{split}
+</me></p>
+<p>Since corresponding coefficients in the equation above must be equal, \(a_0\cdot b_0=1\), which implies that \(a_0\neq 0\). </p></case>
+<case direction="backward">
+<p>Assume that \(a_0\neq 0\). To prove that \(f(x)\) is a unit of \(F[[x]]\) we need to find \(g(x)=\sum_{i=0}^{\infty } b_i x^i\) in
+\(F[[x]]\) such that \(f(x) \cdot  g(x) =\sum_{i=0}^{\infty } d_i x^i= 1\). If we use the formula for the coefficients \(f(x) \cdot g(x)\) and equate coefficients, we get
+<me>\begin{array}{ccc}
+d_0= a_0\cdot  b_0= 1 &amp;\Rightarrow &amp; b_0=a_0{}^{-1} \\
+d_1= a_0\cdot b_1+ a_1\cdot b_0=0&amp;\Rightarrow &amp; b_1= -a_0{}^{-1}\cdot \left(a_1\cdot b_0\right) \\
+d_2=a_0 b_2+a_1 b_1+a_2 b_0=0 &amp; \Rightarrow &amp; b_2=-a_0{}^{-1}\cdot \left(a_1\cdot b_1+ a_2\cdot b_0\right)\\
+\vdots  &amp; \vdots &amp; \vdots \\
+d_s= a_0\cdot b_s+ a_1\cdot b_{s-1}+ \cdots +a_s\cdot b_0 =0&amp;\Rightarrow &amp;b_s= -a_0{}^{-1}\cdot \left(a_1\cdot b_{s-1}+ a_2\cdot b_{s-2}+ \cdots +a_s\cdot b_0\right)\\
+\vdots  &amp; \vdots &amp; \vdots \\
+\end{array}
+</me></p>
+<p>Therefore the powers series \(\sum_{i=0}^{\infty } b_i x^i\) is an expression whose coefficients lie in \(F\) and that satisfies the statement \(f(x)
+\cdot  g(x) = 1\). Hence, \(g(x)\) is the multiplicative inverse of \(f(x)\) and \(f(x)\) is a unit.</p>
+</case>
+</proof>
+</theorem>
+ 
+<example xml:id="ex-power-series-inversion">
+<p>Let \(f(x) =1 + 2x + 3 x^2+ 4 x^3+ \cdots =\sum_{i=0}^{\infty } (i+1) x^i\)
+be an element of \(\mathbb{Q}[[x]]\). Then, by <xref ref="theorem-power-series-units" autoname="yes"/>, since \(a_0=1\neq 0\),  \(f(x)\) is a unit and has an inverse, call it \(g(x)\).
 To compute \(g(x)\), we follow the procedure outlined in  Theorem 16.5.3 .  Using the formulas for the \(b_i'\)s, we obtain
-
-
-
-\(b_0 = 1\\
-\\
+<me>\begin{array}{c}
+b_0 = 1\\
 b_1= -1(2\cdot 1)=-2\\
-\\
 b_2= -1(2\cdot (-2)+ 3\cdot 1) = 1\\
-\\
 b_3= -1(2\cdot 1 + 3\cdot (-2)+4\cdot 1)=0\\
-\\
 b_4= -1(2\cdot 0+3\cdot 1 + 4\cdot (-2)+5\cdot 1)=0\\
-\\
 b_5= -1(2\cdot 0+3\cdot 0+4\cdot (1)+5\cdot (-2)+6\cdot 1)=0\\
-\\
-\quad \vdots \\
-\\
-b_s= -1(2\cdot 0 + 3\cdot 0+\cdots (s-2)\cdot 0+(s-1)\cdot 1+s\cdot (-2)+(s+1)\cdot 1)=0\textrm{      }s\geq 3\)
-
-
-
+ \vdots \\
+\end{array}
+</me>
+For \(s \geq 3\), we have
+<me>
+b_s= -1(2\cdot 0 + 3\cdot 0+\cdots (s-2)\cdot 0+(s-1)\cdot 1+s\cdot (-2)+(s+1)\cdot 1)=0
+</me>
 Hence, \(g(x) = 1 - 2x +x^2\) is the multiplicative inverse of \(f(x)\). 
+</p>
+</example> 
 
-
-
-If we compare Theorems 16.5.2 and 16.5.3, we note that while the only elements in \(F[x]\) that are units are the nonzero constants of <m>F</m>,
-the units in \(F[[x]]\) are every single expression in <m>x</m> where \(a_0\neq 0\). So certainly \(F[[x]]\) contains a wider variety of units
-than \(F[x]\). Yet \(F[[x]]\) is not a field, since \(x\in  F[[x]]\) is not a unit by Theorem 16.5.3. So concerning the algebraic structure of \(F[[x]]\),
-we know that it is an integral domain that contains \(F[x]\). If we allow our power series to take on negative exponents$---$that is, consider expressions
-of the form
-
-
-
-$\quad \quad $\(f(x) =\sum_{i=-\infty }^{\infty } a_i x^i\)
-
-
-
-where all but a finite number of terms with a negative index equal zero.  These expressions are called extended power series. . The set
-of all such expressions is a field, call it <m>E</m>. This set does contain, for example, the inverse of <m>x</m> namely \(x^{-1}\). It can
-be shown that each nonzero element of <m>E</m> is a unit.
-
-
+<p>Certainly \(F[[x]]\) contains a wider variety of units than \(F[x]\). Yet \(F[[x]]\) is not a field, since \(x\in  F[[x]]\) is not a unit. So concerning the algebraic structure of \(F[[x]]\), we know that it is an integral domain that contains \(F[x]\). If we allow our power series to take on negative exponents; that is, consider expressions of the form \(f(x) =\sum_{i=-\infty }^{\infty } a_i x^i\) where all but a finite number of terms with a negative index equal zero.  These expressions are called extended power series. . The set of all such expressions is a field, call it <m>E</m>. This set does contain, for example, the inverse of <m>x</m> namely \(x^{-1}\). It can
+be shown that each nonzero element of <m>E</m> is a unit.</p>
 <exercises xml:id="exercises-16-5">
 <title>Exercises for Section 16.5</title>
-
-
-
-
-<subsubsection xml:id="sss-A Exercises "><title>A Exercises </title><index><main>A Exercises </main></index>
-
-<exercise number="1"><statement> Let \(f(x)=\sum_{i=0}^{\infty } a_i x^i\)  and  \(g(x)=\sum_{i=0}^{\infty } b_i x^i\) be elements of \(R[[x]]\).  Let 
-
-$\quad \quad $\(f(x) \cdot  g(x) =\sum_{i=0}^{\infty } d_i x^i= 1\). 
-
-<ol label="a">
-<li><p>  Apply the distributive law repeatedly to
-
-
-
- \(\left(a_0 + a_1 x+a_2 x^2+ \cdots \right)\cdot \left(b_0 + b_1 x+b_2 x^2+ \cdots \right)\)
-
-
-
- to obtain the formula
-
-$\quad \quad \quad $\(d_s= \sum_{i=0}^s a_i b_{s-i}\)
-
-
-
-for the coefficients of \(f(x) \cdot  g(x)\). Hence, you have shown that
-
-
-
-  \(f(x) \cdot  g(x) =\sum_{s=0}^{\infty } \left(\sum_{i=0}^s a_i b_{s-i}\right) x^s\)</p></li>
-<li><p>  Apply the above formula to the product in Example 16.5.1 and show that the result is the same as that obtained in this example.
+<exercise number="1"><statement><p> Let \(f(x)=\sum_{i=0}^{\infty} a_i x^i\)  and  \(g(x)=\sum_{i=0}^{\infty } b_i x^i\) be elements of \(R[[x]]\).  Let  \(f(x) \cdot  g(x) =\sum_{i=0}^{\infty } d_i x^i= 1\).   Apply basic algebra to \(\left(a_0 + a_1 x+a_2 x^2+ \cdots \right)\cdot \left(b_0 + b_1 x+b_2 x^2+ \cdots \right)\) to derive the formula \(d_s= \sum_{i=0}^s a_i b_{s-i}\) for the coefficients of \(f(x) \cdot  g(x)\). Hence, to show that
+<m>f(x) \cdot  g(x) =\sum_{s=0}^{\infty } \left(\sum_{i=0}^s a_i b_{s-i}\right) x^s</m></p>
 </statement></exercise>
 <exercise number="2"><statement><p><ol label="a">
 <li><p> Prove that for any integral domain <m>D</m>, the following can be proven:
-
-
-
 \(f(x)=\sum_{i=0}^{\infty } a_i x^i\) is a unit of \(D[[x]]\) if and only if \(a_0\) is a unit in <m>D</m>. </p></li>
-<li><p>  Compare the statement in part a to that in Theorem 16.5.3.</p></li>
-<li><p>  Give an example of the statement in part a in \(\mathbb{Z}[[x]]\).
+<li><p>  Compare the statement in part a to that in <xref ref="theorem-power-series-units" autoname="yes"/>.</p></li>
+<li><p>  Give an example of the statement in part a in \(\mathbb{Z}[[x]]\).</p></li>
+</ol></p>
 </statement></exercise>
-<exercise number="3"><statement> Use the formula for the product to verify that the expression g(x) of Example 16.5.2 is indeed the inverse of f(x).
-</statement><answer><p> Theorem 16.5.2 proves that not all nonzero elements in \(F[[x]]\) are units. 
-</p></answer></exercise>
+<exercise number="3"><statement><p> Use the formula for the product to verify that the expression \(g(x)\) of <xref ref="ex-power-series-inversion" autoname="yes"/> is indeed the inverse of \(f(x)\).</p>
+</statement></exercise>
 <exercise number="4"><statement><p><ol label="a">
 <li><p> Determine the inverse of \(f(x) = 1 + x + x^2 + \cdots  = \sum_{i=0}^{\infty } x^i\)in \(\mathbb{Q}[[x]]\).</p></li>
 <li><p>  Repeat part a with \(f(x)\) taken in \(\mathbb{Z}_2[[x]]\).</p></li>
 <li><p>  Use the method outlined in Chapter 8 to show that the power series \(f(x) = \sum_{i=0}^{\infty } x^i\) is the rational generating function
-\(\frac{1}{1-x}\). What is the inverse of this function? Compare your results with those in part a.
+\(\frac{1}{1-x}\). What is the inverse of this function? Compare your results with those in part a.</p></li>
+</ol></p>
 </statement></exercise>
 <exercise number="5"><statement><p><ol label="a">
 <li><p> Determine the inverse of \(h(x) = \sum_{i=0}^{\infty } 2^i x^i\)  in \(\mathbb{Q}[[x]]\).</p></li>
-<li><p> Use the procedures in Chapter 8 to find a rational generating function for \(h(x)\) in part a.  Find the multiplicative inverse of this function.
-</statement></exercise>
-<exercise number="6"><statement> Let \(a(x) = 1 + 3x + 9x^2 + 27x^3 + \cdots =\text \sum_{i=0}^{\infty } 3^i x^i\) and
-\(b(x) = 1 + x + x^2+ x^3+\text \cdots =\sum_{i=0}^{\infty }  x^i\) both in \(\mathbb{R}[[x]]\).
-
+<li><p> Use the procedures in Chapter 8 to find a rational generating function for \(h(x)\) in part a.  Find the multiplicative inverse of this function.</p></li>
+</ol></p>
+</statement><answer><p> 
+<ol label="a">
+<li><p><me>\begin{array}{c}
+b_0= 1\\
+b_1=(-1)(2\cdot 1) = -2\\
+b_2=(-1)(2\cdot (-2)+4\cdot 1)= 0\\
+b_3= (-1)(2\cdot 0 + 4\cdot (-2)+8\cdot 1)=0\\
+\end{array}</me>
+All other terms are zero.  Hence,  \(f(x)^{-1}= 1-2x\)</p></li>
+<li><p> <me>\begin{split}
+		f(x) &amp;=1+2x + 2^2x^2+ 2^3x^3+ \cdots \\
+			&amp;=(2x)^0 + (2x)^1 + (2x)^2+ (2x)^3+\cdots \\
+			&amp;= \frac{1}{1-2x}\\
+			\end{split}</me>
+The last step follows from the formula for the sum of a geometric series.</p></li></ol>
+</p></answer></exercise>
+<exercise number="6"><statement> <p>Let \(a(x) = 1 + 3x + 9x^2 + 27x^3 + \cdots =\sum_{i=0}^{\infty } 3^i x^i\) and
+\(b(x) = 1 + x + x^2+ x^3+\cdots =\sum_{i=0}^{\infty }  x^i\) both in \(\mathbb{R}[[x]]\).
 <ol label="a">
 <li><p>  What are the first four terms (counting the constant term as the \(0^{\textrm{ th}}\) term) of \(a(x) + b(x)\)?</p></li>
 <li><p>  Find a closed form expression for \(a(x)\).</p></li>
-<li><p> What are the first four terms of \(a(x) b(x)\)?
+<li><p> What are the first four terms of \(a(x) b(x)\)?</p></li>
+</ol></p>
 </statement></exercise>
 <exercise number="7"><statement><p>Write as an extended power series:
 <ol label="a">
@@ -328,37 +235,25 @@ for the coefficients of \(f(x) \cdot  g(x)\). Hence, you have shown that
 <li><p>  \(\left(x^2-2x^3+x^4\right)^{-1}\)</p></li>
 </ol></p>
 </statement>
-<answer><p> 
-<ol label="a">
-<li><p>   \(b_0= 1\\
-\\
-b_1=(-1)(2\cdot 1) = -2\)
-
-
-
-\(b_2=(-1)(2\cdot (-2)+4\cdot 1)= 0\\
-\\
-b_3= (-1)(2\cdot 0 + 4\cdot (-2)+8\cdot 1)=0\\
-\\
-\textrm{      }\ldots \textrm{    }(\textrm{ all} \textrm{ others} \textrm{ are} \textrm{ zero})\)
-
-
-
-           Hence,  \(f(x)^{-1}= 1-2x\)</p></li>
-<li><p>    \(f(x)=1+2x + 2^2x^2+ 2^3x^3+ \cdots \\
-\\
-\quad =(2x)^0 + (2x)^1 + (2x)^2+ (2x)^3+\cdots \\
-\\
-\quad = \frac{1}{1-2x}\)
-
-
-
-The last step follows from the formula for the sum of a geometric series.
-</p></answer>
-
-#9?
 <answer><p>
 <ol label="a">
-<li><p>  \(\text \left(x^4-2 x^3+x^2\right)^{-1} =\left(x^2 \left(x^2-2 x+1\right)\right)^{-1}\quad \quad =x^{-2}\left(1-2x+x^2\right)^{-1}\quad
-\quad =x^{-2}\left(\sum_{k=0}^{\infty } (k+1) x^k\right)\textrm{     }\textrm{ by} \textrm{ Example} 2 \textrm{ of} 16.5\quad \quad =\text \sum_{k=-2}^{\infty
-} (k+2) x^k\)
+<li><p><me>\begin{split}
+\left(x^4-x^5\right)^{-1} &amp; =(x^4 (1-x))^{-1}\\
+						&amp;=x^{-4}\frac{1}{1-x}\\
+						&amp; =x^{-4}\left(\sum_{k=0}^{\infty }  x^k\right)\\
+						&amp;=\sum_{k=-4}^{\infty} x^k\\
+\end{split}</me></p></li>
+<li><p> <me>\begin{split}
+\left(x^4-2 x^3+x^2\right)^{-1} &amp; =\left(x^2 \left(x^2-2 x+1\right)\right)^{-1}\\
+						&amp;=x^{-2}\left(1-2x+x^2\right)^{-1}\\
+						&amp; =x^{-2}\left(\sum_{k=0}^{\infty } (k+1) x^k\right)\\
+						&amp;=\sum_{k=-2}^{\infty} (k+2) x^k\\
+\end{split}</me></p></li>
+</ol>
+</p>
+</answer></exercise>
+<exercise number="8"><statement><p>Derive the closed form expression \(d_i = 2^{i+1}-i -2 \) for the coefficients of the product \(f(x)\cdot g(x)\) in <xref ref="ex-ps-calculations" autoname="yes"/>.</p></statement>
+</exercise>
+</exercises>
+</section>
+
