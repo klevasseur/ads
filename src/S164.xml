@@ -14,8 +14,7 @@ two steps: first, find the zeros, and second, find the field in which the zeros 
 <li><p> <m>S</m> must contain all zeros of \(f(x)=x^2 - 2\)</p></li>
 </ol></p>
 <p>By the last condition  \(\sqrt{2}\) must be an element of <m>S</m>, and, if <m>S</m> is to be a field, the sum, product, difference, and quotient
-of elements in <m>S</m> must be in <m>S</m>. So operations involving this number, such as  \(\sqrt{2}\), \(\left(\sqrt{2}\right)^2\) , \(\left(\sqrt{2}\right)^3\), \(\sqrt{2}+\sqrt{2}\)
-, \textrm{ \(\sqrt{2}-\sqrt{2}\)} , and \(\sqrt{2}/\sqrt{2}\)  must all be elements of <m>S</m>.   Further, since <m>S</m> contains <m>\mathbb{Q}</m>
+of elements in <m>S</m> must be in <m>S</m>. So operations involving this number, such as  \(\sqrt{2}\), \(\left(\sqrt{2}\right)^2\), \(\left(\sqrt{2}\right)^3\), \(\sqrt{2}+\sqrt{2}\), \(\sqrt{2}-\sqrt{2}\), and \(\frac{1}{\sqrt{2}}\)  must all be elements of <m>S</m>.   Further, since <m>S</m> contains <m>\mathbb{Q}</m>
 as a subset, any element of <m>\mathbb{Q}</m> combined with \textrm{ \(\sqrt{2}\)} under any field operation must be an element of <m>S</m>. Hence,
 every element of the form \(a + b \sqrt{2}\), where <m>a</m> and <m>b</m> can be any elements in <m>\mathbb{Q}</m>, is an element of <m>S</m>. We leave
 to the reader to show that <m>S =\{a + b \sqrt{2} \mid a, b \in \mathbb{Q}\}</m> is a field (see Exercise 1 of this section). We note that the second zero of \(x^2 - 2\), namely  \(-\sqrt{2}\),
@@ -34,7 +33,7 @@ S\)   In fact, \(n a\) is in <m>S</m> for all possible positive integers <m>n</m
 	&amp;  =1 \\
 \end{split}
 </me>
-Therefore,  \(a^{-1}= a+1\)   and \((a+1)^{-1}=a\).</p>
+Therefore,  \(a^{-1}= a+1 = a^2\)   and \((a+1)^{-1}=a\).</p>
 <p>It is not difficult to see that \(a^n\) is in <m>S</m> for all positive <m>n</m>.  Does <m>S</m> contain all zeros of \(x^2 + x + 1\)? Remember, \(g(x)\) can have at most two distinct zeros and we called one of them <m>a</m>, so if there is a second, it must be \(a + 1\). To see if \(a + 1\) is indeed a zero of \(g(x)\), simply compute \(f(a + 1)\): 
 <me>
 \begin{split}
@@ -49,6 +48,21 @@ f(a+1) &amp; = (a + 1)^2 + (a+1) + 1\\
 </p></example>
 <p>The reader might feel somewhat uncomfortable with the results obtained in <xref ref="ex-extension-of-z2" autoname="yes" />. In particular, what is <m>a</m>? Can we describe it through a known quantity? All we know about <m>a</m> is that it is a zero of \(g(x)\) and that \(a^2= a + 1\). We could also say that \(a(a + 1) = 1\), but we really expected more. However, should we expect more? In <xref ref="ex-irreducible-over-Q-again" autoname="yes" />, \(\sqrt{2}\) is a number we are more comfortable with, but all we really know about it is that \(\alpha =\sqrt{2}\) is the number such that \(\alpha ^2= 2\). Similarly, the zero that the reader will obtain in Exercise 2 of this section is the imaginary number \(i\). Here again, this is simply a symbol, and all we know about it is that \(i^2=-1\). Hence, the result obtained in <xref ref="ex-extension-of-z2" autoname="yes" /> is not really that strange.</p>
 <p>The reader should be aware that we have just scratched the surface in the development of topics in polynomial rings. One area of significant applications is in coding theory.</p>
+<example xml:id="ex-ex-polynomial-code"><title>An Error Correcting Polynomial Code</title>
+<p>An important observation regarding the previous example is that the nonzero elements of \(GF(4)\) can be represented two ways.  First as a linear combination of 1 and \(a\).   There are four such linear combinations, one of which is zero.  Second, as powers of \(a\).  There are three distinct powers and the each match up with a nonzero linear combination:
+ <me>\begin{array}{c}
+  a^0 = 1\cdot 1 + 0 \cdot a\\
+   a^1 = 0\cdot 1 + 1 \cdot a\\
+    a^2 = 1\cdot 1 + 1 \cdot a\\
+\end{array}</me>
+ Here, we briefly describe the field \(GF(8)\) and how an error correcting code can be build on a the same observation about that field.</p>
+ 
+ 
+<p> First, we start with the irreducible polynomial \(p(x)=x^3 + x + 1\) over \(\mathbb{Z}_2\). There is another such cubic polynomial, but its choice produces essentially the same result.    Just as we did in the previous example, we assume we have a zero of \(p(x)\) and call it  \(\beta\).  Since we have assumed that \(p(\beta)= \beta^3+\beta + 1=0\), we get the recurrence relation for powers \(\beta^3=\beta + 1\) that lets us reduce the seven powers \(\beta^k\), \(0 \leq k \leq 6\), to  linear combinations of 1, \(\beta\), and \(\beta^2\). Higher powers will reduce to these seven, which make up the elements of a field with \(2^3=8\) elements when we add it zero.   We leave as an exercise for you to set up a table relating powers of \(\beta\) with the linear combinations.</p>
+ 
+<p> With this information we are now in a position to take blocks of four bits and encode them with three parity bits to create an error correcting code.   If the bits are \(b_3b_4b_5b_6\), then we reduce the expression \(B_m= b_3\cdot \beta^3 +b_4\cdot \beta^4 +b_5\cdot \beta^5 +b_6\cdot \beta^6\) using the recurrence relation to an expression \(B_p=b_0\cdot 1 +b_1\cdot \beta +b_2\cdot \beta^2\).   Since we are equating equals within \(GF(8)\) with the recurrence, we have \(B_p=B_m\), or\(B_p+B_m=0\).  The encoded message is \(b_0b_1b_2b_3b_4b_5b_6\), which is a representation of 0 in \(GF(8)\).  If the transmitted sequence of bits is received as \(c_0c_1c_2c_3c_4c_5c_6\) we reduce \(C=c_0\cdot 1 +c_1\cdot \beta +c_2\cdot \beta^2 +c_3\cdot \beta^3 +c_4\cdot \beta^4 +c_5\cdot \beta^5 +c_6\cdot \beta^6\) using the recurrence.   If there was no transmission error, the result is zero.  If the reduced result is zero it is most likely that the original message was \(c_3c_4c_5c_6\).  If  bit \(k\) is switched in the transmission, then 
+ <me>C = B_p+B_m+ \beta^k= \beta^k</me>
+ Therefore if we reduce \(C\) with the recurrence, we get the linear combination of  1, \(\beta\), and \(\beta^2\) that is equal to \(\beta^k\) and so we can identify the location of the error and correct it.</p></example>
 <exercises xml:id="exercises-16-4">
 <title>Exercises for Section 16.4</title>
 <exercise number="1"><statement><p><ol label="a">
@@ -105,22 +119,26 @@ of \(f(x)\).   \(\mathbb{Z}_2(c)\) can be described several different ways.  One
 \(f(c) = 0\). Furthermore, \(c^4 = c^2+ c\), \(c^5= c^2+ c +1\), \(c^6= c^2+1\), and \(c^7=1\).  Higher powers of <m>c</m> repeat preceding powers.  Therefore,  
 <me>
 \begin{split}
-\mathbb{Z}_2(c)= \left\{0, 1, c, c^2 , c + 1, c^2 + 1, c^2 + c + 1, c ^2 + c\right\}\\
+\mathbb{Z}_2(c)&amp;= \left\{0, 1, c, c^2 , c + 1, c^2 + 1, c^2 + c + 1, c ^2 + c\right\}\\
 	&amp;= \left\{a_0+ a_1c+a_2c^2 \mid  a_i\in \mathbb{Z}_2\right\}\\
 \end{split}
 </me> </p>
 <p>The three zeros of \(f(x)\) are <m>c</m>,  \(c^2\) and \(c^2+ c\).
-  \[f(x) = (x + c)\left(x+ c ^2 \right)\left(x + c^2 + c\right)\].</p></li>
+  \[f(x) = (x + c)\left(x+ c ^2 \right)\left(x + c^2 + c\right)\]</p></li>
 <li><p> Cite Theorem <xref ref="theorem-number-of-fields" autoname="yes" />, part 3.</p></li>
 </ol></p> 
 </answer></exercise>
 <exercise number="6"><statement><p><ol label="a">
 <li><p> List all polynomials of degree 1, 2, 3, and 4 over \(\mathbb{Z}_2 = GF(2)\).</p></li>
-<li><p> Use your results in part a and list all irreducible polynomials of degree 1, 2, 3, and 4.</p></li>
+<li><p> From your list in part a, identify all irreducible polynomials of degree 1, 2, 3, and 4.</p></li>
 <li><p>  Determine the splitting fields of each of the polynomials in part b.</p></li>
 <li><p>  What is the order of each of the splitting fields obtained in part c? Explain your results using <xref ref="theorem-number-of-fields" autoname="yes" />.</p></li>
 </ol> </p>
 </statement>
 </exercise>
+<exercise number="7"><statement><p>Is the polynomial code described in this section a linear code? </p>
+</statement>
+</exercise>
+
 </exercises>
 </section>
