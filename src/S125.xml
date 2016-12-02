@@ -2,23 +2,17 @@
 <section xml:id="s-some-applications">
 <title>Some Applications</title>
 
-<p>A large and varied number of applications involve computations of powers of matrices. These applications can be found in science, the social sciences,
-economics, the analysis of relationships with groups, engineering, and, indeed, any area where mathematics is used and, therefore,
-where programs are to be developed. We will consider a few diverse examples here.</p> 
-
-
+<p>A large and varied number of applications involve computations of powers of matrices. These applications can be found in science, the social sciences, economics, engineering, and, many other areas where mathematics is used.  We will consider a few diverse examples the mathematics behind these applications here.</p> 
 <p>We begin by developing a helpful technique for computing \(A^m\),  \(m > 1\).  If <m>A</m> can be diagonalized, then there is a matrix <m>P</m> such that \(P^{-1}A P = D\),  where <m>D</m> is a diagonal matrix and 
-
 <mdn><mrow xml:id="eq-matrix-power">A^m= P D^m P^{-1} \textrm{ for all } m\geq 1</mrow></mdn>                        
 </p>
-
 <p>The proof of this identity was an exercise in Section 5.4.  The condition that <m>D</m> be a diagonal matrix is not necessary but when it is, the calculation on the right side is particularly easy to perform.  Although the formal proof  is done by induction, the reason why it is true is easily seen by writing out an example such as \(m=3\):
 
 <me>
 \begin{split}
 A^3   &amp; = \left(P D P^{-1}\right)^3\\
 		&amp; =\left(P D P^{-1}\right)\left(P D P^{-1}\right)\left(P D P^{-1}\right)\\
-		&amp;= P D \left(P^{-1}P\right) D \left(P^{-1}P \right)D P^{-1}\quad\textrm{ by associativity of matrix mult}\\
+		&amp;= P D \left(P^{-1}P\right) D \left(P^{-1}P \right)D P^{-1}\quad\textrm{by associativity of matrix multiplication}\\
 		&amp;= P D I D I D P^{-1}\\
 		&amp;= P D D D P^{-1}\\	
 		&amp;= P D^3 P^{-1}\\
@@ -28,17 +22,15 @@ A^3   &amp; = \left(P D P^{-1}\right)^3\\
 
 
 <example xml:id="ex-fibonnaci-matrix"><title>Application to Recursion: Matrix Computation of the Fibonnaci Sequence</title>
-<p> Consider the computation of terms of the Fibonnaci Sequence, which we considered in <xref ref="ex-fibonacci-sequence" autoname="yes" />.  Recall that  \(F_0= 1, F_1= 1\) and 
+<p> Consider the computation of terms of the Fibonnaci Sequence.  Recall that  \(F_0= 1, F_1= 1\) and 
 \(F_k= F_{k-1}+F_{k-2}\)  for \(k\geq 2\).
 </p>
 
 <p>In order to formulate the calculation in matrix form, we introduced the <q>dummy equation</q> \(F_{k-1}= F_{k-1}\) so that now we have two equations
-
-<me>
+<me>\begin{array}{c}
 F_k= F_{k-1}+F_{k-2}\\
-\\
 F_{k-1}= F_{k-1}\\
-</me>
+\end{array}</me>
 
 
 
@@ -66,7 +58,7 @@ If \( A = \left(
 				 F_{k-1} \\
 				 F_{k-2} \\
 				\end{array}
-				\right)\\quad\textrm{ if} k\geq 2\\
+				\right) \quad\textrm{ if } k\geq 2\\
 			&amp;= A \left(
 				\begin{array}{c}
 				 F_{k-1} \\
@@ -78,15 +70,12 @@ If \( A = \left(
 				 F_{k-2} \\
 				 F_{k-3} \\
 				\end{array}
-				\right)\quad\textrm{ if } k\geq 3\\
+				\right) \quad\textrm{ if } k\geq 3\\
 			&amp; etc.\\
 	\end{split}
 </me>
 
 We can use induction to prove that if \(k\geq 2\), 
-
-
-
 \[\left(
 \begin{array}{c}
  F_k \\
@@ -102,12 +91,8 @@ We can use induction to prove that if \(k\geq 2\),
 
 
 <p>Next, by diagonalizing <m>A</m> and using the fact that \(A^{m }= P D^m P^{-1}\). we can show that
-
 \[F_k= \frac{1}{\sqrt{5}}\left( \left(\frac{1+\sqrt{5}}{2}\right)^k- \left(\frac{1-\sqrt{5}}{2}\right)^k\right)\]
 </p>
-
-
-
 <p>Some comments on this example:
 <ol label="1">
 <li><p> An equation of the form \(F_k = a F_{k-1} + b F_{k-2}\) , where <m>a</m> and <m>b</m> are given constants, is  referred to linear
@@ -181,7 +166,7 @@ outlined in the example by introducing the superfluous equation \(1 =0\cdot F_{k
 \end{array}
 \right)\).</p>
 
-<p>Recall that \(A^k\) is the adjacency matrix of the relation\(r^k\) , where <m>r</m> is the relation \(\{(a, a), (a, b), (b, a), (b, c), (c, b), (c, c)\}\) of the above graph. Also recall that in computing \(A^k\), we used Boolean arithmetic. What happens if we use <q>regular</q> arithmetic?  If we square \(A\) we get
+<p>Recall that \(A^k\) is the adjacency matrix of the relation \(r^k\) , where <m>r</m> is the relation \(\{(a, a), (a, b), (b, a), (b, c), (c, b), (c, c)\}\) of the above graph. Also recall that in computing \(A^k\), we used Boolean arithmetic. What happens if we use <q>regular</q> arithmetic?  If we square \(A\) we get
 
 \(A^2 = \left(
 \begin{array}{ccc}
@@ -332,50 +317,26 @@ are zero and the \(i^{\textrm{ th}}\) entry of the diagonal is
 </me>
 </p>
 
-<p>Some comments on this example:
-<ol label="1">
-<li><p>  Many of the ideas of calculus can be developed using matrices.  For example, if 
-
-
-
-\[A(t) = \left(
+<remark><p>Many of the ideas of calculus can be developed using matrices.  For example, if 
+\(A(t) = \left(
 \begin{array}{cc}
  t^3 &amp; 3 t^2+8t \\
  e^t &amp; 2 \\
 \end{array}
-\right)\]
-
-
-
+\right)\)
 then
-
-
-
-\[\frac{d A(t)}{d t}=\left(
+\(\frac{d A(t)}{d t}=\left(
 \begin{array}{cc}
  3 t^2 &amp; 6 t+8 \\
  e^t  &amp; 0 \\
 \end{array}
-\right)\]</p></li>
-<li><p>  Many of the basic formulas in calculus are true in matrix calculus. For example,
-
-
-
-\(\frac{d (A(t)+B(t))}{d t} = \frac{d A(t)}{d t}+ \frac{d B(t)}{d t}\)  
-
-
-
+\right)\)</p>
+<p>  Many of the basic formulas in calculus are true in matrix calculus. For example,
+\[\frac{d (A(t)+B(t))}{d t} = \frac{d A(t)}{d t}+ \frac{d B(t)}{d t}\]  
 and if <m>A</m> is a constant matrix, 
-
-
-
-  \(\frac{d e^{A t}}{d t}= A e^{A t}\)</p></li>
-<li><p> Matrix calculus can be used to solve systems of differential equations in a similar manner   to the procedure used in ordinary differential
-equations.</p></li>
-</ol>
-</p> 
-</example> 
-
+\[\frac{d e^{A t}}{d t}= A e^{A t}\]</p><p> Matrix calculus can be used to solve systems of differential equations in a similar manner  to the procedure used in ordinary differential
+equations.</p>
+</remark> 
 <note><title>Sage Note - Matrix Exponential</title>
 <index><main>Sage Note</main><sub>Matrix Exponential</sub></index>
 <p>
@@ -678,14 +639,8 @@ e^Ae^B &amp;= \left(\sum _{k=0}^{\infty } \frac{A^k}{k!}\right) \left(\sum _{k=0
 \end{split}
 </me>
 </p></li>
-<li><p> Since A and \(-A\)commute, we can apply part d;
-<me>
-\begin{split}
-e^Ae^{-A} &amp;= e^{A+(-A)}\\
-		&amp; =e^{\pmb{0}}\\
-		&amp;=I\\
-\end{split}
-</me>
+<li><p> Since \(A\) and \(-A\) commute, we can apply part d;
+<me>e^Ae^{-A} = e^{A+(-A)} =e^{\pmb{0}} =I</me>
 </p></li>
 </ol>
 </p>
