@@ -12,7 +12,7 @@ expression. In this section we will extend the algebra of polynomials to the alg
 <definition xml:id="def-power-series"><title>Power Series</title>
 <index><main>Power Series</main></index>
 <notation><usage>R[[x]]</usage><description>the set of all powers series in \(R\)</description></notation>
-<statement><p>Let \([R; +,\cdot ]\) be a ring. A power series over R is an expression of the form
+<statement><p>Let \([R; +,\cdot ]\) be a ring. A power series over \(R\) is an expression of the form
 \[f(x)=\sum_{i=0}^{\infty } a_i x^i=a_0 + a_1 x+a_2 x^2+ \cdots\] 
 where \(a_1, a_2, a_3,\ldots \in  R\).  The set of all such expressions is denoted by \(R[[x]]\).</p></statement>
 </definition>
@@ -40,7 +40,7 @@ f(x)=\sum_{i=0}^{\infty } a_i x^i=a_0 + a_1 x+a_2 x^2+ \cdots\textrm{  and}\\
 g(x)=\sum_{i=0}^{\infty } b_i x^i=b_0 + b_1 x+b_2 x^2+ \cdots\\
 \end{array}
 </me>  
-their sum is 
+their product is 
 <me>\begin{split}
 f(x)\cdot g(x)&amp;=\sum_{i=0}^{\infty } d_i x^i \quad \textrm{where }d_i= \sum_{j=0}^i a_j b_{i-j}\\
 &amp;=(a_0\cdot b_0) + (a_0\cdot b_1+a_1\cdot b_0) x+(a_0\cdot b_2+a_1\cdot b_1+a_2\cdot b_0) x^2+ \cdots  \\
@@ -61,10 +61,10 @@ be elements in \(\mathbb{Z}[[x]]\).  Let us compute \(f(x) + g(x)\) and \(f(x)\c
 \end{split}</me>
 The product is a bit more involved:
 <me>\begin{split}
- f(x) \cdot g(x) &amp; =\left(\sum_{i=0}^{\infty } i x^i\right)\left(\sum_{i=0}^{\infty } 2^i x^i\right)\\
+ f(x) \cdot g(x) &amp; =\left(\sum_{i=0}^{\infty } i x^i\right)\cdot \left(\sum_{i=0}^{\infty } 2^i x^i\right)\\
  	&amp;=\left(0+ 1 x+2 x^2+3x^3+ \cdots \right)\cdot \left(1 +2 x+4 x^2+8x^3+ \cdots \right)\\
 	&amp;=0\cdot 1 + (0\cdot 2 + 1\cdot 1)x + (0\cdot 4+1\cdot 2+2\cdot 1)x^2+ \cdots\\
-	&amp;= x + 4\cdot x^2+ 11 \cdot x^3 + \cdots\\
+	&amp;= x + 4 x^2+ 11 x^3 + \cdots\\
 	&amp;= \sum_{i=0}^{\infty } d_i x^i\quad\quad\textrm{where } d_i= \sum_{j=0}^i j 2^{i-j}\\
 \end{split}</me>
 We can compute any value of \(d_i\), with the amount of time/work required increasing as \(i\) increases.</p>
@@ -81,7 +81,7 @@ d(20)
 2097130
 </output>
 </sage>
-<p>A closed-form expression for \(d_i\) would be desirable.  Using techniques from Chapter 8, we can derive the formula  \(d_i=2^{i+1}-i-2\), which we leave to the reader as an exercise.  Hence,
+<p>A closed-form expression for \(d_i\) would be desirable.  Using techniques from Chapter 8, we can derive the formula  \(d_i=2^{i+1}-i-2\), which we leave it to the reader to derive the formula.  Hence,
 \(f(x)\cdot g(x) =\sum_{i=0}^{\infty } (2^{i+1}-i-2) x^i\)
 </p></example> 
 
@@ -89,21 +89,20 @@ d(20)
 <p>We have seen that addition and multiplication in \(R[[x]]\) is virtually identical to that in \(R[x]\). The following theorem parallels <xref ref="theorem-polynomial-ring-properties" autoname="yes" />, establishing the ring properties of \(R[[x]]\).</p>
 
 <theorem xml:id="theorem-power-series-properties"><title>Properties of Power Series</title><statement><p>Let [R, +, $\cdot $] be a ring. Then:<ol label="1">
-<li><p>\(R[[x]]\) is a ring under the operations of power series addition and multiplication, which depend on (are induced by) the operations in R.</p></li>
+<li><p>\(R[[x]]\) is a ring under the operations of power series addition and multiplication, which depend on  the operations in R.</p></li>
 <li><p>If R is a commutative ring, then \(R[[x]]\) is a commutative ring.</p></li>
 <li><p>If R is a ring with unity, \textup{ 1}, then \(R[[x]]\) is a ring with unity (the unity in R[x] is \(1 + 0x + 0 x^2 + \cdots\)).</p></li>
 <li><p>If R is an integral domain, then \(R[[x]]\) is an integral domain.</p></li>
 <li><p>If F is a field, then \(F[[x]]\) is not a field. However, \(F[[x]]\) is an integral domain.</p></li>
 </ol>
 </p>
-</statement><proof></proof></theorem> 
+</statement></theorem> 
 
 
 <p>We are most interested in the situation when the set of coefficients is a field. The theorem above indicates that when \(F\) is a field, \(F[[x]]\) is
 an integral domain. A reason that \(F[[x]]\) is not a field is the same as one that we can cite for \(F[x]\), namely that <m>x</m> does not have multiplicative inverse in \(F[[x]]\).</p>
 
-<p>With all of these similarities, one might wonder it the rings of polynomials and power series over a field are isomorphic.  It turns out that they are not. The difference between \(F[x]\) and \(F[[x]]\) become apparent when one studies which elements are units (i.e., elements that have multiplicative
-inverses) in each. First we prove that the only units in \(F[x]\) are the nonzero constants; that is, the nonzero elements of <m>F</m>.  Compare that fact with the following theorem.</p>
+<p>With all of these similarities, one might wonder if the rings of polynomials and power series over a field are isomorphic.  It turns out that they are not. The difference between \(F[x]\) and \(F[[x]]\) become apparent when one studies which elements are units in each. First we prove that the only units in \(F[x]\) are the nonzero constants; that is, the nonzero elements of <m>F</m>.</p>
 
 
 <theorem xml:id="theorem-polynomial-units"><title>Units of \(F[x]\)</title>
@@ -146,8 +145,7 @@ d_0= a_0\cdot  b_0= 1 &amp;\Rightarrow &amp; b_0=a_0{}^{-1} \\
 d_1= a_0\cdot b_1+ a_1\cdot b_0=0&amp;\Rightarrow &amp; b_1= -a_0{}^{-1}\cdot \left(a_1\cdot b_0\right) \\
 d_2=a_0 b_2+a_1 b_1+a_2 b_0=0 &amp; \Rightarrow &amp; b_2=-a_0{}^{-1}\cdot \left(a_1\cdot b_1+ a_2\cdot b_0\right)\\
 \vdots  &amp; \vdots &amp; \vdots \\
-d_s= a_0\cdot b_s+ a_1\cdot b_{s-1}+ \cdots +a_s\cdot b_0 =0&amp;\Rightarrow &amp;b_s= -a_0{}^{-1}\cdot \left(a_1\cdot b_{s-1}+ a_2\cdot b_{s-2}+ \cdots +a_s\cdot b_0\right)\\
-\vdots  &amp; \vdots &amp; \vdots \\
+\hspace{8cm}d_s= a_0\cdot b_s+ a_1\cdot b_{s-1}+ \cdots +a_s\cdot b_0 =0&amp;\\ \hspace{20cm} \Rightarrow b_s= -a_0{}^{-1}\cdot \left(a_1\cdot b_{s-1}+ a_2\cdot b_{s-2}+ \cdots +a_s\cdot b_0\right)\\
 \end{array}
 </me></p>
 <p>Therefore the powers series \(\sum_{i=0}^{\infty } b_i x^i\) is an expression whose coefficients lie in \(F\) and that satisfies the statement \(f(x)
@@ -178,8 +176,7 @@ Hence, \(g(x) = 1 - 2x +x^2\) is the multiplicative inverse of \(f(x)\).
 </p>
 </example> 
 
-<p>Certainly \(F[[x]]\) contains a wider variety of units than \(F[x]\). Yet \(F[[x]]\) is not a field, since \(x\in  F[[x]]\) is not a unit. So concerning the algebraic structure of \(F[[x]]\), we know that it is an integral domain that contains \(F[x]\). If we allow our power series to take on negative exponents; that is, consider expressions of the form \(f(x) =\sum_{i=-\infty }^{\infty } a_i x^i\) where all but a finite number of terms with a negative index equal zero.  These expressions are called extended power series. . The set of all such expressions is a field, call it <m>E</m>. This set does contain, for example, the inverse of <m>x</m> namely \(x^{-1}\). It can
-be shown that each nonzero element of <m>E</m> is a unit.</p>
+<p>Certainly \(F[[x]]\) contains a wider variety of units than \(F[x]\). Yet \(F[[x]]\) is not a field, since \(x\in  F[[x]]\) is not a unit. So concerning the algebraic structure of \(F[[x]]\), we know that it is an integral domain that contains \(F[x]\). If we allow our power series to take on negative exponents; that is, consider expressions of the form \(f(x) =\sum_{i=-\infty }^{\infty } a_i x^i\) where all but a finite number of terms with a negative index equal zero.  These expressions are called extended power series. The set of all such expressions is a field, call it <m>E</m>. This set does contain, for example, the inverse of <m>x</m>, which is \(x^{-1}\). It can be shown that each nonzero element of <m>E</m> is a unit.</p>
 <exercises xml:id="exercises-16-5">
 <title>Exercises for Section 16.5</title>
 <exercise number="1"><statement><p> Let \(f(x)=\sum_{i=0}^{\infty} a_i x^i\)  and  \(g(x)=\sum_{i=0}^{\infty } b_i x^i\) be elements of \(R[[x]]\).  Let  \(f(x) \cdot  g(x) =\sum_{i=0}^{\infty } d_i x^i= 1\).   Apply basic algebra to \(\left(a_0 + a_1 x+a_2 x^2+ \cdots \right)\cdot \left(b_0 + b_1 x+b_2 x^2+ \cdots \right)\) to derive the formula \(d_s= \sum_{i=0}^s a_i b_{s-i}\) for the coefficients of \(f(x) \cdot  g(x)\). Hence, to show that
