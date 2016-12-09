@@ -8,9 +8,9 @@ involving generating functions. Once you've solved the new problem, a translatio
 
 <p>This section covers:</p>
 <p><ol label="1">
-<li><p>The definition of a generating function;</p></li>
-<li><p>Solution of a recurrence relation using generating functions to identify the skills needed to use generating functions;\\</p></li>
-<li><p>An introduction and/or review of the skills identified in point b;\\</p></li>
+<li><p>The definition of a generating function.</p></li>
+<li><p>Solution of a recurrence relation using generating functions to identify the skills needed to use generating functions.</p></li>
+<li><p>An introduction and/or review of the skills identified in point b.</p></li>
 <li><p>Some applications of generating functions.</p></li>
 </ol></p>
 </introduction>
@@ -25,31 +25,21 @@ The domain and codomain of generating functions will not be of any concern to us
 <example xml:id="ex-first-gf-examples"><title>First Examples</title>
  <p><ol label="a">
 <li><p> If \(S_n = 3^n\),\(n \geq  0\), then
-
-\(G(S;z) = 1 + 3z + 9z^2 + 27z^3 +\cdots \\
-\\
-\quad =\sum_{n=0}^{\infty} 3^n z^n\\
-\\
-\quad =\sum_{n=0}^{\infty} (3 z)^n\)
-
-We can get a closed form expression for \(G(S;z)\) by observing that \(G(S;z) - 3z G(S;z) = 1\). Therefore,
-
-\(G(S;z) =\frac{1}{1-3 z}\).</p></li>
-<li><p>Finite sequences have generating functions. For example, the sequence of binomial coefficients \(C(n; 0)\), \(C(n; 1)\), <m>\ldots</m>,\(C(n;
-n)\), \(n \geq  1\) has generating function
-
-\(G(C(n; \cdot ); z) = C(n; 0) + C(n; 1)z +\cdots  + C(n; n)z^n\\
-\\
-\quad \quad = \sum_{k=0}^{\infty} C(n;k) z^k\\
-\\
-\quad \quad =(1+z)^n\)
-
+<me>\begin{split}
+G(S;z) &amp;= 1 + 3z + 9z^2 + 27z^3 +\cdots \\
+		&amp; =\sum_{n=0}^{\infty} 3^n z^n	
+		&amp;=\sum_{n=0}^{\infty} (3 z)^n\\
+		\end{split}</me>
+We can get a closed form expression for \(G(S;z)\) by observing that \(G(S;z) - 3z G(S;z) = 1\). Therefore, \(G(S;z) =\frac{1}{1-3 z}\).</p></li>
+<li><p>Finite sequences have generating functions. For example, the sequence of binomial coefficients \(binom{n}{0} \), \(binom{n}{1} \), <m>\ldots</m>,\(binom{n}{n} \), \(n \geq  1\) has generating function
+<me>\begin{split}
+G(\binom{n}{\cdot}; z) = binom{n}{0}  + binom{n}{1} z +\cdots  + binom{n}{n} z^n\\
+		&amp; = \sum_{k=0}^{\infty} binom{n}{k}  z^k\\
+		&amp;=(1+z)^n\\
+		\end{split}</me>
 by application of the binomial formula.</p></li>
 <li><p> If \(Q(n) = n^2\),
-
-\(G(Q;z)=\sum_{n=0}^{\infty} n^2 z^n=\sum_{k=0}^{\infty} k^2 z^k\)
-
-Note that the index that is used in the summation has no significance. Also, note that the lower limit of the summation could start at 1 since \(Q(0)=0\).</p></li>
+\(G(Q;z)=\sum_{n=0}^{\infty} n^2 z^n=\sum_{k=0}^{\infty} k^2 z^k\). Note that the index that is used in the summation has no significance. Also, note that the lower limit of the summation could start at 1 since \(Q(0)=0\).</p></li>
 </ol></p>
 </example>
 </subsection>
@@ -86,7 +76,7 @@ since \(S(0)=3\) and \(S(1)=1\).</p></li>
 \sum_{n=2}^{\infty} S(n-1) z^n &amp;=z\left(\sum_{n=2}^{\infty} S(n-1) z^{n-1}\right)\\
 		&amp; =z\left(\sum_{n=1}^{\infty} S(n) z^n\right)\\
 		&amp; = z\left(\sum_{n=0}^{\infty} S(n) z^n-S(0)\right)\\
-		&amp;= z(G(S;z)-3
+		&amp;= z(G(S;z)-3)
 \end{split}
 </me>
 </p>
@@ -186,7 +176,7 @@ operation \(S\downarrow\) (read <q>S push</q>) term-wise for \(k \geq  0\) by
 <mrow xml:id="seq-op-sc-mult">(c S)(k) = c S(k)</mrow>
 <mrow xml:id="seq-op-mult">(S \cdot T)(k) = S(k)T(k)</mrow>
 <mrow xml:id="seq-op-convolve">(S*T)(k) = \sum_{j=0}^k S(j) T(k-j)</mrow>
-<mrow xml:id="seq-op-pop">(S\uparrow )(k) = S(k+1)\)</mrow>
+<mrow xml:id="seq-op-pop">(S\uparrow )(k) = S(k+1)</mrow>
 <mrow xml:id="seq-op-push">
 (S\downarrow )(k)=\left\{
 							\begin{array}{cc} 
@@ -261,12 +251,12 @@ Keep these figures in mind when we discuss the pop and push operations.</p>
 <notation><usage>S\uparrow p</usage><description>Multiple pop operation on <m>S</m></description></notation>
 <notation><usage>S\downarrow p</usage><description>Multiple push operation on <m>S</m></description></notation>
 <statement><p>If S is a sequence of numbers and <m>p</m> a positive integer greater than 1, define
-\[S\uparrow p = (S\uparrow (p - 1))\uparrow\textrm{ if }p \geq  2 \textrm{ and }S\uparrow 1 = S\uparrow\] 
+\[S\uparrow p = (S\uparrow (p - 1))\uparrow \quad\textrm{ if }p \geq  2 \textrm{ and }S\uparrow 1 = S\uparrow\] 
 Similarly, define
-\[S\downarrow p = (S\downarrow (p - 1))\downarrow\)\textrm{ if } p \geq  2\textrm{ and }S\downarrow 1 = S\downarrow\]
+\[S\downarrow p = (S\downarrow (p - 1))\downarrow \quad\textrm{ if } p \geq  2\textrm{ and }S\downarrow 1 = S\downarrow\]
 </p></statement></definition>
 
-<p>In general, \(S \uparrow p)(k) = S(k+p),\) and
+<p>In general, \((S \uparrow p)(k) = S(k+p),\) and
 
 
 
@@ -339,7 +329,8 @@ there is no operation on generating functions that is related to sequence multip
 <li><p>\(G(S\uparrow p;z) = \left(G(S;z) -\left.\sum_{k=0}^{p-1} S(k) z^k\right)/z^k\right.\)</p></li>
 <li><p> \(G(S\downarrow p;z) = z^p G(S;z)\).</p></li>
 </ol></p>
-</statement><proof><p>We prove (a)  by induction and leave the proof of (b) to the reader.  </p>
+</statement>
+<proof><p>We prove (a)  by induction and leave the proof of (b) to the reader.  </p>
 <p>Basis: 
 <me>
 \begin{split}
@@ -363,7 +354,7 @@ Therefore, part (a) is true for \(p=1\).</p>
 \end{split}
 </me>
 
-by the induction hypothesis. Now write \(S(p)\) in the last expression above as \(\left(S(r)z^p \right)/z^p\) so that it fits into the finite summation:
+by the induction hypothesis. Now write \(S(p)\) in the last expression above as \(\left(S(p)z^p \right)/z^p\) so that it fits into the finite summation:
 
 <me>
 \begin{split}
@@ -407,7 +398,7 @@ steps to derive <xref ref="infinite-geometric-series"/>. Let \(x = a + a r + a r
 
 <me>
 \begin{split}
-G(C;z) &amp; = G(S;z) + C(T;z) + G(U;z)\\
+G(C;z) &amp; = G(S;z) + G(T;z) + G(U;z)\\
 		&amp; = \frac{9}{1-5z} + \frac{4}{1-z}+ \frac{3}{1+z}\\
 		&amp; = -\frac{14 z^2+34z-16}{5 z^3-z^2-5 z+1}
 \end{split}
@@ -416,8 +407,8 @@ G(C;z) &amp; = G(S;z) + C(T;z) + G(U;z)\\
 As we saw in an earlier example, a partial fractions decomposition of a fraction such as the last expression requires some effort to produce.</p></li>
 <li><p> If \(G(Q;z) = 34/(2 - 3z)\), then <m>Q</m> can be determined by multiplying the numerator and denominator by 1/2 to obtain \(\frac{17}{1-\frac{3}{2}z}\).
 We recognize this fraction as the sum of the infinite geometric series with \(a = 17\) and \(r = \frac{3}{2}z\). Therefore \(Q(n) = 17(3/2)^n\).</p></li>
-<li><p>If \(G(A;z) = (1 + z)^3\) , then we expand \((1 + z)^3\)to \(1 + 3z + 3z^2 + z^{3}\) . Therefore \(A(0) = 1\), \(A(1) = 3\) \(A(2)= 3\), \(A(3) = 1\), and, since there are no higher-powered terms, \(A(n) = 0\), \(n \geq  4\). A more concise way of describing <m>A</m> is \(A(k)
-= C(3;k)\), since \(C(n,k)\) is interpreted as 0 of \(k > n\).
+<li><p>If \(G(A;z) = (1 + z)^3\) , then we expand \((1 + z)^3\) to \(1 + 3z + 3z^2 + z^{3}\) . Therefore \(A(0) = 1\), \(A(1) = 3\) \(A(2)= 3\), \(A(3) = 1\), and, since there are no higher-powered terms, \(A(n) = 0\), \(n \geq  4\). A more concise way of describing <m>A</m> is \(A(k)
+= binom{3}{k} \), since \(binom{n}{k} \) is interpreted as 0 of \(k > n\).
 </p></li>
 </ol></p>
 </example>
@@ -436,7 +427,7 @@ We recognize this fraction as the sum of the infinite geometric series with \(a 
 <row><cell><m>S(k) = \frac{1}{k!}</m></cell><cell><m>G(S;z)=e^z</m></cell></row>
 <row><cell><m>S(k) = \left\{
 \begin{array}{cc}
- C(n;k) &amp; 0\leq k\leq n \\
+ binom{n}{k}  &amp; 0\leq k\leq n \\
  0 &amp; k>n \\
 \end{array}\right.</m></cell><cell><m> G(S;z)=(1+z)^n</m></cell></row>
 <row><cell><m></m></cell><cell><m></m></cell></row>
@@ -493,66 +484,45 @@ In conclusion, since \(G(S;z) = G\left(S_1;z\right) + G\left(S _2;z\right)\), \(
 </ol></p>
 </example>
 
-<example xml:id="example-counting-application"><title>An Application to Counting</title><p> Let \(A = \{a, b, c, d, e\}\) and let \(A^*\) be the set of all strings of length zero or more that can be made using each of the elements of <m>A</m> zero or more times. By the generalized rule of products, there are \(5^n\) such strings that have length \textit{
-n}, \(n\geq 0\), Suppose that \(X_n\) is the set of strings of length <m>n</m> with the property that all of the <m>a</m>'s and \textit{ b'}s precede all of the <m>c</m>'s, <m>d</m>'s, and <m>e</m>'s. Thus \(\text{aaabde} \in  X_6\), but \(\text{abcabc} \notin  X_6\). Let \(R(n)
-=\left|X_n\right|\).A closed form expression for <m>R</m> can be obtained by recognizing <m>R</m> as the convolution of two sequences.
-To illustrate our point, we will consider the calculation of \(R(6)\).</p>
+<example xml:id="example-counting-application"><title>An Application to Counting</title><p> Let \(A = \{a, b, c, d, e\}\) and let \(A^*\) be the set of all strings of length zero or more that can be made using each of the elements of <m>A</m> zero or more times. By the generalized rule of products, there are \(5^n\) such strings that have length \(n\), \(n\geq 0\), Suppose that \(X_n\) is the set of strings of length <m>n</m> with the property that all of the <m>a</m>'s and \(b\)'s precede all of the <m>c</m>'s, <m>d</m>'s, and <m>e</m>'s. Thus \( aaabde \in  X_6\), but \(abcabc \notin  X_6\). Let \(R(n) =\lvert X_n \rvert\). A closed form expression for <m>R</m> can be obtained by recognizing <m>R</m> as the convolution of two sequences. To illustrate our point, we will consider the calculation of \(R(6)\).</p>
 
 <p>Note that if a string belongs to \(X_6\), it starts with <m>k</m> characters from \(\{a, b\}\) and is followed by \(6 - k\) characters from \(\{c,
 d, e\}\). Let \(S(k)\) be the number of strings of <m>a</m>'s and <m>b</m>'s with length <m>k</m> and let \(T(k)\) be the number of strings
 of <m>c</m>'s, <m>d</m>'s, and <m>e</m>'s with length <m>k</m>. By the generalized rule of products, \(S(k) = 2^k\) and \(T(k) = 3^k\).
-Among the strings in \(X_6\) are the ones that start with two <m>a</m>'s and <m>b</m>'s and end with <m>c</m>'s, <m>d</m>'s, and \textit{
-e}'s. There are \(S(2)T(4)\) such strings. By the law of addition, \(\left.\left|X_6\right| =R(6)=S(0)T(6)+S(1)T(5)+\cdots +S(5)T(1)+S(6)T(0\right)\).
-Note that the sixth term of R is the sixth term of the convolution of <m>S</m> with <m>T</m>, \(S*T\). Think about the general situation for
-a while and it should be clear that \(R =S*T\). Now, our course of action will be to:</p>
+Among the strings in \(X_6\) are the ones that start with two <m>a</m>'s and <m>b</m>'s and end with <m>c</m>'s, <m>d</m>'s, and \(e\)'s. There are \(S(2)T(4)\) such strings. By the law of addition, \[\lvert X_6 \rvert =R(6)=S(0)T(6)+S(1)T(5)+\cdots +S(5)T(1)+S(6)T(0\right)\].
+Note that the sixth term of R is the sixth term of the convolution of <m>S</m> with <m>T</m>, \(S*T\). Think about the general situation for a while and it should be clear that \(R =S*T\). Now, our course of action will be to:</p>
  <p><ol label="a">
 <li><p>Determine the generating functions of <m>S</m> and <m>T</m>,</p></li>
-<li><p>Multiply \(G(S;z)\) and\(G(T;z)\) to obtain \(G(S*T;z) = G(R;z)\) (by 10.5e), and</p></li>
-<li><p>Determine \(R\) on the basis of\(G(R;z)\).</p></li>
+<li><p>Multiply \(G(S;z)\) and \(G(T;z)\) to obtain \(G(S*T;z) = G(R;z)\)\, and</p></li>
+<li><p>Determine \(R\) on the basis of \(G(R;z)\).</p></li>
 </ol></p>
 
 <p><ol label="a">
 <li><p>\(G(S;z) =\sum_{k=0}^{\infty} 2^k z^k=\frac{1}{1-2z}\) , and \(G(T;z) =\sum_{k=0}^{\infty} 3^k z^k=\frac{1}{1-3z}\)</p></li>
 <li><p> \(G(R;z) = G(S;z)G(T;z) = \frac{1}{(1-2z)(1-3z)}\)</p></li>
 <li><p>To recognize <m>R</m> from \(G(R;z)\), we must do a partial fractions decomposition:
-
-
-
- \(\frac{1}{(1-2z)(1-3z)}=\frac{A}{1-2z}+\frac{B}{1-3z}=\frac{-3 A z+A-2 B z+B}{(2 z-1) (3 z-1)}=\frac{(A+B)+(-3 A -2 B )z}{(2 z-1) (3 z-1)}\)
-
+ \[\frac{1}{(1-2z)(1-3z)}=\frac{A}{1-2z}+\frac{B}{1-3z}=\frac{-3 A z+A-2 B z+B}{(2 z-1) (3 z-1)}=\frac{(A+B)+(-3 A -2 B )z}{(2 z-1) (3 z-1)}\]
 Therefore, \(A + B = 1\) and \(-3A - 2B = 0\). The solution of this pair of equations is \(A = - 2\) and \(B = 3\).
-
 Since
-
-
-
  \(G(R;z) =\frac{-2}{1-2z}+\frac{3}{1-3z}\),
-
 which is the sum of the generating functions of \(-2(2)^k\) and \(3 (3)^k\),
-
 \(R(k) =-2(2)^k+3 (3)^k = 3^{k+1}-2^{k+1}\) </p>
-
 <p>For example, \(R(6) = 3^7 - 2^7= 2187 - 128 = 2059\). Naturally, this equals the sum that we get from \((S*T)(6)\).To put this number
 in perspective, the total number of strings of length 6 with no restrictions is \(5^6=15625\), and \(\frac{2059}{15625}\approx 0.131776\).Therefore
 approximately 13 percent of the strings of length 6 satisfy the conditions of the problem.
-
 </p></li>
 </ol></p>
 </example>
 </subsection>
-
 <subsection xml:id="ss-extra-for-experts"><title>Extra for Experts</title>
-
-
-
 <p>The remainder of this section is intended for readers who have had, or who intend to take, a course in combinatorics. We do not advise that it be
-included in a typical course. The method that was used in <xref ref="example-counting-application" autoname="yes"/> is a very powerful one and can be used to solve many problems in combinatorics.
+included in a typical course. The method that was used in the previous example is a very powerful one and can be used to solve many problems in combinatorics.
 We close this section with a general description of the problems that can be solved in this way, followed by some examples.</p>
 
 
 
 <p>Consider the situation in which \(P_1\), \(P_2\), <m>\ldots</m>, \(P_m\) are <m>m</m> actions that must be taken, each of which results in a well-defined
-outcome. For each\(k = 1,2, . . . ,m\) define \(X_k\) to be the set of possible outcomes of \(P_k\) . We will assume that each outcome can be quantified
+outcome. For each \(k = 1,2, . . . ,m\) define \(X_k\) to be the set of possible outcomes of \(P_k\) . We will assume that each outcome can be quantified
 in some way and that the quantification of the elements of \(X_k\) is defined by the function \(Q_k : X_k \to  \{0, 1,2, . . .\}\). Thus, each outcome
 has a non-negative integer associated with it. Finally, define a frequency function \(F_k : \{0, 1, 2, . . .\} \to  \{0, 1, 2, . . .\}\) such that
 \(F_k(n)\) is the number of elements of \(X_k\) that have a quantification of <m>n</m>.</p>
@@ -575,10 +545,9 @@ G(F;z) =G\left(F_1;z\right)G\left(F_2;z\right) \cdots \left(F_m;z\right)
 
 </p>
 
-<example xml:id="ex-dice-roll"><title>Rolling Two Dice</title><p> Suppose that you roll a die two times and add up the numbers on the top face for each roll. Since the faces on the die represent
-the integers 1 through 6, the sum must be between 2 and 12. How many ways can any one of these sums be obtained? Obviously, 2 can be obtained only
+<example xml:id="ex-dice-roll"><title>Rolling Two Dice</title><p> Suppose that you roll a die two times and add up the numbers on the top face for each roll. Since the faces on the die represent the integers 1 through 6, the sum must be between 2 and 12. How many ways can any one of these sums be obtained? Obviously, 2 can be obtained only
 one way, with two 1's. There are two sequences that yield a sum of 3: 1-2 and 2-1. To obtain all of the frequencies with which the numbers 2 through
-12 can be obtained, we set up the situation as follows. For \(j = 1, 2\);\(P_j\) is the rolling of the die for the \(j^{\text{th}}\) time. \(X_j
+12 can be obtained, we set up the situation as follows. For \(j = 1, 2\); \(P_j\) is the rolling of the die for the \(j^{\text{th}}\) time. \(X_j
 = \{1, 2, . . . , 6\}\) and \(Q_j : X_j \rightarrow \{0, 1, 2, 3,\ldots \}\) is defined by \(Q_j(x) = x\). Since each number appears on a die exactly once,
 the frequency function is \(F_j(k)=1\) if \(1 \leq  k \leq  6\), and \(F_j(k) = 0\) otherwise. The process of rolling the die two times is quantified
 by adding up the \(Q_j's\); that is, \(Q\left(a_1, a_2\right) =Q_{1}\left(a_1\right)+Q_2\left(a_2\right)\) . The generating function for the
@@ -593,7 +562,7 @@ z^3+z^2
 \end{split}
 </me>
 </p>
-<p>Now, to get \(F(k)\), just read the coefficient of \(z^k\).For example, the coefficient of \(z^5\) is 4, so there are four ways to roll a total
+<p>Now, to get \(F(k)\), just read the coefficient of \(z^k\). For example, the coefficient of \(z^5\) is 4, so there are four ways to roll a total
 of 5.</p>
 
 <p>To apply this method, the crucial step is to decompose a large process in the proper way so that it fits into the general situation that we've described.
@@ -602,31 +571,24 @@ of 5.</p>
 
 <example xml:id="ex-committee-distribution"><title>Distribution of a Committee</title><p>Suppose that an organization is divided into three geographic sections, A, B, and C. Suppose that an executive committee of
 11 members must be selected so that no more than 5 members from any one section are on the committee and that Sections A, B, and C must have minimums
-of 3, 2, and 2 members, respectively, on the committee. Looking only at the number of members from each section on the committee, how many ways can
-the committee be made up? One example of a valid committee would be 4 A's, 4 B's, and 3 C's.
-
-
-
-Let \(P_A\) be the action of deciding how many members (not who) from Section A will serve on the committee. \(X_A= \{3, 4, 5\}\) and \(Q_A(k)=k\).
-{ }The frequency function, \(F_A\) , is defined by \(F_A(k)=1\) if \(k\in X_k\) , with \(F_A(k)=0\) otherwise. \(G\left(F_A;z\right)\) is then \(z^3+
-z^4+z^5\) . Similarly, \(G\left(F_B;z\right) =z^2+ z^3+ z ^4 + z^5= G\left(F_C ;z\right)\). Since the committee must have 11 members, our answer
-will be the coefficient of \(z^{11}\) in \(G\left(F_A;z\right)G\left(F_B;z\right)G\left(F_C;z\right)\), which is 10:
-
-
-
-\(G\left(F_A;z\right)G\left(F_B;z\right)G\left(F_C;z\right)=\left(z^3+ z^4+z^5\right)\left(z^2+ z^3+ z ^4 + z^5\right)^2\\
-\\
-\quad =z^{15}+3 z^{14}+6 z^{13}+9 z^{12}+10 z^{11}+9 z^{10}+6 z^9+3 z^8+z^7\)</p></example>
- 
-</subsection>
+of 3, 2, and 2 members, respectively, on the committee. Looking only at the number of members from each section on the committee, how many ways can the committee be made up? One example of a valid committee would be 4 A's, 4 B's, and 3 C's.</p>
+<p>Let \(P_A\) be the action of deciding how many members (not who) from Section A will serve on the committee. \(X_A= \{3, 4, 5\}\) and \(Q_A(k)=k\). The frequency function, \(F_A\) , is defined by \(F_A(k)=1\) if \(k\in X_k\) , with \(F_A(k)=0\) otherwise. \(G\left(F_A;z\right)\) is then \(z^3+
+z^4+z^5\) . Similarly, \(G\left(F_B;z\right) =z^2+ z^3+ z ^4 + z^5= G\left(F_C ;z\right)\). Since the committee must have 11 members, our answer will be the coefficient of \(z^{11}\) in \(G\left(F_A;z\right)G\left(F_B;z\right)G\left(F_C;z\right)\), which is 10.
+</p>
+<sage>
+<input>
+var('z')
+expand((z^3+ z^4+z^5)*(z^2+ z^3+ z ^4 + z^5)^2)
+</input>
+<output>
+z^15 + 3*z^14 + 6*z^13 + 9*z^12 + 10*z^11 + 9*z^10 + 6*z^9 + 3*z^8 + z^7
+</output>
+</sage>
+</example>
+ </subsection>
 
 <exercises>
 <title>Exercises for Section 8.5</title>
-
-
-
-<exercisegroup>
-<introduction><p>A Exercises</p></introduction>
 <exercise number="1"><statement><p>What sequences have the following generating functions?</p>
  <p><ol label="a">
 <li><p> 1</p></li>
@@ -648,12 +610,6 @@ will be the coefficient of \(z^{11}\) in \(G\left(F_A;z\right)G\left(F_B;z\right
 <li><p>\(\frac{z+2}{z+3}\)</p></li>
 </ol></p>
 </statement></exercise>
-
-
-</exercisegroup>
-<exercisegroup>
-<introduction><p>B Exercises</p></introduction>
-
 <exercise number="3"><statement><p>Find closed form expressions for the generating functions of the following sequences:</p>
  <p><ol label="a">
 <li><p>\(V(n) = 9^n\)</p></li>
@@ -667,7 +623,7 @@ will be the coefficient of \(z^{11}\) in \(G\left(F_A;z\right)G\left(F_B;z\right
 
 <exercise number="4"><statement><p>Find closed form expressions for the generating functions of the following sequences:</p>
 <p><ol label="a">
-<li><p> \(W(n) = C(5;n)2^n\) for \(0 \leq  n \leq  5\) and \(W(n) = 0\) for \(n > 5\).</p></li>
+<li><p> \(W(n) = binom{5}{n} 2^n\) for \(0 \leq  n \leq  5\) and \(W(n) = 0\) for \(n > 5\).</p></li>
 <li><p> <m>Q</m>, where \(Q(k) + Q(k - 1) - 42Q(k - 2) = 0\) for \(k\geq 2\), with \(Q(0) = 2\) and\(Q(1) = 2\).</p></li>
 <li><p> <m>G</m>, where \(G(k + 3) = G(k + 2) + G(k + 1) + G(k)\) for \(k \geq  0\), with \(G(0) = G(1) = G(2) = 1\).</p></li>
 </ol></p>
@@ -709,7 +665,7 @@ function.</p>
 </ol></p></answer>
 </exercise>
 
-<exercise number="8"><statement><p>Given that \(P(k) = C(10;k)\) and \(Q(k) = k!\), what is the \(k^{\text{th}}\) term of the generating function of each of the following sequences:</p>
+<exercise number="8"><statement><p>Given that \(P(k) = \binom{10}{k}\) and \(Q(k) = k!\), what is the \(k^{\text{th}}\) term of the generating function of each of the following sequences:</p>
 <p><ol label="a">
 <li><p>\(P * P\)</p></li>
 <li><p>\(P + P\uparrow\)</p></li>
@@ -718,9 +674,6 @@ function.</p>
 </ol></p>
 </statement>
 </exercise>
-</exercisegroup>
-<exercisegroup>
-<introduction><p>C Exercises</p></introduction>
 
 <exercise number="9"><statement><p>A game is played by rolling a die five times. For the \(k^{\text{th}}\) roll, one point is added to your score if you roll a number higher
 than <m>k</m>. Otherwise, your score is zero for that roll. For example, the sequence of rolls \(2,3,4,1,2\) gives you a total score of three;
@@ -744,6 +697,5 @@ one? <m>\ldots </m> of five?</p>
 <exercise number="10"><statement><p> Suppose that you roll a die ten times in a row and record the square of each number that you roll. How many ways could the sum of the squares
 of your rolls equal 40? What is the most common outcome?</p>
 </statement></exercise>
-</exercisegroup>
 </exercises>
 </section>
