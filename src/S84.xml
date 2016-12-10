@@ -6,7 +6,7 @@
 
 <subsection xml:id="rr-basic-example"><title>A  First Basic Example</title>
 <p> Consider the homogeneous first-order linear relation without constant coefficients,  \(S(n) - n S(n - 1) = 0\), \(n \geq  1\), with initial condition \(S(0)
-= 1\). Upon close examination of this relation, we see that the <m>n</m>th term is <m>n</m> times the \((n - 1)^{st}\) term, which is a property of <m>n</m> factorial.\(S(n) = n!\) is a solution of this relation, for if \(n \geq  1\),
+= 1\). Upon close examination of this relation, we see that the <m>n</m>th term is <m>n</m> times the \((n - 1)^{st}\) term, which is a property of <m>n</m> factorial. \(S(n) = n!\) is a solution of this relation, for if \(n \geq  1\),
 
 \[S(n) = n! = n \cdot (n -1)! = n\cdot  S(n - 1)\]
 
@@ -55,21 +55,19 @@ For simplicity, we will assume that
 
 even though the conditions of Step 1 must be evaluated as false if \(n = 0\). You might wonder why \(n/2\) is truncated in <xref ref="eq-bin-search-recursion"/>. If <m>n</m> is
 odd, then \(n = 2 k + 1\) for some \(k\geq  0\), the middle of the list will be the \((k + 1)^{st}\)  item, and no matter what half of the list the search is directed to, the reduced list will have \(k = \lfloor n/2\rfloor\) items. On the other hand, if <m>n</m> is even, then \(n
-= 2 k\) { }for \(k>0\). The middle of the list will be the \(k^{th}\) item, and the worst case will occur if we are directed to the <m>k</m> items
+= 2 k\) for \(k>0\). The middle of the list will be the \(k^{th}\) item, and the worst case will occur if we are directed to the <m>k</m> items
 that come after the middle (the \((k + l)^{st}\) through \((2k)^{th}\) items). Again the reduced list has \(\lfloor n/2\rfloor\) items.</p></li>
 </ol></p>
 
 <p><em>Solution to <xref ref="eq-bin-search-recursion"/>  and <xref ref="eq-bin-search-basis"/>.</em>  To determine \(T(n)\), the easiest case is when <m>n</m> is a power of two. If we compute \(T \left(2^m\right)\),
 \(m\geq 0\) , by iteration, our results are
 
-<me>T(1) = \text{ }1 + T(0) = 1\\
-\\
-T(2) = \text{ }1 + T(1) = 2\\
-\\
-T(4) = \text{ }1 + T(2) = 3\\
-\\
-T(8) = \text{ }1 + T(4) = 4
-</me>
+<me>\begin{array}{c}
+T(1) = 1 + T(0) = 1\\
+T(2) = 1 + T(1) = 2\\
+T(4) = 1 + T(2) = 3\\
+T(8) = 1 + T(4) = 4\\
+\end{array}</me>
 
 The pattern that is established makes it clear that \(T\left(2^m\right) = m + 1\). This result would seem to indicate that every time you double the size of your list, the search time increases by only one unit.</p>
 
@@ -77,8 +75,7 @@ The pattern that is established makes it clear that \(T\left(2^m\right) = m + 1\
 
 <mdn><mrow xml:id="eq-inequality-84">\quad \quad 2^{r-1}\leq n &lt; 2^r</mrow></mdn> 
 
-For example, if \(n = 21\), \(2^4 \leq  21 &lt; 2^5\); therefore, \(r = 5\). If <m>n</m> satisfies (8.4c), its binary representation requires \textit{
-r} digits. For example, \(21_{\text{ten}}\) = \(10101_{\textrm{two}}\).</p>
+For example, if \(n = 21\), \(2^4 \leq  21 &lt; 2^5\); therefore, \(r = 5\). If <m>n</m> satisfies (8.4c), its binary representation requires \(r\) digits. For example, \(21_{\text{ten}}\) = \(10101_{\textrm{two}}\).</p>
 
 <p>In general, \(n = \left(a_1a_2\ldots  a_r\right)_{\textrm{two}}\). where \(a_1=1\). Note that in this form, \(\lfloor n/2\rfloor\) is easy to describe:
 it is the \(r-1\) digit binary number \(\left(a_1a_2\ldots  a_{r-1}\right)_{\textrm{two}}\)</p>
@@ -117,7 +114,7 @@ T(21) &amp;= T(10101) \\
 
 <p>Our general conclusion is that the solution to <xref ref="eq-bin-search-recursion"/>  and <xref ref="eq-bin-search-basis"/> is that for \(n\geq 1\), \(T(n) = r\), where \(2^{r-1}\leq n &lt; 2^r\).</p>
 
-<p>A less cumbersome statement of this fact is that \(T(n)=\left\lfloor \log_{2}n\right\rfloor +1\). For example, { }\(T(21) = \left\lfloor \log_2 21\right\rfloor + 1 = 4 + 1 = 5\). </p>
+<p>A less cumbersome statement of this fact is that \(T(n)=\left\lfloor \log_{2}n\right\rfloor +1\). For example, \(T(21) = \left\lfloor \log_2 21\right\rfloor + 1 = 4 + 1 = 5\). </p>
 </subsubsection>
 <subsubsection xml:id="sss-review-of-logarithms"><title>Review of Logarithms</title><index><main>Logarithms</main></index>
 <p>Any discussion of logarithms must start by establishing a base, which can be any positive number other than 1. With the exception of Theorem 8.4.1,
@@ -164,7 +161,7 @@ time units can handle significantly larger sets of data than an algorithm that c
 </definition>
 
 <theorem xml:id="theorem-logs-related">
-<title>How logarithms with different bases are related</title><statement><p>Let <m>b>0</m>, \(b \neq 1\). Then for all <m>a >0</m>, \(\log_b a = \frac{\log_2a}{\log_2b}\). Therefore, if <m>b > 1</m>, base b logarithms can be computed from base 2 logarithms by dividing by the positive scaling factor \(\log_2b\). { }If \(b &lt; 1\), this scaling factor is negative.</p>
+<title>How logarithms with different bases are related</title><statement><p>Let <m>b>0</m>, \(b \neq 1\). Then for all <m>a >0</m>, \(\log_b a = \frac{\log_2a}{\log_2b}\). Therefore, if <m>b > 1</m>, base b logarithms can be computed from base 2 logarithms by dividing by the positive scaling factor \(\log_2b\). If \(b &lt; 1\), this scaling factor is negative.</p>
 </statement><proof><p>By an analogue of <xref ref="eq-log-prop-5"/>, \(a=b^{\log_b a}\). Therefore, if we take the base 2 logarithm of both sides of this equality we get:
 <me>\log_2 a = \log_2 \left(b^{\log_b a}\right)  \Rightarrow \log_2 a =\log_b a \cdot \log_2 b</me>
 Finally, divide both sides of the last equation by \(\log_2b\). <m>\square</m></p></proof></theorem>
@@ -316,7 +313,7 @@ compares \(B(n)\) with \(T_e(n)\) for selected values of <m>n</m>.</p>
 </subsection>
 <subsection xml:id="ss-derangements"><title>Derangements</title> <index><main>Derangement</main></index>
 <p>A derangement is a permutation on a set that has no <q>fixed points</q>.  Here is a formal definition:</p>
-<definition xml:id="def-derangement"><title>Derangement.</title><statement><p>A derangement of a set A is a permutation of A (i.e., a bijection from A into A) such that \(f(a)\neq a\) for all \(a \in  A\).</p></statement></definition>
+<definition xml:id="def-derangement"><title>Derangement.</title><statement><p>A derangement of a nonempty set \(A\) is a permutation of \(A\) (i.e., a bijection from \(A\) into \(A\)) such that \(f(a)\neq a\) for all \(a \in  A\).</p></statement></definition>
 
 
 
@@ -327,10 +324,8 @@ compares \(B(n)\) with \(T_e(n)\) for selected values of <m>n</m>.</p>
 
 <p>Let \(D(n)\) be the number of derangements of \(\{1, 2, . . . , n\}\). Our answer will come from discovering a recurrence relation on <m>D</m>. Suppose that \(n \geq  3\). If we are to construct a derangement of \(\{1, 2, \dots , n\}\), <m>f</m>, then \(f(n) = k \neq n\). Thus, the
 image of <m>n</m> can be selected in \(n-1\) different ways. No matter which of the \(n -1\) choices we make, we can complete the definition of
-<m>f</m> in one of two ways. First, we can decide to make \(f(k) = n\), leaving \(D(n -2)\) ways of completing the definition of \textit{
-f}, since <m>f</m> will be a derangement of \(\{1, 2, \dots ,n\} - \{n, k\}\). Second, if we decide to select \(f(k)\neq  n\), each of the
+<m>f</m> in one of two ways. First, we can decide to make \(f(k) = n\), leaving \(D(n -2)\) ways of completing the definition of \(f\), since <m>f</m> will be a derangement of \(\{1, 2, \dots ,n\} - \{n, k\}\). Second, if we decide to select \(f(k)\neq  n\), each of the
 \(D(n - 1)\) derangements of \(\{1, 2,\dots ,n-1\}\) can be used to define <m>f</m>. If <m>g</m> is a derangement of \(\{1, 2, \dots , n-1\}\) such that \(g(p) = k\), then define f by
-
 \[f(j)=\left\{
 \begin{array}{cc}
  n &amp; \textrm{ if } j = p \\
@@ -338,10 +333,9 @@ f}, since <m>f</m> will be a derangement of \(\{1, 2, \dots ,n\} - \{n, k\}\). S
  g(j) &amp; \textrm{ otherwise } \\
 \end{array}
 \right.\]
-
 </p>
 
-<p>Note that with our second construction of <m>f</m>, \(f(f(n)) = f(k) \neq  n\), while in the first construction, { }\(f(f(n)) = f(k) = n\). Therefore,
+<p>Note that with our second construction of <m>f</m>, \(f(f(n)) = f(k) \neq  n\), while in the first construction, \(f(f(n)) = f(k) = n\). Therefore,
 no derangement of \(\{1, 2, . . . , n\}\) with \(f(n) = k\) can be constructed by both methods.</p>
 
 <p>To recap our result, we see that <m>f</m> is determined by first choosing one of \(n - 1\) images of <m>n</m> and then constructing the
@@ -353,7 +347,7 @@ remainder of <m>f</m> in one of \(D(n - 2) + D(n -1)\) ways. Therefore,
 
 <p>This homogeneous second-order linear relation with variable coefficients, together with the initial conditions \(D(1) = 0\) and \(D(2) = 1\), completely
 defines <m>D</m>. Instead of deriving a solution of this relation by analytical methods, we will give an empirical derivation of an approximation of \(D(n)\). Since the derangements of \(\{1,2 . . . , n\}\) are drawn from a pool of \(n!\) permutations, we will see what percentage of these permutations
-are derangements by listing the values of \(n!\), \(D(n)\), { }and \(\frac{D(n)}{n!}\).  The results we observe will indicate that
+are derangements by listing the values of \(n!\), \(D(n)\), and \(\frac{D(n)}{n!}\).  The results we observe will indicate that
 as <m>n</m> grows, \(\frac{D(n)}{n!}\) hardly changes at all. If this quotient is computed to eight decimal places, for \(n \geq  12\), \(D(n)/n!
 = 0.36787944\). The reciprocal of this number, which \(D(n)/n!\) seems to be tending toward, is, to eight places, 2.71828182. This number appears
 in so many places in mathematics that it has its own name, <m>e</m>. An approximate solution of our recurrence relation on <m>D</m> is then \(D(n)\approx \frac{n!}{e}\)</p>
@@ -391,8 +385,8 @@ in so many places in mathematics that it has its own name, <m>e</m>. An approxim
 
 <exercise number="1"><statement> <p>Solve the following recurrence relations. Indicate whether your solution is an improvement over iteration.</p>
 <p><ol label="a">
-<li><p> \(n S(n) - S(n - 1) = 0\), { }\(S(0) = 1\).</p></li>
-<li><p> { }\(T(k) + 3k T(k - 1) = 0\), \(T(0) = 1\).</p></li>
+<li><p> \(n S(n) - S(n - 1) = 0\), \(S(0) = 1\).</p></li>
+<li><p> \(T(k) + 3k T(k - 1) = 0\), \(T(0) = 1\).</p></li>
 <li><p> \(U(k) -\frac{k-1}{k}U(k - 1) = 0\), \(k \geq  2\), \(U(1) = 1\).</p></li>
 </ol></p>
 </statement><answer><p><ol label="a"><li><p>  \(S(n)=1/n\)!  </p></li>
@@ -400,7 +394,7 @@ in so many places in mathematics that it has its own name, <m>e</m>. An approxim
 <li><p>  \(T(k)=(-3)^kk\)!, no improvement.</p></li>
 </ol></p></answer></exercise>
 
-<exercise number="2"><statement> <p>Prove that if \(n \geq 0\), { }\(\lfloor n/2\rfloor +\lceil n/2\rceil = n\). (Hint: Consider the cases of n odd and n even separately.)
+<exercise number="2"><statement> <p>Prove that if \(n \geq 0\), \(\lfloor n/2\rfloor +\lceil n/2\rceil = n\). (Hint: Consider the cases of n odd and n even separately.)
 </p>
 </statement></exercise>
 
@@ -411,7 +405,7 @@ in so many places in mathematics that it has its own name, <m>e</m>. An approxim
 <exercise number="3"><statement><p>Solve as completely as possible:</p>
  <p><ol label="a">
 <li><p>\(T(n) = 3 + T(\lfloor n/2\rfloor )\), \(T(0) = 0\).</p></li>
-<li><p>\(T(n) = 1 + \frac{1}{2}T(\lfloor n/2\rfloor )\), { }\(T(0) = 2\).</p></li>
+<li><p>\(T(n) = 1 + \frac{1}{2}T(\lfloor n/2\rfloor )\), \(T(0) = 2\).</p></li>
 <li><p> \(V(n) = 1 + V\lfloor n/8\rfloor )\), \(V(0) = 0\). (Hint: Write <m>n</m> in octal form.)</p></li>
 </ol></p>
 </statement><answer><p><ol label="a"><li><p>  \(T(n)=3\left(\left\lfloor \log _2n\right\rfloor +1\right)\) </p></li>
@@ -427,7 +421,7 @@ in so many places in mathematics that it has its own name, <m>e</m>. An approxim
 </statement><answer><p> The indicated substitution yields \(S(n)=S(n+1)\). Since \(S(0)=T(1)/T(0)=6\), \(S(n)=6\) for all \(n\). Therefore \(T(n+1)=6T(n)\Rightarrow T(n)=6^n\).</p></answer>
 </exercise>
 
-<exercise number="6"><statement><p> Use the substitution \(G(n) =T(n)^2\) { }to solve
+<exercise number="6"><statement><p> Use the substitution \(G(n) =T(n)^2\) to solve
 \(T(n)^2-T(n-1)^2=1\) for \(n \geq  1\), with \(T(0) = 10\).</p>
 </statement></exercise>
 
