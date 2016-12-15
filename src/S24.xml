@@ -20,10 +20,10 @@
 <me>
  \begin{array}{cc}
  \textrm{subset} &amp; \textrm{permutations} \\
- abc &amp; abc,acb,bca,bac,cab,cba \\
- abd &amp; abd,adb,bda,bad,dab,dba \\
- acd &amp; acd,adc,cda,cad,dac,dca \\
- bcd &amp; bcd,bdc,cdb,cbd,dbc,dcb \\
+ \{a, b, c\} &amp; abc,acb,bca,bac,cab,cba \\
+ \{a, b, d\} &amp; abd,adb,bda,bad,dab,dba \\
+ \{a, c, d\} &amp; acd,adc,cda,cad,dac,dca \\
+ \{b, c, d\} &amp; bcd,bdc,cdb,cbd,dbc,dcb \\
 \end{array}
  </me></p>
 <p> Hence, <m>\binom{4}{3} = \frac{P(4,3)}{3!} = \frac{4!}{(4-3)! \cdot 3!} = 4</m></p>
@@ -79,7 +79,7 @@
 <statement><p> If <m>n \geq  0</m>, and <m>x</m> and <m>y</m> are numbers, then
 <me>(x+y)^{n} = \sum_{k=0}^n \binom{n}{k} x^{n-k} y^k</me></p>
 </statement>
-<proof><p>This theorem will proven using a logical procedure called mathematical induction, which will be introduced in Chapter 3. </p></proof>
+<proof><p>This theorem will be proven using a logical procedure called mathematical induction, which will be introduced in Chapter 3. </p></proof>
 </theorem>
 <example xml:id="term-in-an-expansion"><title>Identifying a term in an expansion</title><p>Find the third term in the expansion of <m>( x-y )^{4}</m>. The third term,  when <m>k=2</m>, is <m>\binom{4}{2} x^{4-2} y^2 = 6 x^2 y^2</m>.</p>
 </example>
@@ -92,15 +92,17 @@ Expand <m>(3 x - 2 )^{3}</m>.  If we replace <m>x</m>  and <m>y</m>  in the Bino
 </me></p>
 </statement></example>
 </subsection>
-<subsection xml:id="mathematica-binomial"><title><em>Mathematica</em>  Note</title><index><main>Mathematica  Note</main><sub>Bridge Hands</sub></index>
-<p><em>Mathematica</em>  has a built-in function for binomial coefficients, <m>\texttt{Binomial}</m>. Unlike the examples we've concentrated on that can be done without technology, you can compute extremely large values. For 
-example, a bridge hand is a 13 element subset of a standard 52 card deck. The order in which the cards come to the player doesn't matter. From the point of view of a single player, the number of possible bridge hands is <m>\texttt{Binomial[52,13]}</m>, which is easily computed with <m>Mathematica</m> with an output of 635013559600</p>
-<p>In bridge, the location of a hand in relation to the dealer has some bearing on the game. An even truer indication of the number of possible hands takes into account <m>each</m>  player's possible hand. It is customary 
-to refer to bridge positions as West, North, East and South. We can apply the rule of product to get the total number of bridge hands with the following logic. West can get any of the <m>\binom{52}{13}</m> hands identified above. Then North get 13 of the remaining 39 cards and so has  <m>\binom{39}{13}</m> possible hands. East then gets 13 of the 26 remaining cards, which has <m>\binom{26}{13}</m>  possibilities. South gets the remaining cards. Therefore the number of bridge hands is computed by evaluating the expression <me>\texttt{Binomial[52,13] Binomial[39,13] Binomial[26,13]}</me> which is equal to 53644737765488792839237440000</p>
-</subsection>
 <subsection  xml:id="sage-bridge-hands"><title>Sage Note</title><index><main>Sage Note</main><sub>bridge hands</sub></index>
-<p>
- Sage will do the same calculations for bridge hands just as easily. A correct input is provided in the sage cell below. 
+<p>A bridge hand is a 13 element subset of a standard 52 card deck. The order in which the cards come to the player doesn't matter. From the point of view of a single player, the number of possible bridge hands is <m>\binom{52}{13}</m>, which can be easily computed with <m>Sage</m>.</p>
+<sage>
+<input>
+binomial(52,13)
+</input>
+<output>
+635013559600
+</output>
+</sage>
+<p>In bridge, the location of a hand in relation to the dealer has some bearing on the game. An even truer indication of the number of possible hands takes into account <m>each</m>  player's possible hand. It is customary  to refer to bridge positions as West, North, East and South. We can apply the rule of product to get the total number of bridge hands with the following logic. West can get any of the <m>\binom{52}{13}</m> hands identified above. Then North get 13 of the remaining 39 cards and so has  <m>\binom{39}{13}</m> possible hands. East then gets 13 of the 26 remaining cards, which has <m>\binom{26}{13}</m>  possibilities. South gets the remaining cards. Therefore the number of bridge hands is computed using the Product Rule.
 </p>
 <sage>
 <input>
@@ -130,9 +132,11 @@ binomial(52,13)*binomial(39,13)*binomial(26,13)
 </answer></exercise>
 <exercise number="6"><statement><p>Find the fourth term of the expansion of <m>(x -2y)^6</m>.</p></statement>
 </exercise>
-<exercise number="7"><statement> 
-<p>(a) A poker game is played with 52 cards. How many <q>hands</q> of five cards are possible?</p>
-<p>(b) If there are four people playing, how many five-card <q>hands</q> are possible on the first deal?</p>
+<exercise number="7"><statement><p> A poker game is played with 52 cards.  At the start of a game, each player get five of the cards.  The order in which cards are dealt doesn't matter.
+<ol label="(a)">
+<li><p>How many <q>hands</q> of five cards are possible?</p></li>
+<li><p>(b) If there are four people playing, how many initial five-card <q>hands</q> are possible, taking into account all players?</p></li>
+</ol></p>
 </statement>
 <answer><p><ol label="(a)"><li><p> \(C(52,5)=2,598,960\)</p></li>
 <li><p>  \(C(52,5)\cdot C(47,5)\cdot C(42,5)\cdot C(37,5)\)</p></li>
