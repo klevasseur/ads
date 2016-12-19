@@ -6,9 +6,9 @@
 
 <p>Consider a telephone network in which the main office <m>a</m> is connected to, and can communicate to, individuals <m>b</m> and <m>c</m>.  Both <m>b</m> and <m>c</m> can communicate to another person, <m>d</m>; however, the main office cannot communicate with <m>d</m>. Assume communication is only one way, as indicated. This situation can be described by the relation \(r = \{(a, b), (a, c), (b, d), (c, d)\}\). We would like to change the system so that the main office <m>a</m> can communicate with person <m>d</m> and still maintain the previous system. We, of course, want the most economical system.</p>
 
-<p>This can be rephrased as follows; Find the smallest relation \(r^{+ }\)which contains <m>r</m> as a subset and which is transitive; \(r^+ =\{(a, b), (a, c), (b, d), (c, d), (a, d)\}\).</p>
+<p>This can be rephrased as follows; Find the smallest relation \(r^{+ }\) which contains <m>r</m> as a subset and which is transitive; \(r^+ =\{(a, b), (a, c), (b, d), (c, d), (a, d)\}\).</p>
 
-<definition xml:id="def-transitive-closure"><title>Transitive Closure</title><index><main>Transitive Closure</main></index><notation><usage>r^+</usage><description>The transitive closure of <m>r</m></description></notation><statement><p>Let <m>A</m> be a set and <m>r</m> be a relation on <m>A</m>. The transitive closure of <m>r</m>, denoted by \(r^+\) , is the smallest transitive relation that contains <m>r</m> as a subset.</p></statement></definition> 
+<definition xml:id="def-transitive-closure"><title>Transitive Closure</title><index><main>Transitive Closure</main></index><notation><usage>r^+</usage><description>The transitive closure of <m>r</m></description></notation><statement><p>Let <m>A</m> be a set and <m>r</m> be a relation on <m>A</m>. The transitive closure of <m>r</m>, denoted by \(r^+\), is the smallest transitive relation that contains <m>r</m> as a subset.</p></statement></definition> 
 
 <p>Let \(A = \{1, 2, 3, 4\}\), and let \(\mathcal{S} = \{(1, 2), (2, 3), (3, 4)\}\) be a relation on <m>A</m>. This relation is called the successor relation on <m>A</m> since each element is related to its successor. How do we compute \(\mathcal{S}^+\)?  By inspection we note that \((1, 3)\) must be in \(\mathcal{S}^+\) . Let's analyze why. This is so because \((1,2) \in \mathcal{S}\) and \((2, 3) \in \mathcal{S}\), and the transitive property forces \((1,3)\) to be in \(\mathcal{S}^+\). </p>
 
@@ -17,7 +17,7 @@
 \[\mathcal{S} \cup  \mathcal{S}^2 =\{(1, 2), (2, 3), (3, 4), (1, 3), (2, 4)\}\]
 </p>
 
-<p>Is the relation \(\mathcal{S} \cup  \mathcal{S}^2\) transitive? Again, by inspection, \((1, 4)\) is not an element of \(\mathcal{S} \cup  \mathcal{S}^2\), but  \((1,3) \in \mathcal{S}^2\) and \((3, 4) \in \mathcal{S}\). Therefore, the composition \(\mathcal{S}^2 \mathcal{S} = \mathcal{S}^3\) produces \((1, 4)\), and it must be an element of \(\mathcal{S}^+\) since \((1,3)\) and \((3, 4)\) are required to be in \(\mathcal{S}^+\).  This shows that \(\mathcal{S}^3 \subseteq  \mathcal{S} ^+\) . This process must be continued until the resulting relation is transitive. If <m>A</m> is finite, as is true in this example, the transitive closure will be obtained in a finite number of steps. For this example, 
+<p>Is the relation \(\mathcal{S} \cup  \mathcal{S}^2\) transitive? Again, by inspection, \((1, 4)\) is not an element of \(\mathcal{S} \cup  \mathcal{S}^2\), but  \((1,3) \in \mathcal{S}^2\) and \((3, 4) \in \mathcal{S}\). Therefore, the composition \(\mathcal{S}^2 \mathcal{S} = \mathcal{S}^3\) produces \((1, 4)\), and it must be an element of \(\mathcal{S}^+\) since \((1,3)\) and \((3, 4)\) are required to be in \(\mathcal{S}^+\).  This shows that \(\mathcal{S}^3 \subseteq  \mathcal{S}^+\). This process must be continued until the resulting relation is transitive. If <m>A</m> is finite, as is true in this example, the transitive closure will be obtained in a finite number of steps. For this example, 
 
  \[\mathcal{S}^+ =\mathcal{S}\cup \mathcal{S} ^2\cup  \mathcal{S} ^3=\{(1, 2), (2, 3), (3, 4),(1, 3),(2, 4),(1,4)\}\]
  </p>
@@ -31,14 +31,9 @@ r.  That is,
 <p>Let's now consider the matrix analogue of the transitive closure.</p>
 
 <p>Consider the relation 
-
-\(r = \{(1, 4), (2, 1), (2, 2), (2, 3),(3, 2), (4, 3), (4, 5), (5, 1)\}\) 
-
+\[r = \{(1, 4), (2, 1), (2, 2), (2, 3),(3, 2), (4, 3), (4, 5), (5, 1)\}\] 
 on the set \(A = \{1,2, 3, 4, 5\}\). The matrix of <m>r</m> is
-
-
-
- \(R=\left(
+ \[R=\left(
 \begin{array}{ccccc}
  0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
  1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\
@@ -46,7 +41,7 @@ on the set \(A = \{1,2, 3, 4, 5\}\). The matrix of <m>r</m> is
  0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 \\
  1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
 \end{array}
-\right)\)</p>
+\right)\]</p>
 
 <p>Recall that \(r^2, r^3, \ldots\)  can be determined through computing the matrix powers \(R^2, R^3, \ldots\).  For our example,</p>
 <table>
@@ -96,8 +91,7 @@ on the set \(A = \{1,2, 3, 4, 5\}\). The matrix of <m>r</m> is
 
 <p>How do we relate \(\underset{i=1}{\overset{5}{\cup }}r^i\) to the powers of <m>R</m>?</p>
 
-<theorem xml:id="theorem-matrix-transitive-closure"><title>Matrix of a Transitive Closure</title><statement><p>Let <m>r</m> be a relation on a finite set and let \(R^+\) be the matrix of \(r^+\) , the transitive closure of <m>r</m>.  Then \(R^+
-= R + R^2 + \cdots + R^n\), using Boolean arithmetic.</p></statement></theorem>
+<theorem xml:id="theorem-matrix-transitive-closure"><title>Matrix of a Transitive Closure</title><statement><p>Let <m>r</m> be a relation on a finite set and let \(R^+\) be the matrix of \(r^+\), the transitive closure of <m>r</m>.  Then \(R^+ = R + R^2 + \cdots + R^n\), using Boolean arithmetic.</p></statement></theorem>
 
 
 
@@ -109,7 +103,7 @@ on the set \(A = \{1,2, 3, 4, 5\}\). The matrix of <m>r</m> is
 
 <p>For example, if \(n = 3\), \(R = R(I + R(I + R))\).</p>
 
-<p>We can make use of the fact that if <m>T</m> is a relation matrix, \(T + T = T\) due to the fact that \(1 + 1 = 1\) in Boolean arithmetic. Let \(S_k = R + R^2 + \cdots  + R^k\) . Then </p>
+<p>We can make use of the fact that if <m>T</m> is a relation matrix, \(T + T = T\) due to the fact that \(1 + 1 = 1\) in Boolean arithmetic. Let \(S_k = R + R^2 + \cdots  + R^k\). Then </p>
 
 <p><me>
 \begin{split}
@@ -152,7 +146,7 @@ no more than \(\lceil \log_2 25 \rceil = 5\) matrix multiplications are needed.<
 </ul></p>
 </note>
 
-<p>A second algorithm, Warshall's Algorithm, reduces computation time to the time that it takes to perform one matrix multiplication.</p>
+<p>A second algorithm, Warshall's Algorithm, reduces computation time to the time that it takes to multiply two square matrices with the same order as the relation matrix in question.</p>
 
 <algorithm xml:id="alg-warshall"><title>Warshall's Algorithm</title><statement>
 
@@ -174,17 +168,17 @@ no more than \(\lceil \log_2 25 \rceil = 5\) matrix multiplications are needed.<
 <exercises xml:id="exercises-6-5"><title>Exercises</title>
 
 
-<exercise number="1"><statement><p> Let <m>A</m> and \(\mathcal{S}\) be as defined above. Compute \(\mathcal{S}^+\) using the matrix representation of \(\mathcal{S}\). Verify your results by checking against the result obtained directly from the definition of transitive closure.</p>
+<exercise number="1"><statement><p> Let <m>A =\{1, 2, 3, 4, 5\}</m> and \(\mathcal{S}=\{(1,2),(2,4),(3,4),(4,5),(5,2)\}\). Compute \(\mathcal{S}^+\) using the matrix representation of \(\mathcal{S}\). Verify your results by checking against the result obtained directly from the definition of transitive closure.</p>
 </statement>
 
 </exercise>
-<exercise number="2"><statement><p>Let <m>A=\{1,2,3,4,6,12\}</m> and <m>t=\{(a,b)\mid b/a \textrm{ is a prime number}\}</m>. determine <m>t^+</m> by any means but represent it as a matrix.</p>
+<exercise number="2"><statement><p>Let <m>A=\{1,2,3,4,6,12\}</m> and <m>t=\{(a,b)\mid b/a \textrm{ is a prime number}\}</m>. Determine <m>t^+</m> by any means but represent it as a matrix.</p>
 </statement>
 
 </exercise>
 <exercise number="3"><statement> 
 <p><ol label="(a)">
-<li><p>Draw digraphs of the relations \(\mathcal{S}\), \(\mathcal{S}^2\), \(\mathcal{S}^3\) , and \(\mathcal{S}^+\)  where \(\mathcal{S}\) is defined above.</p></li>
+<li><p>Draw digraphs of the relations \(\mathcal{S}\), \(\mathcal{S}^2\), \(\mathcal{S}^3\) , and \(\mathcal{S}^+\)  where \(\mathcal{S}\) is defined in the first exercise above.</p></li>
 <li> Verify that in terms of the graph of \(\mathcal{S}\), \(a \mathcal{S}^+ b\) if and only if <m>b</m> is reachable from <m>a</m> along a
 path of any finite nonzero length.</li>
 </ol></p>
@@ -250,7 +244,9 @@ path of any finite nonzero length.</li>
 </ol></p>
 </answer>
 </exercise>
-   
+ <exercise number="8"><statement> 
+<p>The definition of the <xref ref="def-transitive-closure" autoname="title"/> of \(r\) refers to the <q>smallest transitive relation that contains <m>r</m> as a subset.</q>  Show that the intersection of all transitive relations on \(A\) containing \(r\) is a transitive relation containing \(r\) and is precisely \(r^+\).</p></statement>
+</exercise>
 
 </exercises>
 </section>
