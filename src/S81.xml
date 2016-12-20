@@ -47,14 +47,14 @@ or cubic, polynomial in <m>n</m>. This definition has a drawback when the variab
 
 <me>
 \begin{split}
-f(7) &amp;= 4\ 7^3 + 2\ 7^2 - 8\ 7 + 9\\
-			&amp;=4\ 343 +2\ 49 -8\ 7+9 \\
+f(7) &amp;= 4\cdot 7^3 + 2\cdot 7^2 - 8\cdot 7 + 9\\
+			&amp;=4\cdot 343 +2\cdot 49 -8\cdot 7+9 \\
 			&amp;= 1423
 \end{split}
 </me>
 </p>
 <p>A count of the number of operations performed shows that five multiplications and three additions/subtractions were performed. The first two multiplications compute \(7^2\) and \(7^3\), and the last three multiply the powers of 7 times the coefficients. This gives you the
-four terms; and adding/subtacting a list of <m>k</m> numbers requires \(k-1\) addition/subtractions. The following definition of a polynomial
+four terms; and adding/subtracting a list of <m>k</m> numbers requires \(k-1\) addition/subtractions. The following definition of a polynomial
 expression suggests another more efficient method of evaluation.</p>
 
 <definition xml:id="def-polynomial-expression-recursive"><title>Polynomial Expression in <m>x</m> over <m>S</m> (Recursive)</title><index><main>Polynomial Expression</main><sub>Recursive definition</sub></index>
@@ -69,13 +69,13 @@ an \((n-1)^{st}\) degree polynomial expression in <m>x</m> and \(a\in  S\).</p>
 
 </definition>
 
-<p>We can easily verify that \(f(n) = 4n^3 + 2n^2 - 8n + 9\) is a third-degree polynomial expression in  <m>n</m> over the <m>\mathbb{Z}</m> based on this definition:
+<p>We can easily verify that \(f(n) = 4n^3 + 2n^2 - 8n + 9\) is a third-degree polynomial expression in  <m>n</m> over <m>\mathbb{Z}</m> based on this definition:
 
 \[f(n)= 4n^3 + 2n^2 - 8n + 9 = ((4n+2)n-8)n+9\]
 
 Notice that 4 is a zeroth degree polynomial since it is an integer. Therefore \(4n + 2\) is a first-degree polynomial; therefore,
 \((4n + 2) n - 8\) is a second-degree polynomial in <m>n</m> over <m>\mathbb{Z}</m>; therefore, \(f(n)\) is a third-degree polynomial in <m>n</m> over <m>\mathbb{Z}</m>. The final expression for \(f(n)\) is called its <term>telescoping form</term>. If we use it to calculate \(f(7)\),
-we need only three multiplications and three additions subtractions. This is called <term>Horner's method</term> for evaluating a polynomial expression.</p>
+we need only three multiplications and three additions/subtractions. This is called <term>Horner's method</term> for evaluating a polynomial expression.</p>
 
 
 <example xml:id="ex-more-telescoping_"><title>More Telescoping Polynomials</title>
@@ -93,12 +93,12 @@ we need only three multiplications and three additions subtractions. This is cal
 <subsection xml:id="ss-recursive-searching"><title>Recursive Searching - The Binary Search</title><index><main>Recursive Searching</main></index><index><main>Binary Search</main></index>
 
 
-<p>Next, we consider recursive algorithm for a binary search within a sorted list of items.  Suppose  \(r=\{r(1),r(2) \ldots  , r(n)\}\) represent a list of
-<m>n</m> items sorted by a numeric key in descending order. The \(j^{th}\) item is denoted \(r(j)\) and its key value by \(r(j).\textrm{key}\).
-For example, each item might contain data on the buildings in a city and the key value might be the height of the building. Then \(r(1)\) would be the item for the tallest building and  \(r(1).\textrm{key}\) would be its height. The algorithm \(\textrm{BinarySearch}(j, k)\) can be applied to search for an item in <m>r</m> with key value
-<m>C</m>. This would be accomplished by the execution of \(\textrm{BinarySearch}(1, n)\). When the algorithm is completed, the variable \(\textrm{Found}\)
-will have a value of true if an item with the desired key value was found, and the value of \(\textrm{location}\) will be the index of an item whose key is
-C. If \(\textrm{Found}\) stays false, no such item exists in the list. The general idea behind the algorithm is illustrated in <xref ref="fig-binsearch" autoname="yes"/></p>
+<p>Next, we consider a recursive algorithm for a binary search within a sorted list of items.  Suppose  \(r=\{r(1),r(2) \ldots  , r(n)\}\) represent a list of
+<m>n</m> items sorted by a numeric key in descending order. The \(j^{th}\) item is denoted \(r(j)\) and its key value by \(r(j).\texttt{key}\).
+For example, each item might contain data on the buildings in a city and the key value might be the height of the building. Then \(r(1)\) would be the item for the tallest building and  \(r(1).\texttt{key}\) would be its height. The algorithm \(\texttt{BinarySearch}(j, k)\) can be applied to search for an item in <m>r</m> with key value
+<m>C</m>. This would be accomplished by the execution of \(\texttt{BinarySearch}(1, n)\). When the algorithm is completed, the variable \(\texttt{Found}\)
+will have a value of \(\texttt{true}\) if an item with the desired key value was found, and the value of \(\textrm{location}\) will be the index of an item whose key is
+\(C\). If \(\texttt{Found}\) keeps the value \(\texttt{false}\), no such item exists in the list. The general idea behind the algorithm is illustrated in <xref ref="fig-binsearch" autoname="yes"/></p>
 
  <figure xml:id="fig-binsearch">
                 <caption>Example of a Binary Search
@@ -107,7 +107,7 @@ C. If \(\textrm{Found}\) stays false, no such item exists in the list. The gener
                     <description>Example of a Binary Search</description>
                 </image>
  </figure>
-<p>In the following algorithm, \(\textrm{Found}\) and \(\textrm{location}\) are <q>global</q> variables to execution of the algorithm.</p>
+<p>In the following algorithm, \(C\), \(\texttt{Found}\) and \(\textrm{location}\) are <q>global</q> variables to execution of the algorithm.</p>
 
  
 <program language="r">
@@ -135,7 +135,7 @@ def BinarySearch (j, k):
 </subsection>
 <subsection xml:id="ss-recursive-sequences"><title>Recursively Defined Sequences</title><index><main>Sequences</main><sub>Recursively Defined</sub></index>
 
-<p>For the next two examples, consider a sequence of numbers to be a list of numbers consisting of a zeroth number, first number, second number, ... . If a sequence is given the name <m>S</m>, the \(k^{th}\) number of <m>S</m>, is usually written \(S_k\)  or \(S(k)\).</p>
+<p>For the next two examples, consider a sequence of numbers to be a list of numbers consisting of a zeroth number, first number, second number, ... . If a sequence is given the name <m>S</m>, the \(k^{th}\) number of <m>S</m> is usually written \(S_k\)  or \(S(k)\).</p>
 
 <example xml:id="ex-geometric-growth"><title>Geometric Growth Sequence</title>
 <p> Define the sequence of numbers <m>B</m> by
@@ -198,12 +198,12 @@ F_4 &amp;= F_2+F_3\\
 </tabular>
 </table>
 
-<p>This is called an iterative computation of the Fibonacci sequence. Here we start with the basis and work our way forward to a less simple number, such as 5. Try to compute \(F_5\) using the recursive definition for <m>F</m> as we did for \(F_4\) . It will take much more time than it would have taken to do the computations above. Iterative computations usually tend to be faster than computations that apply recursion. Therefore, one useful skill is being able to convert a recursive formula into a nonrecursive formula, such as one that requires only iteration or a faster method, if possible.</p>
+<p>This is called an iterative computation of the Fibonacci sequence. Here we start with the basis and work our way forward to a less simple number, such as 5. Try to compute \(F_5\) using the recursive definition for <m>F</m> as we did for \(F_4\). It will take much more time than it would have taken to do the computations above. Iterative computations usually tend to be faster than computations that apply recursion. Therefore, one useful skill is being able to convert a recursive formula into a nonrecursive formula, such as one that requires only iteration or a faster method, if possible.</p>
 
 
 <p>An iterative formula for \(\binom{n}{k} \) is also much more efficient than an application of the recursive definition. The recursive definition is not
 without its merits, however. First, the recursive equation is often useful in manipulating algebraic expressions involving binomial
-coefficients. Second, it gives us an insight into the combinatoric interpretation of \(C(n, k)\). In choosing <m>k</m> elements from \(\{1, 2,
+coefficients. Second, it gives us an insight into the combinatoric interpretation of \(\binom{n}{k}\). In choosing <m>k</m> elements from \(\{1, 2,
 . . . , n\}\), there are \(\binom{n-1}{k}\) ways of choosing all <m>k</m> from \(\{1,2, . . . ,n - 1\}\), and there are \(\binom{n-1}{k-1}\) ways of choosing
 the <m>k</m> elements if <m>n</m> is to be selected and the remaining \(k - 1\) elements come from \(\{1, 2, . . . , n - 1\}\). Note how we
 used the Law of Addition from Chapter 2 in our reasoning.</p>
@@ -290,7 +290,7 @@ by induction that \(L_k=7-2^{k+1}\).</p>
 
 
 
-<exercise number="4"><statement><p> Suppose that a list of nine items, <m>(r(l), r(2), . . . , r(9))</m>, is sorted by key in decending order so that \(r(3).\textrm{key} = 12\) and \(r(4).\textrm{key} = 10\). List the executions of the BinarySearch algorithms that would be needed to complete BinarySearch(1,9) when:</p>
+<exercise number="4"><statement><p> Suppose that a list of nine items, <m>(r(l), r(2), . . . , r(9))</m>, is sorted by key in decending order so that \(r(3).\texttt{key} = 12\) and \(r(4).\texttt{key} = 10\). List the executions of the BinarySearch algorithms that would be needed to complete BinarySearch(1,9) when:</p>
  <p><ol label="(a)" cols="2">
 <li><p>The search key is C = 12</p></li>
 <li><p>The search key is C = 11</p></li>

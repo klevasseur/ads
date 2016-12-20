@@ -24,7 +24,7 @@ are specified, then <m>T</m> is completely defined.</p></li>
 <subsection xml:id="ss-solving-recurrence-relations"><title>Solving Recurrence Relations</title><index><main>Recurrence Relations</main><sub>Solving</sub></index>
 
 <p>Sequences are often most easily defined with a recurrence relation; however, the calculation of terms by directly applying a recurrence relation
-can be time consuming. The process of determining a closed form expression for the terms of a sequence from its recurrence relation is called solving
+can be time-consuming. The process of determining a closed form expression for the terms of a sequence from its recurrence relation is called solving
 the relation. There is no single technique or algorithm that can be used to solve all recurrence relations. In fact, some recurrence relations cannot
 be solved. The relation that defines <m>T</m> above is one such example. Most of the recurrence relations that you are likely to encounter in
 the future are classified as finite order linear recurrence relations with constant coefficients. This class is the one that we will spend most of
@@ -32,9 +32,7 @@ our time with in this chapter.</p>
 
 <definition xml:id="def-n-th-order-rr"><title><m>n^{th}</m> Order Linear Recurrence Relation</title> <index><main>Order of a Recurrence Relation</main></index><statement><p>Let \(S\) be a sequence of numbers with domain \(k\geq 0\). An \(n^{\textrm{th}}\)
 order linear recurrence relation on \(S\) with constant coefficients is a recurrence relation that can be written in the form
-
 \[S(k) + C_1 S(k - 1) + . . . + C_n S(k - n) = f(k)\textrm{  for  }k \geq  n\]
-
 where \(C_1, C_2, \ldots , C_n\) are constants and <m>f</m> is a numeric function that is defined for \(k \geq n\).</p></statement></definition>
 
 <p>Note: We will shorten the name of this class of relations to \(n^{\textrm{th}}\) order linear relations. Therefore, in further discussions, \(S(k)
@@ -49,7 +47,7 @@ where \(C_1, C_2, \ldots , C_n\) are constants and <m>f</m> is a numeric functio
 </ol></p>
 </example> 
 </subsection>
-<subsection xml:id="sss-recurrence-relations-obtained-from-solutions"><title>recurrence relations obtained from <q>solutions</q></title><index><main>Recurrence relations obtained from <q>solutions</q></main></index>
+<subsection xml:id="sss-recurrence-relations-obtained-from-solutions"><title>Recurrence relations obtained from <q>solutions</q></title><index><main>Recurrence relations obtained from <q>solutions</q></main></index>
 
 <p>Before giving an algorithm for solving finite order linear relations, we will examine recurrence relations that arise from certain closed form
 expressions. The closed form expressions are selected so that we will obtain finite order linear relations from them. This approach
@@ -72,15 +70,15 @@ condition for <m>D</m>.</p>
 <row><cell></cell><cell><m>\textrm{from the first.}</m></cell></row>
 <row><cell><m>C(k)-3C(k-1)=-2^k-2k+3</m></cell><cell><m>3^{k-1} \textrm{ term  is eliminated.} </m></cell></row>
 <row><cell></cell><cell><m> \textrm{ This is  a  first order relation}</m>.</cell></row>
-<row><cell><m>2C(k-1)-6C(k-2)=-2^k-2(2(k-1)+3)</m></cell><cell><m>\textrm{Substitute } k-1 \textrm{ for } k \textrm{ in the}</m></cell></row>
+<row><cell><m>2C(k-1)-6C(k-2)=-2^k-2(2(k-1))+6)</m></cell><cell><m>\textrm{Substitute } k-1 \textrm{ for } k \textrm{ in the}</m></cell></row>
 <row><cell></cell><cell><m>\textrm{third equation, multiply. by } 2</m>.</cell></row>
 <row><cell><m></m></cell><cell><m>\textrm{Subtract the 4th equation from the 3rd.}</m></cell></row>
-<row><cell><m> C(k)-5C(k-1)+6C(k-2)=2k-5</m></cell><cell><m>2^{k+1}\textrm{term is eliminated.}</m></cell></row>
+<row><cell><m> C(k)-5C(k-1)+6C(k-2)=2k-7</m></cell><cell><m>2^{k+1}\textrm{term is eliminated.}</m></cell></row>
 <row><cell></cell><cell><m>\textrm{This is 2nd order relation.}</m></cell></row>
 </tabular>
 </table>
-<p>The recurrence relation that we have just obtained, defined for <m>k \geq  2</m>, together with the initial conditions \(C(0) = 7/3\) and \(C(1) = 5\),
-define \(C\). We could do more algebra to derive a third-order linear relation in this case.
+<p>The recurrence relation that we have just obtained, defined for <m>k \geq  2</m>, together with the initial conditions \(C(0) = 7/3\) and \(C(1) = 6\),
+define \(C\).
 </p>
 
 <p><xref ref="table-reverse-solutions-rr" autoname="yes"/> summarizes our results together with a few other examples that we will let the reader derive. Based on these results, we might conjecture
@@ -92,7 +90,7 @@ to the ones that were just examined. The only additional information that is nee
 <caption>Recurrence relations obtained from given sequences</caption>
 <tabular top="major" halign="center"><row><cell>Closed Form Expression</cell><cell>Recurrence Relation</cell></row>
 <row><cell><m>D(k)=5\cdot 2^k</m></cell><cell><m>D(k)-2D(k-1)=0</m></cell></row>
-<row><cell><m>C(k)=3^{k-1}+2^{k+1}+k</m></cell><cell><m>C(k)-2C(k-1)-6C(k-2)=2k-5</m></cell></row>
+<row><cell><m>C(k)=3^{k-1}+2^{k+1}+k</m></cell><cell><m>C(k)-2C(k-1)-6C(k-2)=2k-7</m></cell></row>
 <row><cell><m>Q(k)=2k + 9</m></cell><cell><m>Q(k)-Q(k-1)=2</m></cell></row>
 <row><cell><m>A(k)=k^2-k</m></cell><cell><m>A(k)-2A(k-1)+A(k-2)=2</m></cell></row>
 <row><cell><m>B(k)=2 k^2+1</m></cell><cell><m>B(k)-2B(k-1)+B(k-2)=4</m></cell></row>
@@ -107,9 +105,7 @@ to the ones that were just examined. The only additional information that is nee
 </p></statement></definition>
 
 
-<example xml:id="ex-first-order-homogeneous-rr"><title>First Order Homogeneous Recurrence Relations</title><p>\(D(k) - 2D(k - 1) = 0\) is a first-order homogeneous relation. Since it can also be written as \(D(k) =
-2D(k - 1)\), it should be no surprise that it arose from an expression that involves powers of 2. More generally, you would
-expect that the solution of \(L(k) - a L(k - 1)\) would involve \(a^k\) . Actually, the solution is \(L(k) = L(0)a^k\) , where the value of \(L(0)\) is given by the initial condition.
+<example xml:id="ex-first-order-homogeneous-rr"><title>First Order Homogeneous Recurrence Relations</title><p>\(D(k) - 2D(k - 1) = 0\) is a first-order homogeneous relation. Since it can also be written as \(D(k) = 2D(k - 1)\), it should be no surprise that it arose from an expression that involves powers of 2. More generally, you would expect that the solution of \(L(k) - a L(k - 1)\) would involve \(a^k\). Actually, the solution is \(L(k) = L(0)a^k\), where the value of \(L(0)\) is given by the initial condition.
 </p></example>
 
 <example xml:id="ex-second-order-rr"><title>A Second Order Example</title>
@@ -123,14 +119,14 @@ where <m>b</m> and <m>a</m> are nonzero constants that must be determined. If th
  S(k-2)=b a^{k-2} &amp;   &amp;   \\
 \end{array}\]
 
-Substitute these expressons into the recurrence relation to get
+Substitute these expressions into the recurrence relation to get
 
 
 \[ b a^k-7 b a^{k-1}+12 b a^{k-2}=0\]
 
 Each term on the left-hand side of this equation has a factor of \(b a^{k-2}\), which is nonzero. Dividing through by this common factor yields
 
-<mdn><mrow xml:id="eq-characteristic-example">-a^2 - 7a + 12 = -(a - 3) (a - 4) = 0</mrow></mdn></p>
+<mdn><mrow xml:id="eq-characteristic-example">a^2 - 7a + 12 = (a - 3) (a - 4) = 0</mrow></mdn></p>
 
 <p>Therefore, the only possible values of <m>a</m> are 3 and 4. Equation <xref ref="eq-characteristic-example"/> is called the characteristic equation of the recurrence relation.
 The fact is that our original recurrence relation is true for any sequence of the form \(S(k) = b_1 3^k + b_24^k\), where \(b_1\) and \(b_2\) are
@@ -162,7 +158,7 @@ real numbers. This set of sequences is called the general solution of the recurr
 
 \[a^n+\sum_{j=1}^n C_j a^{n-j}=a^n+ C_1a^{n-1}+\cdots +C_{n-1}a+C_n=0\] 
 
-The left-hand side of this equation is called the characteristic polynomial.  The roots of the characteristic polynomial are called the characteristic roots of the equation</p></statement></definition>
+The left-hand side of this equation is called the characteristic polynomial.  The roots of the characteristic polynomial are called the characteristic roots of the equation.</p></statement></definition>
 
  
 <example xml:id="ex-some-char-equations"><title>Some characteristic equations</title> <p><ol label="(a)">
@@ -185,7 +181,7 @@ a \(Q(k - 3)\) term means that there is not an \(x^{4-3}=x\) term appearing in t
 is \(S(k) = b_1a_1{}^k+ b_2a_2{}^k+\cdots +b_na_n{}^k\). If there are fewer than <m>n</m> characteristic roots, then at least one root is a multiple
 root. If \(a_j\) is a double root, then the \(b_ja_j{}^k\) term is replaced with \(\left(b_{j 0}+b_{j 1}k\right)a_j{}^k\). In general, if \(a_j\)
 is a root of multiplicity <m>p</m>, then the \(b_ja_j{}^k\) term is replaced with \(\left(b_{j 0}+b_{j 1}k+\cdots +b_{j(p-1)}k^{p-1}\right)a_j{}^k\).</p></li>
-<li><p>If <m>n</m> initial conditions are given, we get <m>n</m> linear equations in <m>n</m> unknowns (the \(b_j's\) from Step 3) by substitution. If possible, solve these equations to determine a final form for \(S(k)\).</p></li>
+<li><p>If <m>n</m> initial conditions are given, we get <m>n</m> linear equations in <m>n</m> unknowns (the \({b_j}'s\) from Step 3) by substitution. If possible, solve these equations to determine a final form for \(S(k)\).</p></li>
 </ol>
 </p>
 </statement>
@@ -200,12 +196,12 @@ The solutions of \(a^2+ C_1a + C_2 = 0\) are then
 <p>Although cubic and quartic formulas exist, they are too lengthy to introduce here. For this reason, the only higher-order relations (\(n\geq 3\))
 that you could be expected to solve by hand are ones for which there is an easy factorization of the characteristic polynomial.</p>
 
-<example xml:id="ex-hrr-solution-example-1"><title>A solution using the algorithm</title><p> Suppose that <m>T</m> is defined by \(T(k) =7T(k-1)-10T(k-2)\), with , \(T(0) = 4\) and \(T(1) = 17\). We can solve this
+<example xml:id="ex-hrr-solution-example-1"><title>A solution using the algorithm</title><p> Suppose that <m>T</m> is defined by \(T(k) =7T(k-1)-10T(k-2)\), with \(T(0) = 4\) and \(T(1) = 17\). We can solve this
 recurrence relation with <xref ref="algorithm-linear-homogeneous-recurrence-relations" autoname="yes" />:</p>
 <p><ol label="(a)">
 <li><p>Note that we have written the recurrence relation in <q>nonstandard</q> form. To avoid errors in this easy step, you might consider a rearrangement
 of the equation to, in this case, \(T(k) -7T(k-1)+10T(k-2)=0\). Therefore, the characteristic equation is \(a^2 -7a + 10 = 0\). </p></li>
-<li><p> The characteristic roots are\(\frac{1}{2}\left(7+\sqrt{49-40}\right)=5\) and \(\frac{1}{2}\left(7-\sqrt{49-40}\right)=2\). These roots can be
+<li><p> The characteristic roots are \(\frac{1}{2}\left(7+\sqrt{49-40}\right)=5\) and \(\frac{1}{2}\left(7-\sqrt{49-40}\right)=2\). These roots can be
 just as easily obtained by factoring the characteristic polynomial into \((a - 5)(a - 2)\).</p></li>
 <li><p>The general solution of the recurrence relation is \(T(k) =b_12^k+ b_25^k\) ,</p></li>
 <li><p> <m>\quad</m> \(\left\{
@@ -249,7 +245,7 @@ Exercise 17 of this section.)</p>
 \begin{array}{c}
  S(0)=8 \\
  S(1)=6 \\
- S(20)=22 \\
+ S(2)=22 \\
 \end{array}
 \right\}\textrm{   }\Rightarrow \left\{
 \begin{array}{c}
@@ -268,7 +264,7 @@ You can solve this system by elimination to obtain \(b_1=5\), \(b_2=2\), and \(b
 
 <example xml:id="ex-hrr-solution-example-3"><title>Solution with a Double Characteristic Root</title><p>Solve \(D(k) - 8D(k - I) + 16D(k - 2) = 0\), where \(D(2) = 16\) and \(D(3) = 80\).</p>
 <p><ol label="(a)">
-<li><p> Characteristic equation; \(a^2- 8a + 16 = 0\).</p></li>
+<li><p> Characteristic equation: \(a^2- 8a + 16 = 0\).</p></li>
 <li><p>\(a^2- 8a + 16 = (a - 4)^2\). Therefore, there is a double characteristic root, 4.</p></li>
 <li><p>General solution: \(D(k) = \left(b_{10}+b_{11}k\right)4^k\).</p></li>
 <li><p>\(\left\{
@@ -307,12 +303,12 @@ You can solve this system by elimination to obtain \(b_1=5\), \(b_2=2\), and \(b
  <title>Algorithm for Solving Nonhomogeneous Finite-order Linear Relations</title>
  <statement>
  <p>To solve the recurrence relation \(S(k) + C_1S(k - 1) +\ldots + C_n S(k - n) = f(k)\)</p>
-<p><ol label="(a)">
-<li><p>Write the associated homogeneous relation and find its general solution (Steps (a) through (c) of Algorithm 8.3.1). Call this the homogeneous
+<p><ol label="(1)">
+<li><p>Write the associated homogeneous relation and find its general solution (Steps (a) through (c) of <xref ref="algorithm-linear-homogeneous-recurrence-relations" autoname="yes" />). Call this the homogeneous
 solution, \(S^{(h)}(k)\).</p></li>
-<li><p>Start to obtain what is called a particular solution,\(S^{(p)}(k)\) of the recurrence relation by taking an educated guess at the form
+<li><p>Start to obtain what is called a particular solution, \(S^{(p)}(k)\) of the recurrence relation by taking an educated guess at the form
 of a particular solution. For a large class of right-hand sides, this is not really a guess, since the particular solution is often
-the same type of function as \(f(k)\) (see Table 8.3.2).</p></li>
+the same type of function as \(f(k)\) (see <xref ref="tab-particular-sols" autoname="yes" />).</p></li>
 <li><p>Substitute your guess from Step 2 into the recurrence relation. If you made a good guess, you should be able to determine the unknown coefficients
 of your guess. If you made a wrong guess, it should be apparent from the result of this substitution, so go back to Step 2.</p></li>
 <li><p>The general solution of the recurrence relation is the sum of the homogeneous and particular solutions. If no conditions are
@@ -333,12 +329,12 @@ and solve the system, if possible, to get a complete solution.</p></li>
 </tabular>
 </table>
 
-<example xml:id="ex-nhrr-solution-example-1"><title>Solution of a Nonhomogeneous First Order Recurrence Relation</title><p> Solve \(S(k) + 5S(k - 1) = 9\),with \(S(0) = 6\).</p>
+<example xml:id="ex-nhrr-solution-example-1"><title>Solution of a Nonhomogeneous First Order Recurrence Relation</title><p> Solve \(S(k) + 5S(k - 1) = 9\), with \(S(0) = 6\).</p>
 <p><ol label="(a)">
 <li><p>The associated homogeneous relation,\(S(k) + 5S(k - 1) = 0\) has the characteristic equation \(a + 5 = 0\); therefore, \(a = -5\). The
 homogeneous solution is \(S^{(h)}(k) =b (-5)^k\).</p></li>
 <li><p>Since the right-hand side is a constant, we guess that the particular solution will be a constant, <m>d</m>.</p></li>
-<li><p> If we substitute \(S^{(p)}(k) = d\) into the recurrence relation, we get \(d + 5d = 9\), or \(6d = 9\). Therefore, \(S^{(p)}(k)=1.5\)</p></li>
+<li><p> If we substitute \(S^{(p)}(k) = d\) into the recurrence relation, we get \(d + 5d = 9\), or \(6d = 9\). Therefore, \(S^{(p)}(k)=1.5\).</p></li>
 <li><p> The general solution of the recurrence relation is 
 
 <m>\quad</m>\(S(k)= S^{(h)}(k)+S^{(p)}(k) =b (-5)^k+1.5\)
@@ -354,10 +350,10 @@ Therefore, \(b = 4.5\) and \(S(k) = 4.5(-5)^k + 1.5\).</p>
 
 <example xml:id="ex-nhrr-solution-example-2"><title>Solution of a Nonhomogeneous Second Order Recurrence Relation</title><p> Consider \(T(k) - 7T(k - 1) + 10T(k - 2) = 6 + 8k\) with \(T(0) = 1\) and \(T(1) = 2\).</p>
 <p><ol label="(a)">
-<li><p>From Example 8.3.7, we know that \(T^{(h)}(k)=b_12^k+ b_25^k\).Caution:Don't apply the initial conditions to \(T^{(h)}\) until you
+<li><p>From Example 8.3.7, we know that \(T^{(h)}(k)=b_12^k+ b_25^k\). Caution:Don't apply the initial conditions to \(T^{(h)}\) until you
 add \(T^{(p)}\)!</p></li>
 <li><p>Since the right-hand side is a linear polynomial, \(T^{(p)}\) is linear; that is, \(T^{(p)}(k)=d_0+d_1k\).</p></li>
-<li><p>Substitutioninto the recurrence relation yields:
+<li><p>Substitution into the recurrence relation yields:
 
 \(\left(d_0+d_1k\right)-7\left(d_0+d_1(k-1)\right)+10\left(d_0+d_1(k-2)\right)=6+8k\)
 
@@ -378,7 +374,7 @@ Two polynomials are equal only if their coefficients are equal. Therefore,
  d_1=2 \\
 \end{array}
 \right\}\)</p></li>
-<li><p>Use the general solution \(T(k) =b_12^k+ b_25^k+8+2k\)and the initial conditions to get a final solution:
+<li><p>Use the general solution \(T(k) =b_12^k+ b_25^k+8+2k\) and the initial conditions to get a final solution:
 
  <m>\quad</m> \(\left\{
 \begin{array}{c}
@@ -407,19 +403,17 @@ Two polynomials are equal only if their coefficients are equal. Therefore,
 \right\}\textrm{  }\)
 </p>
 
-<p>Therefore,  \(T(k) =-9\cdot 2^k+ 2\cdot 5^k+8+2k\)
+<p>Therefore,  \(T(k) =-9\cdot 2^k+ 2\cdot 5^k+8+2k\).
 </p>
 </li>
 </ol></p>
 </example>
 
 <note><title>A quick note on interest rates</title> <p>When a quantity, such as a savings account balance, is increased by some fixed percent, it is most easily
-computed with a multiplier. In the case of an <m>8\%</m> increase, the multier is 1.08 because any original amount <m>A</m>, has \(0.08A\) added
+computed with a multiplier. In the case of an <m>8\%</m> increase, the multiplier is 1.08 because any original amount <m>A</m>, has \(0.08A\) added
 to it, so that the new balance is \(A+0.08A = (1+0.08)A = 1.08 A\).</p>
 
-<p>Another example is that if the interest rate is <m>3.5\%</m>, the multiplier would be 1.035. This presumes that the interest is applied a the end
-of year for <m>3.5\%</m> annual interest, often called <term>simple interest</term>. If the interest is applied monthly, and we assume a simplifed case
-where each month has the same length, the multiplier after every month would be \(\left(1+\frac{0.035}{12}\right) \approx  1.00292\).After a
+<p>Another example is that if the interest rate is <m>3.5\%</m>, the multiplier would be 1.035. This presumes that the interest is applied at the end of year for <m>3.5\%</m> annual interest, often called <term>simple interest</term>. If the interest is applied monthly, and we assume a simplifed case where each month has the same length, the multiplier after every month would be \(\left(1+\frac{0.035}{12}\right) \approx  1.00292\).After a
 year passes, this multiplier would be applied 12 times, which is the same as multiplying by\(1.00292^{12}\approx 1.03557\). That increase from
 1.035 to 1.03557 is the effect of <term>compound interest</term>.</p>
 </note>
@@ -436,7 +430,7 @@ d 2^k = 1.08d 2^{k-1}+2^k &amp; \Rightarrow (2d) 2^{k-1} = 1.08d 2^{k-1}+ 2\cdot
 		&amp;\Rightarrow .92d = 2 \\
 		&amp;\Rightarrow d= 2.174 \textrm{  to the nearest thousandth})
 		\end{split}</me>
-Therefore \(B^{(p)}(k)=2.174\cdot  2^k\)</p></li>
+Therefore \(B^{(p)}(k)=2.174\cdot  2^k\).</p></li>
 <li><p> \(B(0) = 1 \Rightarrow \textrm{   }b_1+2.174 = 1\\
 \\
 \textrm{<m>\quad</m>     }\Rightarrow \textrm{   }b_1= -1.174\)
@@ -448,7 +442,7 @@ Therefore \(B^{(p)}(k)=2.174\cdot  2^k\)</p></li>
 
 <example xml:id="ex-matching-roots"><title>Matching Roots</title><p> Find the general solution to \(S(k) - 3 S(k - 1) - 4 S(k - 2) = 4^k\).</p>
 <p><ol label="(a)">
-<li><p>The characteristic roots of the associated homogeneous relation are -1 and 4. Therefore, \(S^{(h)}(k)=b_1(-1){}^k+ b_2 4^k\).</p></li>
+<li><p>The characteristic roots of the associated homogeneous relation are \(-1\) and 4. Therefore, \(S^{(h)}(k)=b_1(-1){}^k+ b_2 4^k\).</p></li>
 <li><p>A function of the form \(d 4^k\) will not be a particular solution of the nonhomogeneous relation since it solves the associated homogeneous
 relation. When the right-hand side involves an exponential function with a base that equals a characteristic root,you should multiply your guess
 at a particular solution by <m>k</m>. Our guess at \(S^{(p)}(k)\) would then be \(d k 4^k\) . See <xref ref="obs-matching-base"/> for a more complete description of this rule.</p></li>
@@ -459,7 +453,7 @@ at a particular solution by <m>k</m>. Our guess at \(S^{(p)}(k)\) would then be 
 \end{array}</me>
 Each term on the left-hand side has a factor of \(4^{k-2}\) 
  <me> 16 d k - 12d(k - 1) - 4d(k - 2) = 4^220 d = 16 \Rightarrow d=0.8</me>
-Therefore, \(S^{(p)}(k) = 0.8 k 4^k\)</p></li>
+Therefore, \(S^{(p)}(k) = 0.8 k 4^k\).</p></li>
 <li><p>The general solution to the recurrence relation is
 \[S(k) =b_1(-1){}^k+ b_2 4^k +0.8 k 4^k\]
 </p>
@@ -469,17 +463,16 @@ Therefore, \(S^{(p)}(k) = 0.8 k 4^k\)</p></li>
 
 
 <observation xml:id="obs-matching-base"><title>When the base of right-hand side is equal to a characteristic root</title> <p> If the right-hand side of a nonhomogeneous relation involves an exponential with base <m>a</m>, and <m>a</m> is also a characteristic root
-of multiplicity <m>p</m>, then multiply your guess at a particular solution as prescribed in <xref ref="tab-particular-sols" autoname="yes" /> by \(k^p\) , where <m>k</m> is the
+of multiplicity <m>p</m>, then multiply your guess at a particular solution as prescribed in <xref ref="tab-particular-sols" autoname="yes" /> by \(k^p\), where <m>k</m> is the
 index of the sequence.</p></observation>
 
 <example xml:id="ex-base-match"><title>Examples of matching bases</title><p><ol label="(a)">
 <li><p> If  \(S(k) - 9S(k - 1) + 20 S(k - 2) = 2\cdot 5^k\), the characteristic roots are 4 and 5.  Since 5 matches the base of the right side, \(S^{(p)}(k)\) will take the form \(d k 5^k\).</p></li>
-<li><p> If \(S(n)- 6S(n - 1) + 9 S(n - 2) = 3^{n+1}\) the only characteristic root is 3, but it is a double root (multiplicity 2).Therefore, the
+<li><p> If \(S(n)- 6S(n - 1) + 9 S(n - 2) = 3^{n+1}\) the only characteristic root is 3, but it is a double root (multiplicity 2). Therefore, the
 form of the particular solution is \(d n^2 3^n\).</p></li>
-<li><p> If \(Q(j)-Q(j-1)-12Q(j-2)=(-3)^j+ 6\cdot 4^j\), the characteristic roots are -3 and 4. The form of the particular solution will
+<li><p> If \(Q(j)-Q(j-1)-12Q(j-2)=(-3)^j+ 6\cdot 4^j\), the characteristic roots are \(-3\) and 4. The form of the particular solution will
 be \(d_1j (-3)^j+ d_2j\cdot 4^j\).</p></li>
-<li><p> If \(S(k) - 9S(k - 1) + 8S(k- 2) = 9k + 1 = (9k + 1)1^k\), the characteristic roots are 1 and 8.If the right-hand side is a polynomial,
-as it is in this case, then the exponential factor \(1^k\) can be introduced. The particular solution will take the form \(k\left(d_0+ d_1k\right)\).
+<li><p> If \(S(k) - 9S(k - 1) + 8S(k- 2) = 9k + 1 = (9k + 1)1^k\), the characteristic roots are 1 and 8. If the right-hand side is a polynomial, as it is in this case, then the exponential factor \(1^k\) can be introduced. The particular solution will take the form \(k\left(d_0+ d_1k\right)\).
 </p>
 </li>
 </ol></p>
@@ -500,16 +493,16 @@ Solve the following sets of recurrence relations and initial conditions:</p>
 </introduction>
 
 <exercise number="1"><statement><p>
-\(S(k) - 10S(k - 1) + 9S(k - 2) = 0\), \(S(0) = 3\),\(S(1) = 11\)</p>
+\(S(k) - 10S(k - 1) + 9S(k - 2) = 0\), \(S(0) = 3\), \(S(1) = 11\)</p>
 </statement><answer><p> \(S(k)=2+9^k\)</p></answer></exercise>
 
-<exercise number="2"><statement><p> \(S(k) - 9S(k - 1) + 18S(k - 2) = 0\)\(S(0) = 0\),\(S(1) = 3\)</p></statement></exercise>
-<exercise number="3"><statement><p>\(S(k) - 0.25S(k - 1) = 0\) , \(S(0) = 6\)</p></statement><answer><p> \(S(k)=6(1/4)^k\)</p></answer></exercise>
-<exercise number="4"><statement><p> \(S(k) - 20S(k - 1) + 100S(k - 2) = 0\),\(S(0) = 2\),\(S(1) = 50\)</p></statement></exercise>
+<exercise number="2"><statement><p> \(S(k) - 9S(k - 1) + 18S(k - 2) = 0\), \(S(0) = 0\), \(S(1) = 3\)</p></statement></exercise>
+<exercise number="3"><statement><p>\(S(k) - 0.25S(k - 1) = 0\), \(S(0) = 6\)</p></statement><answer><p> \(S(k)=6(1/4)^k\)</p></answer></exercise>
+<exercise number="4"><statement><p> \(S(k) - 20S(k - 1) + 100S(k - 2) = 0\), \(S(0) = 2\), \(S(1) = 50\)</p></statement></exercise>
 
 <exercise number="5"><statement><p> \(S(k) - 2S(k - 1) + S(k - 2) = 2 \textrm{,  }S(0) = 25,\textrm{  }S(1) = 16\)</p></statement><answer><p> \(S(k)=k^2-10k+25\)</p></answer></exercise>
 
-<exercise number="6"><statement><p>\(S(k) - S(k - 1) - 6S(k - 2) = -30 \textrm{, }S(0) = 7, S(1) = 10\)</p></statement></exercise>
+<exercise number="6"><statement><p>\(S(k) - S(k - 1) - 6S(k - 2) = -30\), \(S(0) = 7\), \(S(1) = 10\)</p></statement></exercise>
 
 <exercise number="7"><statement><p>\(S(k) - 5S (k - 1) = 5^k,\textrm{  }S(0) = 3\)</p></statement><answer><p> \(S(k)=(3+k)5^k\)</p></answer></exercise>
 
@@ -518,7 +511,7 @@ Solve the following sets of recurrence relations and initial conditions:</p>
 <exercise number="9"><statement><p>\(S(k) - 4S(k - 1) + 4S(k - 2) = 3k + 2^k \textrm{,  }S(0) = 1, S(1) = 1\)</p></statement><answer><p> \(S(k)=(12+3k)+\left(k^2+7k-22\right)2^{k-1}\)</p></answer>
 </exercise>
 
-<exercise number="10"><statement><p> \(S(k) = r S(k - 1) + a ,\textrm{  }S(0) = 0,\textrm{   }r, a \geq  0, r \neq  1\)</p></statement></exercise>
+<exercise number="10"><statement><p> \(S(k) = r S(k - 1) + a\), \(S(0) = 0\), \(r, a \geq  0, r \neq  1\)</p></statement></exercise>
 
 <exercise number="11"><statement><p> \(S(k) - 4S(k - 1) - 11S(k- 2)+ 30S(k - 3) = 0\), 
  \(S(0) = 0\),\(S(1) = -35,\textrm{  }S(2) = -85\)</p>
@@ -529,7 +522,7 @@ Solve the following sets of recurrence relations and initial conditions:</p>
 <exercise number="13"><statement><p><ol label="(a)">
 <li><p>Find a closed form expression for the terms of the Fibonacci sequence (see Example 8.1.4).</p></li> 
 <li><p>The sequence <m>C</m> was defined by \(C_r\) = the number of strings of zeros and ones with length <m>r</m> having no consecutive
-zeros (Example 8.2.1(c)). Its recurrence, relation is the same as that of the Fibonacci sequence. Determine a closed form expression for \(C_r\),
+zeros (Example 8.2.1(c)). Its recurrence relation is the same as that of the Fibonacci sequence. Determine a closed form expression for \(C_r\),
 \(r \geq  1\).</p></li>
 </ol></p>
 </statement><answer><p><ol label="(a)"><li><p>The characteristic equation is a \(a^2-a-1=0\), which has solutions \(\alpha =\left.\left(1+\sqrt{5}\right)\right/2\) and \(\beta =\left.\left(1-\sqrt{5}\right)\right/2\), It is useful to point out that \(\alpha +\beta =1\) and \(\alpha -\beta =\sqrt{5}\). The general solution is
@@ -549,9 +542,9 @@ and  \(b_2=\beta /(\alpha -\beta )=\left.\left(5-\sqrt{5}\right)\right/2\sqrt{5}
 <exercise number="14"><statement><p>If \(S(n)=\sum_{j=1}^n g(j)\),\(n\geq 1\), then <m>S</m> can be described with the recurrence relation \(S(n) = S(n-1) + g(n)\). For
 each of the following sequences that are defined using a summation, find a closed form expression:</p>
 <p><ol label="(a)">
-<li><p> \(S(n) =\sum_{j=1}^n j\),\(n\geq 1\)</p></li>
+<li><p> \(S(n) =\sum_{j=1}^n j\), \(n\geq 1\)</p></li>
 <li><p>\(Q(n) = \sum_{j=1}^n j^2\), \(n\geq 1\)</p></li>
-<li><p>\(P(n) =\)\(\sum_{j=1}^n \left(\frac{1}{2}\right)^j\),\(n\geq 0\)</p></li>
+<li><p>\(P(n) =\)\(\sum_{j=1}^n \left(\frac{1}{2}\right)^j\), \(n\geq 0\)</p></li>
 <li><p> \(T(n)= \sum_{j=1}^n j^3\), \(n\geq 1\)</p></li>
 </ol></p>
 </statement>
@@ -582,8 +575,8 @@ when the value is raised to zero. How much could you borrow if you can afford to
 closed form expressions for \(B(k)\) and \(B_a(k)\). Their forms are very different because the characteristic roots of the original relation were
 close together and the approximation resulted in one double characteristic root.If characteristic roots of a relation
 are relatively far apart, this problem will not occur. For example, compare the general solutions of 
-<m>\quad</m>\(S(k) + 1.001S(k - 1) - 2.004002S(k - 2) = 0.0001\) and
-<m>\quad</m>\(S_a(k) + S_a(k - 1) - 2S_a(k - 2) = 0\).</p>
+\(S(k) + 1.001S(k - 1) - 2.004002S(k - 2) = 0.0001\) and
+\(S_a(k) + S_a(k - 1) - 2S_a(k - 2) = 0\).</p>
 </statement>
 </exercise>
 <!-- 

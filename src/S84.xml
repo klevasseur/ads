@@ -22,7 +22,7 @@ really isn't much of an improvement since the exact calculation of \(n!\) takes 
 \end{array}\]
 
 The exponent of 2 in \(G(k)\) is growing according to the relation \(E(k) = E(k - 1) + k,\) with \(E(0) = 0\). Thus \(E(k)=\frac{k(k+1)}{2}\)
-and \(G(k) = 2^{k(k+1)/2}\) . Note that \(G(k)\) could also be written as \(2^0 2^1 2^2 \cdots 2^k\), for \(k \geq  0\), but this is not a closed form expression.</p>
+and \(G(k) = 2^{k(k+1)/2}\). Note that \(G(k)\) could also be written as \(2^0 2^1 2^2 \cdots 2^k\), for \(k \geq  0\), but this is not a closed form expression.</p>
 
 <p>In general, the relation \(P(n) = f(n)P(n - 1)\) for \(n \geq 1\) with \(P(0) =f(0)\), where <m>f</m> is a function that is defined for all \(n\geq
 0\), has the <q>solution</q>
@@ -36,7 +36,7 @@ This product form of \(P(n)\) is not a closed form expression because as <m>n</m
 
 <subsection xml:id="analysis-of-binary-search"><title>A Analysis of the Binary Search Algorithm.</title>
 <subsubsection><title></title>
-<p> Suppose you intend to use a binary search algorithm (see <xref ref="ss-recursive-searching"/>) on lists of zero or more sorted items, and that the items are stored in an array, so that you have easy access to each item. A natural question to ask is <q>How much time will it take to complete the search?</q> When a question like this is asked, the time we refer to is often the so - called worst - case time. That is, if we were to search through <m>n</m> items, what is the longest amount of time that we will need to complete the search? In order to make an analysis such as this independent of the computer to be used, time is measured by counting the number of steps that are executed. Each
+<p> Suppose you intend to use a binary search algorithm (see <xref ref="ss-recursive-searching"/>) on lists of zero or more sorted items, and that the items are stored in an array, so that you have easy access to each item. A natural question to ask is <q>How much time will it take to complete the search?</q> When a question like this is asked, the time we refer to is often the so-called worst-case time. That is, if we were to search through <m>n</m> items, what is the longest amount of time that we will need to complete the search? In order to make an analysis such as this independent of the computer to be used, time is measured by counting the number of steps that are executed. Each
 step (or sequence of steps) is assigned an absolute time, or weight; therefore, our answer will not be in seconds, but in absolute time units. If
 the steps in two different algorithms are assigned weights that are consistent, then analyses of the algorithms can be used to compare their relative
 efficiencies. There are two major steps that must be executed in a call of the binary search algorithm:</p>
@@ -44,7 +44,7 @@ efficiencies. There are two major steps that must be executed in a call of the b
 <li><p> If the lower index is less than or equal to the upper index, then the middle of the list is located and its key is compared to the value that
 you are searching for.</p></li>
 <li><p>In the worst case, the algorithm must be executed with a list that is roughly half as large as in the previous execution. If we assume that
-Step 1 takes one time unit and \(T(n)\) is the worst - case time for a list of <m>n</m> items, then
+Step 1 takes one time unit and \(T(n)\) is the worst-case time for a list of <m>n</m> items, then
 
 <mdn><mrow xml:id="eq-bin-search-recursion">T(n)= 1 + T (\lfloor n/2 \rfloor ),  \quad n>0</mrow></mdn>
 
@@ -56,7 +56,7 @@ For simplicity, we will assume that
 even though the conditions of Step 1 must be evaluated as false if \(n = 0\). You might wonder why \(n/2\) is truncated in <xref ref="eq-bin-search-recursion"/>. If <m>n</m> is
 odd, then \(n = 2 k + 1\) for some \(k\geq  0\), the middle of the list will be the \((k + 1)^{st}\)  item, and no matter what half of the list the search is directed to, the reduced list will have \(k = \lfloor n/2\rfloor\) items. On the other hand, if <m>n</m> is even, then \(n
 = 2 k\) for \(k>0\). The middle of the list will be the \(k^{th}\) item, and the worst case will occur if we are directed to the <m>k</m> items
-that come after the middle (the \((k + l)^{st}\) through \((2k)^{th}\) items). Again the reduced list has \(\lfloor n/2\rfloor\) items.</p></li>
+that come after the middle (the \((k + 1)^{st}\) through \((2k)^{th}\) items). Again the reduced list has \(\lfloor n/2 \rfloor\) items.</p></li>
 </ol></p>
 
 <p><em>Solution to <xref ref="eq-bin-search-recursion"/>  and <xref ref="eq-bin-search-basis"/>.</em>  To determine \(T(n)\), the easiest case is when <m>n</m> is a power of two. If we compute \(T \left(2^m\right)\),
@@ -146,10 +146,10 @@ time units can handle significantly larger sets of data than an algorithm that c
 <theorem xml:id="theorem-log-properties"><title>Fundamental Properties of Logarithms</title><index><main>Logarithms</main><sub>Properties</sub></index><statement><p>Let <m>a</m> and <m>b</m> be positive real numbers, and <m>r</m> a real number.
 
 <mdn>
-<mrow xml:id="eq-log-prop-1">log_2 1 = 0</mrow>
-<mrow xml:id="eq-log-prop-2">log_2 a b = \log_2a + \log_2b</mrow>
-<mrow xml:id="eq-log-prop-3">log_2 \frac{a}{b}= \log_2a - \log_2b</mrow>
-<mrow xml:id="eq-log-prop-4">log_2a^r = r \log_2a</mrow>
+<mrow xml:id="eq-log-prop-1">\log_2 1 = 0</mrow>
+<mrow xml:id="eq-log-prop-2">\log_2 a b = \log_2a + \log_2b</mrow>
+<mrow xml:id="eq-log-prop-3">\log_2 \frac{a}{b}= \log_2a - \log_2b</mrow>
+<mrow xml:id="eq-log-prop-4">\log_2a^r = r \log_2a</mrow>
 <mrow xml:id="eq-log-prop-5">2^{\log_2a}= a</mrow>
 </mdn>
 </p>
@@ -164,7 +164,7 @@ time units can handle significantly larger sets of data than an algorithm that c
 <title>How logarithms with different bases are related</title><statement><p>Let <m>b>0</m>, \(b \neq 1\). Then for all <m>a >0</m>, \(\log_b a = \frac{\log_2a}{\log_2b}\). Therefore, if <m>b > 1</m>, base b logarithms can be computed from base 2 logarithms by dividing by the positive scaling factor \(\log_2b\). If \(b &lt; 1\), this scaling factor is negative.</p>
 </statement><proof><p>By an analogue of <xref ref="eq-log-prop-5"/>, \(a=b^{\log_b a}\). Therefore, if we take the base 2 logarithm of both sides of this equality we get:
 <me>\log_2 a = \log_2 \left(b^{\log_b a}\right)  \Rightarrow \log_2 a =\log_b a \cdot \log_2 b</me>
-Finally, divide both sides of the last equation by \(\log_2b\). <m>\square</m></p></proof></theorem>
+Finally, divide both sides of the last equation by \(\log_2b\).</p></proof></theorem>
  
 <note><p> \(\log_210 \approx  3.32192\) and \(\log_2e = 1.55269\).</p></note>
 
@@ -221,13 +221,7 @@ T\left(2^r\right) = a + a b + a b^2+\cdots  + a b^r + c b^{r+1}
 
 
 If <m>n</m> is not a power of 2, by reasoning that is identical to what we used to <xref ref="eq-bin-search-recursion"/>  and <xref ref="eq-bin-search-basis"/>,
-
-
-
  \[T(n) =\sum_{k=0}^r a b^k+ c b^{r+1}\]
-
-
-
 where \(r = \left\lfloor \log_2n\right\rfloor\).</p>
 <p> The first term of this expression is a geometric sum, which can be written in closed form. Let <m>x</m> be that sum:
 
@@ -243,13 +237,9 @@ We've multiplied each term of <m>x</m> by <m>b</m> and aligned the identical ter
 Therefore, \(x = a\frac{b^{r+1}-1}{b-1}\).</p>
 
 <p>A closed form expression for \(T(n)\) is
-
-
-
 <me>T(n) = a\frac{b^{r+1}-1}{b-1} +\text{  }c b^{r+1}\text{  }\text{where}\text{  }r = \left\lfloor \log_2n\right\rfloor \text{  }</me>
 </p>
 </subsubsection>
-
 </subsection>
 
 
@@ -274,9 +264,9 @@ gets one more item than \(F_1\). We will assume that the time required to perfor
 steps; therefore, we will assign a time value of zero to this step. Step 3 requires roughly <m>n</m> comparisons and <m>n</m> movements of
 items from \(F_1\) and \(F_2\) to <m>F</m>; thus, its time is proportional to <m>n</m>. For this reason, we will assume that Step 3 takes
 <m>n</m> time units. Since Step 2 requires \(T(\lfloor n/2\rfloor ) + T(\lceil n/2\rceil )\) time units,
-<mdn><mrow>T(n) = n + T(\lfloor n/2\rfloor ) + T(\lceil n/2\rceil )</mrow></mdn>
+<mdn><mrow xml:id="eq-bubble-r">T(n) = n + T(\lfloor n/2\rfloor ) + T(\lceil n/2\rceil )</mrow></mdn>
 with the initial condition
-<mdn><mrow>(T(1) = 0</mrow></mdn>
+<mdn><mrow xml:id="eq-bubble-b">T(1) = 0</mrow></mdn>
 </p>
 
 <p>Instead of an exact solution of these equations, we will be content with an estimate for \(T(n)\).  First, consider the case of \(n=2^r\), \(r \geq 1\):
@@ -293,10 +283,10 @@ T\left(2^r\right)=r 2^r= 2^r \log_2 2^r
 \end{array}
 </me>
 </p>
-<p>Thus, if <m>n</m> is a power of 2, \(T(n) = n \log_2 n\). Now if, for some\(r \geq  2\), \(2^{r-1}\leq n\leq 2^r\) , then \((r-1)2^{r-1}\leq
-T(n) &lt; r 2^r\). This can be proven by induction on <m>r</m>. As <m>n</m> increases from \(2^{r-1}\) to \(2^r\), \(T(n)\) increases from \((r-1)2^{r-1}\)to
+<p>Thus, if <m>n</m> is a power of 2, \(T(n) = n \log_2 n\). Now if, for some \(r \geq  2\), \(2^{r-1}\leq n\leq 2^r\), then \((r-1)2^{r-1}\leq
+T(n) &lt; r 2^r\). This can be proved by induction on <m>r</m>. As <m>n</m> increases from \(2^{r-1}\) to \(2^r\), \(T(n)\) increases from \((r-1)2^{r-1}\)to
 \(r 2^r\) and is slightly larger than \(\left\lfloor n \log_2n\right\rfloor\). The discrepancy is small enough so that \(T_e(n)=\left\lfloor n \log
-_2n\right\rfloor\) can be considered a solution of 8.4i and 8.4j for the purposes of comparing the merge sort with other algorithms. <xref ref="table-sort-analysis" autoname="yes" />
+_2n\right\rfloor\) can be considered a solution of <xref ref="eq-bubble-r" /> and <xref ref="eq-bubble-b"/> for the purposes of comparing the merge sort with other algorithms. <xref ref="table-sort-analysis" autoname="yes" />
 compares \(B(n)\) with \(T_e(n)\) for selected values of <m>n</m>.</p>
 
 <table xml:id="table-sort-analysis">
@@ -313,7 +303,7 @@ compares \(B(n)\) with \(T_e(n)\) for selected values of <m>n</m>.</p>
 </subsection>
 <subsection xml:id="ss-derangements"><title>Derangements</title> <index><main>Derangement</main></index>
 <p>A derangement is a permutation on a set that has no <q>fixed points</q>.  Here is a formal definition:</p>
-<definition xml:id="def-derangement"><title>Derangement.</title><statement><p>A derangement of a nonempty set \(A\) is a permutation of \(A\) (i.e., a bijection from \(A\) into \(A\)) such that \(f(a)\neq a\) for all \(a \in  A\).</p></statement></definition>
+<definition xml:id="def-derangement"><title>Derangement</title><statement><p>A derangement of a nonempty set \(A\) is a permutation of \(A\) (i.e., a bijection from \(A\) into \(A\)) such that \(f(a)\neq a\) for all \(a \in  A\).</p></statement></definition>
 
 
 
@@ -350,7 +340,7 @@ defines <m>D</m>. Instead of deriving a solution of this relation by analytical 
 are derangements by listing the values of \(n!\), \(D(n)\), and \(\frac{D(n)}{n!}\).  The results we observe will indicate that
 as <m>n</m> grows, \(\frac{D(n)}{n!}\) hardly changes at all. If this quotient is computed to eight decimal places, for \(n \geq  12\), \(D(n)/n!
 = 0.36787944\). The reciprocal of this number, which \(D(n)/n!\) seems to be tending toward, is, to eight places, 2.71828182. This number appears
-in so many places in mathematics that it has its own name, <m>e</m>. An approximate solution of our recurrence relation on <m>D</m> is then \(D(n)\approx \frac{n!}{e}\)</p>
+in so many places in mathematics that it has its own name, <m>e</m>. An approximate solution of our recurrence relation on <m>D</m> is then \(D(n)\approx \frac{n!}{e}\).</p>
 <p>
 <me>\begin{array}{lll}
  n &amp; D(n) &amp; D(n)/n! \\
@@ -392,7 +382,7 @@ in so many places in mathematics that it has its own name, <m>e</m>. An approxim
 <li><p>  \(T(k)=(-3)^kk\)!, no improvement.</p></li>
 </ol></p></answer></exercise>
 
-<exercise number="2"><statement> <p>Prove that if \(n \geq 0\), \(\lfloor n/2\rfloor +\lceil n/2\rceil = n\). (Hint: Consider the cases of n odd and n even separately.)
+<exercise number="2"><statement> <p>Prove that if \(n \geq 0\), \(\lfloor n/2\rfloor +\lceil n/2\rceil = n\). (Hint: Consider the cases of \(n\) odd and \(n\) even separately.)
 </p>
 </statement></exercise>
 
@@ -443,11 +433,11 @@ in so many places in mathematics that it has its own name, <m>e</m>. An approxim
 </answer></exercise>
 
 <exercise number="8"><statement><p>Suppose Step 1 of the merge sort algorithm did take a significant amount of time. Assume it takes 0.1 time unit, independent of the value of
-<m>n</m></p>
+<m>n</m>.</p>
  <p><ol label="(a)">
 <li><p>Write out a new recurrence relation for \(T(n)\) that takes this factor into account.</p></li>
 <li><p> Solve for \(T\left(2^r\right)\), \(r \geq  0\).</p></li>
-<li><p>Assuming the solution for powers of 2 is a good estimate for all n, compare your result to the solution in the text. As gets large, is there
+<li><p>Assuming the solution for powers of 2 is a good estimate for all \(n\), compare your result to the solution in the text. As gets large, is there
 really much difference?</p></li>
 </ol></p>
 </statement></exercise>

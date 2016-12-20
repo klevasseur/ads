@@ -6,8 +6,8 @@
 Methods that employ generating functions are based on the concept that you can take a problem involving sequences and translate it into a problem
 involving generating functions. Once you've solved the new problem, a translation back to sequences gives you a solution of the original problem.</p>
 
-<p>This section covers:</p>
-<p><ol label="(1)">
+<p>This section covers:
+<ol label="(1)">
 <li><p>The definition of a generating function.</p></li>
 <li><p>Solution of a recurrence relation using generating functions to identify the skills needed to use generating functions.</p></li>
 <li><p>An introduction and/or review of the skills identified in point b.</p></li>
@@ -17,7 +17,7 @@ involving generating functions. Once you've solved the new problem, a translatio
 <subsection xml:id="ss-what-is-a-generating-function"><title>Definition</title>
 <definition xml:id="def-generating-function"><title>Generating Function of a Sequence</title>
 <index><main>Generating Function</main></index><notation><usage></usage><description></description></notation>
-<statement><p>The generating function of a sequence S with terms \(S_0,S_1 ,S_2, \dots \),  is the infinite sum
+<statement><p>The generating function of a sequence \(S\) with terms \(S_0,S_1 ,S_2, \dots \),  is the infinite sum
  \[G(S;z)=\sum_{n=0}^{\infty} S_n z^n=S_0+S_1 z+S_2 z^2+S_3 z^3+\cdots\]
 The domain and codomain of generating functions will not be of any concern to us since we will only be performing algebraic operations on them.</p></statement>
 </definition>
@@ -27,13 +27,13 @@ The domain and codomain of generating functions will not be of any concern to us
 <li><p> If \(S_n = 3^n\),\(n \geq  0\), then
 <me>\begin{split}
 G(S;z) &amp;= 1 + 3z + 9z^2 + 27z^3 +\cdots \\
-		&amp; =\sum_{n=0}^{\infty} 3^n z^n	
+		&amp; =\sum_{n=0}^{\infty} 3^n z^n\\	
 		&amp;=\sum_{n=0}^{\infty} (3 z)^n\\
 		\end{split}</me>
 We can get a closed form expression for \(G(S;z)\) by observing that \(G(S;z) - 3z G(S;z) = 1\). Therefore, \(G(S;z) =\frac{1}{1-3 z}\).</p></li>
 <li><p>Finite sequences have generating functions. For example, the sequence of binomial coefficients \(\binom{n}{0} \), \(\binom{n}{1} \), <m>\ldots</m>,\(\binom{n}{n} \), \(n \geq  1\) has generating function
 <me>\begin{split}
-G(\binom{n}{\cdot}; z) = \binom{n}{0}  + \binom{n}{1} z +\cdots  + \binom{n}{n} z^n\\
+G(\binom{n}{\cdot}; z) &amp; = \binom{n}{0}  + \binom{n}{1} z +\cdots  + \binom{n}{n} z^n\\
 		&amp; = \sum_{k=0}^{\infty} \binom{n}{k}  z^k\\
 		&amp;=(1+z)^n\\
 		\end{split}</me>
@@ -169,8 +169,8 @@ and
 <notation><usage>S\uparrow</usage><description><m>S</m> pop</description></notation>
 <notation><usage>S\downarrow</usage><description><m>S</m> push</description></notation>
 <notation><usage>S*T</usage><description>Convolution of sequences <m>S</m> and <m>T</m></description></notation>
-<statement><p>Let <m>S</m> and <m>T</m> be sequences of numbers and let <m>c</m> be a real number. Define the sum \(S + T\), the scalar product \(c S\), the product \(S T\), the convolution \(S*T\), the pop operation \(S\uparrow\) (read <q>S pop</q>), and the push
-operation \(S\downarrow\) (read <q>S push</q>) term-wise for \(k \geq  0\) by
+<statement><p>Let <m>S</m> and <m>T</m> be sequences of numbers and let <m>c</m> be a real number. Define the sum \(S + T\), the scalar product \(c S\), the product \(S T\), the convolution \(S*T\), the pop operation \(S\uparrow\) (read <q>\(S\) pop</q>), and the push
+operation \(S\downarrow\) (read <q>\(S\) push</q>) term-wise for \(k \geq  0\) by
 <mdn>
 <mrow xml:id="seq-op-add">(S + T)(k) = S(k) + T(k)</mrow>
 <mrow xml:id="seq-op-sc-mult">(c S)(k) = c S(k)</mrow>
@@ -203,7 +203,7 @@ Keep these figures in mind when we discuss the pop and push operations.</p>
 </figure>
 
 <example xml:id="ex-some-sequence-operations"><title>Some Sequence Operations</title> 
-<p>If \(S(n) = n\), \(T(n) = n^2\), \(U(n) = 2^n\), and \(R(n) =n 2^n\) </p>
+<p>If \(S(n) = n\), \(T(n) = n^2\), \(U(n) = 2^n\), and \(R(n) =n 2^n\):</p>
  <p><ol label="(a)">
 <li><p> \((S + T)(n) = n + n^2\)</p></li>
 <li><p>\((U + R)(n) = 2^n+ n 2^n= (1+n)2^n\)</p></li>
@@ -345,7 +345,6 @@ there is no operation on generating functions that is related to sequence multip
 Therefore, part (a) is true for \(p=1\).</p>
 
 <p>Induction: Suppose that for some \(p\geq 1\), the statement in part (a) is true:
-
 <me>
 \begin{split}
  G(S\uparrow (p+1);z) &amp;= G((S\uparrow p)\uparrow ;z)\\
@@ -353,7 +352,6 @@ Therefore, part (a) is true for \(p=1\).</p>
 		&amp; = \frac{\frac{\left(G(S;z)-\sum_{k=0}^{p-1} S(k) z^k\right)}{z^p}-S(p)}{z}
 \end{split}
 </me>
-
 by the induction hypothesis. Now write \(S(p)\) in the last expression above as \(\left(S(p)z^p \right)/z^p\) so that it fits into the finite summation:
 
 <me>
@@ -363,7 +361,7 @@ by the induction hypothesis. Now write \(S(p)\) in the last expression above as 
 \end{split}
 </me>
 </p>
-<p>Therefore the statement is true for \(p+1\).\(\square\)</p>
+<p>Therefore the statement is true for \(p+1\).</p>
 </proof></theorem> 
 </subsection>
 
@@ -379,7 +377,7 @@ of the form \(a + a r + a r^2+ \cdots\). It can either be terminated or extended
 <p>Restrictions: 
 <m>a</m> and <m>r</m> represent constants and the right sides of the two equations apply under the following conditions:</p>
 <p><ol label="(1)">
-<li><p><m>r</m> must not equal 1 in the finite case. Note that \(a + a r + \cdots  a r^n = (n + 1)a\) if\(r = 1\).</p></li>
+<li><p><m>r</m> must not equal 1 in the finite case. Note that \(a + a r + \cdots  a r^n = (n + 1)a\) if \(r = 1\).</p></li>
 <li><p> In the infinite case, the absolute value of <m>r</m> must be less than 1.</p></li>
 </ol></p>
 <p>These restrictions don't come into play with generating functions. We could derive <xref ref="finite-geometric-series"/> by noting that if \(S(n) = a + a r +\cdots  + a r^n\), \(n
@@ -461,23 +459,17 @@ Expand and collect all terms involving \(G(S;z)\) on one side of the equation:
 \(\left(1 + 3z - 4z^2 \right)G(S;z)= 3 + 7z\) 
 
 Therefore,
-
-\(G(S;z)= \frac{3+7z}{1 + 3z - 4z^2}\)</p></li>
+\[G(S;z)= \frac{3+7z}{1 + 3z - 4z^2}\]</p></li>
 <li><p> Determine S from its generating function.
  \(1 + 3z - 4z^2 = (1 + 4z) (1 - z)\)
 thus a partial fraction decomposition of \(G(S;z)\) would be:
+\[\frac{A}{1+4z}+ \frac{B}{1-z}=\frac{A z-A-4 B z-B}{(z-1) (4 z+1)} =\frac{(A+B)+(4B-A)z}{(z-1) (4 z+1)}\]
+Therefore, \(A + B = 3\) and \(4B - A = 7\). The solution of this set of equations is \(A = 1\) and \(B = 2\).  \(G(S;z)= \frac{1}{1+4z}+ \frac{2}{1-z}\).
 
-\(\frac{A}{1+4z}+ \frac{B}{1-z}=\frac{A z-A-4 B z-B}{(z-1) (4 z+1)}\\
-\\
-\quad \quad =\frac{(A+B)+(4B-A)z}{(z-1) (4 z+1)}\)
-
-Therefore, \(A + B = 3\) and \(4B - A = 7\). The solution of this set of equations is \(A = 1\) and \(B = 2\).
-
-\(G(S;z)= \frac{1}{1+4z}+ \frac{2}{1-z}\)
-
-\(\frac{1}{1+4z}\) is the generating function of \(S_1(n)=(-4)^n\), and
-
-\(\frac{2}{1-z}\) is the generating function of \(S_2(n) = 2(1)^n = 2\).
+<me>\begin{array}{c}
+\frac{1}{1+4z} \textrm{ is the generating function of }S_1(n)=(-4)^n\textrm{, and}\\
+\frac{2}{1-z} \textrm{ is the generating function of }S_2(n) = 2(1)^n = 2\\
+\end{array}</me>
 
 In conclusion, since \(G(S;z) = G\left(S_1;z\right) + G\left(S _2;z\right)\), \(S(n) = 2 + (-4)^n\).
 </p></li>
@@ -507,8 +499,8 @@ Since
  \(G(R;z) =\frac{-2}{1-2z}+\frac{3}{1-3z}\),
 which is the sum of the generating functions of \(-2(2)^k\) and \(3 (3)^k\),
 \(R(k) =-2(2)^k+3 (3)^k = 3^{k+1}-2^{k+1}\) </p>
-<p>For example, \(R(6) = 3^7 - 2^7= 2187 - 128 = 2059\). Naturally, this equals the sum that we get from \((S*T)(6)\).To put this number
-in perspective, the total number of strings of length 6 with no restrictions is \(5^6=15625\), and \(\frac{2059}{15625}\approx 0.131776\).Therefore
+<p>For example, \(R(6) = 3^7 - 2^7= 2187 - 128 = 2059\). Naturally, this equals the sum that we get from \((S*T)(6)\). To put this number
+in perspective, the total number of strings of length 6 with no restrictions is \(5^6=15625\), and \(\frac{2059}{15625}\approx 0.131776\). Therefore
 approximately 13 percent of the strings of length 6 satisfy the conditions of the problem.
 </p></li>
 </ol></p>
@@ -531,11 +523,7 @@ has a non-negative integer associated with it. Finally, define a frequency funct
 
 <p>Now, based on these assumptions, we can define the problems that can be solved. If a process <m>P</m> is defined as a sequence of actions \(P_1,P_2,\ldots
 ,P_m\) as above, and if the outcome of <m>P</m>, which would be an element of \(X_1\times X_2\times \cdots \times X_m\), is quantified by
-
  \[Q\left(a_1,a_2, \ldots , a_m\right)= \sum_{k=1}^m Q_k\left(a_k\right)\]
-
-
-
 then the frequency function, <m>F</m>, for <m>P</m> is the convolution of the frequency functions for\(P_1\), \(P_2\), <m>\ldots</m>, \(P_m\),
 which has a generating function equal to the product of the generating functions of the frequency functions \(F_1\), \(F_2\), <m>\ldots</m>, \(F_m\).  That is,
 
@@ -550,7 +538,7 @@ one way, with two 1's. There are two sequences that yield a sum of 3: 1-2 and 2-
 12 can be obtained, we set up the situation as follows. For \(j = 1, 2\); \(P_j\) is the rolling of the die for the \(j^{\text{th}}\) time. \(X_j
 = \{1, 2, . . . , 6\}\) and \(Q_j : X_j \rightarrow \{0, 1, 2, 3,\ldots \}\) is defined by \(Q_j(x) = x\). Since each number appears on a die exactly once,
 the frequency function is \(F_j(k)=1\) if \(1 \leq  k \leq  6\), and \(F_j(k) = 0\) otherwise. The process of rolling the die two times is quantified
-by adding up the \(Q_j's\); that is, \(Q\left(a_1, a_2\right) =Q_{1}\left(a_1\right)+Q_2\left(a_2\right)\) . The generating function for the
+by adding up the \({Q_j}'s\); that is, \(Q\left(a_1, a_2\right) =Q_{1}\left(a_1\right)+Q_2\left(a_2\right)\) . The generating function for the
 frequency function of rolling the die two times is then
 
 <me>
@@ -613,7 +601,7 @@ z^15 + 3*z^14 + 6*z^13 + 9*z^12 + 10*z^11 + 9*z^10 + 6*z^9 + 3*z^8 + z^7
 <exercise number="3"><statement><p>Find closed form expressions for the generating functions of the following sequences:</p>
  <p><ol label="(a)">
 <li><p>\(V(n) = 9^n\)</p></li>
-<li><p>\(P\), where \(P(k) - 6 P(k - 1) + 5 P(k - 2) = 0\) for \(k \geq  2\), with\(P(0) = 2\)and \(P(1) = 2\).</p></li>
+<li><p>\(P\), where \(P(k) - 6 P(k - 1) + 5 P(k - 2) = 0\) for \(k \geq  2\), with \(P(0) = 2\)and \(P(1) = 2\).</p></li>
 <li><p> The Fibonacci sequence: \(F(k + 2) = F(k + 1) + F(k)\), \(k \geq  0\), with \(F(0) = F(1) = 1\).</p></li>
 </ol></p>
 </statement><answer><p><ol label="(a)"><li><p> \(1/(1-9z)\) </p></li>
@@ -624,7 +612,7 @@ z^15 + 3*z^14 + 6*z^13 + 9*z^12 + 10*z^11 + 9*z^10 + 6*z^9 + 3*z^8 + z^7
 <exercise number="4"><statement><p>Find closed form expressions for the generating functions of the following sequences:</p>
 <p><ol label="(a)">
 <li><p> \(W(n) = \binom{5}{n} 2^n\) for \(0 \leq  n \leq  5\) and \(W(n) = 0\) for \(n > 5\).</p></li>
-<li><p> <m>Q</m>, where \(Q(k) + Q(k - 1) - 42Q(k - 2) = 0\) for \(k\geq 2\), with \(Q(0) = 2\) and\(Q(1) = 2\).</p></li>
+<li><p> <m>Q</m>, where \(Q(k) + Q(k - 1) - 42Q(k - 2) = 0\) for \(k\geq 2\), with \(Q(0) = 2\) and \(Q(1) = 2\).</p></li>
 <li><p> <m>G</m>, where \(G(k + 3) = G(k + 2) + G(k + 1) + G(k)\) for \(k \geq  0\), with \(G(0) = G(1) = G(2) = 1\).</p></li>
 </ol></p>
 </statement></exercise>
