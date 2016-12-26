@@ -44,7 +44,7 @@ is desired is possible. </p>
 below, concerned the existence of paths and circuits like those sought in Koenigsberg. These paths and circuits have become associated with Euler's
 name.</p>
 
-<definition xml:id="def-eulerian-paths-circuits-graphs"><title>Eulerian Paths, Circuits, Graphs.</title><index><main>Eulerian Paths, Circuits, Graphs</main></index><statement><p> A Eulerian path through a graph is a path whose edge list contains each edge of the graph exactly
+<definition xml:id="def-eulerian-paths-circuits-graphs"><title>Eulerian Paths, Circuits, Graphs</title><index><main>Eulerian Paths, Circuits, Graphs</main></index><statement><p> A Eulerian path through a graph is a path whose edge list contains each edge of the graph exactly
 once. If the path is a circuit, then it is called a Eulerian circuit. A Eulerian graph is a graph that possesses a Eulerian path.</p></statement></definition>
 
 
@@ -84,7 +84,7 @@ e}. We can be sure that at least one vertex of the new path is also in the curre
 exists a path in \((V, E)\) to any vertex in the current path. At some point along this path, which we can consider the start of the new path, we
 will have intersected the current path. Since the degree of each vertex in \(G'\) is even, any path that we start at \(v_a\) can be continued until it
 is a circuit. Now, we simply augment the current path with this circuit. As we travel along the current path, the first time that we intersect the
-new path, we travel along it (see Figure 9.4.3). Once we complete the circuit that is the new path, we resume the traversal of the current path.</p>
+new path, we travel along it (see <xref ref="fig-path-augmentation" autoname="yes" />). Once we complete the circuit that is the new path, we resume the traversal of the current path.</p>
 
             <figure xml:id="fig-path-augmentation">
                 <caption>Path Augmentation Plan
@@ -143,23 +143,16 @@ dodecahedron graph, where vertices correspond with the corners of a dodecahedron
 graph be connected; however, there is a connected undirected graph with four vertices that is not Hamiltonian. Can you draw such a graph? 
 </p></problem>
 
-<note><title>A Note on What Is Possible and What Is Impossible</title><p>The search for a Hamiltonian path in a graph is typical of many simple-sounding problems
-in graph theory that have proven to be very difficult to solve. Although there are simple algorithms for conducting the search, they are impractical
-for large problems because they take such a long time to complete as graph size increases. Currently, every algorithm to search for a Hamiltonian
-path in a graph takes exponential time to complete. That is, if \(T(n)\) is the time it takes to search a graph of <m>n</m> vertices, then there
-is a positive real number <m>a</m>, \(a > 1\), such that \(T(n) > a^n\) for all but possibly a finite number of positive values for <m>n</m>. No matter how close to 1 we can make <m>a</m>, \(a^n\) will grow at such a fast rate that the algorithm will not be feasible for large values
-of <m>n</m>. For a given algorithm, the value of \(a\) depends on the relative times that are assigned to the steps, but in the search for Hamiltonian
-paths, the actual execution time for known algorithms is large with 20 vertices. For 1,000 vertices, no algorithm is likely to be practical, and
-for 10,000 vertices, no currently known algorithm could be executed.</p>
-
+<note><title>What Is Possible and What Is Impossible?</title><p>The search for a Hamiltonian path in a graph is typical of many simple-sounding problems
+in graph theory that have proven to be very difficult to solve. Although there are simple algorithms for conducting the search, they are impractical for large problems because they take such a long time to complete as graph size increases. Currently, every algorithm to search for a Hamiltonian
+path in a graph takes a time that grows at a rate that is greater than any polynomial as a function of the number of vertices.  Rates of this type are called <q><term>super-polynomial</term>.</q> That is, if \(T(n)\) is the time it takes to search a graph of <m>n</m> vertices, and \(p(n)\) is any polynomal, then \(T(n) > p(n)\) for all but possibly a finite number of positive values for <m>n</m>.</p>
 <p>It is an unproven but widely held belief that no faster algorithm exists to search for Hamiltonian paths in general graphs.  To sum up, the problem of determining whether
 a graph is Hamiltonian is theoretically possible; however, for large graphs we consider it a practical impossibility. Many of the problems we will discuss in the next section, particularly the Traveling Salesman Problem, are thought to be impossible in the same sense. 
 </p></note>
-
 <definition xml:id="def-n-cube"><title>The <m>n</m>-cube</title>
 <index><main>N-cube</main></index><notation><usage>Q_n</usage><description>the <m>n</m>-cube</description></notation><statement><p>Let \(n \geq  1\), and let \(B^n\) be the set of strings of 0's and 1's with length \(n\).  The <m>n</m>-cube is the undirected graph with a vertex for each string in \(B^n\) and an edge connecting each pair of strings that differ in exactly one position. The <m>n</m>-cube is normally denoted <m>Q_n</m>. </p></statement></definition>
 
-<p>The <m>n</m>-cube is among the graphs that are defined within the <c>graphs</c> package of Sage and is created with the expresson <c>graphs.CubeGraph(n)</c>. </p> 
+<p>The <m>n</m>-cube is among the graphs that are defined within the <c>graphs</c> package of Sage and is created with the expression <c>graphs.CubeGraph(n)</c>. </p> 
 <sage>
 <input>
 graphs.CubeGraph(4).show()
@@ -177,7 +170,7 @@ not the only Hamiltonian circuit of the <m>n</m>-cube, but it is the easiest to 
  1 \\
 \end{array}
 \right)\).  Note that the edge between 0 and 1 is used twice in this circuit. That doesn't violate any rules for Hamiltonian circuits, but
-can only happen if a graph as two vertices.</p>
+can only happen if a graph has two vertices.</p>
 
 
 
@@ -217,7 +210,7 @@ with 0, and then (2) reversing the list of strings in \(G_n\) with each string p
 </p>
 </note>
 
-<example><title>Applications of the Gray Code</title><p> One application of the Gray code was discussed in the Introduction to this book.  An other application is
+<example><title>Applications of the Gray Code</title><p> One application of the Gray code was discussed in the Introduction to this book.  Another application is
 in statistics. In a statistical analysis, there is often a variable that depends on several factors, but exactly which factors are significant
 may not be obvious. For each subset of factors, there would be certain quantities to be calculated. One such quantity is the multiple correlation
 coefficient for a subset. If the correlation coefficient for a given subset, <m>A</m>, is known, then the value for any subset that is obtained
@@ -273,6 +266,7 @@ that were not connected by the first bridge.
 </p></answer></exercise>
 <exercise number="6"><statement><p>Consider the graphs in <xref ref="fig-exercise-9-4-6" autoname="yes" />. Determine which of the graphs have an Eulerian path, and find an Eulerian path for the graphs that have one.</p>
             <figure xml:id="fig-exercise-9-4-6">
+            	<caption>Graphs for exercise 6</caption>
                 <image width="100%" source="images/fig-exercise-9-4-6.png">
                     <description>graphs for exercise 9-4-6</description>
                 </image>

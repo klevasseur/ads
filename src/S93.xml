@@ -16,8 +16,6 @@ graph could take a considerable amount of time. Anyone who has tried to solve a 
 situation is when we want to pose the question to a machine. If only the information on the edges between the vertices is part of the data structure
 for the graph, how can you put that information together to determine whether two vertices can be connected by a path?</p>
 
-
-
 <note><title>Connectivity Terminology</title><p> Let <m>v</m> and <m>w</m> be vertices of a directed graph. Vertex <m>v</m> is  connected to vertex
 <m>w</m> if there is a path from <m>v</m> to <m>w</m>. Two vertices are  strongly connected if they are connected in both directions
 to one another. A  graph is connected if, for each pair of distinct vertices, <m>v</m> and <m>w</m>, <m>v</m> is connected to <m>w</m>  or <m>w</m> is connected to <m>v</m>. A  graph is strongly connected if every pair of its vertices is strongly connected. For an
@@ -28,15 +26,6 @@ undirected graph, in which edges can be used in either direction, the notions of
 <statement><p>If a graph has <m>n</m> vertices and vertex <m>u</m> is connected to vertex <m>w</m>, then there exists a path from <m>u</m> to <m>w</m> of length no more than
 <m>n</m>.</p></statement><proof><p>(Indirect): Suppose <m>u</m> is connected to <m>w</m>, but the shortest path from <m>u</m> to <m>w</m> has length <m>m</m>, where \(m>n\). A vertex list for a path of length <m>m</m> will have \(m + 1\) vertices. This path can be represented as \(\left(v_0,v_1,\ldots, v_m\right)\), where \(v_0=u\) and \(v_m= w\). Note that since there are only <m>n</m> vertices in the graph and <m>m</m> vertices are listed in the path after \(v_0\), we can apply the pigeonhole principle and be assured that there must be some duplication in the last <m>m</m> vertices of the vertex list, which represents a circuit in the path. This means that our path of minimum length can be reduced, which is a contradiction.</p>
 </proof></theorem>
- <!-- 
-<list>
-<title>Basic Questions</title>
-<ol label="(a)">
-<li><p>Given a graph and two vertices in the graph, is there a path from the first vertex to the second?</p></li>
-<li><p>If the answer to Question 1 is <q>yes</q> then what is the path?</p></li>
-</ol>
-</list>
- -->
 </subsection>
 
 <subsection xml:id="ss-adjacency-matrix-method"><title>Adjacency Matrix Method</title><index><main>Adjacency Matrix Method</main></index>
@@ -68,17 +57,13 @@ if its transitive closure matrix has no zeros.</p>
 </subsection>
 
 <subsection xml:id="ss-breadth-first-search"><title>Breadth-First Search</title><index><main>Breadth-First Search</main></index>
-
-
 <p>We will describe the Breadth-First Search Algorithm first with an example.</p>
-
-
 
 <p> The football team at Mediocre State University (MSU) has had a bad year, 2 wins and 9 losses. Thirty days after the end of the football season, the university trustees are meeting to decide whether to rehire the head coach; things look bad for him. However, on the day
 of the meeting, the coach issues the following press release with results from the past year:</p>
 
 <list><title>Press Release: MSU complete successful season</title>
-<introduction><p>The Mediocre State University football team compared favorably with national champion Enourmous State University this season.</p></introduction>
+<introduction><p>The Mediocre State University football team compared favorably with national champion Enormous State University this season.</p></introduction>
 <ul>
 <li><p>Mediocre State defeated Local A and M.</p></li>
 <li><p>Local A and M defeated City College.</p></li>
@@ -278,7 +263,7 @@ list(Gr.depth_first_search(0))
 
 <exercises xml:id="exercises-9-3">
 <title>Exercises for Section 9.3</title>
-<exercise number="1"><statement><p> Apply <xref ref="alg-breadth-first" autoname="yes"/> to find a path from 5 to 1 in <xref ref="alg-breadth-first" autoname="yes"/>. What would be the final value of <m>V</m>? Assume that the terminal vertices
+<exercise number="1"><statement><p> Apply <xref ref="alg-breadth-first" autoname="yes"/> to find a path from 5 to 1 in <xref ref="fig-example-9-3-1" autoname="yes"/>. What would be the final value of <m>V</m>? Assume that the terminal vertices
 in edge lists and elements of the depth sets are put into ascending order, as we assumed in <xref ref="ex-search-example" autoname="yes"/>.</p>
 </statement>
 <answer><p>  \(\begin{array}{ccccccc}
@@ -307,16 +292,14 @@ and the stack that is created.</p>
 <exercise number="5"><statement><p> Prove (by induction on <m>k</m>) that if the relation <m>r</m> on vertices of a graph is defined by \(v r w\) if there is an edge connecting
 <m>v</m> to <m>w</m>, then \(r^k\), \(k \geq  1\), is defined by \(v r^kw\) if there is a path of length <m>k</m> from <m>v</m> to
 <m>w</m>.</p>
-</statement><answer><p> Basis: \((k=1)\) Is the relation \(r^1\)defined by \(\text{\textit{vr}}^1w\) if there is a path of length 1 from \(v \text{ to } w\)? Yes, since
-\textit{ \(\text{vrw}\)} if and only if an edge, which is a path of length <m>l</m>, connects <m>v</m> to <m>w</m>.</p>
-<p>Induction: Assume that \(\text{\textit{vr}}^kw\) if and only if there is a path of length \textit{ k }from <m>v</m> to <m>w</m>. We must show
-that \(\text{\textit{vr}}^{k+1}w\) if and only if there is a path of length \(k+1\) from <m>v</m> to <m>w</m>.
+</statement><answer><p> Basis: \((k=1)\) Is the relation \(r^1\), defined by \(v r^1 w\) if there is a path of length 1 from \(v \text{ to } w\)? Yes, since
+\(v r w\) if and only if an edge, which is a path of length <m>1</m>, connects <m>v</m> to <m>w</m>.</p>
+<p>Induction: Assume that \(v r^k w\) if and only if there is a path of length \(k\) from <m>v</m> to <m>w</m>. We must show
+that \(v r^{k+1} w\) if and only if there is a path of length \(k+1\) from <m>v</m> to <m>w</m>.
 \[v r^{k+1} w \Rightarrow v r^k y \textrm{ and } y r w\textrm{ for some vertex } y\]</p>
 <p>By the induction
-hypothesis, there is a path of length <m>k</m> from \(v \textrm{ to } y\). And by the basis, there is a path of length one from <m>y</m> to \textit{
-w}. If we combine these two paths, we obtain a path of length \(k+1\) from <m>v</m> to <m>w</m>. Of course, if we start with a path of length
-\(k+1\) from <m>v</m> to <m>w</m>, we have a path of length <m>k</m> from <m>v</m> to some vertex <m>y</m> and a path of length\textit{
- l} from <m>y</m> to <m>w</m>. Therefore, \(v r^k y \textrm{ and } y r w \Rightarrow  v r^{k+1} w \square\)
+hypothesis, there is a path of length <m>k</m> from \(v \textrm{ to } y\). And by the basis, there is a path of length one from <m>y</m> to \(w\). If we combine these two paths, we obtain a path of length \(k+1\) from <m>v</m> to <m>w</m>. Of course, if we start with a path of length
+\(k+1\) from <m>v</m> to <m>w</m>, we have a path of length <m>k</m> from <m>v</m> to some vertex <m>y</m> and a path of length 1 from <m>y</m> to <m>w</m>. Therefore, \(v r^k y \textrm{ and } y r w \Rightarrow  v r^{k+1} w\).
 </p></answer></exercise>
 </exercises>
 </section>
