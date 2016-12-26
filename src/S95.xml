@@ -77,6 +77,7 @@ circuit through G starting at \(v_1\) is \(\left(v_1, v_2,\ldots ,v_n\right)\), 
 <example xml:id="ex-tsp-small-example"><title>A small example</title><p> The closest neighbor circuit starting at A in <xref ref="fig-small-tsp-example" autoname="yes" /> is \((1,3,2,4,1)\), with a cost of 29. The optimal path is \((1,2,3,4,1)\),
 with a cost of 27.</p>
           <figure xml:id="fig-small-tsp-example">
+                <caption>A small example</caption>
                 <image width="100%" source="images/fig-small-tsp-example.png">
                     <description>A small weighted graph</description>
                 </image>
@@ -94,12 +95,13 @@ significant, depending on the situation.</p>
 
 <example xml:id="ex-one-way-street"><title>The One-way Street</title><p> A salesman must make stops at vertices A, B, and C, which are all on the same one-way street. The graph in <xref ref="fig-directed-tsp-example" autoname="yes" /> is weighted by the function \(w(i, j)\) equal to the time it takes to drive from vertex <m>i</m> to vertex <m>j</m>.</p>
        <figure xml:id="fig-directed-tsp-example">
+                <caption>Traveling a one-way street</caption>
                 <image width="100%" source="images/fig-directed-tsp-example.png">
                     <description>A small directed weighted graph</description>
                 </image>
             </figure>
 
-<p>Note that if <m>j</m> is down the one-way street from <m>i</m>, then \(w(i, j) &lt; w(j, i)\). The values of \(C_{opt}\) , and \(C_{cn}\)
+<p>Note that if <m>j</m> is down the one-way street from <m>i</m>, then \(w(i, j) &lt; w(j, i)\). The values of \(C_{opt}\), and \(C_{cn}\)
 are 20 and 32, respectively. Verify that \(C_{cn}\) is 32 by using the closest neighbor algorithm. The value of \(\frac{C_{cn}}{C_{opt}} = 1.6\) is significant in this case since our salesman would spend 60 percent more time on the road if he used the closest neighbor algorithm.</p>
   </example>
 
@@ -134,15 +136,8 @@ bound is  sharp.</p>
 To minimize the time it takes to complete the job, the total distance that a robot's arm moves should be minimized. Let \(d(P, Q)\) be the distance
 between <m>P</m> and <m>Q</m>. Assume that before each plate can be welded, the arm must be positioned at a certain point \(P_0\) . Given
 a list of <m>n</m> points, we want to put them in order so that
-
-
-
       \[d\left(P _0,P_1\right) + d\left(P_1,P _2 \right) +\cdots +d\left(P_{n-1},P_n\right)+ d\left(P_n ,P _0 \right)\]
-
 is as small as possible.</p></example>
-
-
-
 
 <p>The type of problem that is outlined in the example above is of such importance that it is one of the most studied version of the Traveling Salesman Problem. What follows is the usual statement of the problem. Let \([0, 1] = \{x \in \mathbb{R} \mid \text{  }0 \leq x\leq  1\}\), and let \(S = [0,1]^2\), the unit square. Given <m>n</m> pairs of real numbers \(\left(x_1, y_1\right),\left(x_2,y_2\right), \dots , \left(x_n,y_n\right)\)
 in <m>S</m> that represent the <m>n</m> vertices of a \(K_n\), find a circuit of the graph that minimizes the sum of the distances traveled
@@ -162,16 +157,13 @@ There are \((n - 1)!\) such bijections.  Since a circuit and its reversal have t
 
 <heuristic xml:id="alg-strip-algorithm"><title>The Strip Algorithm</title><statement>
 <p> Given <m>n</m> points in the unit square:</p>
-
-<p>Phase 1:</p>
-<p><ol label="(a)">
+<p>Phase 1:<ol label="(1)">
 <li><p>Divide the square into \(\left\lceil \sqrt{n/2}\right\rceil\) vertical strips, as in <xref ref="fig-strip-alg-tsp" autoname="yes" />. Let d be the width of each strip. If a point lies on a boundary between two strips, consider it part of the left-hand strip.</p></li>
 <li><p>Starting from the left, find the first strip that contains one of the points. Locate the starting point by selecting the first point that is encountered in that strip as you travel from bottom to top. We will assume that the first point is \(\left(x_1,y_1\right)\)</p></li>
 <li xml:id="step-1-3"><p>Alternate traveling up and down the strips that contain vertices until all of the vertices have been reached.</p></li>
 <li><p>Return to the starting point.</p></li>
 </ol></p>
-<p>Phase 2:</p>
-<p><ol label="(a)">
+<p>Phase 2:<ol label="(1)">
 <li><p>Shift all strips \(d/2\) units to the right (creating a small strip on the left).</p></li>
 <li><p>Repeat Steps 1.2 through 1.4 of Phase 1 with the new strips.</p></li>
 </ol></p>
@@ -210,7 +202,7 @@ a time that is roughly a multiple of \(n \log  n\) time units when <m>n</m> poin
 <subsection xml:id="ss-networks-and-flows"><title>Networks and the Maximum Flow Problem</title><index><main>Networks</main></index>
 
 <definition xml:id="def-network"><title>Network</title><index><main>Network</main></index>
-<statement><p> A network is a simple weighted directed graph that contains two distinguished vertices called the  source and the  sink with the properties that the indegree of the source and outdegree of the sink are both zero, and source is connected to sink.  The weight function on network is the capacity function, which as positive weights. </p></statement></definition>
+<statement><p> A network is a simple weighted directed graph that contains two distinguished vertices called the  source and the  sink with the properties that the indegree of the source and outdegree of the sink are both zero, and source is connected to sink.  The weight function on a network is the capacity function, which has positive weights. </p></statement></definition>
 
 
 <p>An example of a real situation that can be represented by a network is a city's water system. A reservoir would be the source, while a distribution
@@ -230,7 +222,7 @@ that pipe in thousands of gallons per minute. This map can be drawn in the form 
                 </image>
             </figure>
  				<figure xml:id="fig-water-network">
-                <caption>Flow Diagrom for a City's Water Network
+                <caption>Flow Diagram for a City's Water Network
                 </caption>
                 <image width="80%" source="images/fig-water-network.png">
                     <description>City Water Network</description>
@@ -268,7 +260,7 @@ source. Therefore,
 \[\sum_{(v,\text{sink})\in E} f(v,\text{sink})-\sum_{(\text{source},v)\in E} f(\text{source},v) =0\]</p>
 </proof></theorem>
 <definition xml:id="def-value-of-flow"><title>The Value of a Flow</title><index><main>Value of a Flow</main></index> <notation><usage>V(f)</usage><description>The value of flow <m>f</m></description></notation>
-<statement><p>The two values <term>flow into the sink</term> and <term>flow out of the source</term> were prove to be equal in <xref ref="theorem-flow-inout" autoname="yes" /> and this common value is called the value of the flow. It is denoted by \(V(f)\). The value of a flow represents the amount of material that passes through the network with that flow.</p></statement></definition>
+<statement><p>The two values <term>flow into the sink</term> and <term>flow out of the source</term> were proved to be equal in <xref ref="theorem-flow-inout" autoname="yes" /> and this common value is called the <term>value of the flow</term>. It is denoted by \(V(f)\). The value of a flow represents the amount of material that passes through the network with that flow.</p></statement></definition>
 <p>Since the Maximum Flow Problem consists of maximizing the amount of material that passes through a given network, it is equivalent to finding a flow with the largest possible value. Any such flow is called a <term>maximal flow</term><index><main>Maximal flow</main></index>.</p>
 
 <p>For the network in <xref ref="fig-water-network" autoname="yes"/>, one flow is \(f_1\), defined by \(f_1\left(e_1\right)=25\), \(f_1\left(e_2\right)=20\), \(f_1\left(e_3\right)=0\),
@@ -343,7 +335,6 @@ until you reach a <q>dead end</q> and then backtrack.</p></li>
 <p> This is a  depth-first search for the Sink Initiating at the Source. Let \(E'\) be the set of directed edges that can be used in producing a flow augmenting path. Add to the network a vertex called  start and the edge \((\text{start}, \text{source}).\)</p>
 <p><ol label="(1)">
 <li><p><m>S = </m>vertex set of the network.</p></li>
-<li><p><m>p= </m>start</p></li>
 <li><p><m>p = </m>source <m>\quad \quad</m>  Move <m>p</m> along the edge <m>(start, source)</m> </p></li>
 <li><p>while <m>p</m> is not equal to  start or  sink:</p>
 			<p><ol label="(a)">

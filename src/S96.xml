@@ -33,38 +33,34 @@ would be nonplanar. Theorem 9.6.2 will verify that dense graphs are indeed nonpl
 <li><p> The topic of planarity is a result of trying to restrict a graph to two dimensions. Is there an analogous topic for three dimensions? What
 graphs can be drawn in one dimension?</p></li>
 </ol></p>
-
-
-<observation><title>Graphs in other dimensions</title><p> If a graph has only a finite number of vertices, it can always be drawn in three dimensions. This is not true for all graphs with
-an infinite number of vertices. The only <q>one-dimensional</q> graphs are the ones that consist of a finite number of chains, as in Figure 9.6.2,
-with one or more vertices in each chain.</p>
-
-
-      <figure xml:id="fig-chains">
-                <caption>Chains - one dimensional graphs
-                </caption>
+<definition xml:id="def-def-path-graph"><title>Path Graph</title>
+<index><main>Path Graph</main></index>
+<notation><usage>P_n</usage><description>a path graph of length \(n\)</description></notation>
+<statement><p>A path graph of length \(n\), denoted \(P_n\), is an undirected graph with \(n+1)\) vertices \(v_0, v_1,\dots,\v_n\) with \(n\) edges \(\{v_i,v_{i+1}\}\), \(i=0, 1, n-1\).</p></statement></definition>
+<observation><title>Graphs in other dimensions</title><p> If a graph has only a finite number of vertices, it can always be drawn in three dimensions with no edge crossings. Is this also true for all graphs with an infinite number of vertices? The only <q>one-dimensional</q> graphs are graphs consisting of a single vertix, and  path graphs, as shown in <xref ref="fig-path-graphs" autoname="yes" />.</p>
+    <figure xml:id="fig-path-graphs">
+                <caption>One dimensional graphs</caption>
                 <image width="100%" source="images/fig-chains.png">
-                    <description>Chains - one dimensional graphs</description>
+                    <description>One dimensional graphs</description>
                 </image>
             </figure>
 </observation>
 
 <p><index><main>Three Utilities Puzzle</main></index>A discussion of planarity is not complete without mentioning the famous Three Utilities Puzzle. The object
 of the puzzle is to supply three houses, A, B, and C, with the three utilities, gas, electric, and water. The constraint that makes this puzzle impossible
-to solve is that no utility lines may intersect; i. e., a planar embedding of the graph in <xref ref="fig-utilities-puzzle" autoname="yes"/>, which is commonly denoted \(K_{3,3}\). This graph is one of two fundamental nonplanar graphs. The Kuratowski Reduction Theorem states that if a graph is nonplanar then <q>contains</q> either a \(K_{3,3}\) or a \(K_5\).  Containment is in the sense that if you start with a nonplanar graph you can always perform a sequence of
+to solve is that no utility lines may intersect. There is no planar embedding of the graph in <xref ref="fig-utilities-puzzle" autoname="yes"/>, which is commonly denoted \(K_{3,3}\). This graph is one of two fundamental nonplanar graphs. The Kuratowski Reduction Theorem states that if a graph is nonplanar then <q>contains</q> either a \(K_{3,3}\) or a \(K_5\).  Containment is in the sense that if you start with a nonplanar graph you can always perform a sequence of
 edge deletions and contractions (shrinking an edge so that the two vertices connecting it coincide) to produce one of the two graphs.</p>
 
            <figure xml:id="fig-utilities-puzzle">
                 <caption>The Three Utilities Puzzle
                 </caption>
-                <image width="100%" source="images/fig-utilities-puzzle.png">
+                <image width="80%" source="images/fig-utilities-puzzle.png">
                     <description>The Three Utilities Puzzle</description>
                 </image>
             </figure>
 
 <p>A planar graph divides the plane into one or more regions. Two points on the plane lie in the same region if you can draw a curve connecting the
 two points that does not pass through an edge. One of these regions will be of infinite area. Each point on the plane is either a vertex, a point on an edge, or a point in a region. A remarkable fact about the geography of planar graphs is the following theorem that is attributed to Euler.</p>
-
 
 <task><p>Experiment: Jot down a graph right now and count the number of vertices, regions, and edges that you have. If \(v + r - e\) is not 2, then your graph
 is either nonplanar or not connected.</p></task>
@@ -77,10 +73,9 @@ is either nonplanar or not connected.</p></task>
 <p>We prove Euler's Formula by Induction on <m>e</m>, for \(e \geq  0\).</p>
 
 <p>Basis: If \(e = 0\), then <m>G</m> must be a graph with one vertex, \(v = 1\); and there is one infinite region,\(\text{  }r = 1\). Therefore, \(v + r-e= 1 + 1-0 = 2\), and the basis is true.</p>
-
 <p>Induction: Suppose that <m>G</m> has <m>k</m> edges, \(k \geq  1\), and that all connected planar graphs with less than <m>k</m> edges satisfy
-9.6a. Select any edge that is part of the boundary of the infinite region and call it \(e_1\). Let \(G'\) be the graph obtained from <m>G</m>
-by deleting \(e_1\). Figure 9.6.4 illustrates the two different possibilities we need to consider: either \(G'\) is connected or it has two
+<xref ref="euler-formula" />. Select any edge that is part of the boundary of the infinite region and call it \(e_1\). Let \(G'\) be the graph obtained from <m>G</m>
+by deleting \(e_1\). <xref ref="fig-euler-proof-scheme" autoname="yes" /> illustrates the two different possibilities we need to consider: either \(G'\) is connected or it has two
 connected components, \(G_1\) and \(G_2\).</p>
 
 
@@ -155,15 +150,14 @@ of two vertices, \(e\geq \frac{6v}{2}=3v\). However, <xref ref="theorem-edge-bou
 
 <p>The map of Euler Island in <xref ref="fig-euler-island" autoname="yes" /> shows that there are seven towns on the island. Suppose that a cartographer must produce a colored map in
 which no two towns that share a boundary have the same color. To keep costs down, she wants to minimize the number of different colors that appear
-on the map. How many colors are sufficient? For Euler Island, the answer is three.  Although it might not be obvious, this it a graph problem. We can represent the map with a graph, where the vertices are countries and an edge between two vertices indicates that the two corresponding countries share a boundary of positive length. This problem motivates a more general problem.</p>
+on the map. How many colors are sufficient? For Euler Island, the answer is three.  Although it might not be obvious, this is a graph problem. We can represent the map with a graph, where the vertices are countries and an edge between two vertices indicates that the two corresponding countries share a boundary of positive length. This problem motivates a more general problem.</p>
 
 <definition xml:id="def-graph-coloring"><title>Graph Coloring</title>
 <index><main>Graph Coloring</main></index><index><main>Chromatic Number</main></index>
 <notation><usage>\chi(G)</usage><description>the chromatic number of <m>G</m></description></notation>
 <statement><p>Given an undirected graph \(G = (V, E)\), find a <q>coloring function</q> <m>f</m> from <m>V</m> into a
 set of colors <m>H</m> such that \(\left(v_i,v_j\right)\in E \Rightarrow  f\left(v_i\right)\neq f\left(v_j\right)\) and <m>H</m> has the smallest
-possible cardinality. The cardinality of <m>H</m> is called the  chromatic number of G, \(\chi(G)\).</p></statement></definition>
-
+possible cardinality. The cardinality of <m>H</m> is called the  chromatic number of \(G\), \(\chi(G)\).</p></statement></definition>
 <p><ul>
 <li><p> A coloring function onto an <m>n</m>-element set is called an <m>n</m>-coloring.</p></li>
 <li><p> In terms of this general problem, the chromatic number of the graph of Euler Island is three. To see that no more than three colors are needed,
@@ -172,12 +166,10 @@ is not unique. The next smallest set of colors would be of two colors, and you s
 this graph.
 </p></li>
 </ul></p>
-
 <p>In the mid-nineteenth century, it became clear that the typical planar graph had a chromatic number of no more than 4. At that point, mathematicians
 attacked the Four-Color Conjecture, which is that if <m>G</m> is any planar graph, then its chromatic number is no more than 4. Although the conjecture
 is quite easy to state, it took over 100 years, until 1976, to prove the conjecture in the affirmative.</p>
-
-<theorem xml:id="theorem-four-color-theorem"><title>The Four-Color Theorem.</title><index><main>Four-Color Theorem.</main></index>
+<theorem xml:id="theorem-four-color-theorem"><title>The Four-Color Theorem</title><index><main>Four-Color Theorem</main></index>
 <statement><p>If <m>G</m> is a planar graph, then \(\chi (G)\leq 4\).</p></statement>
 </theorem>
 <p>A proof of the Four-Color Theorem is beyond the scope of this text, but we can prove a theorem that is only 25 percent inferior.</p>
@@ -220,7 +212,7 @@ previous paragraph with \(v_2\) and \(v_4\), which will allow us to color v whit
  
 <definition xml:id="def-bipartite-graph"><title>Bipartite Graph</title><index><main>Bipartite Graph.</main></index>
 <statement><p>A bipartite graph is a graph that has a 2-coloring. Equivalently, a graph is bipartite if its vertices
-can be partitioned into two nonempty subsets so that no edge connects a vertices from the same from each subset.</p></statement>
+can be partitioned into two nonempty subsets so that no edge connects  vertices from the same  subset.</p></statement>
 </definition>
 
 
@@ -304,14 +296,12 @@ shows us that this circuit has an odd length. This contradicts our premise.</p><
 <exercise number="6">
 <statement><p> What is the chromatic number of the United States? </p></statement></exercise>
 <exercise number="7">
-<statement><p> Complete the proof of <xref ref="theorem-euler-formula" autoname="yes"/></p></statement>
+<statement><p> Complete the proof of <xref ref="theorem-euler-formula" autoname="yes"/>.</p></statement>
 <answer><p> Suppose that \(G'\) is not connected. Then \(G'\) is made up of 2 components that are planar graphs with less than <m>k</m> edges, \(G_1\)
 and \(G_2\). For \(i=1,2\) let \(v_i,r_i, \text{and} e_i\) be the number of vertices, regions and edges in \(G_i\). By the induction hypothesis, \(v_i+r_i-e_i=2\) for \(i=1,2\).</p>
-
 <p>One of the regions, the infinite one, is common to both graphs. Therefore, when we add edge <m>e</m> back to the graph, we have \(r=r_1+r_2-1\),
 \(v=v_1+v_2\),
 and  \(e=e_1+e_2+1\).
-
 <me>
 \begin{split}
 v+r-e &amp;=\left(v_1+v_2\right)+\left(r_1+r_2-1\right)-\left(e_1+e_2+1\right)\\
@@ -342,7 +332,7 @@ How can this problem be transformed into a vertex coloring problem?</p></stateme
 <exercise number="14"><statement> 
 <p><ol label="(a)">
 <li><p>Suppose the edges of a \(K_6\) are colored either red or blue. Prove that there will be either a <q>red \(K_3\)</q> (a subset
-of the vertex set with three vertices connected by red edges) or a <q>blue \(K_3\)</q> </p></li>
+of the vertex set with three vertices connected by red edges) or a <q>blue \(K_3\)</q> or both. </p></li>
 <li><p> Suppose six people are selected at random. Prove that either there exists a subset of three of them with the property that any two people in
 the subset can communicate in a common language, or there exist three people, no two of whom can communicate in a common language.
 </p></li>
