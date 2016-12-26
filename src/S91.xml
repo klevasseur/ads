@@ -10,13 +10,13 @@
 <note><title>Some Terminology and Comments</title><p>Each edge is an ordered pair of elements from the vertex set.  
 The first entry is the <term>initial vertex</term> of the edge and the second entry is the <term>terminal vertex</term>. Despite the set terminology in this definition, we often think of a graph as a picture, an aid in visualizing a situation. In Chapter 6, we introduced
 this concept to help understand relations on sets. Although those relations were principally of a mathematical nature, it remains true that when
-we see a graph, it tells us how the elements of a set are related to one another.</p></note>
+we see a graph, it tells us how the elements of a set are related to one another.  We have chosen not to allow a graph with an empty vertex set, the so-called empty graph.   There are both advantages and disadvantages to allowing the empty graph, so you may encounter it in other references.</p></note>
 
 
-<example xml:id="ex-9-1"><title>A Simple Directed Graph</title><p><xref ref="fig-directed-graph-ex1" autoname="yes"/> is an example of a simple directed graph. In set terms, this graph is \((V, E)\), where \(V = \{s, a, b\}\) and \(E = \{(s, a), (s, b), (a, b), (b, a), (b,b)\}\). Note how each edge is labeled either 0 or 1. There are often reasons for labeling even simple graphs. Some labels are to help make a graph easier to discuss; others are more significant We will discuss the significance of the
+<example xml:id="ex-9-1"><title>A Simple Directed Graph</title><p><xref ref="fig-directed-graph-ex1" autoname="yes"/> is an example of a simple directed graph. In set terms, this graph is \((V, E)\), where \(V = \{s, a, b\}\) and \(E = \{(s, a), (s, b), (a, b), (b, a), (b,b)\}\). Note how each edge is labeled either 0 or 1. There are often reasons for labeling even simple graphs. Some labels are to help make a graph easier to discuss; others are more significant. We will discuss the significance of the
 labels on this graph later.</p>
 	<figure xml:id="fig-directed-graph-ex1">
-		 <caption>An undirected graph</caption>
+		 <caption>A directed graph</caption>
 		 <image width="75%" source="images/fig-directed-graph-ex1.png">
 			  <description>A directed graph</description>
 		 </image>
@@ -30,7 +30,7 @@ labels on this graph later.</p>
 <p>One important point to keep in mind is that if we identify a graph as being a multigraph, it isn't necessary that there are two or more edges between some of the vertices.  It is only just <em>allowed</em>. In other words, every simple graph is a multigraph. This is analogous to how a rectangle is a more general geometric figure than a square, but a square is still considered a rectangle.</p>
 
 
-<example xml:id="ex-multigraph-9-1"><title>A Multigraph</title><p> A Multigraph. A common occurrence of a multigraph is a road map. The cities and towns on the map can be thought of as vertices, while the roads are the edges. It is not uncommon to have more than one road connecting two cities. In order to give clear travel directions, we name or number roads so that there is no ambiguity. We use the same method to describe the edges of the multigraph in <xref ref="fig-multigraph-ex1" autoname="yes"/>. There is no question
+<example xml:id="ex-multigraph-9-1"><title>A Multigraph</title><p>A common occurrence of a multigraph is a road map. The cities and towns on the map can be thought of as vertices, while the roads are the edges. It is not uncommon to have more than one road connecting two cities. In order to give clear travel directions, we name or number roads so that there is no ambiguity. We use the same method to describe the edges of the multigraph in <xref ref="fig-multigraph-ex1" autoname="yes"/>. There is no question
 what \(e3\) is; however, referring to the edge \((2, 3)\) would be ambiguous.
 </p>
 	<figure xml:id="fig-multigraph-ex1">
@@ -74,7 +74,7 @@ edges could be used here, it would simply clutter the graph.</p>
                     </figure>
                 </sidebyside>
 
-<p>This undirected graph, in set terms,  is \(V = \{a, b, c, d, e\}\) and \(E = \{\{a, b\}, \{a, d\}, \{b, c\}, \{b, d\}, \{c, e\}, \{b, e\}\}\).</p> 
+<p>This undirected graph, in set terms,  is \[V = \{a, b, c, d, e\}\) and \(E = \{\{a, b\}, \{a, d\}, \{b, c\}, \{b, d\}, \{c, e\}, \{b, e\}\}\]</p> 
 <p>There are several other situations for which this graph can serve as a model. One of them is to interpret the vertices as cities and the edges as roads, an abstraction of a map such as the one in <xref ref="fig-undirected-2" autoname="yes"/> . Another interpretation is as an abstraction of the floor plan of a house.  See <xref ref="exercise-house-9-1" autoname="yes"/>. Vertex <m>a</m> represents the outside of the house; all others represent rooms. Two vertices are connected if there is a door between
 them. </p>
 </example>
@@ -106,7 +106,7 @@ the advantage of being applicable for multigraphs. On the graph in <xref ref="fi
 
 
 
-<note><title>>A Summary of Path Notation and Terminology</title>
+<note><title>A Summary of Path Notation and Terminology</title>
 <p>If <m>x</m> and <m>y</m> are two vertices of a graph, then a <term>path</term> between <m>x</m> and <m>y</m> describes a motion from <m>x</m> and
 <m>y</m> along edges of the graph. Vertex <m>x</m> is called the initial vertex of the path and <m>y</m> is called the terminal vertex.
 A path between <m>x</m> and <m>y</m> can always be described by its  edge list, the list of edges that were used: \(\left(e_1, e_2,
@@ -164,41 +164,10 @@ fig
 <p>One set of subgraphs of any graph is the connected components of a graph.  For simplicity, we will define them for undirected graphs.   Given a graph  \(G=(V,E)\), consider the relation <q>is connected to</q> on \(V\).  We interprete this relation so that each vertex is connected to itself, and any two distinct vertices are related if there is a path along edges of the graph from one to the other.  It shouldn't be too difficult convince yourself that this is an equivalence relation on \(V\). </p> 
 <definition xml:id="def-connected-component"><title>Connected Component</title>
 <index><main>Connected Component</main></index>
-<statement><p>Given a graph  \(G=(V,E)\), let \(C\) be any equivalence class of the relation <q>is connected to</q> on \(V\).  Then the connected components of \(G\) are the induced subgraphs of \(G\) each with a vertex set that is an equivalence class with respect to \(C\).</p></statement></definition>
-
+<statement><p>Given a graph  \(G=(V,E)\), let \(C\) be the relation <q>is connected to</q> on \(V\).  Then the connected components of \(G\) are the induced subgraphs of \(G\) each with a vertex set that is an equivalence class with respect to \(C\).</p></statement></definition>
 <example xml:id="ex-connected-components"><p>If you ignore the duplicate names of vertices in the four graphs of <xref ref="fig-subgraphs" autoname="yes" />, and consider the whole figure as one large graph, then there are four connected components in that graph. It's as simple as that! It's harder to describe precisely than to understand the concept.</p>
 </example>
-
-<!-- 
-<example xml:id="organizational-graph"><title>An Organizational Graph</title>
-<p>The leadership structure of a corporation is often represented with a graph as in <xref ref="fig-organization-9-1" autoname="yes"/>.</p>
-
-
-<figure xml:id="fig-organization-9-1">
-                <caption>An Organization Graph
-                </caption>
-                <image width="80%" source="images/fig-organization-9-1.png">
-                    <description>An Organization Graph</description>
-                </image>
-            </figure>
-
-
-<p>The principle behind such a structure is that everyone but the president has a single immediate supervisor. Any action that anyone takes can reach
-the president only through a unique <q>chain of command.</q> This chain-of-command property is characteristic of a special type of graph called
-a  tree. Note that the edges of this graph are not directed, but, as in a Hasse diagram, the relation between two connecting vertices is
-clear: the top vertex is the supervisor of the lower vertex.</p>
-
-<p>The process of structured (or top-down) problem solving results in a graph that is similar to this tree. Starting with the top of the tree, which
-would represent the whole problem, the problem is divided into a sequence of separate subproblems. Each subproblem is divided further into smaller
-sub-subproblems in the same way until the solutions of the lowest problems are easy enough to recognize.
-</p></example>
- -->
- 
-
-
-
 <p>From the examples we've seen so far, we can see that although a graph can be defined, in short, as a collection of vertices and edges, an integral part of most graphs is the labeling of the vertices and edges that allows us to interpret the graph as a model for some situation. We continue with a few more examples to illustrate this point.</p>
-
 <example xml:id="ex-string-model-9-1"><title>A Graph as a Model for a Set of Strings</title><p>Suppose that you would like to mechanically describe the set of strings of 0's and
 1's having no consecutive 1's. One way to visualize a string of this kind is with the graph in <xref ref="fig-directed-graph-ex1" autoname="yes"/>. Consider any path starting at vertex <m>s</m>. If the label on each graph is considered to be the output to a printer, then the output will have no consecutive 1's. For example, the path that is described by the vertex list \((s,a, b, b, a, b, b, a, b)\) would result in an output of \(10010010\). Conversely, any string with  no consecutive 1's determines a path starting at s.
 </p></example>
