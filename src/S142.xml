@@ -13,7 +13,7 @@ After defining a free monoid, we will discuss languages and some of the basic pr
 <notation><usage>\lambda</usage><description>The empty string</description></notation>
 <statement><p>A string of length <m>n</m>, <m>n \geqslant 1</m> over alphabet <m>A</m> is a sequence of <m>n</m> letters
 from <m>A</m>: <m>a_1a_2\ldots a_n</m>. The null string, <m>\lambda</m>  is defined as the string of length zero containing
-no letters. The set of strings of length <m>n</m> over <m>A</m> is denoted by <m>A^n</m>. The set of all strings over <m>A</m> is denoted <m>A*</m>.</p></statement></definition>
+no letters. The set of strings of length <m>n</m> over <m>A</m> is denoted by <m>A^n</m>. The set of all strings over <m>A</m> is denoted <m>A^*</m>.</p></statement></definition>
 <note><p>
 <ol label="(a)">
 <li><p> If the length of string <m>s</m> is <m>n</m>, we write <m>\lvert s \rvert =n</m>.</p></li>
@@ -25,12 +25,12 @@ no letters. The set of strings of length <m>n</m> over <m>A</m> is denoted by <m
 </note>
 
 <theorem xml:id="theorem-14-2-1">
-<statement><p>If A is countable, then A* is countable.</p></statement><proof>
+<statement><p>If \(A\) is countable, then \(A^*\) is countable.</p></statement><proof>
 <p> Case 1. Given the alphabet <m>B=\{0,1\}</m>, we can define a bijection from the positive integers into <m>B^*</m>. Each positive integer has a binary expansion <m>d_kd_{k-1}\cdots d_1d_0</m>, where each <m>d_j</m> is 0 or 1 and <m>d_k=1</m>. If <m>n</m> has such a binary expansion, then <m>2^k \leq n\leq 2^{k+1}</m>. We define <m>f:\mathbb{P}\to B^*</m> by <m>f(n)=f\left(d_kd_{k-1}\cdots  d_1d_0\right)=d_{k-1}\cdots d_1d_0,</m>  where  <m>f(1)=\lambda</m>. Every
 one of the <m>2^k</m> strings of length <m>k</m> are the images of exactly one of the integers between <m>2^k\textrm{ and} 2^{k+1}-1.</m> From its definition, <m>f</m> is clearly a bijection; therefore, <m>B^*</m> is countable.</p>
 <p>Case 2: <m>A</m> is Finite. We will describe how this case is handled with an example first and then give the general proof. If <m>A=\{a,b,c,d,e),</m> then we can code the letters in <m>A</m> into strings from <m>B^3</m>. One of the coding schemes (there are many) is \(a\leftrightarrow 000, b\leftrightarrow
 001, c\leftrightarrow 010, d\leftrightarrow 011, \textrm{ and} e\leftrightarrow 100\). Now every string in <m>A^*</m> corresponds to a different string in <m>B^*</m>; for example, <m>ace</m>.  would correspond with <m>000010100</m>. The cardinality of <m>A^*</m> is equal to the cardinality of the set of strings that can be obtained from this encoding system. The possible coded strings must be countable, since they are a subset of a countable set, <m>B^*</m>. Therefore, <m>A^*</m> is countable.</p>
-<p>If <m>\lvert A\rvert =m</m>, then the letters in <m>A</m> can be coded using a set of fixed-length strings from <m>B^*</m>. If <m>2^{k-1} &lt; m \leq 2^k</m>, then there are at least as many strings of length <m>k</m> in <m>B^k</m> as there are letters in <m>A</m>. Now we can associate each letter in <m>A</m> with with a different element of <m>B^k</m>. Then any string in A*.  corresponds to a string in B*.  By the same reasoning as in the example above, A* is countable.</p>
+<p>If <m>\lvert A\rvert =m</m>, then the letters in <m>A</m> can be coded using a set of fixed-length strings from <m>B^*</m>. If <m>2^{k-1} &lt; m \leq 2^k</m>, then there are at least as many strings of length <m>k</m> in <m>B^k</m> as there are letters in <m>A</m>. Now we can associate each letter in <m>A</m> with with a different element of <m>B^k</m>. Then any string in \(A^*\).  corresponds to a string in \(B^*\).  By the same reasoning as in the example above, \(A^*\) is countable.</p>
 <p>Case 3: <m>A</m> is Countably Infinite. We will leave this case as an exercise.</p></proof></theorem>
 <definition xml:id="def-concatenation"><title>Concatenation</title>
 <index><main>Concatenation</main></index>
@@ -40,7 +40,7 @@ one of the <m>2^k</m> strings of length <m>k</m> are the images of exactly one o
 <note>
 <p>
 <ol label="(a)">
-<li><p>  The null string is the identity element of <m>[A^*; +]</m>. Henceforth, we will denote the monoid of strings over <m>A</m> by A*.</p></li>
+<li><p>  The null string is the identity element of <m>[A^*; +]</m>. Henceforth, we will denote the monoid of strings over <m>A</m> by \(A^*\).</p></li>
 <li><p> Concatenation is noncommutative, provided <m>\lvert A\rvert  > 1</m>.</p></li>
 <li><p>  If <m> \lvert A_1 \rvert  = \lvert A_2 \rvert</m>, then the monoids <m>A_1^*</m> and <m>A_2^*</m> are isomorphic. An isomorphism can be defined using any bijection <m>f:A_1\to A_2</m>. If <m>a=a_1a_2\cdots  a_n \in  A_1^*</m>, <m>f^*(a)=(f(a_1)f(a_2)\cdots  f(a_n))</m> defines a bijection from <m>A_1^*</m> into <m>A_2^*</m>. We will leave it to the reader to prove that for all <m>a,b,\in A_1^*,f^*(a+b)=f^*(a)+f^*(b)</m>.</p></li>
 </ol>
@@ -50,7 +50,7 @@ one of the <m>2^k</m> strings of length <m>k</m> are the images of exactly one o
 <definition xml:id="def-formal-language">
 <title>Formal Language</title>
 <index><main>Formal Language</main></index>
-<statement><p> If A is an alphabet, a formal language over A is a subset of A*. </p></statement></definition>
+<statement><p> If \(A\) is an alphabet, a formal language over \(A\) is a subset of \(A^*\). </p></statement></definition>
 <example xml:id="ex-some-formal-languages"><title>Some Formal Languages</title>
 <p><ol label="(a)">
 <li><p> English can be thought of as a language over of letters <m>A,B,\cdots Z</m>, both upper and lower case,	and other special symbols, such as punctuation marks and the blank. Exactly what subset of the strings over this alphabet defines the English language is difficult to pin down exactly. This is a characteristic of natural languages that we try to avoid with formal languages.</p></li>
@@ -102,21 +102,21 @@ us what belongs to <m>L_3</m>, just what can be used to create strings in <m>L_3
 
 <problem xml:id="prob-generation"><title>The Generation Problem</title>
 <index><main>Generation Problem</main></index>
-<statement><p>Design an algorithm that generates or produces any string in <m>L</m>. Here we presume that <m>A</m> is either finite or countably infinite; hence, A*  is countable by Theorem 14.2.1, and <m>L \subseteq A^*</m> must be countable. Therefore, the generation of <m>L</m> amounts to creating a list of strings in <m>L</m>. The list may be either finite or infinite, and you must be able to show that every string in <m>L</m> appears somewhere in the list.</p></statement></problem>
+<statement><p>Design an algorithm that generates or produces any string in <m>L</m>. Here we presume that <m>A</m> is either finite or countably infinite; hence, \(A^*\)  is countable by Theorem 14.2.1, and <m>L \subseteq A^*</m> must be countable. Therefore, the generation of <m>L</m> amounts to creating a list of strings in <m>L</m>. The list may be either finite or infinite, and you must be able to show that every string in <m>L</m> appears somewhere in the list.</p></statement></problem>
 
 
 
 <theorem xml:id="theorem-14-2-2"><title>Recursive implies Generating</title>
 <statement><p><ol label="(a)">
-<li><p>If <m>A</m> is countable, then there exists a generating algorithm for <m>A*</m>.</p></li>
+<li><p>If <m>A</m> is countable, then there exists a generating algorithm for <m>A^*</m>.</p></li>
 <li><p>If <m>L</m> is a recursive language over a countable alphabet, then there exists a generating algorithm for <m>L</m>.</p></li>
 </ol>
 </p>
 </statement>
 <proof><p>
 <ol label="(a)">
-<li><p>  Part a follows from the fact that <m>A*</m> is countable; therefore, there exists a complete list of strings in <m>A*</m>. </p></li>
-<li><p>  To generate all strings of <m>L</m>, start with a list of all strings in <m>A*</m> and an empty list, <m>W</m>, of strings in <m>L</m>. For each string <m>s</m>, use a recognition algorithm (one exists since <m>L</m> is recursive) to determine whether <m>s\in L</m>. If <m>s \in L</m>, add it to <m>W</m>; otherwise <q>throw it out.</q> Then go to the next string in the list of <m>A*</m>.</p></li>
+<li><p>  Part a follows from the fact that <m>A^*</m> is countable; therefore, there exists a complete list of strings in <m>A^*</m>. </p></li>
+<li><p>  To generate all strings of <m>L</m>, start with a list of all strings in <m>A^*</m> and an empty list, <m>W</m>, of strings in <m>L</m>. For each string <m>s</m>, use a recognition algorithm (one exists since <m>L</m> is recursive) to determine whether <m>s\in L</m>. If <m>s \in L</m>, add it to <m>W</m>; otherwise <q>throw it out.</q> Then go to the next string in the list of <m>A^*</m>.</p></li>
 </ol></p></proof></theorem>
 
 <example xml:id="ex-examples-better-algorithms-q"><p>Since all of the languages in <xref ref="ex-some-formal-languages" autoname="no" />(d) are recursive, they must have generating algorithms. The one given in the proof of <xref ref="theorem-14-2-2" autoname="yes" /> is not usually the most efficient. You could probably design more efficient generating algorithms for <m>L_2</m> and <m>L_3</m>; however, a better generating algorithm for <m>L_1</m> is not quite so obvious.</p></example> 
@@ -131,7 +131,7 @@ called production rules.  They are usually written in the format <m>S\to \lambda
 <notation><usage>L(G)</usage><description>Language created by phrase structure grammar <m>G</m></description></notation>
 <statement><p>A phrase structure grammar consists of four components:
  <ol label="(1)">
-<li><p>A nonempty finite set of terminal characters, <m>T</m>. If the grammar is defining a language over <m>A</m>, <m>T</m> is a subset of <m>A*</m>.</p></li>
+<li><p>A nonempty finite set of terminal characters, <m>T</m>. If the grammar is defining a language over <m>A</m>, <m>T</m> is a subset of <m>A^*</m>.</p></li>
 <li><p>A finite set of nonterminal characters, <m>N</m>.</p></li>
 <li><p>A starting symbol,  <m>S\in N</m>.</p></li>
 <li><p>A finite set of production rules, each of the form <m>X\to Y</m>, where <m>X</m> and <m>Y</m> are strings over <m>A\cup N</m> such that <m>X\neq Y</m> and <m>X</m> contains at least one nonterminal symbol.</p></li>
@@ -208,8 +208,7 @@ N ::=[-]\textrm{digit} \{\textrm{digit}\}\\
 <definition xml:id="def-regular-grammar">
 <title>Regular Grammar</title>
 <index><main>Regular Grammar</main></index>
-<statement><p>A regular (right-hand form) grammar is a grammar whose production rules are all of the form . <m>A\to t</m> and . <m>A\to tB</m>, where A and B are nonterminal and t is terminal. A left-hand form grammar allows only
- <m>A \to t</m> and  <m>A\to Bt</m>, A language that has a regular phrase structure language is called a regular language.</p></statement></definition>
+<statement><p>A regular (right-hand form) grammar is a grammar whose production rules are all of the form <m>A\to t</m> and  <m>A\to tB</m>, where \(A\) and \(B\) are nonterminal and \(t\) is terminal. A left-hand form grammar allows only <m>A \to t</m> and  <m>A\to Bt</m>. A language that has a regular phrase structure language is called a regular language.</p></statement></definition>
 
 <example xml:id="ex-some-regular-grammars"><p><ol label="(a)">
 <li><p> The set of Sage variable names is a regular language since the grammar by which we defined the set is a regular grammar.</p></li>
@@ -259,7 +258,7 @@ than or equal to 350.  Since   <m>2^9= 512 > 350 > 2^8</m>,  9 bits are needed, 
 </ol>
 </p>
 </statement></exercise>
-<exercise number="5"><statement><p>Define the following languages over B with phrase structure grammars.
+<exercise number="5"><statement><p>Define the following languages over \(B\) with phrase structure grammars.
  Which of these languages are regular?
  <ol label="(a)">
 <li><p>  The strings with an odd number of characters.</p></li>
@@ -271,8 +270,8 @@ than or equal to 350.  Since   <m>2^9= 512 > 350 > 2^8</m>,  9 bits are needed, 
 <answer><p>
 <ol label="(a)">
 	<li><p> Terminal symbols: The null string, 0, and 1.
-        Nonterminal symbols: S, E..  
-         Starting symbol: S.
+        Nonterminal symbols: \(S\), \(E\).  
+         Starting symbol: \(S\).
          Production rules: <m>S\to 00S</m>, <m>S\to 01S</m>,  <m>S\to 10S</m>,  <m>S\to 11S</m>,  <m>S\to E</m>,  <m>E\to 0</m>,  <m>E\to 1</m> This is a regular grammar.</p></li>
 <li><p>Terminal symbols: The null string,  0,  and 1. 
 Nonterminal symbols: <m>S</m>, <m>A</m>, <m>B</m>, <m>C</m> 
@@ -285,7 +284,7 @@ Production rules: <m>S \to  0A</m>, <m>S \to  1A</m>, <m>S \to  \lambda</m> , <m
 </ol>
 </p></answer>
 </exercise>
-<exercise number="6"><statement><p>  Define the following languages over B with phrase structure grammars. Which of these languages are regular? 
+<exercise number="6"><statement><p>  Define the following languages over \(B\) with phrase structure grammars. Which of these languages are regular? 
 <ol label="(a)">
 <li><p>  The strings with more 0's than 1's.</p></li>
 <li><p>  The strings with an even number of 1's.</p></li>
@@ -302,7 +301,7 @@ negating the answer to <q>Is <m>s</m> in <m>L</m>?</q>
 </statement></exercise>
 <exercise number="9"><statement><p><ol label="(a)">
 <li><p> Prove that if <m>X_1, X_2, \ldots</m>is a countable sequence of countable sets, the union of these sets, <m>\underset{i=1}{\overset{\infty }{\cup}}X_i</m> is countable.</p></li>
-<li><p> Using the fact that the countable union of countable sets is countable, prove that if <m>A</m> is countable, then <m>A*</m> is countable.</p></li>
+<li><p> Using the fact that the countable union of countable sets is countable, prove that if <m>A</m> is countable, then <m>A^*</m> is countable.</p></li>
 </ol></p></statement>
 <answer><p>
 <ol label="(a)">
