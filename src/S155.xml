@@ -53,7 +53,7 @@ offset this poor probability.</p>
 <subsection xml:id="ss-error-detection"><title>Error Detection</title>
 <p>Suppose that each block of three bits \(a = \left(a_1, a_2 , a_3 \right)\) is encoded with the
 function \(e: \mathbb{Z}_2{}^3\to \mathbb{Z}_2{}^4\), where
-\[e(a) = \left(a _1, a _2 , a _3, a_1+_2a_2+_2a_3 \right)\].
+\[e(a) = \left(a _1, a _2 , a _3, a_1+_2a_2+_2a_3 \right)\]
 When the encoded block is received, the first three bits are probably part of the message (it is correct approximately \(99.7\%\) of the time), but the added bit that is sent will make it possible to detect single errors in the block. Note that when \(e(a)\) is transmitted, the sum of its components is
 \(a_1+_2 a_2 +_2 a_3+_2 \left( a_1+_2 a_2+_2 a_3\right)= 0\),since  \(a_i+a_i=0\) in \(\mathbb{Z}_2\).</p>
 <p>If any single bit is garbled by noise, the sum of the received bits will be 1. The last bit of \(e(a)\) is called the parity bit. A parity error occurs if the sum of the received bits is 1. Since more than one error is unlikely when <m>p</m> is small, a high percentage of all errors can be detected.</p>
@@ -66,7 +66,7 @@ approximately 0.990 and the rate is approximately 3/5. The rate includes the tra
 <subsection xml:id="ss-error-correction"><title>Error Correction</title>
 <p>Next, we will consider a coding process that can correct errors at the receiving end so that
 only one-way communication is needed. Before we begin, recall that every element of \(\mathbb{Z}_2{}^n\), \(n \geq  1\), is its own inverse; that is, \(-b = b\). Therefore, \(a - b = a + b\).</p>
-<p>Noisy three-bit message blocks are difficult to transmit because they are so similar to one another. If <m>a</m> and <m>b</m> are in \(\mathbb{Z}_2{}^3\), their difference, \(a +_2 b\), can be thought of as a measure of how close they are. If <m>a</m> and <m>b</m> differ in only one bit position, one error can change one into the other. The encoding that we will introduce takes a block\(a = \left(a_1, a_2, a_3 \right)\) and produces a block of length 6 called the <term>code word</term> of <m>a</m>. The code words are selected so that they are farther from one another than the messages are. In fact, each code word will differ from each other code word by at least three bits. As a result, any single error will not push a code word close enough to another code word to cause confusion. Now for the details.</p>
+<p>Noisy three-bit message blocks are difficult to transmit because they are so similar to one another. If <m>a</m> and <m>b</m> are in \(\mathbb{Z}_2{}^3\), their difference, \(a +_2 b\), can be thought of as a measure of how close they are. If <m>a</m> and <m>b</m> differ in only one bit position, one error can change one into the other. The encoding that we will introduce takes a block \(a = \left(a_1, a_2, a_3 \right)\) and produces a block of length 6 called the <term>code word</term> of <m>a</m>. The code words are selected so that they are farther from one another than the messages are. In fact, each code word will differ from each other code word by at least three bits. As a result, any single error will not push a code word close enough to another code word to cause confusion. Now for the details.</p>
 
 <p> Let
 \(G=\left(
@@ -79,12 +79,11 @@ only one-way communication is needed. Before we begin, recall that every element
 <p>Define \(e : \mathbb{Z}_2{}^3 \to \mathbb{Z}_2{}^6\) by
 \[e(a) = a G = \left(a_1, a_2, a_3,a_4, a_5, a_6\right)\]
 where
-
-<mdn alignment="alignat">
-<mrow>a_4	\amp= a_1 \amp+_2 a_2</mrow>
-<mrow>a_5	\amp= a_1 \amp\amp{} \amp+_2 a_3</mrow>
-<mrow>a_6	\amp= \amp\amp{} \amp+_2 a_2 \amp+_2 a_3</mrow>
-</mdn>
+\[\begin{split}
+a_4	&amp;= a_1 +_2 a_2\\
+a_5	&amp;= a_1 \quad\quad  +_2 a_3\\
+a_6	&amp;= \quad \quad a_2 +_2 a_3\\
+\end{split}\]
 </p>
 
 <p>Notice that <m>e</m> is a homomorphism.  Also, if <m>a</m> and <m>b</m> are distinct elements of \(\mathbb{Z}_2{}^3\), then \(c = a + b\) has at
@@ -212,7 +211,7 @@ This is the coset with syndrome \((1, 1, 1)\).
 <p>When block <m>b</m> is received, you need only compute the syndrome, \(p(b)\), and
 add to <m>b</m> the error correction that matches \(p(b)\).</p>
 <p>We will conclude this example by computing the probability of success for our hypothetical situation. It is  \(\left(0.999^6 + 6\ 0.999^5 \times 0.001\right)^{1000}=0.985151\).
-The rate for this method is \(\frac{1}{2}\).
+The rate for this code is \(\frac{1}{2}\).
 </p>
 </subsection>
 <exercises xml:id="exercises-15-5">

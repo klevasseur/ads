@@ -21,15 +21,9 @@ starts in the even state. Similarly, the row labeled <q>Odd</q> contains the sam
 
 <p>Note how, as indicated in the last row, the strings in \(B^2\) have the same effect as certain strings in \(B^1\). For this reason, we can summarize the machine in terms of how it is affected by strings of length 1. The actual monoid that we will now describe consists of a set of functions, and the operation on the functions will be based on the concatenation operation.</p>
 <p>Let \(T_0\) be the final effect (state and output) on the parity checker of the input 0. Similarly, \(T_1\) is defined as the final effect on the parity checker of the input 1.  More precisely,
-
 \[T_0(\textrm{ even})=(\textrm{ even},0)  \quad \textrm{and} \quad  T_0(\textrm{ odd})=(\textrm{ odd},1)\] , 
-
 while
-
 \[T_1(\textrm{ even})=(\textrm{ odd},1)  \quad \textrm{and} \quad T_1(\textrm{ odd})=(\textrm{ even},0)\].</p>
-
-
-
 <p>In general, we define the operation on a set of such functions as follows: if <m>s</m>, <m>t</m> are input sequences and \(T_s\) and \(T_t\), are functions as above, then \(T_s*T_t=T_{st}\), that is, the result of the function that summarizes the effect on the machine by the concatenation of <m>s</m> with <m>t</m>. Since, for example, 01 has the same effect on the parity checker as 1, \(T_0*T_1=T_{01}=T_1\). We don't stop our calculation at \(T_{01}\) because we want to use the shortest string of inputs to describe the final result. A complete table for
 the monoid of the parity checker is
 
@@ -61,10 +55,7 @@ codomain of \(T_t\) and the functions are read from left to right unlike in comp
 
 <p>You may have noticed that the output of the parity checker echoes the state of the machine and that we could have looked only at the effect on the machine as the final state. The following example has the same property, hence we will only consider the final state.</p>
 
-<example xml:id="ex-no-consecutive-ones-monoid"><p>The transition diagram for the machine that recognizes strings in B*.  that have no consecutive 1's appears in Figure
-<xref ref="fig-no-11s-machine" autoname="yes" />. Note how it is similar to the graph in <xref ref="fig-directed-graph-ex1" autoname="yes" />. Only a <q>reject state</q> has been added, for the case when an input of 1 occurs while
-in State <m>a</m>. We construct a similar table to the one in the previous example to study the effect of certain strings on this machine. This
-time, we must include strings of length 3 before we recognize that no <q>new effects</q> can be found.</p>
+<example xml:id="ex-no-consecutive-ones-monoid"><p>The transition diagram for the machine that recognizes strings in B*.  that have no consecutive 1's appears in <xref ref="fig-no-11s-machine" autoname="yes" />. Note how it is similar to the graph in <xref ref="fig-directed-graph-ex1" autoname="yes" />. Only a <q>reject state</q> has been added, for the case when an input of 1 occurs while in State <m>a</m>. We construct a similar table to the one in the previous example to study the effect of certain strings on this machine. This time, we must include strings of length 3 before we recognize that no <q>new effects</q> can be found.</p>
 
 				<figure xml:id="fig-no-11s-machine">
                 <caption>No Consecutive Ones Monoid
@@ -86,7 +77,7 @@ time, we must include strings of length 3 before we recognize that no <q>new eff
 
 <p>The following table summarizes how combinations of the strings \(0,1,01,10, \textrm{ and } 11\) affect this machine.
 
- \(\begin{array}{c|c}
+ \[\begin{array}{c|c}
  * &amp; 
 \begin{array}{ccccc}
  T_0 &amp; T_1 &amp; T_{01} &amp; T_{10} &amp; T_{11} \\
@@ -110,17 +101,15 @@ time, we must include strings of length 3 before we recognize that no <q>new eff
  T_{11} &amp; T_{11} &amp; T_{11} &amp; T_{11} &amp; T_{11} \\
 \end{array}
  \\
-\end{array}\)
+\end{array}\]
 </p>
 <p>All the results in this table can be obtained using the previous table. For example,
-
-\(T_{10}*T_{01}=T_{1001}=T_{100}*T_1=T_{10}*T_1=T_{101}=T_1\\
-\\
-\textrm{       }\textrm{ and} \\
-\\
-T_{01}*T_{01}=T_{0101}=T_{010}T_1=T_0T_1=T_{01}.\) 
+\[\begin{array}{c}
+	T_{10}*T_{01}=T_{1001}=T_{100}*T_1=T_{10}*T_1=T_{101}=T_1\\
+	\textrm{ and} \\
+T_{01}*T_{01}=T_{0101}=T_{010}T_1=T_0T_1=T_{01}\\
+\end{array}\]
 </p>
-
 
 <p>Note that none of the elements that we have listed in this table serves as the identity for our operation. This problem can always be remedied by
 including the function that corresponds to the input of the null string, \(T_{\lambda }\). Since the null string is the identity for concatenation
