@@ -10,7 +10,7 @@
 
 
 <p>A graph of  Atlantis University  (<xref ref="fig-atlantis-10" autoname="yes"/>) shows that there are four campuses in the system. A new secure communications system
-is being installed and the objective is to allow for communication between any two campuses, to achieve this objective, the university must buy direct
+is being installed and the objective is to allow for communication between any two campuses; to achieve this objective, the university must buy direct
 lines between certain pairs of campuses. Let <m>G</m> be the graph with a vertex for each campus and an edge for each direct line. Total communication
 is equivalent to <m>G</m> being a connected graph. This is due to the fact that two campuses can communicate over any number of lines. To minimize
 costs, the university wants to buy a minimum number of lines.</p>
@@ -38,12 +38,9 @@ system, the solution with respect to Objective 1 is indicated with solid lines i
 to Objective 2: any tree in which one campus is directly connected to the other three. One solution with respect to Objective 2 is indicated with
 dotted lines in <xref ref="fig-atlantis-10" autoname="yes" />. After satisfying the conditions of Objective 2, it would seem reasonable to select the cheapest of the four trees.</p>
 
-<definition xml:id="def-spanning-set-tree"><title>Spanning Set, Spanning Tree</title>
+<definition xml:id="def-spanning-tree"><title>Spanning Tree</title>
 <index><main>Spanning Tree</main></index>
-<index><main>Spanning Set</main></index>
-<statement><p><ol label="(a)">
-<li><p> Let \(G = (V, E)\) be a connected undirected graph. A spanning set for <m>G</m> is a subset <m>E'</m> of <m>E</m> such that \((V, E')\) is connected.</p></li>
-<li><p> If <m>E'</m> is a spanning set for <m>G</m> and \(T = (V, E')\) is a tree, then <m>T</m> is called a spanning tree for <m>G</m>.</p></li></ol></p>
+<statement><p>Let \(G = (V, E)\) be a connected undirected graph. A spanning tree for <m>G</m> is a <xref ref="def-subgraph">spanning subgraph</xref> of \(G\) that is a tree.</p>
 </statement></definition>
 
  
@@ -65,7 +62,7 @@ which addresses Objective 1 above. The second is the problem of finding Minimum 
 
 <definition xml:id="def-min-spanning-tree"><title>Minimal Spanning Tree</title>
 <index><main>Minimal Spanning Tree</main></index> 
-<statement><p>Given a weighted connected undirected graph \(G = (V, E, w)\) , a minimal spanning tree is a spanning tree \((V, E')\) for which \(\sum_{e\in E'} w(e)\) is as small as possible.</p></statement></definition>
+<statement><p>Given a weighted connected undirected graph \(G = (V, E, w)\), a minimal spanning tree is a spanning tree \((V, E')\) for which \(\sum_{e\in E'} w(e)\) is as small as possible.</p></statement></definition>
 
 
 <p>Unlike many of the graph-optimization problems that we've examined, a solution to this problem can be obtained efficiently. It is a situation in which a greedy algorithm works.</p>
@@ -108,7 +105,7 @@ and \(E'\) is a set of edges.</p>
 <li><p> (Build the tree) While \(L\neq  \emptyset\):</p> 
 		<p><ol label="(1)">
 		<li><p>Find \(e^* = \left\{v_L,v_R\right\}\), a bridge of minimum weight between <m>L</m> and <m>R</m>.</p></li>
-		<li><p> \(R = R \cup  \left\{v_L \right\}\); \(L = L - \left\{v_L\right\}\) ; \(E' \text{:=}E'\cup  \left\{e^*\right\}\)</p></li>
+		<li><p> \(R = R \cup  \left\{v_L \right\}\); \(L = L - \left\{v_L\right\}\) ; \(E' =E'\cup  \left\{e^*\right\}\)</p></li>
 		</ol></p></li>
 <li><p>Terminate with a minimal spanning tree \((V, E')\).</p></li>
 </ol></p>
@@ -117,8 +114,7 @@ and \(E'\) is a set of edges.</p>
 
 <note>
 <p><ol label="(a)">
-<li><p> If more than one minimal spanning tree exists, then the one that is obtained depends on \(v_0\) and the means by which \(e^*\) is selected
-in Step 2</p></li>
+<li><p> If more than one minimal spanning tree exists, then the one that is obtained depends on \(v_0\) and the means by which \(e^*\) is selected in Step 2.</p></li>
 <li><p> Warning: If two minimally weighted bridges exist between <m>L</m> and <m>R</m>, do not try to speed up the algorithm by adding both of them to <m>E</m>'.</p></li>
 <li><p> That <xref ref="alg-prim" autoname="yes" /> yields a minimal spanning tree can be proven by induction with the use of <xref ref="theorem-10-2-1" autoname="yes" />.</p></li>
 <li><p> If it is not known whether <m>G</m> is connected, <xref ref="alg-prim" autoname="yes" /> can be revised to handle this possibility. The key change (in Step 2.1)
@@ -127,16 +123,16 @@ changed somewhat.</p></li>
 </ol></p>
 </note>
 
-<example xml:id="ex-an-example"><title>An Small Example</title><p>Consider the graph in <xref ref="fig-weighted-graph-10" autoname="yes" />. If we apply Algorithm 10.2.1 starting at <m>a</m>, we obtain the following edge list
+<example xml:id="ex-an-example"><title>An Small Example</title><p>Consider the graph in <xref ref="fig-weighted-graph-10" autoname="yes" />. If we apply <xref ref="alg-prim" autoname="title" /> starting at <m>a</m>, we obtain the following edge list
 in the order given: \(\{a, f\}, \{f, e\}, \{e, c\}, \{c, d\}, \{f, b\}, \{b, g\}\). The total of the weights of these edges is 20. The method that
 we have used (in Step 2.1) to select a bridge when more than one minimally weighted bridge exists is to order all bridges alphabetically by the vertex
 in <m>L</m> and then, if further ties exist, by the vertex in <m>R</m>. The first vertex in that order is selected in Step 2.1 of the algorithm.</p>
        <figure xml:id="fig-weighted-graph-10">
+       			<caption>A small weighted graph</caption>
                <image width="80%" source="images/fig-weighted-graph-10.png">
                     <description>A weighted graph</description>
                 </image>
       </figure>
-
 </example>
 
 
@@ -159,18 +155,12 @@ tree whose edge set is the set of edges that connect \(v_0\) to the other vertic
 
 </example>
 
-
-
 <p>For incomplete graphs, a two-stage algorithm is needed. In short, the first step is to locate a <q>center</q> of the graph. The maximum distance
 from a center to any other vertex is as small as possible. Once a center is located, a breadth-first search of the graph is used to construct the
 spanning tree. </p>
 
 <exercises xml:id="exercises-10-2">
 <title>Exercises for Section 10.2</title>
-
-
-
-
 <exercise number="1"><statement><p> Suppose that after Atlantis University's phone system is in place, a fifth campus is established and that a transmission line can be bought
 to connect the new campus to any old campus. Is this larger system the most economical one possible with respect to Objective 1? Can you always satisfy
 Objective 2?</p>
