@@ -107,30 +107,40 @@ will have a value of \(\texttt{true}\) if an item with the desired key value was
                     <description>Example of a Binary Search</description>
                 </image>
  </figure>
-<p>In the following algorithm, \(C\), \(\texttt{Found}\) and \(\textrm{location}\) are <q>global</q> variables to execution of the algorithm.</p>
+<p>In the following implementation of the Binary Search in SageMath, we search within a sorted list of integers. Therefore, the items themselves are the keys.</p>
 
  
-<program language="r">
+<sage>
 <input>
-def BinarySearch (j, k):
-  Found = False
-  if j &lt; k: 
-		Mid = floor( j + k ) / 2
-		if r(Mid).key == C: 
-	   	location = Mid
-         Found = True
-         Exit
-	   else:
-	   	if r(Mid).key &lt; C:
-				BinarySearch(j, Mid - 1)
-			else: 
-         	BinarySearch(Mid + 1 , k)
+def BinarySearch(r,j,k,C):
+   found = False
+   if j &lt;= k:
+      mid = floor((j + k)/2)
+      print 'probing at position '+str(mid)
+      if r[mid] == C:
+         location = mid
+         found = True
+         print 'found in position '+str(location)
+         return location
+      else:
+        if r[mid] > C:
+           BinarySearch(r,j, mid - 1,C)
+        else:
+           BinarySearch(r,mid + 1,k,C)
    else:
-   	Exit
+      print 'not found'
+      return False      
+s=[1,9,13,16,30,31,32,33,36,37,38,45,49,50,52,61,63,64,69,77,79,80,81,83,86,90,93,96]
+BinarySearch(s,0,len(s)-1,30)
 </input>
-</program>
-
-
+<output>
+probing at position 13
+probing at position 6
+probing at position 2
+probing at position 4
+found in position 4
+</output>
+</sage>
 
 </subsection>
 <subsection xml:id="ss-recursive-sequences"><title>Recursively Defined Sequences</title><index><main>Sequences</main><sub>Recursively Defined</sub></index>
@@ -245,7 +255,6 @@ hence the formula is true for \(k+1\)</p>
 <example xml:id="ex-summation-simplifed"><title>Reducing a summation to closed form</title><p>The sum \(E(n)=\sum_{k=1}^n k\) is not a closed form expression because the number of additions needed evaluate \(E(n)\) grows indefinitely with <m>n</m>. A closed form expression that computes the value of \(E(n)\) is \(\frac{n(n+1)}{2}\), which only requires \(T=3\) operations. </p></example>
  
 </subsection>
-
 <exercises><title>Exercises for Section 8.1</title>
 <exercise number="1"><statement>
 <p>By the recursive definition of binomial coefficients, \(\binom{7}{2}=\binom{6}{2} +\binom{6}{1}\). Continue expanding \(\binom{7}{2}\) to express it in terms of quantities defined by the basis. Check your result by applying the factorial definition of \(\binom{n}{k}\).</p>
@@ -268,12 +277,10 @@ hence the formula is true for \(k+1\)</p>
 </p>
 </answer>
 </exercise>
-
 <exercise number="2"><statement><p> Define the sequence <m>L</m> by \(L_0 = 5\) and for \(k\geq 1\), \(L _k = 2L_{k-1}-7\).  Determine \(L_4\) and prove
 by induction that \(L_k=7-2^{k+1}\).</p>
 </statement>
 </exercise>
-
 <exercise number="3"><statement><p> Let \(p(x) = x^5+ 3x^4 - 15x^3 + x - 10\).</p>
  <p><ol label="(a)">
 <li><p> Write \(p(x)\) in telescoping form.</p></li>
@@ -287,25 +294,19 @@ by induction that \(L_k=7-2^{k+1}\).</p>
 </ol></p>
 </answer>
 </exercise>
-
-
-
-<exercise number="4"><statement><p> Suppose that a list of nine items, <m>(r(l), r(2), . . . , r(9))</m>, is sorted by key in decending order so that \(r(3).\texttt{key} = 12\) and \(r(4).\texttt{key} = 10\). List the executions of the BinarySearch algorithms that would be needed to complete BinarySearch(1,9) when:</p>
- <p><ol label="(a)" cols="2">
+<exercise number="4"><statement><p> Suppose that a list of nine items, <m>(r(l), r(2), . . . , r(9))</m>, is sorted by key in decending order so that \(r(3).\texttt{key} = 12\) and \(r(4).\texttt{key} = 10\). List the executions of the BinarySearch algorithms that would be needed to complete BinarySearch(1,9) when:
+<ol label="(a)" cols="2">
 <li><p>The search key is C = 12</p></li>
 <li><p>The search key is C = 11</p></li>
 </ol></p>
 <p>Assume that distinct items have distinct keys.</p>
 </statement></exercise>
-
 <exercise number="5"><statement><p> What is wrong with the following definition of \(f:\mathbb{R}\to \mathbb{R}\)? 
 \(f(0) = 1\) and \(f(x) = f(x/2)/2\) if \(x\neq 0\).</p>
 </statement>
 <answer><p>The basis is not reached in a finite number of steps if you try to compute \(f(x)\) for a nonzero value of \(x\).</p></answer>
 </exercise>
-
 <exercise number="6"><statement><p>Prove the two definitions of binomials coefficients, <xref ref="binomial-coefficient" autoname="yes" /> and <xref ref="def-binomial-coefficient-recursive" autoname="yes"/>, are equivalent.</p></statement>
 </exercise>
-
 </exercises>
 </section>
