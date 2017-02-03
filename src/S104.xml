@@ -16,7 +16,6 @@ a single vertex with no descendants (no subtrees) are ordered rooted trees.</p>
                 </image>
             </figure>
 </example> 
-
 <p>If a tree rooted at <m>v</m> has <m>p</m> subtrees, we would refer to them as the first, second,..., \(p^{th}\) subtrees. If we restrict the number of subtrees of each vertex to be less than or equal to two, we have a <term>binary ordered tree</term>.  There is a subtle difference between binary ordered trees and binary trees, which we define next.</p>
  
 <definition xml:id="def-binary-tree"><title>Binary Tree</title>
@@ -143,12 +142,7 @@ tree:</p>
 <p>A convenient way to visualize an algebraic expression is by its expression tree. Consider the expression
  \[X = a*b - c/d + e.\] 
 Since it is customary to put a precedence on multiplication/divisions, <m>X</m> is evaluated as \(((a*b) -(c/d)) + e\). Consecutive multiplication/divisions
-or addition/subtractions are evaluated from left to right. We can analyze <m>X</m> further by noting that it is the sum of two simpler expressions \((a*b)
-- (c/d)\) and \(e\). The first of these expressions can be broken down further into the difference of the expressions \(a*b\) and \(c/d\). When
-we decompose any expression into \((\text{left} \text{expression}) (\text{operation}) (\text{right} \text{expression})\), the expression tree of that expression is the binary tree whose root contains the operation and whose left and right subtrees are the trees of the
-left and right expressions, respectively. Additionally, a simple variable or a number has an expression tree that is a single vertex containing the
-variable or number. The evolution of the expression tree for expression <m>X</m> appears in <xref ref="fig-expression-tree-build" autoname="yes" />.</p>
-
+or addition/subtractions are evaluated from left to right. We can analyze <m>X</m> further by noting that it is the sum of two simpler expressions \((a*b) - (c/d)\) and \(e\). The first of these expressions can be broken down further into the difference of the expressions \(a*b\) and \(c/d\). When we decompose any expression into \((\textrm{left expression})\textrm{operation} (\textrm{right expression})\), the expression tree of that expression is the binary tree whose root contains the operation and whose left and right subtrees are the trees of the left and right expressions, respectively. Additionally, a simple variable or a number has an expression tree that is a single vertex containing the variable or number. The evolution of the expression tree for expression <m>X</m> appears in <xref ref="fig-expression-tree-build" autoname="yes" />.</p>
             <figure xml:id="fig-expression-tree-build">
                 <caption>Building an Expression Tree
                 </caption>
@@ -156,10 +150,9 @@ variable or number. The evolution of the expression tree for expression <m>X</m>
                     <description>Building an Expression Tree</description>
                 </image>
             </figure>
-
 <example xml:id="ex-expression-tree-examples"><title>Some Expression Trees</title>
 <p><ol label="(a)">
-<li><p> If we intend to apply the addition and subtraction operations in <m>X</m> first, we would parenthesize the expression to \(a*(b - c)/(d + e)\). Its expression tree appears in <xref ref="fig-expression-tree-examples" autoname="yes" />a.</p></li>
+<li><p> If we intend to apply the addition and subtraction operations in <m>X</m> first, we would parenthesize the expression to \(a*(b - c)/(d + e)\). Its expression tree appears in <xref ref="fig-expression-tree-examples" autoname="yes" />(a).</p></li>
 <li><p> The expression trees for \(a^2-b^2\) and for \((a + b)*(a - b)\) appear in <xref ref="fig-expression-tree-examples" autoname="yes" />(b) and <xref ref="fig-expression-tree-examples" autoname="yes" />(c).
 </p></li>
 </ol></p>
@@ -175,8 +168,6 @@ variable or number. The evolution of the expression tree for expression <m>X</m>
 is the familiar infix form, such as \(a + b\) for the sum of <m>a</m> and <m>b</m>. Another form is prefix, in which the same sum is written \(+a b\). The final
 form is postfix, in which the sum is written \(a b+\). Algebraic expressions involving the four standard arithmetic operations \((+,-,*, \text{and}
 /)\) in prefix and postfix form are defined as follows:</p>
-
-
 <list>
 <title>Prefix and postfix forms of an algebraic expression</title>
 <dl>
@@ -189,29 +180,21 @@ form is postfix, in which the sum is written \(a b+\). Algebraic expressions inv
 							<li><p>Any pair of postfix expressions followed by an operation is a postfix expression.</p></li></ol></p></li>
 </dl>
 </list>
-
 <p>The connection between traversals of an expression tree and these forms is simple:</p>
-
 <p><ol label="(a)">
 <li><p> The preorder traversal of an expression tree will result in the prefix form of the expression.</p></li>
 <li><p> The postorder traversal of an expression tree will result in the postfix form of the expression.</p></li>
 <li><p> The inorder traversal of an operation tree will not, in general, yield the proper infix form of the expression. If an expression requires parentheses in infix form, an inorder traversal of its expression tree has the effect of removing the parentheses.</p>
 </li>
 </ol></p>
-
-
-
 <example xml:id="ex-expression-tree-traversal-example"><title>Traversing an Expression Tree</title><p> The preorder traversal of the tree in <xref ref="fig-expression-tree-build" autoname="yes" /> is \(+-*ab/cd e\), which is the prefix version of expression <m>
 X</m>. The postorder traversal is \(ab*cd/-e+\). Note that since the original form of <m>X</m> needed no parentheses, the inorder traversal, \(a*b-c/d+e\), is the correct infix version.</p>
 </example>
-
 </subsection>
-
 <subsection xml:id="ss-counting-binary-trees"><title>Counting Binary Trees</title><index><main>Counting Binary Trees</main></index>
 <p>We close this section with a formula for the number of different binary trees with <m>n</m> vertices. The formula is derived using generating
 functions. Although the complete details are beyond the scope of this text, we will supply an overview of the derivation in order to illustrate how
 generating functions are used in advanced combinatorics.</p>
-
 <p>Let \(B(n)\) be the number of different binary trees of size <m>n</m> (<m>n</m> vertices), \(n \geq  0\). By our definition of a binary tree,
 \(B(0) = 1\). Now consider any positive integer \(n + 1\), \(n \geq  0\). A binary tree of size \(n + 1\) has two subtrees, the sizes of which add
 up to <m>n</m>. The possibilities can be broken down into \(n + 1\) cases:</p>
@@ -259,9 +242,6 @@ we do the same with \(G_2\) we get
 <mdn><mrow>G_2= \frac{1-\sqrt{1-4 z}}{2z} = 1+z+2 z^2+5 z^3+14 z^4+42 z^5+\cdots</mrow></mdn></p>
 
 <p>Further analysis leads to a closed form expression for \(B(n)\), which is
-
-
-
 \[B(n) = \frac{1}{n+1}\left(
 \begin{array}{c}
  2n \\
@@ -283,21 +263,28 @@ R.&lt;z>=PowerSeriesRing(ZZ,'z')
 G1=(1+sqrt(1-4*z))/(2*z)
 G1
 </input>
+<output>
+z^-1 - 1 - z - 2*z^2 - 5*z^3 - 14*z^4 - 42*z^5 - 132*z^6
+ - 429*z^7 - 1430*z^8 - 4862*z^9 - 16796*z^10 - 58786*z^11
+  - 208012*z^12 - 742900*z^13 - 2674440*z^14 - 9694845*z^15
+   - 35357670*z^16 - 129644790*z^17 - 477638700*z^18 + O(z^19)
+</output>
 </sage>
-
-
 <p>The first Sage expression above declares a structure called a <term>ring</term> that contains power series. We are not using that whole structure, just a specific
 element, <c>G1</c>. So the important thing about this first input is that it establishes <c>z</c> as being a variable associated with power series over the integers.  When the second expression defines the value of <c>G1</c> in terms of <c>z</c>, it is automatically converted to a power series.</p>
-
-<p>The expansion of \(G_2\) uses identical code:</p>
-
+<p>The expansion of \(G_2\) uses identical code, and it's coefficients are the values of \(B(n)\).</p>
 <sage>
 <input>
 R.&lt;z>=PowerSeriesRing(ZZ,'z')
 G2=(1-sqrt(1-4*z))/(2*z)
 G2
 </input>
-</sage>
+<output>
+1 + z + 2*z^2 + 5*z^3 + 14*z^4 + 42*z^5 + 132*z^6 + 429*z^7
+ + 1430*z^8 + 4862*z^9 + 16796*z^10 + 58786*z^11 + 208012*z^12
+  + 742900*z^13 + 2674440*z^14 + 9694845*z^15 + 35357670*z^16 
+  + 129644790*z^17 + 477638700*z^18 + O(z^19)
+</output></sage>
 
 <p> In Chapter 16 we will introduce rings and will be able to take further advantage of Sage's capabilities in this area.</p>
 </subsection>
