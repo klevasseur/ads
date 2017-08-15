@@ -2,14 +2,14 @@
 <section xml:id="s-combinations-and-the-binomial-theorem">
 <title>Combinations and the Binomial Theorem</title>
 <subsection xml:id="combinations">
-<title>Combinations</title><index><main>Combinations</main></index>
+<title>Combinations</title><idx>Combinations</idx>
 <p> In Section 2.1 we investigated the most basic concept in combinatorics, namely, the rule of products. Even though in this section we investigate other counting formulas, it is of paramount importance to keep this fundamental process in mind. In Section 2.2 we saw that a subclass of rule-of-products problems appears so frequently that we gave them a special designation, namely, permutations, and we derived a formula as a computational aid to assist us. In this section we will investigate another counting formula that is used to count combinations, which are subsets of a certain size..</p>
 <p>In many rule-of-products applications the permutation or order is important, as in the situation of the order of putting on one's socks and shoes; in some cases it is not important, as in placing coins in a vending machine or in the listing of the elements of a set. Order is important in permutations. Order is not important in combinations.</p>
-<example xml:id="counting-permuations-multiple-ways"><title>Counting Permutations</title><statement><p>How many different ways are there to permute three letters from the set <m>A = \{a, b, c, d\}</m>?  From the <xref ref="permutations-counting-formula" autoname="title" /> there are <m>P(4,3)=\frac{4!}{(4-3)!} = 24</m> different orderings of three letters from <m>A</m> </p></statement></example>
+<example xml:id="counting-permuations-multiple-ways"><title>Counting Permutations</title><statement><p>How many different ways are there to permute three letters from the set <m>A = \{a, b, c, d\}</m>?  From the <xref ref="permutations-counting-formula" text="title" /> there are <m>P(4,3)=\frac{4!}{(4-3)!} = 24</m> different orderings of three letters from <m>A</m> </p></statement></example>
 <example xml:id="four-choose-three"><title>Counting with No Order</title> <statement><p>How many ways can we select a set of three letters from  <m>A = \{a, b, c, d\}</m>?  Note here that we are not concerned with the order of the three letters. By trial and error, abc, abd, acd, and bcd are the only listings possible. To repeat, we were looking for all three-element subsets of the set <m>A</m>. Order is not important in sets. The notation for choosing 3 elements from 4 is most commonly <m>\binom{4}{3}</m> or occasionally <m>C(4,3)</m>, either of which is read <q>4 choose 3</q> or the number of combinations for four objects taken three at a time.</p></statement>
 </example>
 <definition xml:id="binomial-coefficient"><title>Binomial Coefficient</title>
-<index><main>Binomial Coefficient</main></index>
+<idx>Binomial Coefficient</idx>
 <notation><usage>\binom{n}{k}</usage>
           <description>
              <m>n</m> choose <m>k</m>, the number of <m>k</m> element subsets of an <m>n</m> element set.  	
@@ -20,7 +20,7 @@
 </statement>
 </definition>
 <p>We would now like to investigate the relationship between permutation and combination problems in order to derive a formula for <m>\binom{n}{k}</m></p>
-<p>Let us reconsider the <xref ref="four-choose-three" autoname="title" />. There are <m>3 ! = 6</m> different orderings for each of the three-element subsets. The table below lists each subset of <m>A</m>  and all permutations of each subset on the same line.
+<p>Let us reconsider the <xref ref="four-choose-three" text="title" />. There are <m>3 ! = 6</m> different orderings for each of the three-element subsets. The table below lists each subset of <m>A</m>  and all permutations of each subset on the same line.
 <me>
  \begin{array}{cc}
  \textrm{subset} &amp; \textrm{permutations} \\
@@ -32,7 +32,7 @@
  </me>.</p>
 <p> Hence, <m>\binom{4}{3} = \frac{P(4,3)}{3!} = \frac{4!}{(4-3)! \cdot 3!} = 4</m></p>
 <p> We generalize this result in the following theorem:</p>
-<theorem xml:id="binomial-coefficient-formula"><title>Binomial Coefficient Formula</title><index><main>Binomial Coefficient Formula</main></index>
+<theorem xml:id="binomial-coefficient-formula"><title>Binomial Coefficient Formula</title><idx>Binomial Coefficient Formula</idx>
 <statement>
 <p>If <m>n</m> and <m>k</m> are nonnegative integers with <m>0 \leq k \leq n</m>, then the number <m>k</m>-element subsets of an <m>n</m> element set is equal to <me>\binom{n}{k} = \frac{n!}{(n-k)! \cdot k!} </me>.</p></statement>
 <proof><p>Proof 1: There are <m>k!</m> ways of ordering the elements of any <m>k</m> element set. Therefore,
@@ -48,7 +48,7 @@
 <m>\sum_{k=0}^n \binom{n}{k}</m>. In the case of <m>n = 5</m>, we get <m>2^5</m> so it is reasonable to expect that the general sum is <m>2^n</m>, and it is.  A logical argument to prove the general statment simply involves generalizing the previous example to <m>n</m> coin flips.</p>
 <example xml:id="committee-of-five"><title>A Committee of Five</title><statement><p>A committee usually starts as an unstructured set of people selected from a larger membership. Therefore, a committee can be thought of as a combination. If a club of 25 members has a five-member social committee, there are <m>\binom{25}{5}=\frac{25\cdot 24\cdot 23\cdot 22\cdot 21}{5!} = 53130</m> different possible social committees. If any structure or restriction is placed on the way the social committee is to be selected, the number of possible committees will probably change. For example, if the club has a rule that the treasurer must be on the social committee, then the number of possibilities is reduced to <m>\binom{24}{4}=\frac{24 23 22 21}{4!} = 10626</m>. </p>
 <p> If we further require that a chairperson other than the treasurer be selected for the social committee, we have  <m>\binom{24}{4} \cdot 4 = 42504</m> different possible social committees. The choice of the four non-treasurers accounts for the factor <m>\binom{24}{4}</m> while the need to choose a chairperson accounts for the 4.</p></statement></example>
-<example xml:id="extreme-binomial-cases"><title>Binomial Coefficients - Extreme Cases</title><statement><p>By simply applying the definition of a <xref ref="binomial-coefficient" autoname="title" /> as a number of subsets we see that there is <m>\binom{n}{0} = 1</m> way of choosing a combination of zero elements from a set of <m>n</m>. In addition, we see that   there is <m>\binom{n}{n} = 1</m> way of choosing a combination of <m>n</m> elements from a set of <m>n</m>. </p>
+<example xml:id="extreme-binomial-cases"><title>Binomial Coefficients - Extreme Cases</title><statement><p>By simply applying the definition of a <xref ref="binomial-coefficient" text="title" /> as a number of subsets we see that there is <m>\binom{n}{0} = 1</m> way of choosing a combination of zero elements from a set of <m>n</m>. In addition, we see that   there is <m>\binom{n}{n} = 1</m> way of choosing a combination of <m>n</m> elements from a set of <m>n</m>. </p>
 <p>We could compute these values using the formula we have developed, but no arithmetic is really needed here.  Other properties of binomial coefficients that can be derived using the subset definition will be seen in the exercises</p>
 </statement></example>
 </subsection>
@@ -79,7 +79,7 @@
 <li><p> With each successive term, exponents of <m>x</m> decrease by 1 as those of <m>y</m> increase by 1. For any term the sum of the exponents is <m>n</m>.</p></li>
 <li><p>  The coefficient of <m>x^{n-k} y^k</m> is <m>\binom{n}{k}</m>.</p></li>
 <li><p> The triangular array of binomial coefficients is called Pascal's triangle after the seventeenth-century French mathematician Blaise Pascal. Note that each number in the triangle other than the 1's at the ends of each row is the sum of the two numbers to the right and left of it in the row above.</p></li></ol></p>
-<theorem xml:id="binomial-theorem"><title>The Binomial Theorem</title><index><main>Binomial Theorem, The</main></index>
+<theorem xml:id="binomial-theorem"><title>The Binomial Theorem</title><idx>Binomial Theorem, The</idx>
 <statement><p> If <m>n \geq  0</m>, and <m>x</m> and <m>y</m> are numbers, then
 <me>(x+y)^{n} = \sum_{k=0}^n \binom{n}{k} x^{n-k} y^k</me>.</p>
 </statement>
@@ -96,7 +96,7 @@ Expand <m>(3 x - 2 )^{3}</m>.  If we replace <m>x</m>  and <m>y</m>  in the Bino
 </me>.</p>
 </statement></example>
 </subsection>
-<subsection  xml:id="sage-bridge-hands"><title>Sage Note</title><index><main>Sage Note</main><sub>bridge hands</sub></index>
+<subsection  xml:id="sage-bridge-hands"><title>Sage Note</title><idx><h>Sage Note</h><h>bridge hands</h></idx>
 <p>A bridge hand is a 13 element subset of a standard 52 card deck. The order in which the cards come to the player doesn't matter. From the point of view of a single player, the number of possible bridge hands is <m>\binom{52}{13}</m>, which can be easily computed with <m>Sage</m>.</p>
 <sage>
 <input>
@@ -151,7 +151,7 @@ binomial(52,13)*binomial(39,13)*binomial(26,13)
 <exercise number="9"><statement><p> How many five-card poker hands using 52 cards contain exactly two aces?</p></statement>
 <answer><p>\(C(4,2)C(48,3)\)</p>
 </answer></exercise>
-<exercise number="10"><statement><p>  In poker, a full house is three-of-a-kind and a pair in one hand; for example, three fives and two queens. How many full houses are possible from a 52-card deck?  You can use the sage cell in the <xref ref="sage-bridge-hands" autoname="title" /> to do this calculation, but also write your answer in terms of binomial coefficients. </p></statement>
+<exercise number="10"><statement><p>  In poker, a full house is three-of-a-kind and a pair in one hand; for example, three fives and two queens. How many full houses are possible from a 52-card deck?  You can use the sage cell in the <xref ref="sage-bridge-hands" text="title" /> to do this calculation, but also write your answer in terms of binomial coefficients. </p></statement>
 </exercise>
 <exercise number="11"><statement><p> A class of twelve computer science students are to be divided into three groups of 3, 4, and 5 students to work on a project. How many ways can this be done if every student is to be in exactly one group?</p></statement>
 <answer><p>\(C(12,3)\cdot C(9,4)\cdot C(5,5)\)</p>
@@ -202,7 +202,7 @@ binomial(52,13)*binomial(39,13)*binomial(26,13)
 <answer><p> \(1000^3 - 3 \cdot 2 \cdot 1000^2 +3 \cdot 2^2 \cdot 1000 - 2^3 = 999,400,119,992.\)</p>
 </answer>
 </exercise>
-<exercise number="18"><statement><p> In the card game Blackjack, there are one or more players and a dealer.  Initially, each player is dealt two cards and the dealer is dealt one card down and one facing up.  As in bridge, the order of the hands, but not the order of the cards in the hands, matters.  Starting with a single 52 card deck, and three players, how many ways can the first two cards be dealt out?  You can use the sage cell in the <xref ref="sage-bridge-hands" autoname="title" /> to do this calculation. </p></statement>
+<exercise number="18"><statement><p> In the card game Blackjack, there are one or more players and a dealer.  Initially, each player is dealt two cards and the dealer is dealt one card down and one facing up.  As in bridge, the order of the hands, but not the order of the cards in the hands, matters.  Starting with a single 52 card deck, and three players, how many ways can the first two cards be dealt out?  You can use the sage cell in the <xref ref="sage-bridge-hands" text="title" /> to do this calculation. </p></statement>
 </exercise>
 
 </exercises>

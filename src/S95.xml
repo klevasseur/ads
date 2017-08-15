@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <section xml:id="s-graph-optimization">
 <title>Graph Optimization</title>
-<index><main>Graph Optimization</main></index>
+<idx>Graph Optimization</idx>
 <introduction>
 <p>The common thread that connects all of the problems in this section is the desire to optimize (maximize or minimize) a quantity that is associated with a graph. We will concentrate most of our attention on two of these problems, the Traveling Salesman Problem and the Maximum Flow Problem. At the close of this section, we will discuss some other common optimization problems.</p>
 </introduction>
 <subsection xml:id="ss-weighted-graph"><title>Weighted Graphs</title>
 
-<definition xml:id="def-weighted-graph"><title>Weighted Graph</title><index><main>Weighted Graph</main></index><statement><p>A weighted graph, \((V, E, w)\), is a graph \((V, E)\) together with a weight function \(w: E \to \mathbb{R}\).
+<definition xml:id="def-weighted-graph"><title>Weighted Graph</title><idx>Weighted Graph</idx><statement><p>A weighted graph, \((V, E, w)\), is a graph \((V, E)\) together with a weight function \(w: E \to \mathbb{R}\).
 If \(e \in  E\), \(w(e)\) is the weight on edge \(e\).</p></statement></definition>
 
  
@@ -34,14 +34,14 @@ If \(e \in  E\), \(w(e)\) is the weight on edge \(e\).</p></statement></definiti
  </example>
 
 </subsection>
-<subsection xml:id="ss-traveling-salesman-problem"><title>The Traveling Salesman Problem</title><index><main>Traveling Salesman Problem, The</main></index>
+<subsection xml:id="ss-traveling-salesman-problem"><title>The Traveling Salesman Problem</title><idx>Traveling Salesman Problem, The</idx>
 <p>The Traveling Salesman Problem is, given a weighted graph, to find a circuit \(\left(e_1, e_2,\ldots ,e_n\right)\) that visits every vertex at least once and minimizes the sum of the weights, \(\sum_{i=1}^n w\left(e_i\right)\).  Any such circuit is called an  optimal path.</p>
 
 <p>Some statements of the Traveling Salesman Problem require that the circuit be Hamiltonian. In many applications, the graph in question
 will be complete and this restriction presents no problem.  If the weight on each edge is constant, for example, \(w(e) = 1\), then an optimal path would be any Hamiltonian circuit.</p>
 
 <example xml:id="ex-boston-salesman"><title>The problem of a Boston salesman</title><p> The Traveling Salesman Problem gets its name from the situation of a salesman who wants to minimize the number of miles that
-he travels in visiting his customers. For example, if a salesman from Boston must visit the other capital cities of New England, then the problem is to find a circuit in the weighted graph of <xref ref="ex-distance-graph" autoname="yes"/>. Note that distance and cost are clearly related in this case. In addition, tolls and traffic congestion might also be taken into account. 
+he travels in visiting his customers. For example, if a salesman from Boston must visit the other capital cities of New England, then the problem is to find a circuit in the weighted graph of <xref ref="ex-distance-graph" text="yes"/>. Note that distance and cost are clearly related in this case. In addition, tolls and traffic congestion might also be taken into account. 
 </p></example>
 
 
@@ -55,7 +55,7 @@ the closest neighbor to the starting point. At each vertex, the next vertex that
 approach typifies heuristic algorithms called  greedy algorithms, which attempt to solve a minimization (maximization) problem
 by minimizing (maximizing) the quantity associated with only the first step.</p>
 
-<algorithm xml:id="alg-closest-neighbor"><title>The Closest Neighbor Algorithm</title><index><main>Closest Neighbor Algorithm</main></index><statement> <p>Let \(G = (V, E, w)\) be a complete weighted graph with \(|V| = n\). The closest neighbor
+<algorithm xml:id="alg-closest-neighbor"><title>The Closest Neighbor Algorithm</title><idx>Closest Neighbor Algorithm</idx><statement> <p>Let \(G = (V, E, w)\) be a complete weighted graph with \(|V| = n\). The closest neighbor
 circuit through G starting at \(v_1\) is \(\left(v_1, v_2,\ldots ,v_n\right)\), defined by the steps:</p>
 <p><ol label="(1)">
 <li><p> \(V_1= V-\left\{v_1\right\}\).</p></li>
@@ -74,7 +74,7 @@ circuit through G starting at \(v_1\) is \(\left(v_1, v_2,\ldots ,v_n\right)\), 
 </statement>
 </algorithm>
 
-<example xml:id="ex-tsp-small-example"><title>A small example</title><p> The closest neighbor circuit starting at A in <xref ref="fig-small-tsp-example" autoname="yes" /> is \((1,3,2,4,1)\), with a cost of 29. The optimal path is \((1,2,3,4,1)\),
+<example xml:id="ex-tsp-small-example"><title>A small example</title><p> The closest neighbor circuit starting at A in <xref ref="fig-small-tsp-example" text="yes" /> is \((1,3,2,4,1)\), with a cost of 29. The optimal path is \((1,2,3,4,1)\),
 with a cost of 27.</p>
           <figure xml:id="fig-small-tsp-example">
                 <caption>A small example</caption>
@@ -90,10 +90,10 @@ with a cost of 27.</p>
 are the costs of optimal and closest neighbor circuits in a graph, then it is always the case that \(C_{opt}\leq C_{cn}\) or \(\frac{C_{cn}}{C_{opt}}\geq
 1\). We can assess how good the closest neighbor algorithm is by determining how small the quantity \(\frac{C_{cn}}{C_{opt}}\) gets.
 If it is always near 1, then the algorithm is good. However, if there are graphs for which it is large, then the algorithm may be discarded. Note
-that in <xref ref="ex-tsp-small-example" autoname="yes"/>, \(\frac{C_{cn}}{C_{opt}} = \frac{29}{27}\approx 1.074\). A 7 percent increase in cost may or may not be considered
+that in <xref ref="ex-tsp-small-example" text="yes"/>, \(\frac{C_{cn}}{C_{opt}} = \frac{29}{27}\approx 1.074\). A 7 percent increase in cost may or may not be considered
 significant, depending on the situation.</p>
 
-<example xml:id="ex-one-way-street"><title>The One-way Street</title><p> A salesman must make stops at vertices A, B, and C, which are all on the same one-way street. The graph in <xref ref="fig-directed-tsp-example" autoname="yes" /> is weighted by the function \(w(i, j)\) equal to the time it takes to drive from vertex <m>i</m> to vertex <m>j</m>.</p>
+<example xml:id="ex-one-way-street"><title>The One-way Street</title><p> A salesman must make stops at vertices A, B, and C, which are all on the same one-way street. The graph in <xref ref="fig-directed-tsp-example" text="yes" /> is weighted by the function \(w(i, j)\) equal to the time it takes to drive from vertex <m>i</m> to vertex <m>j</m>.</p>
        <figure xml:id="fig-directed-tsp-example">
                 <caption>Traveling a one-way street</caption>
                 <image width="100%" source="images/fig-directed-tsp-example.png">
@@ -158,7 +158,7 @@ There are \((n - 1)!\) such bijections.  Since a circuit and its reversal have t
 <heuristic xml:id="alg-strip-algorithm"><title>The Strip Algorithm</title><statement>
 <p> Given <m>n</m> points in the unit square:</p>
 <p>Phase 1:<ol label="(1)">
-<li><p>Divide the square into \(\left\lceil \sqrt{n/2}\right\rceil\) vertical strips, as in <xref ref="fig-strip-alg-tsp" autoname="yes" />. Let d be the width of each strip. If a point lies on a boundary between two strips, consider it part of the left-hand strip.</p></li>
+<li><p>Divide the square into \(\left\lceil \sqrt{n/2}\right\rceil\) vertical strips, as in <xref ref="fig-strip-alg-tsp" text="yes" />. Let d be the width of each strip. If a point lies on a boundary between two strips, consider it part of the left-hand strip.</p></li>
 <li><p>Starting from the left, find the first strip that contains one of the points. Locate the starting point by selecting the first point that is encountered in that strip as you travel from bottom to top. We will assume that the first point is \(\left(x_1,y_1\right)\)</p></li>
 <li xml:id="step-1-3"><p>Alternate traveling up and down the strips that contain vertices until all of the vertices have been reached.</p></li>
 <li><p>Return to the starting point.</p></li>
@@ -180,13 +180,13 @@ There are \((n - 1)!\) such bijections.  Since a circuit and its reversal have t
             </figure>
 
 <p>Step <xref ref="step-1-3"/> may need a bit more explanation. How do you travel up or down a strip? In most cases, the vertices in a strip will be vertically distributed so that the order in which they are visited is obvious. In some cases, however, the order might not be clear, as in the third strip in Phase I of
-<xref ref="fig-strip-alg-tsp" autoname="yes" />. Within a strip, the order in which you visit the points (if you are going up the strip) is determined thusly: \(\left(x_i,y_i\right)\)
+<xref ref="fig-strip-alg-tsp" text="yes" />. Within a strip, the order in which you visit the points (if you are going up the strip) is determined thusly: \(\left(x_i,y_i\right)\)
 precedes \(\left(x_j,y_j\right)\) if \(y_i &lt;y_j\) or if \(y_i=y_j\) and \(x_i &lt; x_j\) . In traveling down a strip, replace \(y_i &lt; y_j\) with \(y_i >y_j\).</p>
 
 
 <p>The selection of \(\left\lceil \sqrt{n/2}\right\rceil\) strips was made in a 1959 paper by Beardwood, Halton, and Hammersley. It balances the problems
 that arise if the number of strips is too small or too large. If the square is divided into too few strips, some strips may be packed with vertices
-so that visiting them would require excessive horizontal motion. If too many strips are used, excessive vertical motion tends to be the result. An update on what is known about this algorithm is contained in <xref ref="biblio-sopowit-1983" autoname="yes"/>.</p>
+so that visiting them would require excessive horizontal motion. If too many strips are used, excessive vertical motion tends to be the result. An update on what is known about this algorithm is contained in <xref ref="biblio-sopowit-1983" text="yes"/>.</p>
 
 
 
@@ -199,9 +199,9 @@ a time that is roughly a multiple of \(n \log  n\) time units when <m>n</m> poin
 (see Sopowit et al.).</p>
 
 </subsection>
-<subsection xml:id="ss-networks-and-flows"><title>Networks and the Maximum Flow Problem</title><index><main>Networks</main></index>
+<subsection xml:id="ss-networks-and-flows"><title>Networks and the Maximum Flow Problem</title><idx>Networks</idx>
 
-<definition xml:id="def-network"><title>Network</title><index><main>Network</main></index>
+<definition xml:id="def-network"><title>Network</title><idx>Network</idx>
 <statement><p> A network is a simple weighted directed graph that contains two distinguished vertices called the  source and the  sink with the properties that the indegree of the source and outdegree of the sink are both zero, and source is connected to sink.  The weight function on a network is the capacity function, which has positive weights. </p></statement></definition>
 
 
@@ -211,8 +211,8 @@ network. We can assume that the water that passes through a pipe in one minute i
 size of the pipe and the strength of the pump. This maximum rate of flow through a pipe is called its capacity and is the information that the weight
 function of a network contains.</p>
 
-<example xml:id="ex-city-water"><title>A City Water System</title><p> Consider the system that is illustrated in <xref ref="fig-water-system" autoname="yes" />. The numbers that appear next to each pipe indicate the capacity of
-that pipe in thousands of gallons per minute. This map can be drawn in the form of a network, as in <xref ref="fig-water-network" autoname="yes" />.
+<example xml:id="ex-city-water"><title>A City Water System</title><p> Consider the system that is illustrated in <xref ref="fig-water-system" text="yes" />. The numbers that appear next to each pipe indicate the capacity of
+that pipe in thousands of gallons per minute. This map can be drawn in the form of a network, as in <xref ref="fig-water-network" text="yes" />.
 </p>
            <figure xml:id="fig-water-system">
                 <caption>City Water System
@@ -259,11 +259,11 @@ The right-hand side indicates that you should add all of the flows through edges
 source. Therefore,
 \[\sum_{(v,\text{sink})\in E} f(v,\text{sink})-\sum_{(\text{source},v)\in E} f(\text{source},v) =0\]</p>
 </proof></theorem>
-<definition xml:id="def-value-of-flow"><title>The Value of a Flow</title><index><main>Value of a Flow</main></index> <notation><usage>V(f)</usage><description>The value of flow <m>f</m></description></notation>
-<statement><p>The two values <term>flow into the sink</term> and <term>flow out of the source</term> were proved to be equal in <xref ref="theorem-flow-inout" autoname="yes" /> and this common value is called the <term>value of the flow</term>. It is denoted by \(V(f)\). The value of a flow represents the amount of material that passes through the network with that flow.</p></statement></definition>
-<p>Since the Maximum Flow Problem consists of maximizing the amount of material that passes through a given network, it is equivalent to finding a flow with the largest possible value. Any such flow is called a <term>maximal flow</term><index><main>Maximal flow</main></index>.</p>
+<definition xml:id="def-value-of-flow"><title>The Value of a Flow</title><idx>Value of a Flow</idx> <notation><usage>V(f)</usage><description>The value of flow <m>f</m></description></notation>
+<statement><p>The two values <term>flow into the sink</term> and <term>flow out of the source</term> were proved to be equal in <xref ref="theorem-flow-inout" text="yes" /> and this common value is called the <term>value of the flow</term>. It is denoted by \(V(f)\). The value of a flow represents the amount of material that passes through the network with that flow.</p></statement></definition>
+<p>Since the Maximum Flow Problem consists of maximizing the amount of material that passes through a given network, it is equivalent to finding a flow with the largest possible value. Any such flow is called a <term>maximal flow</term><idx>Maximal flow</idx>.</p>
 
-<p>For the network in <xref ref="fig-water-network" autoname="yes"/>, one flow is \(f_1\), defined by \(f_1\left(e_1\right)=25\), \(f_1\left(e_2\right)=20\), \(f_1\left(e_3\right)=0\),
+<p>For the network in <xref ref="fig-water-network" text="yes"/>, one flow is \(f_1\), defined by \(f_1\left(e_1\right)=25\), \(f_1\left(e_2\right)=20\), \(f_1\left(e_3\right)=0\),
 \(f_1\left(e_4\right)= 25\), and \(f_1\left(e_5\right)=20\). The value of \(f_1\), \(V\left(f_1\right)\), is 45. Since the total flow into the sink
 can be no larger than 50 (\(w \left(e_4\right) + w \left(e_5\right) = 30 + 20\)), we can tell that \(f_1\) is not very far from the solution. Can
 you improve on \(f_1\) at all? The sum of the capacities into the sink can't always be obtained by a flow. The same is true for the sum of the
@@ -273,7 +273,7 @@ capacities out of the source. In this case, the sum of the capacities out of the
 In fact, there is an infinite number of maximal flows for this problem.</p>
 <p>There have been several algorithms developed to solve the Maximal Flow Problem. One of these is the Ford and Fulkerson Algorithm (FFA). The FFA consists of repeatedly finding paths in a network called flow augmenting paths until no improvement can be made in the flow that has been obtained.</p>
 
-<definition xml:id="def-flow-augmenting-path"><title>Flow Augmenting Path</title><index><main>Flow Augmenting Path</main></index>
+<definition xml:id="def-flow-augmenting-path"><title>Flow Augmenting Path</title><idx>Flow Augmenting Path</idx>
 <statement><p>Given a flow <m>f</m> in a network \((V, E)\), a flow augmenting path with respect to <m>f</m> is a simple path from the
 source to the sink using edges both in their forward and their reverse directions such that for each edge <m>e</m> in the path, \(w(e) - f(e) > 0\) if <m>e</m> is used in its forward direction and \(f(e) > 0\) if <m>e</m> is used in the reverse direction.
 </p></statement></definition>
@@ -282,7 +282,7 @@ source to the sink using edges both in their forward and their reverse direction
 
 
 <example xml:id="example-water-augmenting"><title>Augmenting City Water Flow</title>
-<p>For \(f_1\) in <xref ref="fig-water-network" autoname="yes" />, a flow augmenting path would be\(\left(e_2 , e_3 , e_4 \right)\) since
+<p>For \(f_1\) in <xref ref="fig-water-network" text="yes" />, a flow augmenting path would be\(\left(e_2 , e_3 , e_4 \right)\) since
 \(w\left(e_2\right)-f_1\left(e_2\right)= 15\), \(w\left(e_3\right)-f_1\left(e_3\right)=5\), and \(w\left(e_4\right)-f_1\left(e_4\right)=5\).</p>
 <p>These positive differences represent unused capacities, and the smallest value represents the amount of flow that can be added to each edge in the path. Note that by adding 5 to each edge in our path, we obtain \(f_2\), which is maximal. If an edge with a positive flow is used in its reverse direction, it is contributing a movement of material that is counterproductive to the objective of maximizing flow. This is why the
 algorithm directs us to decrease the flow through that edge.</p></example>
@@ -351,7 +351,7 @@ until you reach a <q>dead end</q> and then backtrack.</p></li>
 
 
 
-<example xml:id="ex-fap-1"><title>A flow augmenting path going against the flow</title><p> Consider the network in <xref ref="fig-flow-example-before" autoname="yes" />, where the current flow, <m>f</m>, is indicated by a labeling of the edges. </p>
+<example xml:id="ex-fap-1"><title>A flow augmenting path going against the flow</title><p> Consider the network in <xref ref="fig-flow-example-before" text="yes" />, where the current flow, <m>f</m>, is indicated by a labeling of the edges. </p>
 
             <figure xml:id="fig-flow-example-before">
                 <caption>Current Flow
@@ -364,7 +364,7 @@ until you reach a <q>dead end</q> and then backtrack.</p></li>
 <p>The path
 \(\left(Source, v_2 , v_1,v_3 , Sink\right)\) is a flow augmenting path that allows us to increase the flow by one
 unit. Note that \(\left(v_1,v_3\right)\) is used in the reverse direction, which is allowed because \(f\left(v_1,v_3\right)>0\). The value of
-the new flow that we obtain is 8. This flow must be maximal since the capacities out of the source add up to 8. This maximal flow is defined by <xref ref="fig-updated-flow" autoname="yes" />.</p>
+the new flow that we obtain is 8. This flow must be maximal since the capacities out of the source add up to 8. This maximal flow is defined by <xref ref="fig-updated-flow" text="yes" />.</p>
 
             <figure xml:id="fig-updated-flow">
                 <caption>Updated Flow
@@ -495,7 +495,7 @@ can be augmented by 2 units with \(s,a,g,k\).
 </statement>
 <answer><p><ol label="(a)"><li><p> Value of maximal flow \(=31\).</p></li>
 <li><p> Value of maximal flow \(=14\).</p></li>
-<li><p> Value of maximal flow \(=14\). See <xref ref="table-solution-9-5-7" autoname="yes"/> for one way to got this flow.</p></li>
+<li><p> Value of maximal flow \(=14\). See <xref ref="table-solution-9-5-7" text="yes"/> for one way to got this flow.</p></li>
 </ol></p>
 <table xml:id="table-solution-9-5-7">
 <tabular top="major" halign="center">
@@ -513,7 +513,7 @@ can be augmented by 2 units with \(s,a,g,k\).
 
 <exercise number="8"><statement>
 <p><ol label="(a)">
-<li><p>Find two maximal flows for the network in <xref ref="fig-flow-example-before" autoname="yes" /> other than the one found in the text.</p></li>
+<li><p>Find two maximal flows for the network in <xref ref="fig-flow-example-before" text="yes" /> other than the one found in the text.</p></li>
 <li><p>Describe the set of all maximal flows for the same network.</p></li>
 <li><p>Prove that if a network has two maximal flows, then it has an infinite number of maximal flows.</p></li>
 </ol></p>

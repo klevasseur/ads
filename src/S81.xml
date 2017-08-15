@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section xml:id="s-faces-of-recursion">
 <title>The Many Faces of Recursion</title>
-<index><main>Many Faces of Recursion, The</main></index>
+<idx>Many Faces of Recursion, The</idx>
 <introduction><p>Consider the following definitions, all of which should be somewhat familiar to you. When reading them, concentrate on how they are similar.</p></introduction>
 
-<subsection xml:id="ss-binomial-coefficients"><title>Binomial Coefficients</title><index><main>Polynomials and their evaluation</main></index>
+<subsection xml:id="ss-binomial-coefficients"><title>Binomial Coefficients</title><idx>Polynomials and their evaluation</idx>
 <p>Here is a recursive definition of binomial coefficients, which we introduced in Chapter 2.</p>
 
-<definition xml:id="def-binomial-coefficient-recursive"><title>Binomial Coefficient - Recursion Definition</title><index><main>Binomial Coefficient</main><sub>Recursive Definition</sub></index><statement><p>Assume \(n\geq 0\) and \(n \geq  k \geq  0\). We define \(\binom{n}{k} \) by</p>
+<definition xml:id="def-binomial-coefficient-recursive"><title>Binomial Coefficient - Recursion Definition</title><idx><h>Binomial Coefficient</h><h>Recursive Definition</h></idx><statement><p>Assume \(n\geq 0\) and \(n \geq  k \geq  0\). We define \(\binom{n}{k} \) by</p>
 <p><ul>
 <li><p>\(\binom{n}{0}  = 1\)</p></li>
 <li><p>\(\binom{n}{n} =1\) and</p></li>
 <li><p>\(\binom{n}{k}  = \binom{n-1}{k}+\binom{n-1}{k-1}\) if \(n > k > 0\)</p></li>
 </ul></p>
 </statement></definition>
-<observation><p>A word about definitions:  Strictly speaking, when mathematical objects such as binomial coefficents are defined, they should be defined just once.  Since we defined binomial coefficients earlier, in <xref ref="binomial-coefficient" autoname="yes" />, other statements describing them should be theorems.  The theorem, in this case, would be that the <q>definition</q> above is consistent with the original definition.   Our point in this chapter in discussing recursion is to observe alternative definitions that have a recursive nature.   In the exercises, you will have the opportunity to prove that the two definitions are indeed equivalent.
+<observation><p>A word about definitions:  Strictly speaking, when mathematical objects such as binomial coefficents are defined, they should be defined just once.  Since we defined binomial coefficients earlier, in <xref ref="binomial-coefficient" text="yes" />, other statements describing them should be theorems.  The theorem, in this case, would be that the <q>definition</q> above is consistent with the original definition.   Our point in this chapter in discussing recursion is to observe alternative definitions that have a recursive nature.   In the exercises, you will have the opportunity to prove that the two definitions are indeed equivalent.
 </p></observation>
 <p>Here is how we can apply the recursive definition to compute \(\binom{5}{2} \).
 <me>
@@ -31,9 +31,9 @@
 </me>
 </p>
 </subsection>			
-<subsection xml:id="ss-polynomials-and-their-evaluation"><title>Polynomials and Their Evaluation</title><index><main>Polynomials</main></index>
+<subsection xml:id="ss-polynomials-and-their-evaluation"><title>Polynomials and Their Evaluation</title><idx>Polynomials</idx>
 
-<definition xml:id="def-polynomial-expression-nonrecursive"><title>Polynomial Expression in <m>x</m> over <m>S</m> (Non-Recursive).</title><index><main>Polynomial Expression</main><sub>Non-recursive). </sub></index><statement><p>Let <m>n</m> be an integer, \(n\geq 0\). An \(n^{\text{th}}\) degree polynomial in <m>x</m> is an expression of the form \(a_nx^n+ a_{n-1}x^{n-1}+ \cdots  + a_1x+a_0\), where \(a_n, a_{n-1},\ldots ,a_1,a_0\) are elements of some designated set of numbers, <m>S</m>, called the set of coefficients and \(a_n\neq 0\).</p></statement></definition>
+<definition xml:id="def-polynomial-expression-nonrecursive"><title>Polynomial Expression in <m>x</m> over <m>S</m> (Non-Recursive).</title><idx><h>Polynomial Expression</h><h>Non-recursive). </h></idx><statement><p>Let <m>n</m> be an integer, \(n\geq 0\). An \(n^{\text{th}}\) degree polynomial in <m>x</m> is an expression of the form \(a_nx^n+ a_{n-1}x^{n-1}+ \cdots  + a_1x+a_0\), where \(a_n, a_{n-1},\ldots ,a_1,a_0\) are elements of some designated set of numbers, <m>S</m>, called the set of coefficients and \(a_n\neq 0\).</p></statement></definition>
 
 <p>We refer to <m>x</m> as a variable here, although the more precise term for <m>x</m> is an <em>indeterminate</em>. There is a distinction
 between the terms indeterminate and variable, but that distinction will not come into play in our discussions.</p>
@@ -57,7 +57,7 @@ f(7) &amp;= 4\cdot 7^3 + 2\cdot 7^2 - 8\cdot 7 + 9\\
 four terms; and adding/subtracting a list of <m>k</m> numbers requires \(k-1\) addition/subtractions. The following definition of a polynomial
 expression suggests another more efficient method of evaluation.</p>
 
-<definition xml:id="def-polynomial-expression-recursive"><title>Polynomial Expression in <m>x</m> over <m>S</m> (Recursive)</title><index><main>Polynomial Expression</main><sub>Recursive definition</sub></index>
+<definition xml:id="def-polynomial-expression-recursive"><title>Polynomial Expression in <m>x</m> over <m>S</m> (Recursive)</title><idx><h>Polynomial Expression</h><h>Recursive definition</h></idx>
 <statement><p>Let <m>S</m> be a set of coefficients and <m>x</m> a variable.</p> 
 <p><ol label="(a)">
 <li><p>A zeroth degree polynomial expression in <m>x</m> over <m>S</m> is a nonzero element of <m>S</m>.</p></li>
@@ -90,7 +90,7 @@ we need only three multiplications and three additions/subtractions. This is cal
 3x^4 +\text{  }2x^2 + x\)  would be represented with the list \(\{0,1,2,0,3,-1\}\). In both Mathematica and Sage, polynomial expressions can be entered and manipulated, so the list representation is only internal. Some lower-leveled languages do require users to program polynomial operations with lists. We will leave these programming issues to another source.</p>
 
 </subsection>
-<subsection xml:id="ss-recursive-searching"><title>Recursive Searching - The Binary Search</title><index><main>Recursive Searching</main></index><index><main>Binary Search</main></index>
+<subsection xml:id="ss-recursive-searching"><title>Recursive Searching - The Binary Search</title><idx>Recursive Searching</idx><idx>Binary Search</idx>
 
 
 <p>Next, we consider a recursive algorithm for a binary search within a sorted list of items.  Suppose  \(r=\{r(1),r(2) \ldots  , r(n)\}\) represent a list of
@@ -98,7 +98,7 @@ we need only three multiplications and three additions/subtractions. This is cal
 For example, each item might contain data on the buildings in a city and the key value might be the height of the building. Then \(r(1)\) would be the item for the tallest building and  \(r(1).\texttt{key}\) would be its height. The algorithm \(\texttt{BinarySearch}(j, k)\) can be applied to search for an item in <m>r</m> with key value
 <m>C</m>. This would be accomplished by the execution of \(\texttt{BinarySearch}(1, n)\). When the algorithm is completed, the variable \(\texttt{Found}\)
 will have a value of \(\texttt{true}\) if an item with the desired key value was found, and the value of \(\textrm{location}\) will be the index of an item whose key is
-\(C\). If \(\texttt{Found}\) keeps the value \(\texttt{false}\), no such item exists in the list. The general idea behind the algorithm is illustrated in <xref ref="fig-binsearch" autoname="yes"/></p>
+\(C\). If \(\texttt{Found}\) keeps the value \(\texttt{false}\), no such item exists in the list. The general idea behind the algorithm is illustrated in <xref ref="fig-binsearch" text="yes"/></p>
 
  <figure xml:id="fig-binsearch">
                 <caption>General Scheme for a Binary Search
@@ -143,7 +143,7 @@ found in position 4
 </sage>
 
 </subsection>
-<subsection xml:id="ss-recursive-sequences"><title>Recursively Defined Sequences</title><index><main>Sequences</main><sub>Recursively Defined</sub></index>
+<subsection xml:id="ss-recursive-sequences"><title>Recursively Defined Sequences</title><idx><h>Sequences</h><h>Recursively Defined</h></idx>
 
 <p>For the next two examples, consider a sequence of numbers to be a list of numbers consisting of a zeroth number, first number, second number, ... . If a sequence is given the name <m>S</m>, the \(k^{th}\) number of <m>S</m> is usually written \(S_k\)  or \(S(k)\).</p>
 
@@ -166,7 +166,7 @@ B_3 &amp;= 1.08 B_2 \\
 </p>
 </example>
 
-<example xml:id="ex-fibonacci-sequence"><title>The Fibonacci Sequence</title><index><main>Fibonacci Sequence</main></index><p>The Fibonacci sequence is the sequence <m>F</m> defined by 
+<example xml:id="ex-fibonacci-sequence"><title>The Fibonacci Sequence</title><idx>Fibonacci Sequence</idx><p>The Fibonacci sequence is the sequence <m>F</m> defined by 
 
 <me>F_0= 1 \textrm{, } F_1= 1\textrm{ and}</me> 
 
@@ -226,14 +226,14 @@ Either you find an item that you want, or the sublist that you have been left to
 <p>BinarySearch can be translated without much difficulty into any language that allows recursive calls to its subprograms. The advantage to such a program is that its coding would be much shorter than a nonrecursive program that does a binary search. However, in most cases the recursive version will be slower and require more memory at execution time.</p>
 </subsection>
 
-<subsection xml:id="ss-induction-and-recursion"><title>Induction and Recursion</title><index><main>Induction and Recursion</main></index>
+<subsection xml:id="ss-induction-and-recursion"><title>Induction and Recursion</title><idx>Induction and Recursion</idx>
 
 
 
 <p>The definition of the positive integers in terms of Peano's Postulates is a recursive definition. The basis element is the number 1 and the recursion is that if <m>n</m> is a positive integer, then so is its successor. In this case, <m>n</m> is the simple object and the recursion is of a forward type. Of course, the validity of an induction proof is based on our acceptance of this definition. Therefore, the appearance of induction proofs
 when recursion is used is no coincidence.</p>
 
-<example xml:id="ex-geometric-squence-proof"><title>Proof of a formula for <m>B</m></title><p>A formula for the sequence <m>B</m> in <xref ref="ex-geometric-growth" autoname="yes"/> is \(B = 100(1.08)^k\) for \(k\geq 0\). A proof by induction follow.</p>
+<example xml:id="ex-geometric-squence-proof"><title>Proof of a formula for <m>B</m></title><p>A formula for the sequence <m>B</m> in <xref ref="ex-geometric-growth" text="yes"/> is \(B = 100(1.08)^k\) for \(k\geq 0\). A proof by induction follow.</p>
 <p>If \(k= 0\), then \(B = 100(1.08)^0 = 100\), as defined. Now assume that for some \(k\geq 1\), the formula for \(B_k\) is true.
 
 <me>
@@ -247,7 +247,7 @@ hence the formula is true for \(k+1\)</p>
 <p>The formula that we have just proven for <m>B</m> is called a closed form expression. It involves no recursion or summation signs.</p>
 </example>
 
-<definition xml:id="def-closed-form-expression"><title>Closed Form Expression.</title><index><main>Closed Form Expression.</main></index><statement><p> Let \(E = E\left(x_1, x_2, \ldots ,x_n\right)\) be an algebraic expression involving variables
+<definition xml:id="def-closed-form-expression"><title>Closed Form Expression.</title><idx>Closed Form Expression.</idx><statement><p> Let \(E = E\left(x_1, x_2, \ldots ,x_n\right)\) be an algebraic expression involving variables
 \(x_1, x_2, \ldots ,x_n\) which are allowed to take on values from some predetermined set. <m>E</m> is a <term>closed form expression</term> if there exists a number <m>T</m> such that the evaluation of <m>E</m> with any allowed values of the variables will take no more than <m>T</m> operations (alternatively, <m>T</m> time units).</p></statement></definition>
 
 
@@ -306,7 +306,7 @@ by induction that \(L_k=7-2^{k+1}\).</p>
 </statement>
 <answer><p>The basis is not reached in a finite number of steps if you try to compute \(f(x)\) for a nonzero value of \(x\).</p></answer>
 </exercise>
-<exercise number="6"><statement><p>Prove the two definitions of binomials coefficients, <xref ref="binomial-coefficient" autoname="yes" /> and <xref ref="def-binomial-coefficient-recursive" autoname="yes"/>, are equivalent.</p></statement>
+<exercise number="6"><statement><p>Prove the two definitions of binomials coefficients, <xref ref="binomial-coefficient" text="yes" /> and <xref ref="def-binomial-coefficient-recursive" text="yes"/>, are equivalent.</p></statement>
 </exercise>
 <exercise number="7" xml:id="exercise-binomial-sum"><statement><p>Prove by induction that if <m>n >= 0</m>,
 <m>\sum_{k=0}^n \binom{n}{k} = 2^n</m></p></statement>

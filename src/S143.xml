@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <section xml:id="s-automata-finite-state-machines">
 <title>Automata, Finite-State Machines</title>
-<index><main>Automata</main></index>
-<index><main>Finite-State Machines</main></index>
+<idx>Automata</idx>
+<idx>Finite-State Machines</idx>
 
 <p>In this section, we will introduce the concept of an abstract machine. The machines we will examine will (in theory) be capable of performing many
 of the tasks associated with digital computers. One such task is solving the recognition problem for a language. We will concentrate on one class
@@ -14,7 +14,7 @@ in a regular grammar.</p>
 <p>The typical abstract machine includes an input device, the read head, which is capable of reading the symbol from the segment of the input tape that is currently in the read head. Some more advanced machines have a read/write head that can also write symbols onto the tape. The movement of the input tape after reading a symbol depends on the machine. With a finite-state machine, the next segment of the input tape is always moved into the read head after a symbol has been read. Most machines (including finite-state machines) also have a separate output tape that is written on with a write head. The output symbols come from an output alphabet, <m>Z</m>, that may or may not be equal to the input alphabet. The most significant component of an abstract machine is its memory structure. This structure can range from a finite number of bits of memory (as in a finite-state machine) to an infinite amount of memory that can be stored in the form of a tape that can be read from and written on (as in a Turing machine).</p>
 
 <definition xml:id="def-finite-state-machine"><title>Finite-State Machine</title>
-<index><main>Finite-State Machine</main></index>
+<idx>Finite-State Machine</idx>
 <notation><usage>(S, X, Z, w, t)</usage><description>A finite-state machine with states \(S\), input alphabet \(X\), output alphabet \(X\), and output function \(w\) and next-state function \(t\)</description></notation>
 <statement><p>A finite-state machine is defined by a quintet.  \((S, X, Z, w, t)\) where
 <ol label="(1)">
@@ -83,7 +83,7 @@ the last character is a 0, we know that the input string has even parity.</p>
 <p>An alternate method for defining a finite-state machine is with a transition diagram. A transition diagram.  is a directed graph that contains
 a node for each state and edges that indicate the transition and output functions. An edge \(\left(s_i,s_j\right)\) that is labeled \(x/z\) indicates
 that in state \(s_i\) the input <m>x</m> results in an output of <m>z</m> and the next state is \(s_j\). That is, \(w\left(x, s_i\right)=z\)
-and \(t\left(x, s_i\right)=s_j\). The transition diagram for the parity checker appears in <xref ref="fig-parity-checker" autoname="yes" />. In later examples, we will see that if there are different inputs, \(x_i\) and \(x_j\), while in the same state resulting in the same transitions and outputs, we label a single edge \(x_i, \left.x_j\right/z\) instead of drawing two edges with labels \(\left.x_i\right/z\) and \(\left.x_j\right/z\).</p>
+and \(t\left(x, s_i\right)=s_j\). The transition diagram for the parity checker appears in <xref ref="fig-parity-checker" text="yes" />. In later examples, we will see that if there are different inputs, \(x_i\) and \(x_j\), while in the same state resulting in the same transitions and outputs, we label a single edge \(x_i, \left.x_j\right/z\) instead of drawing two edges with labels \(\left.x_i\right/z\) and \(\left.x_j\right/z\).</p>
 
             <figure xml:id="fig-parity-checker">
                 <caption>Transition Diagram for a Parity Checker
@@ -100,7 +100,7 @@ machine has no way of recovering the output sequence for later use.</p>
 <example xml:id="ex-baseball-machine"><title>A Baseball Machine</title><p>Consider the following simplified version of the game of baseball. To be precise, this machine describes one half-inning of
 a simplified baseball game. Suppose that in addition to home plate, there is only one base instead of the usual three bases. Also, assume that there are only two outs per inning instead of the usual three. Our input alphabet will consist of the types of hits that the batter could have: out (O), double play (DP), single (S), and home run (HR). The input DP is meant to represent a batted ball that would result in a double play (two outs), if possible. The input DP can then occur at any time. The output alphabet is the numbers 0, 1, and 2 for the number of runs that can be scored as
 a result of any input. The state set contains the current situation in the inning, the number of outs, and whether a base runner is currently on the base. The list of possible states is then 00 (for 0 outs and 0 runners), 01, 10, 11, and end (when the half-inning is over). The transition diagram
-for this machine appears in <xref ref="fig-baseball-machine" autoname="yes" /></p>
+for this machine appears in <xref ref="fig-baseball-machine" text="yes" /></p>
 
          <figure xml:id="fig-baseball-machine">
                 <caption>Transition Diagram for a simplified game of baseball
@@ -119,7 +119,7 @@ three outs per inning, this graph would only be marginally more complicated. The
 
 <example xml:id="ex-problem-recognition-in-reg-languages"><title>Recognition in Regular Languages</title>
 <p>As we mentioned at the outset of this section, finite-state machines can recognize strings in a regular language. Consider the language \(L\) over \(\{a,b,c\}\) that contains the strings of positive length in which each <m>a</m> is followed by <m>b</m> and each <m>b</m> is followed by <m>c</m>. One such string is \(bccabcbc\). This language is regular. A grammar for the language would be nonterminal symbols \(\{A,B,C\}\)
-with starting symbol <m>C</m> and production rules \(A\to bB\), \(B\to cC\), \(C\to aA\), \(C\to bB\), \(C \to cC\), \(C \to c\). A finite-state machine (<xref ref="fig-recognition-machine" autoname="yes" />) that recognizes this language
+with starting symbol <m>C</m> and production rules \(A\to bB\), \(B\to cC\), \(C\to aA\), \(C\to bB\), \(C \to cC\), \(C \to c\). A finite-state machine (<xref ref="fig-recognition-machine" text="yes" />) that recognizes this language
 can be constructed with one state for each nonterminal symbol and an additional state (Reject) that is entered if any invalid production takes place. At the end of an input tape that encodes a string in \(\{a,b,c\}^*\), we will know when the string belongs to <m>L</m> based on the final output. If the final output is 1, the string belongs to <m>L</m> and if it is 0, the string does not belong to <m>L</m>. In addition, recognition can be accomplished by examining the final state of the machine. The input string belongs to the language if and only if the final state is \(C\).</p>
         <figure xml:id="fig-recognition-machine">
                 <caption>
@@ -138,7 +138,7 @@ example, \(C\to bB\) indicates that in State <m>C</m>, an input of <m>b</m> plac
 \[a_0b_0\left(a_0+_2b_0\right) ,a_1b_1\left(a_1+_2b_1\right) \ldots  , a_nb_n\left(a_n+_2b_n\right),111\]</p>
 
 <p>Notice the special input 111 at the end. All possible inputs except the last one must even parity (contain an even number of ones). The output sequence is the sum of <m>a</m> and <m>b</m>, starting with the units digit, and comes from the set \(\{0,1,\lambda \}\). The transition diagram
-for this machine appears in <xref ref="fig-binary-adder" autoname="yes" />.</p>
+for this machine appears in <xref ref="fig-binary-adder" text="yes" />.</p>
 
     <figure xml:id="fig-binary-adder">
                 <caption>Transition Diagram for a binary adder
@@ -175,7 +175,7 @@ for this machine appears in <xref ref="fig-binary-adder" autoname="yes" />.</p>
 </answer>
 </exercise>
 <exercise number="2"><statement> <p>  Construct finite-state machines that recognize the regular languages that you identified in Section 14.2.</p></statement></exercise>
-<exercise number="3"><statement><p>  What is the input set for the binary adding machine in <xref ref="ex-binary-adder" autoname="yes" />?</p>
+<exercise number="3"><statement><p>  What is the input set for the binary adding machine in <xref ref="ex-binary-adder" text="yes" />?</p>
 </statement>
 <answer><p>  \(\{000, 011, 101, 110, 111\}\)
 </p></answer>

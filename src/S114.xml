@@ -10,7 +10,7 @@
 <p>We start with a theorem about integer division that is intuitively clear.  We leave the proof as an  exercise.</p>
 
 <theorem xml:id="th-division-property"><title>The Division Property for Integers</title>
-<index><main>Division Property for Integers</main></index>
+<idx>Division Property for Integers</idx>
 <statement><p>If \(m, n\in \mathbb{Z}\), \(n>0\), then there exist two unique integers, <m>q</m> (the quotient) and <m>r</m> (the remainder), such that \(m = n q + r\) and \(0 \leq  r &lt; n\).</p></statement></theorem>
 
 <note><p>The division property says that if <m>m</m> is divided by <m>n</m>, you will obtain a quotient and a remainder, where the remainder is less than <m>n</m>. This is a fact that most elementary school students learn when they are introduced to long division. In doing the division problem \(1986 \div  97\), you obtain a quotient of 20 and a remainder of 46.  This result could either be written \(\frac{1986}{97}= 20+\frac{46}{97}\) or  \(1986 = 97\cdot 20 + 46\).  The latter form is how the division property is normally expressed in higher mathematics.</p></note>
@@ -34,7 +34,7 @@ but  \(4\nmid 18\).</p>
 <p>Caution:  Don't confuse the <q>divides</q> symbol with the <q>divided by</q> symbol.  The former is vertical while the later is slanted.   Notice however that the statement \(2 \mid 18\) is related to the fact that \(18/2\) is a whole number.</p>
 
 <definition xml:id="def-gcd"><title>Greatest Common Divisor</title>
-<index><main>Greatest Common Divisor (<m>\gcd</m>) </main></index>
+<idx>Greatest Common Divisor (<m>\gcd</m>) </idx>
 <notation><usage>\gcd(a,b)</usage><description>the greatest common divisor of <m>a</m> and <m>b</m></description></notation><statement><p>Given two integers, <m>a</m> and <m>b</m>, not both zero, the greatest common divisor of <m>a</m> and <m>b</m> is the positive integer
 <m>g=\gcd(a,b)</m> such that  \(g \mid a\),  \(g\mid b\), and
 \[ c\mid a \textrm{ and } c \mid b \Rightarrow c \mid g\]
@@ -49,7 +49,7 @@ but  \(4\nmid 18\).</p>
 <p>Some pairs of integers have no common divisors other than 1.  Such pairs are called <em>relatively prime
 pairs</em>.</p>
 <definition xml:id="def-def-rel-prime"><title>Relatively Prime</title>
-<index><main>Relatively Prime</main></index>
+<idx>Relatively Prime</idx>
 <statement><p>A pair of integers, <m>a</m> and <m>b</m> are relatively prime if <m>\gcd(a, b)=1</m></p></statement></definition>
 
 <p>For example, \(128=2^7\) and \(135=3^3\cdot 5\) are relatively prime.    Notice that neither 128 nor 135 are primes.   In general, <m>a</m> and <m>b</m> need not be prime in order to be relatively prime.  However, if you start with a prime, like 23, for example, it will be relatively prime to everything but its multiples.  This theorem, which we prove later generalizes this observation.</p>
@@ -58,7 +58,7 @@ pairs</em>.</p>
 <statement><p>If <m>p</m> is a prime and <m>a</m> is any integer such that \(p\nmid a\)  then \(\gcd(a, p) = 1\)</p></statement></theorem>
 
 </subsection>
-<subsection xml:id="sss-euclidean-algorithm"><title>The Euclidean Algorithm</title><index><main>Euclidean Algorithm, The </main></index>
+<subsection xml:id="sss-euclidean-algorithm"><title>The Euclidean Algorithm</title><idx>Euclidean Algorithm, The </idx>
 
 <p>As early as Euclid's time it was known that factorization wasn't the best way to compute greatest common divisors.</p>
 <p>The Euclidean Algorithm is based on the following properties of the greatest common divisor.
@@ -67,7 +67,7 @@ pairs</em>.</p>
 <mrow xml:id="eq-euclid-recursion">\gcd(a, b)= \gcd(b, r)\textrm{   if } b\neq 0\textrm{   and }a = b q + r</mrow>
 </mdn></p>
 
-<p>To compute \(\gcd(a,b)\), we divide <m>b</m> into <m>a</m> and get a remainder <m>r</m> such that \(0\leq  r &lt;\lvert b\rvert \).  By the property above, \(\gcd(a, b)= \gcd(b, r)\).  We repeat the process until  we get zero for a remainder.  The last nonzero number that is the second entry in our pairs is the greatest common divisor.   This is inevitable because the second number in each pair is smaller than the previous one.  <xref ref="table-euclidean-example" autoname="yes" /> shows an example of how this calculation can be systematically performed.</p>
+<p>To compute \(\gcd(a,b)\), we divide <m>b</m> into <m>a</m> and get a remainder <m>r</m> such that \(0\leq  r &lt;\lvert b\rvert \).  By the property above, \(\gcd(a, b)= \gcd(b, r)\).  We repeat the process until  we get zero for a remainder.  The last nonzero number that is the second entry in our pairs is the greatest common divisor.   This is inevitable because the second number in each pair is smaller than the previous one.  <xref ref="table-euclidean-example" text="yes" /> shows an example of how this calculation can be systematically performed.</p>
 
 <table xml:id="table-euclidean-example">
 <caption>A Table to Compute \(\gcd(99,53)\)</caption>
@@ -122,7 +122,7 @@ and the <m>y</m> values on top.</p>
 <theorem xml:id="theorem-11-4-1"><title></title>
 <statement><p>If <m>a</m> and <m>b</m> are positive integers, the smallest positive value of \(a x + b y\) is the greatest common
 divisor of <m>a</m> and <m>b</m>, \(\gcd(a,b)\).</p></statement>
-<proof><p>If  \(g = \gcd(a, b)\), since \(g \mid a\) and  \(g \mid b\), we know that  \(g \mid (a x + b y)\) for any integers <m>x</m> and <m>y</m>, so \(a x + b y\) can't be less than <m>g</m>.  To show that <m>g</m> is exactly the least positive value, we show that <m>g</m> can be attained by extending the Euclidean Algorithm.  Performing the extended algorithm involves building a table of numbers.  The way in which it is built  maintains an invariant, and by <xref ref="th-invariant-relation-theorem" autoname="title" />, we can be sure that the desired values of <m>x</m> and <m>y</m> are produced. </p>
+<proof><p>If  \(g = \gcd(a, b)\), since \(g \mid a\) and  \(g \mid b\), we know that  \(g \mid (a x + b y)\) for any integers <m>x</m> and <m>y</m>, so \(a x + b y\) can't be less than <m>g</m>.  To show that <m>g</m> is exactly the least positive value, we show that <m>g</m> can be attained by extending the Euclidean Algorithm.  Performing the extended algorithm involves building a table of numbers.  The way in which it is built  maintains an invariant, and by <xref ref="th-invariant-relation-theorem" text="title" />, we can be sure that the desired values of <m>x</m> and <m>y</m> are produced. </p>
 </proof></theorem>
 
 
@@ -130,7 +130,7 @@ divisor of <m>a</m> and <m>b</m>, \(\gcd(a,b)\).</p></statement>
 
 
 
-<p>To illustrate the algorithm, <xref ref="table-x-euclidean-example" autoname="yes" /> displays how to compute
+<p>To illustrate the algorithm, <xref ref="table-x-euclidean-example" text="yes" /> displays how to compute
  <m>\gcd(152,53)</m>.   In the <m>r</m> column, you will find 152 and 53, and then the successive remainders from division.  So each number in <m>r</m> after the first two is the remainder after dividing the number immediately above it into the next number up.  To the left of each remainder is the quotient from the division.  In this case the third row of the table tells us that \(152 = 53\cdot 2 + 46\). The last nonzero value in <m>r</m> is the greatest common divisor.  </p>
 
 <table xml:id="table-x-euclidean-example">
@@ -190,12 +190,12 @@ Look closely at the equations for \(r_i, s_i, \textrm{ and } t_i\).  Their forms
 to compute <m>s</m> and <m>t</m> values quickly.</p>
 
 </subsection>
-<subsection xml:id="ss-modular-arithmetic"><title>Modular Arithmetic</title><index><main>Modular Arithmetic</main></index>
-<p>We remind you of the relation on the integers that we call <xref ref="def-congruence-mod-m" autoname="yes" />.
+<subsection xml:id="ss-modular-arithmetic"><title>Modular Arithmetic</title><idx>Modular Arithmetic</idx>
+<p>We remind you of the relation on the integers that we call <xref ref="def-congruence-mod-m" text="yes" />.
 If two numbers, <m>a</m> and <m>b</m>, differ by a multiple of <m>n</m>. we say that they are congruent modulo <m>n</m>, denoted \(a \equiv  b\pmod{n}\). For example, \(13 \equiv  38\pmod{5}\) because <m>13-38 = -25</m>, which is a multiple of 5.</p>
 
 <definition xml:id="def-def-modular-addition"><title>Modular Addition</title>
-<index><main>Modular Addition</main></index>
+<idx>Modular Addition</idx>
 <notation><usage>a +_n b</usage><description>the mod <m>n</m> sum of <m>a</m> and <m>b</m></description></notation>
 <statement><p>If <m>n</m> is a positive integer, we define addition modulo <m>n</m> \(\left(+_n\right.\))
  as follows. If \(a, b \in  \mathbb{Z}\),
@@ -203,7 +203,7 @@ If two numbers, <m>a</m> and <m>b</m>, differ by a multiple of <m>n</m>. we say 
 </statement></definition>
 
 <definition xml:id="def-def-modular-multiplication"><title>Modular Multiplication</title>
-<index><main>Modular Multiplication</main></index>
+<idx>Modular Multiplication</idx>
 <notation><usage>a \times_n b</usage><description>the mod <m>n</m> product of <m>a</m> and <m>b</m></description></notation>
 <statement><p>If <m>n</m> is a positive integer, we define  multiplication modulo <m>n</m> \(\left(\times_n\right.\)) as follows. If \(a, b \in  \mathbb{Z}\),
 \[a \times_n b = \textrm{ the remainder after } a \cdot b \textrm{ is divided by } n\]</p>
@@ -220,7 +220,7 @@ If two numbers, <m>a</m> and <m>b</m>, differ by a multiple of <m>n</m>. we say 
 </p>
 </note>
 </subsection>
-<subsection xml:id="ss-properties-modular-arithmetic"><title>Properties of Modular Arithmetic</title><index><main>Modular Arithmetic</main><sub>Properties</sub></index>
+<subsection xml:id="ss-properties-modular-arithmetic"><title>Properties of Modular Arithmetic</title><idx><h>Modular Arithmetic</h><h>Properties</h></idx>
 
 
 <p>Addition modulo <m>n</m> is always commutative and associative; 0 is the identity for \(+_n\) and every element of \(\mathbb{Z}_n\) has an additive
@@ -246,7 +246,7 @@ procedure is to retain the seven lowest-ordered digits. The result of adding 56 
 </ol>
 </p></example>
 </subsection>
-<subsection xml:id="ss-sage-modular"><title>Sage Note - Modular Arithmetic</title><index><main>Sage Note</main><sub>Modular Arithmetic</sub></index>
+<subsection xml:id="ss-sage-modular"><title>Sage Note - Modular Arithmetic</title><idx><h>Sage Note</h><h>Modular Arithmetic</h></idx>
 <p>Sage inherits the basic integer division functions from Python that compute a quotient and remainder in integer division.  For example, here is how to divide 561 into 2017 and get the quotient and remainder.</p>
 <sage>
 <input>
@@ -404,12 +404,12 @@ a list containing the mod 6 sum and product, respectively, of 5 and 4:</p>
 <ol label="(a)">
 <li><p>Write out the operation table for \(\times_8\) on \(\{1,3,5,7\}\), and convince your self that this is a group.</p></li>
 <li><p>Let \(U(\mathbb{Z}_{n})\) be the elements of \(\mathbb{Z}_{n}\) that have inverses with respect to \(\times_{n}\).  Convince yourself that \(U(\mathbb{Z}_{n})\) is a group under \(\times_{n}\). </p></li>
-<li><p>Prove that the elements of \(U(\mathbb{Z}_{n})\)  are those elements  \(a\in \mathbb{Z}_{n} \) such that \(\gcd(n,a)=1\).  You may use  <xref ref="theorem-11-4-1" autoname="yes"/> in this proof.</p></li>
+<li><p>Prove that the elements of \(U(\mathbb{Z}_{n})\)  are those elements  \(a\in \mathbb{Z}_{n} \) such that \(\gcd(n,a)=1\).  You may use  <xref ref="theorem-11-4-1" text="yes"/> in this proof.</p></li>
 </ol>
 </p>
 </statement>
 </exercise> 
-<exercise number="10"><statement><p> Prove the division property, <xref ref="th-division-property" autoname="yes"/>.
+<exercise number="10"><statement><p> Prove the division property, <xref ref="th-division-property" text="yes"/>.
 </p></statement>
 <hint>
 <p>Prove by induction on <m>m</m> that you can divide any positive integer into <m>m</m>. That is, let \(p(m)\) be <q>For all
