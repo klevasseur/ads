@@ -44,7 +44,7 @@ below, concerned the existence of paths and circuits like those sought in Koenig
 name.</p>
 
 <definition xml:id="def-eulerian-paths-circuits-graphs"><title>Eulerian Paths, Circuits, Graphs</title><idx>Eulerian Paths, Circuits, Graphs</idx><statement><p> A Eulerian path through a graph is a path whose edge list contains each edge of the graph exactly
-once. If the path is a circuit, then it is called a Eulerian circuit. A Eulerian graph is a graph that possesses a Eulerian path.</p></statement></definition>
+once. If the path is a circuit, then it is called a Eulerian circuit. A Eulerian graph is a graph that possesses a Eulerian circuit.</p></statement></definition>
 
 
 
@@ -62,24 +62,19 @@ degree. This follows from the following theorem.
 
 <theorem xml:id="theorem-euler-theorem-general"><title>Euler's Theorem: General Case</title>
 <idx>Euler's Theorem</idx>
-<statement><p>An undirected graph is Eulerian if and only if it is connected and has either zero or two vertices with an odd degree. If no vertex has an odd degree, then the graph has a Eulerian circuit.</p></statement>
+<statement><p>An undirected graph has an Eulerian path  if and only if it is connected and has either zero or two vertices with an odd degree. If no vertex has an odd degree, then the graph is Eulerian.</p></statement>
 <proof><p>It can be proven by induction that the number of vertices in an undirected graph that have an odd degree must be even. We will leave
 the proof of this fact to the reader as an exercise. The necessity of having either zero or two vertices of odd degree is clear from the proof of
-the Koenigsberg case of this theorem. Therefore, we will concentrate on proving that this condition is sufficient to ensure that a graph is Eulerian.
+the Koenigsberg case of this theorem. Therefore, we will concentrate on proving that this condition is sufficient to ensure that a graph has an Eulerian path.
 Let <m>k</m> be the number of vertices with odd degree.</p>
 
 <p> Phase 1. If \(k = 0\), start at any vertex, \(v_0\), and travel along any path, not using any edge twice. Since each vertex has an even
-degree, this path can always be continued past each vertex that you reach except \(v_0\). The result is a circuit that includes \(v_0\). If \(k =
-2\), let \(v_0\) be either one of the vertices of odd degree. Trace any path starting at \(v_0\) using up edges until you can go no further, as in
-the \(k = 0\) case. This time, the path that you obtain must end at the other vertex of odd degree that we will call \(v_1\).  At the end of Phase
-1, we have an initial path that may or may not be Eulerian. If it is not Eulerian, Phase 2 can be repeated until all of the edges have been used.
-Since the number of unused edges is decreased in any use of Phase 2, a Eulerian path must be obtained in a finite number of steps.</p>
+degree, this path can always be continued past each vertex that you reach except \(v_0\). The result is a circuit that includes \(v_0\). If \(k =2\), let \(v_0\) be either one of the vertices of odd degree. Trace any path starting at \(v_0\) using up edges until you can go no further, as in
+the \(k = 0\) case. This time, the path that you obtain must end at the other vertex of odd degree that we will call \(v_1\).  At the end of Phase 1, we have an initial path that may or may not be Eulerian. If it is not Eulerian, Phase 2 can be repeated until all of the edges have been used.  Since the number of unused edges is decreased in any use of Phase 2, a Eulerian path must be obtained in a finite number of steps.</p>
 
 <p> Phase 2. As we enter this phase, we have constructed a path that uses a proper subset of the edges in our graph. We will refer to this
 path as the current path. Let <m>V</m> be the vertices of our graph, <m>E</m> the edges, and \(E_u\) the edges that have been used in the current
-path. Consider the graph \(G' = \left(V, E - E_u\right)\).  Note that every vertex in \(G'\) has an even degree. Select any edge, \textit{
-e}, from \(G'.\) Let \(v_a\) and \(v_b\) be the vertices that <m>e</m> connects. Trace a new path starting at \(v_a\) whose first edge is \textit{
-e}. We can be sure that at least one vertex of the new path is also in the current path since \((V, E)\) is connected. Starting at \(v_a\), there
+path. Consider the graph \(G' = \left(V, E - E_u\right)\).  Note that every vertex in \(G'\) has an even degree. Select any edge, \(e\), from \(G'.\) Let \(v_a\) and \(v_b\) be the vertices that <m>e</m> connects. Trace a new path starting at \(v_a\) whose first edge is \(e\). We can be sure that at least one vertex of the new path is also in the current path since \((V, E)\) is connected. Starting at \(v_a\), there
 exists a path in \((V, E)\) to any vertex in the current path. At some point along this path, which we can consider the start of the new path, we
 will have intersected the current path. Since the degree of each vertex in \(G'\) is even, any path that we start at \(v_a\) can be continued until it
 is a circuit. Now, we simply augment the current path with this circuit. As we travel along the current path, the first time that we intersect the
@@ -96,8 +91,7 @@ new path, we travel along it (see <xref ref="fig-path-augmentation" text="type-g
 
 <p>If the result of this phase is a Eulerian path, then we are finished; otherwise, repeat this phase.</p> </proof></theorem>
 
-<example xml:id="ex-complete-eulerian"><title>Complete Eulerian Graphs</title><p>The complete undirected graphs \(K_2\) and \(K_{2n+1}\), \(n = 1, 2, 3, \ldots\). .., are Eulerian. If \(n>1\), then \(K_{2n}\)
-is not Eulerian.
+<example xml:id="ex-complete-eulerian"><title>Complete Eulerian Graphs</title><p>The complete undirected graphs  \(K_{2n+1}\), \(n = 1, 2, 3, \ldots\). .., are Eulerian. If \(n \geq 1\), then \(K_{2n}\) is not Eulerian.
 </p></example>
  
 </subsection>
@@ -116,7 +110,7 @@ is not Eulerian.
             </figure>
 
 <definition xml:id="def-hamiltonian-path-circuit-graph"><title>Hamiltonian Path, Circuit, and Graphs</title><idx>Hamiltonian Paths, Circuits, and Graphs</idx>
-<statement><p>A Hamiltonian path through a graph is a path whose vertex list contains each vertex of the graph exactly once, except if the path is a circuit, in which case the initial vertex appears a second time as the terminal vertex. If the path is a circuit, then it is called a Hamiltonian circuit. A Hamiltonian graph is a graph that possesses a Hamiltonian path.</p></statement></definition>
+<statement><p>A Hamiltonian path through a graph is a path whose vertex list contains each vertex of the graph exactly once, except if the path is a circuit, in which case the initial vertex appears a second time as the terminal vertex. If the path is a circuit, then it is called a Hamiltonian circuit. A Hamiltonian graph is a graph that possesses a Hamiltonian circuit.</p></statement></definition>
 
 
 <example xml:id="ex-dodec-graph"><title>The Original Hamiltonian Graph</title><p><xref ref="fig-dodec-graph" text="type-global"/> shows a graph that is Hamiltonian. In fact, it is the graph that Hamilton used as an example to pose the question of existence of Hamiltonian paths in 1859. In its original form, the puzzle that was posed to readers was called <q>Around the World.</q> The vertices were labeled with names of major cities of the world and the object was to complete a tour of these cities. The graph is also referred to as the
@@ -151,10 +145,10 @@ a graph is Hamiltonian is theoretically possible; however, for large graphs we c
 <definition xml:id="def-n-cube"><title>The <m>n</m>-cube</title>
 <idx>N-cube</idx><notation><usage>Q_n</usage><description>the <m>n</m>-cube</description></notation><statement><p>Let \(n \geq  1\), and let \(B^n\) be the set of strings of 0's and 1's with length \(n\).  The <m>n</m>-cube is the undirected graph with a vertex for each string in \(B^n\) and an edge connecting each pair of strings that differ in exactly one position. The <m>n</m>-cube is normally denoted <m>Q_n</m>. </p></statement></definition>
 
-<p>The <m>n</m>-cube is among the graphs that are defined within the <c>graphs</c> package of Sage and is created with the expression <c>graphs.CubeGraph(n)</c>. </p> 
+<p>The <m>n</m>-cube is among the graphs that are defined within the <c>graphs</c> package of SageMath and is created with the expression <c>graphs.CubeGraph(n)</c>. </p> 
 <sage>
 <input>
-graphs.CubeGraph(4).show()
+graphs.CubeGraph(4).show(layout="spring")
 </input>
 </sage>
 
@@ -224,9 +218,7 @@ is a 1.</p>
 <title>Exercises for Section 9.4</title>
 
 <exercise number="1"><statement><p> Locate a map of New York City and draw a graph that represents its land masses, bridges and tunnels. Is there a Eulerian path through New York? You can do the same with any other city that has at least two land masses.</p></statement>
-<answer><p> Using a recent road map, it appears that a Eulerian circuit exists in New York City, not including the small islands that belong to the city.
-Lowell, Massachusetts, is located at the confluence of the Merrimack and Concord rivers and has several canals flowing through it. No Eulerian path
-exists for Lowell.
+<answer><p> Using a recent road map, it appears that an Eulerian circuit exists in New York City, not including the small islands that belong to the city. Lowell, Massachusetts, is located at the confluence of the Merrimack and Concord rivers and has several canals flowing through it. No Eulerian path exists for Lowell.
 
 </p></answer></exercise>
 <exercise number="2"><statement><p> Which of the drawings in <xref ref="fig-drawings-9-4" text="type-global"/> can be drawn without removing your pencil from the paper and without drawing any line twice?</p>
