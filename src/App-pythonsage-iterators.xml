@@ -1,107 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<section xml:id="app-alg2"><title>The Invariant Relation Theorem</title>
-<p>Consider the following algorithm implemented in Sage to compute <m>a^m mod \, n</m>, given an arbitrary integer <m>a</m>, non-negative exponent <m>m</m>, and a modulus <m>n</m>, <m>n \ge 0</m>.  The default sample evaluation computes <m>2^5\, mod\,7 = 32\,mod\,7 = 4</m>, but you can edit the final line for other inputs. </p>
+<section xml:id="app-python-iterators"><title>Python Iterators</title>
+<introduction><p>
+All programming languages allow for looping.  A loop common form is to create a loop in which a series of instructions are followed for each value of some index variable, commonly for values between two integers.  Python allows a bit more generality by having structures called <q>iterators</q> over which looping can be done.   An iterator can be as simple as a list, such as <c>[0,1,2,3]</c>, but also can be powers set of a set, as we see below, or the keys in a dictionary, which is described in the next section. </p></introduction>
+<subsection><title>Counting Subsets</title>
+<p>Suppose we want to count the number of subsets of <m>{0,1,2,...,9}</m> that contain no adjacent elements.  First, we will define our universe and its power set.  The plan will be to define a function that determines whether a subset is "valid" in the sense that it contains no adjacent elements.  Then we will iterate over the subsets, counting the valid ones.  We know that the number of all subsets will be 2 raised to the number of elements in <m>U</m>, which would be <m>2^{10}=1024</m>, but let's check.</p>
 
-<sage xml:id="alg-slow-exp">
+<sage xml:id="sage-subsets_of_U">
 <input>
-def slow_exp(a,m,n):
-	b=1
-	k=m
-	while k>0:
-		b=(b*a)%n  # % is integer remainder (mod) operation
-		k-=1
-	return b
-	
-slow_exp(2,5,7)
+U=Set(range(10))
+power_set=U.subsets()
+len(power_set)
 </input>
+<output>
+1024
+</output>
 </sage>
-
-<p>It should be fairly clear that this algorithm will successfully compute <m>a^m (mod\, n)</m> since it mimics the basic definition of exponentiation.  However, this algorithm is highly inefficient.  The algorithm that is most commonly used for the task of exponentiation is the following one, also implemented in Sage.</p>
-
-<sage>
+<p>The validity check in this case is very simple.  For each element, <m>k</m>, of a set, <m>B</m>, we ask whether its successor, <m>k+1</m>, is also in the set.  If we never get an answer of "True" then we consider the set valid.  This function could be edited to define validity in other ways to answer different counting questions.  It's always a good idea to test your functions, so we try two tests, one with a valid set and one with an invalid one.</p>
+<sage xml:id="sage-validity-test">
 <input>
-def fast_exp(a,m,n):
-	t=a
-	b=1
-	k=m
-	while k>0:
-		if k%2==1: b=(b*t)%n
-		t=(t^2)%n
-		k=k//2  # // is the integer quotient operation
-	return b
-	
-fast_exp(2,5,7)
+def valid(B):
+    v=true
+    for k in B:
+        if k+1 in B:
+            v=false
+    return v
+[valid(Set([1,3,5,9])),valid(Set([1,2,4,9]))]
 </input>
+<output>
+[True, False]
+</output>
 </sage>
-<p>The only difficulty with the "fast algorithm" is that it might not be so obvious that it works.  When implemented, it can be verified by example, but an even more rigorous verification can be done using the Invariant Relation Theorem. Before stating the theorem, we define some terminology.</p> 
-
-<definition xml:id="def-pre-post-values"><title>Pre and Post Values</title><notation><usage>\grave x,  \acute x</usage><description>pre and post values of a variable <m>x</m></description></notation><statement>
-<p>Given a variable <m>x</m>, the pre value of <m>x</m>, denoted <m>\grave x</m>, is the value before an iteration of a loop.  The post value, denoted \(\acute x\), is the value after the iteration.</p></statement></definition>
-
-<example xml:id="ex-pre-post-fast"><title>Pre and post values in the fast exponentiation algorithm.</title><p>In the fast exponentiation algorithm, the relationships between the pre and post values of the three variables are as follows.
-<me>\acute{b} \equiv \grave{b} \grave{t}^{\grave{k} mod\,2}(mod\, n)</me>
-<me>\acute{t} \equiv \grave t^2(mod\,n)</me>
-<me>\acute k = \grave k//2</me>
-</p>
-</example>
-
-<definition xml:id="def-invariant-relation"><title>Invariant Relation</title><statement><p>Given a algorithm's inputs and a set of variables that are used in the algorithm, an <em>invariant relation</em> is a set one or more equations that are true prior to entering a loop and remain true in every iteration of the loop.</p></statement>
-</definition>
-
-<example xml:id="ex-invariant-fast-expo"><title>Invariant Relation for Fast Exponentiation</title><statement><p>We claim that the invariant relation in the fast algorithm is <m>b t^k = a^m (mod\,n)</m>.  We will prove that his is indeed true below.</p></statement></example>
-
-<theorem xml:id="th-invariant-relation-theorem"><title>The Invariant Relation Theorem</title>
-<statement>
-<p>Given a loop within an algorithm, if <m>R</m> is a relation with the properties</p>
-<p><ol label="(a)">
-<li><p>R is true before entering the loop</p></li>
-<li><p>the truth of R is maintained in any iteration of the loop</p></li>
-<li><p>the condition for exiting the loop will always be reached in a finite number of iterations.</p></li>
-</ol></p>
-<p>then R will be true upon exiting the loop.</p>
-</statement>
-<proof><p>The condition that the loop ends in a finite number of iterations lets us apply mathematical induction with the induction variable being the number of iterations.  We leave the details to the reader.</p></proof></theorem>
-
-<p>We can verify the correctness of the fast exponentiation algorithm using the Invariant Relation Theorem.  First we note that prior to entering the loop,  <m>b t^k = 1 a^m = a^m (mod\,n)</m>.  Assuming the relation is true at the start of any iteration, that is <m>\grave{b} \grave{t}^{\grave k} = a^m (mod\,n)</m>, then 
-<me>\begin{split}
-\acute{b} \acute{t}^{\acute{k}} &amp; \equiv (\grave{b} \grave{t}^{\grave{k}\,mod\,2})(\grave t^2)^{ \grave k//2}(mod\,n)\\
-						&amp; \equiv\grave{b} \grave{t}^{2(\grave{k}//2) +\grave{k}\,mod\,2 }(mod\,n) \\
-						&amp; \equiv \grave{b} \grave{t}^{\grave{k}}(mod\,n)\\
-						&amp; \equiv  a^m (mod\,n)
-\end{split}
-</me>
-Finally, the value of <m>k</m> will decrease to zero in a finite number of steps because the number of binary digits of <m>k</m> decreases by one with each iteration.  At the end of the loop,  
-<me>b = b t^0 = b t^k \equiv a^m(mod\,n)</me>
-which verifies the correctness of the algorithm.
-</p>
-
-<exercises xml:id="exercises-app-alg1">
-<title>Exercises for Part 2 of the Algorithms Appendix</title>
-<exercise number="1">
-<statement><p>How are the pre and post values in the slow exponentiation algorithm related? What is the invariant relation between the variables in the slow algorithm?</p></statement>
-</exercise>
-<exercise number="2">
-<statement><p>Verify the correctness of the following algorithm to compute the greatest common divisor of two integers that are not both zero.</p>
-<sage>
+<p>Finally we do the counting over our power set, incrementing the count variable with each valid set.</p>
+<sage xml:id="sage-count-valid-sets">
 <input>
-def gcd(a,b):
-	r0=a
-	r1=b
-	while r1 !=0:
-		t= r0 % r1
-		r0=r1
-		r1=t
-	return r0
-	
-gcd(1001,154)  #test
+count=0
+for B in power_set:
+    if valid(B):
+        count+=1
+count
 </input>
+<output>
+144
+</output>
 </sage>
-</statement>
-<hint><p>The invariant of this algorithm is <m>gcd(r0,r1)=gcd(a,b)</m>.</p>
-</hint>
-</exercise>
-<exercise number="3">
-<statement><p>Verify the correctness of the <xref ref="binary-conversion-algorithm" text="title" /> in Chapter 1.</p></statement>
-</exercise>
-</exercises>
+</subsection>
+
 </section>

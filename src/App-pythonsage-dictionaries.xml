@@ -1,44 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section xml:id="app-pythonsage-dictionaries"><title>Dictionaries</title>
-<p>In Python and Sage, a dictionary is a convenient data structure for establishing a relationship between sets of data.  From the point of view of this text, we can think of a dictionary as a concrete realization of a relation between two sets or on a single set.  A dictionary resembles a function in that there is a set of data values called the <c>keys</c>, and for each key, there is a <c>value<c>.  The value associated with a key can be almost anything, but it is most commonly a list.  We will illustrate this idea with examples.</p>
+<subsection><title>Colors of Fruits</title>
+<p>In Python and SageMath, a dictionary is a convenient data structure for establishing a relationship between sets of data.  From the point of view of this text, we can think of a dictionary as a concrete realization of a relation between two sets or on a single set.  A dictionary resembles a function in that there is a set of data values called the <c>keys</c>, and for each key, there is a <c>value</c>.  The value associated with a key can be almost anything, but it is most commonly a list.  We will illustrate this idea with examples.</p>
 <example xml:id="ex-fruit-color-dictionary">
 <p>For our first example, we will define a relationship between colors and fruits.  The keys will be a set of colors and values associated with each color will be a list of fruits that can take on that color. We will demonstrate how to initialize the dictionary and how to add to it.  Also we will examine the <q>method</q> that can be used to work with an existing dictionary.</p>
-</example>
-<sage xml:id="alg-slow-exp">
+<sage xml:id="load-dictionary">
 <input>
-def slow_exp(a,m,n):
-	b=1
-	k=m
-	while k>0:
-		b=(b*a)%n  # % is integer remainder (mod) operation
-		k-=1
-	return b
-	
-slow_exp(2,5,7)
+fruit_color={}
+fruit_color['Red']=['apple','pomegranate','blood orange']
+fruit_color['Yellow']=['banana','apple','lemon']
+fruit_color['Green']=['apple','pear','grape','lime']
+fruit_color['Purple']=['plum','grape']
+fruit_color['Orange']=['orange','pineapple']
 </input>
+</sage>
+<p>We distinguish a color from a fruit by capitalizing colors but not fruit.  The keys of this dictionary are the colors:</p>
+<sage>
+<input>
+fruit_color.keys()
+</input>
+<output>
+['Purple', 'Orange', 'Green', 'Yellow', 'Red']
+</output>
+</sage>
+<p>As an afterthough, we might add the information that a raspberry is red as follows. You have to be careful in that if 'Red' isn't already in the dictionary, it doesn't have a value. This is why we need an if statement.</p>
+<sage>
+<input>
+if 'Red' in fruit_color:
+	fruit_color['Red']=fruit_color['Red']+['raspberry']
+else:
+	fruit_color['Red']=['raspberry']
+fruit_color['Red']
+</input>
+<output>
+['apple', 'pomegranate', 'blood orange', 'raspberry', 'raspberry']
+</output>
+</sage>
+
+<p>A dictionary is iterable, with an iterator taking on values that are the keys.  Here we iterate over the our dictionary to output lists consisting of a color followed by a list of fruits that come in that color.</p> 
+<sage>
+<input>
+for fruit in fruit_color:
+    print [fruit,fruit_color[fruit]]
+</input>
+<output>
+['Purple', ['plum', 'grape']]
+['Orange', ['orange', 'pineapple']]
+['Green', ['apple', 'pear', 'grape', 'lime']]
+['Yellow', ['banana', 'apple', 'lemon']]
+['Red', ['apple', 'pomegranate', 'blood orange','raspberry']]
+</output>
+</sage>
+<p>We can view a graph of this relation between colors and fruits, but the default view is a bit unconventional.</p>
+<sage>
+<input>
+DiGraph(fruit_color).plot()
+</input>
+<output>
+</output>
+</sage>
+<p>With a some additional coding we can line up the colors and fruits in their own column.</p>
+<sage>
+<input>
+color_pos={}
+k=0
+for c in fruit_color.keys():
+    color_pos[c]=(-5,k)
+    k+=1
+color_pos
+</input>
+<output>
+{'Purple': (-5, 0), 'Orange': (-5, 1), 'Green': (-5, 2), 'Red': (-5, 4), 'Yellow': (-5, 3)}
+</output>
+</sage>
+<sage>
+<input>
+fruits=Set([ ])
+for v in fruit_color.values():
+    fruits=fruits.union(Set(v))
+k=0
+for f in fruits:
+    color_pos[f]=(5,k)
+    k+=1
+color_pos
+</input>
+<output>
+{'blood orange': (5, 0), 'grape': (5, 1), 'apple': (5, 2), 'Purple': (-5, 0), 'plum': (5, 10), 'pomegranate': (5, 3), 'pear': (5, 4), 'Yellow': (-5, 3), 'orange': (5, 7), 'Green': (-5, 2), 'pineapple': (5, 6), 'Orange': (-5, 1), 'lemon': (5, 8), 'raspberry': (5, 9), 'banana': (5, 5), 'Red': (-5, 4), 'lime': (5, 11)}
+</output>
 </sage>
 
 <sage>
 <input>
-def fast_exp(a,m,n):
-	t=a
-	b=1
-	k=m
-	while k>0:
-		if k%2==1: b=(b*t)%n
-		t=(t^2)%n
-		k=k//2  # // is the integer quotient operation
-	return b
-	
-fast_exp(2,5,7)
+DiGraph(fruit_color).plot(pos=color_pos,vertex_size=1)
 </input>
 </sage>
+<!-- 
+<sage>
+<input>
+</input>
+<output>
+</output>
+</sage>
+ -->
+</example>
 
-
-<exercises xml:id="exercises-app-alg-pythonsage-dictionaries">
-<title>Exercises on Python/Sage Dictionaries</title>
-<exercise number="1">
-<statement><p></p></statement>
-</exercise>
-</exercises>
+</subsection>
 </section>
