@@ -59,20 +59,21 @@ DiGraph(fruit_color).plot()
 <output>
 </output>
 </sage>
-<p>With a some additional coding we can line up the colors and fruits in their own column.</p>
+<p>With a some additional coding we can line up the colors and fruits in their own column. First we set the positions of colors on the left with all <m>x</m>-coordinates equal to -5 using another dictionary called <c>vertex_pos</c>. </p>
 <sage>
 <input>
-color_pos={}
+vertex_pos={}
 k=0
 for c in fruit_color.keys():
-    color_pos[c]=(-5,k)
+    vertex_pos[c]=(-5,k)
     k+=1
-color_pos
+vertex_pos
 </input>
 <output>
 {'Purple': (-5, 0), 'Orange': (-5, 1), 'Green': (-5, 2), 'Red': (-5, 4), 'Yellow': (-5, 3)}
 </output>
 </sage>
+<p>Next, we place the fruit vertices in another column with <m>x</m>-coordinates all equal to 5. In order to do this, we first collect all the fruit values into one set we call <c>fruits</c>.</p>
 <sage>
 <input>
 fruits=Set([ ])
@@ -80,18 +81,18 @@ for v in fruit_color.values():
     fruits=fruits.union(Set(v))
 k=0
 for f in fruits:
-    color_pos[f]=(5,k)
+    vertex_pos[f]=(5,k)
     k+=1
-color_pos
+vertex_pos
 </input>
 <output>
 {'blood orange': (5, 0), 'grape': (5, 1), 'apple': (5, 2), 'Purple': (-5, 0), 'plum': (5, 10), 'pomegranate': (5, 3), 'pear': (5, 4), 'Yellow': (-5, 3), 'orange': (5, 7), 'Green': (-5, 2), 'pineapple': (5, 6), 'Orange': (-5, 1), 'lemon': (5, 8), 'raspberry': (5, 9), 'banana': (5, 5), 'Red': (-5, 4), 'lime': (5, 11)}
 </output>
 </sage>
-
+<p>Now the graph looks like a conventional graph for a relation between two different sets.  Notice that it's not a function</p>
 <sage>
 <input>
-DiGraph(fruit_color).plot(pos=color_pos,vertex_size=1)
+DiGraph(fruit_color).plot(pos=vertex_pos,vertex_size=1)
 </input>
 </sage>
 <!-- 
