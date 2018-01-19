@@ -12,12 +12,12 @@ After defining a free monoid, we will discuss languages and some of the basic pr
 <notation><usage>A^n</usage><description>The set of all strings of length <m>n</m>) over an alphabet <m>A</m></description></notation>
 <notation><usage>\lambda</usage><description>The empty string</description></notation>
 <statement><p>A string of length <m>n</m>, <m>n \geqslant 1</m> over alphabet <m>A</m> is a sequence of <m>n</m> letters
-from <m>A</m>: <m>a_1a_2\ldots a_n</m>. The null string, <m>\lambda</m>  is defined as the string of length zero containing
+from <m>A</m>: <m>a_1a_2\ldots a_n</m>. The null string, <m>\lambda</m>,  is defined as the string of length zero containing
 no letters. The set of strings of length <m>n</m> over <m>A</m> is denoted by <m>A^n</m>. The set of all strings over <m>A</m> is denoted <m>A^*</m>.</p></statement></definition>
 <note><p>
 <ol label="(a)">
 <li><p> If the length of string <m>s</m> is <m>n</m>, we write <m>\lvert s \rvert =n</m>.</p></li>
-<li><p>The null string is not the same as the empty set, although they are similar in many ways.</p></li>
+<li><p>The null string is not the same as the empty set, although they are similar in many ways.  \(A^0 = \{\lambda\}\).</p></li>
 <li><p><m>A^*=A^0\cup A^1\cup A^2\cup A^3\cup \cdots \textrm{ and if } i\neq j,A^i\cap A^j=\emptyset</m>; that is, <m>\{A^0,A^1,A^2,A^3,\ldots \}</m> is a partition of <m>A^*</m>.</p></li>
 <li><p>  An element of <m>A</m> can appear any number of times in a string.</p></li>
 </ol>
@@ -36,6 +36,11 @@ one of the <m>2^k</m> strings of length <m>k</m> are the images of exactly one o
 <idx>Concatenation</idx>
 <notation><usage>s_1+s_2</usage><description>The concatenation of strings <m>s_1</m> and <m>s_2</m></description></notation>
 <statement><p> Let  <m>a=a_1a_2\cdots  a_m</m> and <m>b=b_1b_2\cdots  b_n</m> be strings of length <m>m</m> and <m>n</m>, respectively. The concatenation of <m>a</m> with <m>b</m>, <m>a+b</m>, is the string <m>a_1a_2\cdots  a_mb_1b_2\cdots  b_n</m> of length  <m>m+n</m>.</p></statement></definition>
+<p>There are several symbols that are used for concatenation.  We chose to use the one that is also used in Python and SageMath.</p>
+<sage><title>SageMath Concatenation</title>
+<input>'good'+'bye'</input>
+<output>'goodbye'</output>
+<sage>
 <p>The set of strings over any alphabet is a monoid under concatenation.</p>
 <note>
 <p>
@@ -121,7 +126,7 @@ us what belongs to <m>L_3</m>, just what can be used to create strings in <m>L_3
 
 <example xml:id="ex-examples-better-algorithms-q"><p>Since all of the languages in <xref ref="ex-some-formal-languages" text="local" />(d) are recursive, they must have generating algorithms. The one given in the proof of <xref ref="theorem-14-2-2" text="type-global" /> is not usually the most efficient. You could probably design more efficient generating algorithms for <m>L_2</m> and <m>L_3</m>; however, a better generating algorithm for <m>L_1</m> is not quite so obvious.</p></example> 
 
-<p>The recognition and generation problems can vary in difficulty depending on how a language is defined and what sort of algorithms we allow ourselves to use. This is not to say that the means by which a language is defined determines whether it is recursive. It just means that the truth of the statement <q><m>L</m> is recursive.</q> may be more difficult to determine with one definition than with another. We will close this section with a discussion of grammars, which are standard forms of definition for a language. When we restrict ourselves to only certain types of algorithms, we can affect our ability to determine whether <m>s\in L</m> is true. In defining a recursive language, we do not restrict ourselves in any way in regard to the type of algorithm that will be used. In the next section, we will consider machines called finite automata, which can only perform simple algorithms.</p>
+<p>The recognition and generation problems can vary in difficulty depending on how a language is defined and what sort of algorithms we allow ourselves to use. This is not to say that the means by which a language is defined determines whether it is recursive. It just means that the truth of the statement <q><m>L</m> is recursive</q> may be more difficult to determine with one definition than with another. We will close this section with a discussion of grammars, which are standard forms of definition for a language. When we restrict ourselves to only certain types of algorithms, we can affect our ability to determine whether <m>s\in L</m> is true. In defining a recursive language, we do not restrict ourselves in any way in regard to the type of algorithm that will be used. In the next section, we will consider machines called finite automata, which can only perform simple algorithms.</p>
 <p>One common way of defining a language is by means of a <term>phrase structure grammar</term>  (or grammar, for short). The set of strings that can be produced using set of grammar rules is called a phrase structure language.</p>
 <example xml:id="ex-psl-0s-before-1s"><title>Zeros before Ones</title><p> We can define the set of all strings over <m>B</m> for which all 0's precede all 1's as follows. Define the starting symbol <m>S</m> and establish rules that <m>S</m> can be replaced with any of the following: <m>\lambda</m>, <m>0S</m>, or <m>S1</m>. These replacement rules are usually
 called production rules.  They are usually written in the format <m>S\to \lambda</m>, <m>S\to 0S</m>, and <m>S\to S1</m>. Now define <m>L</m> to be the set of all strings that can be produced by starting with <m>S</m> and applying the production rules until <m>S</m> no longer appears. The strings in <m>L</m> are exactly the ones that are described above.
@@ -177,11 +182,11 @@ S\to T &amp; S\to U &amp; S\to \lambda\\
 <li><p> Terminal symbols = all letters of the alphabet (both upper and lower case), digits 0 through 9, and underscore </p></li>
 <li><p> Nonterminal symbols: <m>\{I, X\}</m>,</p></li>
 <li><p>  Starting symbol: <m>I</m></p></li>
-<li><p>  Production rules: <m>I \to \alpha</m>, where <m>\alpha</m> is any letter, <m>I \to alpha+X</m> for any letter <m>\alpha</m> ,<m>X\to \beta+X</m> for any letter, digit or underscore, <m>\beta</m>, and <m>X \to \beta</m> for any letter, digit or underscore, <m>\beta</m>.
+<li><p>  Production rules: <m>I \to \alpha</m>, where <m>\alpha</m> is any letter, <m>I \to \alpha+X</m> for any letter <m>\alpha</m>, <m>X\to X+\beta</m> for any letter, digit or underscore, <m>\beta</m>, and <m>X \to \beta</m> for any letter, digit or underscore, <m>\beta</m>.
 There are a total of <m>52+52+63+63=230</m> production rules for this grammar. The language <m>L(G)</m> consists of all valid SageMath variable names.</p></li>
 </ol></p></example> 
 <example xml:id="ex-bnf"><title>Backus-Naur Form</title>
-<p>Backus-Naur form (BNF) is a popular alternate form of defining the production rules in a grammar. If the production rules <m>A\to B_1, A\to B_2,\ldots  A\to B_n</m> are part of a grammar, they would be written in BNF as <m>A ::=B_1 \mid B_2\mid  \cdots \mid  B_n</m>. The symbol <m>\mid</m> in BNF is read as <q>or,</q> while the <m>::=</m> is read as <q>is defined as.</q> Additional notations of BNF are that <m>\{x\}</m>, represents zero or more repetitions of <m>x</m> and <m>[y]</m> means that <m>y</m> is optional.</p>
+<p>Backus-Naur form (BNF) is a popular alternate form of defining the production rules in a grammar. If the production rules <m>A\to B_1, A\to B_2,\ldots  A\to B_n</m> are part of a grammar, they would be written in BNF as <m>A ::=B_1 \mid B_2\mid  \cdots \mid  B_n</m>. The symbol <m>\mid</m> in BNF is read as <q>or</q> while the <m>::=</m> is read as <q>is defined as.</q> Additional notations of BNF are that <m>\{x\}</m>, represents zero or more repetitions of <m>x</m> and <m>[y]</m> means that <m>y</m> is optional.</p>
 <p> A BNF version of the production rules for a SageMath variable, \(I\), is
 	\[\begin{array}{l}
 	letter ::=a \mid b \mid c \mid \cdots \mid z\mid A\mid  B\mid \cdots \mid Z\\
