@@ -2,9 +2,7 @@
 <section xml:id="s-monoid-of-fsm">
 <title>The Monoid of a Finite-State Machine</title>
 <idx><h>Monoid</h><h>of a Finite-State Machine</h></idx>
-<p>In this section, we will see how every finite-state machine has a monoid associated with it. For any finite-state machine, the elements of its associated
-monoid correspond to certain input sequences. Because only a finite number of combinations of states and inputs is possible for a finite-state machine
-there is only a finite number of input sequences that summarize the machine This idea is illustrated best with a few examples.</p>
+<p>In this section, we will see how every finite-state machine has a monoid associated with it. For any finite-state machine, the elements of its associated monoid correspond to certain input sequences. Because only a finite number of combinations of states and inputs is possible for a finite-state machine there is only a finite number of input sequences that summarize the machine. This idea is illustrated best with a few examples.</p>
 
 <p>Consider the parity checker. The following table summarizes the effect on the parity checker of strings in \(B^1\) and \(B^2\). The row labeled <q>Even</q> contains the final state and final output as a result of each input string in \(B^1\) and \(B^2\) when the machine
 starts in the even state. Similarly, the row labeled <q>Odd</q> contains the same information for input sequences when the machine starts in the odd state.
@@ -21,9 +19,9 @@ starts in the even state. Similarly, the row labeled <q>Odd</q> contains the sam
 
 <p>Note how, as indicated in the last row, the strings in \(B^2\) have the same effect as certain strings in \(B^1\). For this reason, we can summarize the machine in terms of how it is affected by strings of length 1. The actual monoid that we will now describe consists of a set of functions, and the operation on the functions will be based on the concatenation operation.</p>
 <p>Let \(T_0\) be the final effect (state and output) on the parity checker of the input 0. Similarly, \(T_1\) is defined as the final effect on the parity checker of the input 1.  More precisely,
-\[T_0(\textrm{ even})=(\textrm{ even},0)  \quad \textrm{and} \quad  T_0(\textrm{ odd})=(\textrm{ odd},1)\] , 
+\[T_0(\textrm{ even})=(\textrm{ even},0)  \quad \textrm{and} \quad  T_0(\textrm{ odd})=(\textrm{ odd},1)\textrm{,}\] 
 while
-\[T_1(\textrm{ even})=(\textrm{ odd},1)  \quad \textrm{and} \quad T_1(\textrm{ odd})=(\textrm{ even},0)\].</p>
+\[T_1(\textrm{ even})=(\textrm{ odd},1)  \quad \textrm{and} \quad T_1(\textrm{ odd})=(\textrm{ even},0)\textrm{.}\]</p>
 <p>In general, we define the operation on a set of such functions as follows: if <m>s</m>, <m>t</m> are input sequences and \(T_s\) and \(T_t\), are functions as above, then \(T_s*T_t=T_{st}\), that is, the result of the function that summarizes the effect on the machine by the concatenation of <m>s</m> with <m>t</m>. Since, for example, 01 has the same effect on the parity checker as 1, \(T_0*T_1=T_{01}=T_1\). We don't stop our calculation at \(T_{01}\) because we want to use the shortest string of inputs to describe the final result. A complete table for
 the monoid of the parity checker is
 
@@ -55,7 +53,7 @@ codomain of \(T_t\) and the functions are read from left to right unlike in comp
 
 <p>You may have noticed that the output of the parity checker echoes the state of the machine and that we could have looked only at the effect on the machine as the final state. The following example has the same property, hence we will only consider the final state.</p>
 
-<example xml:id="ex-no-consecutive-ones-monoid"><p>The transition diagram for the machine that recognizes strings in B*.  that have no consecutive 1's appears in <xref ref="fig-no-11s-machine" text="type-global" />. Note how it is similar to the graph in <xref ref="fig-directed-graph-ex1" text="type-global" />. Only a <q>reject state</q> has been added, for the case when an input of 1 occurs while in State <m>a</m>. We construct a similar table to the one in the previous example to study the effect of certain strings on this machine. This time, we must include strings of length 3 before we recognize that no <q>new effects</q> can be found.</p>
+<example xml:id="ex-no-consecutive-ones-monoid"><p>The transition diagram for the machine that recognizes strings in \(B*\)  that have no consecutive 1's appears in <xref ref="fig-no-11s-machine" text="type-global" />. Note how it is similar to the graph in <xref ref="fig-directed-graph-ex1" text="type-global" />. Only a <q>reject state</q> has been added, for the case when an input of 1 occurs while in State <m>a</m>. We construct a similar table to the one in the previous example to study the effect of certain strings on this machine. This time, we must include strings of length 3 before we recognize that no <q>new effects</q> can be found.</p>
 
 				<figure xml:id="fig-no-11s-machine">
                 <caption>No Consecutive Ones Monoid
@@ -189,8 +187,8 @@ table for the strings of positive length shows that we must add \(T_{\lambda }\)
 
 <exercises xml:id="exercises-14-4">
 <title>Exercises for Section 14.4</title>
-<exercise number="1"><statement><p>For each of the transition diagrams in <xref ref="fig-exercise-14-4-1" text="type-global" />, write out tables for their associated monoids. Identify the identity in terms of a string
-of positive length, if possible. (Hint. : Where the output echoes the current state, the output can be ignored.)</p>
+<exercise number="1"><statement><p>For each of the transition diagrams in <xref ref="fig-exercise-14-4-1" text="type-local" />, write out tables for their associated monoids. Identify the identity in terms of a string
+of positive length, if possible.</p>
         		<figure xml:id="fig-exercise-14-4-1">
                 <caption>Exercise 1
                 </caption>
@@ -199,6 +197,7 @@ of positive length, if possible. (Hint. : Where the output echoes the current st
                 </image>
             </figure>
 </statement>
+<hint><p>Where the output echoes the current state, the output can be ignored.</p></hint>
 <answer><p><ol label="(a)">
 <li><p>
 \(\begin{array}{c|cccccc}

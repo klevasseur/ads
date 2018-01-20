@@ -9,20 +9,20 @@ of the tasks associated with digital computers. One such task is solving the rec
 of machines, finite-state machines (finite automata). And we will see that they are precisely the machines that are capable of recognizing strings
 in a regular grammar.</p>
 
-<p>Given an alphabet <m>X</m>, we will imagine a string in <m>X*</m>.  to be encoded on a tape that we will call an input tape. . When we refer to a tape, we might imagine a strip of material that is divided into segments, each of which can contain either a letter or a blank.</p>
+<p>Given an alphabet <m>X</m>, we will imagine a string in <m>X^*</m>.  to be encoded on a tape that we will call an input tape. When we refer to a tape, we might imagine a strip of material that is divided into segments, each of which can contain either a letter or a blank.</p>
 
 <p>The typical abstract machine includes an input device, the read head, which is capable of reading the symbol from the segment of the input tape that is currently in the read head. Some more advanced machines have a read/write head that can also write symbols onto the tape. The movement of the input tape after reading a symbol depends on the machine. With a finite-state machine, the next segment of the input tape is always moved into the read head after a symbol has been read. Most machines (including finite-state machines) also have a separate output tape that is written on with a write head. The output symbols come from an output alphabet, <m>Z</m>, that may or may not be equal to the input alphabet. The most significant component of an abstract machine is its memory structure. This structure can range from a finite number of bits of memory (as in a finite-state machine) to an infinite amount of memory that can be stored in the form of a tape that can be read from and written on (as in a Turing machine).</p>
 
 <definition xml:id="def-finite-state-machine"><title>Finite-State Machine</title>
 <idx>Finite-State Machine</idx>
 <notation><usage>(S, X, Z, w, t)</usage><description>A finite-state machine with states \(S\), input alphabet \(X\), output alphabet \(X\), and output function \(w\) and next-state function \(t\)</description></notation>
-<statement><p>A finite-state machine is defined by a quintet.  \((S, X, Z, w, t)\) where
+<statement><p>A finite-state machine is defined by a quintet \((S, X, Z, w, t)\) where
 <ol label="(1)">
 <li><p> \(S=\{s_1, s_2,\ldots  , s_r\}\) is the state set, a finite set that corresponds to the set of memory configurations that the machine can have at any time.</p></li>
 <li><p> \(X=\{x_1, x_2, \ldots  ,x_m\}\) is the input alphabet.</p></li>
 <li><p> \(Z=\{z_1,z_2, \ldots  ,z_n\}\) is the output alphabet.</p></li>
-<li><p> \(w: X\times S \to Z\) is the output function, which specifies which output symbol.  \(w(x, s) \in Z\) is written onto the output tape when the machine is in state \(s\) and the input symbol \(x\) is read.</p></li>
-<li><p>  \(t:X\times S\to S\) is the next-state (or transition) function, which specifies which state. \(t(x, s) \in S\) 
+<li><p> \(w: X\times S \to Z\) is the output function, which specifies which output symbol \(w(x, s) \in Z\) is written onto the output tape when the machine is in state \(s\) and the input symbol \(x\) is read.</p></li>
+<li><p>  \(t:X\times S\to S\) is the next-state (or transition) function, which specifies which state \(t(x, s) \in S\) 
 the machine should enter when it is in state \(s\) and it reads the symbol \(x\).</p></li>
 </ol>
 </p></statement></definition>
@@ -80,7 +80,7 @@ The following table defines the output and next-state functions.
 the last character is a 0, we know that the input string has even parity.</p>
 </example> 
 
-<p>An alternate method for defining a finite-state machine is with a transition diagram. A transition diagram.  is a directed graph that contains
+<p>An alternate method for defining a finite-state machine is with a transition diagram. A transition diagram is a directed graph that contains
 a node for each state and edges that indicate the transition and output functions. An edge \(\left(s_i,s_j\right)\) that is labeled \(x/z\) indicates
 that in state \(s_i\) the input <m>x</m> results in an output of <m>z</m> and the next state is \(s_j\). That is, \(w\left(x, s_i\right)=z\)
 and \(t\left(x, s_i\right)=s_j\). The transition diagram for the parity checker appears in <xref ref="fig-parity-checker" text="type-global" />. In later examples, we will see that if there are different inputs, \(x_i\) and \(x_j\), while in the same state resulting in the same transitions and outputs, we label a single edge \(x_i, \left.x_j\right/z\) instead of drawing two edges with labels \(\left.x_i\right/z\) and \(\left.x_j\right/z\).</p>
