@@ -57,21 +57,22 @@ f(a+1) &amp; = (a + 1)^2 + (a+1) + 1\\
    a^1 = 0\cdot 1 + 1 \cdot a\\
     a^2 = 1\cdot 1 + 1 \cdot a\\
 \end{array}</me>
- Here, we briefly describe the field \(GF(8)\) and how an error correcting code can be build on a the same observation about that field.</p>
+</p>
+<p>Next, we briefly describe the field \(GF(8)\) and how an error correcting code can be build on a the same observation about that field.</p>
  
  
 <p> First, we start with the irreducible polynomial \(p(x)=x^3 + x + 1\) over \(\mathbb{Z}_2\). There is another such cubic polynomial, but its choice produces essentially the same result.    Just as we did in the previous example, we assume we have a zero of \(p(x)\) and call it  \(\beta\).  Since we have assumed that \(p(\beta)= \beta^3+\beta + 1=0\), we get the recurrence relation for powers \(\beta^3=\beta + 1\) that lets us reduce the seven powers \(\beta^k\), \(0 \leq k \leq 6\), to  linear combinations of 1, \(\beta\), and \(\beta^2\). Higher powers will reduce to these seven, which make up the elements of a field with \(2^3=8\) elements when we add zero to the set.   We leave as an exercise for you to set up a table relating powers of \(\beta\) with the linear combinations.</p>
  
-<p> With this information we are now in a position to take blocks of four bits and encode them with three parity bits to create an error correcting code.   If the bits are \(b_3b_4b_5b_6\), then we reduce the expression \(B_m= b_3\cdot \beta^3 +b_4\cdot \beta^4 +b_5\cdot \beta^5 +b_6\cdot \beta^6\) using the recurrence relation to an expression \(B_p=b_0\cdot 1 +b_1\cdot \beta +b_2\cdot \beta^2\).   Since we are equating equals within \(GF(8)\) with the recurrence, we have \(B_p=B_m\), or \(B_p+B_m=0\).  The encoded message is \(b_0b_1b_2b_3b_4b_5b_6\), which is a representation of 0 in \(GF(8)\).  If the transmitted sequence of bits is received as \(c_0c_1c_2c_3c_4c_5c_6\) we reduce \(C=c_0\cdot 1 +c_1\cdot \beta +c_2\cdot \beta^2 +c_3\cdot \beta^3 +c_4\cdot \beta^4 +c_5\cdot \beta^5 +c_6\cdot \beta^6\) using the recurrence.   If there was no transmission error, the result is zero.  If the reduced result is zero it is most likely that the original message was \(c_3c_4c_5c_6\).  If  bit \(k\) is switched in the transmission, then 
+<p> With this information we are now in a position to take blocks of four bits and encode them with three parity bits to create an error correcting code.   If the bits are \(b_3b_4b_5b_6\), then we reduce the expression \(B_m= b_3\cdot \beta^3 +b_4\cdot \beta^4 +b_5\cdot \beta^5 +b_6\cdot \beta^6\) using the recurrence relation to an expression \(B_p=b_0\cdot 1 +b_1\cdot \beta +b_2\cdot \beta^2\).   Since we are equating equals within \(GF(8)\), we have \(B_p=B_m\), or \(B_p+B_m=0\).  The encoded message is \(b_0b_1b_2b_3b_4b_5b_6\), which is a representation of 0 in \(GF(8)\).  If the transmitted sequence of bits is received as \(c_0c_1c_2c_3c_4c_5c_6\) we reduce \(C=c_0\cdot 1 +c_1\cdot \beta +c_2\cdot \beta^2 +c_3\cdot \beta^3 +c_4\cdot \beta^4 +c_5\cdot \beta^5 +c_6\cdot \beta^6\) using the recurrence.   If there was no transmission error, the result is zero.  If the reduced result is zero it is most likely that the original message was \(c_3c_4c_5c_6\).  If  bit \(k\) is switched in the transmission, then 
  <me>C = B_p+B_m+ \beta^k= \beta^k</me>
  Therefore if we reduce \(C\) with the recurrence, we get the linear combination of  1, \(\beta\), and \(\beta^2\) that is equal to \(\beta^k\) and so we can identify the location of the error and correct it.</p></example>
 <exercises xml:id="exercises-16-4">
 <title>Exercises for Section 16.4</title>
 <exercise number="1"><statement><p><ol label="(a)">
-<li><p>Use the definition of a field to show that <m>\mathbb{Q}</m>(\textrm{ \(\sqrt{2}\)}) is a field.</p></li>
+<li><p>Use the definition of a field to show that <m>\mathbb{Q}(\sqrt{2})</m> is a field.</p></li>
 <li><p>  Use the definition of vector space to show that \(\mathbb{Q}\left(\sqrt{2}\right)\) is a vector space over <m>\mathbb{Q}</m>.</p></li>
 <li><p>  Prove that \(\left\{1,\sqrt{2}\right\}\) is a basis for the vector space \(\mathbb{Q}\left(\sqrt{2}\right)\) over <m>\mathbb{Q}</m>, and, therefore,
-the dimension of  <m>\mathbb{Q}</m>(\textrm{ \(\sqrt{2}\)}) over <m>\mathbb{Q}</m> is 2.</p></li>
+the dimension of  <m>\mathbb{Q}(\sqrt{2})</m> over <m>\mathbb{Q}</m> is 2.</p></li>
 </ol> 
 </p></statement>
 <answer><p> If \(a_0+ a_1\sqrt{2}\in \mathbb{Q}\left[\sqrt{2}\right]\) is nonzero, then it has a multiplicative inverse:
