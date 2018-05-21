@@ -119,8 +119,7 @@ its items, is itself a list with the recommendation data for each recommendation
 
 <subsection xml:id="ss-kruskal-algorithm"><title>Kruskal's Algorithm</title>
 <p>An alternate algorithm for constructing a minimal spanning tree uses a forest of rooted trees. First we will describe the algorithm in its simplest
-terms. Afterward, we will describe how rooted trees are used to implement the algorithm. Finally, we will describe a simple data structure and operations
-that make the algorithm quite easy to program. In all versions of this algorithm, assume that \(G = (V, E, w)\) is a weighted undirected graph with
+terms. Afterward, we will describe how rooted trees are used to implement the algorithm. Finally, we will demonstrate the SageMath implementation of the algorithm. In all versions of this algorithm, assume that \(G = (V, E, w)\) is a weighted undirected graph with
 \(\lvert V\rvert = m\) and \(\lvert E\rvert = n\).</p>
 
 <algorithm><title>Kruskal's Algorithm - Informal Version</title>
@@ -137,8 +136,7 @@ are selected, <m>G</m> is not connected.</p></li>
 </algorithm>
 
 <p> Step 1 can be accomplished using one of any number of standard sorting routines. Using the most efficient sorting routine, the time required
-to perform this step is proportional to \(n \log  n\). The second step of the algorithm, also of \(n \log  n\) time complexity, is the one that uses
-a forest of rooted trees to test for whether an edge should be added to the spanning set.</p>
+to perform this step is proportional to \(n \log  n\). The second step of the algorithm, also of \(n \log  n\) time complexity, is the one that uses a forest of rooted trees to test for whether an edge should be added to the spanning set.</p>
 
 <algorithm><title>Kruskal's Algorithm</title><idx>Kruskal's Algorithm</idx>
 <statement>
@@ -178,6 +176,12 @@ G.weighted(True)
 G.graphplot(edge_labels=True,save_pos=True).show()
 </input>
 </sage>
+        <figure xml:id="sage_graph">
+                <caption>Weighed graph, SageMath output  </caption>
+                <image width="100%" source="images/sage_graph.png">
+                    <description>SageMath Output - Weighted Graph</description>
+                </image>
+         </figure>
 
 <p>Next, we load the kruskal function and use it to generate the list of edges in a spanning tree of <m>G</m>.</p> 
 <sage>
@@ -185,6 +189,9 @@ G.graphplot(edge_labels=True,save_pos=True).show()
 from sage.graphs.spanning_tree import kruskal
 E = kruskal(G, check=True);E
 </input>
+<output>
+[(1, 2, 4), (1, 7, 6), (1, 9, 9), (2, 8, 4), (2, 10, 7), (3, 8, 4), (4, 5, 6), (4, 7, 5), (6, 8, 5)]
+</output>
 </sage>
 
 
@@ -198,6 +205,12 @@ T.set_pos(G.get_pos())
 T.graphplot(edge_labels=True).show()
 </input>
 </sage>
+        <figure xml:id="sage_spanning_tree">
+                <caption>Spanning tree, SageMath output  </caption>
+                <image width="100%" source="images/sage_spanning_tree.png">
+                    <description>SageMath Output - Spanning tree for weighted graph</description>
+                </image>
+         </figure>
 
 </subsection>
 
