@@ -339,29 +339,36 @@ remainder of <m>f</m> in one of \(D(n - 2) + D(n -1)\) ways. Therefore,
 defines <m>D</m>. Instead of deriving a solution of this relation by analytical methods, we will give an empirical derivation of an approximation of \(D(n)\). Since the derangements of \(\{1,2 . . . , n\}\) are drawn from a pool of \(n!\) permutations, we will see what percentage of these permutations
 are derangements by listing the values of \(n!\), \(D(n)\), and \(\frac{D(n)}{n!}\).  The results we observe will indicate that
 as <m>n</m> grows, \(\frac{D(n)}{n!}\) hardly changes at all. If this quotient is computed to eight decimal places, for \(n \geq  12\), \(D(n)/n!
-= 0.36787944\). The reciprocal of this number, which \(D(n)/n!\) seems to be tending toward, is, to eight places, 2.71828182. This number appears
+= 0.36787944\). The reciprocal of this number, which \(D(n)/n!\) seems to be tending toward, is, to eight places, 2.7182818. This number appears
 in so many places in mathematics that it has its own name, <m>e</m>. An approximate solution of our recurrence relation on <m>D</m> is then \(D(n)\approx \frac{n!}{e}\).</p>
-<p>
-<me>\begin{array}{lll}
- n &amp; D(n) &amp; D(n)/n! \\
- 1 &amp; 0 &amp; 0 \\
- 2 &amp; 1 &amp; 0.50000000 \\
- 3 &amp; 2 &amp; 0.33333333 \\
- 4 &amp; 9 &amp; 0.37500000 \\
- 5 &amp; 44 &amp; 0.36666667 \\
- 6 &amp; 265 &amp; 0.36805556 \\
- 7 &amp; 1854 &amp; 0.36785714 \\
- 8 &amp; 14833 &amp; 0.36788194 \\
- 9 &amp; 133496 &amp; 0.36787919 \\
- 10 &amp; 1334961 &amp; 0.36787946 \\
- 11 &amp; 14684570 &amp; 0.36787944 \\
- 12 &amp; 176214841 &amp; 0.36787944 \\
- 13 &amp; 2290792932 &amp; 0.36787944 \\
- 14 &amp; 32071101049 &amp; 0.36787944 \\
- 15 &amp; 481066515734 &amp; 0.36787944 \\
-\end{array}
-</me>
-</p>
+<sage>
+<input>
+def D(n):
+	if n<=2:
+		return n-1
+	else:
+		return (n-1)*(D(n-2)+D(n-1))
+
+map(lambda k:[k,D(k),(D(k)/factorial(k)).n(digits=8)],range(1,16))
+</input>
+<output>
+[[1, 0, 0.00000000],
+ [2, 1, 0.50000000],
+ [3, 2, 0.33333333],
+ [4, 9, 0.37500000],
+ [5, 44, 0.36666667],
+ [6, 265, 0.36805556],
+ [7, 1854, 0.36785714],
+ [8, 14833, 0.36788194],
+ [9, 133496, 0.36787919],
+ [10, 1334961, 0.36787946],
+ [11, 14684570, 0.36787944],
+ [12, 176214841, 0.36787944],
+ [13, 2290792932, 0.36787944],
+ [14, 32071101049, 0.36787944],
+ [15, 481066515734, 0.36787944]]
+</output>
+</sage>
 </subsection>
 
 
