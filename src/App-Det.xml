@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<appendix xml:id="app-determinants" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Determinants</title>
+
+<introduction><p>In Chapter 5 we defined the determinant of a <m>2 \times 2</m> matrix for the sole purpose of providing some hands-on experience in the computation of inverses of <m>2 \times 2</m> matrices. In this appendix we will define the determinant of any square matrix, and summarize the main properties of determinants.</p></introduction>
+
+
+<p>Associated with every square matrix is a number called its determinant. The most important information it provides us with is whether the matrix is invertible. A matrix has an inverse if and only if it's determinant is nonzero.  If <m>A</m> is a matrix, then the determinant of <m>A</m> is commonly denoted either <m>\det(A)</m>  or <m>\lvert A \rvert</m>.   Strictly speaking, we only need to define the determinat of a <m>1 \times 1</m> matrix here and then define the higher ordered ones recursively, but for convenience we also recall the definition of the determinant of a <m>2 \times 2</m> matrix.</p>
+
+
+<definition xml:id="def-determinant-basis">
+	<title>Determinant of <m>1 \times 1</m> and a <m>2 \times 2</m> matrices</title>
+	<idx><h>Determinant</h><h><m>1 \times 1</m> and a <m>2 \times 2</m> cases</h></idx>
+		<notation> 
+			  <usage>\det(A) or \lvert A \rvert</usage>
+			  <description>
+			     The determinant of <m>A</m>   	
+			  </description>
+		</notation>
+<statement>
+<p>
+<ul>
+<li><p>If <m>A</m> is a <m>1 \times 1</m> matrix, then <m>\lvert A \rvert = A_{1,1}</m></p></li>
+<li><p>If <m>A</m> is a <m>2 \times 2</m> matrix, then <m>\lvert A \rvert = A_{1,1} A_{2,2} - A_{1,2} A_{2,1}</m></p></li>
+</ul>
+</p>
+</statement>
+</definition>
+
+<p>We now proceed to define the determinant of an <m>n \times n</m> matrix where <m>n &gt; 2</m>. This definition requires two preliminary definitions those of minors and cofactors.</p>
+
+<definition xml:id="def-minor">
+	<title>Matrix Minor</title>
+	<idx><h>Minor</h></idx>
+		<notation> 
+			  <usage>M(A)_{i,j}</usage>
+			  <description>
+			     The <m>i, j</m> minor of <m>A</m>   	
+			  </description>
+		</notation>
+<statement>
+	<p>
+		Let <m>A</m> be an <m>n \times n</m> matrix, <m>n \geq 2</m>. The determinant of the <m>(n-1) \times (n-1)</m> matrix formed by removing the <m>i^{th}</m> row and  <m>j^{th}</m> column of <m>A</m> is the minor denoted by <m>M(A)_{i,j}</m>.
+	</p>
+</statement>
+</definition>
+
+<example xml:id="example-minor-3-by-3">
+<p>Let <m>A = \begin{pmatrix}
+					3 &amp; 4 &amp; 1 \\
+					1 &amp; 3 &amp; 4 \\
+					4 &amp; 1 &amp; 3 
+					\end{pmatrix} </m> then <m>A</m> has nine minors, one of which is
+	<me>M(A)_{1,1} = \begin{vmatrix}
+									3 &amp; 4 \\
+									1 &amp; 3 
+									\end{vmatrix} = 3 \cdot 3 - 4 \cdot 1 =5</me>
+</p>
+<p>For our purposes in computing <m>\lvert A \rvert</m>, we only need minors corresponding to any one row or column.  Completing the minors in the first row we have <m>M(A)_{1,2} = -13 </m>   and  <m>M(A)_{1,3} = -11 </m></p>
+</example>
+
+<definition xml:id="def-cofactor">
+	<title>Cofactor</title>
+	<idx><h>Cofactor</h></idx>
+		<notation> 
+			  <usage>C(A)_{i,j}</usage>
+			  <description>
+			     The <m>i, j</m> cofactor of <m>A</m>   	
+			  </description>
+		</notation>
+<statement>
+	<p>
+		Let <m>A</m> be an <m>n \times n</m> matrix, <m>n \geq 2</m>. The <m>i^{th}</m> row, <m>j^{th}</m> column cofactor of  <m>A</m>, denoted <m>C(A)_{i,j}</m>, is defined by <me>C(A)_{i,j} = (-1)^{i+j} M(A)_{i,j}</me>
+	</p>
+</statement>
+</definition>
+
+<example xml:id="example-cofactors-3-by-3">
+<p>Using the values of minors computed in <xref ref="example-minor-3-by-3" text="type-global"/>, we have 
+	<m>C(A)_{1,1} = (-1)^2 M(A)_{1,1} = 5</m>, <m>C(A)_{1,2} = (-1)^3 M(A)_{1,2} = 13</m>, and <m>C(A)_{1,3} = (-1)^4 M(A)_{1,3} = -11</m>.
+</p>
+</example>
+
+<p>Finally, we will define the determinant of a square matrix. Our definition is practical in that you can apply it easily to any matrix.  If isn't the most general, nor is it the best definiton for the purposes of proving properties of determinants.  The more general definition is based is beyond our current scope, but can be easily stated with background in permutation groups.</p>
+
+<definition xml:id="def-determinant-general">
+	<title>Determinant of a Square Matrix</title>
+	<idx><h>Determinant</h></idx>
+		<notation> 
+			  <usage>\det(A) or \lvert A \rvert</usage>
+			  <description>
+			    The determinant of <m>A</m>    	
+			  </description>
+		</notation>
+<statement>
+	<p>
+		Let <m>A</m> be an <m>n \times n</m> matrix, <m>n \geq 2</m>. The determinant of <m>A</m> is equal to <me>\sum_{j=1}^{n} A_{1,j}\cdot C(A)_{1,j} </me>
+	</p>
+</statement>
+</definition> 
+<p>Our definition of a determinant involves what is called expansion along the first row of the matrix A. It is certainly not obvious that the determinant of a matrix can be found by expanding along any row or any column.</p>
+<example xml:id="example-determinant-3-3">
+	<p>We have computed the cofactors for row 1 of <m>A = \begin{pmatrix}
+					3 &amp; 4 &amp; 1 \\
+					1 &amp; 3 &amp; 4 \\
+					4 &amp; 1 &amp; 3 
+					\end{pmatrix} </m> above and so the determinant is only a few calculations away.
+					<me>\begin{align}
+					\lvert A \rvert &amp;= A_{1,1}\cdot C(A)_{1,1} +A_{1,2}\cdot C(A)_{1,2}+A_{1,3}\cdot C(A)_{1,3}\\
+									&amp;= 3\cdot 5 + 4\cdot 13 + 1 \cdot (-11)\\
+									&amp;= 56
+									\end{align}
+					</me>
+	</p>
+</example>
+
+<example xml:id="characteristic-polynomial"><idx>Characteristic Polynomial</idx>
+	<p>Associated with any square matrix, <m>A</m>, is a characteristic polynomial which is defined to be the <m>\lvert A - \lambda I \rvert</m>.   The roots of this polynomial are the eigenvalues of the matrix. Here, we compute the characteristic polynomial of <m> A = \begin{pmatrix}
+			3 &amp; 4 &amp; 1 \\
+			1 &amp; 3 &amp; 4 \\
+			4 &amp; 1 &amp; 3 
+	\end{pmatrix}</m>.</p>
+<p>To compute the determinant we expand along the first row.
+<me>\begin{align}
+	det(A - \lambda I) &amp;=  \begin{vmatrix}
+					3 - \lambda &amp; 4 &amp; 1 \\
+					1 &amp; 3 - \lambda &amp; 4 \\
+					4 &amp; 1 &amp; 3 - \lambda 
+					\end{vmatrix}\\
+			&amp;= (3-\lambda)\cdot  \begin{vmatrix}
+				  										3 - \lambda &amp; 4 \\
+					 								 1 &amp; 3 - \lambda 
+													\end{vmatrix}
+					      + 4 \cdot (-1)\cdot \begin{vmatrix}
+							                   1 &amp; 4 \\
+							                  4 &amp;  3 - \lambda
+												\end{vmatrix}
+						+ 1\cdot  \begin{vmatrix}					
+								1 &amp; 3 - \lambda  \\
+									4 &amp; 1  
+									\end{vmatrix} \\
+			&amp;=(3-\lambda)((3-\lambda)^2-4) + 4((3-\lambda)-16) + (1-4(3-\lambda))\\
+			&amp;=-\lambda ^3+9 \lambda ^2-15 \lambda +56
+		\end{align}
+</me> 
+</p>
+</example>
+<p>Our definition of determinant can be applied to estimate the worst case for the time to evaluate an <m>n \times n</m> determinant.   Let <m>M(n)</m> be the number of multiplications to evaluate an <m>n \times n</m> determinant.  Then we have  <m>M(2)=2</m>.  To determine the value of <m>M(3)</m> we observe that this requires the computation of three minors, each a two by two matrix, and then a multiplication of each of them by the entries in row 1.  Therefore, <m>M(3)= 3 M(2) + 3 = 9</m>.  Using the same logic in general, we have <m>M(n)= n M(n-1) + n</m>.  The formula <m>M(n) =n! \sum _{k=1}^n \frac{1}{k!}</m>.  For large <m>n</m> this is approximately <m>e\cdot n!</m>.  Fortunately, there are ways to reduce the number of multiplications using properties of determinants, which we list here without proof.</p>
+<theorem xml:id="determinant-properties"><title>Properties of Determinants</title>
+<statement><p> Let <m>A</m>  and <m>B</m> be <m>n \times n</m> matrices, where <m>n \geq 2</m>.
+<ol>
+<li><p> <m>\lvert A \rvert</m> can be found by expanding along any row or any column.</p></li>
+<li><p>  If two rows (or columns) of <m>A</m> are interchanged, <m>\lvert A \rvert</m> changes sign,</p></li>
+<li><p> The value of a determinant is unchanged if a multiple of one row (or column) of <m>A</m> is added to another row (or column) of <m>A</m> .</p></li>
+<li><p> If one row (or column) of a matrix <m>A</m> is multiplied by a constant <m>c</m>, then the value of <m>\lvert A \rvert</m> is multiplied by <m>c</m>.</p></li>
+<li><p> <m>\lvert A B \rvert = \lvert A \rvert \cdot \lvert B \rvert</m>.</p></li>
+<li><p> <m>\lvert I \rvert  = 1</m> where <m>I</m> is the <m>n \times n</m> identity matrix.</p></li>
+</ol></p>
+</statement>
+</theorem>
+<p>Based on these properties, here are a few corollaries.</p>
+<corollary xml:id="determinant-corollaries"><title>Further Properties</title>
+<statement><p> Let <m>A</m>  and <m>B</m> be <m>n \times n</m> matrices, where <m>n \geq 2</m>.
+<ol>
+<li><p> If a row (or column) of <m>A</m> consists entirely of zeros, then <m>\lvert A \rvert = 0</m>. </p></li>
+<li><p> If a matrix <m>A</m> has two equal rows (or columns) then <m>\lvert A \rvert = 0</m>. </p></li>
+<li><p> If any row (or column) of <m>A</m> is a scalar multiple of any other row (or column) of <m>A</m>, then <m>\lvert A \rvert = 0</m>. </p></li>
+<li><p> <m>\lvert A^{-1} \rvert =\frac{1}{\lvert A \rvert}</m> , if <m>A^{-1}</m> exists.</p></li>
+</ol></p>
+</statement></corollary>
+<example xml:id="determinant-by-reduction"><title>Computatation of a determanent by row reduction</title>
+<p>We will apply some of these properties, most notably the first and third of <xref ref="determinant-properties" text="type-local"/>, to compute a four by four determinant without doing as many multiplications as expected.  We will use SageMath to do the calculations for us.  In SageMath, as in Python, numbering starts at zero, so we will describe the process using that numbering system.  Let 
+<m>A=\begin{pmatrix}1 &amp; 3 &amp; 4 &amp; 7\\
+					1 &amp; 3 &amp; 4 &amp; 4\\
+					6 &amp; 6 &amp; 7 &amp; 8\\
+					3 &amp; 3 &amp; 7 &amp; 5
+		 \end{pmatrix}</m></p>
+<p>Our strategy will be to create a column that is mostly zero so that we can expand along that column and only need to compute one cofactor.  That will be the 0th column.  To do that we do the following row operations.  We subtract row 0 from row 1, replacing row 1 with that result.  Then we subtract six time row 0 from row 2, producing a new row 2.  Finally, three times row 0 is subtracted from row 3 to produce a new row 3.  The SageMath code below accomplishes this and produces a new matrix, <m>B</m>, which has the same determinant.</p>
+<sage>
+<input>
+A=matrix([[1,3,4,7],[2,3,4,4],[5,6,7,4],[3,3,7,5]])
+B=matrix([A[0],A[1]-2*A[0],A[2]-5*A[0],A[3]-3*A[0]]);B
+</input>
+<output>
+[  1   3   4   7]
+[  0  -3  -4 -10]
+[  0  -9 -13 -31]
+[  0  -6  -5 -16]
+</output>
+</sage>
+<p>Expanding this matrix along the column zero, we need only compute a single three by three cofactor.  We will go one step further and do row operations to get a matrix with zeros in rows 2 and 3 of column 1.  The SageMath code below tells what we are doing.</p>
+<sage>
+<input>
+C=matrix([B[0],B[1],B[2]-3*B[1],B[3]-2*B[1]]);C
+</input>
+<output>
+[  1   3   4   7]
+[  0  -3  -4 -10]
+[  0   0  -1  -1]
+[  0   0   3   4]
+</output>
+</sage>
+
+<p>We are at a point where we can do the final calculation very easily.
+	<me>\lvert A \rvert = \lvert C \rvert = 1 \cdot(-3 \cdot (-1\cdot 4 - 3\cdot (-1)))= 3</me>
+SageMath has a determinant function, det, that we can use to verify this calculation:
+</p>
+<sage>
+<input>
+A=matrix([[1,3,4,7],[2,3,4,4],[5,6,7,4],[3,3,7,5]])
+det(A)
+</input>
+<output>
+3
+</output>
+</sage>
+</example>
+</appendix>
