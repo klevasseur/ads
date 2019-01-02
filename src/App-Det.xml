@@ -5,7 +5,7 @@
 <introduction><p>In Chapter 5 we defined the determinant of a <m>2 \times 2</m> matrix for the sole purpose of providing some hands-on experience in the computation of inverses of <m>2 \times 2</m> matrices. In this appendix we will define the determinant of any square matrix, and summarize the main properties of determinants.</p></introduction>
 
 
-<p>Associated with every square matrix is a number called its determinant. The most important information it provides us with is whether the matrix is invertible. A matrix has an inverse if and only if it's determinant is nonzero.  If <m>A</m> is a matrix, then the determinant of <m>A</m> is commonly denoted either <m>\det(A)</m>  or <m>\lvert A \rvert</m>.   Strictly speaking, we only need to define the determinat of a <m>1 \times 1</m> matrix here and then define the higher ordered ones recursively, but for convenience we also recall the definition of the determinant of a <m>2 \times 2</m> matrix.</p>
+<p>Associated with every square matrix is a number called its determinant. The most important information it provides us with is whether the matrix is invertible. A matrix has an inverse if and only if it's determinant is nonzero.  If <m>A</m> is a square matrix, then the determinant of <m>A</m> is commonly denoted either <m>\det(A)</m>  or <m>\lvert A \rvert</m>.   Strictly speaking, we only need to define the determinat of a <m>1 \times 1</m> matrix here and then define the higher ordered ones recursively, but for convenience we also recall the definition of the determinant of a <m>2 \times 2</m> matrix.</p>
 
 
 <definition xml:id="def-determinant-basis">
@@ -76,12 +76,12 @@
 </definition>
 
 <example xml:id="example-cofactors-3-by-3">
-<p>Using the values of minors computed in <xref ref="example-minor-3-by-3" text="type-global"/>, we have 
+<p>Using the values of minors computed in <xref ref="example-minor-3-by-3" text="type-local" />, we have 
 	<m>C(A)_{1,1} = (-1)^2 M(A)_{1,1} = 5</m>, <m>C(A)_{1,2} = (-1)^3 M(A)_{1,2} = 13</m>, and <m>C(A)_{1,3} = (-1)^4 M(A)_{1,3} = -11</m>.
 </p>
 </example>
 
-<p>Finally, we will define the determinant of a square matrix. Our definition is practical in that you can apply it easily to any matrix.  If isn't the most general, nor is it the best definiton for the purposes of proving properties of determinants.  The more general definition is based is beyond our current scope, but can be easily stated with background in permutation groups.</p>
+<p>Finally, we will define the determinant of a square matrix. Our definition is practical in that you can apply it easily to any matrix.  It isn't the most general, nor is it the best definiton for the purposes of proving properties of determinants.  The more general definition is beyond our current scope, but can be easily stated with background in permutation groups.</p>
 
 <definition xml:id="def-determinant-general">
 	<title>Determinant of a Square Matrix</title>
@@ -98,18 +98,18 @@
 	</p>
 </statement>
 </definition> 
-<p>Our definition of a determinant involves what is called expansion along the first row of the matrix A. It is certainly not obvious that the determinant of a matrix can be found by expanding along any row or any column.</p>
+<p>Our definition of a determinant involves what is called expansion along the first row of the matrix A. It is certainly not obvious, but it is true, that the determinant of a matrix can be found by expanding along any row or any column.</p>
 <example xml:id="example-determinant-3-3">
 	<p>We have computed the cofactors for row 1 of <m>A = \begin{pmatrix}
 					3 &amp; 4 &amp; 1 \\
 					1 &amp; 3 &amp; 4 \\
 					4 &amp; 1 &amp; 3 
-					\end{pmatrix} </m> above and so the determinant is only a few calculations away.
-					<me>\begin{align}
+					\end{pmatrix} </m> above and so the determinant is only a few operations away.
+					<me>\begin{split}
 					\lvert A \rvert &amp;= A_{1,1}\cdot C(A)_{1,1} +A_{1,2}\cdot C(A)_{1,2}+A_{1,3}\cdot C(A)_{1,3}\\
 									&amp;= 3\cdot 5 + 4\cdot 13 + 1 \cdot (-11)\\
 									&amp;= 56
-									\end{align}
+									\end{split}
 					</me>
 	</p>
 </example>
@@ -121,7 +121,7 @@
 			4 &amp; 1 &amp; 3 
 	\end{pmatrix}</m>.</p>
 <p>To compute the determinant we expand along the first row.
-<me>\begin{align}
+<me>\begin{split}
 	det(A - \lambda I) &amp;=  \begin{vmatrix}
 					3 - \lambda &amp; 4 &amp; 1 \\
 					1 &amp; 3 - \lambda &amp; 4 \\
@@ -141,11 +141,11 @@
 									\end{vmatrix} \\
 			&amp;=(3-\lambda)((3-\lambda)^2-4) + 4((3-\lambda)-16) + (1-4(3-\lambda))\\
 			&amp;=-\lambda ^3+9 \lambda ^2-15 \lambda +56
-		\end{align}
+		\end{split}
 </me> 
 </p>
 </example>
-<p>Our definition of determinant can be applied to estimate the worst case for the time to evaluate an <m>n \times n</m> determinant.   Let <m>M(n)</m> be the number of multiplications to evaluate an <m>n \times n</m> determinant.  Then we have  <m>M(2)=2</m>.  To determine the value of <m>M(3)</m> we observe that this requires the computation of three minors, each a two by two matrix, and then a multiplication of each of them by the entries in row 1.  Therefore, <m>M(3)= 3 M(2) + 3 = 9</m>.  Using the same logic in general, we have <m>M(n)= n M(n-1) + n</m>.  The formula <m>M(n) =n! \sum _{k=1}^n \frac{1}{k!}</m>.  For large <m>n</m> this is approximately <m>e\cdot n!</m>.  Fortunately, there are ways to reduce the number of multiplications using properties of determinants, which we list here without proof.</p>
+<p>Our definition of determinant can be applied to estimate the worst case for the time to evaluate an <m>n \times n</m> determinant.   Let <m>M(n)</m> be the number of multiplications to evaluate an <m>n \times n</m> determinant.  Then we have  <m>M(2)=2</m>.  To determine the value of <m>M(3)</m> we observe that this requires the computation of three minors, each a two by two matrix, and then a multiplication of each of them by the entries in row 1.  Therefore, <m>M(3)= 3 M(2) + 3 = 9</m>.  Using the same logic in general, we have <m>M(n)= n M(n-1) + n</m>.  The formula can be derived to be <m>M(n) =n! \sum _{k=1}^n \frac{1}{k!}</m>.  For large <m>n</m> this is approximately <m>e\cdot n!</m>.  Fortunately, there are ways to reduce the number of multiplications using properties of determinants, which we list here without proof.</p>
 <theorem xml:id="determinant-properties"><title>Properties of Determinants</title>
 <statement><p> Let <m>A</m>  and <m>B</m> be <m>n \times n</m> matrices, where <m>n \geq 2</m>.
 <ol>
@@ -203,7 +203,7 @@ C=matrix([B[0],B[1],B[2]-3*B[1],B[3]-2*B[1]]);C
 
 <p>We are at a point where we can do the final calculation very easily.
 	<me>\lvert A \rvert = \lvert C \rvert = 1 \cdot(-3 \cdot (-1\cdot 4 - 3\cdot (-1)))= 3</me>
-SageMath has a determinant function, det, that we can use to verify this calculation:
+SageMath has a determinant function, <c>det</c>, that we can use to verify this calculation:
 </p>
 <sage>
 <input>
