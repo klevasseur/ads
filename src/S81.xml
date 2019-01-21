@@ -7,16 +7,16 @@
 <subsection xml:id="ss-binomial-coefficients"><title>Binomial Coefficients</title><idx>Polynomials and their evaluation</idx>
 <p>Here is a recursive definition of binomial coefficients, which we introduced in Chapter 2.</p>
 
-<definition xml:id="def-binomial-coefficient-recursive"><title>Binomial Coefficient - Recursion Definition</title><idx><h>Binomial Coefficient</h><h>Recursive Definition</h></idx><statement><p>Assume \(n\geq 0\) and \(n \geq  k \geq  0\). We define \(\binom{n}{k} \) by</p>
+<definition xml:id="def-binomial-coefficient-recursive"><title>Binomial Coefficient - Recursion Definition</title><idx><h>Binomial Coefficient</h><h>Recursive Definition</h></idx><statement><p>Assume <m>n\geq 0</m> and <m>n \geq  k \geq  0</m>. We define <m>\binom{n}{k} </m> by</p>
 <p><ul>
-<li><p>\(\binom{n}{0}  = 1\)</p></li>
-<li><p>\(\binom{n}{n} =1\) and</p></li>
-<li><p>\(\binom{n}{k}  = \binom{n-1}{k}+\binom{n-1}{k-1}\) if \(n > k > 0\)</p></li>
+<li><p><m>\binom{n}{0}  = 1</m></p></li>
+<li><p><m>\binom{n}{n} =1</m> and</p></li>
+<li><p><m>\binom{n}{k}  = \binom{n-1}{k}+\binom{n-1}{k-1}</m> if <m>n > k > 0</m></p></li>
 </ul></p>
 </statement></definition>
 <observation><p>A word about definitions:  Strictly speaking, when mathematical objects such as binomial coefficents are defined, they should be defined just once.  Since we defined binomial coefficients earlier, in <xref ref="binomial-coefficient" text="type-global" />, other statements describing them should be theorems.  The theorem, in this case, would be that the <q>definition</q> above is consistent with the original definition.   Our point in this chapter in discussing recursion is to observe alternative definitions that have a recursive nature.   In the exercises, you will have the opportunity to prove that the two definitions are indeed equivalent.
 </p></observation>
-<p>Here is how we can apply the recursive definition to compute \(\binom{5}{2} \).
+<p>Here is how we can apply the recursive definition to compute <m>\binom{5}{2} </m>.
 <me>
 \begin{split}
 \binom{5}{2}  &amp;=\binom{4}{2} +\binom{4}{1} \\
@@ -33,7 +33,7 @@
 </subsection>			
 <subsection xml:id="ss-polynomials-and-their-evaluation"><title>Polynomials and Their Evaluation</title><idx>Polynomials</idx>
 
-<definition xml:id="def-polynomial-expression-nonrecursive"><title>Polynomial Expression in <m>x</m> over <m>S</m> (Non-Recursive)</title><idx><h>Polynomial Expression</h><h>Non-recursive). </h></idx><statement><p>Let <m>n</m> be an integer, \(n\geq 0\). An \(n^{\text{th}}\) degree polynomial in <m>x</m> is an expression of the form \(a_nx^n+ a_{n-1}x^{n-1}+ \cdots  + a_1x+a_0\), where \(a_n, a_{n-1},\ldots ,a_1,a_0\) are elements of some designated set of numbers, <m>S</m>, called the set of coefficients and \(a_n\neq 0\).</p></statement></definition>
+<definition xml:id="def-polynomial-expression-nonrecursive"><title>Polynomial Expression in <m>x</m> over <m>S</m> (Non-Recursive)</title><idx><h>Polynomial Expression</h><h>Non-recursive). </h></idx><statement><p>Let <m>n</m> be an integer, <m>n\geq 0</m>. An <m>n^{\text{th}}</m> degree polynomial in <m>x</m> is an expression of the form <m>a_nx^n+ a_{n-1}x^{n-1}+ \cdots  + a_1x+a_0</m>, where <m>a_n, a_{n-1},\ldots ,a_1,a_0</m> are elements of some designated set of numbers, <m>S</m>, called the set of coefficients and <m>a_n\neq 0</m>.</p></statement></definition>
 
 <p>We refer to <m>x</m> as a variable here, although the more precise term for <m>x</m> is an <em>indeterminate</em>. There is a distinction
 between the terms indeterminate and variable, but that distinction will not come into play in our discussions.</p>
@@ -42,7 +42,7 @@ between the terms indeterminate and variable, but that distinction will not come
 
 <p>Zeroth degree polynomials are called constant polynomials and are simply elements of the set of coefficients.</p>
 
-<p>This definition is often introduced in algebra courses to describe expressions such as \(f(n) = 4n^3 + 2n^2 - 8n + 9\), a third-degree,
+<p>This definition is often introduced in algebra courses to describe expressions such as <m>f(n) = 4n^3 + 2n^2 - 8n + 9</m>, a third-degree,
 or cubic, polynomial in <m>n</m>. This definition has a drawback when the variable is given a value and the expression must be evaluated. For example, suppose that <m>n = 7</m>. Your first impulse is likely to do this:
 
 <me>
@@ -53,52 +53,52 @@ f(7) &amp;= 4\cdot 7^3 + 2\cdot 7^2 - 8\cdot 7 + 9\\
 \end{split}
 </me>
 </p>
-<p>A count of the number of operations performed shows that five multiplications and three additions/subtractions were performed. The first two multiplications compute \(7^2\) and \(7^3\), and the last three multiply the powers of 7 times the coefficients. This gives you the
-four terms; and adding/subtracting a list of <m>k</m> numbers requires \(k-1\) addition/subtractions. The following definition of a polynomial
+<p>A count of the number of operations performed shows that five multiplications and three additions/subtractions were performed. The first two multiplications compute <m>7^2</m> and <m>7^3</m>, and the last three multiply the powers of 7 times the coefficients. This gives you the
+four terms; and adding/subtracting a list of <m>k</m> numbers requires <m>k-1</m> addition/subtractions. The following definition of a polynomial
 expression suggests another more efficient method of evaluation.</p>
 
 <definition xml:id="def-polynomial-expression-recursive"><title>Polynomial Expression in <m>x</m> over <m>S</m> (Recursive)</title><idx><h>Polynomial Expression</h><h>Recursive definition</h></idx>
 <statement><p>Let <m>S</m> be a set of coefficients and <m>x</m> a variable.</p> 
 <p><ol label="(a)">
 <li><p>A zeroth degree polynomial expression in <m>x</m> over <m>S</m> is a nonzero element of <m>S</m>.</p></li>
-<li><p>For \(n\geq 1\), an \(n^{th}\) degree polynomial expression in <m>x</m> over <m>S</m> is an expression of the form \(p(x)x + a\) where \(p(x)\) is
-an \((n-1)^{st}\) degree polynomial expression in <m>x</m> and \(a\in  S\).</p>
+<li><p>For <m>n\geq 1</m>, an <m>n^{th}</m> degree polynomial expression in <m>x</m> over <m>S</m> is an expression of the form <m>p(x)x + a</m> where <m>p(x)</m> is
+an <m>(n-1)^{st}</m> degree polynomial expression in <m>x</m> and <m>a\in  S</m>.</p>
 </li>
 </ol></p>
 </statement>
 
 </definition>
 
-<p>We can easily verify that \(f(n) = 4n^3 + 2n^2 - 8n + 9\) is a third-degree polynomial expression in  <m>n</m> over <m>\mathbb{Z}</m> based on this definition:
+<p>We can easily verify that <m>f(n) = 4n^3 + 2n^2 - 8n + 9</m> is a third-degree polynomial expression in  <m>n</m> over <m>\mathbb{Z}</m> based on this definition:
 
-\[f(n)= 4n^3 + 2n^2 - 8n + 9 = ((4n+2)n-8)n+9\]
+<me>f(n)= 4n^3 + 2n^2 - 8n + 9 = ((4n+2)n-8)n+9</me>
 
-Notice that 4 is a zeroth degree polynomial since it is an integer. Therefore \(4n + 2\) is a first-degree polynomial; therefore,
-\((4n + 2) n - 8\) is a second-degree polynomial in <m>n</m> over <m>\mathbb{Z}</m>; therefore, \(f(n)\) is a third-degree polynomial in <m>n</m> over <m>\mathbb{Z}</m>. The final expression for \(f(n)\) is called its <term>telescoping form</term>. If we use it to calculate \(f(7)\),
+Notice that 4 is a zeroth degree polynomial since it is an integer. Therefore <m>4n + 2</m> is a first-degree polynomial; therefore,
+<m>(4n + 2) n - 8</m> is a second-degree polynomial in <m>n</m> over <m>\mathbb{Z}</m>; therefore, <m>f(n)</m> is a third-degree polynomial in <m>n</m> over <m>\mathbb{Z}</m>. The final expression for <m>f(n)</m> is called its <term>telescoping form</term>. If we use it to calculate <m>f(7)</m>,
 we need only three multiplications and three additions/subtractions. This is called <term>Horner's method</term> for evaluating a polynomial expression.</p>
 
 
 <example xml:id="ex-more-telescoping_"><title>More Telescoping Polynomials</title>
 <p><ol label="(a)">
-<li><p> The telescoping form of \(p(x) = 5x^4 + 12x^3 -6x^2 + x + 6\) is \((((5x + 12) x - 6) x + 1) x + 6\). Using Horner's method, computing the value of \(p(c)\) requires four multiplications and four additions/subtractions for any real number <m>c</m>.</p></li>
-<li><p>\(g(x) = -x^5 + 3x^4 + 2x^2 + x\) has the telescoping form \(((((- x + 3) x ) x + 2) x + 1) x\).</p></li>
+<li><p> The telescoping form of <m>p(x) = 5x^4 + 12x^3 -6x^2 + x + 6</m> is <m>(((5x + 12) x - 6) x + 1) x + 6</m>. Using Horner's method, computing the value of <m>p(c)</m> requires four multiplications and four additions/subtractions for any real number <m>c</m>.</p></li>
+<li><p><m>g(x) = -x^5 + 3x^4 + 2x^2 + x</m> has the telescoping form <m>((((- x + 3) x ) x + 2) x + 1) x</m>.</p></li>
 </ol></p>
 </example>
 
 
-<p>Many computer languages represent polynomials as lists of coefficients, usually starting with the constant term. For example, \(g(x) = -x^5 +
-3x^4 +\text{  }2x^2 + x\)  would be represented with the list \(\{0,1,2,0,3,-1\}\). In both Mathematica and Sage, polynomial expressions can be entered and manipulated, so the list representation is only internal. Some lower-leveled languages do require users to program polynomial operations with lists. We will leave these programming issues to another source.</p>
+<p>Many computer languages represent polynomials as lists of coefficients, usually starting with the constant term. For example, <m>g(x) = -x^5 +
+3x^4 +\text{  }2x^2 + x</m>  would be represented with the list <m>\{0,1,2,0,3,-1\}</m>. In both Mathematica and Sage, polynomial expressions can be entered and manipulated, so the list representation is only internal. Some lower-leveled languages do require users to program polynomial operations with lists. We will leave these programming issues to another source.</p>
 
 </subsection>
 <subsection xml:id="ss-recursive-searching"><title>Recursive Searching - The Binary Search</title><idx>Recursive Searching</idx><idx>Binary Search</idx>
 
 
-<p>Next, we consider a recursive algorithm for a binary search within a sorted list of items.  Suppose  \(r=\{r(1),r(2) \ldots  , r(n)\}\) represent a list of
-<m>n</m> items sorted by a numeric key in descending order. The \(j^{th}\) item is denoted \(r(j)\) and its key value by \(r(j).\texttt{key}\).
-For example, each item might contain data on the buildings in a city and the key value might be the height of the building. Then \(r(1)\) would be the item for the tallest building and  \(r(1).\texttt{key}\) would be its height. The algorithm \(\texttt{BinarySearch}(j, k)\) can be applied to search for an item in <m>r</m> with key value
-<m>C</m>. This would be accomplished by the execution of \(\texttt{BinarySearch}(1, n)\). When the algorithm is completed, the variable \(\texttt{Found}\)
-will have a value of \(\texttt{true}\) if an item with the desired key value was found, and the value of \(\textrm{location}\) will be the index of an item whose key is
-\(C\). If \(\texttt{Found}\) keeps the value \(\texttt{false}\), no such item exists in the list. The general idea behind the algorithm is illustrated in <xref ref="fig-binsearch" text="type-global"/></p>
+<p>Next, we consider a recursive algorithm for a binary search within a sorted list of items.  Suppose  <m>r=\{r(1),r(2) \ldots  , r(n)\}</m> represent a list of
+<m>n</m> items sorted by a numeric key in descending order. The <m>j^{th}</m> item is denoted <m>r(j)</m> and its key value by <m>r(j).\texttt{key}</m>.
+For example, each item might contain data on the buildings in a city and the key value might be the height of the building. Then <m>r(1)</m> would be the item for the tallest building and  <m>r(1).\texttt{key}</m> would be its height. The algorithm <m>\texttt{BinarySearch}(j, k)</m> can be applied to search for an item in <m>r</m> with key value
+<m>C</m>. This would be accomplished by the execution of <m>\texttt{BinarySearch}(1, n)</m>. When the algorithm is completed, the variable <m>\texttt{Found}</m>
+will have a value of <m>\texttt{true}</m> if an item with the desired key value was found, and the value of <m>\textrm{location}</m> will be the index of an item whose key is
+<m>C</m>. If <m>\texttt{Found}</m> keeps the value <m>\texttt{false}</m>, no such item exists in the list. The general idea behind the algorithm is illustrated in <xref ref="fig-binsearch" text="type-global"/></p>
 
  <figure xml:id="fig-binsearch">
                 <caption>General Scheme for a Binary Search
@@ -145,7 +145,7 @@ found in position 4
 </subsection>
 <subsection xml:id="ss-recursive-sequences"><title>Recursively Defined Sequences</title><idx><h>Sequences</h><h>Recursively Defined</h></idx>
 
-<p>For the next two examples, consider a sequence of numbers to be a list of numbers consisting of a zeroth number, first number, second number, ... . If a sequence is given the name <m>S</m>, the \(k^{th}\) number of <m>S</m> is usually written \(S_k\)  or \(S(k)\).</p>
+<p>For the next two examples, consider a sequence of numbers to be a list of numbers consisting of a zeroth number, first number, second number, ... . If a sequence is given the name <m>S</m>, the <m>k^{th}</m> number of <m>S</m> is usually written <m>S_k</m>  or <m>S(k)</m>.</p>
 
 <example xml:id="ex-geometric-growth"><title>Geometric Growth Sequence</title>
 <p> Define the sequence of numbers <m>B</m> by
@@ -184,7 +184,7 @@ expressed in terms of simpler objects, where <q>simpler</q> means closer to the 
 definition, the basis must be reached after a finite number of applications of the recursion.</p>
 
 <p>To determine, for example, the fourth item in the Fibonacci sequence we repeatedly apply the recursive rule for <m>F</m> until we are left
-with an expression involving \(F_0\) and \(F_1\):
+with an expression involving <m>F_0</m> and <m>F_1</m>:
 
 <me>
 \begin{split}
@@ -198,30 +198,30 @@ F_4 &amp;= F_2+F_3\\
 </p>
 </subsection>
 <subsection xml:id="ss-iteration"><title>Iteration</title>
-<p>On the other hand, we could compute a term in the Fibonacci sequence, say \(F_5\) by starting with the basis terms and working forward as follows:</p>
+<p>On the other hand, we could compute a term in the Fibonacci sequence, say <m>F_5</m> by starting with the basis terms and working forward as follows:</p>
 <table><caption/>
 <tabular>
-<row><cell>\(F_2= F_0+ F_1 =1 + 1 =2\)</cell></row>
-<row><cell>\(F_3= F_1+ F_2=1+ 2=3\)</cell></row>
-<row><cell>\(F_4= F_2+F_3=2+3=5\)</cell></row>
-<row><cell>\(F_5=F_3+F_4= 3+5=8\)</cell></row>
+<row><cell><m>F_2= F_0+ F_1 =1 + 1 =2</m></cell></row>
+<row><cell><m>F_3= F_1+ F_2=1+ 2=3</m></cell></row>
+<row><cell><m>F_4= F_2+F_3=2+3=5</m></cell></row>
+<row><cell><m>F_5=F_3+F_4= 3+5=8</m></cell></row>
 </tabular>
 </table>
 
-<p>This is called an iterative computation of the Fibonacci sequence. Here we start with the basis and work our way forward to a less simple number, such as 5. Try to compute \(F_5\) using the recursive definition for <m>F</m> as we did for \(F_4\). It will take much more time than it would have taken to do the computations above. Iterative computations usually tend to be faster than computations that apply recursion. Therefore, one useful skill is being able to convert a recursive formula into a nonrecursive formula, such as one that requires only iteration or a faster method, if possible.</p>
+<p>This is called an iterative computation of the Fibonacci sequence. Here we start with the basis and work our way forward to a less simple number, such as 5. Try to compute <m>F_5</m> using the recursive definition for <m>F</m> as we did for <m>F_4</m>. It will take much more time than it would have taken to do the computations above. Iterative computations usually tend to be faster than computations that apply recursion. Therefore, one useful skill is being able to convert a recursive formula into a nonrecursive formula, such as one that requires only iteration or a faster method, if possible.</p>
 
 
-<p>An iterative formula for \(\binom{n}{k} \) is also much more efficient than an application of the recursive definition. The recursive definition is not
+<p>An iterative formula for <m>\binom{n}{k} </m> is also much more efficient than an application of the recursive definition. The recursive definition is not
 without its merits, however. First, the recursive equation is often useful in manipulating algebraic expressions involving binomial
-coefficients. Second, it gives us an insight into the combinatoric interpretation of \(\binom{n}{k}\). In choosing <m>k</m> elements from \(\{1, 2,
-. . . , n\}\), there are \(\binom{n-1}{k}\) ways of choosing all <m>k</m> from \(\{1,2, . . . ,n - 1\}\), and there are \(\binom{n-1}{k-1}\) ways of choosing
-the <m>k</m> elements if <m>n</m> is to be selected and the remaining \(k - 1\) elements come from \(\{1, 2, . . . , n - 1\}\). Note how we
+coefficients. Second, it gives us an insight into the combinatoric interpretation of <m>\binom{n}{k}</m>. In choosing <m>k</m> elements from <m>\{1, 2,
+. . . , n\}</m>, there are <m>\binom{n-1}{k}</m> ways of choosing all <m>k</m> from <m>\{1,2, . . . ,n - 1\}</m>, and there are <m>\binom{n-1}{k-1}</m> ways of choosing
+the <m>k</m> elements if <m>n</m> is to be selected and the remaining <m>k - 1</m> elements come from <m>\{1, 2, . . . , n - 1\}</m>. Note how we
 used the Law of Addition from Chapter 2 in our reasoning.</p>
 
 <p><em>BinarySearch Revisited.</em> In the binary search algorithm, the place where recursion is used is easy to pick out. When an item is examined and
 the key is not the one you want, the search is cut down to a sublist of no more than half the number of items that you were searching in before.
 Obviously, this is a simpler search. The basis is hidden in the algorithm. The two cases that complete the search can be thought of as the basis.
-Either you find an item that you want, or the sublist that you have been left to search in is empty, when \(j > k\).</p>
+Either you find an item that you want, or the sublist that you have been left to search in is empty, when <m>j > k</m>.</p>
 
 <p>BinarySearch can be translated without much difficulty into any language that allows recursive calls to its subprograms. The advantage to such a program is that its coding would be much shorter than a nonrecursive program that does a binary search. However, in most cases the recursive version will be slower and require more memory at execution time.</p>
 </subsection>
@@ -233,8 +233,8 @@ Either you find an item that you want, or the sublist that you have been left to
 <p>The definition of the positive integers in terms of Peano's Postulates is a recursive definition. The basis element is the number 1 and the recursion is that if <m>n</m> is a positive integer, then so is its successor. In this case, <m>n</m> is the simple object and the recursion is of a forward type. Of course, the validity of an induction proof is based on our acceptance of this definition. Therefore, the appearance of induction proofs
 when recursion is used is no coincidence.</p>
 
-<example xml:id="ex-geometric-squence-proof"><title>Proof of a formula for <m>B</m></title><p>A formula for the sequence <m>B</m> in <xref ref="ex-geometric-growth" text="type-global"/> is \(B = 100(1.08)^k\) for \(k\geq 0\). A proof by induction follow.</p>
-<p>If \(k= 0\), then \(B = 100(1.08)^0 = 100\), as defined. Now assume that for some \(k\geq 1\), the formula for \(B_k\) is true.
+<example xml:id="ex-geometric-squence-proof"><title>Proof of a formula for <m>B</m></title><p>A formula for the sequence <m>B</m> in <xref ref="ex-geometric-growth" text="type-global"/> is <m>B = 100(1.08)^k</m> for <m>k\geq 0</m>. A proof by induction follow.</p>
+<p>If <m>k= 0</m>, then <m>B = 100(1.08)^0 = 100</m>, as defined. Now assume that for some <m>k\geq 1</m>, the formula for <m>B_k</m> is true.
 
 <me>
 \begin{split}
@@ -243,21 +243,21 @@ B_{k+1} &amp;= 1.08B_k \textrm{  by the recursive definition}\\
 	&amp;= 100 (1.08)^{k+1}
 \end{split}
 </me>
-hence the formula is true for \(k+1\)</p>
+hence the formula is true for <m>k+1</m></p>
 <p>The formula that we have just proven for <m>B</m> is called a closed form expression. It involves no recursion or summation signs.</p>
 </example>
 
-<definition xml:id="def-closed-form-expression"><title>Closed Form Expression</title><idx>Closed Form Expression.</idx><statement><p> Let \(E = E\left(x_1, x_2, \ldots ,x_n\right)\) be an algebraic expression involving variables
-\(x_1, x_2, \ldots ,x_n\) which are allowed to take on values from some predetermined set. <m>E</m> is a <term>closed form expression</term> if there exists a number <m>T</m> such that the evaluation of <m>E</m> with any allowed values of the variables will take no more than <m>T</m> operations (alternatively, <m>T</m> time units).</p></statement></definition>
+<definition xml:id="def-closed-form-expression"><title>Closed Form Expression</title><idx>Closed Form Expression.</idx><statement><p> Let <m>E = E\left(x_1, x_2, \ldots ,x_n\right)</m> be an algebraic expression involving variables
+<m>x_1, x_2, \ldots ,x_n</m> which are allowed to take on values from some predetermined set. <m>E</m> is a <term>closed form expression</term> if there exists a number <m>T</m> such that the evaluation of <m>E</m> with any allowed values of the variables will take no more than <m>T</m> operations (alternatively, <m>T</m> time units).</p></statement></definition>
 
 
 
-<example xml:id="ex-summation-simplifed"><title>Reducing a summation to closed form</title><p>The sum \(E(n)=\sum_{k=1}^n k\) is not a closed form expression because the number of additions needed to evaluate \(E(n)\) grows indefinitely with <m>n</m>. A closed form expression that computes the value of \(E(n)\) is \(\frac{n(n+1)}{2}\), which only requires \(T=3\) operations. </p></example>
+<example xml:id="ex-summation-simplifed"><title>Reducing a summation to closed form</title><p>The sum <m>E(n)=\sum_{k=1}^n k</m> is not a closed form expression because the number of additions needed to evaluate <m>E(n)</m> grows indefinitely with <m>n</m>. A closed form expression that computes the value of <m>E(n)</m> is <m>\frac{n(n+1)}{2}</m>, which only requires <m>T=3</m> operations. </p></example>
  
 </subsection>
 <exercises><title>Exercises for Section 8.1</title>
 <exercise number="1"><statement>
-<p>By the recursive definition of binomial coefficients, \(\binom{7}{2}=\binom{6}{2} +\binom{6}{1}\). Continue expanding \(\binom{7}{2}\) to express it in terms of quantities defined by the basis. Check your result by applying the factorial definition of \(\binom{n}{k}\).</p>
+<p>By the recursive definition of binomial coefficients, <m>\binom{7}{2}=\binom{6}{2} +\binom{6}{1}</m>. Continue expanding <m>\binom{7}{2}</m> to express it in terms of quantities defined by the basis. Check your result by applying the factorial definition of <m>\binom{n}{k}</m>.</p>
 </statement>
 <answer><p><me>
 \begin{split}
@@ -277,34 +277,34 @@ hence the formula is true for \(k+1\)</p>
 </p>
 </answer>
 </exercise>
-<exercise number="2"><statement><p> Define the sequence <m>L</m> by \(L_0 = 5\) and for \(k\geq 1\), \(L _k = 2L_{k-1}-7\).  Determine \(L_4\) and prove
-by induction that \(L_k=7-2^{k+1}\).</p>
+<exercise number="2"><statement><p> Define the sequence <m>L</m> by <m>L_0 = 5</m> and for <m>k\geq 1</m>, <m>L _k = 2L_{k-1}-7</m>.  Determine <m>L_4</m> and prove
+by induction that <m>L_k=7-2^{k+1}</m>.</p>
 </statement>
 </exercise>
-<exercise number="3"><statement><p> Let \(p(x) = x^5+ 3x^4 - 15x^3 + x - 10\).</p>
+<exercise number="3"><statement><p> Let <m>p(x) = x^5+ 3x^4 - 15x^3 + x - 10</m>.</p>
  <p><ol label="(a)">
-<li><p> Write \(p(x)\) in telescoping form.</p></li>
-<li><p> Use a calculator to compute \(p(3)\) using the original form of \(p(x)\). </p></li>
-<li><p> Use a calculator to compute \(p(3)\) using the telescoping form of \(p(x)\).</p></li>
+<li><p> Write <m>p(x)</m> in telescoping form.</p></li>
+<li><p> Use a calculator to compute <m>p(3)</m> using the original form of <m>p(x)</m>. </p></li>
+<li><p> Use a calculator to compute <m>p(3)</m> using the telescoping form of <m>p(x)</m>.</p></li>
 <li><p> Compare your speed in parts b and c.</p></li>
 </ol></p>
 </statement>
-<answer><p><ol label="(a)"><li><p> \(p(x)\) in telescoping form: \(((((x+3)x-15)x+0)x+1)x-10\)</p></li>
-<li><p> \(p(3)=((((3+3)3-15)3-0)3+1)3-10=74\)</p></li>
+<answer><p><ol label="(a)"><li><p> <m>p(x)</m> in telescoping form: <m>((((x+3)x-15)x+0)x+1)x-10</m></p></li>
+<li><p> <m>p(3)=((((3+3)3-15)3-0)3+1)3-10=74</m></p></li>
 </ol></p>
 </answer>
 </exercise>
-<exercise number="4"><statement><p> Suppose that a list of nine items, <m>(r(l), r(2), . . . , r(9))</m>, is sorted by key in decending order so that \(r(3).\texttt{key} = 12\) and \(r(4).\texttt{key} = 10\). List the executions of the BinarySearch algorithms that would be needed to complete BinarySearch(1,9) when:
+<exercise number="4"><statement><p> Suppose that a list of nine items, <m>(r(l), r(2), . . . , r(9))</m>, is sorted by key in decending order so that <m>r(3).\texttt{key} = 12</m> and <m>r(4).\texttt{key} = 10</m>. List the executions of the BinarySearch algorithms that would be needed to complete BinarySearch(1,9) when:
 <ol label="(a)" cols="2">
 <li><p>The search key is C = 12</p></li>
 <li><p>The search key is C = 11</p></li>
 </ol></p>
 <p>Assume that distinct items have distinct keys.</p>
 </statement></exercise>
-<exercise number="5"><statement><p> What is wrong with the following definition of \(f:\mathbb{R}\to \mathbb{R}\)? 
-\(f(0) = 1\) and \(f(x) = f(x/2)/2\) if \(x\neq 0\).</p>
+<exercise number="5"><statement><p> What is wrong with the following definition of <m>f:\mathbb{R}\to \mathbb{R}</m>? 
+<m>f(0) = 1</m> and <m>f(x) = f(x/2)/2</m> if <m>x\neq 0</m>.</p>
 </statement>
-<answer><p>The basis is not reached in a finite number of steps if you try to compute \(f(x)\) for a nonzero value of \(x\).</p></answer>
+<answer><p>The basis is not reached in a finite number of steps if you try to compute <m>f(x)</m> for a nonzero value of <m>x</m>.</p></answer>
 </exercise>
 <exercise number="6"><statement><p>Prove the two definitions of binomials coefficients, <xref ref="binomial-coefficient" text="type-global" /> and <xref ref="def-binomial-coefficient-recursive" text="type-global"/>, are equivalent.</p></statement>
 </exercise>

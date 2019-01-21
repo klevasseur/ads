@@ -15,33 +15,33 @@ in a regular grammar.</p>
 
 <definition xml:id="def-finite-state-machine"><title>Finite-State Machine</title>
 <idx>Finite-State Machine</idx>
-<notation><usage>(S, X, Z, w, t)</usage><description>A finite-state machine with states \(S\), input alphabet \(X\), output alphabet \(X\), and output function \(w\) and next-state function \(t\)</description></notation>
-<statement><p>A finite-state machine is defined by a quintet \((S, X, Z, w, t)\) where
+<notation><usage>(S, X, Z, w, t)</usage><description>A finite-state machine with states <m>S</m>, input alphabet <m>X</m>, output alphabet <m>X</m>, and output function <m>w</m> and next-state function <m>t</m></description></notation>
+<statement><p>A finite-state machine is defined by a quintet <m>(S, X, Z, w, t)</m> where
 <ol label="(1)">
-<li><p> \(S=\{s_1, s_2,\ldots  , s_r\}\) is the state set, a finite set that corresponds to the set of memory configurations that the machine can have at any time.</p></li>
-<li><p> \(X=\{x_1, x_2, \ldots  ,x_m\}\) is the input alphabet.</p></li>
-<li><p> \(Z=\{z_1,z_2, \ldots  ,z_n\}\) is the output alphabet.</p></li>
-<li><p> \(w: X\times S \to Z\) is the output function, which specifies which output symbol \(w(x, s) \in Z\) is written onto the output tape when the machine is in state \(s\) and the input symbol \(x\) is read.</p></li>
-<li><p>  \(t:X\times S\to S\) is the next-state (or transition) function, which specifies which state \(t(x, s) \in S\) 
-the machine should enter when it is in state \(s\) and it reads the symbol \(x\).</p></li>
+<li><p> <m>S=\{s_1, s_2,\ldots  , s_r\}</m> is the state set, a finite set that corresponds to the set of memory configurations that the machine can have at any time.</p></li>
+<li><p> <m>X=\{x_1, x_2, \ldots  ,x_m\}</m> is the input alphabet.</p></li>
+<li><p> <m>Z=\{z_1,z_2, \ldots  ,z_n\}</m> is the output alphabet.</p></li>
+<li><p> <m>w: X\times S \to Z</m> is the output function, which specifies which output symbol <m>w(x, s) \in Z</m> is written onto the output tape when the machine is in state <m>s</m> and the input symbol <m>x</m> is read.</p></li>
+<li><p>  <m>t:X\times S\to S</m> is the next-state (or transition) function, which specifies which state <m>t(x, s) \in S</m> 
+the machine should enter when it is in state <m>s</m> and it reads the symbol <m>x</m>.</p></li>
 </ol>
 </p></statement></definition>
 
 <example xml:id="ex-vending-machine"><title>Vending Machine as a Finite-State Machine</title><p>Many mechanical devices, such as simple vending machines, can be thought of as finite-state machines. For simplicity, assume
-that a vending machine dispenses packets of gum, spearmint (S), peppermint (P), and bubble (B), for \(25\) cents each. We can define the input alphabet to be 
-\[\{\textrm{deposit 25 cents}, \textrm{press S}, \textrm{press P}, \textrm{press B}\}\]
-and the state set to be \(\{\textrm{Locked}, \textrm{ Select}\}\), where the deposit of a quarter unlocks the release mechanism of the machine and allows you to select a flavor of gum. We will
+that a vending machine dispenses packets of gum, spearmint (S), peppermint (P), and bubble (B), for <m>25</m> cents each. We can define the input alphabet to be 
+<me>\{\textrm{deposit 25 cents}, \textrm{press S}, \textrm{press P}, \textrm{press B}\}</me>
+and the state set to be <m>\{\textrm{Locked}, \textrm{ Select}\}</m>, where the deposit of a quarter unlocks the release mechanism of the machine and allows you to select a flavor of gum. We will
 leave it to the reader to imagine what the output alphabet, output function, and next-state function would be. You are also invited to let your imagination run wild and include such features as a coin-return lever and change maker.</p></example> 
 
 
 
-<example xml:id="ex-parity-checker"><title>A Parity Checking Machine</title><p>The following machine is called a parity checker.  It recognizes whether or not a string in \(B^*\)  contains an even number of 1s. The memory structure of this machine reflects the fact that in order to check the parity of a string, we need only keep track
+<example xml:id="ex-parity-checker"><title>A Parity Checking Machine</title><p>The following machine is called a parity checker.  It recognizes whether or not a string in <m>B^*</m>  contains an even number of 1s. The memory structure of this machine reflects the fact that in order to check the parity of a string, we need only keep track
 of whether an odd or even number of 1's has been detected.</p>
 
-<p> The input alphabet is \(B=\{0,1\}\) and the output alphabet is also <m>B</m>. The state set is \(\{even, odd\}\).
+<p> The input alphabet is <m>B=\{0,1\}</m> and the output alphabet is also <m>B</m>. The state set is <m>\{even, odd\}</m>.
 The following table defines the output and next-state functions.
 
-\[\begin{array}{c|ccc}
+<me>\begin{array}{c|ccc}
  x &amp; s &amp; w(x,s) &amp; t(x,s) \\
 \hline
  
@@ -73,7 +73,7 @@ The following table defines the output and next-state functions.
  \textrm{ even} \\
 \end{array}
  \\
-\end{array}\]
+\end{array}</me>
 </p>
 
 <p>Note how the value of the most recent output at any time is an indication of the current state of the machine. Therefore, if we start in the even state and read any finite input tape, the last output corresponds to the final state of the parity checker and tells us the parity of the string on the input tape. For example, if the string 11001010 is read from left to right, the output tape, also from left to right, will be 10001100. Since
@@ -81,9 +81,9 @@ the last character is a 0, we know that the input string has even parity.</p>
 </example> 
 
 <p>An alternate method for defining a finite-state machine is with a transition diagram. A transition diagram is a directed graph that contains
-a node for each state and edges that indicate the transition and output functions. An edge \(\left(s_i,s_j\right)\) that is labeled \(x/z\) indicates
-that in state \(s_i\) the input <m>x</m> results in an output of <m>z</m> and the next state is \(s_j\). That is, \(w\left(x, s_i\right)=z\)
-and \(t\left(x, s_i\right)=s_j\). The transition diagram for the parity checker appears in <xref ref="fig-parity-checker" text="type-global" />. In later examples, we will see that if there are different inputs, \(x_i\) and \(x_j\), while in the same state resulting in the same transitions and outputs, we label a single edge \(x_i, \left.x_j\right/z\) instead of drawing two edges with labels \(\left.x_i\right/z\) and \(\left.x_j\right/z\).</p>
+a node for each state and edges that indicate the transition and output functions. An edge <m>\left(s_i,s_j\right)</m> that is labeled <m>x/z</m> indicates
+that in state <m>s_i</m> the input <m>x</m> results in an output of <m>z</m> and the next state is <m>s_j</m>. That is, <m>w\left(x, s_i\right)=z</m>
+and <m>t\left(x, s_i\right)=s_j</m>. The transition diagram for the parity checker appears in <xref ref="fig-parity-checker" text="type-global" />. In later examples, we will see that if there are different inputs, <m>x_i</m> and <m>x_j</m>, while in the same state resulting in the same transitions and outputs, we label a single edge <m>x_i, \left.x_j\right/z</m> instead of drawing two edges with labels <m>\left.x_i\right/z</m> and <m>\left.x_j\right/z</m>.</p>
 
             <figure xml:id="fig-parity-checker">
                 <caption>Transition Diagram for a Parity Checker
@@ -118,9 +118,9 @@ three outs per inning, this graph would only be marginally more complicated. The
 
 
 <example xml:id="ex-problem-recognition-in-reg-languages"><title>Recognition in Regular Languages</title>
-<p>As we mentioned at the outset of this section, finite-state machines can recognize strings in a regular language. Consider the language \(L\) over \(\{a,b,c\}\) that contains the strings of positive length in which each <m>a</m> is followed by <m>b</m> and each <m>b</m> is followed by <m>c</m>. One such string is \(bccabcbc\). This language is regular. A grammar for the language would be nonterminal symbols \(\{A,B,C\}\)
-with starting symbol <m>C</m> and production rules \(A\to bB\), \(B\to cC\), \(C\to aA\), \(C\to bB\), \(C \to cC\), \(C \to c\). A finite-state machine (<xref ref="fig-recognition-machine" text="type-global" />) that recognizes this language
-can be constructed with one state for each nonterminal symbol and an additional state (Reject) that is entered if any invalid production takes place. At the end of an input tape that encodes a string in \(\{a,b,c\}^*\), we will know when the string belongs to <m>L</m> based on the final output. If the final output is 1, the string belongs to <m>L</m> and if it is 0, the string does not belong to <m>L</m>. In addition, recognition can be accomplished by examining the final state of the machine. The input string belongs to the language if and only if the final state is \(C\).</p>
+<p>As we mentioned at the outset of this section, finite-state machines can recognize strings in a regular language. Consider the language <m>L</m> over <m>\{a,b,c\}</m> that contains the strings of positive length in which each <m>a</m> is followed by <m>b</m> and each <m>b</m> is followed by <m>c</m>. One such string is <m>bccabcbc</m>. This language is regular. A grammar for the language would be nonterminal symbols <m>\{A,B,C\}</m>
+with starting symbol <m>C</m> and production rules <m>A\to bB</m>, <m>B\to cC</m>, <m>C\to aA</m>, <m>C\to bB</m>, <m>C \to cC</m>, <m>C \to c</m>. A finite-state machine (<xref ref="fig-recognition-machine" text="type-global" />) that recognizes this language
+can be constructed with one state for each nonterminal symbol and an additional state (Reject) that is entered if any invalid production takes place. At the end of an input tape that encodes a string in <m>\{a,b,c\}^*</m>, we will know when the string belongs to <m>L</m> based on the final output. If the final output is 1, the string belongs to <m>L</m> and if it is 0, the string does not belong to <m>L</m>. In addition, recognition can be accomplished by examining the final state of the machine. The input string belongs to the language if and only if the final state is <m>C</m>.</p>
         <figure xml:id="fig-recognition-machine">
                 <caption>
                 </caption>
@@ -129,15 +129,15 @@ can be constructed with one state for each nonterminal symbol and an additional 
                 </image>
         </figure>
 <p>The construction of this machine is quite easy: note how each production rule translates into an edge between states other than Reject. For
-example, \(C\to bB\) indicates that in State <m>C</m>, an input of <m>b</m> places the machine into State <m>B</m>. Not all sets of production rules can be as easily translated to a finite-state machine. Another set of production rules for <m>L</m> is \(A\to aB\), \(B\to bC\), \(C\to cA\), \(C\to cB\), \(C\to cC\) and \(C\to c\). Techniques for constructing finite-state machines from production rules is not our objective here. Hence we will only expect you to experiment with production rules until appropriate ones are found.</p>
+example, <m>C\to bB</m> indicates that in State <m>C</m>, an input of <m>b</m> places the machine into State <m>B</m>. Not all sets of production rules can be as easily translated to a finite-state machine. Another set of production rules for <m>L</m> is <m>A\to aB</m>, <m>B\to bC</m>, <m>C\to cA</m>, <m>C\to cB</m>, <m>C\to cC</m> and <m>C\to c</m>. Techniques for constructing finite-state machines from production rules is not our objective here. Hence we will only expect you to experiment with production rules until appropriate ones are found.</p>
 </example>
 
 
 
-<example xml:id="ex-binary-adder"><title>A Binary Adder</title><p> A finite-state machine can be designed to add positive integers of any size. Given two integers in binary form, \(a=a_na_{n-1} \cdots  a_1a_0\) and \(b=b_n b_{n-1}\cdots  b_1b_0\), the machine take as its input sequence the corresponding bits of <m>a</m> and <m>b</m> reading from right to left with a <q>parity bit</q> added
-\[a_0b_0\left(a_0+_2b_0\right) ,a_1b_1\left(a_1+_2b_1\right) \ldots  , a_nb_n\left(a_n+_2b_n\right),111\]</p>
+<example xml:id="ex-binary-adder"><title>A Binary Adder</title><p> A finite-state machine can be designed to add positive integers of any size. Given two integers in binary form, <m>a=a_na_{n-1} \cdots  a_1a_0</m> and <m>b=b_n b_{n-1}\cdots  b_1b_0</m>, the machine take as its input sequence the corresponding bits of <m>a</m> and <m>b</m> reading from right to left with a <q>parity bit</q> added
+<me>a_0b_0\left(a_0+_2b_0\right) ,a_1b_1\left(a_1+_2b_1\right) \ldots  , a_nb_n\left(a_n+_2b_n\right),111</me></p>
 
-<p>Notice the special input 111 at the end. All possible inputs except the last one must even parity (contain an even number of ones). The output sequence is the sum of <m>a</m> and <m>b</m>, starting with the units digit, and comes from the set \(\{0,1,\lambda \}\). The transition diagram
+<p>Notice the special input 111 at the end. All possible inputs except the last one must even parity (contain an even number of ones). The output sequence is the sum of <m>a</m> and <m>b</m>, starting with the units digit, and comes from the set <m>\{0,1,\lambda \}</m>. The transition diagram
 for this machine appears in <xref ref="fig-binary-adder" text="type-global" />.</p>
 
     <figure xml:id="fig-binary-adder">
@@ -153,7 +153,7 @@ for this machine appears in <xref ref="fig-binary-adder" text="type-global" />.<
 <title>Exercises for Section 14.3</title>
 <exercise number="1"><statement> <p>  Draw a transition diagram for the vending machine described in <xref ref="ex-vending-machine" text="type-global"/>.</p></statement>
 <answer><p>
- \[\begin{array}{cccc}
+ <me>\begin{array}{cccc}
  x &amp; s &amp; Z(x,s) &amp; t(x,s) \\
  \textrm{ Deposit} 25\not{c} &amp; \textrm{ Locked} &amp; \textrm{ Nothing} &amp; \textrm{ Select} \\
  \textrm{ Deposit} 25\not{c} &amp; \textrm{ Select} &amp; \textrm{ Return} 25\not{c} &amp; \textrm{ Select} \\
@@ -163,7 +163,7 @@ for this machine appears in <xref ref="fig-binary-adder" text="type-global" />.<
  \textrm{ Press} P &amp; \textrm{ Select} &amp; \textrm{ Dispense} P &amp; \textrm{ Locked} \\
  \textrm{ Press} B &amp; \textrm{ Locked} &amp; \textrm{ Nothing} &amp; \textrm{ Locked} \\
  \textrm{ Press} B &amp; \textrm{ Select} &amp; \textrm{ Dispense} B &amp; \textrm{ Locked} \\
-\end{array}\]
+\end{array}</me>
 </p>
             <figure xml:id="fig-vending-diagram">
                 <caption>Vending Machine Transitions
@@ -177,7 +177,7 @@ for this machine appears in <xref ref="fig-binary-adder" text="type-global" />.<
 <exercise number="2"><statement> <p>  Construct finite-state machines that recognize the regular languages that you identified in Section 14.2.</p></statement></exercise>
 <exercise number="3"><statement><p>  What is the input set for the binary adding machine in <xref ref="ex-binary-adder" text="type-global" />?</p>
 </statement>
-<answer><p>  \(\{000, 011, 101, 110, 111\}\)
+<answer><p>  <m>\{000, 011, 101, 110, 111\}</m>
 </p></answer>
 </exercise>
 <exercise number="4"><statement> <p>  What input sequence would be used to compute the sum of 1101 and 0111 (binary integers)? What would the output sequence be?</p></statement></exercise>
@@ -192,30 +192,30 @@ for this machine appears in <xref ref="fig-binary-adder" text="type-global" />.<
             </figure>
 
 
-<p> Given a string \(x=x_1x_2\cdots  x_n\in B^n\), we may ask where <m>x</m> appears in \(G_n\). Starting in Copy state, the input string \(x\) will result in an output string \(z\in B^n\), which is the binary form of the position of <m>x</m> in \(G_n\).  Recall that positions are numbered from 0 to \(2^n-1\).
+<p> Given a string <m>x=x_1x_2\cdots  x_n\in B^n</m>, we may ask where <m>x</m> appears in <m>G_n</m>. Starting in Copy state, the input string <m>x</m> will result in an output string <m>z\in B^n</m>, which is the binary form of the position of <m>x</m> in <m>G_n</m>.  Recall that positions are numbered from 0 to <m>2^n-1</m>.
 <ol label="(a)">
-<li><p>  In what positions \((0-31)\) do 10110, 00100, and 11111 appear in \(G_5\)?</p></li>
+<li><p>  In what positions <m>(0-31)</m> do 10110, 00100, and 11111 appear in <m>G_5</m>?</p></li>
 <li><p>  Prove that the Gray Code Decoder always works.</p></li>
 </ol>
 </p></statement>
 <answer><p>
 <ol label="(a)">
 <li><p> <ul>
-			<li><p>Input: 10110, Output: 11011 \(\Rightarrow\) 10110 is in position 27 </p></li>
-			<li><p>Input: 00100, Output: 00111 \(\Rightarrow\) 00100 is in position 7 </p></li>
-			<li><p> Input:11111, Output: 10101 \(\Rightarrow\) 11111 is in position 21</p></li>
+			<li><p>Input: 10110, Output: 11011 <m>\Rightarrow</m> 10110 is in position 27 </p></li>
+			<li><p>Input: 00100, Output: 00111 <m>\Rightarrow</m> 00100 is in position 7 </p></li>
+			<li><p> Input:11111, Output: 10101 <m>\Rightarrow</m> 11111 is in position 21</p></li>
 			</ul></p></li>
-<li><p>  Let \(x=x_1x_2\ldots  x_n\) and recall that for \(n\geq 1\), 
- \(G_{n+1}=\left(
+<li><p>  Let <m>x=x_1x_2\ldots  x_n</m> and recall that for <m>n\geq 1</m>, 
+ <m>G_{n+1}=\left(
 		\begin{array}{c}
 		 0G_n \\
 		 1G_n^r \\
 		\end{array}
-  \right)\),
- where \(G_n^r\) is the reverse of \(G_n\). To prove that the Gray Code Decoder always works, let \(p(n)\) be the proposition <q>Starting in Copy state,  <m>x</m>'s output is the position of <m>x</m> in \(G_n\);  and starting in Complement state, <m>x</m>'s output is the position of <m>x</m> in \(G_n^r\).</q>  That p(1) is true is easy to verify for both possible values of <m>x</m>,  0 and 1.  Now assume that for some \(n\geq 1\), \(p(n)\) is true and consider \(x=x_1x_2\ldots  x_nx_{n+1}\).</p> 
-<p>If \(x_1=0\), \(x\)'s  output is a zero followed by the output for \(\left(x_2\ldots  x_nx_{n+1}\right)\) starting in
-Copy state. By the induction hypothesis, this is zero followed by the position of \(\left(x_2 \ldots  x_n x_{n+1}\right)\)  in \(G_n\), which is the position of \(x\) in  \(G_{n+1}\), by the definition of \(G\).</p>
-<p>If  \(x_1=1\), \(x\)'s output is a one followed by the output for \(\left(x_2\ldots  x_nx_{n+1}\right)\) starting in Complement state.  By the induction hypothesis, this is one followed by the position of \(\left(x_2\ldots  x_nx_{n+1}\right)\)  in \(G_n^r\), which is the position of \(x\) in \(G_{n+1}\), by the definition of \(G\). \(\square\)</p></li>
+  \right)</m>,
+ where <m>G_n^r</m> is the reverse of <m>G_n</m>. To prove that the Gray Code Decoder always works, let <m>p(n)</m> be the proposition <q>Starting in Copy state,  <m>x</m>'s output is the position of <m>x</m> in <m>G_n</m>;  and starting in Complement state, <m>x</m>'s output is the position of <m>x</m> in <m>G_n^r</m>.</q>  That p(1) is true is easy to verify for both possible values of <m>x</m>,  0 and 1.  Now assume that for some <m>n\geq 1</m>, <m>p(n)</m> is true and consider <m>x=x_1x_2\ldots  x_nx_{n+1}</m>.</p> 
+<p>If <m>x_1=0</m>, <m>x</m>'s  output is a zero followed by the output for <m>\left(x_2\ldots  x_nx_{n+1}\right)</m> starting in
+Copy state. By the induction hypothesis, this is zero followed by the position of <m>\left(x_2 \ldots  x_n x_{n+1}\right)</m>  in <m>G_n</m>, which is the position of <m>x</m> in  <m>G_{n+1}</m>, by the definition of <m>G</m>.</p>
+<p>If  <m>x_1=1</m>, <m>x</m>'s output is a one followed by the output for <m>\left(x_2\ldots  x_nx_{n+1}\right)</m> starting in Complement state.  By the induction hypothesis, this is one followed by the position of <m>\left(x_2\ldots  x_nx_{n+1}\right)</m>  in <m>G_n^r</m>, which is the position of <m>x</m> in <m>G_{n+1}</m>, by the definition of <m>G</m>. <m>\square</m></p></li>
 </ol>
 </p>
 </answer>

@@ -4,10 +4,10 @@
 <introduction>
 <p>A large and varied number of applications involve computations of powers of matrices. These applications can be found in science, the social sciences, economics, engineering, and, many other areas where mathematics is used.  We will consider a few diverse examples the mathematics behind these applications here.</p> </introduction>
 <subsection><title>Diagonalization</title>
-<p>We begin by developing a helpful technique for computing \(A^m\),  \(m > 1\).  If <m>A</m> can be diagonalized, then there is a matrix <m>P</m> such that \(P^{-1}A P = D\),  where <m>D</m> is a diagonal matrix and 
+<p>We begin by developing a helpful technique for computing <m>A^m</m>,  <m>m > 1</m>.  If <m>A</m> can be diagonalized, then there is a matrix <m>P</m> such that <m>P^{-1}A P = D</m>,  where <m>D</m> is a diagonal matrix and 
 <mdn><mrow xml:id="eq-matrix-power">A^m= P D^m P^{-1} \textrm{ for all } m\geq 1</mrow></mdn>                        
 </p>
-<p>The proof of this identity was an exercise in Section 5.4.  The condition that <m>D</m> be a diagonal matrix is not necessary but when it is, the calculation on the right side is particularly easy to perform.  Although the formal proof  is done by induction, the reason why it is true is easily seen by writing out an example such as \(m=3\):
+<p>The proof of this identity was an exercise in Section 5.4.  The condition that <m>D</m> be a diagonal matrix is not necessary but when it is, the calculation on the right side is particularly easy to perform.  Although the formal proof  is done by induction, the reason why it is true is easily seen by writing out an example such as <m>m=3</m>:
 
 <me>
 \begin{split}
@@ -22,22 +22,22 @@ A^3   &amp; = \left(P D P^{-1}\right)^3\\
 </p>
 <example xml:id="ex-fibonnaci-matrix"><title>Application to Recursion: Matrix Computation of the Fibonnaci Sequence</title>
 <idx><h>Fibonacci Sequence</h><h>Matrix Representation</h></idx>
-<p> Consider the computation of terms of the Fibonnaci Sequence.  Recall that  \(F_0= 1, F_1= 1\) and 
-\(F_k= F_{k-1}+F_{k-2}\)  for \(k\geq 2\).
+<p> Consider the computation of terms of the Fibonnaci Sequence.  Recall that  <m>F_0= 1, F_1= 1</m> and 
+<m>F_k= F_{k-1}+F_{k-2}</m>  for <m>k\geq 2</m>.
 </p>
 
-<p>In order to formulate the calculation in matrix form, we introduced the <q>dummy equation</q> \(F_{k-1}= F_{k-1}\) so that now we have two equations
+<p>In order to formulate the calculation in matrix form, we introduced the <q>dummy equation</q> <m>F_{k-1}= F_{k-1}</m> so that now we have two equations
 <me>\begin{array}{c}
 F_k= F_{k-1}+F_{k-2}\\
 F_{k-1}= F_{k-1}\\
 \end{array}</me>
 
-If \( A = \left(
+If <m> A = \left(
 \begin{array}{cc}
  1 &amp; 1 \\
  1 &amp; 0 \\
 \end{array}
-\right)\), these two equations can be expressed in matrix form as
+\right)</m>, these two equations can be expressed in matrix form as
 
 <me>
 \begin{split}
@@ -73,8 +73,8 @@ If \( A = \left(
 	\end{split}
 </me>
 
-We can use induction to prove that if \(k\geq 2\), 
-\[\left(
+We can use induction to prove that if <m>k\geq 2</m>, 
+<me>\left(
 \begin{array}{c}
  F_k \\
  F_{k-1} \\
@@ -84,24 +84,24 @@ We can use induction to prove that if \(k\geq 2\),
  1 \\
  1 \\
 \end{array}
-\right)\]
+\right)</me>
 </p>
 
 
-<p>Next, by diagonalizing <m>A</m> and using the fact that \(A^{m }= P D^m P^{-1}\). we can show that
-\[F_k= \frac{1}{\sqrt{5}}\left( \left(\frac{1+\sqrt{5}}{2}\right)^k- \left(\frac{1-\sqrt{5}}{2}\right)^k\right)\]
+<p>Next, by diagonalizing <m>A</m> and using the fact that <m>A^{m }= P D^m P^{-1}</m>. we can show that
+<me>F_k= \frac{1}{\sqrt{5}}\left( \left(\frac{1+\sqrt{5}}{2}\right)^k- \left(\frac{1-\sqrt{5}}{2}\right)^k\right)</me>
 </p>
 <p>Some comments on this example:
 <ol label="(1)">
-<li><p> An equation of the form \(F_k = a F_{k-1} + b F_{k-2}\) , where <m>a</m> and <m>b</m> are given constants, is  referred to as a linear
-homogeneous second-order difference equation. The conditions \(F_0=c_0\) and \(F_1= c_1\) , where \(c_1\) and \(c_2\) are constants, are called initial
+<li><p> An equation of the form <m>F_k = a F_{k-1} + b F_{k-2}</m> , where <m>a</m> and <m>b</m> are given constants, is  referred to as a linear
+homogeneous second-order difference equation. The conditions <m>F_0=c_0</m> and <m>F_1= c_1</m> , where <m>c_1</m> and <m>c_2</m> are constants, are called initial
 conditions. Those of you who are familiar with differential equations may recognize that this language parallels what is used in differential
 equations. Difference (aka recurrence) equations move forward discretely; that is, in a finite number of positive steps.  On the other hand,  a differential
 equation moves continuously; that is, takes an infinite number of infinitesimal steps.</p></li>
-<li><p>  A recurrence relationship of the form \(S_k = a S_{k-1} + b\), where <m>a</m> and <m>b</m> are constants, is called a first-order difference
+<li><p>  A recurrence relationship of the form <m>S_k = a S_{k-1} + b</m>, where <m>a</m> and <m>b</m> are constants, is called a first-order difference
 equation. In order to write out the sequence, we need to know one initial condition.  Equations of this type can be solved similarly to the method
-outlined in the example by introducing the superfluous equation \(1 =0\cdot F_{k-1}+1\) to obtain in matrix equation:
-\[\left(
+outlined in the example by introducing the superfluous equation <m>1 =0\cdot F_{k-1}+1</m> to obtain in matrix equation:
+<me>\left(
 \begin{array}{c}
  F_k \\
  1 \\
@@ -131,7 +131,7 @@ outlined in the example by introducing the superfluous equation \(1 =0\cdot F_{k
  F_0 \\
  1 \\
 \end{array}
-\right)\]</p></li>
+\right)</me></p></li>
 </ol>
 </p>
 </example>
@@ -139,8 +139,8 @@ outlined in the example by introducing the superfluous equation \(1 =0\cdot F_{k
 
 <subsection><title>Path Counting</title>
 <p>In the next example, we apply following theorem, which can be proven by induction.</p>
-<theorem xml:id="theorem-12-5-1"><title>Path Counting Theorem</title><statement><p>If \(A\) is the adjacency matrix of a graph with vertices \(\{v_1, v_2, \dots,v_n\}\), then the entry \(\left(A^k\right)_{ij}\)  is the number of paths of length <m>k</m> from node \(v_i\) to node
-\(v_j\).</p></statement></theorem>
+<theorem xml:id="theorem-12-5-1"><title>Path Counting Theorem</title><statement><p>If <m>A</m> is the adjacency matrix of a graph with vertices <m>\{v_1, v_2, \dots,v_n\}</m>, then the entry <m>\left(A^k\right)_{ij}</m>  is the number of paths of length <m>k</m> from node <m>v_i</m> to node
+<m>v_j</m>.</p></statement></theorem>
 <example xml:id="ex-diagonalization-in-graph-theory">
 <title>Counting Paths with Diagonalization</title>
 <p> Consider the graph in <xref ref="fig-12-5-1" text="type-global" />.</p>
@@ -155,33 +155,33 @@ outlined in the example by introducing the superfluous equation \(1 =0\cdot F_{k
 
 <p>As we saw in Section 6.4, the adjacency matrix of this graph is
 
-\(A=\left(
+<m>A=\left(
 \begin{array}{ccc}
  1 &amp; 1 &amp; 0 \\
  1 &amp; 0 &amp; 1 \\
  0 &amp; 1 &amp; 1 \\
 \end{array}
-\right)\).</p>
+\right)</m>.</p>
 
-<p>Recall that \(A^k\) is the adjacency matrix of the relation \(r^k\), where <m>r</m> is the relation \(\{(a, a), (a, b), (b, a), (b, c), (c, b), (c, c)\}\) of the above graph. Also recall that in computing \(A^k\), we used Boolean arithmetic. What happens if we use <q>regular</q> arithmetic?  If we square \(A\) we get
+<p>Recall that <m>A^k</m> is the adjacency matrix of the relation <m>r^k</m>, where <m>r</m> is the relation <m>\{(a, a), (a, b), (b, a), (b, c), (c, b), (c, c)\}</m> of the above graph. Also recall that in computing <m>A^k</m>, we used Boolean arithmetic. What happens if we use <q>regular</q> arithmetic?  If we square <m>A</m> we get
 
-\(A^2 = \left(
+<m>A^2 = \left(
 \begin{array}{ccc}
  2 &amp; 1 &amp; 1 \\
  1 &amp; 2 &amp; 1 \\
  1 &amp; 1 &amp; 2 \\
 \end{array}
-\right)\)
+\right)</m>
 </p>
-<p>How can we interpret this? We note that \(A_{33} = 2\) and that there are two paths of length two from <m>c</m> (the third node) to <m>c</m>.
- Also, \(A_{13} = 1\), and there is one path of length 2 from <m>a</m> to  <m>c</m>. The reader should verify these claims by examining the graph. </p> 
+<p>How can we interpret this? We note that <m>A_{33} = 2</m> and that there are two paths of length two from <m>c</m> (the third node) to <m>c</m>.
+ Also, <m>A_{13} = 1</m>, and there is one path of length 2 from <m>a</m> to  <m>c</m>. The reader should verify these claims by examining the graph. </p> 
 
-<p>How do we compute \(A^k\) for possibly large values of <m>k</m>? From the discussion at the beginning of this section, we know that \(A^k= P D^kP^{-1}\)
-if <m>A</m> is diagonalizable. We leave to the reader to show that \(\lambda  = 1, 2,\textrm{ and } -1\) are eigenvalues of <m>A</m> with eigenvectors
+<p>How do we compute <m>A^k</m> for possibly large values of <m>k</m>? From the discussion at the beginning of this section, we know that <m>A^k= P D^kP^{-1}</m>
+if <m>A</m> is diagonalizable. We leave to the reader to show that <m>\lambda  = 1, 2,\textrm{ and } -1</m> are eigenvalues of <m>A</m> with eigenvectors
 
 
 
- \[\left(
+ <me>\left(
 \begin{array}{c}
  1 \\
  0 \\
@@ -199,34 +199,34 @@ if <m>A</m> is diagonalizable. We leave to the reader to show that \(\lambda  = 
  -2 \\
  1 \\
 \end{array}
-\right)\]
+\right)</me>
 </p>
 
 
 <p> Then
- \[A^k= P \left(
+ <me>A^k= P \left(
 \begin{array}{ccc}
  1 &amp; 0 &amp; 0 \\
  0 &amp; 2^k &amp; 0 \\
  0 &amp; 0 &amp; (-1)^k \\
 \end{array}
-\right)P^{-1}\]
+\right)P^{-1}</me>
 
 
 
-where  \(P=\left(
+where  <m>P=\left(
 \begin{array}{ccc}
  1 &amp; 1 &amp; 1 \\
  0 &amp; 1 &amp; -2 \\
  -1 &amp; 1 &amp; 1 \\
 \end{array}
-\right)\)  and   \(P^{-1}=\left(
+\right)</m>  and   <m>P^{-1}=\left(
 \begin{array}{ccc}
  \frac{1}{2} &amp; 0 &amp; -\frac{1}{2} \\
  \frac{1}{3} &amp; \frac{1}{3} &amp; \frac{1}{3} \\
  \frac{1}{6} &amp; -\frac{1}{3} &amp; \frac{1}{6} \\
 \end{array}
-\right)\)
+\right)</m>
 </p>
 
 
@@ -238,17 +238,17 @@ where  \(P=\left(
 <subsection><title>Matrix Calculus</title>
 <example xml:id="ex-matrix-calculus"><title>Matrix Calculus - Exponentials</title>
 <p>Those who have studied calculus recall that the Maclaurin series is a useful way of expressing
-many common functions. For example, \(e^x=\sum _{k=0}^{\infty } \frac{x^k}{k!}\).
-Indeed, calculators and computers use these series for calculations. Given a polynomial \(f(x)\), we defined the matrix-polynomial \(f(A)\) for square
-matrices in Chapter 5. Hence, we are in a position to describe \(e^A\) for an \(n \times  n\) matrix <m>A</m> as a limit of polynomials, the partial sums of the series.   Formally,
+many common functions. For example, <m>e^x=\sum _{k=0}^{\infty } \frac{x^k}{k!}</m>.
+Indeed, calculators and computers use these series for calculations. Given a polynomial <m>f(x)</m>, we defined the matrix-polynomial <m>f(A)</m> for square
+matrices in Chapter 5. Hence, we are in a position to describe <m>e^A</m> for an <m>n \times  n</m> matrix <m>A</m> as a limit of polynomials, the partial sums of the series.   Formally,
 we write
 
- \[e^A= I + A + \frac{A^2}{2! }+ \frac{A^3}{3!}+ \cdots  = \sum _{k=0}^{\infty } \frac{A^k}{k!}\]
+ <me>e^A= I + A + \frac{A^2}{2! }+ \frac{A^3}{3!}+ \cdots  = \sum _{k=0}^{\infty } \frac{A^k}{k!}</me>
 </p>
 
 
-<p>Again we encounter the need to compute high powers of a matrix.  Let <m>A</m> be an \(n\times n\) diagonalizable matrix. Then there exists an
-invertible \(n\times n\) matrix <m>P</m> such that \(P^{-1}A P = D\), a diagonal matrix, so that
+<p>Again we encounter the need to compute high powers of a matrix.  Let <m>A</m> be an <m>n\times n</m> diagonalizable matrix. Then there exists an
+invertible <m>n\times n</m> matrix <m>P</m> such that <m>P^{-1}A P = D</m>, a diagonal matrix, so that
 
 <me>
 \begin{split}
@@ -261,28 +261,28 @@ e^A &amp;=e^{P D P^{-1} }\\
 
 
 <p>The infinite sum in the middle of this final expression can be easily evaluated if <m>D</m> is diagonal.  All entries of powers off the diagonal
-are zero and the \(i^{\textrm{ th}}\) entry of the diagonal is 
+are zero and the <m>i^{\textrm{ th}}</m> entry of the diagonal is 
 
 
 
-\[\left(\sum _{k=0}^{\infty } \frac{ D^k}{k!}\right){}_{i i}=\sum _{k=0}^{\infty } \frac{ D_{i i}{}^k}{k!}= e^{D_{ii}}\]</p>
+<me>\left(\sum _{k=0}^{\infty } \frac{ D^k}{k!}\right){}_{i i}=\sum _{k=0}^{\infty } \frac{ D_{i i}{}^k}{k!}= e^{D_{ii}}</me></p>
 
-<p>For example, if \(A=\left(
+<p>For example, if <m>A=\left(
 \begin{array}{cc}
  2 &amp; 1 \\
  2 &amp; 3 \\
 \end{array}
-\right)\), the first matrix we diagonalized in Section 12.3, we found that \(P =\left(
+\right)</m>, the first matrix we diagonalized in Section 12.3, we found that <m>P =\left(
 \begin{array}{cc}
  1 &amp; 1 \\
  -1 &amp; 2 \\
 \end{array}
-\right)\) and \(D= \left(
+\right)</m> and <m>D= \left(
 \begin{array}{cc}
  1 &amp; 0 \\
  0 &amp; 4 \\
 \end{array}
-\right)\).</p>
+\right)</m>.</p>
 <p>Therefore, 
  <me>
  \begin{split}
@@ -319,23 +319,23 @@ are zero and the \(i^{\textrm{ th}}\) entry of the diagonal is
 </p>
 </example>
 <remark><p>Many of the ideas of calculus can be developed using matrices.  For example, if 
-\(A(t) = \left(
+<m>A(t) = \left(
 \begin{array}{cc}
  t^3 &amp; 3 t^2+8t \\
  e^t &amp; 2 \\
 \end{array}
-\right)\)
+\right)</m>
 then
-\(\frac{d A(t)}{d t}=\left(
+<m>\frac{d A(t)}{d t}=\left(
 \begin{array}{cc}
  3 t^2 &amp; 6 t+8 \\
  e^t  &amp; 0 \\
 \end{array}
-\right)\)</p>
+\right)</m></p>
 <p>  Many of the basic formulas in calculus are true in matrix calculus. For example,
-\[\frac{d (A(t)+B(t))}{d t} = \frac{d A(t)}{d t}+ \frac{d B(t)}{d t}\]  
+<me>\frac{d (A(t)+B(t))}{d t} = \frac{d A(t)}{d t}+ \frac{d B(t)}{d t}</me>  
 and if <m>A</m> is a constant matrix, 
-\[\frac{d e^{A t}}{d t}= A e^{A t}\]</p><p> Matrix calculus can be used to solve systems of differential equations in a similar manner  to the procedure used in ordinary differential
+<me>\frac{d e^{A t}}{d t}= A e^{A t}</me></p><p> Matrix calculus can be used to solve systems of differential equations in a similar manner  to the procedure used in ordinary differential
 equations.</p>
 </remark>
 </subsection> 
@@ -356,9 +356,9 @@ A.exp()
 </subsection>
 <exercises xml:id="exercises-12-5">
 <title>Exercises for Section 12.5</title>
-<exercise number="1" xml:id="exercise-12-5-1"><statement><p><ol label="(a)"><li><p> Write out all the details of <xref ref="ex-fibonnaci-matrix" text="type-global" /> to show that the formula for \(F_k\) given in the text is correct.</p></li>
+<exercise number="1" xml:id="exercise-12-5-1"><statement><p><ol label="(a)"><li><p> Write out all the details of <xref ref="ex-fibonnaci-matrix" text="type-global" /> to show that the formula for <m>F_k</m> given in the text is correct.</p></li>
 <li><p> Use induction to prove the assertion made in the example that
-\(\left(
+<m>\left(
 \begin{array}{c}
  F_k \\
  F_{k-1} \\
@@ -368,7 +368,7 @@ A.exp()
  1 \\
  1 \\
 \end{array}
-\right)\)</p></li>
+\right)</m></p></li>
 </ol>
 </p>
 </statement></exercise>
@@ -377,7 +377,7 @@ A.exp()
 </ol>
 </p>
 </statement></exercise>
-<exercise number="3"><statement><p>  Solve \(S(k) = 5S(k - 1) + 4\), with \(S(0) = 0\), using the method of this section.</p>
+<exercise number="3"><statement><p>  Solve <m>S(k) = 5S(k - 1) + 4</m>, with <m>S(0) = 0</m>, using the method of this section.</p>
 </statement></exercise>
 <exercise number="4"><statement> <p> How many paths are there of length 6 from vertex 1 to vertex 3 in <xref ref="fig-graph-12-5-2" text="type-global" />? How many paths from vertex 2 to vertex 2 of length 6 are there? </p>
 
@@ -390,7 +390,7 @@ A.exp()
             </figure>
             
 </statement>
-<hint><p> The characteristic polynomial of the adjacency matrix is \(\lambda ^4 - 4 \lambda^2\).</p></hint></exercise>
+<hint><p> The characteristic polynomial of the adjacency matrix is <m>\lambda ^4 - 4 \lambda^2</m>.</p></hint></exercise>
 <exercise number="5" xml:id="exercise-12-5-5">
 <statement><p>Regarding <xref ref="ex-diagonalization-in-graph-theory" text="type-global" />,
 <ol label="(a)">
@@ -401,31 +401,31 @@ A.exp()
 </p>
 </statement>
 <answer><p><ol label="(a)">
-<li><p> Since   \(A=A^1= \left(
+<li><p> Since   <m>A=A^1= \left(
 \begin{array}{ccc}
  1 &amp; 1 &amp; 0 \\
  1 &amp; 0 &amp; 1 \\
  0 &amp; 1 &amp; 1 \\
 \end{array}
-\right)\),  there are 0 paths of length 1 from: node c to node a, node b to node b, and node a to node c; and there is 1 path of length
+\right)</m>,  there are 0 paths of length 1 from: node c to node a, node b to node b, and node a to node c; and there is 1 path of length
 1 for every other pair of nodes.</p></li>
 <li><p> The characteristic polynomial is
-\(\lvert A-c I\rvert  = \left|
+<m>\lvert A-c I\rvert  = \left|
 \begin{array}{ccc}
  1-c &amp; 1 &amp; 0 \\
  1 &amp; -c &amp; 1 \\
  0 &amp; 1 &amp; 1-c \\
 \end{array}
-\right| = -c^3+2 c^2+c-2\)</p>
+\right| = -c^3+2 c^2+c-2</m></p>
 
 
 
-<p>Solving the characteristic equation \(-c^3+2 c^2+c-2=0\) we find solutions 1, 2, and -1.</p>
-<p>If \(c=1\), we find the associated eigenvector by finding a nonzero solution to 
+<p>Solving the characteristic equation <m>-c^3+2 c^2+c-2=0</m> we find solutions 1, 2, and -1.</p>
+<p>If <m>c=1</m>, we find the associated eigenvector by finding a nonzero solution to 
 
 
 
-\(\left(
+<m>\left(
 \begin{array}{ccc}
  0 &amp; 1 &amp; 0 \\
  1 &amp; -1 &amp; 1 \\
@@ -443,21 +443,21 @@ A.exp()
  0 \\
  0 \\
 \end{array}
-\right)\) 
+\right)</m> 
 
 
 
-One of these, which will be the first column of <m>P</m>, is \(\left(
+One of these, which will be the first column of <m>P</m>, is <m>\left(
 \begin{array}{c}
  1 \\
  0 \\
  -1 \\
 \end{array}
-\right)\)
+\right)</m>
 </p>
 
 
-<p>If \(c=2\), the system \(\left(
+<p>If <m>c=2</m>, the system <m>\left(
 \begin{array}{ccc}
  -1 &amp; 1 &amp; 0 \\
  1 &amp; -2 &amp; 1 \\
@@ -475,21 +475,21 @@ One of these, which will be the first column of <m>P</m>, is \(\left(
  0 \\
  0 \\
 \end{array}
-\right)\)  yields eigenvectors, including \(\left(
+\right)</m>  yields eigenvectors, including <m>\left(
 \begin{array}{c}
  1 \\
  1 \\
  1 \\
 \end{array}
-\right)\), which will be the second column of <m>P</m>. 
+\right)</m>, which will be the second column of <m>P</m>. 
 </p>
 
 
-<p>If  \(c = -1\), then the system determining the eigenvectors is 
+<p>If  <m>c = -1</m>, then the system determining the eigenvectors is 
 
 
 
-\(\left(
+<m>\left(
 \begin{array}{ccc}
  2 &amp; 1 &amp; 0 \\
  1 &amp; 1 &amp; 1 \\
@@ -507,24 +507,24 @@ One of these, which will be the first column of <m>P</m>, is \(\left(
  0 \\
  0 \\
 \end{array}
-\right)\) 
+\right)</m> 
 
 
 
-and we can select \(\left(
+and we can select <m>\left(
 \begin{array}{c}
  1 \\
  -2 \\
  1 \\
 \end{array}
-\right)\),  although any nonzero multiple of this vector could be the third column of <m>P</m>. </p></li>
-<li><p> Assembling the results of part (b) we have \(P=\left(
+\right)</m>,  although any nonzero multiple of this vector could be the third column of <m>P</m>. </p></li>
+<li><p> Assembling the results of part (b) we have <m>P=\left(
 \begin{array}{ccc}
  1 &amp; 1 &amp; 1 \\
  0 &amp; 1 &amp; -2 \\
  -1 &amp; 1 &amp; 1 \\
 \end{array}
-\right)\) .
+\right)</m> .
 </p>
 
 <p>
@@ -574,59 +574,59 @@ reader can verify these facts from <xref ref="fig-12-5-1" text="type-global"/></
 </ol>
 </p></answer>
 </exercise>
-<exercise number="6"><statement><p>   Let \(A =\left(
+<exercise number="6"><statement><p>   Let <m>A =\left(
 \begin{array}{cc}
  2 &amp; -1 \\
  -1 &amp; 2 \\
 \end{array}
-\right)\)
-<ol label="(a)"><li><p> Find \(e^A\)</p></li>
-<li><p>Recall that \(\sin  x = \sum _{k=0}^{\infty } \frac{(-1)^k x^k}{(2 k+1)!}\)  and compute \(\sin  A\).</p></li>
-<li><p>Formulate a reasonable definition of the natural logarithm of a matrix and compute \(\ln  A\).</p></li>
+\right)</m>
+<ol label="(a)"><li><p> Find <m>e^A</m></p></li>
+<li><p>Recall that <m>\sin  x = \sum _{k=0}^{\infty } \frac{(-1)^k x^k}{(2 k+1)!}</m>  and compute <m>\sin  A</m>.</p></li>
+<li><p>Formulate a reasonable definition of the natural logarithm of a matrix and compute <m>\ln  A</m>.</p></li>
 </ol>
 </p>
 </statement></exercise>
-<exercise number="7"><statement><p> We noted in Chapter 5 that since matrix algebra is not commutative under multiplication, certain difficulties arise.  Let \(A=\left(
+<exercise number="7"><statement><p> We noted in Chapter 5 that since matrix algebra is not commutative under multiplication, certain difficulties arise.  Let <m>A=\left(
 \begin{array}{cc}
  1 &amp; 1 \\
  0 &amp; 0 \\
 \end{array}
-\right)\) and \(B=\left(
+\right)</m> and <m>B=\left(
 \begin{array}{cc}
  0 &amp; 0 \\
  0 &amp; 2 \\
 \end{array}
-\right)\). 
+\right)</m>. 
 <ol label="(a)">
-<li><p>Compute   \(e^A\), \(e^B\), and \(e^{A+B}\).   Compare \(e^A e^{B}\), \(e^B e^A\) and \(e^{A+B}\) .</p></li>
-<li><p> Show that if \(\pmb{0}\) is the \(2\times 2\) zero matrix, then \(e^{\pmb{0}}= I\).</p></li>
-<li><p> Prove that if \(A\) and \(B\) are two matrices that do commute, then  \(e^{A+B}=e^Ae^B\), thereby proving that \(e^A\) and \(e^B\) commute.</p></li>
-<li><p> Prove that for any matrix <m>A</m>,  \(\left(e^A\right)^{-1}= e^{-A}\). </p></li>
+<li><p>Compute   <m>e^A</m>, <m>e^B</m>, and <m>e^{A+B}</m>.   Compare <m>e^A e^{B}</m>, <m>e^B e^A</m> and <m>e^{A+B}</m> .</p></li>
+<li><p> Show that if <m>\pmb{0}</m> is the <m>2\times 2</m> zero matrix, then <m>e^{\pmb{0}}= I</m>.</p></li>
+<li><p> Prove that if <m>A</m> and <m>B</m> are two matrices that do commute, then  <m>e^{A+B}=e^Ae^B</m>, thereby proving that <m>e^A</m> and <m>e^B</m> commute.</p></li>
+<li><p> Prove that for any matrix <m>A</m>,  <m>\left(e^A\right)^{-1}= e^{-A}</m>. </p></li>
 </ol>
 </p>
 </statement>
 <answer><p>
 <ol label="(a)">
-<li><p>  \(e^A=\left(
+<li><p>  <m>e^A=\left(
 \begin{array}{cc}
  e &amp; e \\
  0 &amp; 0 \\
 \end{array}
-\right)\) ,  \(e^B=\left(
+\right)</m> ,  <m>e^B=\left(
 \begin{array}{cc}
  0 &amp; 0 \\
  0 &amp; e^2 \\
 \end{array}
-\right)\),  and  \(e^{A+B}=\left(
+\right)</m>,  and  <m>e^{A+B}=\left(
 \begin{array}{cc}
  e &amp; e^2-e \\
  0 &amp; e^2 \\
 \end{array}
-\right)\)</p></li>
-<li><p> Let \pmb{ 0} be the zero matrix, \(e^{\pmb{0}}=I + \pmb{0}+\frac{\pmb{0}^2}{2}+\frac{\pmb{0}^3}{6}+\ldots =I\) .</p></li>
-<li><p>  Assume that <m>A</m> and <m>B</m> commute. We will examine the first few terms in the product \(e^A e^B\). The pattern that is established
-does continue in general. In what follows, it is important that \(A B = B A\). For example, in the last step,   \((A+B)^2\) expands to \(A^2+A
-B + B A + B^2\), not \(A^2+ 2 A B + B^2\),  if we can't assume commutativity.
+\right)</m></p></li>
+<li><p> Let \pmb{ 0} be the zero matrix, <m>e^{\pmb{0}}=I + \pmb{0}+\frac{\pmb{0}^2}{2}+\frac{\pmb{0}^3}{6}+\ldots =I</m> .</p></li>
+<li><p>  Assume that <m>A</m> and <m>B</m> commute. We will examine the first few terms in the product <m>e^A e^B</m>. The pattern that is established
+does continue in general. In what follows, it is important that <m>A B = B A</m>. For example, in the last step,   <m>(A+B)^2</m> expands to <m>A^2+A
+B + B A + B^2</m>, not <m>A^2+ 2 A B + B^2</m>,  if we can't assume commutativity.
 
 
 <me>
@@ -640,7 +640,7 @@ e^Ae^B &amp;= \left(\sum _{k=0}^{\infty } \frac{A^k}{k!}\right) \left(\sum _{k=0
 \end{split}
 </me>
 </p></li>
-<li><p> Since \(A\) and \(-A\) commute, we can apply part d;
+<li><p> Since <m>A</m> and <m>-A</m> commute, we can apply part d;
 <me>e^Ae^{-A} = e^{A+(-A)} =e^{\pmb{0}} =I</me>
 </p></li>
 </ol>

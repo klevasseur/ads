@@ -6,26 +6,26 @@
 <subsection><title>Row reduction mod 2</title>
 <p>The methods we have studied for solving systems of equations up to this point can be applied to systems in which all arithmetic is done over other algebraic systems, including the integers modulo 2.    The mod 2 case will become particularly useful in our later study of coding theory.</p>
 
-<p>When solving systems of equations with mod 2 arithmetic, the elementary row operations are still fundamental.  However, since there is only one nozero element, 1, you never need to multiply a row by a nonzero constant.   One other big difference is that the number of possible solutions is always finite.  If you have \(m\) linear equations in \(n\) unknowns, each unknown can only take on one of two values, 0 or 1.   Therefore there are only \(2^n\) possible \(n\)-tuples to from which to draw a solution set.   Assuming \(m \leq n\), you typically (but not always) will have \(m\) basic variables after row-reduction and \(n-m\) free variable.  If this is the case, and any solution exists, there will be \(2^{n-m}\) different solutions.</p>
+<p>When solving systems of equations with mod 2 arithmetic, the elementary row operations are still fundamental.  However, since there is only one nozero element, 1, you never need to multiply a row by a nonzero constant.   One other big difference is that the number of possible solutions is always finite.  If you have <m>m</m> linear equations in <m>n</m> unknowns, each unknown can only take on one of two values, 0 or 1.   Therefore there are only <m>2^n</m> possible <m>n</m>-tuples to from which to draw a solution set.   Assuming <m>m \leq n</m>, you typically (but not always) will have <m>m</m> basic variables after row-reduction and <m>n-m</m> free variable.  If this is the case, and any solution exists, there will be <m>2^{n-m}</m> different solutions.</p>
 
 <p>Let's look at an example, which is coverted to matrix form immediately.
 
-\[\begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}}
+<me>\begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}}
  x_1 &amp;{}+{} &amp;x_2 &amp;      &amp;    &amp;{}+{} &amp; x_4  &amp;      &amp;    &amp;     &amp;   &amp;= 1 \\
  x_1 &amp;      &amp;    &amp; {}+{}&amp;x_3 &amp;      &amp;      &amp;{}+{} &amp; x_5&amp;     &amp;   &amp;= 0 \\
      &amp;      &amp; x_2&amp; {}+{}&amp;x_3 &amp;      &amp;      &amp;      &amp;    &amp;{}+{}&amp;x_6&amp;= 0 \\
-\end{array}\]
+\end{array}</me>
 </p>
 
 
 <p> The augmented  matrix of the  system is
-\[\left(
+<me>\left(
 \begin{array}{cccccc|c}
  1 &amp; 1 &amp; 0 &amp;  1 &amp; 0 &amp; 0 &amp; 1 \\
  1 &amp; 0 &amp; 1 &amp;  0 &amp; 1 &amp; 0 &amp; 0 \\
  0 &amp; 1 &amp; 1 &amp;  0 &amp; 0 &amp; 1 &amp; 0 \\
 \end{array}
-\right)\]
+\right)</me>
 The steps in row-reducing this matrix follow.  Entries on which we <q>pivot</q> are displayed in bold face to more easily identify the basic variables.
 <me>
 \begin{split}
@@ -61,7 +61,7 @@ The steps in row-reducing this matrix follow.  Entries on which we <q>pivot</q> 
 \end{split}
 </me>
 </p>
-<p>Notice that at this point, we cannot pivot on the third row, third column since that entry is zero.  Therefore we move over to the next column, making the \(x_4\) basic.
+<p>Notice that at this point, we cannot pivot on the third row, third column since that entry is zero.  Therefore we move over to the next column, making the <m>x_4</m> basic.
 <me>
 \begin{split}
 \text{   }&amp;\overset{\textrm{add }R_3\textrm{ to }R_2}{\text{  }\longrightarrow }\text{   }
@@ -76,8 +76,8 @@ The steps in row-reducing this matrix follow.  Entries on which we <q>pivot</q> 
 </me>
 </p>
 
-<p>This completes the row reduction and we can now identify the solution set. Keep in mind that since addition is subtraction, terms can be moved to either side of an equals sign without any change in sign. The basic variables are  \(x_1\),  \(x_2\), and  \(x_4\), while the other three variables are  free.  The general solution of the system is
-\[
+<p>This completes the row reduction and we can now identify the solution set. Keep in mind that since addition is subtraction, terms can be moved to either side of an equals sign without any change in sign. The basic variables are  <m>x_1</m>,  <m>x_2</m>, and  <m>x_4</m>, while the other three variables are  free.  The general solution of the system is
+<me>
 \begin{array}{c}
  x_1 = x_3+x_5\\
  x_2 = x_3+x_6  \\
@@ -86,9 +86,9 @@ The steps in row-reducing this matrix follow.  Entries on which we <q>pivot</q> 
  x_5 = x_5 \\
  x_6 = x_6 \\
 \end{array}
-\]
+</me>
 </p>
-<p>With three free variables, there are \(2^3=8\) solutions to this system.  For example, one of them is obtained by setting \(x_3=1\), \(x_5=1\), and \(x_6=0\), which produces \((x_1, x_2, x_3, x_4, x_5, x_6) = (0,1,1,0,1,0)\).
+<p>With three free variables, there are <m>2^3=8</m> solutions to this system.  For example, one of them is obtained by setting <m>x_3=1</m>, <m>x_5=1</m>, and <m>x_6=0</m>, which produces <m>(x_1, x_2, x_3, x_4, x_5, x_6) = (0,1,1,0,1,0)</m>.
 </p>
 <p>We can check our row reduction with SageMath:</p>
 <sage>
@@ -115,28 +115,28 @@ H.echelon_form()
 <statement><p> Solve the following systems, describing the solution sets completely:
 <ol label="(a)" cols="2">
 
-<li><p>\(
+<li><p><m>
 \begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}}
       x_1  &amp; {}+{} &amp; x_2 &amp;       &amp;     &amp; = 0 \\
       x_1  &amp;       &amp;     &amp; {}+{} &amp; x_3 &amp; = 0 \\
-\end{array} \)
+\end{array} </m>
 </p></li>
 
-<li><p> \(
+<li><p> <m>
 \begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}}
       x_1  &amp; {}+{} &amp; x_2 &amp;       &amp;    &amp;       &amp;        &amp; = 0 \\
            &amp;       &amp; x_2 &amp; {}+{} &amp; x_3&amp;       &amp;       &amp;   = 0\\
            &amp;       &amp;     &amp;       &amp; x_3&amp; {}+{} &amp; x_4   &amp; = 1 \\
       x_1  &amp; {}+{} &amp; x_2 &amp; {}+{} &amp; x_3&amp;       &amp;        &amp;  = 1 \\
-\end{array} \)
+\end{array} </m>
 </p></li>
 </ol>
 </p>
 </statement>
 <answer><p>
 <ol label="(a)">
-<li><p>\(\{(0,0,0),(1,1,1)\}\)</p></li>
-<li><p>\(\{(1,1,1,0)\}\)</p></li>
+<li><p><m>\{(0,0,0),(1,1,1)\}</m></p></li>
+<li><p><m>\{(1,1,1,0)\}</m></p></li>
 </ol>
 </p></answer>
 </exercise>
@@ -144,18 +144,18 @@ H.echelon_form()
 <statement><p>This exercise provides an example in which the number of basic variables is less than the number of equations. The only difference between the two systems below is the right hand sides.  You can start with an augmented matrix having two right side columns and do row reduction for both systems at the same time.
 <ol label="(a)" cols="2">
 <li><p> 
-\(\begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}}
+<m>\begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}}
  x_1 &amp; {}+{} &amp;x_2 &amp;       &amp;    &amp;{}+{} &amp; x_4   &amp;= 1 \\
  x_1 &amp;       &amp;    &amp; {}+{} &amp;x_3 &amp; {}+{} &amp; x_4  &amp;= 0 \\
      &amp;       &amp; x_2 &amp; {}+{} &amp;x_3 &amp;      &amp;      &amp;= 1 \\
-\end{array}\)
+\end{array}</m>
 </p></li>
 <li><p>
-\(\begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}}
+<m>\begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}}
  x_1 &amp; {}+{} &amp;x_2 &amp;       &amp;    &amp;{}+{} &amp; x_4   &amp;= 1 \\
  x_1 &amp;       &amp;    &amp; {}+{} &amp;x_3 &amp; {}+{} &amp; x_4  &amp;= 0 \\
      &amp;       &amp; x_2 &amp; {}+{} &amp;x_3 &amp;      &amp;      &amp;= 0 \\
-\end{array}\)
+\end{array}</m>
 </p></li>
 </ol>
 </p>
@@ -181,8 +181,8 @@ H.echelon_form()
 </me>
 There are only two basic variables here because the left side of the last equation is the sum of the  left sides of the first two equations. 
 <ol label="(a)">
-<li><p>Ignoring the last column of both matrices, we see that the last equation of the first system reduces to \(0=0\), which is always true, and the first two equations yield two free variables, \(x_3\) and \(x_4\).  The general solution is the set of quadruples \(\{(x_3 +_2 x_4,x_3 +_2 1, x_3, x_4) \mid x_3, x_4 \in \mathbb{Z}_2 \}\).  The cardinality of the the solution set is 4. </p></li>
-<li><p>If we replace the fifth column with the sixth one, the last row indicates that \(0=1\), which means that the solution set is empty.</p>
+<li><p>Ignoring the last column of both matrices, we see that the last equation of the first system reduces to <m>0=0</m>, which is always true, and the first two equations yield two free variables, <m>x_3</m> and <m>x_4</m>.  The general solution is the set of quadruples <m>\{(x_3 +_2 x_4,x_3 +_2 1, x_3, x_4) \mid x_3, x_4 \in \mathbb{Z}_2 \}</m>.  The cardinality of the the solution set is 4. </p></li>
+<li><p>If we replace the fifth column with the sixth one, the last row indicates that <m>0=1</m>, which means that the solution set is empty.</p>
 </li>
 </ol>
 </p></answer>
@@ -192,21 +192,21 @@ There are only two basic variables here because the left side of the last equati
 <exercise number="3" xml:id="exercise-12-6-2">
 <statement><p>This exercise motivates the concept of a coset in Chapter 15.  
 <ol label="(a)">
-<li><p>Solve the following system and prove that the solution set is a linear combination of vectors in \(\mathbb{Z}_{2}^{5}\)  and also a subgroup of the group \(\mathbb{Z}_{2}^{5}\) under coordinatewise mod 2 addition.
-\[\begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}}
+<li><p>Solve the following system and prove that the solution set is a linear combination of vectors in <m>\mathbb{Z}_{2}^{5}</m>  and also a subgroup of the group <m>\mathbb{Z}_{2}^{5}</m> under coordinatewise mod 2 addition.
+<me>\begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}}
  x_1 &amp; {}+{} &amp;x_2 &amp;       &amp;    &amp;     &amp;     &amp;{}+{} &amp; x_5&amp;= 0 \\
  x_1 &amp;       &amp;    &amp; {}+{} &amp;x_3 &amp;      &amp;     &amp;{}+{} &amp; x_5&amp;= 0 \\
  x_1 &amp;       &amp;    &amp; {}+{} &amp;x_3 &amp;{}+{} &amp; x_4 &amp;      &amp;    &amp;= 0 \\
    &amp;       &amp; x_2   &amp; {}+{} &amp;x_3 &amp;{}+{} &amp; x_4 &amp;      &amp;    &amp;= 0 \\
-\end{array}\]
+\end{array}</me>
 </p></li>
 <li><p>Describe the solution set to the following system as it relates to the solution set to the system in the previous part of this exercise.
-   \[\begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}}
+   <me>\begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}}
  x_1 &amp; {}+{} &amp;x_2 &amp;       &amp;    &amp;     &amp;     &amp;{}+{} &amp; x_5&amp;= 1 \\
  x_1 &amp;       &amp;    &amp; {}+{} &amp;x_3 &amp;      &amp;     &amp;{}+{} &amp; x_5&amp;= 0 \\
  x_1 &amp;       &amp;    &amp; {}+{} &amp;x_3 &amp;{}+{} &amp; x_4 &amp;      &amp;    &amp;= 1 \\
    &amp;       &amp; x_2   &amp; {}+{} &amp;x_3 &amp;{}+{} &amp; x_4 &amp;      &amp;    &amp;= 0 \\
-\end{array}\]
+\end{array}</me>
 
 </p></li>
 </ol>
@@ -214,22 +214,22 @@ There are only two basic variables here because the left side of the last equati
 </statement>
 <answer><p>
 <ol label="(a)">
-<li><p>Row reduction produces a solution with one free variable, \(x_3\).
- \[\begin{split}
+<li><p>Row reduction produces a solution with one free variable, <m>x_3</m>.
+ <me>\begin{split}
 	(x_1, x_2, x_3, x_4, x_5)&amp; =(x_3,x_3,x_3,0,0)\\
 									&amp; = x_3 (1,1,1,0,0) \\
 	\end{split}
-	 \]</p>
+	 </me></p>
 	 
-	 <p>The solution set has only two elements. It is \(\{(0,0,0,0,0), (1,1,1,0,0)\}\).  Since \(\mathbb{Z}_{2}^{5}\) is a finite group,  the solution set is a subgroup because it is closed with respect to coordinate-wise mod 2 addition.</p>
+	 <p>The solution set has only two elements. It is <m>\{(0,0,0,0,0), (1,1,1,0,0)\}</m>.  Since <m>\mathbb{Z}_{2}^{5}</m> is a finite group,  the solution set is a subgroup because it is closed with respect to coordinate-wise mod 2 addition.</p>
 </li>
 <li><p>The row-reduced augmented matrix of coefficients provides the solution
- \[\begin{split}
+ <me>\begin{split}
 	(x_1, x_2, x_3, x_4, x_5)&amp; =(x_3,1+x_3,x_3,1,0)\\
 									&amp; = (0,1,0,1,0) + x_3 (1,1,1,0,0) \\
 	\end{split}
-	 \]</p>
-<p>Therefore, the solution to this system is a shift of the solution set to the homogeneous system by the vector \((0,1,0,1,0)\), which is \(\{(0,1,0,1,0), (1,0,1,1,0)\}\) </p></li>
+	 </me></p>
+<p>Therefore, the solution to this system is a shift of the solution set to the homogeneous system by the vector <m>(0,1,0,1,0)</m>, which is <m>\{(0,1,0,1,0), (1,0,1,1,0)\}</m> </p></li>
 </ol>
 </p></answer>
 
