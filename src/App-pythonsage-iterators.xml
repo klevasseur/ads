@@ -5,7 +5,7 @@ All programming languages allow for looping.  A common form of loop is one in wh
 <subsection><title>Counting Subsets</title>
 <p>Suppose we want to count the number of subsets of <m>\{0,1,2,...,9\}</m> that contain no adjacent elements.  First, we will define our universe and its power set.  The plan will be to define a function that determines whether a subset is "valid" in the sense that it contains no adjacent elements.  Then we will iterate over the subsets, counting the valid ones.  We know that the number of all subsets will be 2 raised to the number of elements in <m>U</m>, which would be <m>2^{10}=1024</m>, but let's check.</p>
 
-<sage xml:id="sage-subsets_of_U">
+<sage>
 <input>
 U=Set(range(10))
 power_set=U.subsets()
@@ -16,7 +16,7 @@ len(power_set)
 </output>
 </sage>
 <p>The validity check in this case is very simple.  For each element, <m>k</m>, of a set, <m>B</m>, we ask whether its successor, <m>k+1</m>, is also in the set.  If we never get an answer of "True" then we consider the set valid.  This function could be edited to define validity in other ways to answer different counting questions.  It's always a good idea to test your functions, so we try two tests, one with a valid set and one with an invalid one.</p>
-<sage xml:id="sage-validity-test">
+<sage>
 <input>
 def valid(B):
     v=true
@@ -32,7 +32,7 @@ def valid(B):
 </output>
 </sage>
 <p>Finally we do the counting over our power set, incrementing the count variable with each valid set.</p>
-<sage xml:id="sage-count-valid-sets">
+<sage>
 <input>
 count=0
 for B in power_set:
