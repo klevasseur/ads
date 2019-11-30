@@ -259,6 +259,7 @@ f_3 &amp; f_3 &amp; i  \\
 </ol></p>
 </answer>
 </exercise>
+
 <exercise number="4"><statement><p> Define <m>s</m>, <m>u</m>, and <m>d</m>, all functions on the integers, by <m>s(n) = n^2</m> , <m>u(n) = n + 1</m>, and <m>d(n) = n-1</m>. Determine:</p>
 <p><ol label="(a)">
 <li><p> <m>u \circ  s \circ  d</m></p></li>
@@ -267,9 +268,25 @@ f_3 &amp; f_3 &amp; i  \\
 </ol></p>
 </statement>
 </exercise>
-<exercise number="5"><statement><p> Based on the definition of the identity function, show that for all functions <m>f:A\to A</m>, <m>f\circ i=i\circ f = f</m>.</p>
+
+<exercise number="5">
+<statement><p> Consider the following functions on the set of bit strings of length 4. In these definitions, addition is done modulo 2, so that <m>1+1=0</m>.  Which of these functions has an inverse.  For those that have an inverse, what is it?  For those that don't explain why.</p>
+<p><ol label="(a)">
+<li><p> <m>f_1(b_1 b_2 b_3 b_4) = b_2 b_3 b_4 b_1</m></p></li>
+<li><p> <m>f_2(b_1 b_2 b_3 b_4) = b_4 b_3 b_2 b_1</m></p></li>
+<li><p> <m>f_1(b_1 b_2 b_3 b_4) = (b_1+b_2)(b_2+b+3)(b_3+b_4)(b_4+b_1)</m></p></li>
+<li><p> <m>f_1(b_1 b_2 b_3 b_4) = b_1(b_1+b_2)(b_1+b_2+b+3)(b_1+b_2+b_3+b_4)</m></p></li>
+</ol></p>
 </statement>
+<answer><p><ol label="(a)">
+<li><p><m>f_1</m> has an inverse. <m>f_1^{-1}= f_1^3</m>.</p></li>
+<li><p><m>f_2</m> has an inverse. <m>f_2^{-1}= f_2</m>.</p></li>
+<li><p> <m>f_3</m> does not have an inverse.  One way to verify this is to note that <m>f_3</m> is not one-to-one because <m>f_3(0000) = 0000 = f_3(1111)</m>. </p></li>
+<li><p> <m>f_4 has an inverse</m>.  <m>f_4^{-1}=f_4^4.</m> </p></li>
+</ol></p>
+</answer>
 </exercise>
+
 <exercise number="6"><statement><p><term>Inverse images.</term> If <m>f</m> is any function from <m>A</m> into <m>B</m>, we can describe the inverse image as a function from <m>B</m> into <m>\mathcal{P}(A)</m>, which is also commonly denoted <m>f^{-1}</m>. If <m>b \in  B</m>, <m>f^{-1}(b) = \{a \in A\mid f(a) = b\}</m>. If
 <m>f</m> does have an inverse, the inverse image of <m>b</m> is <m>\left\{f^{-1}(b)\right\}</m>.</p>
 <p><ol label="(a)">
@@ -341,7 +358,7 @@ and <m>h(n)=n^2</m>. Define:</p>
 		</p>
 </answer>
 </exercise>
-<exercise number="12"><statement><p> Let <m>f</m> and <m>g</m> be functions whose inverses exist. Prove that <m>(f\circ g)^{-1}= g^{-1}\circ f^{-1}</m>.</p>
+<exercise number="12" xml:id="exercise-composition-inverse-basis"><statement><p> Let <m>f</m> and <m>g</m> be functions whose inverses exist. Prove that <m>(f\circ g)^{-1}= g^{-1}\circ f^{-1}</m>.</p>
 </statement>
 <hint><p>See Exercise 3 of Section 5.4.</p></hint>
 </exercise>
@@ -353,12 +370,11 @@ and <m>h(n)=n^2</m>. Define:</p>
 <exercise number="14"><statement><p> Prove the second half of <xref ref="theorem-bijections-have-inverses" text="type-global"/>.</p>
 </statement>
 </exercise>
-<exercise number="15"><statement><p> Prove by induction that if <m>n\geq  2</m> and <m>f_1</m>, <m>f_2</m> , \ldots  , <m>f_n</m> are invertible functions on some nonempty set <m>A</m>, then {
-}<m>\left( f_1\circ  f_2\circ  \cdots  \circ  f_n \right){}^{-1}= f_n^{-1}\circ \cdots \circ f_2^{-1}\circ f_1^{-1}</m>. The basis has been taken
-care of in Exercise 10.</p>
+<exercise number="15"><statement><p> Prove by induction that if <m>n\geq  2</m> and <m>f_1</m>, <m>f_2, \dots, f_n</m> are invertible functions on some nonempty set <m>A</m>, then <m>\left( f_1\circ  f_2\circ  \cdots  \circ  f_n \right){}^{-1}= f_n^{-1}\circ \cdots \circ f_2^{-1}\circ f_1^{-1}</m>. The basis has been taken
+care of in <xref ref="exercise-composition-inverse-basis"/>.</p>
 </statement>
 <answer>  
-<p>Basis: <m>(n=2)</m>: <m>\left(f_1\circ f_2\right){}^{-1}=f_2{}^{-1}\circ f_1{}^{-2}</m> by exercise 10. </p>
+<p>Basis: <m>(n=2)</m>: <m>\left(f_1\circ f_2\right){}^{-1}=f_2{}^{-1}\circ f_1{}^{-2}</m> by <xref ref="exercise-composition-inverse-basis"/>. </p>
  
 <p>Induction: Assume <m>n\geq 2</m> and
  <me>\left(f_1\circ f_2\circ \cdots \circ f_n\right){}^{-1}= f_n{}^{-1}\circ \cdots \circ f_2{}^{-1}\circ f_1{}^{-1}</me>
@@ -386,6 +402,9 @@ between the two sets. Why does it not matter whether the bijection is from <m>A<
 </statement>
 </exercise>
 <exercise number="17"><statement><p>Construct a table listing as many <q>Laws of Function Composition</q> as you can identify. Use previous lists of laws as a guide.</p>
+</statement>
+</exercise>
+<exercise number="18"><statement><p> Based on the definition of the identity function, show that for all functions <m>f:A\to A</m>, <m>f\circ i=i\circ f = f</m>.</p>
 </statement>
 </exercise>
 <!-- 
