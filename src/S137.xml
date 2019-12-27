@@ -1,246 +1,323 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<section xml:id="s-A Brief Introduction to the Application of Boolean Algebra to Switching Theory">
-<title>A Brief Introduction to the Application of Boolean Algebra to Switching Theory</title>
-<idx>A Brief Introduction to the Application of Boolean Algebra to Switching Theory</idx>
-
-
-
-The algebra of switching theory is Boolean algebra. The standard notation used for Boolean algebra operations in most logic design/switching theory texts is + for <m>\lor</m> and <m>\bullet</m> for <m>\land</m>. Complementation is as in this text. Therefore, <m>\left(x_1\land \overline{x_2}\right)\lor \left(x_1\land x_2\right)\lor \left(\overline{x_1}\land x_2\right)</m> becomes <m>x_1\bullet  \overline{x_2}+x_1\bullet  x_2+\overline{x_1} \bullet  x_2</m>, or simply
-<m>x_1\overline{x_2}+x_1x_2+\overline{x_1}x_2</m><m>\textrm{ }</m>. All concepts developed previously for Boolean algebras hold. The only change is purely
-notational. We make the change in this section solely to introduce the reader to another frequently used notation. Obviously, we could have continued
-the discussion with our previous notation.
-
-
-
-The simplest switching device is the on-off switch. If the switch is closed, on, current will pass through it; if it is open, off, current will not
-pass through it. If we designate on by true or the logical, or Boolean, 1, and off by false, the logical, or Boolean, 0, we can describe electrical
-circuits containing switches by logical, or Boolean,  expressions. The expression <m>x_1 \bullet  x_2</m> represents the situation in which a series
-of two switches appears in a circuit (see Figure 13.7. 1a). In order for current to flow through the circuit, both switches must be on, that is,
-have the value 1.
-
-
-\begin{center}<m></m>
-\end{center}
-
-
-
-Similarly, a pair of parallel switches, as in Figure 13.7.1b, is described algebraically by <m>x_1+ x_2</m>. Many of the concepts in Boolean algebra
-can be thought of in terms of switching theory. For example, the distributive law in Boolean algebra (in +, <m>\bullet</m> notation) is:<m>x_1 \bullet
- \left(x_2+ x_3\right)</m> <m>=</m> <m>x_1 \bullet  x_2+x_1 \bullet  x_3</m>. Of course, this says the expression on the left is always equivalent to that
-on the right. The switching circuit analogue of the above statement is that Figure 13.7.2a is equivalent (as an electrical circuit) to Figure 13.7.2b.
-
-
-
-The circuits in a digital computer are composed of large quantities of switches that can be represented as in Figure 13.7.2 or can be thought of
-as boxes or gates with two or more inputs (except for the NOT gate) and one output. These are often drawn as in Figure 13.7.3. For example, the OR
-gate, as the name implies, is the  logical/Boolean OR function. The on-off switch function in Figure 13.7.3a in gate notation is Figure 13.7.3b.
-
-
-\begin{center}<m></m>
-\end{center}
-
-
-
-Either diagram indicates that the circuit will conduct current if and only if <m>f\left(x_1, x_2, x_3\right)</m> is true, or 1. We list the gate symbols
-that are widely used in switching theory in Figure 13.7.4 with their names. The names mean, and are read, exactly as they appear. For example, NAND
-means $\texttt{"}$not <m>x_1 \textrm{ and} x_2</m>$\texttt{"}$ or algebraically, <m>\overline{x_1\land x_2}</m>, or <m>\overline{x_1 \bullet  x_2}</m>.
-
-
-
-The circuit in Figure 13.7.5a can be described by gates. To do so, simply keep in mind that the Boolean function <m>f\left(x_1, x_2\right)=x_1 \bullet
- \overline{x_2}</m> of this circuit contains two operations. The operation of complementation takes precedence over that of <q>and,</q> so we have
-Figure 13.7.5b.
-
-
-
-
-
-<subsubsection xml:id="sss-Example 13-7-1"><idx>Example 13.7.1.</idx> The switching circuit in Figure 13.7.6a can be expressed through the logic, or gate, circuit in Figure 13.7.6b.
-
-
-\begin{center}<m></m>
-\end{center}
-
-
-
-We leave it to the reader to analyze both figures and to convince him- or herself that they do describe the same circuit. The circuit can be described
-algebraically as
-
-
-
-<m>f\left(x_1, x_2, x_3\right)=\left(\left( x_1 + x_2\right) + \left(x_1 + x_3\right)\right) \bullet  x_1 \bullet  \overline{x_2}.</m>
-
-
-
-We can use basic Boolean algebra laws to simplify or minimize this Boolean function (circuit):
-
-
-
-<m>f\left(x_1, x_2, x_3\right)=\left(\left(x_1 + x_2\right) + \left(x_1 + x_3\right)\right) \bullet  x_1 \bullet  \overline{x_2}\textrm{            
-                                     }</m> 
-
-
-
-<m>= \left(x_1+ x_2 + x_3\right) \bullet  x_1 \bullet  x_2\\
-\\
-= \left(x_1 \bullet  x_1 \bullet  \overline{x_2} + x_2 \bullet  x_1 \bullet \overline{x_2} + x_3 \bullet  x_1 \bullet  \overline{x_2} \right.</m>
-
-
-
-
-<m>= x_1\bullet  \overline{x_2} + 0 \bullet  x_1 + x_3 \bullet  x_1 \bullet  \overline{x_2}\textrm{                          }\\
-\\
-=x_1 \bullet  \overline{x_2} + x_3 \bullet  x_1 \bullet  \overline{x_2} \\
-\\
-= x_1 \bullet  \left(\overline{x_2} + \overline{x_2} \bullet  x_3\right) \\
-\\
-= x_1 \bullet  \overline{x_2}\bullet  \left(1 + x_3\right)\\
-\\
-= x_1 \bullet  \overline{x_2} .</m>
-
-
-
-The circuit for <m>f</m> may be described as in Figure 13.7.5. This is a less expensive circuit since it involves considerably less hardware.
-
-
-\begin{center}<m></m>
-\end{center}
-
-
-
-The table for f . is:
-
-
-
-
-
-
-
-<m>\begin{array}{c|c}
- x_1\textrm{    }x_2\textrm{    }x_3 &amp; f\left(x_1,x_2,x_3\right) \\
-\hline
- 0\textrm{     }0\textrm{     }00\textrm{     }0\textrm{     }10\textrm{     }1\textrm{     }00\textrm{     }1\textrm{     }11\textrm{     }0\textrm{     }01\textrm{     }0\textrm{ 
-   }11\textrm{     }1\textrm{     }01\textrm{     }1\textrm{     }1 &amp; 00001100 \\
-\end{array}</m>
-
-
-
-The Venn diagram that represents <m>f</m> is the shaded portion in Figure 13.7.7. From this diagram, we can read off the minterm normal form of
-<m>f</m>:
-
-
-
-<m>f\left(x_1, x_2, x_3\right)=x_1 \bullet  \overline{x_2} \bullet  \overline{x_3} + x_1 \bullet  \overline{x_2} \bullet  x_3.</m>
-
-
-\begin{center}<m></m>
-\end{center}
-
-
-\caption{\pmb{ Figure 13.7.7}}
-
-
-
-The circuit (gate) diagram appears in Figure 13.7.8.
-
-
-
-How do we interpret this? We see that <m>f\left(x_1, x_2, x_3\right)= 1</m> when <m>x_1=1, x_2=0</m>, and <m>x_3=0</m> or <m>x_3=1</m>. Current will be conducted
-through the circuit when switch <m>x_1</m> is on, switch <m>x_2</m> is off, and when switch <m>x_3</m> is either off or on.
-
-
-\begin{center}<m></m>
-\end{center}
-
-
-
-We close this section with a brief discussion of minimization, or reduction, techniques. We have discussed two in this text: algebraic (using basic
-Boolean rules) reduction and the minterm normal form technique. Other techniques are discussed in switching theory texts. When one reduces a given
-Boolean function, or circuit, it is possible to obtain a circuit that does not look simpler, but may be more cost effective, and is, therefore, simpler
-with respect to time. We illustrate with an example.
-
-
-
-
-
-<subsubsection xml:id="sss-Example 13-7-2"><title>Example 13.7.2</title><idx>Example 13.7.2.</idx> Consider the Boolean function of Figure 13.7.9a is <m>f\left(x_1, x_2, x_3, x_4\right)=</m> <m>\left(\left(x_1 \bullet
- \overline{\left.x_2\right)} \bullet  \overline{\left.x_3\right)} \bullet  x_4\right.\right.</m>, which can also be diagrammed as in Figure 13.7.9b.
-
-
-\begin{center}<m></m>
-\end{center}
-
-
-
-Is Circuit b simpler than Circuit a? Both circuits contain the same number of gates, so the hardware costs (per gate) would be the same. Hence, intuitively,
-we would guess that they are equivalent with respect to simplicity. However, the signals <m>x_3</m> and <m>x_4</m> in Circuit a pass through three levels
-of gating before reaching the output. All signals in Circuit b go through only two levels of gating (disregard the NOT gate when counting levels).
-Each level of logic (gates) adds to the time delay of the development of a signal at the output. In computers, we want the time delay to be as small
-as possible. Frequently, speed can be increased by decreasing the number of levels in a circuit. However, this frequently forces a larger number
-of gates to be used, thus increasing costs. One of the more difficult jobs of a design engineer is to balance off speed with hardware costs (number
-of gates).
-
-
-
-One final remark on notation: The circuit in Figure 13.7.10a can be written as in Figure 13.7.10b, or simply as in Figure 13.7.10c.
-
-
-
-
-<exercises xml:id="exercises-13-7">
-<title>Exercises</title>
-
-
-
-
-A Exercises
-
-<exercise number="1"><statement> (a) Write all inputs and outputs from Figure 13.7.11 and show that its Boolean function is <m>f\left(x_1, x_2, x_3\right)</m> <m>=\overline{\left(\left(x_1
-+ x_2\right) \bullet  x_3\right)} \bullet  \left(x_1 + x_2\right).</m></p></li>
-<li><p>  Simplify <m>f</m> algebraically.</p></li>
-<li><p>  Find the minterm normal form of <m>f</m>.</p></li>
-<li><p>  Draw and compare the circuit (gate) diagram of parts b and c above.</p></li>
-<li><p>  Draw the on-off switching diagram of <m>f</m> in part a. 
-
-
-\begin{center}<m></m>
-\end{center}
-
-
-\begin{center}<m></m>
-\end{center}</p></li>
-<li><p> Write the table of the Boolean function f . in part a and interpret the results.
-</statement></exercise>
-<exercise number="2"><statement> Given Figure 13.7.12:
-
-
-\begin{center}<m></m>
-\end{center}
-
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="s-logic-design">
+<title>A Brief Introduction to Switching Theory and Logic Design</title>
+<idx>Switching Theory</idx>
+<idx>Logic Design</idx>
+<aside><p><em>Disclaimer</em>:  I'm still looking for a good application for drawing logic gates.  The figures here are quite rough.</p></aside>
+<p>Early computers relied on many switches to perform the logical operations needed for computation.  This was true as late as the 1970's when early personal computers such as the Altair ( <xref ref="fig-altair" text="type-global"/>) started to appear. Pioneering computer scientists such as Claude Shannon realized that the operation of these computers could be simplified by making use of an isomorphism between computer circuits and boolean algebra.   The term <term>Switching Theory</term> was used at the time.  Logical gates realized through increasingly smaller and smaller integrated circuits still perform the same functions as in early computers, but using purely electronic means.  In this section, we give examples of some switching circuits.  Soon afterward, we will transition to the more modern form of circuits that are studied in <term>Logic Design</term>, where gates replace switches.  Out main goal is to give you an overview of how boolean functions corresponds to any such circuit.  We will introduce the common system notation used in logic design and show how it corresponds with the mathematical notation of Boolean algebras.  Any computer scientist should be familiar with both systems.</p>
+ <figure xml:id="fig-altair">
+		 <caption>The Altair Computer, an early PC, by Todd Dailey, Creative Commons 
+		 </caption>
+		 <image width="80%" source="images/fig-altair.jpg">
+			  <description>Image of an Altair computer from https://en.wikipedia.org/wiki/Altair_8800#/media/File:Altair_8800_at_the_Computer_History_Museum,_cropped.jpg at the Computer History Museum</description>
+		 </image>
+</figure>
+
+<p>The simplest switching device is the on-off switch. If the switch is closed/ON, current will pass through it; if it is open/OFF, current will not pass through it. If we designate ON by 1, and OFF by 0, we can describe electrical
+circuits containing switches by Boolean expressions with the variables representing the variable states of switches or the variable bits passing through gates.</p>
+<p>The electronics involved in these switches take into account whether we are negating a switch or not.  For electromagnetic switches, a magnet is used to control whether the switch is open or closed. The magnets themselves may be controlled by simple ON/OFF switches.   There are two types of electromagnetic switches.  One is normally open (OFF) when the magnet is not activated, but activating the magnet  will close the circuit and the switch is then ON.  A separate type of switch corresponds with a negated switch. For that type, the switch is closed when the magnet is not activated, and when the magnet is activated, the switch opens.  We won't be overly concerned with the details of these switches or the electronics corresponding to logical gates.  We will simply assume they are available to plug into a circuit.    For simplicity, we use the inversion symbol on a varible that labels a switch to indicate that it is a switch of the second type, as in <xref ref="fig-switch-normal-on" text="type-global"/>.</p> 
+<aside><p>Standby power generators that many people have in their homes use a transfer switch to connect the generator to the home power system.  This switch is open (OFF) if there is power coming from the normal municipal power supply. It stays OFF because a magnet is keeping it open.  When power is lost, the magnet is no longer activated, and the switch closes and is ON. So the transfer switch is a normally ON switch.</p></aside>
+<sidebyside>
+<figure xml:id="fig-switch-normal-off">
+		 <caption>Representation of a normally OFF switch controlled by variable <m>x_1</m>
+		 </caption>
+		 <image width="60%" source="images/fig-switch-normal-off.png">
+			  <description>Representation of a normally OFF switch</description>
+		 </image>
+</figure>
+<figure xml:id="fig-switch-normal-on">
+		 <caption>Representation of a normally ON switch controlled by variable <m>x_1</m>
+		 </caption>
+		 <image width="60%" source="images/fig-switch-normal-on.png">
+			  <description>Representation of a normally ON switch</description>
+		 </image>
+</figure>
+</sidebyside>
+<p> The standard notation used for Boolean algebra operations in switching theory and logic design is <m>+</m> for join, instead of <m>\lor </m>; and <m>\cdot </m> for meet, instead of <m>\land </m>. Complementation is the same in both notational systems, denoted with an overline.</p>
+<p> The expression <m>x_1 \cdot  x_2</m> represents the situation in which a series of two switches appears in sequence as in <xref ref="fig-and-switch" text="type-global"/>. In order for current to flow through the circuit, both switches must be ON; that is, they must both have the value 1.  Similarly, a pair of parallel switches, as in <xref ref="fig-or-switch" text="type-global" />, is described algebraically by <m>x_1 + x_2</m>. Here, current flows through this part of the circuit as long as at least on of the switches is ON. </p>  
+<sidebyside>
+<figure xml:id="fig-and-switch">
+		 <caption>Two switches in AND configuration realizing <m>x_1 \cdot x_2</m>
+		 </caption>
+		 <image width="60%" source="images/fig-and-switch.png">
+			  <description>Two switches in AND configuration</description>
+		 </image>
+</figure>
+<figure xml:id="fig-or-switch">
+		 <caption>Two switches in OR configuration realizing <m>x_1 + x_2</m>
+		 </caption>
+		 <image width="60%" source="images/fig-or-switch.png">
+			  <description>Two switches in OR configuration</description>
+		 </image>
+</figure> 
+</sidebyside>
+<p>
+
+All laws and concepts developed previously for Boolean algebras hold. The only change is purely notational. We make the change in this section solely to introduce the reader to another frequently used system of notation.</p>
+<p>Many of the laws of Boolean algebra can be visualized thought switching theory. For example, the distributive law of meet over join is expressed as 
+ <me>x_1 \cdot \left(x_2+ x_3\right) = x_1 \cdot  x_2+x_1 \cdot  x_3.</me> 
+The switching circuit analogue of the above statement is that the circuits in <xref ref="fig-switches-distributive" text="type-global"/> are equivalent.  In circuit (b), the presence of two <m>x_1</m>'s represents two electromagnetic switches controlled by the same magnet.</p>
+<figure xml:id="fig-switches-distributive">
+		 <caption>Two equivalent switching circuits
+		 </caption>
+		 <image width="80%" source="images/fig-switches-distributive.png">
+			  <description>Two equivalent switching circuits</description>
+		 </image>
+</figure> 
+
+<p>The circuits in a computer are now composed of large quantities of gates, which serve the same purpose as switches, but can be miniaturized to a great degree.   For example, the OR gate, usually drawn as in <xref ref="fig-or-gate" text="type-global" /> implements the logical OR function.  This happens electronically, but is equivalent to <xref ref="fig-or-switch" text="type-global" />.  The AND gate, which is equivalent to two sequential switches is  shown in <xref ref="fig-or-gate" text="type-global" />.</p>
+<sidebyside>
+<figure xml:id="fig-or-gate">
+		 <caption>An OR gate
+		 </caption>
+		 <image width="45%" source="images/fig-or-gate.png">
+			  <description>An OR gate</description>
+		 </image>
+</figure>
+<figure xml:id="fig-and-gate">
+		 <caption>An AND gate
+		 </caption>
+		 <image width="45%" source="images/fig-and-gate.png">
+			  <description>An AND gate</description>
+		 </image>
+</figure>
+</sidebyside>
+<p>The complementation process is represented in a gate diagram by an inverter, as pictured in <xref ref="fig-inverter" text="type-global"/>.</p>
+<figure xml:id="fig-inverter">
+		 <caption>Inverter, or NOT gate
+		 </caption>
+		 <image width="60%" source="images/fig-inverter.png">
+			  <description>Inverter</description>
+		 </image>
+</figure>
+<p>When drawing more complex circuits, multiple AND's or OR's are sometimes depicted using a more general gate drawing. For example if we want to depict an OR gate with three inputs that is ON as long as at least one input is ON, we would draw it as in  <xref ref="fig-triple-or" text="type-global" />, although this would really be two binary gates, as in  <xref ref="fig-triple-or-real" text="type-global" />. Both diagrams are realizing the boolean expression  <m>x_1 + x_2 + x_3</m>. Strictly speaking, the gates in <xref ref="fig-triple-or-real" text="type-global" /> represent <m>(x_1 + x_2 )+ x_3</m>, but the associative law for join tells us that the grouping doesn't matter.</p> 
+<sidebyside>
+<figure xml:id="fig-triple-or">
+		 <caption>Simple version of a ternary OR gate
+		 </caption>
+		 <image width="45%" source="images/fig-triple-or.png">
+			  <description>Simple version of a ternary OR gate</description>
+		 </image>
+</figure>
+<figure xml:id="fig-triple-or-real">
+		 <caption>A ternary OR gate created with binary OR gates
+		 </caption>
+		 <image width="45%" source="images/fig-triple-or-real.png">
+			  <description>A ternary OR gate created with binary OR gates</description>
+		 </image>
+</figure>
+</sidebyside>
+<p>In <xref ref="fig-gates" />, we show a few other commonly used gates, XOR, NAND, and NOR, which correspond to the boolean exressions <m>x_1 \oplus x_2</m>, <m>\overline{x_1 \cdot x_2}</m>, and <m>\overline{x_1 + x_2}</m>, respectively.</p>
+<figure xml:id="fig-gates">
+		 <caption>
+		 </caption>
+		 <image width="60%" source="images/fig-gates.png">
+			  <description></description>
+		 </image>
+</figure>
+<p>Let's start with a logic circuit and see how the laws of boolean algebra can help us simplify it.</p> 
+<example xml:id="example-logic-design-1"><title>Simplification of a circuit</title>
+<p>
+Consider the  circuit in <xref ref="fig-ex-1-start-circuit" text="type-global"/>. As usual, we assume that three inputs enter on the left and the output exits on the right.</p>
+ <figure xml:id="fig-ex-1-start-circuit">
+		 <caption>Initial gate diagram
+		 </caption>
+		 <image width="60%" source="images/fig-ex-1-start-circuit.png">
+			  <description>Initial gate diagram</description>
+		 </image>
+</figure>
+<p>If we trace the inputs through the gates we see that this circuit realizes the boolean function
+ <me>f\left(x_1, x_2, x_3 \right)=x_1 \cdot  \overline{x_2}\cdot \left(\left( x_1 + x_2\right) + \left(x_1 + x_3\right)\right).</me>
+</p>
+ 
+<p>We simplify the boolean expression that defines <m>f</m>, simplifying the circuit in so doing.  You should be able to identify the laws of Boolean algebra that are used in each of the steps.  See <xref ref="exercise-137-1" text="type-global"/>.
+ <me>
+\begin{split}
+x_1 \cdot  \overline{x_2}\cdot \left(\left( x_1 + x_2\right) + \left(x_1 + x_3\right)\right) &amp; =
+            x_1 \cdot \overline{x_2}\cdot \left(x_1+ x_2 + x_3\right)\\
+ &amp; = x_1 \cdot  \overline{x_2} \cdot  x_1 + x_1 \cdot \overline{x_2} \cdot x_2  + x_1 \cdot  \overline{x_2} \cdot x_3 \\
+ &amp;= x_1\cdot  \overline{x_2} + 0 \cdot  x_1 + x_3 \cdot  x_1 \cdot  \overline{x_2}\\
+ &amp;=x_1 \cdot  \overline{x_2} + x_3 \cdot  x_1 \cdot  \overline{x_2} \\
+ &amp;= x_1 \cdot  \overline{x_2} \cdot  \left(1 + x_3\right)\\
+ &amp;= x_1 \cdot  \overline{x_2}
+ \end{split}
+ </me>
+ Therefore, <m>f\left(x_1, x_2, x_3\right)=x_1 \cdot  \overline{x_2}</m>, which can be realized with the much simpler circuit in <xref ref="fig-ex-1-end-circuit" text="type-global"/>, without using the input <m>x_3</m>.</p>
+  <figure xml:id="fig-ex-1-end-circuit">
+		 <caption>Simplified gate diagram
+		 </caption>
+		 <image width="60%" source="images/fig-ex-1-end-circuit.png">
+			  <description>Simplified gate diagram</description>
+		 </image>
+</figure>
+</example>
+<p>Next, we start with a table of desired outputs based on three bits of input and design an efficient circuit to realize this output.</p>
+<example xml:id="example-logic-design-2">
+<p>Consider the following table of desired outputs for the three input bits <m>x_1, x_2, x_3</m>.</p>
+
+<table xml:id="table-logic-design-output">
+<title>Desired output table</title>
+<tabular  halign="center">
+<row><cell><m>x_1</m></cell><cell><m>x_2</m></cell><cell><m>x_3</m></cell><cell><m>f(x_1,x_2,x_3)</m></cell></row>
+<row><cell>0</cell><cell>0</cell><cell>0</cell><cell>0</cell></row>
+<row><cell>0</cell><cell>0</cell><cell>1</cell><cell>1</cell></row>
+<row><cell>0</cell><cell>1</cell><cell>0</cell><cell>0</cell></row>
+<row><cell>0</cell><cell>1</cell><cell>1</cell><cell>0</cell></row>
+<row><cell>1</cell><cell>0</cell><cell>0</cell><cell>1</cell></row>
+<row><cell>1</cell><cell>0</cell><cell>1</cell><cell>1</cell></row>
+<row><cell>1</cell><cell>1</cell><cell>0</cell><cell>0</cell></row>
+<row><cell>1</cell><cell>1</cell><cell>1</cell><cell>0</cell></row>
+</tabular>
+</table>
+
+<p>The first step is to write the minterm normal form of <m>f</m>.  Since we are working with the two value Boolean algebra, <m>B_2</m>, the constants in each minterm are either 0 or 1, and we simply list the minterms that have a 1. These correspond with the rows of the table above that have an output of 1.  We will then attempt to simplify the expression as much as possible.</p>
+<p>
+<me>
+\begin{split}
+f\left(x_1, x_2, x_3\right)&amp;= (\overline{x_1} \cdot  \overline{x_2} \cdot  x_3) + (x_1 \cdot  \overline{x_2} \cdot   \overline{x_3})+(x_1  \cdot   \overline{x_2} \cdot x_3)\\
+	&amp;= \overline{x_2} \cdot (\overline{x_1} \cdot   x_3) + (x_1 \cdot \overline{x_3})+(x_1 \cdot x_3)\\
+	&amp;= \overline{x_2} \cdot (\overline{x_1} \cdot   x_3) + x_1 \cdot (\overline{x_3}+ x_3)\\
+	&amp;= \overline{x_2} \cdot ((\overline{x_1} \cdot   x_3) + x_1)\\
+\end{split}
+</me>
+</p>
+<p>Therefore we can realize our table with the boolean function
+<m>f\left(x_1, x_2, x_3\right)=\overline{x_2} \cdot ((\overline{x_1} \cdot   x_3) + x_1)</m>.
+
+A circuit  diagram for this function is <xref ref="fig-logic-design-example-2" text="type-global"/>.  But is this the simplest circuit that realizes the table?  See <xref ref="exerc-simpler-circuit" text="type-global"/>.</p>
+<figure xml:id="fig-logic-design-example-2">  
+		 <caption>A realization of the table of desired outputs.
+		 </caption>
+		 <image width="60%" source="images/fig-logic-design-example-2.png">
+			  <description>Simplified realization of the desired table of outputs</description>
+		 </image>
+</figure>
+</example>
+<!-- 
+<example>
+<p>
+Is Circuit b simpler than Circuit a? Both circuits contain the same number of gates, so the hardware costs (costs per gate) would be the same. Hence,
+intuitively, we would guess that they are equivalent with respect to simplicity. However, the signals <m>x_3</m> and <m>x_4</m> in Circuit a pass through
+three levels of gating before reaching the output. All signals in Circuit b go through only two levels of gating (disregard the NOT gate when counting
+levels). Each level of logic (gates) adds to the time delay of the development of a signal at the output. In computers, we want the time delay to
+be as small as possible. Frequently, speed can be increased by decreasing the number of levels in a circuit. However, this frequently forces a larger
+number of gates to be used, thus increasing costs. One of the more difficult jobs of a design engineer is to balance off speed with hardware costs
+(number of gates).</p>
+</example>
+ -->
+<exercises>
+<exercise xml:id="exercise-137-1">
+<statement><p>List the laws of boolean algebra that justify the steps in the simplification of the boolean function <m>f\left(x_1, x_2, x_3\right)</m> in <xref ref="example-logic-design-1" text="type-global" />. Some steps use more than one law. </p></statement>
+<answer><p>
+<ol label="(1)">
+ <li><p> Associative, commutative, and idempotent laws.</p></li>
+<li><p>Distributive law.</p></li>
+<li><p>Idempotent and complement laws.</p></li>
+<li><p>Null and identity laws</p></li>
+<li><p>Distributive law.</p></li>
+<li><p>Null and identity laws.</p></li>
+</ol>
+</p></answer>
+</exercise>
+<exercise>
+<statement><p>Write the following Boolean expression in the notation of logic design.
+<me>\left(x_1\land \overline{x_2}\right)\lor \left(x_1\land x_2\right)\lor \left(\overline{x_1}\land x_2\right).</me>
+</p></statement>
+<answer><p>
+<me>(x_1\cdot  \overline{x_2})+(x_1\cdot  x_2)+(\overline{x_1} \cdot  x_2).</me></p></answer>
+</exercise>
+<exercise number="3" xml:id="exerc-simpler-circuit">
+<statement><p>Find a further simplification of the boolean function in <xref ref="example-logic-design-2" text="type-global"/>, and draw the corresponding gate diagram for the circuit that it realizes.
+</p></statement>
+<answer><p>A simpler boolean expression for the function is 
+<m>\overline{x_2} \cdot (x_1 + x_3)</m>.</p>
+<figure xml:id="fig-logic-design-exerc-3">
+		 <caption>An even simpler circuit
+		 </caption>
+		 <image width="100%" source="images/fig-logic-design-exerc-3.png">
+			  <description>Figure for exercise 3</description>
+		 </image>
+</figure>
+</answer>
+</exercise>
+<exercise number="4">
+<statement>
+ <p>Consider the switching circuit in  <xref ref="fig-logic-design-exerc-4" text="type-global"/>.</p>
+<figure xml:id="fig-logic-design-exerc-4">
+		 <caption>Can this circuit be simplifed?
+		 </caption>
+		 <image width="100%" source="images/fig-logic-design-exerc-4.png">
+			  <description>Figure for exercise 3</description>
+		 </image>
+</figure>
+ <p>
+ <ol label="(a)">
+ <li><p>Draw the corresponding gate diagram for this circuit.</p></li>
+<li><p>Construct a table of outputs for each of the eight inputs to this circuit.</p></li>
+<li><p>Determine the minterm normal of the Boolean function based on the table.</p></li>
+<li><p>Simplify the circuit as much as possible.</p></li>
+</ol>
+</p>
+</statement>
+<!-- 
+<solution>
+</solution> 
+ -->
+</exercise>
+<exercise number="5">
+<statement>
+ <p>Consider the circuit in <xref ref="fig-logic-design-exerc-5" text="type-global"/>.</p>
+ <figure xml:id="fig-logic-design-exerc-5">
+		 <caption>Can this circuit be simplifed?
+		 </caption>
+		 <image width="100%" source="images/fig-logic-design-exerc-5.png">
+			  <description>Figure for exercise 3</description>
+		 </image>
+</figure>
+ <p>
+ <ol label="(a)">
+ <li><p>Trace the inputs though this circuit and determine the Boolean function that it realizes. </p></li>
+<li><p>Construct a table of outputs for each of the eight inputs to this circuit. </p></li>
+<li><p>Find the minterm normal form of <m>f</m>.</p></li>
+<li><p>Draw the circuit based on the minterm normal form.</p></li>
+<li><p>Simplify the circuit algebraically and draw the resulting circuit.</p></li>
+</ol>
+</p>
+</statement>
+<!-- 
+<solution><p><ol label="(a)">
+ <li><p> <m>f\left(x_1, x_2, x_3\right)</m> <m>=\overline{\left(\left(x_1
++ x_2\right) \cdot  x_3\right)} \cdot  \left(x_1 + x_2\right).</m></p></li>
+<li><p>Simplify <m>f</m> algebraically.</p></li>
+<li><p>Find the minterm normal form of <m>f</m>.</p></li>
+<li><p>Draw and compare the circuit (gate) diagram of parts b and c above.</p></li>
+<li><p>Draw the on-off switching diagram of <m>f</m> in part a.</p></li>
+<li><p>Write the table of the Boolean function \textit{ f }in part a and interpret the results.</p></li>
+</ol></p>
+</solution> 
+ -->
+ </exercise>
+<exercise number="6">
+<statement><p>Consider the Boolean function
+<m>f\left(x_1, x_2, x_3, x_4\right)=x_1 + \left(x_2 \cdot  \left(\overline{x_1} + x_4\right) + x_3 \cdot  \left(\overline{x_2} + \overline{x_4}\right)\right).</m></p>
+<p>
 <ol label="(a)">
-<li><p>  Write the Boolean function that represents the given on-off circuit.</p></li>
-<li><p>  Show that the Boolean function obtained in answer to part a can be reduced to <m>f\left(x_1, x_2\right)=x_1</m>. Draw the on-off circuit diagram
-of this simplified representation.</p></li>
-<li><p>  Draw the circuit (gate) diagram of the given on-off circuit diagram.</p></li>
-<li><p>  Determine the minterm normal of the Boolean function found in the answer to part a or given in part b; they are equivalent.</p></li>
-<li><p> Discuss the relative simplicity and advantages of the circuit gate diagrams found in answer to parts c and d.
-</statement></exercise>
-<exercise number="3"><statement> (a) Write the circuit (gate) diagram of
-
-
-
-<m>f\left(x_1, x_2, x_3\right)=\left(x_1 \bullet  x_2 + x_3\right) \bullet  \left(x_2 + x_3\right) + x_3.</m></p></li>
-<li><p>  Simplify the function in part a by using basic Boolean algebra laws.</p></li>
-<li><p> Write the circuit (gate) diagram of the result obtained in part b.</p></li>
-<li><p> Draw the on-off switch diagrams of parts a and b.
-</statement></exercise>
-<exercise number="4"><statement> Consider the Boolean function
-
-
-
-<m>f\left(x_1, x_2, x_3, x_4\right)=x_1 + \left(x_2 \bullet  \left(\overline{x_1} + x_4\right) + x_3 \bullet  \left(\overline{x_2} + \overline{x_4}\right)\right).</m>
-
-<ol label="(a)">
-<li><p> Simplify <m>f</m> algebraically.</p></li>
-<li><p> Draw the switching (on-off) circuit of <m>f</m> and the reduction of <m>f</m> obtained in part a.</p></li>
-<li><p> Draw the circuit (gate) diagram of f . and the reduction of f . obtained in answer to part a.
+<li><p>Simplify <m>f</m> algebraically.</p></li>
+<li><p>Draw the gate diagram based on the simplified version of <m>f</m>.</p></li>
+</ol>
+</p></statement>
+<!-- 
+<solution>
+</solution> 
+ -->
+</exercise>
+<exercise number="7">
+<statement><p>Draw a logic circuit using only AND, OR and NOT gates that realizes an XOR gate.</p>
+</statement>
+<!-- 
+<solution>
+</solution> 
+ -->
+</exercise>
+</exercises>
+</section>
