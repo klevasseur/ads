@@ -191,7 +191,95 @@ by noting that <m>V_2.\text{from}=4</m>, <m>V_4\text{.from = 1}</m>, and <m>V_1.
 </p></example>
 
 </subsection>
+<subsection xml:id="ss-ecc-rad-diameter"><title>Graph Measurements</title>
+<p>If we were to perform a breadth first search from each vertex in a graph, we could proceed to determine several key measurements relating to the general connectivity of that graph.  From each vertex <m>v</m>, the distance from <m>v</m> to any other vertex <m>w</m>,  <m>d(v,w)</m>, is number of edges in the shortest path from <m>v</m> to <m>w</m>. This number is also the index of the depth set to which <m>w</m> belongs in a breath-first search starting at <m>v</m>.
+<me>d(v,w) = i  \iff  w \in D_v(i)</me>
+where <m>D_v</m> is the family of depth sets starting at <m>v</m>.</p>
+<p>If the vector of <q>from-values</q> is known from the breath-first search, then the distance can be determined recursively as follows:
+<me>d(v,v) =0</me>
+<me>d(v,w) = 1 + d(v,w.from) \textrm{ if }w\neq v</me>
+</p>
+<example xml:id="e-computing-distances"><title>Computing Distances</title>
+<figure xml:id="fig-compute-distance-graph">
+			<caption>Graph Measurements Example</caption>
+				 <image width="100%" source="images/fig-compute-distance-graph.png">
+                    <description>An undirected graph with 12 vertices having dictionary representation {1:[6,7,10],2:[7,9,12],3:[10],4:[6,8,10],5:[9,11],6:[7,11],7:[10,12],9:[11]}</description>
+                </image>
+</figure>
+<p>Consider <xref ref="fig-compute-distance-graph"/>.  If we perform a breadth first search of this graph starting at vertex 2, for example, we get the following <q>from data</q> telling us from what vertex each vertex is reached.
+<me>\begin{array}{ccccccccccccc}
+ \text{vertex} &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6
+   &amp; 7 &amp; 8 &amp; 9 &amp; 10 &amp; 11 &amp; 12 \\
+ \text{vertex.from} &amp; 7 &amp; 2 &amp; 10 &amp; 6 &amp;
+   9 &amp; 7 &amp; 2 &amp; 4 &amp; 2 &amp; 7 &amp; 9 &amp; 2 \\
+\end{array}</me>
+  For example, 4.from has a value of 6.  We can compute <m>d(2,4)</m>:
+	<me>\begin{split}
+			d(2,4) &amp;= 1+d(2,4.from)= 1+d(2,6)\\
+				&amp;=2+d(2,6.from)=2+d(2,7)\\
+				&amp;=3+d(2,7.from)=3+d(2,2)\\
+				&amp;=3
+		\end{split}</me>
+		</p>
+</example>
+<p>Once we know distances between any two vertices, we can determine the eccentricity of each vertex; and the graph's diameter, radius and center.  First, we define these terms precisely.</p>  
+<p>	<notation><usage>e(v)</usage><description>The eccentricity of a vertex</description></notation>		<notation><usage>d(G)</usage><description>The diameter of graph <m>G</m></description></notation><notation><usage>r(G)</usage><description>The  radius of graph <m>G</m></description></notation><notation><usage>C(G)</usage><description>The center of graph <m>G</m></description></notation>
+		<dl width="narrow">
+                    <li><title>Eccentricity of a Vertex</title><idx>Eccentricity of a vertex</idx>
+                        
+                        <p>The the maximum distance from a vertex to all other vertices, <m>e(v)=max_{w}d(v,w)</m>.</p>
+                    </li>
+                    <li>
+                        <title>Diameter of a Graph</title><idx>Diameter of a Graph</idx>
+                        
+                        <p>The maximum eccentricity of vertices in a graph, denoted <m>d(G)</m>.</p>
+                    </li>
+                    <li>
+                        <title>Radius of a Graph</title><idx>Radius of a graph</idx>
+                        
+                        <p>The minimum eccentricity of vertices in a graph, denoted <m>r(G)</m>.</p>
+                    </li>
+                    <li>
+                        <title>Center of a Graph</title><idx>Center of a graph</idx>
+                        
+                        <p>The set of vertices with minimal eccentricity, <m>C(G)=\{v\in V \mid e(v)=r(G)\}</m></p>
+                    </li>
+                </dl></p>
 
+<example xml:id="e-distance-matrix"><title>Measurements from distance matrices</title>
+<p>If we compute all distances between vertices, we can summarize the results in a distance matrix, where the entry in row <m>i</m>, column <m>j</m> is the distance from vertex <m>i</m> to vertex <m>j</m>.  For the graph in <xref ref="e-computing-distances"/>, that matrix is 
+		<me>\left(
+		\begin{array}{cccccccccccc}
+		 0 &amp; 2 &amp; 2 &amp; 2 &amp; 3 &amp; 1 &amp; 1 &amp; 3 &amp; 3 &amp; 1
+		   &amp; 2 &amp; 2 \\
+		 2 &amp; 0 &amp; 3 &amp; 3 &amp; 2 &amp; 2 &amp; 1 &amp; 4 &amp; 1 &amp; 2
+		   &amp; 2 &amp; 1 \\
+		 2 &amp; 3 &amp; 0 &amp; 2 &amp; 5 &amp; 3 &amp; 2 &amp; 3 &amp; 4 &amp; 1
+		   &amp; 4 &amp; 3 \\
+		 2 &amp; 3 &amp; 2 &amp; 0 &amp; 3 &amp; 1 &amp; 2 &amp; 1 &amp; 3 &amp; 1
+		   &amp; 2 &amp; 3 \\
+		 3 &amp; 2 &amp; 5 &amp; 3 &amp; 0 &amp; 2 &amp; 3 &amp; 4 &amp; 1 &amp; 4
+		   &amp; 1 &amp; 3 \\
+		 1 &amp; 2 &amp; 3 &amp; 1 &amp; 2 &amp; 0 &amp; 1 &amp; 2 &amp; 2 &amp; 2
+		   &amp; 1 &amp; 2 \\
+		 1 &amp; 1 &amp; 2 &amp; 2 &amp; 3 &amp; 1 &amp; 0 &amp; 3 &amp; 2 &amp; 1
+		   &amp; 2 &amp; 1 \\
+		 3 &amp; 4 &amp; 3 &amp; 1 &amp; 4 &amp; 2 &amp; 3 &amp; 0 &amp; 4 &amp; 2
+		   &amp; 3 &amp; 4 \\
+		 3 &amp; 1 &amp; 4 &amp; 3 &amp; 1 &amp; 2 &amp; 2 &amp; 4 &amp; 0 &amp; 3
+		   &amp; 1 &amp; 2 \\
+		 1 &amp; 2 &amp; 1 &amp; 1 &amp; 4 &amp; 2 &amp; 1 &amp; 2 &amp; 3 &amp; 0
+		   &amp; 3 &amp; 2 \\
+		 2 &amp; 2 &amp; 4 &amp; 2 &amp; 1 &amp; 1 &amp; 2 &amp; 3 &amp; 1 &amp; 3
+		   &amp; 0 &amp; 3 \\
+		 2 &amp; 1 &amp; 3 &amp; 3 &amp; 3 &amp; 2 &amp; 1 &amp; 4 &amp; 2 &amp; 2
+		   &amp; 3 &amp; 0 \\
+		\end{array}
+		\right)
+		</me>
+If we scan the matrix, we can see that the maximum distance is the distance between vertices 3 and 5, which is 5 and is the diameter of the graph.   If we focus on individual rows and identify the maximum values, which are the eccentricities, their minimum is 3, which the graph's radius.  This eccentricity value is attained by vertices in the set <m>\{1, 4, 6, 7\}</m>, which is the center of the graph.</p>
+</example>
+</subsection>
 
 <subsection xml:id="ss-sage-note-search"><title>SageMath Note - Graph Searching</title><idx><h>SageMath Note</h><h>Search in a Graph</h></idx>
 
@@ -244,19 +332,6 @@ list(Gr.breadth_first_search(0,report_distance='True'))
 </sage>
 
 
-
-<p>Generate a list of vertices that would be reached in a depth-first search.
- In this type of search you travel in one direction away from the starting point until no further new vertices can be reached. We will discuss this search later.</p>
-<sage>
-<input>
-list(Gr.depth_first_search(0))
-</input>
-<output>
-[0, 15, 11, 10, 14, 5, 13, 7, 3, 8, 9, 12, 6, 16, 1, 2, 17, 4]
-</output>
-</sage>
-
-
 </subsection>
 
 <exercises xml:id="exercises-9-3">
@@ -287,7 +362,33 @@ and the stack that is created.</p>
 </figure>
 </statement>
 </exercise>
-<exercise number="5"><statement><p> Prove (by induction on <m>k</m>) that if the relation <m>r</m> on vertices of a graph is defined by <m>v r w</m> if there is an edge connecting
+<exercise number="5"><statement> <p>For each of the following graphs, determine the eccentricities of each vertex, and the diameter, radius, and center of the graph.</p>
+<sidebyside>
+	  <image width="60%" source="images/fig-measure-graph-1.png">
+		  <description>An undirected graph with 6 vertices.</description>
+	 </image>
+	  <image width="60%" source="images/fig-measure-graph-2.png">
+		  <description>An undirected graph with 6 vertices.</description>
+	 </image>
+</sidebyside>
+<sidebyside>
+	  <image width="60%" source="images/fig-measure-graph-3.png">
+		  <description>An undirected graph with 6 vertices.</description>
+	 </image>
+	  <image width="60%" source="images/fig-measure-graph-4.png">
+		  <description>An undirected graph with 6 vertices.</description>
+	 </image>
+</sidebyside>
+
+</statement>
+</exercise>
+<exercise number="6"><statement><p>
+	<ol label="(a)">
+		<li><p>The terms diameter, radius and center are familiar ones in the context of circles.  Compare their usage in circles and graphs.  How are they similar and how are they different?</p></li>
+		<li><p><q>Eccentricity</q> might be less familiar.  How is is used in geometry, and does it have a compatible use in graph theory?</p></li>
+	</ol>	
+</p></statement></exercise>
+<exercise number="7"><statement><p> Prove (by induction on <m>k</m>) that if the relation <m>r</m> on vertices of a graph is defined by <m>v r w</m> if there is an edge connecting
 <m>v</m> to <m>w</m>, then <m>r^k</m>, <m>k \geq  1</m>, is defined by <m>v r^kw</m> if there is a path of length <m>k</m> from <m>v</m> to
 <m>w</m>.</p>
 </statement><answer><p> Basis: <m>(k=1)</m> Is the relation <m>r^1</m>, defined by <m>v r^1 w</m> if there is a path of length 1 from <m>v \text{ to } w</m>? Yes, since
@@ -299,5 +400,39 @@ that <m>v r^{k+1} w</m> if and only if there is a path of length <m>k+1</m> from
 hypothesis, there is a path of length <m>k</m> from <m>v \textrm{ to } y</m>. And by the basis, there is a path of length one from <m>y</m> to <m>w</m>. If we combine these two paths, we obtain a path of length <m>k+1</m> from <m>v</m> to <m>w</m>. Of course, if we start with a path of length
 <m>k+1</m> from <m>v</m> to <m>w</m>, we have a path of length <m>k</m> from <m>v</m> to some vertex <m>y</m> and a path of length 1 from <m>y</m> to <m>w</m>. Therefore, <m>v r^k y \textrm{ and } y r w \Rightarrow  v r^{k+1} w</m>.
 </p></answer></exercise>
+<exercise number="8"><statement><p>For each of the following distance matrices of graphs, identify the diameter, radius and center.  Assume the graphs vertices are the numbers 1 through <m>n</m> for an <m>n \times n</m> matrix.
+	<ol label="(a)" columns="2">
+		<li><p><m>\left(
+\begin{array}{cccccccccc}
+ 0 &amp; 2 &amp; 1 &amp; 2 &amp; 2 &amp; 3 &amp; 3 &amp; 2 &amp; 1 &amp; 1 \\
+ 2 &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 3 &amp; 3 &amp; 2 &amp; 3 &amp; 2 \\
+ 1 &amp; 1 &amp; 0 &amp; 1 &amp; 2 &amp; 2 &amp; 2 &amp; 1 &amp; 2 &amp; 1 \\
+ 2 &amp; 2 &amp; 1 &amp; 0 &amp; 3 &amp; 3 &amp; 3 &amp; 2 &amp; 3 &amp; 2 \\
+ 2 &amp; 3 &amp; 2 &amp; 3 &amp; 0 &amp; 2 &amp; 1 &amp; 1 &amp; 2 &amp; 1 \\
+ 3 &amp; 3 &amp; 2 &amp; 3 &amp; 2 &amp; 0 &amp; 1 &amp; 1 &amp; 3 &amp; 2 \\
+ 3 &amp; 3 &amp; 2 &amp; 3 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 3 &amp; 2 \\
+ 2 &amp; 2 &amp; 1 &amp; 2 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 2 &amp; 1 \\
+ 1 &amp; 3 &amp; 2 &amp; 3 &amp; 2 &amp; 3 &amp; 3 &amp; 2 &amp; 0 &amp; 1 \\
+ 1 &amp; 2 &amp; 1 &amp; 2 &amp; 1 &amp; 2 &amp; 2 &amp; 1 &amp; 1 &amp; 0 \\
+\end{array}
+\right)</m></p></li>
+		<li><p><m>\left(
+\begin{array}{cccccccccccc}
+ 0 &amp; 2 &amp; 2 &amp; 2 &amp; 3 &amp; 3 &amp; 3 &amp; 1 &amp; 2 &amp; 3 &amp; 1 &amp; 1 \\
+ 2 &amp; 0 &amp; 2 &amp; 2 &amp; 1 &amp; 1 &amp; 1 &amp; 3 &amp; 2 &amp; 1 &amp; 1 &amp; 3 \\
+ 2 &amp; 2 &amp; 0 &amp; 1 &amp; 3 &amp; 2 &amp; 1 &amp; 2 &amp; 2 &amp; 3 &amp; 1 &amp; 1 \\
+ 2 &amp; 2 &amp; 1 &amp; 0 &amp; 3 &amp; 1 &amp; 2 &amp; 1 &amp; 2 &amp; 3 &amp; 2 &amp; 1 \\
+ 3 &amp; 1 &amp; 3 &amp; 3 &amp; 0 &amp; 2 &amp; 2 &amp; 4 &amp; 3 &amp; 2 &amp; 2 &amp; 4 \\
+ 3 &amp; 1 &amp; 2 &amp; 1 &amp; 2 &amp; 0 &amp; 2 &amp; 2 &amp; 3 &amp; 2 &amp; 2 &amp; 2 \\
+ 3 &amp; 1 &amp; 1 &amp; 2 &amp; 2 &amp; 2 &amp; 0 &amp; 3 &amp; 3 &amp; 2 &amp; 2 &amp; 2 \\
+ 1 &amp; 3 &amp; 2 &amp; 1 &amp; 4 &amp; 2 &amp; 3 &amp; 0 &amp; 3 &amp; 4 &amp; 2 &amp; 2 \\
+ 2 &amp; 2 &amp; 2 &amp; 2 &amp; 3 &amp; 3 &amp; 3 &amp; 3 &amp; 0 &amp; 1 &amp; 3 &amp; 1 \\
+ 3 &amp; 1 &amp; 3 &amp; 3 &amp; 2 &amp; 2 &amp; 2 &amp; 4 &amp; 1 &amp; 0 &amp; 2 &amp; 2 \\
+ 1 &amp; 1 &amp; 1 &amp; 2 &amp; 2 &amp; 2 &amp; 2 &amp; 2 &amp; 3 &amp; 2 &amp; 0 &amp; 2 \\
+ 1 &amp; 3 &amp; 1 &amp; 1 &amp; 4 &amp; 2 &amp; 2 &amp; 2 &amp; 1 &amp; 2 &amp; 2 &amp; 0 \\
+\end{array}
+\right)</m></p></li>
+	</ol>	
+</p></statement></exercise>
 </exercises>
 </section>
