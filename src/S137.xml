@@ -109,14 +109,15 @@ The switching circuit analogue of the above statement is that the circuits in th
 		 </image>
 </figure>
 </sidebyside>
-<p>The complementation process is represented in a gate diagram by an inverter, as pictured in <xref ref="fig-inverter" text="type-global"/>.</p>
+<sidebyside><p>The complementation process is represented in a gate diagram by an inverter, as pictured in <xref ref="fig-inverter" text="type-global"/>.</p>
 <figure xml:id="fig-inverter">
 		 <caption>Inverter, or NOT gate
 		 </caption>
-		 <image width="60%" source="images/fig-inverter.png">
+		 <image width="70%" source="images/fig-inverter.png">
 			  <description>Inverter</description>
 		 </image>
 </figure>
+</sidebyside>
 <p>When drawing more complex circuits, multiple AND's or OR's are sometimes depicted using a more general gate drawing. For example if we want to depict an OR gate with three inputs that is ON as long as at least one input is ON, we would draw it as in  <xref ref="fig-triple-or" text="type-global" />, although this would really be two binary gates, as in  <xref ref="fig-triple-or-real" text="type-global" />. Both diagrams are realizing the boolean expression  <m>x_1 + x_2 + x_3</m>. Strictly speaking, the gates in <xref ref="fig-triple-or-real" text="type-global" /> represent <m>(x_1 + x_2 )+ x_3</m>, but the associative law for join tells us that the grouping doesn't matter.</p> 
 <sidebyside>
 <figure xml:id="fig-triple-or">
@@ -134,14 +135,15 @@ The switching circuit analogue of the above statement is that the circuits in th
 		 </image>
 </figure>
 </sidebyside>
-<p>In <xref ref="fig-gates" />, we show a few other commonly used gates, XOR, NAND, and NOR, which correspond to the boolean exressions <m>x_1 \oplus x_2</m>, <m>\overline{x_1 \cdot x_2}</m>, and <m>\overline{x_1 + x_2}</m>, respectively.</p>
+<sidebyside><p>In <xref ref="fig-gates" />, we show a few other commonly used gates, XOR, NAND, and NOR, which correspond to the boolean exressions <m>x_1 \oplus x_2</m>, <m>\overline{x_1 \cdot x_2}</m>, and <m>\overline{x_1 + x_2}</m>, respectively.</p>
 <figure xml:id="fig-gates">
-		 <caption>
+		 <caption>Other common gates
 		 </caption>
 		 <image width="60%" source="images/fig-gates.png">
-			  <description></description>
+			  <description>Other common gates that represent  XOR, NAND, and NOR</description>
 		 </image>
 </figure>
+</sidebyside>
 <p>Let's start with a logic circuit and see how the laws of boolean algebra can help us simplify it.</p> 
 <example xml:id="example-logic-design-1"><title>Simplification of a circuit</title>
 <p>
@@ -149,7 +151,7 @@ Consider the  circuit in <xref ref="fig-ex-1-start-circuit" text="type-global"/>
  <figure xml:id="fig-ex-1-start-circuit">
 		 <caption>Initial gate diagram
 		 </caption>
-		 <image width="60%" source="images/fig-ex-1-start-circuit.png">
+		 <image width="80%" source="images/fig-ex-1-start-circuit.png">
 			  <description>Initial gate diagram</description>
 		 </image>
 </figure>
@@ -197,13 +199,13 @@ x_1 \cdot  \overline{x_2}\cdot \left(\left( x_1 + x_2\right) + \left(x_1 + x_3\r
 </tabular>
 </table>
 
-<p>The first step is to write the minterm normal form of <m>f</m>.  Since we are working with the two value Boolean algebra, <m>B_2</m>, the constants in each minterm are either 0 or 1, and we simply list the minterms that have a 1. These correspond with the rows of the table above that have an output of 1.  We will then attempt to simplify the expression as much as possible.</p>
+<p>The first step is to write the <xref ref="def-minterm-normal-form"  text="title"> of <m>f</m>.  Since we are working with the two value Boolean algebra, <m>B_2</m>, the constants in each minterm are either 0 or 1, and we simply list the minterms that have a 1. These correspond with the rows of the table above that have an output of 1.  We will then attempt to simplify the expression as much as possible.</p>
 <p>
 <me>
 \begin{split}
 f\left(x_1, x_2, x_3\right)&amp;= (\overline{x_1} \cdot  \overline{x_2} \cdot  x_3) + (x_1 \cdot  \overline{x_2} \cdot   \overline{x_3})+(x_1  \cdot   \overline{x_2} \cdot x_3)\\
-	&amp;= \overline{x_2} \cdot (\overline{x_1} \cdot   x_3) + (x_1 \cdot \overline{x_3})+(x_1 \cdot x_3)\\
-	&amp;= \overline{x_2} \cdot (\overline{x_1} \cdot   x_3) + x_1 \cdot (\overline{x_3}+ x_3)\\
+	&amp;= \overline{x_2} \cdot( (\overline{x_1} \cdot   x_3) + (x_1 \cdot \overline{x_3})+(x_1 \cdot x_3))\\
+	&amp;= \overline{x_2} \cdot( (\overline{x_1} \cdot   x_3) + x_1 \cdot (\overline{x_3}+ x_3))\\
 	&amp;= \overline{x_2} \cdot ((\overline{x_1} \cdot   x_3) + x_1)\\
 \end{split}
 </me>
@@ -340,6 +342,14 @@ number of gates to be used, thus increasing costs. One of the more difficult job
 </exercise>
 <exercise number="7">
 <statement><p>Draw a logic circuit using only AND, OR and NOT gates that realizes an XOR gate.</p>
+</statement>
+<!-- 
+<solution>
+</solution> 
+ -->
+</exercise>
+<exercise number="8">
+<statement><p>Draw a logic circuit using only AND, OR and NOT gates that realizes the Boolean function on three variables that returns 1 if the majority of inputs are 1 and 0 otherwise.</p>
 </statement>
 <!-- 
 <solution>
