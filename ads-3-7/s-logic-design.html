@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-01-01T10:17:12-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ADS A Brief Introduction to Switching Theory and Logic Design</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.31/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.31/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.31/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.31/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.31/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.31/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.31/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.31/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link href="developer.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.31/features.css" rel="stylesheet" type="text/css">
+<script>var logged_in = false;
+var role = 'student';
+var guest_access = true;
+var login_required = false;
+var js_version = 0.13;
+</script>
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div class="hidden-content" style="display:none">\(\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href="http://discretemath.org" target="_blank"><img src="http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="ads.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<p class="byline">Al Doerr, Ken Levasseur</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="s-boolean-expressions.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="chapter_13.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="chapter_14.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="s-boolean-expressions.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="chapter_13.html" title="Up">Up</a><a class="next-button button toolbar-item" href="chapter_14.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link">
+<a href="index-ads.html" data-scroll="index-ads"><span class="title">Front Matter</span></a><ul>
+<li><a href="colophon-1.html" data-scroll="colophon-1">Colophon</a></li>
+<li><a href="dedication-1.html" data-scroll="dedication-1">Dedication</a></li>
+<li><a href="acknowledgement-1.html" data-scroll="acknowledgement-1">Acknowledgements</a></li>
+<li><a href="ads-preface.html" data-scroll="ads-preface">Preface</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_1.html" data-scroll="chapter_1"><span class="codenumber">1</span> <span class="title">Set Theory</span></a><ul>
+<li><a href="s-set-Notation-and-Relations.html" data-scroll="s-set-Notation-and-Relations">Set Notation and Relations</a></li>
+<li><a href="s-basic_Set_Operations.html" data-scroll="s-basic_Set_Operations">Basic Set Operations</a></li>
+<li><a href="s-cartesian_Products_and_Power_Sets.html" data-scroll="s-cartesian_Products_and_Power_Sets">Cartesian Products and Power Sets</a></li>
+<li><a href="s-binary_Representation_of_Positive_Integers.html" data-scroll="s-binary_Representation_of_Positive_Integers">Binary Representation of Positive Integers</a></li>
+<li><a href="s-summation_Notation_and_Generalizations.html" data-scroll="s-summation_Notation_and_Generalizations">Summation Notation and Generalizations</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_2.html" data-scroll="chapter_2"><span class="codenumber">2</span> <span class="title">Combinatorics</span></a><ul>
+<li><a href="s-the-rule-of-products.html" data-scroll="s-the-rule-of-products">Basic Counting Techniques - The Rule of Products</a></li>
+<li><a href="s-permutations.html" data-scroll="s-permutations">Permutations</a></li>
+<li><a href="s-partitions-and-law-of-addition.html" data-scroll="s-partitions-and-law-of-addition">Partitions of Sets and the Law of Addition</a></li>
+<li><a href="s-combinations-and-the-binomial-theorem.html" data-scroll="s-combinations-and-the-binomial-theorem">Combinations and the Binomial Theorem</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter3.html" data-scroll="chapter3"><span class="codenumber">3</span> <span class="title">Logic</span></a><ul>
+<li><a href="s-propositions-logic-operators.html" data-scroll="s-propositions-logic-operators">Propositions and Logical Operators</a></li>
+<li><a href="s-truth-tables.html" data-scroll="s-truth-tables">Truth Tables and Propositions Generated by a Set</a></li>
+<li><a href="s-equivalence-implication.html" data-scroll="s-equivalence-implication">Equivalence and Implication</a></li>
+<li><a href="s-logic-laws.html" data-scroll="s-logic-laws">The Laws of Logic</a></li>
+<li><a href="s-math-systems.html" data-scroll="s-math-systems">Mathematical Systems and Proofs</a></li>
+<li><a href="s-propositions-over-universe.html" data-scroll="s-propositions-over-universe">Propositions over a Universe</a></li>
+<li><a href="s-induction.html" data-scroll="s-induction">Mathematical Induction</a></li>
+<li><a href="s-quantifiers.html" data-scroll="s-quantifiers">Quantifiers</a></li>
+<li><a href="s-proof-review.html" data-scroll="s-proof-review">A Review of Methods of Proof</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_4.html" data-scroll="chapter_4"><span class="codenumber">4</span> <span class="title">More on Sets</span></a><ul>
+<li><a href="s-proof-methods-sets.html" data-scroll="s-proof-methods-sets">Methods of Proof for Sets</a></li>
+<li><a href="s-laws-of-set-theory.html" data-scroll="s-laws-of-set-theory">Laws of Set Theory</a></li>
+<li><a href="s-minsets.html" data-scroll="s-minsets">Minsets</a></li>
+<li><a href="s-duality-principle.html" data-scroll="s-duality-principle">The Duality Principle</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_5.html" data-scroll="chapter_5"><span class="codenumber">5</span> <span class="title">Introduction to Matrix Algebra</span></a><ul>
+<li><a href="s-basic-matrix-definitions.html" data-scroll="s-basic-matrix-definitions">Basic Definitions and Operations</a></li>
+<li><a href="s-special-matrices.html" data-scroll="s-special-matrices">Special Types of Matrices</a></li>
+<li><a href="s-laws-of-matrix-algebra.html" data-scroll="s-laws-of-matrix-algebra">Laws of Matrix Algebra</a></li>
+<li><a href="s-matrix-oddities.html" data-scroll="s-matrix-oddities">Matrix Oddities</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_6.html" data-scroll="chapter_6"><span class="codenumber">6</span> <span class="title">Relations</span></a><ul>
+<li><a href="s-basic-definitions.html" data-scroll="s-basic-definitions">Basic Definitions</a></li>
+<li><a href="s-graphs-of-relations-on-a-set.html" data-scroll="s-graphs-of-relations-on-a-set">Graphs of Relations on a Set</a></li>
+<li><a href="s-properties-of-relations.html" data-scroll="s-properties-of-relations">Properties of Relations</a></li>
+<li><a href="s-matrices-of-relations.html" data-scroll="s-matrices-of-relations">Matrices of Relations</a></li>
+<li><a href="s-closure-operations-on-relations.html" data-scroll="s-closure-operations-on-relations">Closure Operations on Relations</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_7.html" data-scroll="chapter_7"><span class="codenumber">7</span> <span class="title">Functions</span></a><ul>
+<li><a href="s-function-def-notation.html" data-scroll="s-function-def-notation">Definition and Notation</a></li>
+<li><a href="s-properties-of-functions.html" data-scroll="s-properties-of-functions">Properties of Functions</a></li>
+<li><a href="s-function-composition.html" data-scroll="s-function-composition">Function Composition</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_8.html" data-scroll="chapter_8"><span class="codenumber">8</span> <span class="title">Recursion and Recurrence Relations</span></a><ul>
+<li><a href="s-faces-of-recursion.html" data-scroll="s-faces-of-recursion">The Many Faces of Recursion</a></li>
+<li><a href="s-Sequences.html" data-scroll="s-Sequences">Sequences</a></li>
+<li><a href="s-recurrence-relations.html" data-scroll="s-recurrence-relations">Recurrence Relations</a></li>
+<li><a href="s-some-common-rrs.html" data-scroll="s-some-common-rrs">Some Common Recurrence Relations</a></li>
+<li><a href="s-generating-functions.html" data-scroll="s-generating-functions">Generating Functions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_9.html" data-scroll="chapter_9"><span class="codenumber">9</span> <span class="title">Graph Theory</span></a><ul>
+<li><a href="s-graphs-introduction.html" data-scroll="s-graphs-introduction">Graphs - General Introduction</a></li>
+<li><a href="s-data-structures-for-graphs.html" data-scroll="s-data-structures-for-graphs">Data Structures for Graphs</a></li>
+<li><a href="s-Connectivity.html" data-scroll="s-Connectivity">Connectivity</a></li>
+<li><a href="s-traversals.html" data-scroll="s-traversals">Traversals: Eulerian and Hamiltonian Graphs</a></li>
+<li><a href="s-graph-optimization.html" data-scroll="s-graph-optimization">Graph Optimization</a></li>
+<li><a href="s-planarity-and-colorings.html" data-scroll="s-planarity-and-colorings">Planarity and Colorings</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_10.html" data-scroll="chapter_10"><span class="codenumber">10</span> <span class="title">Trees</span></a><ul>
+<li><a href="s-what-is-a-tree.html" data-scroll="s-what-is-a-tree">What Is a Tree?</a></li>
+<li><a href="s-spanning-trees.html" data-scroll="s-spanning-trees">Spanning Trees</a></li>
+<li><a href="s-rooted-trees.html" data-scroll="s-rooted-trees">Rooted Trees</a></li>
+<li><a href="s-binary-trees.html" data-scroll="s-binary-trees">Binary Trees</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_11.html" data-scroll="chapter_11"><span class="codenumber">11</span> <span class="title">Algebraic Structures</span></a><ul>
+<li><a href="s-Operations.html" data-scroll="s-Operations">Operations</a></li>
+<li><a href="s-algebraic-systems.html" data-scroll="s-algebraic-systems">Algebraic Systems</a></li>
+<li><a href="s-general-properties-of-groups.html" data-scroll="s-general-properties-of-groups">Some General Properties of Groups</a></li>
+<li><a href="s-gcds-and-zsubn.html" data-scroll="s-gcds-and-zsubn">Greatest Common Divisors  and the Integers Modulo \(n\)</a></li>
+<li><a href="s-Subsystems.html" data-scroll="s-Subsystems">Subsystems</a></li>
+<li><a href="s-direct-products.html" data-scroll="s-direct-products">Direct Products</a></li>
+<li><a href="s-isomorphisms.html" data-scroll="s-isomorphisms">Isomorphisms</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_12.html" data-scroll="chapter_12"><span class="codenumber">12</span> <span class="title">More Matrix Algebra</span></a><ul>
+<li><a href="s-systems-linear-equations.html" data-scroll="s-systems-linear-equations">Systems of Linear Equations</a></li>
+<li><a href="s-matrix-inversion.html" data-scroll="s-matrix-inversion">Matrix Inversion</a></li>
+<li><a href="s-intro-to-vector-spaces.html" data-scroll="s-intro-to-vector-spaces">An Introduction to Vector Spaces</a></li>
+<li><a href="s-the-diagonalization-process.html" data-scroll="s-the-diagonalization-process">The Diagonalization Process</a></li>
+<li><a href="s-some-applications.html" data-scroll="s-some-applications">Some Applications</a></li>
+<li><a href="s-systems-linear-equations-mod-2.html" data-scroll="s-systems-linear-equations-mod-2">Linear Equations over the Integers Mod 2</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_13.html" data-scroll="chapter_13"><span class="codenumber">13</span> <span class="title">Boolean Algebra</span></a><ul>
+<li><a href="s-posets-revisited.html" data-scroll="s-posets-revisited">Posets Revisited</a></li>
+<li><a href="s-lattices.html" data-scroll="s-lattices">Lattices</a></li>
+<li><a href="s-boolean-algebras.html" data-scroll="s-boolean-algebras">Boolean Algebras</a></li>
+<li><a href="s-atoms-of-a-boolean-algebra.html" data-scroll="s-atoms-of-a-boolean-algebra">Atoms of a Boolean Algebra</a></li>
+<li><a href="s-finite-boolean-algebras-ntuples.html" data-scroll="s-finite-boolean-algebras-ntuples">Finite Boolean Algebras as \(n\)-tuples of 0's and 1's</a></li>
+<li><a href="s-boolean-expressions.html" data-scroll="s-boolean-expressions">Boolean Expressions</a></li>
+<li><a href="s-logic-design.html" data-scroll="s-logic-design" class="active">A Brief Introduction to Switching Theory and Logic Design</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_14.html" data-scroll="chapter_14"><span class="codenumber">14</span> <span class="title">Monoids and Automata</span></a><ul>
+<li><a href="s-Monoids.html" data-scroll="s-Monoids">Monoids</a></li>
+<li><a href="s-free-monoids-and-languages.html" data-scroll="s-free-monoids-and-languages">Free Monoids and Languages</a></li>
+<li><a href="s-automata-finite-state-machines.html" data-scroll="s-automata-finite-state-machines">Automata, Finite-State Machines</a></li>
+<li><a href="s-monoid-of-fsm.html" data-scroll="s-monoid-of-fsm">The Monoid of a Finite-State Machine</a></li>
+<li><a href="s-machine-of-monoid.html" data-scroll="s-machine-of-monoid">The Machine of a Monoid</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_15.html" data-scroll="chapter_15"><span class="codenumber">15</span> <span class="title">Group Theory and Applications</span></a><ul>
+<li><a href="s-cyclic-groups.html" data-scroll="s-cyclic-groups">Cyclic Groups</a></li>
+<li><a href="s-cosets-and-factor-groups.html" data-scroll="s-cosets-and-factor-groups">Cosets and Factor Groups</a></li>
+<li><a href="s-permutation-groups.html" data-scroll="s-permutation-groups">Permutation Groups</a></li>
+<li><a href="s-normal-subgroups-homomorphisms.html" data-scroll="s-normal-subgroups-homomorphisms">Normal Subgroups and Group Homomorphisms</a></li>
+<li><a href="s-coding-theory-groups.html" data-scroll="s-coding-theory-groups">Coding Theory, Group Codes</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_16.html" data-scroll="chapter_16"><span class="codenumber">16</span> <span class="title">An Introduction to Rings and Fields</span></a><ul>
+<li><a href="s-rings-basic.html" data-scroll="s-rings-basic">Rings, Basic Definitions and Concepts</a></li>
+<li><a href="s-fields.html" data-scroll="s-fields">Fields</a></li>
+<li><a href="s-polynomial-rings.html" data-scroll="s-polynomial-rings">Polynomial Rings</a></li>
+<li><a href="s-field-extensions.html" data-scroll="s-field-extensions">Field Extensions</a></li>
+<li><a href="s-power-series.html" data-scroll="s-power-series">Power Series</a></li>
+</ul>
+</li>
+<li class="link"><a href="backmatter.html" data-scroll="backmatter"><span class="title">Back Matter</span></a></li>
+<li class="link">
+<a href="app-algorithms.html" data-scroll="app-algorithms"><span class="codenumber">A</span> <span class="title">Algorithms</span></a><ul>
+<li><a href="app-alg1.html" data-scroll="app-alg1">An Introduction to Algorithms</a></li>
+<li><a href="app-alg2.html" data-scroll="app-alg2">The Invariant Relation Theorem</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="app-pythonsage.html" data-scroll="app-pythonsage"><span class="codenumber">B</span> <span class="title">Python and SageMath</span></a><ul>
+<li><a href="app-python-iterators.html" data-scroll="app-python-iterators">Python Iterators</a></li>
+<li><a href="app-pythonsage-dictionaries.html" data-scroll="app-pythonsage-dictionaries">Dictionaries</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="app-determinants.html" data-scroll="app-determinants"><span class="codenumber">C</span> <span class="title">Determinants</span></a><ul>
+<li><a href="section-89.html" data-scroll="section-89">Definition</a></li>
+<li><a href="section-90.html" data-scroll="section-90">Computation</a></li>
+</ul>
+</li>
+<li class="link"><a href="solutions-backmatter.html" data-scroll="solutions-backmatter"><span class="codenumber">D</span> <span class="title">Hints and Solutions to Selected Exercises</span></a></li>
+<li class="link"><a href="appendix-4.html" data-scroll="appendix-4"><span class="codenumber">E</span> <span class="title">Notation</span></a></li>
+<li class="link"><a href="references-2.html" data-scroll="references-2"><span class="title">References</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1"><span class="title">Index</span></a></li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="s-logic-design"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">13.7</span> <span class="title">A Brief Introduction to Switching Theory and Logic Design</span>
+</h2>
+<a href="s-logic-design.html" class="permalink">¶</a><aside class="aside aside-like" id="aside-2"><p id="p-5066"><em class="emphasis">Disclaimer</em>:  I'm still looking for a good application for drawing logic gates.  The figures here are quite rough.</p></aside><p id="p-5067">Early computers relied on many switches to perform the logical operations needed for computation.  This was true as late as the 1970's when early personal computers such as the Altair ( <a class="xref" data-knowl="./knowl/fig-altair.html" title="Figure 13.7.1">Figure 13.7.1</a>) started to appear. Pioneering computer scientists such as Claude Shannon realized that the operation of these computers could be simplified by making use of an isomorphism between computer circuits and boolean algebra.   The term <dfn class="terminology">Switching Theory</dfn> was used at the time.  Logical gates realized through increasingly smaller and smaller integrated circuits still perform the same functions as in early computers, but using purely electronic means.  In this section, we give examples of some switching circuits.  Soon afterward, we will transition to the more modern form of circuits that are studied in <dfn class="terminology">Logic Design</dfn>, where gates replace switches.  Out main goal is to give you an overview of how boolean functions corresponds to any such circuit.  We will introduce the common system notation used in logic design and show how it corresponds with the mathematical notation of Boolean algebras.  Any computer scientist should be familiar with both systems.</p>
+<figure class="figure figure-like" id="fig-altair"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="images/fig-altair.jpg" style="width: 100%; height: auto;" alt="Image of an Altair computer from https://en.wikipedia.org/wiki/Altair_8800#/media/File:Altair_8800_at_the_Computer_History_Museum,_cropped.jpg at the Computer History Museum"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.7.1<span class="period">.</span></span><span class="space"> </span>The Altair Computer, an early PC, by Todd Dailey, Creative Commons</figcaption></figure><p id="p-5068">The simplest switching device is the on-off switch. If the switch is closed/ON, current will pass through it; if it is open/OFF, current will not pass through it. If we designate ON by 1, and OFF by 0, we can describe electrical circuits containing switches by Boolean expressions with the variables representing the variable states of switches or the variable bits passing through gates.</p>
+<p id="p-5069">The electronics involved in these switches take into account whether we are negating a switch or not.  For electromagnetic switches, a magnet is used to control whether the switch is open or closed. The magnets themselves may be controlled by simple ON/OFF switches.   There are two types of electromagnetic switches.  One is normally open (OFF) when the magnet is not activated, but activating the magnet  will close the circuit and the switch is then ON.  A separate type of switch corresponds with a negated switch. For that type, the switch is closed when the magnet is not activated, and when the magnet is activated, the switch opens.  We won't be overly concerned with the details of these switches or the electronics corresponding to logical gates.  We will simply assume they are available to plug into a circuit.    For simplicity, we use the inversion symbol on a varible that labels a switch to indicate that it is a switch of the second type, as in <a class="xref" data-knowl="./knowl/fig-switch-normal-on.html" title="Figure 13.7.3">Figure 13.7.3</a>.</p>
+<aside class="aside aside-like" id="aside-3"><p id="p-5070">Standby power generators that many people have in their homes use a transfer switch to connect the generator to the home power system.  This switch is open (OFF) if there is power coming from the normal municipal power supply. It stays OFF because a magnet is keeping it open.  When power is lost, the magnet is no longer activated, and the switch closes and is ON. So the transfer switch is a normally ON switch.</p></aside><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel" style="width:50%;justify-content:flex-start;"><figure class="figure figure-like" id="fig-switch-normal-off"><img src="images/fig-switch-normal-off.png" style="width: 100%; height: auto;" alt="Representation of a normally OFF switch"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.7.2<span class="period">.</span></span><span class="space"> </span>Representation of a normally OFF switch controlled by variable \(x_1\)</figcaption></figure></div>
+<div class="sbspanel" style="width:50%;justify-content:flex-start;"><figure class="figure figure-like" id="fig-switch-normal-on"><img src="images/fig-switch-normal-on.png" style="width: 100%; height: auto;" alt="Representation of a normally ON switch"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.7.3<span class="period">.</span></span><span class="space"> </span>Representation of a normally ON switch controlled by variable \(x_1\)</figcaption></figure></div>
+</div></div>
+<p id="p-5071">The standard notation used for Boolean algebra operations in switching theory and logic design is \(+\) for join, instead of \(\lor \text{;}\) and \(\cdot \) for meet, instead of \(\land \text{.}\) Complementation is the same in both notational systems, denoted with an overline.</p>
+<p id="p-5072">The expression \(x_1 \cdot  x_2\) represents the situation in which a series of two switches appears in sequence as in <a class="xref" data-knowl="./knowl/fig-and-switch.html" title="Figure 13.7.4">Figure 13.7.4</a>. In order for current to flow through the circuit, both switches must be ON; that is, they must both have the value 1.  Similarly, a pair of parallel switches, as in <a class="xref" data-knowl="./knowl/fig-or-switch.html" title="Figure 13.7.5">Figure 13.7.5</a>, is described algebraically by \(x_1 + x_2\text{.}\) Here, current flows through this part of the circuit as long as at least on of the switches is ON.</p>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel" style="width:50%;justify-content:flex-start;"><figure class="figure figure-like" id="fig-and-switch"><img src="images/fig-and-switch.png" style="width: 100%; height: auto;" alt="Two switches in AND configuration"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.7.4<span class="period">.</span></span><span class="space"> </span>Two switches in AND configuration realizing \(x_1 \cdot x_2\)</figcaption></figure></div>
+<div class="sbspanel" style="width:50%;justify-content:flex-start;"><figure class="figure figure-like" id="fig-or-switch"><img src="images/fig-or-switch.png" style="width: 100%; height: auto;" alt="Two switches in OR configuration"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.7.5<span class="period">.</span></span><span class="space"> </span>Two switches in OR configuration realizing \(x_1 + x_2\)</figcaption></figure></div>
+</div></div>
+<p id="p-5073">All laws and concepts developed previously for Boolean algebras hold. The only change is purely notational. We make the change in this section solely to introduce the reader to another frequently used system of notation.</p>
+<p id="p-5074">Many of the laws of Boolean algebra can be visualized thought switching theory. For example, the distributive law of meet over join is expressed as</p>
+<div class="displaymath">
+\begin{equation*}
+x_1 \cdot \left(x_2+ x_3\right) = x_1 \cdot  x_2+x_1 \cdot  x_3.
+\end{equation*}
+</div>
+<p>The switching circuit analogue of the above statement is that the circuits in <a class="xref" data-knowl="./knowl/fig-switches-distributive.html" title="Figure 13.7.6">Figure 13.7.6</a> are equivalent.  In circuit (b), the presence of two \(x_1\)'s represents two electromagnetic switches controlled by the same magnet.</p>
+<figure class="figure figure-like" id="fig-switches-distributive"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="images/fig-switches-distributive.png" style="width: 100%; height: auto;" alt="Two equivalent switching circuits"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.7.6<span class="period">.</span></span><span class="space"> </span>Two equivalent switching circuits</figcaption></figure><p id="p-5075">The circuits in a computer are now composed of large quantities of gates, which serve the same purpose as switches, but can be miniaturized to a great degree.   For example, the OR gate, usually drawn as in <a class="xref" data-knowl="./knowl/fig-or-gate.html" title="Figure 13.7.7">Figure 13.7.7</a> implements the logical OR function.  This happens electronically, but is equivalent to <a class="xref" data-knowl="./knowl/fig-or-switch.html" title="Figure 13.7.5">Figure 13.7.5</a>.  The AND gate, which is equivalent to two sequential switches is  shown in <a class="xref" data-knowl="./knowl/fig-or-gate.html" title="Figure 13.7.7">Figure 13.7.7</a>.</p>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel" style="width:50%;justify-content:flex-start;"><figure class="figure figure-like" id="fig-or-gate"><img src="images/fig-or-gate.png" style="width: 100%; height: auto;" alt="An OR gate"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.7.7<span class="period">.</span></span><span class="space"> </span>An OR gate</figcaption></figure></div>
+<div class="sbspanel" style="width:50%;justify-content:flex-start;"><figure class="figure figure-like" id="fig-and-gate"><img src="images/fig-and-gate.png" style="width: 100%; height: auto;" alt="An AND gate"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.7.8<span class="period">.</span></span><span class="space"> </span>An AND gate</figcaption></figure></div>
+</div></div>
+<p id="p-5076">The complementation process is represented in a gate diagram by an inverter, as pictured in <a class="xref" data-knowl="./knowl/fig-inverter.html" title="Figure 13.7.9">Figure 13.7.9</a>.</p>
+<figure class="figure figure-like" id="fig-inverter"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="images/fig-inverter.png" style="width: 100%; height: auto;" alt="Inverter"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.7.9<span class="period">.</span></span><span class="space"> </span>Inverter, or NOT gate</figcaption></figure><p id="p-5077">When drawing more complex circuits, multiple AND's or OR's are sometimes depicted using a more general gate drawing. For example if we want to depict an OR gate with three inputs that is ON as long as at least one input is ON, we would draw it as in  <a class="xref" data-knowl="./knowl/fig-triple-or.html" title="Figure 13.7.10">Figure 13.7.10</a>, although this would really be two binary gates, as in  <a class="xref" data-knowl="./knowl/fig-triple-or-real.html" title="Figure 13.7.11">Figure 13.7.11</a>. Both diagrams are realizing the boolean expression  \(x_1 + x_2 + x_3\text{.}\) Strictly speaking, the gates in <a class="xref" data-knowl="./knowl/fig-triple-or-real.html" title="Figure 13.7.11">Figure 13.7.11</a> represent \((x_1 + x_2 )+ x_3\text{,}\) but the associative law for join tells us that the grouping doesn't matter.</p>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel" style="width:50%;justify-content:flex-start;"><figure class="figure figure-like" id="fig-triple-or"><img src="images/fig-triple-or.png" style="width: 100%; height: auto;" alt="Simple version of a ternary OR gate"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.7.10<span class="period">.</span></span><span class="space"> </span>Simple version of a ternary OR gate</figcaption></figure></div>
+<div class="sbspanel" style="width:50%;justify-content:flex-start;"><figure class="figure figure-like" id="fig-triple-or-real"><img src="images/fig-triple-or-real.png" style="width: 100%; height: auto;" alt="A ternary OR gate created with binary OR gates"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.7.11<span class="period">.</span></span><span class="space"> </span>A ternary OR gate created with binary OR gates</figcaption></figure></div>
+</div></div>
+<p id="p-5078">In <a class="xref" data-knowl="./knowl/fig-gates.html" title="Figure 13.7.12">Figure 13.7.12</a>, we show a few other commonly used gates, XOR, NAND, and NOR, which correspond to the boolean exressions \(x_1 \oplus x_2\text{,}\) \(\overline{x_1 \cdot x_2}\text{,}\) and \(\overline{x_1 + x_2}\text{,}\) respectively.</p>
+<figure class="figure figure-like" id="fig-gates"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="images/fig-gates.png" style="width: 100%; height: auto;" alt=""></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.7.12<span class="period">.</span></span><span class="space"> </span></figcaption></figure><p id="p-5079">Let's start with a logic circuit and see how the laws of boolean algebra can help us simplify it.</p>
+<article class="example example-like" id="example-logic-design-1"><a data-knowl="" class="id-ref original" data-refid="hk-example-logic-design-1"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">13.7.13</span><span class="period">.</span><span class="space"> </span><span class="title">Simplification of a circuit.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-logic-design-1"><article class="example example-like"><p id="p-5080">Consider the  circuit in <a class="xref" data-knowl="./knowl/fig-ex-1-start-circuit.html" title="Figure 13.7.14">Figure 13.7.14</a>. As usual, we assume that three inputs enter on the left and the output exits on the right.</p>
+<figure class="figure figure-like" id="fig-ex-1-start-circuit"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="images/fig-ex-1-start-circuit.png" style="width: 100%; height: auto;" alt="Initial gate diagram"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.7.14<span class="period">.</span></span><span class="space"> </span>Initial gate diagram</figcaption></figure><p id="p-5081">If we trace the inputs through the gates we see that this circuit realizes the boolean function</p>
+<div class="displaymath">
+\begin{equation*}
+f\left(x_1, x_2, x_3 \right)=x_1 \cdot  \overline{x_2}\cdot \left(\left( x_1 + x_2\right) + \left(x_1 + x_3\right)\right).
+\end{equation*}
+</div>
+<p id="p-5082">We simplify the boolean expression that defines \(f\text{,}\) simplifying the circuit in so doing.  You should be able to identify the laws of Boolean algebra that are used in each of the steps.  See <a class="xref" data-knowl="./knowl/exercise-137-1.html" title="Exercise 13.7.1.1">Exercise 13.7.1.1</a>.</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{split}
+x_1 \cdot  \overline{x_2}\cdot \left(\left( x_1 + x_2\right) + \left(x_1 + x_3\right)\right) &amp; =
+x_1 \cdot \overline{x_2}\cdot \left(x_1+ x_2 + x_3\right)\\
+&amp; = x_1 \cdot  \overline{x_2} \cdot  x_1 + x_1 \cdot \overline{x_2} \cdot x_2  + x_1 \cdot  \overline{x_2} \cdot x_3 \\
+&amp;= x_1\cdot  \overline{x_2} + 0 \cdot  x_1 + x_3 \cdot  x_1 \cdot  \overline{x_2}\\
+&amp;=x_1 \cdot  \overline{x_2} + x_3 \cdot  x_1 \cdot  \overline{x_2} \\
+&amp;= x_1 \cdot  \overline{x_2} \cdot  \left(1 + x_3\right)\\
+&amp;= x_1 \cdot  \overline{x_2}
+\end{split}
+\end{equation*}
+</div>
+<p>Therefore, \(f\left(x_1, x_2, x_3\right)=x_1 \cdot  \overline{x_2}\text{,}\) which can be realized with the much simpler circuit in <a class="xref" data-knowl="./knowl/fig-ex-1-end-circuit.html" title="Figure 13.7.15">Figure 13.7.15</a>, without using the input \(x_3\text{.}\)</p>
+<figure class="figure figure-like" id="fig-ex-1-end-circuit"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="images/fig-ex-1-end-circuit.png" style="width: 100%; height: auto;" alt="Simplified gate diagram"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.7.15<span class="period">.</span></span><span class="space"> </span>Simplified gate diagram</figcaption></figure></article></div>
+<p id="p-5083">Next, we start with a table of desired outputs based on three bits of input and design an efficient circuit to realize this output.</p>
+<article class="example example-like" id="example-logic-design-2"><a data-knowl="" class="id-ref original" data-refid="hk-example-logic-design-2"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">13.7.16</span><span class="period">.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-logic-design-2"><article class="example example-like"><p id="p-5084">Consider the following table of desired outputs for the three input bits \(x_1, x_2, x_3\text{.}\)</p>
+<figure class="table figure-like" id="table-logic-design-output"><table>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">\(x_1\)</td>
+<td class="c m b0 r0 l0 t0 lines">\(x_2\)</td>
+<td class="c m b0 r0 l0 t0 lines">\(x_3\)</td>
+<td class="c m b0 r0 l0 t0 lines">\(f(x_1,x_2,x_3)\)</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">0</td>
+<td class="c m b0 r0 l0 t0 lines">0</td>
+<td class="c m b0 r0 l0 t0 lines">0</td>
+<td class="c m b0 r0 l0 t0 lines">0</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">0</td>
+<td class="c m b0 r0 l0 t0 lines">0</td>
+<td class="c m b0 r0 l0 t0 lines">1</td>
+<td class="c m b0 r0 l0 t0 lines">1</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">0</td>
+<td class="c m b0 r0 l0 t0 lines">1</td>
+<td class="c m b0 r0 l0 t0 lines">0</td>
+<td class="c m b0 r0 l0 t0 lines">0</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">0</td>
+<td class="c m b0 r0 l0 t0 lines">1</td>
+<td class="c m b0 r0 l0 t0 lines">1</td>
+<td class="c m b0 r0 l0 t0 lines">0</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">1</td>
+<td class="c m b0 r0 l0 t0 lines">0</td>
+<td class="c m b0 r0 l0 t0 lines">0</td>
+<td class="c m b0 r0 l0 t0 lines">1</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">1</td>
+<td class="c m b0 r0 l0 t0 lines">0</td>
+<td class="c m b0 r0 l0 t0 lines">1</td>
+<td class="c m b0 r0 l0 t0 lines">1</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">1</td>
+<td class="c m b0 r0 l0 t0 lines">1</td>
+<td class="c m b0 r0 l0 t0 lines">0</td>
+<td class="c m b0 r0 l0 t0 lines">0</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">1</td>
+<td class="c m b0 r0 l0 t0 lines">1</td>
+<td class="c m b0 r0 l0 t0 lines">1</td>
+<td class="c m b0 r0 l0 t0 lines">0</td>
+</tr>
+</table>
+<figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">13.7.17<span class="period">.</span></span><span class="space"> </span>Desired output table</figcaption></figure><p id="p-5085">The first step is to write the minterm normal form of \(f\text{.}\)  Since we are working with the two value Boolean algebra, \(B_2\text{,}\) the constants in each minterm are either 0 or 1, and we simply list the minterms that have a 1. These correspond with the rows of the table above that have an output of 1.  We will then attempt to simplify the expression as much as possible.</p>
+<div class="displaymath" id="p-5086">
+\begin{equation*}
+\begin{split}
+f\left(x_1, x_2, x_3\right)&amp;= (\overline{x_1} \cdot  \overline{x_2} \cdot  x_3) + (x_1 \cdot  \overline{x_2} \cdot   \overline{x_3})+(x_1  \cdot   \overline{x_2} \cdot x_3)\\
+&amp;= \overline{x_2} \cdot (\overline{x_1} \cdot   x_3) + (x_1 \cdot \overline{x_3})+(x_1 \cdot x_3)\\
+&amp;= \overline{x_2} \cdot (\overline{x_1} \cdot   x_3) + x_1 \cdot (\overline{x_3}+ x_3)\\
+&amp;= \overline{x_2} \cdot ((\overline{x_1} \cdot   x_3) + x_1)\\
+\end{split}
+\end{equation*}
+</div>
+<p id="p-5087">Therefore we can realize our table with the boolean function \(f\left(x_1, x_2, x_3\right)=\overline{x_2} \cdot ((\overline{x_1} \cdot   x_3) + x_1)\text{.}\) A circuit  diagram for this function is <a class="xref" data-knowl="./knowl/fig-logic-design-example-2.html" title="Figure 13.7.18">Figure 13.7.18</a>.  But is this the simplest circuit that realizes the table?  See <a class="xref" data-knowl="./knowl/exerc-simpler-circuit.html" title="Exercise 13.7.1.3">Exercise 13.7.1.3</a>.</p>
+<figure class="figure figure-like" id="fig-logic-design-example-2"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="images/fig-logic-design-example-2.png" style="width: 100%; height: auto;" alt="Simplified realization of the desired table of outputs"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.7.18<span class="period">.</span></span><span class="space"> </span>A realization of the table of desired outputs.</figcaption></figure></article></div>
+<section class="exercises" id="exercises-69"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber">13.7.1</span> <span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="exercise-137-1"><h6 class="heading"><span class="codenumber">1<span class="period">.</span></span></h6>
+<p id="p-5088">List the laws of boolean algebra that justify the steps in the simplification of the boolean function \(f\left(x_1, x_2, x_3\right)\) in <a class="xref" data-knowl="./knowl/example-logic-design-1.html" title="Example 13.7.13: Simplification of a circuit">Example 13.7.13</a>. Some steps use more than one law.</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref original" data-refid="hk-answer-269" id="answer-269"><span class="type">Answer</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-269"><div class="answer solution-like"><ol id="p-5089" class="decimal">
+<li id="li-2310"><p id="p-5090">Associative, commutative, and idempotent laws.</p></li>
+<li id="li-2311"><p id="p-5091">Distributive law.</p></li>
+<li id="li-2312"><p id="p-5092">Idempotent and complement laws.</p></li>
+<li id="li-2313"><p id="p-5093">Null and identity laws</p></li>
+<li id="li-2314"><p id="p-5094">Distributive law.</p></li>
+<li id="li-2315"><p id="p-5095">Null and identity laws.</p></li>
+</ol></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-570"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
+<p id="p-5096">Write the following Boolean expression in the notation of logic design.</p>
+<div class="displaymath">
+\begin{equation*}
+\left(x_1\land \overline{x_2}\right)\lor \left(x_1\land x_2\right)\lor \left(\overline{x_1}\land x_2\right).
+\end{equation*}
+</div>
+<div class="solutions">
+<a data-knowl="" class="id-ref original" data-refid="hk-answer-270" id="answer-270"><span class="type">Answer</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-270"><div class="answer solution-like"><div class="displaymath" id="p-5097">
+\begin{equation*}
+(x_1\cdot  \overline{x_2})+(x_1\cdot  x_2)+(\overline{x_1} \cdot  x_2).
+\end{equation*}
+</div></div></div>
+</div></article><article class="exercise exercise-like" id="exerc-simpler-circuit"><h6 class="heading"><span class="codenumber">3<span class="period">.</span></span></h6>
+<p id="p-5098">Find a further simplification of the boolean function in <a class="xref" data-knowl="./knowl/example-logic-design-2.html" title="Example 13.7.16">Example 13.7.16</a>, and draw the corresponding gate diagram for the circuit that it realizes.</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref original" data-refid="hk-answer-271" id="answer-271"><span class="type">Answer</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-271"><div class="answer solution-like">
+<p id="p-5099">A simpler boolean expression for the function is \(\overline{x_2} \cdot (x_1 + x_3)\text{.}\)</p>
+<figure class="figure figure-like" id="fig-logic-design-exerc-3"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/fig-logic-design-exerc-3.png" style="width: 100%; height: auto;" alt="Figure for exercise 3"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.7.19<span class="period">.</span></span><span class="space"> </span>An even simpler circuit</figcaption></figure>
+</div></div>
+</div></article><article class="exercise exercise-like" id="exercise-572"><h6 class="heading"><span class="codenumber">4<span class="period">.</span></span></h6>
+<p id="p-5100">Consider the switching circuit in  <a class="xref" data-knowl="./knowl/fig-logic-design-exerc-4.html" title="Figure 13.7.20">Figure 13.7.20</a>.</p>
+<figure class="figure figure-like" id="fig-logic-design-exerc-4"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/fig-logic-design-exerc-4.png" style="width: 100%; height: auto;" alt="Figure for exercise 3"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.7.20<span class="period">.</span></span><span class="space"> </span>Can this circuit be simplifed?</figcaption></figure><ol id="p-5101" class="lower-alpha">
+<li id="li-2316"><p id="p-5102">Draw the corresponding gate diagram for this circuit.</p></li>
+<li id="li-2317"><p id="p-5103">Construct a table of outputs for each of the eight inputs to this circuit.</p></li>
+<li id="li-2318"><p id="p-5104">Determine the minterm normal of the Boolean function based on the table.</p></li>
+<li id="li-2319"><p id="p-5105">Simplify the circuit as much as possible.</p></li>
+</ol></article><article class="exercise exercise-like" id="exercise-573"><h6 class="heading"><span class="codenumber">5<span class="period">.</span></span></h6>
+<p id="p-5106">Consider the circuit in <a class="xref" data-knowl="./knowl/fig-logic-design-exerc-5.html" title="Figure 13.7.21">Figure 13.7.21</a>.</p>
+<figure class="figure figure-like" id="fig-logic-design-exerc-5"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/fig-logic-design-exerc-5.png" style="width: 100%; height: auto;" alt="Figure for exercise 3"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.7.21<span class="period">.</span></span><span class="space"> </span>Can this circuit be simplifed?</figcaption></figure><ol id="p-5107" class="lower-alpha">
+<li id="li-2320"><p id="p-5108">Trace the inputs though this circuit and determine the Boolean function that it realizes.</p></li>
+<li id="li-2321"><p id="p-5109">Construct a table of outputs for each of the eight inputs to this circuit.</p></li>
+<li id="li-2322"><p id="p-5110">Find the minterm normal form of \(f\text{.}\)</p></li>
+<li id="li-2323"><p id="p-5111">Draw the circuit based on the minterm normal form.</p></li>
+<li id="li-2324"><p id="p-5112">Simplify the circuit algebraically and draw the resulting circuit.</p></li>
+</ol></article><article class="exercise exercise-like" id="exercise-574"><h6 class="heading"><span class="codenumber">6<span class="period">.</span></span></h6>
+<p id="p-5113">Consider the Boolean function \(f\left(x_1, x_2, x_3, x_4\right)=x_1 + \left(x_2 \cdot  \left(\overline{x_1} + x_4\right) + x_3 \cdot  \left(\overline{x_2} + \overline{x_4}\right)\right).\)</p>
+<ol id="p-5114" class="lower-alpha">
+<li id="li-2325"><p id="p-5115">Simplify \(f\) algebraically.</p></li>
+<li id="li-2326"><p id="p-5116">Draw the gate diagram based on the simplified version of \(f\text{.}\)</p></li>
+</ol></article><article class="exercise exercise-like" id="exercise-575"><h6 class="heading"><span class="codenumber">7<span class="period">.</span></span></h6>
+<p id="p-5117">Draw a logic circuit using only AND, OR and NOT gates that realizes an XOR gate.</p></article></section></section></div></main>
+</div>
+<!--Start: StatCounter code--><script>
+var sc_project=11204831;
+var sc_invisible=1;
+var sc_security="957c565b";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "https://www.");
+document.write("<sc"+"ript src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+</script><noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/11204831/0/957c565b/1/" alt="web analytics"></a></div></noscript>
+<!--End: StatCounter code-->
+<div class="login-link"><span id="loginlogout" class="login">login</span></div>
+<script src="https://pretextbook.org/js/0.13/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-01-01T10:16:54-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ADS What Is a Tree?</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.31/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.31/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.31/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.31/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.31/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.31/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.31/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.31/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link href="developer.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.31/features.css" rel="stylesheet" type="text/css">
+<script>var logged_in = false;
+var role = 'student';
+var guest_access = true;
+var login_required = false;
+var js_version = 0.13;
+</script>
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div class="hidden-content" style="display:none">\(\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href="http://discretemath.org" target="_blank"><img src="http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="ads.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<p class="byline">Al Doerr, Ken Levasseur</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="chapter_10.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="chapter_10.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="s-spanning-trees.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="chapter_10.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="chapter_10.html" title="Up">Up</a><a class="next-button button toolbar-item" href="s-spanning-trees.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link">
+<a href="index-ads.html" data-scroll="index-ads"><span class="title">Front Matter</span></a><ul>
+<li><a href="colophon-1.html" data-scroll="colophon-1">Colophon</a></li>
+<li><a href="dedication-1.html" data-scroll="dedication-1">Dedication</a></li>
+<li><a href="acknowledgement-1.html" data-scroll="acknowledgement-1">Acknowledgements</a></li>
+<li><a href="ads-preface.html" data-scroll="ads-preface">Preface</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_1.html" data-scroll="chapter_1"><span class="codenumber">1</span> <span class="title">Set Theory</span></a><ul>
+<li><a href="s-set-Notation-and-Relations.html" data-scroll="s-set-Notation-and-Relations">Set Notation and Relations</a></li>
+<li><a href="s-basic_Set_Operations.html" data-scroll="s-basic_Set_Operations">Basic Set Operations</a></li>
+<li><a href="s-cartesian_Products_and_Power_Sets.html" data-scroll="s-cartesian_Products_and_Power_Sets">Cartesian Products and Power Sets</a></li>
+<li><a href="s-binary_Representation_of_Positive_Integers.html" data-scroll="s-binary_Representation_of_Positive_Integers">Binary Representation of Positive Integers</a></li>
+<li><a href="s-summation_Notation_and_Generalizations.html" data-scroll="s-summation_Notation_and_Generalizations">Summation Notation and Generalizations</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_2.html" data-scroll="chapter_2"><span class="codenumber">2</span> <span class="title">Combinatorics</span></a><ul>
+<li><a href="s-the-rule-of-products.html" data-scroll="s-the-rule-of-products">Basic Counting Techniques - The Rule of Products</a></li>
+<li><a href="s-permutations.html" data-scroll="s-permutations">Permutations</a></li>
+<li><a href="s-partitions-and-law-of-addition.html" data-scroll="s-partitions-and-law-of-addition">Partitions of Sets and the Law of Addition</a></li>
+<li><a href="s-combinations-and-the-binomial-theorem.html" data-scroll="s-combinations-and-the-binomial-theorem">Combinations and the Binomial Theorem</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter3.html" data-scroll="chapter3"><span class="codenumber">3</span> <span class="title">Logic</span></a><ul>
+<li><a href="s-propositions-logic-operators.html" data-scroll="s-propositions-logic-operators">Propositions and Logical Operators</a></li>
+<li><a href="s-truth-tables.html" data-scroll="s-truth-tables">Truth Tables and Propositions Generated by a Set</a></li>
+<li><a href="s-equivalence-implication.html" data-scroll="s-equivalence-implication">Equivalence and Implication</a></li>
+<li><a href="s-logic-laws.html" data-scroll="s-logic-laws">The Laws of Logic</a></li>
+<li><a href="s-math-systems.html" data-scroll="s-math-systems">Mathematical Systems and Proofs</a></li>
+<li><a href="s-propositions-over-universe.html" data-scroll="s-propositions-over-universe">Propositions over a Universe</a></li>
+<li><a href="s-induction.html" data-scroll="s-induction">Mathematical Induction</a></li>
+<li><a href="s-quantifiers.html" data-scroll="s-quantifiers">Quantifiers</a></li>
+<li><a href="s-proof-review.html" data-scroll="s-proof-review">A Review of Methods of Proof</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_4.html" data-scroll="chapter_4"><span class="codenumber">4</span> <span class="title">More on Sets</span></a><ul>
+<li><a href="s-proof-methods-sets.html" data-scroll="s-proof-methods-sets">Methods of Proof for Sets</a></li>
+<li><a href="s-laws-of-set-theory.html" data-scroll="s-laws-of-set-theory">Laws of Set Theory</a></li>
+<li><a href="s-minsets.html" data-scroll="s-minsets">Minsets</a></li>
+<li><a href="s-duality-principle.html" data-scroll="s-duality-principle">The Duality Principle</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_5.html" data-scroll="chapter_5"><span class="codenumber">5</span> <span class="title">Introduction to Matrix Algebra</span></a><ul>
+<li><a href="s-basic-matrix-definitions.html" data-scroll="s-basic-matrix-definitions">Basic Definitions and Operations</a></li>
+<li><a href="s-special-matrices.html" data-scroll="s-special-matrices">Special Types of Matrices</a></li>
+<li><a href="s-laws-of-matrix-algebra.html" data-scroll="s-laws-of-matrix-algebra">Laws of Matrix Algebra</a></li>
+<li><a href="s-matrix-oddities.html" data-scroll="s-matrix-oddities">Matrix Oddities</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_6.html" data-scroll="chapter_6"><span class="codenumber">6</span> <span class="title">Relations</span></a><ul>
+<li><a href="s-basic-definitions.html" data-scroll="s-basic-definitions">Basic Definitions</a></li>
+<li><a href="s-graphs-of-relations-on-a-set.html" data-scroll="s-graphs-of-relations-on-a-set">Graphs of Relations on a Set</a></li>
+<li><a href="s-properties-of-relations.html" data-scroll="s-properties-of-relations">Properties of Relations</a></li>
+<li><a href="s-matrices-of-relations.html" data-scroll="s-matrices-of-relations">Matrices of Relations</a></li>
+<li><a href="s-closure-operations-on-relations.html" data-scroll="s-closure-operations-on-relations">Closure Operations on Relations</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_7.html" data-scroll="chapter_7"><span class="codenumber">7</span> <span class="title">Functions</span></a><ul>
+<li><a href="s-function-def-notation.html" data-scroll="s-function-def-notation">Definition and Notation</a></li>
+<li><a href="s-properties-of-functions.html" data-scroll="s-properties-of-functions">Properties of Functions</a></li>
+<li><a href="s-function-composition.html" data-scroll="s-function-composition">Function Composition</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_8.html" data-scroll="chapter_8"><span class="codenumber">8</span> <span class="title">Recursion and Recurrence Relations</span></a><ul>
+<li><a href="s-faces-of-recursion.html" data-scroll="s-faces-of-recursion">The Many Faces of Recursion</a></li>
+<li><a href="s-Sequences.html" data-scroll="s-Sequences">Sequences</a></li>
+<li><a href="s-recurrence-relations.html" data-scroll="s-recurrence-relations">Recurrence Relations</a></li>
+<li><a href="s-some-common-rrs.html" data-scroll="s-some-common-rrs">Some Common Recurrence Relations</a></li>
+<li><a href="s-generating-functions.html" data-scroll="s-generating-functions">Generating Functions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_9.html" data-scroll="chapter_9"><span class="codenumber">9</span> <span class="title">Graph Theory</span></a><ul>
+<li><a href="s-graphs-introduction.html" data-scroll="s-graphs-introduction">Graphs - General Introduction</a></li>
+<li><a href="s-data-structures-for-graphs.html" data-scroll="s-data-structures-for-graphs">Data Structures for Graphs</a></li>
+<li><a href="s-Connectivity.html" data-scroll="s-Connectivity">Connectivity</a></li>
+<li><a href="s-traversals.html" data-scroll="s-traversals">Traversals: Eulerian and Hamiltonian Graphs</a></li>
+<li><a href="s-graph-optimization.html" data-scroll="s-graph-optimization">Graph Optimization</a></li>
+<li><a href="s-planarity-and-colorings.html" data-scroll="s-planarity-and-colorings">Planarity and Colorings</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_10.html" data-scroll="chapter_10"><span class="codenumber">10</span> <span class="title">Trees</span></a><ul>
+<li><a href="s-what-is-a-tree.html" data-scroll="s-what-is-a-tree" class="active">What Is a Tree?</a></li>
+<li><a href="s-spanning-trees.html" data-scroll="s-spanning-trees">Spanning Trees</a></li>
+<li><a href="s-rooted-trees.html" data-scroll="s-rooted-trees">Rooted Trees</a></li>
+<li><a href="s-binary-trees.html" data-scroll="s-binary-trees">Binary Trees</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_11.html" data-scroll="chapter_11"><span class="codenumber">11</span> <span class="title">Algebraic Structures</span></a><ul>
+<li><a href="s-Operations.html" data-scroll="s-Operations">Operations</a></li>
+<li><a href="s-algebraic-systems.html" data-scroll="s-algebraic-systems">Algebraic Systems</a></li>
+<li><a href="s-general-properties-of-groups.html" data-scroll="s-general-properties-of-groups">Some General Properties of Groups</a></li>
+<li><a href="s-gcds-and-zsubn.html" data-scroll="s-gcds-and-zsubn">Greatest Common Divisors  and the Integers Modulo \(n\)</a></li>
+<li><a href="s-Subsystems.html" data-scroll="s-Subsystems">Subsystems</a></li>
+<li><a href="s-direct-products.html" data-scroll="s-direct-products">Direct Products</a></li>
+<li><a href="s-isomorphisms.html" data-scroll="s-isomorphisms">Isomorphisms</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_12.html" data-scroll="chapter_12"><span class="codenumber">12</span> <span class="title">More Matrix Algebra</span></a><ul>
+<li><a href="s-systems-linear-equations.html" data-scroll="s-systems-linear-equations">Systems of Linear Equations</a></li>
+<li><a href="s-matrix-inversion.html" data-scroll="s-matrix-inversion">Matrix Inversion</a></li>
+<li><a href="s-intro-to-vector-spaces.html" data-scroll="s-intro-to-vector-spaces">An Introduction to Vector Spaces</a></li>
+<li><a href="s-the-diagonalization-process.html" data-scroll="s-the-diagonalization-process">The Diagonalization Process</a></li>
+<li><a href="s-some-applications.html" data-scroll="s-some-applications">Some Applications</a></li>
+<li><a href="s-systems-linear-equations-mod-2.html" data-scroll="s-systems-linear-equations-mod-2">Linear Equations over the Integers Mod 2</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_13.html" data-scroll="chapter_13"><span class="codenumber">13</span> <span class="title">Boolean Algebra</span></a><ul>
+<li><a href="s-posets-revisited.html" data-scroll="s-posets-revisited">Posets Revisited</a></li>
+<li><a href="s-lattices.html" data-scroll="s-lattices">Lattices</a></li>
+<li><a href="s-boolean-algebras.html" data-scroll="s-boolean-algebras">Boolean Algebras</a></li>
+<li><a href="s-atoms-of-a-boolean-algebra.html" data-scroll="s-atoms-of-a-boolean-algebra">Atoms of a Boolean Algebra</a></li>
+<li><a href="s-finite-boolean-algebras-ntuples.html" data-scroll="s-finite-boolean-algebras-ntuples">Finite Boolean Algebras as \(n\)-tuples of 0's and 1's</a></li>
+<li><a href="s-boolean-expressions.html" data-scroll="s-boolean-expressions">Boolean Expressions</a></li>
+<li><a href="s-logic-design.html" data-scroll="s-logic-design">A Brief Introduction to Switching Theory and Logic Design</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_14.html" data-scroll="chapter_14"><span class="codenumber">14</span> <span class="title">Monoids and Automata</span></a><ul>
+<li><a href="s-Monoids.html" data-scroll="s-Monoids">Monoids</a></li>
+<li><a href="s-free-monoids-and-languages.html" data-scroll="s-free-monoids-and-languages">Free Monoids and Languages</a></li>
+<li><a href="s-automata-finite-state-machines.html" data-scroll="s-automata-finite-state-machines">Automata, Finite-State Machines</a></li>
+<li><a href="s-monoid-of-fsm.html" data-scroll="s-monoid-of-fsm">The Monoid of a Finite-State Machine</a></li>
+<li><a href="s-machine-of-monoid.html" data-scroll="s-machine-of-monoid">The Machine of a Monoid</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_15.html" data-scroll="chapter_15"><span class="codenumber">15</span> <span class="title">Group Theory and Applications</span></a><ul>
+<li><a href="s-cyclic-groups.html" data-scroll="s-cyclic-groups">Cyclic Groups</a></li>
+<li><a href="s-cosets-and-factor-groups.html" data-scroll="s-cosets-and-factor-groups">Cosets and Factor Groups</a></li>
+<li><a href="s-permutation-groups.html" data-scroll="s-permutation-groups">Permutation Groups</a></li>
+<li><a href="s-normal-subgroups-homomorphisms.html" data-scroll="s-normal-subgroups-homomorphisms">Normal Subgroups and Group Homomorphisms</a></li>
+<li><a href="s-coding-theory-groups.html" data-scroll="s-coding-theory-groups">Coding Theory, Group Codes</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_16.html" data-scroll="chapter_16"><span class="codenumber">16</span> <span class="title">An Introduction to Rings and Fields</span></a><ul>
+<li><a href="s-rings-basic.html" data-scroll="s-rings-basic">Rings, Basic Definitions and Concepts</a></li>
+<li><a href="s-fields.html" data-scroll="s-fields">Fields</a></li>
+<li><a href="s-polynomial-rings.html" data-scroll="s-polynomial-rings">Polynomial Rings</a></li>
+<li><a href="s-field-extensions.html" data-scroll="s-field-extensions">Field Extensions</a></li>
+<li><a href="s-power-series.html" data-scroll="s-power-series">Power Series</a></li>
+</ul>
+</li>
+<li class="link"><a href="backmatter.html" data-scroll="backmatter"><span class="title">Back Matter</span></a></li>
+<li class="link">
+<a href="app-algorithms.html" data-scroll="app-algorithms"><span class="codenumber">A</span> <span class="title">Algorithms</span></a><ul>
+<li><a href="app-alg1.html" data-scroll="app-alg1">An Introduction to Algorithms</a></li>
+<li><a href="app-alg2.html" data-scroll="app-alg2">The Invariant Relation Theorem</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="app-pythonsage.html" data-scroll="app-pythonsage"><span class="codenumber">B</span> <span class="title">Python and SageMath</span></a><ul>
+<li><a href="app-python-iterators.html" data-scroll="app-python-iterators">Python Iterators</a></li>
+<li><a href="app-pythonsage-dictionaries.html" data-scroll="app-pythonsage-dictionaries">Dictionaries</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="app-determinants.html" data-scroll="app-determinants"><span class="codenumber">C</span> <span class="title">Determinants</span></a><ul>
+<li><a href="section-89.html" data-scroll="section-89">Definition</a></li>
+<li><a href="section-90.html" data-scroll="section-90">Computation</a></li>
+</ul>
+</li>
+<li class="link"><a href="solutions-backmatter.html" data-scroll="solutions-backmatter"><span class="codenumber">D</span> <span class="title">Hints and Solutions to Selected Exercises</span></a></li>
+<li class="link"><a href="appendix-4.html" data-scroll="appendix-4"><span class="codenumber">E</span> <span class="title">Notation</span></a></li>
+<li class="link"><a href="references-2.html" data-scroll="references-2"><span class="title">References</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1"><span class="title">Index</span></a></li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="s-what-is-a-tree"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">10.1</span> <span class="title">What Is a Tree?</span>
+</h2>
+<a href="s-what-is-a-tree.html" class="permalink">¶</a><section class="subsection" id="subsection-123"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">10.1.1</span> <span class="title">Definition</span>
+</h3>
+<p id="p-3535">What distinguishes trees from other types of graphs is the absence of certain paths called cycles. Recall that a path is a sequence of consecutive edges in a graph, and a circuit is a path that begins and ends at the same vertex.</p>
+<article class="definition definition-like" id="def-cycle"><h6 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">10.1.1</span><span class="period">.</span><span class="space"> </span><span class="title">Cycle.</span>
+</h6>
+<p id="p-3536">A cycle is a circuit whose edge list contains no duplicates.  It is customary to use \(C_n\) to denote a cycle with \(n\) edges.</p></article><p id="p-3537">The simplest example of a cycle in an undirected graph is a pair of vertices with two edges connecting them. Since trees are cycle-free, we can rule out all multigraphs having at least one pair of vertices connected with two or more edges from consideration as trees.</p>
+<p id="p-3538">Trees can either be undirected or directed graphs. We will concentrate on the undirected variety in this chapter.</p>
+<article class="definition definition-like" id="def-tree"><h6 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">10.1.2</span><span class="period">.</span><span class="space"> </span><span class="title">Tree.</span>
+</h6>
+<p id="p-3539">An undirected graph is a tree if it is connected and contains no cycles or self-loops.</p></article><article class="example example-like" id="ex-some-trees"><a data-knowl="" class="id-ref original" data-refid="hk-ex-some-trees"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">10.1.3</span><span class="period">.</span><span class="space"> </span><span class="title">Some trees and non-trees.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-some-trees"><article class="example example-like"><figure class="figure figure-like" id="fig-some-trees"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/fig-some-trees.png" style="width: 100%; height: auto;" alt="Some trees and some non-trees"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.1.4<span class="period">.</span></span><span class="space"> </span>Some trees and some non-trees</figcaption></figure><ol id="p-3540" class="lower-alpha">
+<li id="li-1648"><p id="p-3541">Graphs i, ii and iii in <a class="xref" data-knowl="./knowl/fig-some-trees.html" title="Figure 10.1.4">Figure 10.1.4</a> are all trees, while graphs iv, v, and vi are not trees.</p></li>
+<li id="li-1649"><p id="p-3542">A \(K_2\) is a tree. However, if \(n\geq  3\text{,}\) a \(K_n\) is not a tree.</p></li>
+<li id="li-1650"><p id="p-3543">In a loose sense, a botanical tree is a mathematical tree. There are usually no cycles in the branch structure of a botanical tree.</p></li>
+<li id="li-1651"><p id="p-3544">The structures of some chemical compounds are modeled by a tree. For example, butane <a class="xref" data-knowl="./knowl/fig-butane.html" title="Figure 10.1.5">Figure 10.1.5</a> consists of four carbon atoms and ten hydrogen atoms, where an edge between two atoms represents a bond between them. A bond is a force that keeps two atoms together. The same set of atoms can be linked together in a different tree structure to give us the compound isobutane <a class="xref" data-knowl="./knowl/fig-isobutane.html" title="Figure 10.1.6">Figure 10.1.6</a>. There are some compounds whose graphs are not trees. One example is benzene <a class="xref" data-knowl="./knowl/fig-benzene.html" title="Figure 10.1.7">Figure 10.1.7</a>.</p></li>
+</ol>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel" style="width:33.3333333333333%;justify-content:flex-start;"><figure class="figure figure-like" id="fig-butane"><img src="images/fig-butane.png" style="width: 100%; height: auto;" alt="Structure of Butane"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.1.5<span class="period">.</span></span><span class="space"> </span>Butane</figcaption></figure></div>
+<div class="sbspanel" style="width:33.3333333333333%;justify-content:flex-start;"><figure class="figure figure-like" id="fig-isobutane"><img src="images/fig-isobutane.png" style="width: 100%; height: auto;" alt="Structure of Isobutane"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.1.6<span class="period">.</span></span><span class="space"> </span>Isobutane</figcaption></figure></div>
+<div class="sbspanel" style="width:33.3333333333333%;justify-content:flex-start;"><figure class="figure figure-like" id="fig-benzene"><img src="images/fig-benzene.png" style="width: 100%; height: auto;" alt="Structure of Benzene"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.1.7<span class="period">.</span></span><span class="space"> </span>Benzene</figcaption></figure></div>
+</div></div></article></div>
+<p id="p-3545">One type of graph that is not a tree, but is closely related, is a forest.</p>
+<article class="definition definition-like" id="def-forest"><h6 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">10.1.8</span><span class="period">.</span><span class="space"> </span><span class="title">Forest.</span>
+</h6>
+<p id="p-3546">A forest is an undirected graph whose components are all trees.</p></article><article class="example example-like" id="ex-a-forest"><a data-knowl="" class="id-ref original" data-refid="hk-ex-a-forest"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">10.1.9</span><span class="period">.</span><span class="space"> </span><span class="title">A forest.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-a-forest"><article class="example example-like"><p id="p-3547">The top half of <a class="xref" data-knowl="./knowl/fig-some-trees.html" title="Figure 10.1.4">Figure 10.1.4</a> can be viewed as a forest of three trees.  Graph (vi) in this figure is also a forest.</p></article></div></section><section class="subsection" id="subsection-124"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">10.1.2</span> <span class="title">Conditions for a graph to be a tree</span>
+</h3>
+<p id="p-3548">We will now examine several conditions that are equivalent to the one that defines a tree. The following theorem will be used as a tool in proving that the conditions are equivalent.</p>
+<article class="lemma theorem-like" id="lemma-two-paths"><h6 class="heading">
+<span class="type">Lemma</span><span class="space"> </span><span class="codenumber">10.1.10</span><span class="period">.</span>
+</h6>
+<p id="p-3549">Let \(G = (V, E)\) be an undirected graph with no self-loops, and let \(v_a, v_b\in V\text{.}\) If two different simple paths exist between \(v_a\) and \(v_b\text{,}\) then there exists a cycle in \(G\text{.}\)</p></article><article class="hiddenproof" id="proof-27"><a data-knowl="" class="id-ref original" data-refid="hk-proof-27"><h6 class="heading"><span class="type">Proof<span class="period">.</span></span></h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-27"><article class="hiddenproof"><p id="p-3550">Let \(p_1= \left(e_1, e_2, \ldots , e_m \right)\) and \(p_2=\left(f_1,f_2,\ldots , f_n\right)\) be two different simple paths from \(v_a\) to \(v_b\text{.}\) The first step we will take is to delete from \(p_1\) and \(p_2\) the initial edges that are identical. That is, if \(e_1= f_1\text{,}\) \(e_2= f_2, \dots \text{,}\) \(e_{j}= f_j\text{,}\) and \(e_{j+1}\neq f_{j+1}\) delete the first \(j\) edges of both paths. Once this is done, both paths start at the same vertex, call it \(v_c\text{,}\) and both still end at \(v_b\text{.}\) Now we construct a cycle by starting at \(v_c\) and following what is left of \(p_1\) until we first meet what is left of \(p_2\text{.}\) If this first meeting occurs at vertex \(v_d\text{,}\) then the remainder of the cycle is completed by following the portion of the reverse of \(p_2\) that starts at \(v_d\) and ends at \(v_c\text{.}\)</p></article></div>
+<article class="theorem theorem-like" id="theorem-tree-conditions"><h6 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">10.1.11</span><span class="period">.</span><span class="space"> </span><span class="title">Equivalent Conditions for a Graph to be a Tree.</span>
+</h6>
+<p id="p-3551">Let \(G = (V, E)\) be an undirected graph with no self-loops and \(\lvert V \rvert =n\text{.}\) The following are all equivalent:</p>
+<ol id="p-3552" class="decimal">
+<li id="li-1652"><p id="p-3553">\(G\) is a tree.</p></li>
+<li id="li-1653"><p id="p-3554">For each pair of distinct vertices in \(V\text{,}\) there exists a unique simple path between them.</p></li>
+<li id="li-1654"><p id="p-3555">\(G\) is connected, and if \(e\in E\text{,}\) then \((V, E-\{e\})\) is disconnected.</p></li>
+<li id="li-1655"><p id="p-3556">\(G\) contains no cycles, but by adding one edge, you create a cycle.</p></li>
+<li id="li-1656"><p id="p-3557">\(G\) is connected and \(\lvert E \rvert =n-1 \text{.}\)</p></li>
+</ol></article><article class="hiddenproof" id="proof-28"><a data-knowl="" class="id-ref original" data-refid="hk-proof-28"><h6 class="heading"><span class="type">Proof<span class="period">.</span></span></h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-28"><article class="hiddenproof"><p id="p-3558">Proof Strategy. Most of this theorem can be proven by proving the following chain of implications: \((1) \Rightarrow  (2)\text{,}\) \((2) \Rightarrow  (3)\text{,}\) \((3)\Rightarrow (4)\text{,}\) and \((4) \Rightarrow (1)\text{.}\) Once these implications have been demonstrated, the transitive closure of \(\Rightarrow\) on \({1, 2, 3, 4}\) establishes the equivalence of the first four conditions. The proof that Statement 5 is equivalent to the first four can be done by induction, which we will leave to the reader.</p>
+<p id="p-3559">\((1) \Rightarrow  (2)\) (Indirect). Assume that \(G\) is a tree and that there exists a pair of vertices between which there is either no path or there are at least two distinct paths. Both of these possibilities contradict the premise that \(G\) is a tree. If no path exists, \(G\) is disconnected, and if two paths exist, a cycle can be obtained by <a class="xref" data-knowl="./knowl/theorem-tree-conditions.html" title="Theorem 10.1.11: Equivalent Conditions for a Graph to be a Tree">Theorem 10.1.11</a>.</p>
+<p id="p-3560">\((2) \Rightarrow  (3)\text{.}\) We now use Statement 2 as a premise. Since each pair of vertices in \(V\) are connected by exactly one path, \(G\) is connected. Now if we select any edge \(e\) in \(E\text{,}\) it connects two vertices, \(v_1\) and \(v_2\text{.}\) By (2), there is no simple path connecting \(v_1\) to \(v_2\) other than \(e\text{.}\) Therefore, no path at all can exist between \(v_1\) and \(v_2\) in \((V, E - \{e\})\text{.}\) Hence \((V, E - \{e\})\) is disconnected.</p>
+<p id="p-3561">\((3)\Rightarrow (4)\text{.}\) Now we will assume that Statement 3 is true. We must show that \(G\) has no cycles and that adding an edge to \(G\) creates a cycle. We will use an indirect proof for this part. Since (4) is a conjunction, by DeMorgan's Law its negation is a disjunction and we must consider two cases. First, suppose that \(G\) has a cycle. Then the deletion of any edge in the cycle keeps the graph connected, which contradicts (3). The second case is that the addition of an edge to \(G\) does not create a cycle. Then there are two distinct paths between the vertices that the new edge connects. By <a class="xref" data-knowl="./knowl/lemma-two-paths.html" title="Lemma 10.1.10">Lemma 10.1.10</a>, a cycle can then be created, which is a contradiction.</p>
+<p id="p-3562">\((4) \Rightarrow (1)\) Assume that \(G\) contains no cycles and that the addition of an edge creates a cycle. All that we need to prove to verify that \(G\) is a tree is that \(G\) is connected. If it is not connected, then select any two vertices that are not connected. If we add an edge to connect them, the fact that a cycle is created implies that a second path between the two vertices can be found which is in the original graph, which is a contradiction.</p></article></div>
+<p id="p-3563">The usual definition of a directed tree is based on whether the associated undirected graph, which is created by “erasing” its directional arrows, is a tree. In Section 10.3 we will introduce the rooted tree, which is a special type of directed tree.</p></section><section class="exercises" id="exercises-10-1"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber">10.1.3</span> <span class="title">Exercises</span>
+</h3>
+<a href="s-what-is-a-tree.html#exercises-10-1" class="permalink">¶</a><article class="exercise exercise-like" id="exercise-trees"><h6 class="heading"><span class="codenumber">1<span class="period">.</span></span></h6>
+<p id="p-3564">Given the following vertex sets, draw all possible undirected trees that connect them.</p>
+<ol id="p-3565" class="lower-alpha">
+<li id="li-1657"><p id="p-3566">\(V_a= \{\text{right},\text{left}\}\)</p></li>
+<li id="li-1658"><p id="p-3567">\(V_b = \{+,-,0\}\)</p></li>
+<li id="li-1659"><p id="p-3568">\(V_c = \{\text{north}, \text{south}, \text{east}, \text{west}\}\text{.}\)</p></li>
+</ol>
+<div class="solutions">
+<a data-knowl="" class="id-ref original" data-refid="hk-answer-196" id="answer-196"><span class="type">Answer</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-196"><div class="answer solution-like">
+<p id="p-3569">The number of trees are: (a) 1, (b) 3, and (c) 16.  The trees that connect \(V_c\) are:</p>
+<figure class="figure figure-like" id="fig-sol-10-1-1"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/fig-sol-10-1-1.png" style="width: 100%; height: auto;" alt="Solution to exercise 10-1-1"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.1.12<span class="period">.</span></span><span class="space"> </span></figcaption></figure>
+</div></div>
+</div></article><article class="exercise exercise-like" id="exercise-414"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
+<p id="p-3570">Are all trees planar? If they are, can you explain why? If they are not, you should be able to find a nonplanar tree.</p></article><article class="exercise exercise-like" id="exercise-415"><h6 class="heading"><span class="codenumber">3<span class="period">.</span></span></h6>
+<p id="p-3571">Prove that if \(G\) is a simple undirected graph with no self-loops, then \(G\) is a tree if and only if \(G\) is connected and \(\lvert E \rvert = \lvert V \rvert - 1\text{.}\)</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref original" data-refid="hk-hint-15" id="hint-15"><span class="type">Hint</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-15"><div class="hint solution-like"><p id="p-3572">Use induction on \(\lvert E\rvert \text{.}\)</p></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-416"><h6 class="heading"><span class="codenumber">4<span class="period">.</span></span></h6>
+<ol id="p-3573" class="lower-alpha">
+<li id="li-1660"><p id="p-3574">Prove that if \(G = (V, E)\) is a tree and \(e \in E\text{,}\) then \((V, E - \{e\})\) is a forest of two trees.</p></li>
+<li id="li-1661"><p id="p-3575">Prove that if \(\left(V_1,E_1\right.\)) and \(\left(V_2,E_2\right)\) are disjoint trees and \(e\) is an edge that connects a vertex in \(V_1\) to a vertex in \(V_2\text{,}\) then \(\left(V_1\cup V_2, E_1\cup E_2\cup \{e\}\right)\) is a tree.</p></li>
+</ol></article><article class="exercise exercise-like" id="exercise-417"><h6 class="heading"><span class="codenumber">5<span class="period">.</span></span></h6>
+<ol id="p-3576" class="lower-alpha">
+<li id="li-1662"><p id="p-3577">Prove that any tree with at least two vertices has at least two vertices of degree 1.</p></li>
+<li id="li-1663"><p id="p-3578">Prove that if a tree has \(n\) vertices,  \(n \geq 4\text{,}\) and is not a path graph, \(P_n\text{,}\) then it has at least three vertices of degree 1.</p></li>
+</ol>
+<div class="solutions">
+<a data-knowl="" class="id-ref original" data-refid="hk-answer-197" id="answer-197"><span class="type">Answer</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-197"><div class="answer solution-like"><ol id="p-3579" class="lower-alpha">
+<li id="li-1664">
+<p id="p-3580">Assume that \((V,E)\) is a tree with \(\left| V\right| \geq 2\text{,}\) and all but possibly one vertex in \(V\) has degree two or more.</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{split}
+2\lvert E \rvert =\sum_{v \in V}{\deg(v)} \geq 2 \lvert V \rvert -1 &amp;\Rightarrow
+\lvert E\vert  \geq \lvert V\rvert -\frac{1}{2}\\
+&amp;\Rightarrow \lvert E\rvert \geq \lvert V\rvert\\
+&amp; \Rightarrow (V,E) \textrm{ is not a tree.}
+\end{split}
+\end{equation*}
+</div>
+</li>
+<li id="li-1665"><p id="p-3581">The proof of this part is similar to part a in that we can infer \(2\lvert E\rvert \geq 2 \lvert V\rvert -1\text{,}\) using the fact that a non-chain tree has at least one vertex of degree three or more.</p></li>
+</ol></div></div>
+</div></article></section></section></div></main>
+</div>
+<!--Start: StatCounter code--><script>
+var sc_project=11204831;
+var sc_invisible=1;
+var sc_security="957c565b";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "https://www.");
+document.write("<sc"+"ript src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+</script><noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/11204831/0/957c565b/1/" alt="web analytics"></a></div></noscript>
+<!--End: StatCounter code-->
+<div class="login-link"><span id="loginlogout" class="login">login</span></div>
+<script src="https://pretextbook.org/js/0.13/login.js"></script>
+</body>
+</html>

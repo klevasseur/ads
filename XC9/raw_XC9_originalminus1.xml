@@ -1,0 +1,2412 @@
+
+
+
+<section xml:id="s-Data Structures and Computer Generation of Graphs">
+<title>Data Structures and Computer Generation of Graphs</title>
+<index><main>Data Structures and Computer Generation of Graphs</main></index>
+
+
+
+In this section, we will describe data structures that are commonly used to represent graphs. In addition we will introduce the basic syntax for
+graphs in  Mathematica and Sage.
+
+
+
+Assume that we have a graph with <m>n</m> vertices that can be indexed by the integers 1, 2, \dots, <m>n</m>. 
+
+
+
+\pmb{ Data Structure 1:} \pmb{ Adjacency Matrix.} As we saw in Chapter 6, the Information about edges in a graph can be summarized with an adjacency
+matrix, <m>G</m>, where \(G_{\text{ij}}=1\) if and only if vertex <m>i</m> is connected to vertex <m>j</m> in the graph.  Note
+that this is the same as the adjacency matrix for a relation, with the exception.
+
+
+
+\pmb{ Data Structure 2:} \pmb{ Edge List I. }Note that the initializing procedure for an adjacency matrix presumes that a list of
+edges for the graph exists. This second data structure maintains this list form. For each vertex in our graph, there will be a list of edges that
+initiate at that vertex. If <m>G</m> represents the graph's edge information, then \(G_i\) would be the list of edges initiating at vertex
+<m>i</m>.   
+
+
+
+\pmb{ Data Structure 3:} \pmb{ Edge List II. }An even simpler way to represent the edges is to maintain a list of ordered pairs.
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ Figure 9.2.1}}
+
+<example xml:id="ex-9.2.1. "><title>9.2.1. </title><p></p></example>
+Given the graph in Figure 9.2.1, the adjacency matrix that represents the graph would be 
+
+<m>\quad \quad</m>\(G_1=\left(
+\begin{array}{cccc}
+ 0 &amp; 1 &amp; 0 &amp; 1 \\
+ 0 &amp; 0 &amp; 1 &amp; 1 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 \\
+ 1 &amp; 0 &amp; 0 &amp; 0 \\
+\end{array}
+\right)\).
+
+
+
+The same graph would be represented with the edge list of type 1:
+
+
+
+<m>\quad \quad</m>\(G_1=\{\{2,4\},\{3,4\},\{3\},\{1\}\}\)
+
+
+
+Finally, the list 
+
+
+
+<m>\quad \quad</m>\(G_1=\{\{1,2\},\{1,4\},\{2,3\},\{2,4\},\{3,3\},\{4,1\}\}\)
+
+
+
+describes the same graph with an edge list of type 2.
+
+
+
+A natural question to ask is: Which data structure should be used in a given situation? For small graphs, it really doesn't make much difference,
+but since answers the question $\texttt{"}$Is there an edge from vertex <m>i</m> to vertex <m>j</m> is easiest with an adjacency matrix, the
+adjacency matrix would be the natural choice. For larger matrices the edge count would be a consideration. If <m>n</m> is large and the
+number of edges is relatively small, it might use less memory to maintain a list of edges instead of building an \(n \times  n\) matrix.  Most
+software for working with graphs will make the decision for you.
+
+
+
+<subsubsection xml:id="sss-\(\)  Mathematica"><title>\(\) \textit{ Mathematica</title><index><main>\(\) \textit{ Mathematica</main></index> Note
+
+
+
+First, a short history of graphs in  Mathematica. Until  Mathematica 6.0, all graph related functions were part of a package
+called  Combinatorica. A few graph related functions, notably \(GraphPlot\), were introduced in version 6.0. The output from GraphPlot
+was (and still is) a Graphics object. Starting in  Mathematica 8.0, graphs became native  Mathematica objects. Graph expressions
+are backwards compatible in that  Combinatorica is still available. In addition, \(GraphPlot\) is still a good way to fine-tune the way
+a graph appears.  
+
+
+
+The graph in Example 9.2.1 was drawn by evaluating the following expression.
+
+\begin{doublespace}
+\noindent\(\pmb{G_1=\text{GraphPlot}[\{1\to 2,2\to 3,2\to 4,4\to 1,1\to 4,3\to 3\},\text{VertexLabeling}\to \text{True},}\\
+\pmb{\text{DirectedEdges}\to \text{True}]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+
+The same graph, with a different embedding and style of displaying vertices can be produced using \(Graph\).
+
+\begin{doublespace}
+\noindent\(\pmb{G_1=\text{Graph}[\{1,2,3,4\},\{1\to 2,2\to 3,2\to 4,4\to 1,1\to 4,3\to 3\},\text{VertexLabels}\to \text{<q>Name</q>},}\\
+\pmb{\text{ImagePadding}\to 5]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+
+From both expressions one sees that an edge list in the form of  Mathematica rules is used to specify the edges. Using \(GraphPlot\),
+the vertices are implicit from the numbers that appear among the edges.  This has the drawback of not allowing for an isolated vertex without
+any edges connected to it. A second acceptable way to specify edges is using \(GraphPlot\) is with an adjacency matrix:
+
+\begin{doublespace}
+\noindent\(\pmb{G_2=;}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\pmb{\text{GraphPlot}\left[,\text{VertexLabeling}\to \text{True},\text{DirectedEdges}\to \text{True}\right]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+
+Notice that in these examples, the placement of the vertices is determined by  Mathematica. Both functions have options that do allow
+for placement.
+
+
+
+An example of a system graph function is \(GraphDistance\). For example, we can ask for the distance from vertex 1 to vertex 3 in \(G_1\) and
+find that one needs to travel along two edges to go from 1 to 3.
+
+\begin{doublespace}
+\noindent\(\pmb{\text{GraphDistance}\left[G_1,1,3\right]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(2\)
+\end{doublespace}
+
+
+
+In \(G_1\), you can't get from vertex 3 to vertex 4, so the distance is infinite:
+
+\begin{doublespace}
+\noindent\(\pmb{\text{GraphDistance}\left[G_1,3,4\right]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\infty\)
+\end{doublespace}
+
+
+
+We can get the adjacency matrix of \(G_1\) or the edge list of \(G_2\) with package function
+
+\begin{doublespace}
+\noindent\(\pmb{\text{AdjacencyMatrix}\left[G_1\right]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\text{SparseArray}[<6>,\{4,4\}]\)
+\end{doublespace}
+
+
+
+In practice, graphs are often quite large, so  Mathematica automatically uses a sparse array data structure to store the adjacency matrix.
+ To see the actual matrix you can use the \(Normal\) function:
+
+\begin{doublespace}
+\noindent\(\pmb{\text{Normal}\left[\text{AdjacencyMatrix}\left[G_1\right]\right]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\left(
+\begin{array}{cccc}
+ 0 &amp; 1 &amp; 0 &amp; 1 \\
+ 0 &amp; 0 &amp; 1 &amp; 1 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 \\
+ 1 &amp; 0 &amp; 0 &amp; 0 \\
+\end{array}
+\right)\)
+\end{doublespace}
+
+
+
+Larger graphs can be generated by creating lists of edges using rules. For example, here is graph of all divisors of \(6\text{!=}720\) with an
+edge connecting <m>j</m> to <m>k</m> if \(\frac{j}{k}\) is a prime. For example, there is an edge connecting 72 to 24 because \(\frac{72}{24}=3\)
+is prime. The code for creating \(\pmb{G_3}\) may look daunting, but essentially the set of ordered pairs in the set
+
+
+
+ \(\text{Divisors}[6!]=\{1,2,3,4,5,6,8,9,10,12,15,16,18,20,24,30,36,40,45,48,60,72,80,90,120,144,180,240,360,720\}\)
+
+
+
+and the relatively few ordered pairs where the first number divided by the second number is prime are selected out. These ordered pairs are then
+converted to a rule: \(\{a,b\}\) is converted to \(a\to b\).
+
+\begin{doublespace}
+\noindent\(\pmb{\text{edges}=\text{Map}[\text{Rule}\text{@@}\#\&amp;,\text{Select}[\text{Tuples}[\text{Divisors}[6!],2],\text{PrimeQ}[\text{Divide}\text{@@}\#]\&amp;]];}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\pmb{G_3=\text{Graph}[\text{edges},\text{VertexLabels}\to \text{<q>Name</q>},\text{ImagePadding}\to 5]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+
+The adjacency matrix of \(G_3\) can certainly be considered sparse since it has relatively few 1{'}s.
+
+\begin{doublespace}
+\noindent\(\pmb{\text{AdjacencyMatrix}\left[G_3\right]\text{//}\text{Normal}}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\left(
+\begin{array}{cccccccccccccccccccccccccccccc}
+ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 \\
+\end{array}
+\right)\)
+\end{doublespace}
+
+
+
+<subsubsection xml:id="sss-\(\) Sage Note"><title>\(\) Sage Note</title><index><main>\(\) Sage Note</main></index>
+
+
+
+Sage graphs are specified using version 1 of edge lists.  Here is how the graph in Example 9.2.1 is generated and then displayed.
+
+sage: G1 = DiGraph( $\{$ 1 : [4, 2], 2 : [3, 4], 3 : [3], 4 : [1]$\}$)\\
+G1.show()
+
+\includegraphics{XC9_gr1.eps}
+
+
+
+There are many special graphs and graph families that are available in Sage through the \(graphs\) module.  They are referenced with the prefix
+\(graphs.\) followed by the name and zero or more paramenters inside parentheses.  Here are a couple of them, first a complete graph with five
+vertices.
+
+sage: graphs.CompleteGraph(5).show()
+
+\includegraphics{XC9_gr2.eps}
+
+
+
+Here is a wheel graph, named for an obvious pattern of vertices and edges.  We assign a name to it first and then show the graph without labeling
+the vertices.
+
+sage: w=graphs.WheelGraph(20)\\
+sage: w.show(vertex_labels=false)
+
+
+
+\(\includegraphics{XC9_gr3.eps}
+
+\)
+
+
+
+There are dozens of graph methods, one of which determines the degree sequence of a graph. 
+
+sage: w.degree_sequence()\\
+<m>\quad \quad</m><m>\quad \quad</m>\texttt{ \\
+}\texttt{ [19, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]}
+
+
+
+The degree sequence method is defined within the graphs module, but the prefix \(graphs.\) isn{'}t needed because the value of \(w\) inherits the
+graphs methods.
+
+<example xml:id="ex-9.2.2"><title>9.2.2</title><p></p></example>
+. Consider an directed graph represented by the Division I NCAA college basketball teams in the United States for a given
+year. There are approximately 350 teams in Division 1. Suppose we constructed the graph with an edge from team A to team B if A beat B at least
+once in the season; and we label the edge with the number of wins.  Since the average team plays around 30 games in a season, most of which
+will be against other Division I teams, we could expect around \(\frac{30\ 350}{2}=5250\) edges in the graph (this is somewhat reduced by games
+with lower division teams and cases where two or more wins over the same team produces one edge). Since 5250 is much smaller than \(350^2=122500\)
+entries in an adjacency matrix, we would consider this a sparse graph and would expect to find one of the edge list structures most efficient. {
+}Even if an adjacency matrix is created, as could be done in  Mathematica, it would be represented using a sparse matrix data structure.
+
+
+<exercises xml:id="exercises-9-2">
+<title>Exercises for Section 9.2</title>
+
+
+
+
+</exercisegroup>
+<exercisegroup>
+<introduction><p>A Exercises</p></introduction>
+
+
+<exercise number="1"><statement> Estimate the number of vertices and edges in each of the following graphs. Would the graph be considered sparse?
+
+
+<ol label=“a”>
+<li><p> Vertices: Cities of the world that are served by at least one airline. 
+
+
+
+    Edges: Pairs of cities that are connected by a regular direct flight.</p></li>
+<li><p> Vertices: ASCII characters. 
+
+
+
+   Edges: connect characters that differ in their binary code by exactly two bits.</p></li>
+<li><p> Vertices: All English words. 
+
+
+
+    Edges: An edge connects word x to word y if x is a prefix of y.</statement></exercise>
+<exercise number="2"><statement> Each edge of a graph is colored with one of the four colors red, blue, yellow, or green. How could you represent the edges in this graph using
+a variation of the adjacency matrix structure?</statement></exercise>
+<exercise number="3"><statement> Directed graphs \(G_1\), \dots, \(G_6\) , each with vertex set \(\{1,2,3,4,5\}\) are represented by the matrices below. Which graphs are isomorphic?
+
+
+
+ \(G_1: \left(
+\begin{array}{ccccc}
+ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+ 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+\end{array}
+\right)\)<m>\quad \quad</m>\(G_2: \left(
+\begin{array}{ccccc}
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+\end{array}
+\right)\)<m>\quad \quad</m>\(G_3: \left(
+\begin{array}{ccccc}
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+\end{array}
+\right)\)
+
+
+
+ \(G_4: \left(
+\begin{array}{ccccc}
+ 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+\end{array}
+\right)\)<m>\quad \quad</m>\(\quad G_5: \left(
+\begin{array}{ccccc}
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+\end{array}
+\right)\)<m>\quad \quad</m>\(G_6: \left(
+\begin{array}{ccccc}
+ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+\end{array}
+\right)\)</statement></exercise>
+<exercise number="4"><statement>  The following Sage command verifies that the wheel graph with four vertices is isomorphic to the complete graph with four vertices. 
+
+
+<m>\quad \quad</m>graphs.WheelGraph(4).is_isomorphic(graphs.CompleteGraph(4))
+
+
+
+Evaluate the expression \(dir(graphs.)\) in Sage to get a list of graph names, and then find two more pairs of isomorphic graphs.
+
+
+<section xml:id="s-Connectivity">
+<title>Connectivity</title>
+<index><main>Connectivity</main></index>
+
+
+
+This section is devoted to a question that, when posed in relation to the graphs that we have examined, seems trivial. That question is: Given two
+vertices, <m>s</m> and <m>t</m>, of a graph, is there a path from <m>s</m> to  t?  If \(s = t\), this question is interpreted
+as asking whether there is a circuit of positive length starting at <m>s</m>. Of course, for the graphs we have seen up to now, this question
+can be answered after a brief examination.
+
+
+
+There are two situations under which a question of this kind is nontrivial. One is where the graph is very large and an <q>examination</q> of the
+graph could take a considerable amount of time. Anyone who has tried to solve a maze may have run into a similar problem. The second interesting
+situation is when we want to pose the question to a machine. If only the information on the edges between the vertices is part of the data structure
+for the graph, how can you put that information together to determine whether two vertices can be connected by a path?
+
+
+
+\pmb{ Connectivity Terminology.} Let <m>v</m> and <m>w</m> be vertices of a directed graph. Vertex <m>v</m> is  connected to vertex
+<m>w</m> if there is a path from <m>v</m> to <m>w</m>. Two vertices are  strongly connected if they are connected in both directions
+to one another. A  graph is connected if, for each pair of distinct vertices, <m>v</m> and <m>w</m>, <m>v</m> is connected to \textit{
+w} or <m>w</m> is connected to <m>v</m>. A  graph is strongly connected if every pair of its vertices is strongly connected. For an
+undirected graph, in which edges can be used in either direction, the notions of strongly connected and connected are the same.
+
+<theorem xml:id="theorem-9.3.1"><title>9.3.1</title><index><main>9.3.1</main></index><statement></statement><proof></proof></theorem>
+. If a graph has n vertices and vertex u is connected to vertex w, then there exists a path from u to w of length no more than
+n.
+
+Proof (Indirect): Suppose <m>u</m> is connected to <m>w</m>, but the shortest path from <m>u</m> to <m>w</m> has length <m>m</m>,
+where \(m>n\). A vertex list for a path of length <m>m</m> will have \(m + 1\) vertices. This path can be represented as \(\left(v_0,v_1,\ldots
+, v_m\right)\), where \(v_0=u\) and \(v_m= w\). Note that since there are only <m>n</m> vertices in the graph and m vertices are listed
+in the path after \(v_0\), we can apply the pigeonhole principle and be assured that there must be some duplication in the last <m>m</m> vertices
+of the vertex list, which represents a circuit in the path. This means that our path of minimum length can be reduced, which is a contradiction.
+\(\blacksquare\)
+
+
+
+<subsection xml:id="ss-Methods for Testing Connectivity"><title>Methods for Testing Connectivity</title><index><main>Methods for Testing Connectivity</main></index>
+
+
+\subsubsubsection{Questions:}
+
+
+
+Question 1: Given a graph and two vertices in the graph, is there a path from the first vertex to the second?
+
+
+
+Question 2: If the answer to Question 1 is <q>yes</q> then what is the path?
+
+
+\subsubsubsection{Some Answers}
+
+
+
+\pmb{ Method 1: Adjacency Matrix Method.} Suppose that the information about edges in a graph is stored in an adjacency matrix, <m>G</m>. The
+relation, <m>r</m>, that <m>G</m> defines is \(v r w\) if there is an edge connecting <m>v</m> to <m>w</m>. Recall that the composition
+of <m>r</m> with itself, \(r^2\) , is defined by \(v r^2 w\) if there exists a vertex <m>y</m> such that \(v r y\) and \(y r w\); that is,
+<m>v</m> is connected to <m>w</m> by a path of length 2. We could prove by induction that the relation \(r^k\) , \(k\geq 1\), is defined by
+\(v r^k w\) if and only if there is a path of length <m>k</m> from <m>v</m> to <m>w</m>. Since the transitive closure, \(r^+\) , is the
+union of <m>r</m>, \(r^2\) \(,r^3,\ldots\), we can answer our connectivity question by determining the transitive closure of <m>r</m>, which
+can be done most easily by keeping our relation in matrix form. Theorem 9.3.1 is significant in our calculations because it tells us that we need
+only go as far as \(E^n\) to determine the matrix of the transitive closure. 
+
+
+
+The main advantage of the adjacency matrix method is that the transitive closure matrix can answer all questions about the existence of paths between
+vertices. If \(G^+\)is the matrix of the transitive closure, \(v_i\), is connected to \(v_j\) if \(\left(E^+\right)_{i j }=1\) . A directed
+graph is connected if \(\left(E^+\right)_{i j }=1\) or \(\left(E^+\right)_{j i}=1\) for each \(i\neq j\). A directed graph is strongly connected
+if its transitive closure matrix has no zeros.
+
+
+
+A disadvantage of the adjacency matrix method is that the transitive closure matrix tells us whether a path exists, but not what the path is.
+
+
+
+\pmb{ Method 2: Broadcasting.} We will describe this method first with an example.
+
+
+
+<example xml:id="ex-9.3.1."><title>9.3.1.</title><p></p></example>
+ The football team at Mediocre State University (MSU) has had a bad year, 2 wins and 9 losses. Thirty days after the end of
+the football season, the university trustees is meeting to decide whether to rehire the head coach; things look bad for him. However, on the day
+of the meeting, the coach releases the following list of results from the past year:
+
+
+
+<m>\quad \quad</m>Mediocre State defeated Local A &amp; M.
+
+
+
+<m>\quad \quad</m>Local A &amp; M defeated City College.
+
+
+
+<m>\quad \quad</m>City College defeated Corn State U.
+
+
+
+<m>\quad \quad</m>... (25 results later)
+
+
+
+<m>\quad \quad</m>Tough Tech defeated Enormous State University (ESU).
+
+
+
+And ESU went on to win the national championship!
+
+
+
+The trustees were so impressed that they rehired the coach with a raise in pay! How did the coach come up with such a list?
+
+
+
+In reality, such lists exist occasionally and appear in newspapers from time to time. Of course they really don't prove anything since each team
+that defeated MSU in our example above can produce a similar chain of results. Since college football records are readily available, the coach could
+have found this list by trial and error. All that he needed to start with was that his team won at least one game. Since ESU lost one game, there
+was some hope of producing the chain.
+
+
+
+The problem of finding this list is equivalent to finding a path in the tournament graph for last year's football season that initiates at MSU and
+ends at ESU. Such a graph is far from complete and would be represented using edge lists. To make the coach's problem interesting,
+let's imagine that only the winner of a game remembers the result of the game. The coach's problem has now taken on the flavor of a maze. To reach
+ESU, he must communicate with the various teams along the path. One way that the coach could have discovered his list in time is by sending the following
+emails to the coaches of the two teams that MSU defeated during the season:
+
+\small{When this example was first written, we commented that ties should be ignored. Most recent NCAA rules call for a tiebreaker in college
+football and so ties are no longer an issue. Email was also not common and we described the process in terms of letter, not email messages. {
+}The coach could also have asked the MSU math department to use  Mathematica or Sage to get the path!}
+
+Dear Football Coach:\\
+Please follow these directions exactly.\\
+<m>\quad \quad</m>(1) If you are the coach at ESU, call the coach at MSU now and tell him who sent \\
+<m>\quad \quad</m> you this message.\\
+<m>\quad \quad</m>(2) If you are not the coach at ESU and this is the first message of this type that\\
+<m>\quad \quad</m>   you have received, then:\\
+<m>\quad \quad</m> (a) Remember who you received this message from.\\
+<m>\quad \quad</m> (b) Forward a copy of this message, signed by you, to each of the coaches \\
+<m>\quad \quad</m>   whose teams you defeated during the past year. \\
+<m>\quad \quad</m>(3)  Ignore this message if you have received one like it already.\\
+\\
+<m>\quad \quad \quad \quad \quad \quad </m>\\
+<m>\quad \quad \quad \quad \quad </m>Signed,\\
+\\
+\\
+<m>\quad \quad \quad \quad \quad </m>Coach of MSU
+
+
+
+Observations: From the conditions of this message, it should be clear that if everyone cooperates and if coaches participate within a day of receiving
+the message:
+
+
+<ol label=“a”>
+<li><p> If a path of length <m>n</m> exists from MSU to ESU, then the coach will know about it in <m>n</m> days.</p></li>
+<li><p> By making a series of phone calls, the coach can obtain the path that he wants by first calling the coach who defeated ESU (the person who
+sent ESU's coach that message). This coach will know who sent him a letter, and so on. Therefore, the vertex list of the desired path is obtained
+in reverse order.</p></li>
+<li><p> If a total of <m>M</m> football games were played, no more than <m>M</m> letters will be sent out.</p></li>
+<li><p> If a day passes without any letter being sent out, no path from MSU to ESU exists.</p></li>
+<li><p> This method could be extended to obtain a list of all teams that a given team can be connected to. Simply imagine a series of letters like
+the one above sent by each football coach and targeted at every other coach.
+
+
+
+The general problem of finding a path between two vertices in a graph, if one exists, can be solved exactly as we solved the problem above. The following
+algorithm is commonly called a  breadth-first search.
+
+
+
+\pmb{ Algorithm 9.3.1.} A broadcasting algorithm for finding a path between vertex <m>i</m> and vertex <m>j</m> of a graph having \textit{
+n} vertices. The each item \(V_k\) of a list \(V=\left\{V_1, V_2, \ldots , V_n\right\}\), consist of a Boolean field \(V_k.\text{found}\) and an
+integer field \(V_k.\text{from}\). The sets \(D_1\), \(D_2\), \dots, called  depth sets, have the property that if <m>k</m> is in
+\(D_r\) , then the shortest path from vertex <m>i</m> to vertex <m>k</m> is of length <m>r</m>. In Step 5, a stack is used to put the vertex
+list for the path from the vertex <m>i</m> to vertex <m>j</m> in the proper order.
+
+1. Set the value \(V_k.\text{found}\) equal to False, k = 1, 2, \dots , n\\
+2. r = 0\\
+3. \(D_0= \{i\}\)\\
+4. While ($\neg $ \(V_j.\text{found}\)) and \(\left(D_r\right.\)$\neq \emptyset $)\\
+<m>\quad \quad</m>4.1 \(D_{r+1}=\emptyset\)\\
+<m>\quad \quad</m>4.2 For each k in \(D_r\) do\\
+$\quad \quad \quad $For each edge (k,t) do\\
+$\quad \quad \quad \quad $If \(V_t.\text{found}\) == False \\
+$\quad \quad \quad \quad $ then <m>\quad \quad</m>\(V_t.\text{found}=\text{True}\)\\
+$\quad \quad \quad \quad $ <m>\quad \quad</m>\(V_t.\text{from} = k\\
+\\
+D_{r+1}=D_{r+1}\cup \{t\}\)\\
+<m>\quad \quad</m>4.3  r = r + 1\\
+5. If \(V_j.\text{found} = \text{True}\) Then\\
+<m>\quad \quad</m>5.1 S = Empty Stack\\
+<m>\quad \quad</m>5.2 k=j\\
+\hspace*{0.5ex} <m>\quad \quad</m>5.3 While \(V_k.\text{from} \neq  i\) \\
+\hspace*{0.5ex} $\quad \quad \quad $5.3.1 Push k onto S\\
+$\quad \quad \quad $5.3.2 \(k = V_k.\text{from}\)
+
+
+
+Notes on Algorithm 9.3.1:
+
+
+<ol label=“a”>
+<li><p> This algorithm will produce one path from vertex <m>i</m> to vertex <m>j</m>, if one exists, and that path will be as short as possible.
+If more than one path of this length exists, then the one that is produced depends on the order in which the edges are examined and the order in
+which the elements of \(D_r\) are examined in Step 4.</p></li>
+<li><p> The condition \(D_{r }\neq \emptyset\) is analogous to the condition that if no mail is sent in a given stage of the process, in which
+case MSU cannot be connected to ESU.</p></li>
+<li><p> This algorithm can be easily revised to find paths to all vertices that can be reached from vertex i. Step 5 would be put off until a specific
+path to a vertex is needed since the information in <m>V</m> contains an efficient list of all paths. The algorithm can also be extended further
+to find paths between any two vertices.
+
+<example xml:id="ex-9.3.2."><title>9.3.2.</title><p></p></example>
+ Consider the graph in Figure 9.3.1. The existence of a path from vertex 2 to vertex 3 is not difficult to determine by examination.
+After a few seconds, you should be able to find two paths of length four. Algorithm 9.3.1 will produce one of them.
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ Figure 9.3.1}}
+
+Suppose that the edges from each vertex are sorted in ascending order by terminal vertex. For example, the edges from vertex 3 would be in the order
+\((3, 1), (3, 4), (3, 5)\). In addition, assume that in the body of Step 4 of the algorithm, the elements of \(D_r\) are used in ascending order.
+Then at the end of Step 4, the value of V will be
+
+<m>\quad \quad</m> \(\begin{array}{cccccccc}
+ k &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp;   \\
+ V_k.\text{found} &amp; T &amp; T &amp; T &amp; T &amp; T &amp; T &amp;   \\
+ V_k.\text{from} &amp; 2 &amp; 4 &amp; 6 &amp; 1 &amp; 1 &amp; 4 &amp;   \\
+ \text{Depth} \text{set} &amp; 1 &amp; 3 &amp; 4 &amp; 2 &amp; 2 &amp; 3 &amp; \left(\text{value} \text{of} \text{$r$} \text{for} \text{which} k\in D_r\right) \\
+\end{array}\)
+
+Therefore, the path \((2, 1, 4, 6, 3)\) is produced by the algorithm. Note that if we wanted a path from 2 to 5, the information in <m>V</m> produces
+the path (2, 1, 5) since \(V_k.\text{from} = 1\) and \(V_1.\text{from} = 2\). A shortest circuit that initiates at vertex 2 is also available
+by noting that \(V_2.\text{from}=4\), \(V_4\text{.from = 1}\), and \(V_1.\text{from} = 2\); thus the circuit \((2, 1, 4, 2)\) is obtained.
+
+
+
+<subsubsection xml:id="sss-\(\)  Mathematica"><title>\(\) \textit{ Mathematica</title><index><main>\(\) \textit{ Mathematica</main></index> Note
+
+
+
+Consider the following defined by a adjecency matrix.
+
+\begin{doublespace}
+\noindent\(\pmb{\text{SeedRandom}[2014];}\\
+\pmb{\text{adj}=\text{RandomInteger}[\{0,1\},\{8,8\}]*\text{Table}[\text{Boole}[i\neq j],\{i,1,8\},\{j,1,8\}]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\left(
+\begin{array}{cccccccc}
+ 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+ 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 1 \\
+ 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+ 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+\end{array}
+\right)\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\pmb{g=\text{AdjacencyGraph}[\text{adj},\text{VertexLabels}\to \text{<q>Name</q>},\text{ImagePadding}\to 5]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\pmb\)
+\end{doublespace}
+
+
+
+Is 1 is connected to 8 in this graph? The function \(FindShortestPath\) will give us a shortest:
+
+\begin{doublespace}
+\noindent\(\pmb{\text{FindShortestPath}[g,1,8]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\{1,2,4,8\}\)
+\end{doublespace}
+
+
+
+If we are interested in reaching vertex 8 from all vertices, we can do that just as easily.
+
+\begin{doublespace}
+\noindent\(\pmb{\text{Map}[\{\#,\text{FindShortestPath}[g,\text{All},8][\#]\}\&amp;,\text{Range}[8]]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\left(
+\begin{array}{cc}
+ 1 &amp; \{1,6,4,8\} \\
+ 2 &amp; \{2,4,8\} \\
+ 3 &amp; \{3,2,4,8\} \\
+ 4 &amp; \{4,8\} \\
+ 5 &amp; \{5,8\} \\
+ 6 &amp; \{6,4,8\} \\
+ 7 &amp; \{7,2,4,8\} \\
+ 8 &amp; \{8\} \\
+\end{array}
+\right)\)
+\end{doublespace}
+
+
+
+Finally, here is a matrix of shortest paths between any two vertices in the graph.
+
+\begin{doublespace}
+\noindent\(\pmb{\text{Map}[\text{Apply}[\text{FindShortestPath}[g,\text{All},\text{All}],\#]\&amp;,\text{Outer}[\text{List},\text{Range}[1,8],\text{Range}[1,8]],}\\
+\pmb{\{2\}]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\left(
+\begin{array}{cccccccc}
+ \{1\} &amp; \{1,2\} &amp; \{1,3\} &amp; \{1,2,4\} &amp; \{1,2,4,5\} &amp; \{1,6\} &amp; \{1,6,7\} &amp; \{1,2,4,8\} \\
+ \{2,4,3,1\} &amp; \{2\} &amp; \{2,4,3\} &amp; \{2,4\} &amp; \{2,4,5\} &amp; \{2,4,6\} &amp; \{2,4,3,7\} &amp; \{2,4,8\} \\
+ \{3,1\} &amp; \{3,2\} &amp; \{3\} &amp; \{3,2,4\} &amp; \{3,2,4,5\} &amp; \{3,1,6\} &amp; \{3,7\} &amp; \{3,2,4,8\} \\
+ \{4,3,1\} &amp; \{4,3,2\} &amp; \{4,3\} &amp; \{4\} &amp; \{4,5\} &amp; \{4,6\} &amp; \{4,3,7\} &amp; \{4,8\} \\
+ \{5,7,1\} &amp; \{5,2\} &amp; \{5,8,3\} &amp; \{5,4\} &amp; \{5\} &amp; \{5,6\} &amp; \{5,7\} &amp; \{5,8\} \\
+ \{6,1\} &amp; \{6,1,2\} &amp; \{6,3\} &amp; \{6,4\} &amp; \{6,4,5\} &amp; \{6\} &amp; \{6,7\} &amp; \{6,4,8\} \\
+ \{7,1\} &amp; \{7,2\} &amp; \{7,3\} &amp; \{7,2,4\} &amp; \{7,2,4,5\} &amp; \{7,1,6\} &amp; \{7\} &amp; \{7,2,4,8\} \\
+ \{8,3,1\} &amp; \{8,3,2\} &amp; \{8,3\} &amp; \{8,5,4\} &amp; \{8,5\} &amp; \{8,5,6\} &amp; \{8,3,7\} &amp; \{8\} \\
+\end{array}
+\right)\)
+\end{doublespace}
+
+
+
+If no path exists between two vertices, the result is an empty list, as illustrated by this simple example.
+
+\begin{doublespace}
+\noindent\(\pmb{h=\text{Graph}[\{1\to 2,2\to 3,3\to 4\}];}\\
+\pmb{\text{FindShortestPath}[h,4,1]}\)
+\end{doublespace}
+
+\begin{doublespace}
+\noindent\(\{\}\)
+\end{doublespace}
+
+
+
+<subsubsection xml:id="sss-\(\) Sage Note"><title>\(\) Sage Note</title><index><main>\(\) Sage Note</main></index>
+
+
+
+Here is some sage code that
+
+
+
+1. Generates a random undireced graph with 18 vertices. For each pair of vertices, an edge is included between them with probability 0.2. {
+} Since there are \(\left(
+\begin{array}{c}
+ 18 \\
+ 2 \\
+\end{array}
+\right)=153\) potential edges, we expect that there will be approximately \(0.2\ 153\approx 31\) edges.
+
+
+
+2. Counts the number of edges. In this case the number is a bit less than expected.
+
+
+
+3. Finds a shortest path from vertex 0 to vertex 8.
+
+
+
+4. Generates a list of vertices that would be reached in a breadth-first search.  The expression \(Gr.depth_first_search(0) \)creates
+an iterator that is convenient for programming. Wrapping list( ) around the expression shows the order in which the vertices are visited.
+
+
+
+5.   Generates a list of vertices that would be reached in a depth-first search. In this type of search you travel in one direction away
+from the starting point until no further new vertices. We will discuss this search later.
+
+sage: Gr=graphs.RandomGNP(18,0.2);\\
+\hspace*{5.ex} Gr.show()\\
+<m>\quad \quad</m>\includegraphics{XC9_gr4.eps}
+
+\\
+sage:  len(Gr.edges(labels=False))\\
+\hspace*{2.ex} 25\\
+sage: <m>\quad \quad</m>Gr.shortest_path(0, 8)\\
+<m>\quad \quad</m>[0, 10, 14, 8]\\
+sage:  list(Gr.breadth_first_search(0))\\
+<m>\quad \quad</m>[0, 17, 10, 11, 4, 13, 14, 3, 15, 7, 8, 9, 16, 1, 12, 2, 6, 5]\\
+sage:  list(Gr.depth_first_search(0))\\
+<m>\quad \quad</m>[0, 11, 15, 12, 5, 6, 7, 14, 10, 9, 3, 4, 17, 13, 1, 16, 8, 2]\\
+
+
+
+<exercises xml:id="exercises-9-3">
+<title>Exercises for Section 9.3</title>
+
+
+
+
+</exercisegroup>
+<exercisegroup>
+<introduction><p>A Exercises</p></introduction>
+
+
+<exercise number="1"><statement> Apply Algorithm 9.3.1 to find a path from 5 to 1 in Figure 9.3.1. What would be the final value of <m>V</m>? Assume that the terminal vertices
+in edge lists and elements of the depth sets are put into ascending order, as we assumed in Example 9.3.1.</statement></exercise>
+<exercise number="2"><statement> Apply Algorithm 9.3.1 to find a path from the bedroom to outside using the edge list data structure in Example 9.2.1. Assume that the elements
+of the depth sets are put into ascending order.</statement></exercise>
+<exercise number="3"><statement> In a simple undirected graph with no self-loops, what is the maximum number of edges you can have, keeping the graph unconnected? What is the
+minimum number of edges that will assure that the graph is connected?</statement></exercise>
+<exercise number="4"><statement> Use a broadcasting algorithm to determine the shortest path from vertex a to vertex i in the graphs shown in Figure 9.3.2. List the depth sets
+and the stack that is obtained.
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ Figure 9.3.2}\\
+Exercise 4}
+
+
+</exercisegroup>
+<exercisegroup>
+<introduction><p>B Exercises</p></introduction>
+</statement></exercise>
+<exercise number="5"><statement> Prove (by induction on <m>k</m>) that if the relation <m>r</m> on vertices of a graph is defined by \(v r w\) if there is an edge connecting
+<m>v</m> to <m>w</m>, then \(r^k\) ,\(k \geq  1\), is defined by \(v r^kw\) if there is a path of length <m>k</m> from <m>v</m> to
+<m>w</m>.
+</section>
+
+<section xml:id="s-Traversal: Eulerian and Hamiltonian Graphs">
+<title>Traversal: Eulerian and Hamiltonian Graphs</title>
+<index><main>Traversal: Eulerian and Hamiltonian Graphs</main></index>
+
+
+
+The subject of graph traversals has a long history. In fact, the solution by Leonhard Euler (Switzerland, 1707-83) of the K{\" o}nigsberg Bridge
+Problem is considered by many to represent the birth of graph theory.
+
+
+
+<subsection xml:id="ss-The K{\" o"><title>The K{\" o</title><index><main>The K{\" o</main></index>nigsberg Bridge Problem and Eulerian Graphs}
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+\caption{\pmb{ Figure 9.4.1 }\\
+Map of K{\" o}nigsberg}
+
+
+
+A map of the Prussian city of K{\" o}nigsberg (circa 1735) in Figure 9.4.1 shows that there were seven bridges connecting the four land masses that
+made up the city. The legend of this problem states that the citizens of K{\" o}nigsberg searched in vain for a walking tour that passed over each
+bridge exactly once. No one could design such a tour and the search was abruptly abandoned with the publication of Euler's Theorem.
+
+<theorem xml:id="theorem-9.4.1: Euler' s Theorem$---$K{\" o"><title>9.4.1: Euler' s Theorem$---$K{\" o</title><index><main>9.4.1: Euler' s Theorem$---$K{\" o</main></index><statement></statement><proof></proof></theorem>
+nigsberg Case. }No walking tour of K{\" o}nigsberg can be designed so that each bridge is used exactly
+once.
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+\caption{\pmb{ Figure 9.4.2 }\\
+Multigraph representation of K{\" o}nigsberg}
+
+Proof: The map of K{\" o}nigsberg can be represented as an undirected multigraph, as in Figure 9.4.2. The four land masses are the vertices and each
+edge represents a bridge. The desired tour is then a path that uses each edge once and only once. Since the path can start and end at two different
+vertices, there are two remaining vertices that must be intermediate vertices in the path. If <m>x</m> is an intermediate vertex, then every time
+that you visit <m>x</m>, you must use two of its incident edges, one to enter and one to exit. Therefore, there must be an even number of edges
+connecting <m>x</m> to the other vertices. Since every vertex in the K{\" o}nigsberg graph has an odd number of edges, no tour of the type that
+is desired is possible.  \(\blacksquare\)
+
+
+
+As is typical of most mathematicians, Euler wasn't satisfied with solving only the K{\" o}nigsberg problem. His original theorem, which is paraphrased
+below, concerned the existence of paths and circuits like those sought in K{\" o}nigsberg. These paths and circuits have become associated with Euler's
+name.
+
+<definition xml:id="def- Eulerian Paths, Circuits, Graphs."><title> Eulerian Paths, Circuits, Graphs.</title><index><main> Eulerian Paths, Circuits, Graphs.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+
+ A Eulerian path through a graph is a path whose edge list contains each edge of the graph exactly
+once. If the path is a circuit, then it is called a Eulerian circuit. A Eulerian graph is a graph that possesses a Eulerian path.
+
+<example xml:id="ex-9.4.1."><title>9.4.1.</title><p></p></example>  Without tracing any paths, we can be sure that the graph below has an Eulerian circuit because all vertices have an even
+degree. This follows from the following theorem.
+
+
+\begin{center}\(\)
+\end{center}
+
+<theorem xml:id="theorem-9.4.2: Euler's Theorem$---$General Case."><title>9.4.2: Euler's Theorem$---$General Case.</title><index><main>9.4.2: Euler's Theorem$---$General Case.</main></index><statement></statement><proof></proof></theorem>
+ An undirected graph is Eulerian if and only if it is connected and has either zero or two
+vertices with an odd degree. If no vertex has an odd degree, then the graph has a Eulerian circuit.
+
+
+
+\pmb{ Proof:} It can be proven by induction that the number of vertices in an undirected graph that have an odd degree must be even. We will leave
+the proof of this fact to the reader as an exercise. The necessity of having either zero or two vertices of odd degree is clear from the proof of
+the K{\" o}nigsberg case of this theorem. Therefore, we will concentrate on proving that this condition is sufficient to ensure that a graph is Eulerian.
+Let <m>k</m> be the number of vertices with odd degree.
+
+
+
+ Phase 1. If \(k = 0\), start at any vertex, \(v_0\), and travel along any path, not using any edge twice. Since each vertex has an even
+degree, this path can always be continued past each vertex that you reach except \(v_0\). The result is a circuit that includes \(v_0\). If \(k =
+2\), let \(v_0\) be either one of the vertices of odd degree. Trace any path starting at \(v_0\) using up edges until you can go no further, as in
+the \(k = 0\) case. This time, the path that you obtain must end at the other vertex of odd degree that we will call \(v_1\).  At the end of Phase
+1, we have an initial path that may or may not be Eulerian. If it is not Eulerian, Phase 2 can be repeated until all of the edges have been used.
+Since the number of unused edges is decreased in any use of Phase 2, a Eulerian path must be obtained in a finite number of steps.
+
+
+
+ Phase 2. As we enter this phase, we have constructed a path that uses a proper subset of the edges in our graph. We will refer to this
+path as the current path. Let <m>V</m> be the vertices of our graph, <m>E</m> the edges, and \(E_u\) the edges that have been used in the current
+path. Consider the graph \(G' = \left(V, E --- E_u\right)\).  Note that every vertex in \(G'\) has an even degree. Select any edge, \textit{
+e}, from \(G'.\) Let \(v_a\) and \(v_b\) be the vertices that <m>e</m> connects. Trace a new path starting at \(v_a\) whose first edge is \textit{
+e}. We can be sure that at least one vertex of the new path is also in the current path since \((V, E)\) is connected. Starting at \(v_a\), there
+exists a path in \((V, E)\) to any vertex in the current path. At some point along this path, which we can consider the start of the new path, we
+will have intersected the current path. Since the degree of each vertex in G' is even, any path that we start at \(v_a\) can be continued until it
+is a circuit. Now, we simply augment the current path with this circuit. As we travel along the current path, the first time that we intersect the
+new path, we travel along it (see Figure 9.4.3). Once we complete the circuit that is the new path, we resume the traversal of the current path.
+
+\includegraphics{C9b_gr1.eps}
+
+
+\caption{\pmb{ Figure 9.4.3 }\\
+Augmenting the current path in the proof of Theorem 9.4.2}
+
+
+
+If the result of this phase is a Eulerian path, then we are finished; otherwise, repeat this phase. $\#$
+
+
+
+<example xml:id="ex-9.4.2."><title>9.4.2.</title><p></p></example>
+ The complete undirected graphs \(K_2\) and \(K_{2n+1}\), \(n = 1, 2, 3, \ldots\). .., are Eulerian. If \(n>1\), then \(K_{2n}\)
+is not Eulerian.
+
+
+
+<subsection xml:id="ss-HAMILTONIAN GRAPHS"><title>HAMILTONIAN GRAPHS</title><index><main>HAMILTONIAN GRAPHS</main></index>
+
+
+
+To search for a path that uses every vertex of a graph exactly once seems to be a natural next problem after you have considered Eulerian graphs.
+The Irish mathematician Sir William Hamilton (1805-65) is given credit for first defining such paths. He is also credited with discovering the quaternions,
+for which he was honored by the Irish government with a postage stamp in 2004.
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+<definition xml:id="def- Hamiltonian Paths, Circuits, and Graphs."><title> Hamiltonian Paths, Circuits, and Graphs.</title><index><main> Hamiltonian Paths, Circuits, and Graphs.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+
+ A Hamiltonian path through a graph is a path whose vertex list contains each vertex of
+the graph exactly once, except if the path is a circuit, in which case the initial vertex appears a second time as the terminal vertex. If the path
+is a circuit, then it is called a Hamiltonian circuit. A Hamiltonian graph is a graph that possesses a Hamiltonian path.
+
+<example xml:id="ex-9.4.3."><title>9.4.3.</title><p></p></example>
+ Figure 9.4.4 shows a graph that is Hamiltonian. In fact, it is the graph that Hamilton used as an example to pose the question
+of existence of Hamiltonian paths in 1859. In its original form, the puzzle that was posed to readers was called <q>Around the World.</q> The vertices
+were labeled with names of major cities of the world and the object was to complete a tour of these cities. The graph is also referred to as the
+dodecahedron graph, where vertices correspond with the corners of a dodecahedron and the edges are the edges of the solid that connect the corners.
+
+
+\includegraphics{C9b_gr2.eps}
+
+
+\caption{\pmb{ Figure 9.4.4 }\\
+The dodecahedron graph, a Hamiltonian graph.}
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ Figure 9.4.5 }\\
+The regular dodecahedron}
+
+
+
+Unfortunately, a simple condition doesn't exist that characterizes a Hamiltonian graph. An obvious necessary condition is that the
+graph be connected; however, there is a connected undirected graph with four vertices that is not Hamiltonian. Can you draw such a graph? 
+
+
+
+\pmb{ A Note on What Is Possible and What Is Impossible. }The search for a Hamiltonian path in a graph is typical of many simple-sounding problems
+in graph theory that have proven to be very difficult to solve. Although there are simple algorithms for conducting the search, they are impractical
+for large problems because they take such a long time to complete as graph size increases. Currently, every algorithm to search for a Hamiltonian
+path in a graph takes exponential time to complete. That is, if \(T(n)\) is the time it takes to search a graph of <m>n</m> vertices, then there
+is a positive real number <m>a</m>, \(a > 1\), such that \(T(n) > a^n\) for all but possibly a finite number of positive values for \textit{
+n}. No matter how close to 1 we can make <m>a</m>, \(a^n\) will grow at such a fast rate that the algorithm will not be feasible for large values
+of <m>n</m>. For a given algorithm, the value of a depends on the relative times that are assigned to the steps, but in the search for Hamiltonian
+paths, the actual execution time for known algorithms is large with 20 vertices. For 1,000 vertices, no algorithm is likely to be practical, and
+for 10,000 vertices, no currently known algorithm could be executed.
+
+
+
+It is an unproven but widely held belief that no faster algorithm exists to search for Hamiltonian paths. A faster algorithm would have to be one
+that takes only polynomial time; that is, \(T(n) < p(n)\), for some polynomial sequence <m>p</m>. To sum up, the problem of determining whether
+a graph is Hamiltonian is theoretically possible; however, for large graphs we consider it a practical impossibility. Many of the problems we will
+discuss in the next section, particularly the Traveling Salesman Problem, are thought to be impossible in the same sense. 
+
+<definition xml:id="def- The n-cube."><title> The n-cube.</title><index><main> The n-cube.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+
+ Let \(n \geq  1\), and let \(B^n\) be the set of strings of 0's and 1's with length n.  The n-cube is the undirected
+graph with a vertex for each string in \(B^n\) and an edge connecting each pair of strings that differ in exactly one position. 
+
+
+
+The 1-cube, 2-cube, 3-cube, and 4-cube are shown in Figure 9.4.6.
+
+\includegraphics{C9b_gr3.eps}
+
+
+\caption{\pmb{ Figure 9.4.6 }\\
+ n-cubes, \(n=1,2,3,4\)}
+
+
+
+\pmb{ The Gray Code.} A Hamiltonian circuit of the <m>n</m>-cube can be described recursively. The circuit itself, called the Gray Code, is
+not the only Hamiltonian circuit of the <m>n</m>-cube, but it is the easiest to describe. The standard way to write the Gray Code is as a column
+of strings, where the last string is followed by the first string to complete the circuit.
+
+
+
+Basis (\(n = 1\)): The Gray Code for the 1-cube is \(G_1=\left(
+\begin{array}{c}
+ 0 \\
+ 1 \\
+\end{array}
+\right)\).  Note that the edge between 0 and 1 is used twice in this circuit. That doesn't violate any rules for Hamiltonian circuits, but
+can only happen if a graph as two vertices.
+
+
+
+Recursion: Given the Gray Code for the <m>n</m>-cube, \(n > 1\), then \(G_{n+1}\) is obtained by (1) listing \(G_n\) with each string prefixed
+with 0, and then (2) reversing the list of strings in \(G_n\) with each string prefixed with 1. Symbolically, the recursion can
+be expressed as
+
+
+
+<m>\quad \quad</m>\(G_{n+1}=\left(
+\begin{array}{c}
+ 0 G_n \\
+ 1 G_n^r \\
+\end{array}
+\right)\)
+
+
+
+where \(G_n^r\) is the reverse of list \(G_n\).  The Gray Codes for the 2-cube and 3-cube are
+
+
+
+<m>\quad \quad</m>\(G_2= \left(
+\begin{array}{c}
+ 00 \\
+ 01 \\
+ 11 \\
+ 10 \\
+\end{array}
+\right)\)    and  \(G_3=\left(
+\begin{array}{c}
+ 000 \\
+ 001 \\
+ 011 \\
+ 010 \\
+ 110 \\
+ 111 \\
+ 101 \\
+ 100 \\
+\end{array}
+\right)\)
+
+
+
+\pmb{ Applications of the Gray Code.} One application of the Gray code was discussed in the Introduction to this book.  An other application is
+in statistics. In a statistical analysis, there is often a variable that depends on several factors, but exactly which factors are significant
+may not be obvious. For each subset of factors, there would be certain quantities to be calculated. One such quantity is the multiple correlation
+coefficient for a subset. If the correlation coefficient for a given subset, <m>A</m>, is known, then the value for any subset that is obtained
+by either deleting or adding an element to <m>A</m> can be obtained quickly. To calculate the correlation coefficient for each set, we simply
+travel along \(G_n\), where <m>n</m> is the number of factors being studied. The first vertex will always be the string of 0's, which represents
+the empty set. For each vertex that you visit, the set that it corresponds to contains the \(k^{\text{th}}\) factor if the \(k^{\text{th}}\) character
+is a 1.
+
+
+<exercises xml:id="exercises-9-4">
+<title>Exercises for Section 9.4</title>
+
+
+
+
+</exercisegroup>
+<exercisegroup>
+<introduction><p>A Exercises</p></introduction>
+
+
+<exercise number="1"><statement> Locate a map of New York City and draw a graph that represents its land masses, bridges and tunnels. Is there a Eulerian path through New York
+City? You can do the same with any other city that has at least two land masses.</statement></exercise>
+<exercise number="2"><statement> Which of the drawings in Figure 9.4.7 can be drawn without removing your pencil from the paper and without drawing any line twice?
+
+\begin{doublespace}
+\noindent\(\pmb\)
+\end{doublespace}
+
+
+\caption{\pmb{ Figure 9.4.7 }\\
+Exercise 2}</statement></exercise>
+<exercise number="3"><statement><p> Write out the Gray Code for the 4-cube.</p></statement></exercise>
+<exercise number="4"><statement><p> Find a Hamiltonian circuit for the dodecahedron graph in Figure 9.4.4.</p></statement></exercise>
+<exercise number="5"><statement> The Euler Construction Company has been contracted to construct an extra bridge in K{\" o}nigsberg so that a Eulerian path through the town
+exists. Can this be done, and if so, where should the bridge be built?</statement></exercise>
+<exercise number="6"><statement> (a) Determine which of the graphs in Figure 9.4.8 has a Eulerian path?
+
+
+
+   (b) Find a Eulerian path for the graphs that have one.
+
+\begin{doublespace}
+\noindent\(\pmb\)
+\end{doublespace}
+
+
+\caption{\pmb{ Figure 9.4.8 }\\
+ Exercise 6}
+
+
+</exercisegroup>
+<exercisegroup>
+<introduction><p>B Exercises</p></introduction>
+</statement></exercise>
+<exercise number="7"><statement><p> Formulate Euler's theorem for directed graphs.</p></statement></exercise>
+<exercise number="8"><statement><p> Prove that the number of vertices in an undirected graph with odd degree must be even. (Hint: Prove by induction on the number of edges.)</p></statement></exercise>
+<exercise number="9"><statement> (a) Under what conditions will a round-robin tournament graph be Eulerian?
+
+
+
+   (b) Prove that every round-robin tournament graph is Hamiltonian.</statement></exercise>
+<exercise number="10"><statement> For what values of <m>n</m> is  n-cube Eulerian.
+
+
+<section xml:id="s-Graph Optimization">
+<title>Graph Optimization</title>
+<index><main>Graph Optimization</main></index>
+
+
+
+The common thread that connects all of the problems in this section is the desire to optimize (maximize or minimize) a quantity that is associated
+with a graph. We will concentrate most of our attention on two of these problems, the Traveling Salesman Problem and the Maximum Flow Problem. At
+the close of this section, we will discuss some other common optimization problems.
+
+<definition xml:id="def- Weighted Graph."><title> Weighted Graph.</title><index><main> Weighted Graph.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+
+ A weighted graph, \((V, E, w)\), is a graph \((V, E)\) together with a weight function \(w: E \to \mathbb{R}\).
+If \(e \in  E\), \(w(e)\) is the weight on edge e.
+
+
+
+As you will see in our examples, \(w(e)\) is usually a cost associated with the edge e; therefore, most weights will be positive.
+
+
+
+<example xml:id="ex-9.5.1."><title>9.5.1.</title><p></p></example>
+ Let V be the set of six capital cities in New England: Boston, Augusta, Hartford, Providence, Concord, and Montpelier. Let
+E be \(\{\{a, b\} \in  V \times V| a\neq  b\}\); that is, \((V,E)\) is a complete unordered graph. An example of a weight function on this graph
+is
+
+
+
+<m>\quad \quad</m> \(w\left(c_1, c _2\right) = \text{the} \text{distance} \text{from} c_1 \text{to} c_2\). 
+
+
+
+Many road maps define distance functions as in Figure 9.5.1.
+
+
+
+ \(\begin{array}{ccccccc}
+   &amp; \text{ME} &amp; \text{MA} &amp; \text{NH} &amp; \text{CT} &amp; \text{VT} &amp; \text{RI} \\
+ \text{Augusta}, \text{ME} &amp; - &amp; 165 &amp; 148 &amp; 266 &amp; 190 &amp; 208 \\
+ \text{Boston}, \text{MA} &amp; 165 &amp; - &amp; 75 &amp; 103 &amp; 192 &amp; 43 \\
+ \text{Concord}, \text{NH} &amp; 148 &amp; 75 &amp; - &amp; 142 &amp; 117 &amp; 109 \\
+ \text{Hartford}, \text{CT} &amp; 266 &amp; 103 &amp; 142 &amp; - &amp; 204 &amp; 70 \\
+ \text{Montpelier}, \text{VT} &amp; 190 &amp; 192 &amp; 117 &amp; 204 &amp; - &amp; 223 \\
+ \text{Providence}, \text{RI} &amp; 208 &amp; 43 &amp; 109 &amp; 70 &amp; 223 &amp; - \\
+\end{array}\)
+
+
+\caption{\pmb{ FIGURE 9.5.1}\\
+ Distances between capital cities of New England}
+
+
+
+<subsection xml:id="ss-\textsf{ The Traveling Salesman Problem"><title>\textsf{ The Traveling Salesman Problem</title><index><main>\textsf{ The Traveling Salesman Problem</main></index>}
+
+
+
+The Traveling Salesman Problem is, given a weighted graph, to find a circuit \(\left(e_1, e_2,\ldots ,e_n\right)\) that visits every vertex at least
+once and minimizes the sum of the weights,
+
+
+
+$\quad \quad \quad $\(\sum _{i=1}^n w\left(e_i\right)\)
+
+
+
+Any such circuit is called an  optimal path.
+
+Notes.  (a) Some statements of the Traveling Salesman Problem require that the circuit be Hamiltonian. In many applications, the graph in question
+will be complete and this restriction presents no problem.
+
+(b) If the weight on each edge is constant, for example, \(w(e) = 1\), then the solution to the Traveling Salesman Problem will be any Hamiltonian
+circuit, if one exists.
+
+<example xml:id="ex-9.5.2."><title>9.5.2.</title><p></p></example>
+ The Traveling Salesman Problem gets its name from the situation of a salesman who wants to minimize the number of miles that
+he travels in visiting his customers. For example, if a salesman from Boston must visit the other capital cities of New England, then the problem
+is to find a circuit in the weighted graph of Example 9.5.1. Note that distance and cost are clearly related in this case. In addition, tolls
+and traffic congestion might also be taken into account in this case. 
+
+
+
+The search for an efficient algorithm that solves the Traveling Salesman has occupied researchers for years. If the graph in question is complete,
+there are \((n -1)!\) different circuits. As <m>n</m> gets large, it is impossible to check every possible circuit. The most efficient algorithms
+for solving the Traveling Salesman Problem take an amount of time that is proportional to \(n 2^n\). Since this quantity grows so quickly, we can't
+expect to have the time to solve the Traveling Salesman Problem for large values of <m>n</m>. Most of the useful algorithms that have been developed
+have to be heuristic; that is, they find a circuit that should be close to the optimal one. One such algorithm is the <q>closest neighbor</q> algorithm,
+one of the earliest attempts at solving the Traveling Salesman Problem. The general idea behind this algorithm is, starting at any vertex, to visit
+the closest neighbor to the starting point. At each vertex, the next vertex that is visited is the closest one that has not been reached. This shortsighted
+approach typifies heuristic algorithms called  greedy algorithms, which attempt to solve a minimization (maximization) problem
+by minimizing (maximizing) the quantity associated with only the first step.
+
+\pmb{ Algorithm 9.5.1. The Closest Neighbor Algorithm.} Let \(G = (V, E, w)\) be a complete weighted graph with \(|V| = n\). The closest neighbor
+circuit through G starting at \(v_1\) is \(\left(v_1, v_2,\ldots ,v_n\right)\), defined by the steps:\\
+1. \(V_1= V-\left\{v_1\right\}\).\\
+2. For \(k\text{  }= 2  \text{to} n - 1\) \\
+<m>\quad \quad</m>2.1 \(v_k= \text{the} \text{closest} \text{vertex} \text{in} V_{k-1} \text{to} v_{k-1}\)\\
+<m>\quad \quad</m>(* \(w\left(v_{k-1} , v _k\right) = \min  \left(w\left(v_{k-1} ,v\right) | v \in  V_{k-1}\right)\) *)\\
+\hspace*{11.5ex} In case of a tie for closest, \(v_k\) may be chosen arbitrarily.\\
+<m>\quad \quad</m>2.2 \(V_k= V_{k-1} - \left\{v_k \right\}\)\\
+3. \(v_n= \text{the} \text{only} \text{element} \text{of} V_n\).
+
+
+
+
+
+
+
+The cost of the closest neighbor circuit is
+
+
+
+ <m>\quad \quad</m>\(\sum _{k=1}^{n-1} w\left(v_k,v_{k+1}\right)\text{  }+w\left(v_n,v_1\right)\)
+
+<example xml:id="ex-9.5.3."><title>9.5.3.</title><p></p></example>
+ The closest neighbor circuit starting at A in Figure 9.5.2 is \((1,3,2,4,1)\), with a cost of 29. The optimal path is \((1,2,3,4,1)\),
+with a cost of 27.
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ FIGURE 9.5.2}\\
+Example 9.5.3}
+
+
+
+Although the closest neighbor circuit is often not optimal, we may be satisfied if it is close to optimal. If \(C_{\text{opt}}\) and \(C_{\text{cn}}\)
+are the costs of optimal and closest neighbor circuits in a graph, then it is always the case that \(C_{\text{opt}}\leq C_{\text{cn}}\) or \(\frac{C_{\text{cn}}}{C_{\text{opt}}}\geq
+1\). We can assess how good the closest neighbor algorithm is by determining how small the quantity \(\frac{C_{\text{cn}}}{C_{\text{opt}}}\) gets.
+If it is always near 1, then the algorithm is good. However, if there are graphs for which it is large, then the algorithm may be discarded. Note
+that in Example 9.5.3, \(\frac{C_{\text{cn}}}{C_{\text{opt}}} = \frac{29}{27}\approx 1.074\). A 7$\%$ increase in cost may or may not be considered
+significant, depending on the situation.
+
+<example xml:id="ex-9.5.4."><title>9.5.4.</title><p></p></example>
+ A salesman must make stops at vertices A, B, and C, which are all on the same one-way street. The graph in Figure 9.5.3 is
+weighted by the function
+
+<m>\quad \quad</m> \(w(i, j) = \text{the} \text{time} \text{it} \text{takes} \text{to} \text{drive} \text{from} \text{vertex} i \text{to} \text{vertex} j.\)
+
+
+Note that if <m>j</m> is down the one-way street from <m>i</m>, then \(w(i, j) < w (j, i)\). The values of \(C_{\text{opt}}\) , and \(C_{\text{cn}}\)
+are 20 and 32, respectively. Verify that \(C_{\text{cn}}\) is 32 by using the closest neighbor algorithm. The value of \(\frac{C_{\text{cn}}}{C_{\text{opt}}}
+= 1.6\) is significant in this case since our salesman would spend 60$\%$ more time on the road if he used the closest neighbor algorithm.
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+\caption{\pmb{ FIGURE 9.5.3}\\
+Example 9.5.4}
+
+
+
+A more general result relating to the closest neighbor algorithm presumes that the graph in question is complete and that the weight function satisfies
+the conditions 
+
+
+
+<m>\quad \quad</m>(1) \(w(x, v) = w(y, x)\) for all  x, y in the vertex set, and 
+
+
+
+<m>\quad \quad</m>(2) \(w(x, y) + w(y, z) \geq  w(x, z)\) for all  x, y, z in the vertex set.
+
+
+
+The first condition is called the  symmetry condition and the second is the  triangle inequality.
+
+
+
+The following theorem's reference needs to be updated:
+
+Theorem 9.5.1. If \((V, E, w)\) is a complete weighted graph that satisfies the symmetry and triangle inequality conditions, then
+
+<m>\quad \quad</m>\(\frac{C_{\text{cn}}}{C_{\text{opt}}}\leq \frac{\left\lceil \log _2 (2n)\right\rceil }{2}\)  $\quad \quad \quad $\textup{ (9.5a)}
+
+Proof: See Liu, pages 105-109.
+
+
+
+Notes: (a) If \(|V|=8\), then this theorem says that \(C_{\text{cn}}\) can be no larger than twice the size of \(C_{\text{opt}}\); however,
+it doesn't say that the closest neighbor circuit will necessarily be that far from an optimal circuit. The quantity \(\frac{\left\lceil \log _2 (2n)\right\rceil
+}{2}\) is called an upper bound for the ratio \(\frac{C_{\text{cn}}}{C_{\text{opt}}}\). It tells us only that things can't be any worse than the
+upper bound. Certainly, there are many graphs with eight vertices such that the optimal and closest neighbor circuits are the same. What is left
+unstated in this theorem is whether there are graphs for which the quantities in 9.5a are equal. If there are such graphs, we say that the upper
+bound is  sharp.</p></li>
+<li><p> The value of \(\frac{C_{\text{cn}}}{C_{\text{opt}}}\) in Example 9.5.4 is 1.6, which is greater than \(\frac{\left\lceil \log _2 (2\ 4)\right\rceil
+}{2} = 1.5\); however, the weight function in this example does not satisfy the conditions of the theorem.
+
+
+
+<subsubsection xml:id="sss-The \textsf{ Traveling Salesman Problem$---$Unit Square Version"><title>The \textsf{ Traveling Salesman Problem$---$Unit Square Version</title><index><main>The \textsf{ Traveling Salesman Problem$---$Unit Square Version</main></index>}
+
+
+
+<example xml:id="ex-9.5.5."><title>9.5.5.</title><p></p></example>
+ A robot is programmed to weld joints on square metal plates. Each plate must be welded at prescribed points on the square.
+To minimize the time it takes to complete the job, the total distance that a robot's arm moves should be minimized. Let \(d(P, Q)\) be the distance
+between <m>P</m> and <m>Q</m>. Assume that before each plate can be welded, the arm must be positioned at a certain point \(P_0\) . Given
+a list of <m>n</m> points, we want to put them in order so that
+
+
+
+      \(d\left(P _0,P_1\right) + d\left(P_1,P _2 \right) +\cdots +d\left(P_{n-1},P_n\right)+ d\left(P_n ,P _0 \right)\)
+
+
+
+is as small as possible.
+
+
+
+The type of problem that is outlined in Example 9.5.5 is of such importance that it is probably the most studied version of the Traveling Salesman
+Problem. What follows is the usual statement of the problem. Let \([0, 1] = \{x \in \mathbb{R} |\text{  }0 \leq x\leq  1\}\), and let \(S = [0,
+1]^2\), the unit square. Given <m>n</m> pairs of real numbers \(\left(x_1, y_1\right)\), \(\left(x_2,y_2\right)\), \dots, \(\left(x_n,y_n\right)\)
+in <m>S</m> that represent the <m>n</m> vertices of a \(K_n\) , find a circuit of the graph that minimizes the sum of the distances traveled
+in traversing the circuit.
+
+
+
+Since the problem calls for a circuit, it doesn't matter which vertex we start at; assume that we will start at \(\left(x_1,y_1\right)\). Once the
+problem is solved, we can always change our starting position. A function can most efficiently describe a circuit in this problem. Every bijection
+\(f: \{1, . . . , n\} \to  \{1, . . . , n\}\) with \(f(1) = 1\) describes a circuit
+
+
+
+ <m>\quad \quad</m>\(\left(x_1, y_1\right),\left(x_{f(2)},y_{f(2)}\right),\ldots ,\left(x_{f(n)},y_{f(n)}\right)\) 
+
+
+
+Since there are \((n - 1)!\) such bijections, an examination of all possible circuits is not feasible for large values of <m>n</m>.
+
+
+
+One popular heuristic algorithm is the strip algorithm: 
+
+\pmb{ Algorithm 9.5.2: The Strip Algorithm.} Given <m>n</m> points in the unit square:
+
+Phase 1:
+
+(1.1)Divide the square into \(\left\lceil \sqrt{n/2}\right\rceil\) vertical strips, as in Figure 9.5.4. Let d be the width of each strip. If a point
+lies on a boundary between two strips, consider it part of the left-hand strip.
+
+(1.2)Starting from the left, find the first strip that contains one of the points. Locate the starting point by selecting the first point that is
+encountered in that strip as you travel from bottom to top. We will assume that the first point is \(\left(x_1,y_1\right)\)
+
+(1.3)Alternate traveling up and down the strips that contain vertices until all of the vertices have been reached.
+
+(1.4)Return to the starting point.
+
+Phase 2:
+
+(2.1)Shift all strips \(d/2\) units to the right (creating a small strip on the left).
+
+(2.2)Repeat Steps 1.2 through 1.4 of Phase 1 with the new strips.
+
+When the two phases are complete, choose the shorter of the two circuits obtained.
+
+
+
+Step 1.3 needs a bit more explanation. How do you travel up or down a strip? In most cases, the vertices in a strip will be vertically distributed
+so that the order in which they are visited is obvious. In some cases, however, the order might not be clear, as in the third strip in Phase I of
+Figure 9.5.4. Within a strip, the order in which you visit the points (if you are going up the strip) is determined thusly: \(\left(x_i,y_i\right)\)
+precedes \(\left(x_j,y_j\right)\) if \(y_i<y_j\) or if \(y_i=y_j\) and \(x_i<x_j\) . In traveling down a strip, replace \(y_i<y_j\) with \(y_i>y_j\).
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ FIGURE 9.5.4}\\
+The Strip Algorithm}
+
+
+
+The selection of \(\left\lceil \sqrt{n/2}\right\rceil\) strips was made in a 1959 paper by Beardwood, Halton, and Hammersley. It balances the problems
+that arise if the number of strips is too small or too large. If the square is divided into too few strips, some strips may be packed with vertices
+so that visiting them would require excessive horizontal motion. If too many strips are used, excessive vertical motion tends to be the result. An
+update on what is known about this algorithm is contained in the paper by K. J. Supowit, E. M. Reingold, and D. A. Plaisted.
+
+
+
+Since the construction of a circuit in the square consists of sorting the given points, it should come as no surprise that the strip algorithm requires
+a time that is roughly a multiple of \(n \log  n\) time units when <m>n</m> points are to be visited.
+
+
+
+The worst case that has been encountered with this algorithm is one in which the circuit obtained has a total distance of approximately \(\sqrt{2n}\)
+(see Sopowit et al.).
+
+
+
+<subsection xml:id="ss-NETWORKS AND THE MAXIMUM FLOW PROBLEM"><title>NETWORKS AND THE MAXIMUM FLOW PROBLEM</title><index><main>NETWORKS AND THE MAXIMUM FLOW PROBLEM</main></index>
+
+<definition xml:id="def- Network."><title> Network.</title><index><main> Network.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+
+ A network is a simple weighted directed graph that contains two distinguished vertices called the  source
+and the  sink with the property that the indegree of the source and outdegree of the sink are both zero.  The weight function o home112
+
+n a network is the capacity function. 
+
+
+
+ An example of a real situation that can be represented by a network is a city's water system. A reservoir would be the source, while a distribution
+point in the city to all of the users would be the sink. The system of pumps and pipes that carries the water from source to sink makes up the remaining
+network. We can assume that the water that passes through a pipe in one minute is controlled by a pump and the maximum rate is determined by the
+size of the pipe and the strength of the pump. This maximum rate of flow through a pipe is called its capacity and is the information that the weight
+function of a network contains.
+
+<example xml:id="ex-9.5.6."><title>9.5.6.</title><p></p></example>
+ Consider the system that is illustrated in Figure 9.5.5. The numbers that appear next to each pipe indicate the capacity of
+that pipe in thousands of gallons per minute. This map can be drawn in the form of a network, as in Figure 9.5.6.
+
+\includegraphics{C9b_gr4.eps}
+
+
+\caption{\pmb{ FIGURE 9.5.5}\\
+Diagram of a city's water system}
+
+Although the material passing through this network is water, networks can also represent the flow of other materials, such as automobiles, electricity,
+telephone calls or patients in a health system.
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+\caption{\pmb{ FIGURE 9.5.6}\\
+Flow diagram for a city's water system}
+
+
+
+The Maximum Flow Problem is derived from the objective of moving the maximum amount of water or other material from the source to the sink. To measure
+this amount, we define a flow as a function \(f: E \to \mathbb{R}\) such that (1) the flow of material through any edge is nonnegative and no larger
+than its capacity: \(0 \leq  f(e) \leq  w(e)\), for all \(e\in  E\); and (2) for each vertex other than the source and sink, the total amount of
+material that is directed into a vertex is equal to the total amount that is directed out:
+
+
+
+ <m>\quad \quad</m>\(\begin{array}{ccc}
+ \sum _{(x,v)\in E} f(x,v)  &amp; = &amp; \sum _{(v,y)\in E} f(v,y) \\
+ \text{Flow} \text{into} v &amp; = &amp; \text{Flow} \text{out} \text{of} v \\
+\end{array}\)      (9.5b)
+
+
+
+The summation notation on the left of 9.5b represents the sum of the flows through each edge in <m>E</m> that has <m>v</m> as a terminal vertex.
+The right-hand side indicates that you should add all of the flows through edges that initiate at <m>v</m>.
+
+<theorem xml:id="theorem-9.5.2."><title>9.5.2.</title><index><main>9.5.2.</main></index><statement></statement><proof></proof></theorem>
+ If <m>f</m> is a flow, then
+
+<m>\quad \quad</m>\(\sum _{(\text{source},v)\in E} f(\text{source},v)\text{  }=\sum _{(v,\text{sink})\in E} f(v,\text{sink})\)  
+
+
+
+
+
+
+
+This common value is called the value of the flow. We will denote the value of a flow by \(V(f)\). The value of a flow represents the amount of
+material that passes through the network with that flow.
+
+
+
+\pmb{ Proof. } Subtract the right-hand side of 9.5b from the left-hand side. The result is: 
+
+
+
+<m>\quad \quad</m>\(\text{Flow} \text{into} v - \text{Flow} \text{out} \text{of} v = 0\)
+
+
+
+ Now sum up these differences for each vertex in \(V' = V - \{\text{source}, \text{sink}\}\). The result is
+
+
+
+<m>\quad \quad</m>\(\sum _{v\in V'}  \left(\sum _{(x,v)\in E} f(x,v)-\sum _{(v,y)\in E} f(v,y)\right)= 0\)  <m>\quad \quad</m>(9.5c)
+
+
+
+Now observe that if an edge connects two vertices in V, its flow appears as both a positive and a negative term in 9.5c. This means that the only
+positive terms that are not cancelled out are the flows into the sink. In addition, the only negative terms that remain are the flows out of the
+source. Therefore,
+
+
+
+<m>\quad \quad</m>\(\sum _{(v,\text{sink})\in E} f(v,\text{sink})-\sum _{(\text{source},v)\in E} f(\text{source},v) =0\)$\quad \quad \quad $\(\blacksquare\)
+
+
+
+<subsubsection xml:id="sss-MAXIMAL FLOWS"><title>MAXIMAL FLOWS</title><index><main>MAXIMAL FLOWS</main></index>
+
+
+
+Since the Maximum Flow Problem consists of maximizing the amount of material that passes through a given network, it is equivalent to finding a flow
+with the largest possible value. Any such flow is called a maximal flow.
+
+
+
+For the network in Figure 9.5.6, one flow is \(f_1\), defined by \(f_1\left(e_1\right)=25\), \(f_1\left(e_2\right)=20\), \(f_1\left(e_3\right)=0\),
+\(f_1\left(e_4\right)= 25\), and \(f_1\left(e_5\right)=20\). The value of \(f_1\), \(V\left(f_1\right)\), is 45. Since the total flow into the sink
+can be no larger than 50 (\(w \left(e_4\right) + w \left(e_5\right) = 30 + 20\)), we can tell that \(f_1\) is not very far from the solution. Can
+you improve on \(f_1\) at all? The sum of the capacities into the sink can't always be obtained by a flow. The same is true for the sum of the
+capacities out of the source. In this case, the sum of the capacities out of the source is 60, which obviously can't be reached in this network.
+
+
+
+A solution of the Maximum Flow Problem for this network is the maximal flow \(f_2\), where \(f_2\left(e_1\right)=25\), \(f_2\left(e_2\right)=25\),
+\(f_2\left(e_3\right)=5\), \(f_2\left(e_4\right)= 30\), and \(f_2\left(e_5\right)=20\), with \(V\left(f_2\right) = 50\). This solution is not unique.
+In fact, there is an infinite number of maximal flows for this problem.
+
+
+
+There have been several algorithms developed to solve the Maximal Flow Problem. One of these is the Ford and Fulkerson Algorithm (FFA). The FFA consists
+of repeatedly finding paths in a network called flow augmenting paths until no improvement can be made in the flow that has been obtained.
+
+<definition xml:id="def- Flow Augmenting Path."><title> Flow Augmenting Path.</title><index><main> Flow Augmenting Path.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+
+ Given a flow f in a network \((V, E)\), a flow augmenting path with respect to f is a simple path from the
+source to the sink using edges both in their forward and their reverse directions such that for each edge e in the path, \(w(e) - f(e) > 0\) if
+e is used in its forward direction and \(f(e) > 0\) if e is used in the reverse direction.
+
+
+
+<example xml:id="ex-9.5.7."><title>9.5.7.</title><p></p></example>
+ For \(f_1\) in Example 9.5.6, a flow augmenting path would be\(\left(e_2 , e_3 , e_4 \right)\) since
+
+
+
+<m>\quad \quad</m>\(w\left(e_2\right)-f_1\left(e_2\right)= 15\), \(w\left(e_3\right)-f_1\left(e_3\right)=5\), and \(w\left(e_4\right)-f_1\left(e_4\right)=5\).
+
+
+
+These positive differences represent unused capacities, and the smallest value represents the amount of flow that can be added to each edge in the
+path. Note that by adding 5 to each edge in our path, we obtain \(f_2\), which is maximal. If an edge with a positive flow is used in its reverse
+direction, it is contributing a movement of material that is counterproductive to the objective of maximizing flow. This is why the
+algorithm directs us to decrease the flow through that edge.
+
+\pmb{ Algorithm 9.5.3: The Ford and Fulkerson Algorithm. }
+<ol label=“1”>
+<li><p> Define the flow function \(f_0\) by \(f_0(e)=0\) for each edge \(e \in  E\).
+
+(2) i = 0.
+
+(3) Repeat:
+
+<m>\quad \quad</m>(3.1)If possible, find a flow augmenting path with respect to \(f_i\).
+
+<m>\quad \quad</m>(3.2)If a flow augmenting path exists, then:
+
+<m>\quad \quad</m>(3.2.1)Determine
+
+<m>\quad \quad</m>   \(d = \min  \left\{\left\{\left.w(e) - f_i(e) \right| e \text{is} \text{used} \text{in} \text{the} \text{forward} \text{direction}\right\},\text{
+            }\left\{\left.f_i(e) \right| e \text{is} \text{used} \text{in} \text{the} \text{reverse} \text{direction}\right\}\right\}\)
+
+<m>\quad \quad</m>(3.2.2)Define \(f_{i+1}\) by
+
+$\quad \quad \quad $\(\begin{array}{cc}
+ f_{i+1}(e) = f_i(e) &amp;  \text{if} e \text{is} \text{not} \text{part} \text{of} \text{the} \text{flow} \text{augmenting} \text{path} \\
+ f_{i+1}(e)=f_i(e)+d &amp; \text{if} e \text{is} \text{used} \text{in} \text{the} \text{forward} \text{direction} \\
+ f_{i+1}(e)=f_i(e)-d &amp; \text{if} e \text{is} \text{used} \text{in} \text{the} \text{reverse} \text{direction} \\
+\end{array}\)
+
+<m>\quad \quad</m>(3.2.3) i = i + \textup{ 1}.
+
+     until no flow augmenting path exists.
+
+(4) Terminate with a maximal flow \(f_i\)
+
+
+
+Notes:
+
+
+<ol label=“a”>
+<li><p> It should be clear that every flow augmenting path leads to a flow of increased value and that none of the capacities of the network can be
+violated.</p></li>
+<li><p> The depth-first search should be used to find flow augmenting paths since it is far more efficient than the breadth-first search in this situation.
+The depth-first search differs from the broadcasting algorithm (a variation of the breadth-first search) in that you sequentially visit vertices
+until you reach a <q>dead end</q> and then backtrack.</p></li>
+<li><p> There have been networks discovered for which the FFA does not terminate in a finite number of steps. These examples all have irrational capacities.
+It has been proven that if all capacities are positive integers, the FFA terminates in a finite number of steps. See Ford and Fulkerson, Even, or
+Berge for details.</p></li>
+<li><p> When you use the FFA to solve the Maximum Flow Problem by hand it is convenient to label each edge of the network with the fraction \(\left.f_i(e)\right/w(e)\).
+
+\pmb{ A Depth-First Search for the Sink Initiating at the Source.} Let \(E'\) be the set of directed edges that can be used in producing a flow augmenting
+path. Add to the network a vertex called  start and the edge \((\text{start}, \text{source}).\)\\<ol label=“1”>
+<li><p> <m>\quad \quad</m>S = vertex set of the network.\\
+(2) <m>\quad \quad</m>\(p\text{  }= \text{start}\).\\
+(3) <m>\quad \quad</m>\(p = \text{source}\text{  }\) \(\text{(*}\text{Move} p \text{along} \text{the} \text{edge} (\text{start}, \text{source}) \text{*)}\)\\
+(4) \pmb{ While} <m>p</m> is not equal to  start or  sink \pmb{ do}.\\
+<m>\quad \quad</m>\pmb{ If} an edge in \(E'\) exists that takes you from <m>p</m> to another vertex in <m>S</m>\\
+\hspace*{0.5ex} <m>\quad \quad</m>\pmb{ then} set <m>p</m> to be that next vertex and delete the edge from \(E'\).\\
+             \pmb{ else} reassign <m>p</m> to be the vertex that <m>p</m> was reached from (i.e., backtrack).\\
+(5) \pmb{ If} \(p = \text{start}\),  \\
+<m>\quad \quad</m>\pmb{ then} no flow augmenting path exists.\\
+<m>\quad \quad</m>\pmb{ else} \(p = \text{sink}\), you have found a flow augmenting path.
+
+
+
+
+
+
+
+<example xml:id="ex-9.5.8."><title>9.5.8.</title><p></p></example>
+ Consider the network in Figure 9.5.7, where the current flow, <m>f</m>, is indicated by a labeling of the edges. The path
+\(\left(S\text{ource}, v_2 , v_1,v_3 , S\text{ink}\right)\) is a flow augmenting path that allows us to increase the flow by one
+unit. Note that \(\left(v_1,v_3\right)\) is used in the reverse direction, which is allowed because \(f\left(v_1,v_3\right)>0\). The value of
+the new flow that we obtain is 8. This flow must be maximal since the capacities out of the source add up to 8. This maximal flow is defined by the
+labeling of Figure 9.5.8.
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+\caption{\pmb{ FIGURE 9.5.7}\\
+Current flow in Example 9.5.8}
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+\caption{\pmb{ FIGURE 9.5.8}\\
+Augmented, optimal flow in Example 9.5.8}
+
+
+
+<subsection xml:id="ss-Section 9.2"><title>Section 9.2</title><index><main>Section 9.2</main></index>
+
+
+<ol label=“a”>
+<li><p>  The Minimum Spanning Tree Problem: Given a weighted graph, \((V, E, w)\), find a subset \(\text{E'}\) of <m>E</m> with
+the properties that \((V, E')\) is connected and the sum of the weights of edges in \(E'\) are as small as possible. We will discuss this problem
+in Chapter 10.
+
+</p></li>
+<li><p>  The Minimum Matching Problem: Given an undirected weighted graph, \((K E, w)\), with an even number of vertices, pair up the vertices
+so that each pair is connected by an edge and the sum of these edges is as small as possible. A unit square version of this problem has been studied
+extensively. See References: [Sopowit001] for details on what is known about this version of the problem.
+
+</p></li>
+<li><p>  The Graph Center Problem: Given a connected, undirected, weighted graph, find a vertex (the center) in the graph with the property
+that the distance from the center to every other vertex is as small as possible. <q>As small as possible</q> could be interpreted either as minimizing
+the sum of the distances to each vertex or as minimizing the maximum distance from the center to a vertex.
+
+
+<exercises xml:id="exercises-9-5">
+<title>Exercises for Section 9.5</title>
+
+
+
+
+<exercisegroup>
+<introduction><p>A Exercises</p></introduction>
+
+
+<exercise number="1"><statement> Find the closest neighbor circuit through the six capitals of New England starting at Boston. If you start at a different city,
+will you get a different circuit?</statement></exercise>
+<exercise number="2"><statement><p> Is Theorem 9.5.1 sharp for \(n = 3\)? For \(n = 4\)?</p></statement></exercise>
+<exercise number="3"><statement> Given the following sets of points in the unit square, find the shortest circuit that visits all the points and find the circuit that is obtained
+with the strip algorithm.
+
+
+<ol label=“a”>
+<li><p> \(\{(0.1k, 0.1k) : k = 0, 1, 2, . . . , 10\}\)
+
+</p></li>
+<li><p> \(\{(0.1, 0.3), (0.3, 0.8), (0.5, 0.3), (0.7, 0.9), (0.9, 0.1)\}\)</p></li>
+<li><p> \(\{(0.0, 0.5), (0.5, 0.0), (0.5, 1.0), (1.0, 0.5)\}\)</p></li>
+<li><p> \(\{(0, 0), (0.2, 0.6), (0.4, 0.1), (0.6, 0.8), (0.7, 0.5)\}\)</statement></exercise>
+<exercise number="4"><statement><p> For \(n = 4, 5, \text{and} 6\), locate <m>n</m> points in the unit square for which the strip algorithm works poorly.</p></statement></exercise>
+<exercise number="5"><statement> Consider the network whose maximum capacities are shown on the following graph.
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+<ol label=“a”>
+<li><p> A function <m>f</m> is partially defined on the edges of this network by:
+
+
+
+<m>\quad \quad</m>\(f(\text{Source}, c) = f(\text{Source}, b) =f(\text{Source}, a) = 2\), and \(f(a, d) = 1\). 
+
+
+
+   Define <m>f</m> on the rest of the other edges so that <m>f</m> is a flow. What is the value of  f ?</p></li>
+<li><p> Find a flow augmenting path with respect to <m>f</m> for this network. What is the value of the augmented flow?</p></li>
+<li><p> Is the augmented flow a maximum flow? Explain.</statement></exercise>
+<exercise number="6"><statement> Given the following network with capacity function <m>c</m> and flow function <m>f</m>, find a maximal flow function. The labels on the
+edges of the network are of the form \(f(e)/c(e)\), where \(c(e)\) is the capacity of edge <m>e</m> and \(f(e)\) is the used capacity for flow
+<m>f</m>.
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}</statement></exercise>
+<exercise number="7"><statement> Find maximal flows for the following networks.
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+\begin{center}\(\)
+\end{center}
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+</exercisegroup>
+<exercisegroup>
+<introduction><p>B Exercises</p></introduction>
+</statement></exercise>
+<exercise number="8"><statement> (a) [Easy] Find two maximal flows for the network in Figure 9.5.6 other than the one found in the text.
+
+
+
+   (b) [Harder] Describe the set of all maximal flows for the same network.
+
+
+
+   (c) [Hardest] Prove that if a network has two maximal flows, then it has an infinite number of maximal flows.</statement></exercise>
+<exercise number="9"><statement> Discuss reasons that the closest neighbor algorithm is not used in the unit square version of the Traveling Salesman Problem. (Hint: Count the
+number of comparisons of distances that must be done.)
+
+
+</exercisegroup>
+<exercisegroup>
+<introduction><p>C Exercises</p></introduction>
+</statement></exercise>
+<exercise number="10"><statement><p> Explore the possibility of solving the Traveling Salesman Problem in the <q>unit box</q>: \([0, 1]^3\) .</p></statement></exercise>
+<exercise number="11"><statement> Devise a <q>closest neighbor</q> algorithm for matching points in the unit square.
+
+
+<section xml:id="s-Planarity and Colorings">
+<title>Planarity and Colorings</title>
+<index><main>Planarity and Colorings</main></index>
+
+
+
+The topics in this section are related to how graphs are drawn.
+
+
+
+\pmb{ Planarity:} Can a given graph be drawn in a plane so that no edges intersect? Certainly, it is natural to avoid intersections,
+but up to now we haven't gone out of our way to do so.
+
+
+
+\pmb{ Colorings:} Suppose that each vertex in an undirected graph is to be colored so that no two vertices that are connected by an edge have the
+same color. How many colors are needed? This question is motivated by the problem of drawing a map so that no two bordering countries are colored
+the same. A similar question can be asked for coloring edges.
+
+<definition xml:id="def- Planar Graph/ Plane Graph/Planar Embedding."><title> Planar Graph/ Plane Graph/Planar Embedding.</title><index><main> Planar Graph/ Plane Graph/Planar Embedding.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+
+ A graph is planar if it can be drawn in a plane so that no edges cross. If a
+graph is drawn so that no edges intersect, it is a plane graph, and such a drawing is a planar embedding of the graph.
+
+
+
+Example 9.6.1. The graph in Figure 9.6.1(a) is planar but not a plane graph. The same graph is drawn as a plane graph in Figure 9.6.1(b)
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ Figure 9.6.1}\\
+A planar graph and a planar embedding }
+
+
+
+\pmb{ Notes:}
+
+
+<ol label=“a”>
+<li><p> In discussing planarity, we need only consider simple undirected graphs with no self-loops. All other graphs can be treated as such since
+all of the edges that relate any two vertices can be considered as one <q>package</q> that clearly can be drawn in a plane.</p></li>
+<li><p> Can you think of a graph that is not planar? How would you prove that it isn't planar? Proving the nonexistence of something is usually more
+difficult than proving its existence. This case is no exception. Intuitively, we would expect that sparse graphs would be planar and dense graphs
+would be nonplanar. Theorem 9.6.2 will verify that dense graphs are indeed nonplanar.</p></li>
+<li><p> The topic of planarity is a result of trying to restrict a graph to two dimensions. Is there an analogous topic for three dimensions? What
+graphs can be drawn in one dimension?
+
+
+
+Answer to Note c: If a graph has only a finite number of vertices, it can always be drawn in three dimensions. This is not true for all graphs with
+an infinite number of vertices. The only <q>one-dimensional</q> graphs are the ones that consist of a finite number of chains, as in Figure 9.6.2,
+with one or more vertices in each chain.
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ Figure 9.6.2}\\
+Chains of length one, two and three}
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+
+<example xml:id="ex-9.6.2."><title>9.6.2.</title><p></p></example>
+ A discussion of planarity is not complete without mentioning the famous Three Utilities Puzzle. The object
+of the puzzle is to supply three houses, A, B, and C, with the three utilities, gas, electric, and water. The constraint that makes this puzzle impossible
+to solve is that no utility lines may intersect i. e., a planar embedding of the graph in Figure 9.6.3, which is commonly denoted \(K_{3,3}\). {
+}This graph is one of two fundamental nonplanar graphs. The Kuratowski Reduction Theorem states that if a graph is nonplanar then <q>contains</q>
+either a \(K_{3,3}\) or a \(K_5\).  Containment is in the sense that if you start with a nonplanar graph you can always perform a sequence of
+edge deletions and contractions (shrinking an edge so that the two vertices connecting it coincide) to produce one of the two graphs.
+
+
+
+
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+\caption{\pmb{ Figure 9.6.3}\\
+The Three Utilities Puzzle.}
+
+
+
+A planar graph divides the plane into one or more regions. Two points on the plane lie in the same region if you can draw a curve connecting the
+two points that does not pass through an edge. One of these regions will be of infinite area. Each point on the plane is either a vertex, a point
+on an edge, or a point in a region. A remarkable fact about the geography of planar graphs is the following theorem that is attributed to Euler.
+
+<theorem xml:id="theorem-9.6.1: Euler's Formula."><title>9.6.1: Euler's Formula.</title><index><main>9.6.1: Euler's Formula.</main></index><statement></statement><proof></proof></theorem>
+ If G = (V, E) is a connected planar graph with r regions, v vertices and e edges, then\\
+$\quad \quad \quad $\(v + r - e = 2\)     (9.6a)
+
+
+
+Experiment: Jot down a graph right now and count the number of vertices, regions, and edges that you have. If \(v + r - e\) is not 2, then your graph
+is either nonplanar or not connected.
+
+\pmb{  Proof: } We prove Euler's Formula by Induction on <m>e</m>, for \(e \geq  0\).
+
+Basis: If \(e = 0\), then <m>G</m> must be a graph with one vertex, \(v = 1\); and there is one infinite region,\(\text{  }r = 1\).
+
+Therefore, \(v + r-e= 1 + 1-0 = 2\), and the basis is true.
+
+Induction: Suppose that <m>G</m> has <m>k</m> edges, \(k \geq  1\), and that all connected planar graphs with less than <m>k</m> edges satisfy
+9.6a. Select any edge that is part of the boundary of the infinite region and call it \(e_1\). Let \(G'\) be the graph obtained from <m>G</m>
+by deleting \(e_1\). Figure 9.6.4 illustrates the two different possibilities we need to consider: either \(G'\) is connected or it has two
+connected components, \(G_1\) and \(G_2\).
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ Figure 9.6.4}\\
+Two case in the proof of Euler's Formula}
+
+If \(G'\) is connected, the induction hypothesis can be applied to it. If \(G'\) has \(v'\) vertices, \(r'\) edges and \(e'\) edges, then {
+}\(v'+r'-e'=2\) and in terms of the corresponding numbers for <m>G</m>, 
+
+   \(\begin{array}{cc}
+ v'=v &amp; \text{  }\text{No} \text{vertices} \text{were} \text{removed} \text{to} \text{form} G' \\
+ r'=r-1 &amp; \text{One} \text{region} \text{of} G \text{merged} \text{with} \text{the} \text{infinite} \text{region} \text{when} e_1 \text{is} \text{removed}
+\\
+ e' = k-1 &amp; \text{We} \text{assumed} \text{that} G \text{had} k \text{edges}. \\
+\end{array}\)
+
+For the case where \(G'\) is connected, 
+
+<m>\quad \quad</m>\(\text{            }v+ r -e= v+r-k \quad \quad = v' + (r'+1) -(e'+1)\quad \quad = v' + r'-e'\quad \quad =2\text{   }\)
+
+ \textup{ If \(G'\) \textup{ is not connected, it must consist of two connected components, }\(G_1\)\textup{  and }\(G_2\) \textup{ since
+we started with a connected graph, }G\textup{ . We can apply the induction hypothesis to each of the two components to complete the proof. 
+We leave it to the students to do this, with the reminder that in counting regions, }\(G_1\) \textup{ and }\(G_2\) \textup{  will share the same
+infinite region.  }\(\blacksquare\)}
+
+<theorem xml:id="theorem-9.6.2. "><title>9.6.2. </title><index><main>9.6.2. </main></index><statement></statement><proof></proof></theorem>
+ If \(G = (V, E)\) is a connected planar graph with <m>v</m> vertices, \(v\geq 3\), and <m>e</m> edges, then
+
+$\quad \quad \quad $\(e \leq  3v - 6\).   (9.6b)
+
+Remark: One implication of 9.6b is that the number of edges in a connected planar graph will never be larger than three times its
+number.of vertices (as long as it has at least three vertices). Since the maximum number of edges in a graph with <m>v</m> vertices is a quadratic
+function of <m>v</m>, as <m>v</m> increases, planar graphs are more and more sparse.
+
+Outline of a Proof of Theorem 9.6.2.
+<ol label=“a”>
+<li><p> Let <m>r</m> be the number of regions in <m>G</m>. For each region, count the number of edges that comprise its border. The sum of these
+counts must be at least  3r. Recall that we are working with simple graphs here, so a region made by two edges connecting the same two
+vertices is not possible.
+
+(b) Based on (a), infer that the number of edges in <m>G</m> must be at least \(\frac{3 r}{2}\).
+
+(c) \(e\geq \frac{3r}{2}\text{   }\Rightarrow \text{      }r\leq \frac{2e}{3}\)
+
+(d) Substitute \(\frac{2e}{3}\) for <m>r</m> in Euler's Formula to obtain an inequality that is equivalent to 9.6.b. \(\blacksquare\)
+
+
+
+The following theorem will be useful as we turn to graph coloring.
+
+<theorem xml:id="theorem-9.6.3."><title>9.6.3.</title><index><main>9.6.3.</main></index><statement></statement><proof></proof></theorem>
+ If <m>G</m> is a connected planar graph, then it has a vertex with degree 5 or less.
+
+\pmb{ Proof} (by contradiction): We can assume that <m>G</m> has at least seven vertices, for otherwise the degree of any vertex is at most 5.
+Suppose that <m>G</m> is a connected planar graph and each vertex has a degree of 6 or more. Then, since each edge contributes to the degree
+of two vertices, \(e\geq \frac{6v}{2}=3v\). However, Theorem 9.6.2 states that the \(e\leq 3v-6<3v\), which is a contradiction.
+\(\blacksquare\)
+
+
+
+<subsection xml:id="ss-GRAPH COLORING"><title>GRAPH COLORING</title><index><main>GRAPH COLORING</main></index>
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ Figure 9.6.5}\\
+A 3-coloring of Euler Island}
+
+
+
+The map of Euler Island in Figure 9.6.5 shows that there are seven towns on the island. Suppose that a cartographer must produce a colored map in
+which no two towns that share a boundary have the same color. To keep costs down, she wants to minimize the number of different colors that appear
+on the map. How many colors are sufficient? For Euler Island, the answer is three. This problem motivates a more general problem.
+
+
+
+\pmb{ The Graph Coloring Problem.} Given an undirected graph \(G = (V, E)\), find a <q>coloring function</q> <m>f</m> from <m>V</m> into a
+set of colors <m>H</m> such that \(\left(v_i,v_j\right)\in E \Rightarrow  f\left(v_i\right)\neq f\left(v_j\right)\) and <m>H</m> has the smallest
+possible cardinality. The cardinality of <m>H</m> is called the  chromatic number of G, \(\chi (G)\).
+
+
+
+Notes:
+
+
+<ol label=“a”>
+<li><p> A coloring function onto an <m>n</m> element set is called an <m>n</m>-coloring.</p></li>
+<li><p> In terms of this general problem, the chromatic number of the graph of Euler Island is three. To see that no more than three colors are needed,
+we need only display a 3-coloring: \(f(1) = f(4) = f(6) = \text{blue}\), \(f(2) = \text{red}\), and \(f(3) = f(5) = f(7) = \text{white}\). This coloring
+is not unique. The next smallest set of colors would be of two colors, and you should be able to convince yourself that no 2-coloring exists for
+this graph.
+
+
+
+In the mid-nineteenth century, it became clear that the typical planar graph had a chromatic number of no more than 4. At that point, mathematicians
+attacked the Four-Color Conjecture, which is that if <m>G</m> is any planar graph, then its chromatic number is no more than 4. Although the conjecture
+is quite easy to state, it took over 100 years, until 1976, to prove the conjecture in the affirmative.
+
+<theorem xml:id="theorem-9.6.4: The Four-Color Theorem."><title>9.6.4: The Four-Color Theorem.</title><index><main>9.6.4: The Four-Color Theorem.</main></index><statement></statement><proof></proof></theorem>
+ If <m>G</m> is a planar graph, then \(\chi (G)\leq 4\).
+
+
+
+A proof of the Four-Color Theorem is beyond the scope of this text, but we can prove a theorem that is only 25 percent inferior.
+
+<theorem xml:id="theorem-9.6.5: The Five-Color Theorem."><title>9.6.5: The Five-Color Theorem.</title><index><main>9.6.5: The Five-Color Theorem.</main></index><statement></statement><proof></proof></theorem>
+ If <m>G</m> is a planar graph, then \(\chi (G)\leq 5\).
+
+The number 5 is not a sharp upper bound for \(\chi (G)\) because of the Four-Color Theorem.
+
+
+
+\pmb{ Proof}, by Induction on the Number of Vertices in the Graph:
+
+
+
+Basis: Clearly, a graph with one vertex has a chromatic number of 1.
+
+
+
+Induction: Assume that all planar graphs with \(n - 1\) vertices have a chromatic number of 5 or less. Let <m>G</m> be a planar graph. By Theorem
+9.6.2, there exists a vertex <m>v</m> with \(\deg  v \leq 5\). Let \(G - v\) be the planar graph obtained by deleting <m>v</m> and all edges
+that connect <m>v</m> to other vertices in <m>G</m>. By the induction hypothesis, \(G - v\) has a 5-coloring. Assume that the colors used
+are red, white, blue, green, and yellow. 
+
+
+
+If \(\deg  v < 5\), then we can produce a 5-coloring of <m>G</m> by selecting a color that is not used in coloring the vertices that are connected
+to <m>v</m> with an edge in <m>G</m>.
+
+
+
+If \(\deg  v = 5\), then we can use the same approach if the five vertices that are adjacent to <m>v</m> are not all colored differently. We are
+now left with the possibility that \(v_1\), \(v_2\), \(v_3\), \(v_4\), and \(v_5\) are all connected to <m>v</m> by an edge and they are all colored
+differently. Assume that they are colored red, white blue, yellow, and green, respectively, as in Figure 9.6.6. 
+
+
+\begin{center}\(\)
+\end{center}
+
+
+\caption{\pmb{ Figure 9.6.6}}
+
+
+
+Starting at \(v_1\) in \(G-v\), suppose we try to construct a path \(v_3\) that passes through only red and blue vertices.  This can either be
+accomplished or it can't be accomplished. If it can't be done, consider all paths that start at \(v_1\), and go through only red and blue vertices.
+If we exchange the colors of the vertices in these paths, including \(v_1\) we still have a 5-coloring of \(G - v\). Since \(v_1\) is now blue, we
+can color the central vertex, <m>v</m>, red.
+
+
+
+Finally, suppose that \(v_1\) is connected to \(v_3\) using only red and blue vertices. Then a path from \(v_{1 }\)to \(v_3\) by using red and blue
+vertices followed by the edges \(\left(v_3,v\right)\) and \(\left(v,v_1\right)\) completes a circuit that either encloses \(v_2\) or encloses \(v_4\)
+and \(v_5\) . Therefore, no path from \(v_2\) to \(v_4\) exists using only white and yellow vertices. We can then repeat the same process as in the
+previous paragraph with \(v_2\) and \(v_4\) , which will allow us to color v white. \(\blacksquare\)
+
+<definition xml:id="def- Bipartite Graph."><title> Bipartite Graph.</title><index><main> Bipartite Graph.</main></index><notation><usage></usage><description></description></notation><statement><p></p></statement></definition>
+
+ A bipartite graph is a graph that has a 2-coloring. Equivalently, a graph is bipartite if its vertices
+can be partitioned into two nonempty subsets so that no edge connects a vertices from the same from each subset.
+
+<example xml:id="ex-9.6.3."><title>9.6.3.</title><p></p></example>
+
+<ol label=“a”>
+<li><p> The graph of the Three Utilities Puzzle is bipartite. The vertices are partitioned into the utilities and the homes. Of course a 2-coloring of
+the graph is to color the utilities red and the homes blue.
+
+(b) For \(n\geq 1\), the <m>n</m>-cube is bipartite. A coloring would be to color all strings with an even number of 1's red and the strings with
+an odd number of 1's blue. By the definition of the <m>n</m>-cube, two strings that have the same color couldn't be connected since they would
+need to differ in at least two positions.
+
+(c) Let <m>V</m> be a set of 64 vertices, one for each square on a chess board. We can index the elements of <m>V</m> by
+
+ <m>\quad \quad</m>\(v_{i j}\) = the square on the row <m>i</m>, column <m>j</m>. 
+
+Connect vertices in <m>V</m> according to whether or not you can move a knight from one square to another. Using our indexing of <m>V</m>,
+
+<m>\quad \quad</m>\(\left(v_{i j}, v_{k l}\right)\in  E\text{ if and only if      }
+\begin{array}{c}
+ |i-k|+|j-l|=3 \\
+ \text{and} |i-k|\cdot |j-l|=2 \\
+\end{array}\)
+
+\((V, E)\) is a bipartite graph. The usual coloring of a chessboard is valid 2-coloring.
+
+
+
+How can you recognize whether a graph is bipartite? Unlike planarity, there is a nice equivalent condition for a graph to be bipartite.
+
+
+
+<theorem xml:id="theorem-9.6.6."><title>9.6.6.</title><index><main>9.6.6.</main></index><statement></statement><proof></proof></theorem>
+ An undirected graph is bipartite if and only if it has no circuit of odd length.
+
+
+
+Proof. (\(\Rightarrow\)) Let \(G = (V, E)\) be a bipartite graph that is partitioned into two sets,  R(ed) and  B(lue) that define
+a 2-coloring. Consider any circuit in <m>V</m>. If we specify a direction in the circuit and define  f on the vertices of the circuit
+by 
+
+
+
+<m>\quad \quad</m>\(f(u) = \text{the} \text{next} \text{vertex} \text{in} \text{the} \text{circuit} \text{after} v\). 
+
+
+
+Note that <m>f</m> is a bijection. Hence the number of red vertices in the circuit equals the number of blue vertices, and so the length of the
+circuit must be even. 
+
+
+
+(\(\Longleftarrow\)) Assume that <m>G</m> has no circuit of odd length. For each component of <m>G</m>, select any vertex <m>w</m> and color
+it red. Then for every other vertex <m>v</m> in the component, find the path of shortest distance from <m>w</m> to <m>v</m>. If the length
+of the path is odd, color v blue, and if it is even, color <m>v</m> red. We claim that this method defines a 2-coloring of <m>G</m>. Suppose
+that it does not define a 2-coloring. Then let \(v_a\) and \(v_b\) be two vertices with identical colors that are connected with an edge. By the
+way that we colored <m>G</m>, neither \(v_a\) nor \(v_{b }\) could equal  w.  We can now construct a circuit with an odd length
+in <m>G</m>. First, we start at <m>w</m> and follow the shortest path to \(v_a\) . Then follow the edge \(\left(v_a,v_b\right)\), and finally,
+follow the reverse of a shortest path from <m>w</m> to \(v_b\). Since \(v_a\) and \(v_b\) have the same color, the first and third segments of
+this circuit have lengths that are both odd or even, and the sum of their lengths must be even. The addition of the single edge \(\left(v_a,v_b\right)\)
+shows us that this circuit has an odd length. This contradicts our premise. \(\blacksquare\)
+
+Note: An efficient algorithm for finding a 2-coloring of a graph can be designed using the method that is used in the second part of the proof above.
+
+
+<exercises xml:id="exercises-9-6">
+<title>Exercises for Section 9.6</title>
+<exercisegroup>
+<introduction><p>A Exercises</p></introduction>
+
+
+<exercise number="1"><statement><p> Apply Theorem 9.6.2 to prove that once <m>n</m> gets to a certain size, a \(K_n\) is nonplanar. What is the largest complete planar graph?</p></statement></exercise>
+<exercise number="2"><statement><p> Can you apply Theorem 9.6.2 to prove that the Three Utilities Puzzle can't be solved?</p></statement></exercise>
+<exercise number="3"><statement> What are the chromatic numbers of the following graphs?
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}</statement></exercise>
+<exercise number="4"><statement><p> Prove that if an undirected graph has a subgraph that is a \(K_3\) it then its chromatic number is at least 3.</p></statement></exercise>
+<exercise number="5"><statement><p> What is \(\chi \left(K_n\right)\), \(n\geq 1\)?</p></statement></exercise>
+<exercise number="6"><statement> What is the chromatic number of the United States? </p></statement></exercise>
+
+
+</exercisegroup>
+<exercisegroup>
+<introduction><p>B Exercises</p></introduction>
+</statement></exercise>
+<exercise number="7"><statement><p> Complete the proof of Theorem 9.6.1.</p></statement></exercise>
+<exercise number="8"><statement><p> Use the outline of a proof of Theorem 9.6.2 to write a complete proof. Be sure to point out where the premise \(v\geq 3\) is essential.</p></statement></exercise>
+<exercise number="9"><statement><p> Let \(G = (V,E)\) with \(|V|\geq 11\), and let <m>U</m> be the set of all undirected edges between distinct vertices in <m>V</m>.  Prove
+that either <m>G</m> or \(G' = \left(V,E^c\right)\) is nonplanar.</p></statement></exercise>
+<exercise number="10"><statement><p> Design an algorithm to determine whether a graph is bipartite.</p></statement></exercise>
+<exercise number="11"><statement><p> Prove that a bipartite graph with an odd number of vertices greater than or equal to 3 has no Hamiltonian circuit.</p></statement></exercise>
+
+
+</exercisegroup>
+<exercisegroup>
+<introduction><p>C Exercises</p></introduction>
+</statement></exercise>
+<exercise number="12"><statement><p> Prove that any graph with a finite number of vertices can be drawn in three dimensions so that no edges intersect.</p></statement></exercise>
+<exercise number="13"><statement> Suppose you had to color the edges of an undirected graph so that for each vertex, the edges that it is connected to have different colors.
+How can this problem be transformed into a vertex coloring problem?</statement></exercise>
+<exercise number="14"><statement> (a) Suppose the edges of a \(K_6\) are colored either red or blue. Prove that there will be either a $\texttt{"}$red \(K_3\)<q> (a subset
+of the vertex set with three vertices connected by red edges) or a </q>blue \(K_3\).$\texttt{"}$ </p></li>
+<li><p> Suppose six people are selected at random. Prove that either there exists a subset of three of them with the property that any two people in
+the subset can communicate in a common language, or there exist three people, no two of whom can communicate in a common language.
+
+
+<exercise number="1"><statement> Determine which two of the graphs below are isomorphic and give an explicit isomorphism between those two graphs.
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}</statement></exercise>
+<exercise number="2"><statement> Teams 1, 2, 3, and 4 compete in a round-robin tournament. Draw a round-robin tournament graph that represents one of the possible out
+comes of the tournament. In terms of your graph, what was the outcome of the tournament (in wins and losses)?</statement></exercise>
+<exercise number="3"><statement> Let \(G=(V,E)\) be an undirected graph. An  independent set, <m>W</m>, is a subset of <m>V</m> having the property that no two
+vertices in <m>W</m> are connected by an edge in <m>E</m>. That is,
+
+
+
+<m>\quad \quad</m>\(v,w\in W\Rightarrow \{v,w\}\notin E\).
+
+
+
+Finding a maximal independent set (an independent set that is as large as possible) is often of interest.
+
+
+<ol label=“a”>
+<li><p> Find a maximal independent set in the graph of Figure 9.1.2.</p></li>
+<li><p> Prove that if <m>W</m> is a maximal independent set in <m>G</m>, then every vertex in <m>G</m> is connected by an edge to at least one
+vertex in <m>W</m>.</p></li>
+<li><p> How large can a maximal independent set in a \(K_n\) be?</statement></exercise>
+<exercise number="4"><statement> Let \(S=\{1,2,\ldots ,n\}\) be a set of <m>n</m> cities. Define a matrix \(A=\left[a_{\text{ij}}\right]\) of order \(n\times n
+\text{by} a_{\text{ij}}=0 \text{if} i=j\); otherwise \(a_{\text{ij}}\) is the  number of distinct ways of traveling directly
+from city  i to city <m>j</m> by car, without visiting any other cities belonging to <m>S</m> en route.
+
+
+
+In the following diagram, the points represent five cities, \(1,2,3,4,\) and 5, and a line is drawn between two cities and labeled with a positive
+integer giving the number of  direct routes (by car) between the respective cities.
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+<ol label=“a”>
+<li><p> Determine the \(5\times 5\) matrix <m>A</m> going with the above diagram.</p></li>
+<li><p> Calculate \(A^2\).</p></li>
+<li><p> Interpret the meaning of the entries in \(A^2\), both for the result in part b, and for the general set \(S=\{1,2,\ldots ,n\}\).</statement></exercise>
+<exercise number="5"><statement> An undirected graph can be used to model a map of states or countries, where there is a vertex for each country and an edge between two vertices
+if the two countries share a boundary. For example, the undirected graph of Central America (mainland only) would have eight vertices. $\{$Honduras,
+Nicaragua$\}$ would be an edge of the graph, but $\{$Mexico, Nicaragua$\}$ would not be an edge.
+
+
+\begin{center}\(\)
+\end{center}
+
+
+<ol label=“a”>
+<li><p> Draw the graph of Central America.</p></li>
+<li><p> Find a path from Mexico to Panama.</p></li>
+<li><p> What significance would this path have if you intended to drive from Mexico to Panama?</statement></exercise>
+<exercise number="6"><statement> Show that the graph of the states of Washington, Oregon, Idaho, Montana, Wyoming, and Colorado is isomorphic to the graph of
+New England.</statement></exercise>
+<exercise number="7"><statement> The outdegree of a vertex in a directed graph is the number of vertices in the graph that start at that vertex, and the indegree of the vertex
+is the number of vertices in the graph that terminate at that vertex. A vertex <m>v</m> in a tournament graph is a source if the indegree of that
+vertex is zero. A sink is a vertex in a tournament graph that has outdegree of zero.
+
+
+<ol label=“a”>
+<li><p> Prove that a round-robin tournament graph can have at most one source and at most one sink. Interpret these facts in terms of the results
+of the tournament.</p></li>
+<li><p> What is the outdegree of a source in a round-robin tournament graph? What is the indegree of a sink in a round-robin tournament graph?</p></li>
+<li><p> Let \(G=(V,E)\) be a round-robin tournament graph with \(\left| V\right| >2\). If \(p \text{is} \text{G has a sink,}\) and \(q \text{is} \text{G
+has a source,}\) prove that any one of the propositions \(\neg p\land \neg q, \neg p\land q, p\land \neg q \text{and} p\land q\) could be true.
+
+
+\subsubsection{
+\subsection{Section 9.2}}</statement></exercise>
+<exercise number="8"><statement> Let \(G=(V,E)\) be a round-robin tournament graph with \(\left| V\right| =n\). If <m>M</m> is the matrix of <m>G</m>,
+
+
+<ol label=“a”>
+<li><p> For \(i=1,2,\ldots ,n\), explain why the number of 1's in column  i of <m>M</m> plus the number of 1s in row \(i\) is always equal
+to \(n-1\).</p></li>
+<li><p> How many 1s are there in <m>M</m>?
+
+
+\subsubsection{
+\subsection{Section 9.3}}</statement></exercise>
+<exercise number="9"><statement> Use the broadcasting algorithm to determine a shortest path from vertex <m>a</m> to vertex <m>i</m> in the following graph. List the
+depth sets.
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}</statement></exercise>
+<exercise number="10"><statement> In a breadth-first (broadcasting) search for a path from vertex <m>A</m> to vertex <m>J</m>, what would the depth sets \(\left(D_1,D_2,\ldots
+\right)\) be?
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+\subsubsection{
+\subsection{Section 9.4}}
+
+
+
+Definition: Randomly Eulerian. \textit{ Graph G is randomly Eulerian from vertex v if every path in G that initiates at v and uses edges at random
+is a Eulerian circuit.}</statement></exercise>
+<exercise number="11"><statement> Give examples of undirected graphs that are randomly Eulerian from none, one, two, or all vertices. It can be proven that no graph is randomly
+Eulerian from more than two vertices unless it is randomly Eulerian from all vertices.</statement></exercise>
+<exercise number="12"><statement><p> Prove that <m>G</m> is randomly Eulerian from <m>v</m> if and only if every circuit in <m>G</m> contains <m>v</m>.</p></statement></exercise>
+<exercise number="13"><statement> Ore's Theorem states that if \(G=(V,E)\) is an undirected graph with \(\left| V\right| =n\geqslant 3\) such that \(\{v,w\}\notin E\Rightarrow
+\text{$\deg $} u+\text{$\deg $} v\geqslant n,\) then <m>G</m> has a Hamiltonian circuit. Prove Ore's Theorem given the following
+out line.
+
+
+
+Proof by contradiction:
+
+
+<ol label=“a”>
+<li><p> Add edges to <m>E</m> so that  G still has no Hamiltonian circuit, but so that the addition of any other edge does produce a Hamiltonian
+circuit. Now select any \(\{v,w\}\notin E\). There must be a path in <m>G</m>:
+
+
+
+\(v=\left(v_1,v_2,\ldots ,v_n\right)=w\).</p></li>
+<li><p> Prove that for \(2\leqslant i\leqslant n, \left\{v_1,v_i\right\}\in E\Rightarrow \left\{v_{i-1},v_n\right\}\notin E.\)</p></li>
+<li><p> Conclude that \(\text{$\deg $} v+\text{$\deg $} w<n\).
+
+
+\subsubsection{
+\subsection{Section 9.5}}</statement></exercise>
+<exercise number="14"><statement> Given:
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+<ol label=“a”>
+<li><p> Determine the optimal path from the vertex <m>a</m> to the vertex <m>z</m>.</p></li>
+<li><p> Use the broadcasting algorithm to find a path from <m>a</m> to <m>z</m>.</p></li>
+<li><p> Find the <q>costs</q> of both paths and discuss whether the algorithm in part b gives a <q>good result.</q></statement></exercise>
+<exercise number="15"><statement> Consider the network
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}
+
+
+
+We start with a flow  f on this network partially defined by \(f(s,c)=f(s,b)=f(s,a)=1 \text{and} f(d,a)=0\).
+
+
+<ol label=“a”>
+<li><p> Define  f for each of the other edges in this network so as to achieve a flow.</p></li>
+<li><p> Assume that the maximum capacity of each edge is 2. Determine a flow augmenting path with respect to the flow given in part a. (Use the Ford
+and Fulkerson Algorithm.)</p></li>
+<li><p> Is the flow obtained in part b a maximal flow? Explain.</statement></exercise>
+<exercise number="16"><statement> Find a maximal flow for the following network:
+
+\begin{doublespace}
+\noindent\(\)
+\end{doublespace}</statement></exercise>
+<exercise number="17"><statement> (a) Given the mileage chart below, what is the closest neighbor circuit starting at city <m>A</m>?
+
+
+
+\(\begin{array}{ccccccc}
+   &amp; A &amp; B &amp; C &amp; D &amp; E &amp; F \\
+ A &amp; \_ &amp; 34 &amp; 50 &amp; 12 &amp; 51 &amp; 37 \\
+ B &amp; 34 &amp; \_ &amp; 40 &amp; 27 &amp; 70 &amp; 60 \\
+ C &amp; 50 &amp; 40 &amp; \_ &amp; 30 &amp; 33 &amp; 41 \\
+ D &amp; 12 &amp; 27 &amp; 30 &amp; \_ &amp; 39 &amp; 20 \\
+ E &amp; 51 &amp; 70 &amp; 33 &amp; 39 &amp; \_ &amp; 15 \\
+ F &amp; 37 &amp; 60 &amp; 41 &amp; 20 &amp; 15 &amp; \_ \\
+\end{array}\)</p></li>
+<li><p> Suppose it takes \((k-1)\) seconds to determine which of <m>k</m> cities is closest to any given city. Estimate how long it would take to
+find a closest neighbor circuit through <m>n</m> cities.
+
+
+\subsubsection{
+\subsection{Section 9.6}}</statement></exercise>
+<exercise number="18"><statement><p> Draw three connected graphs, \(G_2,G_3,\text{and} G_4\), with four vertices, each having chromatic numbers \(2,3, \text{and} 4\left(i.e. c\left(G_i\right)=i\right.\).</p></statement></exercise>
+<exercise number="19"><statement> (a) Prove that although a \(K_5\) is not planar, it can be drawn on a  torus (a doughnut-shaped surface).
+
+
+
+ (b) Can the Three Utilities Puzzle be solved on a torus?</statement></exercise>
+<exercise number="20"><statement> Draw examples of the following graphs, if possible. Clearly indicate which of the graphs are impossible and why they are impossible. You may
+cite any theorem that justifies your claim.
+
+
+<ol label=“a”>
+<li><p> An undirected Hamiltonian graph that is not Eulerian. Explain why your graph is not Eulerian.</p></li>
+<li><p> A bipartite Hamiltonian graph with five vertices.</p></li>
+<li><p> A round-robin tournament graph with four vertices.</p></li>
+<li><p> A connected planar graph with four vertices, three regions, and six edges.</p></li>
+<li><p> An undirected graph with chromatic number five.
+
+\end{document}

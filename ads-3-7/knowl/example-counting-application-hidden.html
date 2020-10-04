@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-01-01T10:18:04-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body><article class="example example-like"><p>Let \(A = \{a, b, c, d, e\}\) and let \(A^*\) be the set of all strings of length zero or more that can be made using each of the elements of \(A\) zero or more times. By the generalized rule of products, there are \(5^n\) such strings that have length \(n\text{,}\) \(n\geq 0\text{,}\) Suppose that \(X_n\) is the set of strings of length \(n\) with the property that all of the \(a\)'s and \(b\)'s precede all of the \(c\)'s, \(d\)'s, and \(e\)'s. Thus \(aaabde \in  X_6\text{,}\) but \(abcabc \notin  X_6\text{.}\) Let \(R(n) =\lvert X_n \rvert\text{.}\) A closed form expression for \(R\) can be obtained by recognizing \(R\) as the convolution of two sequences. To illustrate our point, we will consider the calculation of \(R(6)\text{.}\)</p>
+<p>Note that if a string belongs to \(X_6\text{,}\) it starts with \(k\) characters from \(\{a, b\}\) and is followed by \(6 - k\) characters from \(\{c,
+d, e\}\text{.}\) Let \(S(k)\) be the number of strings of \(a\)'s and \(b\)'s with length \(k\) and let \(T(k)\) be the number of strings of \(c\)'s, \(d\)'s, and \(e\)'s with length \(k\text{.}\) By the generalized rule of products, \(S(k) = 2^k\) and \(T(k) = 3^k\text{.}\) Among the strings in \(X_6\) are the ones that start with two \(a\)'s and \(b\)'s and end with \(c\)'s, \(d\)'s, and \(e\)'s. There are \(S(2)T(4)\) such strings. By the law of addition,</p>
+<div class="displaymath">
+\begin{equation*}
+\lvert X_6 \rvert =R(6)=S(0)T(6)+S(1)T(5)+\cdots +S(5)T(1)+S(6)T(0)
+\end{equation*}
+</div>
+<p>Note that the sixth term of R is the sixth term of the convolution of \(S\) with \(T\text{,}\) \(S*T\text{.}\) Think about the general situation for a while and it should be clear that \(R =S*T\text{.}\) Now, our course of action will be to:</p>
+<ol class="lower-alpha">
+<li><p>Determine the generating functions of \(S\) and \(T\text{,}\)</p></li>
+<li><p>Multiply \(G(S;z)\) and \(G(T;z)\) to obtain \(G(S*T;z) = G(R;z)\)\, and</p></li>
+<li><p>Determine \(R\) on the basis of \(G(R;z)\text{.}\)</p></li>
+</ol>
+<ol class="lower-alpha">
+<li><p>\(G(S;z) =\sum_{k=0}^{\infty} 2^k z^k=\frac{1}{1-2z}\) , and \(G(T;z) =\sum_{k=0}^{\infty} 3^k z^k=\frac{1}{1-3z}\)</p></li>
+<li><p>\(G(R;z) = G(S;z)G(T;z) = \frac{1}{(1-2z)(1-3z)}\)</p></li>
+<li>
+<p>To recognize \(R\) from \(G(R;z)\text{,}\) we must do a partial fractions decomposition:</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{1}{(1-2z)(1-3z)}=\frac{A}{1-2z}+\frac{B}{1-3z}=\frac{-3 A z+A-2 B z+B}{(2 z-1) (3 z-1)}=\frac{(A+B)+(-3 A -2 B )z}{(2 z-1) (3 z-1)}
+\end{equation*}
+</div>
+<p>Therefore, \(A + B = 1\) and \(-3A - 2B = 0\text{.}\) The solution of this pair of equations is \(A = - 2\) and \(B = 3\text{.}\) Since \(G(R;z) =\frac{-2}{1-2z}+\frac{3}{1-3z}\text{,}\) which is the sum of the generating functions of \(-2(2)^k\) and \(3 (3)^k\text{,}\) \(R(k) =-2(2)^k+3 (3)^k = 3^{k+1}-2^{k+1}\)</p>
+<p>For example, \(R(6) = 3^7 - 2^7= 2187 - 128 = 2059\text{.}\) Naturally, this equals the sum that we get from \((S*T)(6)\text{.}\) To put this number in perspective, the total number of strings of length 6 with no restrictions is \(5^6=15625\text{,}\) and \(\frac{2059}{15625}\approx 0.131776\text{.}\) Therefore approximately 13 percent of the strings of length 6 satisfy the conditions of the problem.</p>
+</li>
+</ol></article></body>
+</html>

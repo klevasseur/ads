@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-05-14T09:24:32-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ADS Planarity and Colorings</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.11/pretext.js"></script><script src="https://pretextbook.org/js/0.11/pretext_add_on.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/toc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/setcolors.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/features.css" rel="stylesheet" type="text/css">
+<script>var logged_in = false;
+var role = 'student';
+var guest_access = true;
+var login_required = false;
+var js_version = 0.11;
+</script>
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div class="hidden-content" style="display:none">\(\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href="http://discretemath.org" target="_blank"><img src="http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="ads.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<p class="byline">Al Doerr, Ken Levasseur</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="s-graph-optimization.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="chapter_9.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="chapter_10.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="s-graph-optimization.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="chapter_9.html" title="Up">Up</a><a class="next-button button toolbar-item" href="chapter_10.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link">
+<a href="index.html" data-scroll="index"><span class="title">Front Matter</span></a><ul>
+<li><a href="colophon-1.html" data-scroll="colophon-1">Colophon</a></li>
+<li><a href="dedication-1.html" data-scroll="dedication-1">Dedication</a></li>
+<li><a href="acknowledgement-1.html" data-scroll="acknowledgement-1">Acknowledgements</a></li>
+<li><a href="ads-preface.html" data-scroll="ads-preface">Preface</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_1.html" data-scroll="chapter_1"><span class="codenumber">1</span> <span class="title">Set Theory</span></a><ul>
+<li><a href="s-set-Notation-and-Relations.html" data-scroll="s-set-Notation-and-Relations">Set Notation and Relations</a></li>
+<li><a href="s-basic_Set_Operations.html" data-scroll="s-basic_Set_Operations">Basic Set Operations</a></li>
+<li><a href="s-cartesian_Products_and_Power_Sets.html" data-scroll="s-cartesian_Products_and_Power_Sets">Cartesian Products and Power Sets</a></li>
+<li><a href="s-binary_Representation_of_Positive_Integers.html" data-scroll="s-binary_Representation_of_Positive_Integers">Binary Representation of Positive Integers</a></li>
+<li><a href="s-summation_Notation_and_Generalizations.html" data-scroll="s-summation_Notation_and_Generalizations">Summation Notation and Generalizations</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_2.html" data-scroll="chapter_2"><span class="codenumber">2</span> <span class="title">Combinatorics</span></a><ul>
+<li><a href="s-the-rule-of-products.html" data-scroll="s-the-rule-of-products">Basic Counting Techniques - The Rule of Products</a></li>
+<li><a href="s-permutations.html" data-scroll="s-permutations">Permutations</a></li>
+<li><a href="s-partitions-and-law-of-addition.html" data-scroll="s-partitions-and-law-of-addition">Partitions of Sets and the Law of Addition</a></li>
+<li><a href="s-combinations-and-the-binomial-theorem.html" data-scroll="s-combinations-and-the-binomial-theorem">Combinations and the Binomial Theorem</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter3.html" data-scroll="chapter3"><span class="codenumber">3</span> <span class="title">Logic</span></a><ul>
+<li><a href="s-propositions-logic-operators.html" data-scroll="s-propositions-logic-operators">Propositions and Logical Operators</a></li>
+<li><a href="s-truth-tables.html" data-scroll="s-truth-tables">Truth Tables and Propositions Generated by a Set</a></li>
+<li><a href="s-equivalence-implication.html" data-scroll="s-equivalence-implication">Equivalence and Implication</a></li>
+<li><a href="s-logic-laws.html" data-scroll="s-logic-laws">The Laws of Logic</a></li>
+<li><a href="s-math-systems.html" data-scroll="s-math-systems">Mathematical Systems and Proofs</a></li>
+<li><a href="s-propositions-over-universe.html" data-scroll="s-propositions-over-universe">Propositions over a Universe</a></li>
+<li><a href="s-induction.html" data-scroll="s-induction">Mathematical Induction</a></li>
+<li><a href="s-quantifiers.html" data-scroll="s-quantifiers">Quantifiers</a></li>
+<li><a href="s-proof-review.html" data-scroll="s-proof-review">A Review of Methods of Proof</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_4.html" data-scroll="chapter_4"><span class="codenumber">4</span> <span class="title">More on Sets</span></a><ul>
+<li><a href="s-proof-methods-sets.html" data-scroll="s-proof-methods-sets">Methods of Proof for Sets</a></li>
+<li><a href="s-laws-of-set-theory.html" data-scroll="s-laws-of-set-theory">Laws of Set Theory</a></li>
+<li><a href="s-minsets.html" data-scroll="s-minsets">Minsets</a></li>
+<li><a href="s-duality-principle.html" data-scroll="s-duality-principle">The Duality Principle</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_5.html" data-scroll="chapter_5"><span class="codenumber">5</span> <span class="title">Introduction to Matrix Algebra</span></a><ul>
+<li><a href="s-basic-matrix-definitions.html" data-scroll="s-basic-matrix-definitions">Basic Definitions and Operations</a></li>
+<li><a href="s-special-matrices.html" data-scroll="s-special-matrices">Special Types of Matrices</a></li>
+<li><a href="s-laws-of-matrix-algebra.html" data-scroll="s-laws-of-matrix-algebra">Laws of Matrix Algebra</a></li>
+<li><a href="s-matrix-oddities.html" data-scroll="s-matrix-oddities">Matrix Oddities</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_6.html" data-scroll="chapter_6"><span class="codenumber">6</span> <span class="title">Relations</span></a><ul>
+<li><a href="s-basic-definitions.html" data-scroll="s-basic-definitions">Basic Definitions</a></li>
+<li><a href="s-graphs-of-relations-on-a-set.html" data-scroll="s-graphs-of-relations-on-a-set">Graphs of Relations on a Set</a></li>
+<li><a href="s-properties-of-relations.html" data-scroll="s-properties-of-relations">Properties of Relations</a></li>
+<li><a href="s-matrices-of-relations.html" data-scroll="s-matrices-of-relations">Matrices of Relations</a></li>
+<li><a href="s-closure-operations-on-relations.html" data-scroll="s-closure-operations-on-relations">Closure Operations on Relations</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_7.html" data-scroll="chapter_7"><span class="codenumber">7</span> <span class="title">Functions</span></a><ul>
+<li><a href="s-function-def-notation.html" data-scroll="s-function-def-notation">Definition and Notation</a></li>
+<li><a href="s-properties-of-functions.html" data-scroll="s-properties-of-functions">Properties of Functions</a></li>
+<li><a href="s-function-composition.html" data-scroll="s-function-composition">Function Composition</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_8.html" data-scroll="chapter_8"><span class="codenumber">8</span> <span class="title">Recursion and Recurrence Relations</span></a><ul>
+<li><a href="s-faces-of-recursion.html" data-scroll="s-faces-of-recursion">The Many Faces of Recursion</a></li>
+<li><a href="s-Sequences.html" data-scroll="s-Sequences">Sequences</a></li>
+<li><a href="s-recurrence-relations.html" data-scroll="s-recurrence-relations">Recurrence Relations</a></li>
+<li><a href="s-some-common-rrs.html" data-scroll="s-some-common-rrs">Some Common Recurrence Relations</a></li>
+<li><a href="s-generating-functions.html" data-scroll="s-generating-functions">Generating Functions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_9.html" data-scroll="chapter_9"><span class="codenumber">9</span> <span class="title">Graph Theory</span></a><ul>
+<li><a href="s-graphs-introduction.html" data-scroll="s-graphs-introduction">Graphs - General Introduction</a></li>
+<li><a href="s-data-structures-for-graphs.html" data-scroll="s-data-structures-for-graphs">Data Structures for Graphs</a></li>
+<li><a href="s-Connectivity.html" data-scroll="s-Connectivity">Connectivity</a></li>
+<li><a href="s-traversals.html" data-scroll="s-traversals">Traversals: Eulerian and Hamiltonian Graphs</a></li>
+<li><a href="s-graph-optimization.html" data-scroll="s-graph-optimization">Graph Optimization</a></li>
+<li><a href="s-planarity-and-colorings.html" data-scroll="s-planarity-and-colorings" class="active">Planarity and Colorings</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_10.html" data-scroll="chapter_10"><span class="codenumber">10</span> <span class="title">Trees</span></a><ul>
+<li><a href="s-what-is-a-tree.html" data-scroll="s-what-is-a-tree">What Is a Tree?</a></li>
+<li><a href="s-spanning-trees.html" data-scroll="s-spanning-trees">Spanning Trees</a></li>
+<li><a href="s-rooted-trees.html" data-scroll="s-rooted-trees">Rooted Trees</a></li>
+<li><a href="s-binary-trees.html" data-scroll="s-binary-trees">Binary Trees</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_11.html" data-scroll="chapter_11"><span class="codenumber">11</span> <span class="title">Algebraic Structures</span></a><ul>
+<li><a href="s-Operations.html" data-scroll="s-Operations">Operations</a></li>
+<li><a href="s-algebraic-systems.html" data-scroll="s-algebraic-systems">Algebraic Systems</a></li>
+<li><a href="s-general-properties-of-groups.html" data-scroll="s-general-properties-of-groups">Some General Properties of Groups</a></li>
+<li><a href="s-gcds-and-zsubn.html" data-scroll="s-gcds-and-zsubn">Greatest Common Divisors  and the Integers Modulo \(n\)</a></li>
+<li><a href="s-Subsystems.html" data-scroll="s-Subsystems">Subsystems</a></li>
+<li><a href="s-direct-products.html" data-scroll="s-direct-products">Direct Products</a></li>
+<li><a href="s-isomorphisms.html" data-scroll="s-isomorphisms">Isomorphisms</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_12.html" data-scroll="chapter_12"><span class="codenumber">12</span> <span class="title">More Matrix Algebra</span></a><ul>
+<li><a href="s-systems-linear-equations.html" data-scroll="s-systems-linear-equations">Systems of Linear Equations</a></li>
+<li><a href="s-matrix-inversion.html" data-scroll="s-matrix-inversion">Matrix Inversion</a></li>
+<li><a href="s-intro-to-vector-spaces.html" data-scroll="s-intro-to-vector-spaces">An Introduction to Vector Spaces</a></li>
+<li><a href="s-the-diagonalization-process.html" data-scroll="s-the-diagonalization-process">The Diagonalization Process</a></li>
+<li><a href="s-some-applications.html" data-scroll="s-some-applications">Some Applications</a></li>
+<li><a href="s-systems-linear-equations-mod-2.html" data-scroll="s-systems-linear-equations-mod-2">Linear Equations over the Integers Mod 2</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_13.html" data-scroll="chapter_13"><span class="codenumber">13</span> <span class="title">Boolean Algebra</span></a><ul>
+<li><a href="s-posets-revisited.html" data-scroll="s-posets-revisited">Posets Revisited</a></li>
+<li><a href="s-lattices.html" data-scroll="s-lattices">Lattices</a></li>
+<li><a href="s-boolean-algebras.html" data-scroll="s-boolean-algebras">Boolean Algebras</a></li>
+<li><a href="s-atoms-of-a-boolean-algebra.html" data-scroll="s-atoms-of-a-boolean-algebra">Atoms of a Boolean Algebra</a></li>
+<li><a href="s-finite-boolean-algebras-ntuples.html" data-scroll="s-finite-boolean-algebras-ntuples">Finite Boolean Algebras as \(n\)-tuples of 0's and 1's</a></li>
+<li><a href="s-boolean-expressions.html" data-scroll="s-boolean-expressions">Boolean Expressions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_14.html" data-scroll="chapter_14"><span class="codenumber">14</span> <span class="title">Monoids and Automata</span></a><ul>
+<li><a href="s-Monoids.html" data-scroll="s-Monoids">Monoids</a></li>
+<li><a href="s-free-monoids-and-languages.html" data-scroll="s-free-monoids-and-languages">Free Monoids and Languages</a></li>
+<li><a href="s-automata-finite-state-machines.html" data-scroll="s-automata-finite-state-machines">Automata, Finite-State Machines</a></li>
+<li><a href="s-monoid-of-fsm.html" data-scroll="s-monoid-of-fsm">The Monoid of a Finite-State Machine</a></li>
+<li><a href="s-machine-of-monoid.html" data-scroll="s-machine-of-monoid">The Machine of a Monoid</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_15.html" data-scroll="chapter_15"><span class="codenumber">15</span> <span class="title">Group Theory and Applications</span></a><ul>
+<li><a href="s-cyclic-groups.html" data-scroll="s-cyclic-groups">Cyclic Groups</a></li>
+<li><a href="s-cosets-and-factor-groups.html" data-scroll="s-cosets-and-factor-groups">Cosets and Factor Groups</a></li>
+<li><a href="s-permutation-groups.html" data-scroll="s-permutation-groups">Permutation Groups</a></li>
+<li><a href="s-normal-subgroups-homomorphisms.html" data-scroll="s-normal-subgroups-homomorphisms">Normal Subgroups and Group Homomorphisms</a></li>
+<li><a href="s-coding-theory-groups.html" data-scroll="s-coding-theory-groups">Coding Theory, Group Codes</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_16.html" data-scroll="chapter_16"><span class="codenumber">16</span> <span class="title">An Introduction to Rings and Fields</span></a><ul>
+<li><a href="s-rings-basic.html" data-scroll="s-rings-basic">Rings, Basic Definitions and Concepts</a></li>
+<li><a href="s-fields.html" data-scroll="s-fields">Fields</a></li>
+<li><a href="s-polynomial-rings.html" data-scroll="s-polynomial-rings">Polynomial Rings</a></li>
+<li><a href="s-field-extensions.html" data-scroll="s-field-extensions">Field Extensions</a></li>
+<li><a href="s-power-series.html" data-scroll="s-power-series">Power Series</a></li>
+</ul>
+</li>
+<li class="link"><a href="backmatter.html" data-scroll="backmatter"><span class="title">Back Matter</span></a></li>
+<li class="link">
+<a href="app-algorithms.html" data-scroll="app-algorithms"><span class="codenumber">A</span> <span class="title">Algorithms</span></a><ul>
+<li><a href="app-alg1.html" data-scroll="app-alg1">An Introduction to Algorithms</a></li>
+<li><a href="app-alg2.html" data-scroll="app-alg2">The Invariant Relation Theorem</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="app-pythonsage.html" data-scroll="app-pythonsage"><span class="codenumber">B</span> <span class="title">Python and SageMath</span></a><ul>
+<li><a href="app-python-iterators.html" data-scroll="app-python-iterators">Python Iterators</a></li>
+<li><a href="app-pythonsage-dictionaries.html" data-scroll="app-pythonsage-dictionaries">Dictionaries</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="app-determinants.html" data-scroll="app-determinants"><span class="codenumber">C</span> <span class="title">Determinants</span></a><ul>
+<li><a href="section-88.html" data-scroll="section-88">Definition</a></li>
+<li><a href="section-89.html" data-scroll="section-89">Computation</a></li>
+</ul>
+</li>
+<li class="link"><a href="solutions-backmatter.html" data-scroll="solutions-backmatter"><span class="codenumber">D</span> <span class="title">Hints and Solutions to Selected Exercises</span></a></li>
+<li class="link"><a href="appendix-4.html" data-scroll="appendix-4"><span class="codenumber">E</span> <span class="title">Notation</span></a></li>
+<li class="link"><a href="references-2.html" data-scroll="references-2"><span class="title">References</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1"><span class="title">Index</span></a></li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="s-planarity-and-colorings"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">9.6</span> <span class="title">Planarity and Colorings</span>
+</h2>
+<a href="s-planarity-and-colorings.html" class="permalink">¶</a><section class="introduction" id="introduction-34"><p id="p-3421">The topics in this section are related to how graphs are drawn.</p>
+<p id="p-3422">Planarity: Can a given graph be drawn in a plane so that no edges intersect? Certainly, it is natural to avoid intersections, but up to now we haven't gone out of our way to do so.</p>
+<p id="p-3423">Colorings: Suppose that each vertex in an undirected graph is to be colored so that no two vertices that are connected by an edge have the same color. How many colors are needed? This question is motivated by the problem of drawing a map so that no two bordering countries are colored the same. A similar question can be asked for coloring edges.</p></section><section class="subsection" id="ss-planarity"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">9.6.1</span> <span class="title">Planar Graphs</span>
+</h3>
+<a href="s-planarity-and-colorings.html#ss-planarity" class="permalink">¶</a><article class="definition-like" id="def-planar-graph"><h6 class="heading">
+<span class="type">Definition</span> <span class="codenumber">9.6.1</span>. <span class="title">Planar Graph/Plane Graph.</span>
+</h6>
+<p id="p-3424">A graph is planar if it can be drawn in a plane so that no edges cross. If a graph is drawn so that no edges intersect, it is a plane graph, and such a drawing is a planar embedding of the graph.</p></article><article class="example-like" id="ex-planar-graph"><a data-knowl="" class="id-ref" data-refid="hk-ex-planar-graph"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">9.6.2</span>. <span class="title">A Planar Graph.</span>
+</h6></a></article><div id="hk-ex-planar-graph" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-3425">The graph in <a data-knowl="./knowl/fig-planar-plane.html" title="Figure 9.6.3">Figure 9.6.3</a>(a) is planar but not a plane graph. The same graph is drawn as a plane graph in <a data-knowl="./knowl/fig-planar-plane.html" title="Figure 9.6.3">Figure 9.6.3</a>(b).</p>
+<figure class="figure-like" id="fig-planar-plane"><div style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/fig-planar-plane.png" style="width: 100%; height: auto;" alt="A Planar Graph"></div>
+<figcaption><span class="type">Figure</span> <span class="codenumber">9.6.3.</span> A Planar Graph</figcaption></figure></article></div>
+<ol id="p-3426" class="lower-alpha">
+<li id="li-1609"><p id="p-3427">In discussing planarity, we need only consider simple undirected graphs with no self-loops. All other graphs can be treated as such since all of the edges that relate any two vertices can be considered as one “package” that clearly can be drawn in a plane.</p></li>
+<li id="li-1610"><p id="p-3428">Can you think of a graph that is not planar? How would you prove that it isn't planar? Proving the nonexistence of something is usually more difficult than proving its existence. This case is no exception. Intuitively, we would expect that sparse graphs would be planar and dense graphs would be nonplanar. <a data-knowl="./knowl/theorem-edge-bound.html" title="Theorem 9.6.10: A Bound on Edges of a Planar Graph">Theorem 9.6.10</a> will verify that dense graphs are indeed nonplanar.</p></li>
+<li id="li-1611"><p id="p-3429">The topic of planarity is a result of trying to restrict a graph to two dimensions. Is there an analogous topic for three dimensions? What graphs can be drawn in one dimension?</p></li>
+</ol>
+<article class="definition-like" id="def-def-path-graph"><h6 class="heading">
+<span class="type">Definition</span> <span class="codenumber">9.6.4</span>. <span class="title">Path Graph.</span>
+</h6>
+<p id="p-3430">A path graph of length \(n\text{,}\) denoted \(P_n\text{,}\) is an undirected graph with \(n+1\) vertices \(v_0, v_1,\dots, v_n\) having \(n\) edges \(\{v_i,v_{i+1}\}\text{,}\) \(i=0, 1, \dots, n-1\text{.}\)</p></article><article class="remark-like" id="observation-5"><h6 class="heading">
+<span class="type">Observation</span> <span class="codenumber">9.6.5</span>. <span class="title">Graphs in other dimensions.</span>
+</h6>
+<p id="p-3431">If a graph has only a finite number of vertices, it can always be drawn in three dimensions with no edge crossings. Is this also true for all graphs with an infinite number of vertices? The only “one-dimensional” graphs are graphs consisting of a single vertix, and  path graphs, as shown in <a data-knowl="./knowl/fig-path-graphs.html" title="Figure 9.6.6">Figure 9.6.6</a>.</p></article><figure class="figure-like" id="fig-path-graphs"><div style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/fig-chains.png" style="width: 100%; height: auto;" alt="One dimensional graphs"></div>
+<figcaption><span class="type">Figure</span> <span class="codenumber">9.6.6.</span> One dimensional graphs</figcaption></figure><p id="p-3432">A discussion of planarity is not complete without mentioning the famous Three Utilities Puzzle. The object of the puzzle is to supply three houses, A, B, and C, with the three utilities, gas, electric, and water. The constraint that makes this puzzle impossible to solve is that no utility lines may intersect. There is no planar embedding of the graph in <a data-knowl="./knowl/fig-utilities-puzzle.html" title="Figure 9.6.7">Figure 9.6.7</a>, which is commonly denoted \(K_{3,3}\text{.}\) This graph is one of two fundamental nonplanar graphs. The Kuratowski Reduction Theorem states that if a graph is nonplanar then “contains” either a \(K_{3,3}\) or a \(K_5\text{.}\)  Containment is in the sense that if you start with a nonplanar graph you can always perform a sequence of edge deletions and contractions (shrinking an edge so that the two vertices connecting it coincide) to produce one of the two graphs.</p>
+<figure class="figure-like" id="fig-utilities-puzzle"><div style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="images/fig-utilities-puzzle.png" style="width: 100%; height: auto;" alt="The Three Utilities Puzzle"></div>
+<figcaption><span class="type">Figure</span> <span class="codenumber">9.6.7.</span> The Three Utilities Puzzle</figcaption></figure><p id="p-3433">A planar graph divides the plane into one or more regions. Two points on the plane lie in the same region if you can draw a curve connecting the two points that does not pass through an edge. One of these regions will be of infinite area. Each point on the plane is either a vertex, a point on an edge, or a point in a region. A remarkable fact about the geography of planar graphs is the following theorem that is attributed to Euler.</p>
+<article class="project-like" id="activity-1"><h6 class="heading">
+<span class="type">Activity</span> <span class="codenumber">9.6.1</span>.</h6>
+<article class="exercise-like" id="task-1"><h6 class="heading"><span class="codenumber">(a)</span></h6>
+<p id="p-3434">Experiment: Jot down a graph right now and count the number of vertices, regions, and edges that you have. If \(v + r - e\) is not 2, then your graph is either nonplanar or not connected.</p></article></article><article class="theorem-like" id="theorem-euler-formula"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">9.6.8</span>. <span class="title">Euler's Formula.</span>
+</h6>
+<p id="p-3435">If \(G = (V, E)\) is a connected planar graph with \(r\) regions, \(v\) vertices and \(e\) edges, then</p>
+<div class="displaymath">
+\begin{gather}
+v + r - e = 2\label{euler-formula}\tag{9.6.1}
+\end{gather}
+</div></article><article class="hiddenproof" id="proof-22"><a data-knowl="" class="id-ref" data-refid="hk-proof-22"><h6 class="heading"><span class="type">Proof.</span></h6></a></article><div id="hk-proof-22" class="hidden-content tex2jax_ignore"><article class="hiddenproof"><p id="p-3436">We prove Euler's Formula by Induction on \(e\text{,}\) for \(e \geq  0\text{.}\)</p>
+<p id="p-3437">Basis: If \(e = 0\text{,}\) then \(G\) must be a graph with one vertex, \(v = 1\text{;}\) and there is one infinite region,\(\text{  }r = 1\text{.}\) Therefore, \(v + r-e= 1 + 1-0 = 2\text{,}\) and the basis is true.</p>
+<p id="p-3438">Induction: Suppose that \(G\) has \(k\) edges, \(k \geq  1\text{,}\) and that all connected planar graphs with less than \(k\) edges satisfy <a data-knowl="./knowl/euler-formula.html" title="Equation 9.6.1">(9.6.1)</a>. Select any edge that is part of the boundary of the infinite region and call it \(e_1\text{.}\) Let \(G'\) be the graph obtained from \(G\) by deleting \(e_1\text{.}\) <a data-knowl="./knowl/fig-euler-proof-scheme.html" title="Figure 9.6.9">Figure 9.6.9</a> illustrates the two different possibilities we need to consider: either \(G'\) is connected or it has two connected components, \(G_1\) and \(G_2\text{.}\)</p>
+<figure class="figure-like" id="fig-euler-proof-scheme"><div style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="images/fig-euler-proof-scheme.png" style="width: 100%; height: auto;" alt="Two cases in the proof of Euler's Formula"></div>
+<figcaption><span class="type">Figure</span> <span class="codenumber">9.6.9.</span> Two cases in the proof of Euler's Formula</figcaption></figure><p id="p-3439">If \(G'\) is connected, the induction hypothesis can be applied to it. If \(G'\) has \(v'\) vertices, \(r'\) edges and \(e'\) edges, then \(v'+r'-e'=2\) and in terms of the corresponding numbers for \(G\text{,}\)</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{array}{ll}
+v'=v &amp; \textrm{ No vertices were removed to form } G' \\
+r'=r-1 &amp; \textrm{ One region of } G \textrm{ was merged with the infinite region when } e_1 \textrm{ was removed}
+\\
+e' = k-1 &amp; \textrm{ We assumed that } G \textrm{ had } k \textrm{ edges.} \\
+\end{array}
+\end{equation*}
+</div>
+<p id="p-3440">For the case where \(G'\) is connected,</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{split}
+v+ r -e &amp;= v+r-k\\
+&amp;= v' + (r'+1) -(e'+1)\\
+&amp; = v' + r'-e'\\
+&amp; =2
+\end{split}
+\end{equation*}
+</div>
+<p>If \(G'\) is not connected, it must consist of two connected components, \(G_1\)  and \(G_2\text{,}\) since we started with a connected graph, \(G\text{.}\) We can apply the induction hypothesis to each of the two components to complete the proof. We leave it to the students to do this, with the reminder that in counting regions, \(G_1\)  and \(G_2\)  will share the same infinite region.</p></article></div>
+<article class="theorem-like" id="theorem-edge-bound"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">9.6.10</span>. <span class="title">A Bound on Edges of a Planar Graph.</span>
+</h6>
+<p id="p-3441">If \(G = (V, E)\) is a connected planar graph with \(v\) vertices, \(v\geq 3\text{,}\) and \(e\) edges, then</p>
+<div class="displaymath">
+\begin{gather}
+e \leq  3v - 6\label{edge-bound}\tag{9.6.2}
+\end{gather}
+</div></article><article class="hiddenproof" id="proof-23"><a data-knowl="" class="id-ref" data-refid="hk-proof-23"><h6 class="heading"><span class="type">Proof.</span></h6></a></article><div id="hk-proof-23" class="hidden-content tex2jax_ignore"><article class="hiddenproof"><p id="p-3442">(Outline of a Proof)</p>
+<ol id="p-3443" class="lower-alpha">
+<li id="li-1612"><p id="p-3444">Let \(r\) be the number of regions in \(G\text{.}\) For each region, count the number of edges that comprise its border. The sum of these counts must be at least  \(3r\text{.}\) Recall that we are working with simple graphs here, so a region made by two edges connecting the same two vertices is not possible.</p></li>
+<li id="li-1613"><p id="p-3445">Based on (a), infer that the number of edges in \(G\) must be at least \(\frac{3 r}{2}\text{.}\)</p></li>
+<li id="li-1614"><p id="p-3446">\(e\geq \frac{3r}{2}\text{   }\Rightarrow \text{      }r\leq \frac{2e}{3}\)</p></li>
+<li id="li-1615"><p id="p-3447">Substitute \(\frac{2e}{3}\) for \(r\) in Euler's Formula to obtain an inequality that is equivalent to  <a data-knowl="./knowl/edge-bound.html" title="Equation 9.6.2">(9.6.2)</a></p></li>
+</ol></article></div>
+<article class="remark-like" id="remark-1"><h6 class="heading">
+<span class="type">Remark</span> <span class="codenumber">9.6.11</span>.</h6>
+<p id="p-3448">One implication of <a data-knowl="./knowl/edge-bound.html" title="Equation 9.6.2">(9.6.2)</a> is that the number of edges in a connected planar graph will never be larger than three times its number of vertices (as long as it has at least three vertices). Since the maximum number of edges in a graph with \(v\) vertices is a quadratic function of \(v\text{,}\) as \(v\) increases, planar graphs are more and more sparse.</p></article><p id="p-3449">The following theorem will be useful as we turn to graph coloring.</p>
+<article class="theorem-like" id="theorem-degree-5"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">9.6.12</span>. <span class="title">A Vertex of Degree Five.</span>
+</h6>
+<p id="p-3450">If \(G\) is a connected planar graph, then it has a vertex with degree 5 or less.</p></article><article class="hiddenproof" id="proof-24"><a data-knowl="" class="id-ref" data-refid="hk-proof-24"><h6 class="heading"><span class="type">Proof.</span></h6></a></article><div id="hk-proof-24" class="hidden-content tex2jax_ignore"><article class="hiddenproof"><p id="p-3451">(by contradiction): We can assume that \(G\) has at least seven vertices, for otherwise the degree of any vertex is at most 5. Suppose that \(G\) is a connected planar graph and each vertex has a degree of 6 or more. Then, since each edge contributes to the degree of two vertices, \(e\geq \frac{6v}{2}=3v\text{.}\) However, <a data-knowl="./knowl/theorem-edge-bound.html" title="Theorem 9.6.10: A Bound on Edges of a Planar Graph">Theorem 9.6.10</a>  states that the \(e\leq 3v-6 &lt; 3v\text{,}\) which is a contradiction.</p></article></div></section><section class="subsection" id="ss-graph-coloring"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">9.6.2</span> <span class="title">Graph Coloring</span>
+</h3>
+<a href="s-planarity-and-colorings.html#ss-graph-coloring" class="permalink">¶</a><figure class="figure-like" id="fig-euler-island"><div style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/fig-euler-island.png" style="width: 100%; height: auto;" alt="A 3-coloring of Euler Island"></div>
+<figcaption><span class="type">Figure</span> <span class="codenumber">9.6.13.</span> A 3-coloring of Euler Island</figcaption></figure><p id="p-3452">The map of Euler Island in <a data-knowl="./knowl/fig-euler-island.html" title="Figure 9.6.13">Figure 9.6.13</a> shows that there are seven towns on the island. Suppose that a cartographer must produce a colored map in which no two towns that share a boundary have the same color. To keep costs down, she wants to minimize the number of different colors that appear on the map. How many colors are sufficient? For Euler Island, the answer is three.  Although it might not be obvious, this is a graph problem. We can represent the map with a graph, where the vertices are countries and an edge between two vertices indicates that the two corresponding countries share a boundary of positive length. This problem motivates a more general problem.</p>
+<article class="definition-like" id="def-graph-coloring"><h6 class="heading">
+<span class="type">Definition</span> <span class="codenumber">9.6.14</span>. <span class="title">Graph Coloring.</span>
+</h6>
+<p id="p-3453">Given an undirected graph \(G = (V, E)\text{,}\) find a “coloring function” \(f\) from \(V\) into a set of colors \(H\) such that \(\left(v_i,v_j\right)\in E \Rightarrow  f\left(v_i\right)\neq f\left(v_j\right)\) and \(H\) has the smallest possible cardinality. The cardinality of \(H\) is called the  chromatic number of \(G\text{,}\) \(\chi(G)\text{.}\)</p></article><ul id="p-3454" class="disc">
+<li id="li-1616"><p id="p-3455">A coloring function onto an \(n\)-element set is called an \(n\)-coloring.</p></li>
+<li id="li-1617"><p id="p-3456">In terms of this general problem, the chromatic number of the graph of Euler Island is three. To see that no more than three colors are needed, we need only display a 3-coloring: \(f(1) = f(4) = f(6) = \text{blue}\text{,}\) \(f(2) = \text{red}\text{,}\) and \(f(3) = f(5) = f(7) = \text{white}\text{.}\) This coloring is not unique. The next smallest set of colors would be of two colors, and you should be able to convince yourself that no 2-coloring exists for this graph.</p></li>
+</ul>
+<p id="p-3457">In the mid-nineteenth century, it became clear that the typical planar graph had a chromatic number of no more than 4. At that point, mathematicians attacked the Four-Color Conjecture, which is that if \(G\) is any planar graph, then its chromatic number is no more than 4. Although the conjecture is quite easy to state, it took over 100 years, until 1976, to prove the conjecture in the affirmative.</p>
+<article class="theorem-like" id="theorem-four-color-theorem"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">9.6.15</span>. <span class="title">The Four-Color Theorem.</span>
+</h6>
+<p id="p-3458">If \(G\) is a planar graph, then \(\chi (G)\leq 4\text{.}\)</p></article><p id="p-3459">A proof of the Four-Color Theorem is beyond the scope of this text, but we can prove a theorem that is only 25 percent inferior.</p>
+<article class="theorem-like" id="theorem-five-color-theorem"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">9.6.16</span>. <span class="title">The Five-Color Theorem.</span>
+</h6>
+<p id="p-3460">If \(G\) is a planar graph, then \(\chi (G)\leq 5\text{.}\)</p></article><article class="hiddenproof" id="proof-25"><a data-knowl="" class="id-ref" data-refid="hk-proof-25"><h6 class="heading"><span class="type">Proof.</span></h6></a></article><div id="hk-proof-25" class="hidden-content tex2jax_ignore"><article class="hiddenproof"><p id="p-3461">The number 5 is not a sharp upper bound for \(\chi(G)\) because of the Four-Color Theorem.</p>
+<p id="p-3462">This is a proof by Induction on the Number of Vertices in the Graph.</p>
+<p id="p-3463">Basis: Clearly, a graph with one vertex has a chromatic number of 1.</p>
+<p id="p-3464">Induction: Assume that all planar graphs with \(n - 1\) vertices have a chromatic number of 5 or less. Let \(G\) be a planar graph. By <a data-knowl="./knowl/theorem-degree-5.html" title="Theorem 9.6.12: A Vertex of Degree Five">Theorem 9.6.12</a>, there exists a vertex \(v\) with \(\deg  v \leq 5\text{.}\) Let \(G - v\) be the planar graph obtained by deleting \(v\) and all edges that connect \(v\) to other vertices in \(G\text{.}\) By the induction hypothesis, \(G - v\) has a 5-coloring. Assume that the colors used are red, white, blue, green, and yellow.</p>
+<p id="p-3465">If \(\deg  v &lt; 5\text{,}\) then we can produce a 5-coloring of \(G\) by selecting a color that is not used in coloring the vertices that are connected to \(v\) with an edge in \(G\text{.}\)</p>
+<p id="p-3466">If \(\deg  v = 5\text{,}\) then we can use the same approach if the five vertices that are adjacent to \(v\) are not all colored differently. We are now left with the possibility that \(v_1\text{,}\) \(v_2\text{,}\) \(v_3\text{,}\) \(v_4\text{,}\) and \(v_5\) are all connected to \(v\) by an edge and they are all colored differently. Assume that they are colored red, white blue, yellow, and green, respectively, as in <a data-knowl="./knowl/fig-five-coloring-proof.html" title="Figure 9.6.17">Figure 9.6.17</a>.</p>
+<figure class="figure-like" id="fig-five-coloring-proof"><div style="width: 64%; margin-left: 18%; margin-right: 18%;"><img src="images/fig-five-coloring-proof.png" style="width: 100%; height: auto;" alt="Figure used in the proof of the five color theorem"></div>
+<figcaption><span class="type">Figure</span> <span class="codenumber">9.6.17.</span> </figcaption></figure><p id="p-3467">Starting at \(v_1\) in \(G-v\text{,}\) suppose we try to construct a path \(v_3\) that passes through only red and blue vertices.  This can either be accomplished or it can't be accomplished. If it can't be done, consider all paths that start at \(v_1\text{,}\) and go through only red and blue vertices. If we exchange the colors of the vertices in these paths, including \(v_1\) we still have a 5-coloring of \(G - v\text{.}\) Since \(v_1\) is now blue, we can color the central vertex, \(v\text{,}\) red.</p>
+<p id="p-3468">Finally, suppose that \(v_1\) is connected to \(v_3\) using only red and blue vertices. Then a path from \(v_{1 }\) to \(v_3\) by using red and blue vertices followed by the edges \(\left(v_3,v\right)\) and \(\left(v,v_1\right)\) completes a circuit that either encloses \(v_2\) or encloses \(v_4\) and \(v_5\text{.}\) Therefore, no path from \(v_2\) to \(v_4\) exists using only white and yellow vertices. We can then repeat the same process as in the previous paragraph with \(v_2\) and \(v_4\text{,}\) which will allow us to color v white.</p></article></div>
+<article class="definition-like" id="def-bipartite-graph"><h6 class="heading">
+<span class="type">Definition</span> <span class="codenumber">9.6.18</span>. <span class="title">Bipartite Graph.</span>
+</h6>
+<p id="p-3469">A bipartite graph is a graph that has a 2-coloring. Equivalently, a graph is bipartite if its vertices can be partitioned into two nonempty subsets so that no edge connects  vertices from the same  subset.</p></article><article class="example-like" id="ex-bipartite"><a data-knowl="" class="id-ref" data-refid="hk-ex-bipartite"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">9.6.19</span>. <span class="title">A Few Examples.</span>
+</h6></a></article><div id="hk-ex-bipartite" class="hidden-content tex2jax_ignore"><article class="example-like"><ol id="p-3470" class="lower-alpha">
+<li id="li-1618"><p id="p-3471">The graph of the Three Utilities Puzzle is bipartite. The vertices are partitioned into the utilities and the homes. Of course a 2-coloring of the graph is to color the utilities red and the homes blue.</p></li>
+<li id="li-1619"><p id="p-3472">For \(n\geq 1\text{,}\) the \(n\)-cube is bipartite. A coloring would be to color all strings with an even number of 1's red and the strings with an odd number of 1's blue. By the definition of the \(n\)-cube, two strings that have the same color couldn't be connected since they would need to differ in at least two positions.</p></li>
+<li id="li-1620"><p id="p-3473">Let \(V\) be a set of 64 vertices, one for each square on a chess board. We can index the elements of \(V\) by \(\quad \quad\)\(v_{i j}\) = the square on the row \(i\text{,}\) column \(j\text{.}\) Connect vertices in \(V\) according to whether or not you can move a knight from one square to another. Using our indexing of \(V\text{,}\) \(\quad \quad\)\(\left(v_{i j}, v_{k l}\right)\in  E\text{ if and only if      }
+\begin{array}{c}
+|i-k|+|j-l|=3 \\
+\text{and } |i-k|\cdot |j-l|=2 \\
+\end{array}\) \((V, E)\) is a bipartite graph. The usual coloring of a chessboard is valid 2-coloring.</p></li>
+</ol></article></div>
+<p id="p-3474">How can you recognize whether a graph is bipartite? Unlike planarity, there is a nice equivalent condition for a graph to be bipartite.</p>
+<article class="theorem-like" id="theorem-no-odd"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">9.6.20</span>. <span class="title">No Odd Circuits in a Bipartite Graph.</span>
+</h6>
+<p id="p-3475">An undirected graph is bipartite if and only if it has no circuit of odd length.</p></article><article class="hiddenproof" id="proof-26"><a data-knowl="" class="id-ref" data-refid="hk-proof-26"><h6 class="heading"><span class="type">Proof.</span></h6></a></article><div id="hk-proof-26" class="hidden-content tex2jax_ignore"><article class="hiddenproof"><p id="p-3476">(\(\Rightarrow\)) Let \(G = (V, E)\) be a bipartite graph that is partitioned into two sets,  R(ed) and  B(lue) that define a 2-coloring. Consider any circuit in \(V\text{.}\) If we specify a direction in the circuit and define  \(f\) on the vertices of the circuit by</p>
+<div class="displaymath">
+\begin{equation*}
+f(u) = \textrm{the next vertex in the circuit after } v
+\end{equation*}
+</div>
+<p>Note that \(f\) is a bijection. Hence the number of red vertices in the circuit equals the number of blue vertices, and so the length of the circuit must be even.</p>
+<p id="p-3477">(\(\Longleftarrow\)) Assume that \(G\) has no circuit of odd length. For each component of \(G\text{,}\) select any vertex \(w\) and color it red. Then for every other vertex \(v\) in the component, find the path of shortest distance from \(w\) to \(v\text{.}\) If the length of the path is odd, color \(v\) blue, and if it is even, color \(v\) red. We claim that this method defines a 2-coloring of \(G\text{.}\) Suppose that it does not define a 2-coloring. Then let \(v_a\) and \(v_b\) be two vertices with identical colors that are connected with an edge. By the way that we colored \(G\text{,}\) neither \(v_a\) nor \(v_{b }\) could equal \(w\text{.}\)  We can now construct a circuit with an odd length in \(G\text{.}\) First, we start at \(w\) and follow the shortest path to \(v_a\) . Then follow the edge \(\left(v_a,v_b\right)\text{,}\) and finally, follow the reverse of a shortest path from \(w\) to \(v_b\text{.}\) Since \(v_a\) and \(v_b\) have the same color, the first and third segments of this circuit have lengths that are both odd or even, and the sum of their lengths must be even. The addition of the single edge \(\left(v_a,v_b\right)\) shows us that this circuit has an odd length. This contradicts our premise.</p></article></div></section><section class="exercises" id="exercises-9-6"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber">9.6.3</span> <span class="title">Exercises for Section 9.6</span>
+</h3>
+<a href="s-planarity-and-colorings.html#exercises-9-6" class="permalink">¶</a><article class="exercise-like" id="exercise-396"><h6 class="heading"><span class="codenumber">1.</span></h6>
+<p id="p-3478">Apply <a data-knowl="./knowl/theorem-degree-5.html" title="Theorem 9.6.12: A Vertex of Degree Five">Theorem 9.6.12</a> to prove that once \(n\) gets to a certain size, a \(K_n\) is nonplanar. What is the largest complete planar graph?</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-answer-188" id="answer-188"><span class="type">Answer</span></a><div id="hk-answer-188" class="hidden-content tex2jax_ignore"><div class="solution"><p id="p-3479"><a data-knowl="./knowl/theorem-degree-5.html" title="Theorem 9.6.12: A Vertex of Degree Five">Theorem 9.6.12</a> can be applied to infer that if \(n\geqslant 5\text{,}\) then \(K_n\) is nonplanar. A \(K_4\) is the largest complete planar graph.</p></div></div>
+</div></article><article class="exercise-like" id="exercise-397"><h6 class="heading"><span class="codenumber">2.</span></h6>
+<p id="p-3480">Can you apply <a data-knowl="./knowl/theorem-degree-5.html" title="Theorem 9.6.12: A Vertex of Degree Five">Theorem 9.6.12</a> to prove that the Three Utilities Puzzle can't be solved?</p></article><article class="exercise-like" id="exercise-398"><h6 class="heading"><span class="codenumber">3.</span></h6>
+<p id="p-3481">What are the chromatic numbers of the following graphs?</p>
+<figure class="figure-like" id="fig-exercise-9-6-3"><div style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="images/fig-exercise-9-6-3.png" style="width: 100%; height: auto;" alt="What are the chromatic numbers?"></div>
+<figcaption><span class="type">Figure</span> <span class="codenumber">9.6.21.</span> What are the chromatic numbers?</figcaption></figure><div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-answer-189" id="answer-189"><span class="type">Answer</span></a><div id="hk-answer-189" class="hidden-content tex2jax_ignore"><div class="solution"><ol id="p-3482" class="lower-alpha cols3">
+<li id="li-1621"><p id="p-3483">4</p></li>
+<li id="li-1622"><p id="p-3484">3</p></li>
+<li id="li-1623"><p id="p-3485">3</p></li>
+<li id="li-1624"><p id="p-3486">3</p></li>
+<li id="li-1625"><p id="p-3487">2</p></li>
+<li id="li-1626"><p id="p-3488">4</p></li>
+</ol></div></div>
+</div></article><article class="exercise-like" id="exercise-399"><h6 class="heading"><span class="codenumber">4.</span></h6>
+<p id="p-3489">Prove that if an undirected graph has a subgraph that is a \(K_3\) it then its chromatic number is at least 3.</p></article><article class="exercise-like" id="exercise-400"><h6 class="heading"><span class="codenumber">5.</span></h6>
+<p id="p-3490">What is \(\chi \left(K_n\right)\text{,}\) \(n\geq 1\text{?}\)</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-answer-190" id="answer-190"><span class="type">Answer</span></a><div id="hk-answer-190" class="hidden-content tex2jax_ignore"><div class="solution"><p id="p-3491">The chromatic number is \(n\) since every vertex is connected to every other vertex.</p></div></div>
+</div></article><article class="exercise-like" id="exercise-401"><h6 class="heading"><span class="codenumber">6.</span></h6>
+<p id="p-3492">What is the chromatic number of the United States?</p></article><article class="exercise-like" id="exercise-402"><h6 class="heading"><span class="codenumber">7.</span></h6>
+<p id="p-3493">Complete the proof of <a data-knowl="./knowl/theorem-euler-formula.html" title="Theorem 9.6.8: Euler's Formula">Euler's Formula</a>.</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-answer-191" id="answer-191"><span class="type">Answer</span></a><div id="hk-answer-191" class="hidden-content tex2jax_ignore"><div class="solution">
+<p id="p-3494">Suppose that \(G'\) is not connected. Then \(G'\) is made up of 2 components that are planar graphs with less than \(k\) edges, \(G_1\) and \(G_2\text{.}\) For \(i=1,2\) let \(v_i,r_i, \text{and} e_i\) be the number of vertices, regions and edges in \(G_i\text{.}\) By the induction hypothesis, \(v_i+r_i-e_i=2\) for \(i=1,2\text{.}\)</p>
+<p id="p-3495">One of the regions, the infinite one, is common to both graphs. Therefore, when we add edge \(e\) back to the graph, we have \(r=r_1+r_2-1\text{,}\) \(v=v_1+v_2\text{,}\) and  \(e=e_1+e_2+1\text{.}\)</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{split}
+v+r-e &amp;=\left(v_1+v_2\right)+\left(r_1+r_2-1\right)-\left(e_1+e_2+1\right)\\
+&amp;=\left(v_1+r_1-e_1\right)+\left(v_2+r_2-e_2\right)-2\\
+&amp;=2 + 2 -2\\
+&amp;=2
+\end{split}
+\end{equation*}
+</div>
+</div></div>
+</div></article><article class="exercise-like" id="exercise-403"><h6 class="heading"><span class="codenumber">8.</span></h6>
+<p id="p-3496">Use the outline of a proof of <a data-knowl="./knowl/theorem-edge-bound.html" title="Theorem 9.6.10: A Bound on Edges of a Planar Graph">Theorem 9.6.10</a> to write a complete proof. Be sure to point out where the premise \(v\geq 3\) is essential.</p></article><article class="exercise-like" id="exercise-404"><h6 class="heading"><span class="codenumber">9.</span></h6>
+<p id="p-3497">Let \(G = (V,E)\) with \(|V|\geq 11\text{,}\) and let \(U\) be the set of all undirected edges between distinct vertices in \(V\text{.}\)  Prove that either \(G\) or \(G' = \left(V,E^c\right)\) is nonplanar.</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-answer-192" id="answer-192"><span class="type">Answer</span></a><div id="hk-answer-192" class="hidden-content tex2jax_ignore"><div class="solution"><p id="p-3498">Since \(\left| E\right| +E^c=\frac{n(n-1)}{2}\text{,}\) either \(E \text{ or } E^c\) has at least \(\frac{n(n-1)}{4}\) elements. Assume that it is \(E\) that is larger. Since \(\frac{n(n-1)}{4}\) is greater than \(3n-6\text{  }\text{for}\text{  }n\geqslant 11\text{,}\) \(G\) would be nonplanar. Of course, if \(E^c\) is larger, then \(G'\) would be nonplanar by the same reasoning.  Can you find a graph with ten vertices such that it is planar and its complement is also planar?</p></div></div>
+</div></article><article class="exercise-like" id="exercise-405"><h6 class="heading"><span class="codenumber">10.</span></h6>
+<p id="p-3499">Design an algorithm to determine whether a graph is bipartite.</p></article><article class="exercise-like" id="exercise-406"><h6 class="heading"><span class="codenumber">11.</span></h6>
+<p id="p-3500">Prove that a bipartite graph with an odd number of vertices greater than or equal to 3 has no Hamiltonian circuit.</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-answer-193" id="answer-193"><span class="type">Answer</span></a><div id="hk-answer-193" class="hidden-content tex2jax_ignore"><div class="solution"><p id="p-3501">Suppose that \((V,E)\) is bipartite (with colors red and blue), \(\left| E\right|\) is odd, and \(\left(v_1,v_2,\ldots ,v_{2n+1},v_1\right)\) is a Hamiltonian circuit. If \(v_1\) is red, then \(v_{2n+1}\) would also be red. But then \(\left\{v_{2n+1},v_1\right\}\) would not be in \(E\text{,}\) a contradiction.</p></div></div>
+</div></article><article class="exercise-like" id="exercise-407"><h6 class="heading"><span class="codenumber">12.</span></h6>
+<p id="p-3502">Prove that any graph with a finite number of vertices can be drawn in three dimensions so that no edges intersect.</p></article><article class="exercise-like" id="exercise-408"><h6 class="heading"><span class="codenumber">13.</span></h6>
+<p id="p-3503">Suppose you had to color the edges of an undirected graph so that for each vertex, the edges that it is connected to have different colors. How can this problem be transformed into a vertex coloring problem?</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-answer-194" id="answer-194"><span class="type">Answer</span></a><div id="hk-answer-194" class="hidden-content tex2jax_ignore"><div class="solution"><p id="p-3504">Draw a graph with one vertex for each edge, If two edges in the original graph meet at the same vertex, then draw an edge connecting the corresponding  vertices in the new graph.</p></div></div>
+</div></article><article class="exercise-like" id="exercise-409"><h6 class="heading"><span class="codenumber">14.</span></h6>
+<ol id="p-3505" class="lower-alpha">
+<li id="li-1627"><p id="p-3506">Suppose the edges of a \(K_6\) are colored either red or blue. Prove that there will be either a “red \(K_3\)” (a subset of the vertex set with three vertices connected by red edges) or a “blue \(K_3\)” or both.</p></li>
+<li id="li-1628"><p id="p-3507">Suppose six people are selected at random. Prove that either there exists a subset of three of them with the property that any two people in the subset can communicate in a common language, or there exist three people, no two of whom can communicate in a common language.</p></li>
+</ol></article><article class="exercise-like" id="exercise-410"><h6 class="heading"><span class="codenumber">15.</span></h6>
+<p id="p-3508">Let \(d\) be a positive integer, and let \(a_1, a_2, \dots a_d\) be positive integers greater than or equal to two.  The <dfn class="terminology">mesh graph</dfn> \(M(a_1,a_2,\dots,a_d)\) has vertices of the form \(x=(x_1, x_2,\dots, x_d)\) where \(1 \leq x_i \leq a_i\text{.}\) Two vertices \(x\) and \(y\) are adjacent if and only if \(\sum_{i=1}^{d}{\lvert x_i-y_i \rvert} = 1\text{.}\)  In other words, two adjacent vertices must differ in only one coordinate and by a difference of 1.</p>
+<ol id="p-3509" class="lower-alpha">
+<li id="li-1629"><p id="p-3510">What is the chromatic number of  \(M(a_1,a_2,\dots,a_d)\text{?}\)</p></li>
+<li id="li-1630"><p id="p-3511">For what pairs  \((a_1, a_2)\) does \(M(a_1, a_2)\) have a Hamiltonian circuit?</p></li>
+<li id="li-1631"><p id="p-3512">For what triples   \((a_1, a_2, a_3)\) does \(M(a_1, a_2, a_3)\) have a Hamiltonian circuit?</p></li>
+</ol></article></section><section class="references" id="references-1"><h3 class="heading hide-type">
+<span class="type">References</span> <span class="codenumber">9.6.4</span> <span class="title">Further Reading</span>
+</h3>
+<article class="bib" id="biblio-wilson-2013"><div class="bibitem">[1]</div>  <div class="bibentry">Wilson, R., <i>Four Colors Suffice - How the Map Problem Was Solved</i>Princeton, NJ: Princeton U. Press, 2013.</div></article></section></section></div></main>
+</div>
+<!--Start: StatCounter code--><script>
+var sc_project=11204831;
+var sc_invisible=1;
+var sc_security="957c565b";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "https://www.");
+document.write("<sc"+"ript src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+</script><noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/11204831/0/957c565b/1/" alt="web analytics"></a></div></noscript>
+<!--End: StatCounter code-->
+<div class="login-link"><span id="loginlogout" class="login">login</span></div>
+<script src="https://pretextbook.org/js/0.11/login.js"></script>
+</body>
+</html>

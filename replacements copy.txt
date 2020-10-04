@@ -1,0 +1,31 @@
+& ——> &amp;
+
+{any number of blanks}  --->   
+
+\\section{(.*?)}  ---> <section xml:id="s-\1"><title>\1</title><index><main>\1</main></index>
+
+\\subsection{(.*?)}  ---> <subsection xml:id="ss-\1"><title>\1</title><index><main>\1</main></index>
+
+\\subsection\{EXERCISES FOR SECTION (\d)\.(\d)\} —>  <exercises xml:id="exercises-\1-\2">\r<title>Exercises for Section \1.\2 </title>
+
+\\subsubsection{(.*?)}  ---> <subsubsection xml:id="sss-\1"><title>\1</title><index><main>\1</main></index>
+
+\pmb{ Definition:(.*?)}  -><definition xml:id="def-\1"><title>\1</title><statement></statement><notation><usage></usage><description></description></notation><index><main>\1</main></index></definition>
+
+\pmb{ Example:(.*?)}  -><example xml:id="ex-\1"><title>\1</title></example>
+
+\pmb{ Theorem:(.*?)}  -><theorem xml:id="theorem-\1"><title>\1</title><statement><p></p></statement><proof><p></p></proof></theorem>
+
+\r\r\r1.    --->   \r<exercise number="1"><statement>
+
+\r\r\r(\d).    --->   </statement></exercise>\r<exercise number="\1"><statement>
+\r\r\r(\d\d).    --->   </statement></exercise>\r<exercise number="\1"><statement>
+
+
+\r\r\(a\)   ----> \r<li>
+\r\r\(1\)   ----> \r<li>
+\r\r\((\w)\)   ----> <\li>\r<li>
+
+
+\\textit\{ (\w)\}  ---->  <m>\1</m>
+$\mathbb{(\w)}$  ——>  <m>\mathbb{\1}</m>

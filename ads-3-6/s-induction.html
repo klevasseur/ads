@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-05-14T09:24:04-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ADS Mathematical Induction</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.11/pretext.js"></script><script src="https://pretextbook.org/js/0.11/pretext_add_on.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/toc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/setcolors.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/features.css" rel="stylesheet" type="text/css">
+<script>var logged_in = false;
+var role = 'student';
+var guest_access = true;
+var login_required = false;
+var js_version = 0.11;
+</script>
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div class="hidden-content" style="display:none">\(\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href="http://discretemath.org" target="_blank"><img src="http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="ads.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<p class="byline">Al Doerr, Ken Levasseur</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="s-propositions-over-universe.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="chapter3.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="s-quantifiers.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="s-propositions-over-universe.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="chapter3.html" title="Up">Up</a><a class="next-button button toolbar-item" href="s-quantifiers.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link">
+<a href="index.html" data-scroll="index"><span class="title">Front Matter</span></a><ul>
+<li><a href="colophon-1.html" data-scroll="colophon-1">Colophon</a></li>
+<li><a href="dedication-1.html" data-scroll="dedication-1">Dedication</a></li>
+<li><a href="acknowledgement-1.html" data-scroll="acknowledgement-1">Acknowledgements</a></li>
+<li><a href="ads-preface.html" data-scroll="ads-preface">Preface</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_1.html" data-scroll="chapter_1"><span class="codenumber">1</span> <span class="title">Set Theory</span></a><ul>
+<li><a href="s-set-Notation-and-Relations.html" data-scroll="s-set-Notation-and-Relations">Set Notation and Relations</a></li>
+<li><a href="s-basic_Set_Operations.html" data-scroll="s-basic_Set_Operations">Basic Set Operations</a></li>
+<li><a href="s-cartesian_Products_and_Power_Sets.html" data-scroll="s-cartesian_Products_and_Power_Sets">Cartesian Products and Power Sets</a></li>
+<li><a href="s-binary_Representation_of_Positive_Integers.html" data-scroll="s-binary_Representation_of_Positive_Integers">Binary Representation of Positive Integers</a></li>
+<li><a href="s-summation_Notation_and_Generalizations.html" data-scroll="s-summation_Notation_and_Generalizations">Summation Notation and Generalizations</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_2.html" data-scroll="chapter_2"><span class="codenumber">2</span> <span class="title">Combinatorics</span></a><ul>
+<li><a href="s-the-rule-of-products.html" data-scroll="s-the-rule-of-products">Basic Counting Techniques - The Rule of Products</a></li>
+<li><a href="s-permutations.html" data-scroll="s-permutations">Permutations</a></li>
+<li><a href="s-partitions-and-law-of-addition.html" data-scroll="s-partitions-and-law-of-addition">Partitions of Sets and the Law of Addition</a></li>
+<li><a href="s-combinations-and-the-binomial-theorem.html" data-scroll="s-combinations-and-the-binomial-theorem">Combinations and the Binomial Theorem</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter3.html" data-scroll="chapter3"><span class="codenumber">3</span> <span class="title">Logic</span></a><ul>
+<li><a href="s-propositions-logic-operators.html" data-scroll="s-propositions-logic-operators">Propositions and Logical Operators</a></li>
+<li><a href="s-truth-tables.html" data-scroll="s-truth-tables">Truth Tables and Propositions Generated by a Set</a></li>
+<li><a href="s-equivalence-implication.html" data-scroll="s-equivalence-implication">Equivalence and Implication</a></li>
+<li><a href="s-logic-laws.html" data-scroll="s-logic-laws">The Laws of Logic</a></li>
+<li><a href="s-math-systems.html" data-scroll="s-math-systems">Mathematical Systems and Proofs</a></li>
+<li><a href="s-propositions-over-universe.html" data-scroll="s-propositions-over-universe">Propositions over a Universe</a></li>
+<li><a href="s-induction.html" data-scroll="s-induction" class="active">Mathematical Induction</a></li>
+<li><a href="s-quantifiers.html" data-scroll="s-quantifiers">Quantifiers</a></li>
+<li><a href="s-proof-review.html" data-scroll="s-proof-review">A Review of Methods of Proof</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_4.html" data-scroll="chapter_4"><span class="codenumber">4</span> <span class="title">More on Sets</span></a><ul>
+<li><a href="s-proof-methods-sets.html" data-scroll="s-proof-methods-sets">Methods of Proof for Sets</a></li>
+<li><a href="s-laws-of-set-theory.html" data-scroll="s-laws-of-set-theory">Laws of Set Theory</a></li>
+<li><a href="s-minsets.html" data-scroll="s-minsets">Minsets</a></li>
+<li><a href="s-duality-principle.html" data-scroll="s-duality-principle">The Duality Principle</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_5.html" data-scroll="chapter_5"><span class="codenumber">5</span> <span class="title">Introduction to Matrix Algebra</span></a><ul>
+<li><a href="s-basic-matrix-definitions.html" data-scroll="s-basic-matrix-definitions">Basic Definitions and Operations</a></li>
+<li><a href="s-special-matrices.html" data-scroll="s-special-matrices">Special Types of Matrices</a></li>
+<li><a href="s-laws-of-matrix-algebra.html" data-scroll="s-laws-of-matrix-algebra">Laws of Matrix Algebra</a></li>
+<li><a href="s-matrix-oddities.html" data-scroll="s-matrix-oddities">Matrix Oddities</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_6.html" data-scroll="chapter_6"><span class="codenumber">6</span> <span class="title">Relations</span></a><ul>
+<li><a href="s-basic-definitions.html" data-scroll="s-basic-definitions">Basic Definitions</a></li>
+<li><a href="s-graphs-of-relations-on-a-set.html" data-scroll="s-graphs-of-relations-on-a-set">Graphs of Relations on a Set</a></li>
+<li><a href="s-properties-of-relations.html" data-scroll="s-properties-of-relations">Properties of Relations</a></li>
+<li><a href="s-matrices-of-relations.html" data-scroll="s-matrices-of-relations">Matrices of Relations</a></li>
+<li><a href="s-closure-operations-on-relations.html" data-scroll="s-closure-operations-on-relations">Closure Operations on Relations</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_7.html" data-scroll="chapter_7"><span class="codenumber">7</span> <span class="title">Functions</span></a><ul>
+<li><a href="s-function-def-notation.html" data-scroll="s-function-def-notation">Definition and Notation</a></li>
+<li><a href="s-properties-of-functions.html" data-scroll="s-properties-of-functions">Properties of Functions</a></li>
+<li><a href="s-function-composition.html" data-scroll="s-function-composition">Function Composition</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_8.html" data-scroll="chapter_8"><span class="codenumber">8</span> <span class="title">Recursion and Recurrence Relations</span></a><ul>
+<li><a href="s-faces-of-recursion.html" data-scroll="s-faces-of-recursion">The Many Faces of Recursion</a></li>
+<li><a href="s-Sequences.html" data-scroll="s-Sequences">Sequences</a></li>
+<li><a href="s-recurrence-relations.html" data-scroll="s-recurrence-relations">Recurrence Relations</a></li>
+<li><a href="s-some-common-rrs.html" data-scroll="s-some-common-rrs">Some Common Recurrence Relations</a></li>
+<li><a href="s-generating-functions.html" data-scroll="s-generating-functions">Generating Functions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_9.html" data-scroll="chapter_9"><span class="codenumber">9</span> <span class="title">Graph Theory</span></a><ul>
+<li><a href="s-graphs-introduction.html" data-scroll="s-graphs-introduction">Graphs - General Introduction</a></li>
+<li><a href="s-data-structures-for-graphs.html" data-scroll="s-data-structures-for-graphs">Data Structures for Graphs</a></li>
+<li><a href="s-Connectivity.html" data-scroll="s-Connectivity">Connectivity</a></li>
+<li><a href="s-traversals.html" data-scroll="s-traversals">Traversals: Eulerian and Hamiltonian Graphs</a></li>
+<li><a href="s-graph-optimization.html" data-scroll="s-graph-optimization">Graph Optimization</a></li>
+<li><a href="s-planarity-and-colorings.html" data-scroll="s-planarity-and-colorings">Planarity and Colorings</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_10.html" data-scroll="chapter_10"><span class="codenumber">10</span> <span class="title">Trees</span></a><ul>
+<li><a href="s-what-is-a-tree.html" data-scroll="s-what-is-a-tree">What Is a Tree?</a></li>
+<li><a href="s-spanning-trees.html" data-scroll="s-spanning-trees">Spanning Trees</a></li>
+<li><a href="s-rooted-trees.html" data-scroll="s-rooted-trees">Rooted Trees</a></li>
+<li><a href="s-binary-trees.html" data-scroll="s-binary-trees">Binary Trees</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_11.html" data-scroll="chapter_11"><span class="codenumber">11</span> <span class="title">Algebraic Structures</span></a><ul>
+<li><a href="s-Operations.html" data-scroll="s-Operations">Operations</a></li>
+<li><a href="s-algebraic-systems.html" data-scroll="s-algebraic-systems">Algebraic Systems</a></li>
+<li><a href="s-general-properties-of-groups.html" data-scroll="s-general-properties-of-groups">Some General Properties of Groups</a></li>
+<li><a href="s-gcds-and-zsubn.html" data-scroll="s-gcds-and-zsubn">Greatest Common Divisors  and the Integers Modulo \(n\)</a></li>
+<li><a href="s-Subsystems.html" data-scroll="s-Subsystems">Subsystems</a></li>
+<li><a href="s-direct-products.html" data-scroll="s-direct-products">Direct Products</a></li>
+<li><a href="s-isomorphisms.html" data-scroll="s-isomorphisms">Isomorphisms</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_12.html" data-scroll="chapter_12"><span class="codenumber">12</span> <span class="title">More Matrix Algebra</span></a><ul>
+<li><a href="s-systems-linear-equations.html" data-scroll="s-systems-linear-equations">Systems of Linear Equations</a></li>
+<li><a href="s-matrix-inversion.html" data-scroll="s-matrix-inversion">Matrix Inversion</a></li>
+<li><a href="s-intro-to-vector-spaces.html" data-scroll="s-intro-to-vector-spaces">An Introduction to Vector Spaces</a></li>
+<li><a href="s-the-diagonalization-process.html" data-scroll="s-the-diagonalization-process">The Diagonalization Process</a></li>
+<li><a href="s-some-applications.html" data-scroll="s-some-applications">Some Applications</a></li>
+<li><a href="s-systems-linear-equations-mod-2.html" data-scroll="s-systems-linear-equations-mod-2">Linear Equations over the Integers Mod 2</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_13.html" data-scroll="chapter_13"><span class="codenumber">13</span> <span class="title">Boolean Algebra</span></a><ul>
+<li><a href="s-posets-revisited.html" data-scroll="s-posets-revisited">Posets Revisited</a></li>
+<li><a href="s-lattices.html" data-scroll="s-lattices">Lattices</a></li>
+<li><a href="s-boolean-algebras.html" data-scroll="s-boolean-algebras">Boolean Algebras</a></li>
+<li><a href="s-atoms-of-a-boolean-algebra.html" data-scroll="s-atoms-of-a-boolean-algebra">Atoms of a Boolean Algebra</a></li>
+<li><a href="s-finite-boolean-algebras-ntuples.html" data-scroll="s-finite-boolean-algebras-ntuples">Finite Boolean Algebras as \(n\)-tuples of 0's and 1's</a></li>
+<li><a href="s-boolean-expressions.html" data-scroll="s-boolean-expressions">Boolean Expressions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_14.html" data-scroll="chapter_14"><span class="codenumber">14</span> <span class="title">Monoids and Automata</span></a><ul>
+<li><a href="s-Monoids.html" data-scroll="s-Monoids">Monoids</a></li>
+<li><a href="s-free-monoids-and-languages.html" data-scroll="s-free-monoids-and-languages">Free Monoids and Languages</a></li>
+<li><a href="s-automata-finite-state-machines.html" data-scroll="s-automata-finite-state-machines">Automata, Finite-State Machines</a></li>
+<li><a href="s-monoid-of-fsm.html" data-scroll="s-monoid-of-fsm">The Monoid of a Finite-State Machine</a></li>
+<li><a href="s-machine-of-monoid.html" data-scroll="s-machine-of-monoid">The Machine of a Monoid</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_15.html" data-scroll="chapter_15"><span class="codenumber">15</span> <span class="title">Group Theory and Applications</span></a><ul>
+<li><a href="s-cyclic-groups.html" data-scroll="s-cyclic-groups">Cyclic Groups</a></li>
+<li><a href="s-cosets-and-factor-groups.html" data-scroll="s-cosets-and-factor-groups">Cosets and Factor Groups</a></li>
+<li><a href="s-permutation-groups.html" data-scroll="s-permutation-groups">Permutation Groups</a></li>
+<li><a href="s-normal-subgroups-homomorphisms.html" data-scroll="s-normal-subgroups-homomorphisms">Normal Subgroups and Group Homomorphisms</a></li>
+<li><a href="s-coding-theory-groups.html" data-scroll="s-coding-theory-groups">Coding Theory, Group Codes</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_16.html" data-scroll="chapter_16"><span class="codenumber">16</span> <span class="title">An Introduction to Rings and Fields</span></a><ul>
+<li><a href="s-rings-basic.html" data-scroll="s-rings-basic">Rings, Basic Definitions and Concepts</a></li>
+<li><a href="s-fields.html" data-scroll="s-fields">Fields</a></li>
+<li><a href="s-polynomial-rings.html" data-scroll="s-polynomial-rings">Polynomial Rings</a></li>
+<li><a href="s-field-extensions.html" data-scroll="s-field-extensions">Field Extensions</a></li>
+<li><a href="s-power-series.html" data-scroll="s-power-series">Power Series</a></li>
+</ul>
+</li>
+<li class="link"><a href="backmatter.html" data-scroll="backmatter"><span class="title">Back Matter</span></a></li>
+<li class="link">
+<a href="app-algorithms.html" data-scroll="app-algorithms"><span class="codenumber">A</span> <span class="title">Algorithms</span></a><ul>
+<li><a href="app-alg1.html" data-scroll="app-alg1">An Introduction to Algorithms</a></li>
+<li><a href="app-alg2.html" data-scroll="app-alg2">The Invariant Relation Theorem</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="app-pythonsage.html" data-scroll="app-pythonsage"><span class="codenumber">B</span> <span class="title">Python and SageMath</span></a><ul>
+<li><a href="app-python-iterators.html" data-scroll="app-python-iterators">Python Iterators</a></li>
+<li><a href="app-pythonsage-dictionaries.html" data-scroll="app-pythonsage-dictionaries">Dictionaries</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="app-determinants.html" data-scroll="app-determinants"><span class="codenumber">C</span> <span class="title">Determinants</span></a><ul>
+<li><a href="section-88.html" data-scroll="section-88">Definition</a></li>
+<li><a href="section-89.html" data-scroll="section-89">Computation</a></li>
+</ul>
+</li>
+<li class="link"><a href="solutions-backmatter.html" data-scroll="solutions-backmatter"><span class="codenumber">D</span> <span class="title">Hints and Solutions to Selected Exercises</span></a></li>
+<li class="link"><a href="appendix-4.html" data-scroll="appendix-4"><span class="codenumber">E</span> <span class="title">Notation</span></a></li>
+<li class="link"><a href="references-2.html" data-scroll="references-2"><span class="title">References</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1"><span class="title">Index</span></a></li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="s-induction"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">3.7</span> <span class="title">Mathematical Induction</span>
+</h2>
+<a href="s-induction.html" class="permalink">¶</a><section class="subsection" id="subsection-35"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">3.7.1</span> <span class="title">Introduction, First Example</span>
+</h3>
+<p id="p-1301">In this section, we will examine mathematical induction, a technique for proving propositions over the positive integers. Mathematical induction reduces the proof that all of the positive integers belong to a truth set to a finite number of steps.</p>
+<article class="example-like" id="ex-triangular-numbers"><a data-knowl="" class="id-ref" data-refid="hk-ex-triangular-numbers"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.7.1</span>. <span class="title">Formula for Triangular Numbers.</span>
+</h6></a></article><div id="hk-ex-triangular-numbers" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-1302">Consider the following proposition over the positive integers, which we will label \(p(n)\text{:}\) The sum of the positive integers from 1 to \(n\) is \(\frac{n (n+1)}{2}\text{.}\) This is a well-known formula that is quite simple to verify for a given value of \(n\text{.}\)   For example, \(p(5)\) is: The sum of the positive integers from 1 to 5 is \(\frac{5 (5+1)}{2}\text{.}\) Indeed, \(1 + 2 + 3 + 4 + 5= 15 =\frac{5(5+1)}{2}\text{.}\) However, this doesn't serve as a proof that \(p(n)\) is a tautology. All that we've established is that \(5\) is in the truth set of \(p\text{.}\) Since the positive integers are infinite, we certainly can't use this approach to prove the formula.</p></article></div>
+<p id="p-1303"><em class="emphasis">An Analogy</em>: A proof by mathematical induction is similar to knocking over a row of closely spaced dominos that are standing on end. To knock over the dominos in <a data-knowl="./knowl/dominos.html" title="Figure 3.7.2">Figure 3.7.2</a>, all you need to do is push the first domino over. To be assured that they all will be knocked over, some work must be done ahead of time. The dominos must be positioned so that if any domino is pushed is knocked over, it will push the next domino in the line.</p>
+<figure class="figure-like" id="dominos"><div style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/Domino_effect.png" style="width: 100%; height: auto;" alt="Dominos"></div>
+<figcaption><span class="type">Figure</span> <span class="codenumber">3.7.2.</span> An analogy for Mathematical Induction, Creative Commons photo by Ranveig Thattai</figcaption></figure><p id="p-1304">Returning to  <a data-knowl="./knowl/ex-triangular-numbers.html" title="Example 3.7.1: Formula for Triangular Numbers">Example 3.7.1</a> imagine the propositions \(p(1), p(2), p(3),\ldots\) to be an infinite line of dominos. Let's see if these propositions are in the same formation as the dominos were.  First, we will focus on one specific point of the line: \(p(99)\) and \(p(100)\text{.}\) We are not going to prove that either of these propositions is true, just that the truth of \(p(99)\) implies the truth of \(p(100)\text{.}\) In terms of our analogy, if \(p(99)\) is knocked over, it will knock over \(p(100)\text{.}\)</p>
+<p id="p-1305">In proving \(p(99) \Rightarrow  p(100)\text{,}\) we will use \(p(99)\) as our premise. We must prove: The sum of the positive integers from 1 to 100 is \(\frac{100 (100+1)}{2}\text{.}\) We start by observing that the sum of the positive integers from 1 to 100 is \((1 + 2 + \cdots  + 99) +100\text{.}\) That is, the sum of the positive integers from 1 to 100 equals  the sum of the first ninety-nine plus the final number, 100. We can now apply our premise, \(p(99)\text{,}\) to the sum \(1 + 2 + \cdots  + 99\text{.}\) After rearranging our numbers, we obtain the desired expression for \(1 + 2 + \cdots  + 100\text{:}\)</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{split}
+1 + 2 + \cdots  + 99 + 100 &amp; = (1 + 2 + \cdots + 99) + 100 \\ 
+&amp; = \frac{99\cdot (99+1)}{2}+ 100 \textrm{         by our assumption of } p(99)\\
+&amp; = \frac{99\cdot 100}{2} + \frac{2\cdot 100}{2} \\
+&amp; =  \frac{100\cdot 101}{2}  \\
+&amp; = \frac{100\cdot (100+1)}{2} 
+\end{split}\text{.}
+\end{equation*}
+</div>
+<p id="p-1306">What we've just done is analogous to checking two dominos in a line and finding that they are properly positioned. Since we are dealing with an infinite line, we must check all pairs at once. This is accomplished by proving that \(p(n) \Rightarrow  p(n + 1)\) for all \(n \geq  1\text{:}\)</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{split}
+1 + 2 + \cdots  + n + (n+1) &amp; = (1 + 2 + \cdots  + n) + (n + 1) \\ 
+&amp; = \frac{ n(n+1)}{2} + (n + 1) \textrm{      by } p(n) \\
+&amp; =  \frac{ n(n+1)}{2}+\frac{2 (n+1)}{2}\\
+&amp; = \frac{  (n+1) (n+2)}{2}  \\
+&amp; = \frac{ (n+1) ((n+1)+1)}{2} 
+\end{split}\text{.}
+\end{equation*}
+</div>
+<p id="p-1307">They are all lined up! Now look at \(p(1)\text{:}\) The sum of the positive integers from 1 to 1 is \(\frac{1+1}{2}\text{.}\) Clearly, \(p(1)\) is true. This sets off a chain reaction. Since \(p(1) \Rightarrow  p(2)\text{,}\) \(p(2)\) is true. Since \(p(2) \Rightarrow  p(3)\text{,}\) \(p(3)\) is true; and so on.   \(\blacksquare\)</p>
+<article class="theorem-like" id="th-math-induction-basic"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">3.7.3</span>. <span class="title">The Principle of Mathematical Induction.</span>
+</h6>
+<p id="p-1308">Let \(p(n)\) be a proposition over the positive integers.  If</p>
+<ol class="decimal">
+<li id="li-739">\(p(1)\) is true, and</li>
+<li id="li-740">for all \(n\geq 1\text{,}\)  \(p(n) \Rightarrow  p(n + 1)\text{,}\)</li>
+</ol>
+<p>then \(p(n)\) is a tautology.</p></article><p id="p-1309">Note: The truth of \(p(1)\) is called the <em class="emphasis">basis</em> for the induction proof. The premise that \(p(n)\) is true in the second part is called the <em class="emphasis">induction hypothesis</em>.  The proof that \(p(n)\) implies \(p(n + 1)\) is called the <em class="emphasis">induction  step</em> of the proof. Despite our analogy, the basis is usually done first in an induction proof. However, order doesn't really matter.</p></section><section class="subsection" id="subsection-36"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">3.7.2</span> <span class="title">More Examples</span>
+</h3>
+<article class="example-like" id="ex-logic-detachment"><a data-knowl="" class="id-ref" data-refid="hk-ex-logic-detachment"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.7.4</span>. <span class="title">Generalized Detachment.</span>
+</h6></a></article><div id="hk-ex-logic-detachment" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-1310">Consider the implication over the positive integers.</p>
+<div class="displaymath">
+\begin{equation*}
+p(n): q_0 \rightarrow  q_1, q_1\to q_2, \ldots  , q_{n-1}\to q_n, q_0\Rightarrow  q_n
+\end{equation*}
+</div>
+<p>A proof that \(p(n)\) is a tautology follows. Basis: \(p(1)\) is \(q_0 \rightarrow  q_1, q_0\Rightarrow  q_1\text{.}\) This is the logical law of detachment which we know is true. If you haven't done so yet, write out the truth table of \(((q_0 \rightarrow  q_1 )\land  q_0)\to  q_1\) to verify this step.</p>
+<p id="p-1311">Induction: Assume that  \(p(n)\) is true for some \(n \geq  1\text{.}\) We want to prove that \(p(n + 1)\) must be true. That is:</p>
+<div class="displaymath">
+\begin{equation*}
+q_0 \rightarrow  q_1, q_1\to q_2, \ldots  , q_{n-1}\to q_n , q_n\to q_{n+1}, q_0\Rightarrow  q_{n+1}
+\end{equation*}
+</div>
+<p>Here is a direct proof of \(p(n + 1)\text{:}\)</p>
+<figure class="figure-like" id="table-general-detachment"><table>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">Step</td>
+<td class="c m b0 r0 l0 t0 lines">Proposition</td>
+<td class="c m b0 r0 l0 t0 lines">Justification</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">\(1 -(n+1)\)</td>
+<td class="c m b0 r0 l0 t0 lines">\(q_0 \rightarrow  q_1, q_1\to q_2, \ldots  , q_{n-1}\to q_n, q_0\)</td>
+<td class="c m b0 r0 l0 t0 lines">Premises</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">\(n+2\)</td>
+<td class="c m b0 r0 l0 t0 lines">\(q_n\)</td>
+<td class="c m b0 r0 l0 t0 lines">\((1)-(n+1)\text{,}\) \(p(n)\)</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">\(n+3\)</td>
+<td class="c m b0 r0 l0 t0 lines">\(q_n\to q_{n+1}\)</td>
+<td class="c m b0 r0 l0 t0 lines">Premise</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">\(n+4\)</td>
+<td class="c m b0 r0 l0 t0 lines">\(q_{n+1}\)</td>
+<td class="c m b0 r0 l0 t0 lines">\((n+2),(n+3), \textrm{ detachment} \quad \square\)</td>
+</tr>
+</table>
+<figcaption><span class="type">Table</span> <span class="codenumber">3.7.5.</span> </figcaption></figure></article></div>
+<article class="example-like" id="ex-number-theory-3s"><a data-knowl="" class="id-ref" data-refid="hk-ex-number-theory-3s"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.7.6</span>. <span class="title">An example from Number Theory.</span>
+</h6></a></article><div id="hk-ex-number-theory-3s" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-1312">For all \(n \geq  1\text{,}\) \(n^3+2n\)  is a multiple of 3.  An inductive proof follows:</p>
+<p id="p-1313">Basis:  \(1^3+2(1)= 3\) is a multiple of 3. The basis is almost always this easy!</p>
+<p id="p-1314">Induction: Assume that \(n \geq  1\) and \(n^3+2n\) is a multiple of 3. Consider \((n+1)^3+2(n+1)\text{.}\) Is it a multiple of 3?</p>
+<div class="displaymath" id="p-1315">
+\begin{equation*}
+\begin{split}
+(n+1)^3+2(n+1) &amp; = n^3+3 n^2+3 n+1+ (2n+2) \\ 
+&amp; = n^3+2 n + 3 n^2+3 n+3  \\
+&amp; = (n^3+2 n) + 3( n^2+ n+1)
+\end{split}\text{.}
+\end{equation*}
+</div>
+<p id="p-1316">Yes, \((n+1)^3+2(n+1)\) is the sum of two multiples of 3; therefore, it is also a multiple of 3.  \(\square\)</p></article></div>
+<p id="p-1317">Now we will discuss some of the variations of the principle of mathematical induction. The first simply allows for universes that are similar to \(\mathbb{P}\) such as \(\{-2, -1, 0, 1,\ldots \}\) or \(\{5, 6, 7, 8,\ldots \}\text{.}\)</p>
+<article class="theorem-like" id="th-math-induction-generalized"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">3.7.7</span>. <span class="title">Principle of Mathematical Induction (Generalized).</span>
+</h6>
+<p id="p-1318">If \(p(n)\) is a proposition over \(\{k_0 , k_0+ 1, k_0+ 2,\ldots  \}\text{,}\) where \(k_0\) is any integer, then \(p(n)\) is a tautology if</p>
+<ol id="p-1319" class="decimal">
+<li id="li-741">\(p(k_0)\) is true, and</li>
+<li id="li-742">for all \(n \geq k_0\text{,}\)  \(p(n) \Rightarrow  p(n + 1)\text{.}\)</li>
+</ol></article><article class="example-like" id="ex-permuations-formula-proof"><a data-knowl="" class="id-ref" data-refid="hk-ex-permuations-formula-proof"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">3.7.8</span>. <span class="title">A proof of the permutations formula.</span>
+</h6></a></article><div id="hk-ex-permuations-formula-proof" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-1320">In Chapter 2, we stated that the number of different permutations of \(k\) elements taken from an \(n\) element set, \(P(n; k)\text{,}\) can be computed with the formula \(\frac{n!}{(n-k)!}\text{.}\) We can prove this statement by induction on \(n\text{.}\) For \(n \geq  0\text{,}\) let \(q(n)\) be the proposition</p>
+<div class="displaymath">
+\begin{equation*}
+P(n; k) = \frac{n!}{(n-k)!} \textrm{  for all } k \textrm{, } 0 \le k \le n\text{.}
+\end{equation*}
+</div>
+<p id="p-1321">Basis: \(q(0)\) states that  \(P(0; 0) \) if is the number of ways that \(0\) elements can be selected from the empty set and arranged in order, then \(P(0; 0) = \frac{0!}{0!} = 1 \text{.}\)  This is true. A general law in combinatorics is that there is exactly one way of doing nothing.</p>
+<p id="p-1322">Induction: Assume that \(q(n)\) is true for some natural number \(n\text{.}\) It is left for us to prove that this assumption implies that \(q(n +1)\) is true. Suppose that we have a set of cardinality \(n + 1\) and want to select and arrange \(k\) of its elements. There are two cases to consider, the first of which is easy. If \(k = 0\text{,}\) then there is one way of selecting zero elements from the set; hence</p>
+<div class="displaymath">
+\begin{equation*}
+P(n + 1; 0) = 1 =\frac{(n+1)!}{(n+1+0)!}
+\end{equation*}
+</div>
+<p>and the formula works in this case.</p>
+<p id="p-1323">The more challenging case is to verify the formula when \(k\) is positive and less than or equal to \(n+1\text{.}\) Here we count the value of \(P(n+ 1; k)\) by counting the number of ways that the first element in the arrangement can be filled and then counting the number of ways that the remaining \(k -1\) elements can be filled in using the induction hypothesis.</p>
+<p id="p-1324">There are \(n + 1\) possible choices for the first element. Since that leaves \(n\) elements to fill in the remaining \(k - 1\) positions, there are \(P(n; k - 1)\) ways of completing the arrangement. By the rule of products,</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{split}
+P(n +1;k) &amp;= (n+1) P(n;k-1) \\
+&amp; = (n+1) \frac{n!}{(n-(k-1))!} \\
+&amp; = \frac{(n+1) n!}{(n-k+1)!}\\
+&amp; = \frac{(n+1)!}{((n+1)-k)!}
+\end{split}
+\end{equation*}
+</div>
+<p>\(\blacksquare\)</p></article></div></section><section class="subsection" id="subsection-37"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">3.7.3</span> <span class="title">Course of Values Induction</span>
+</h3>
+<p id="p-1325">A second variation allows for the expansion of the induction hypothesis. The course-of-values principle includes the previous generalization.  It is also sometimes called <em class="emphasis">strong induction</em>.</p>
+<article class="theorem-like" id="th-math-induction-course-of-values"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">3.7.9</span>. <span class="title">The Course-of-Values Principle of Mathematical Induction.</span>
+</h6>
+<p id="p-1326">If \(p(n)\) is a proposition over \(\{k_0 , k_0+ 1, k_0+ 2,\ldots  \}\text{,}\) where \(k_0\) is any integer, then \(p(n)\) is a tautology if</p>
+<ol id="p-1327" class="decimal">
+<li id="li-743">\(p(k_0)\) is true, and</li>
+<li id="li-744">for all \(n\geq k_0\text{,}\)   \(p(k_0), p(k_0 + 1), . . . , p(n) \Rightarrow  p(n + 1) \text{.}\)</li>
+</ol></article><p id="p-1328">A prime number is defined as a positive integer that has exactly two positive divisors, 1 and itself. There are an infinite number of primes. The list of primes starts with \(2, 3, 5, 7, 11,\ldots \) .  The proposition over \(\{2, 3, 4, . . .\}\)  that we will prove here is \(p(n)\text{:}\) \(n\) can be written as the product of one or more primes.  In most texts, the assertion that \(p(n)\) is a tautology would appear as</p>
+<article class="theorem-like" id="th-prime-factorizations-exist"><h6 class="heading">
+<span class="type">Theorem</span> <span class="codenumber">3.7.10</span>. <span class="title">Existence of Prime Factorizations.</span>
+</h6>
+<p id="p-1329">Every positive integer greater than or equal to 2 has a prime decomposition.</p></article><article class="hiddenproof" id="proof-5"><a data-knowl="" class="id-ref" data-refid="hk-proof-5"><h6 class="heading"><span class="type">Proof.</span></h6></a></article><div id="hk-proof-5" class="hidden-content tex2jax_ignore"><article class="hiddenproof"><p id="p-1330">If you were to encounter this theorem outside the context of a discussion of mathematical induction, it might not be obvious that the proof can be done by induction. Recognizing when an induction proof is appropriate is mostly a matter of experience. Now on to the proof!</p>
+<p id="p-1331">Basis:  Since 2 is a prime, it is already decomposed into primes (one of them).</p>
+<p id="p-1332">Induction:  Suppose that for some \(n \geq  2\) all of the integers \(2,3, . . . , n\) have a prime decomposition.  Notice the course-of-value hypothesis.  Consider \(n + 1\text{.}\) Either \(n + 1\) is prime or it isn't.   If \(n + 1\) is prime, it is already decomposed into primes. If not, then \(n + 1\) has a divisor, \(d\text{,}\) other than 1 and \(n + 1\text{.}\) Hence, \(n + 1 = c d\) where both \(c\) and \(d\) are between 2 and \(n\text{.}\) By the induction hypothesis, \(c\) and \(d\) have prime decompositions, \(c_1 c_2 \cdots  c_s\) and \(d_1 d_2 \cdots d_t\) , respectively. Therefore, \(n + 1\) has the prime decomposition \(c_1 c_2 \cdots  c_s d_1 d_2 \cdots  d_t\text{.}\)</p></article></div>
+<aside class="aside-like" id="history-peano"><h6 class="heading"><span class="title">Peano Postulates and Induction.</span></h6> <p id="p-1333">Mathematical induction originated in the late nineteenth century. Two mathematicians who were prominent in its development were Richard Dedekind and Giuseppe Peano. Dedekind developed a set of axioms that describe the positive integers. Peano refined these axioms and gave a logical interpretation to them. The axioms are usually called the Peano Postulates.</p></aside><article class="theorem-like" id="sss-peano-postulates"><h6 class="heading">
+<span class="type">Axiom</span> <span class="codenumber">3.7.11</span>. <span class="title">Peano Postulates.</span>
+</h6>
+<p id="p-1334">The system of positive integers consists of a nonempty set, \(\mathbb{P}\text{;}\) a least element of \(\mathbb{P}\text{,}\) denoted 1; and a “successor function,” s, with the properties</p>
+<ol id="p-1335" class="decimal">
+<li id="li-745"><p id="p-1336">If \(k \in  \mathbb{P}\) , then there is an element of \(\mathbb{P}\) called the successor of \(k\text{,}\) denoted \(s(k)\text{.}\)</p></li>
+<li id="li-746"><p id="p-1337">No two elements of \(\mathbb{P}\) have the same successor.</p></li>
+<li id="li-747"><p id="p-1338">No element of \(\mathbb{P}\) has \(1\) as its successor.</p></li>
+<li id="li-748"><p id="p-1339">If \(S \subseteq  \mathbb{P}\text{,}\) \(1 \in  S\text{,}\) and \(k \in S \Rightarrow  s(k) \in  S\text{,}\) then \(S = \mathbb{P}\text{.}\)</p></li>
+</ol></article><p id="p-1340">Notes:</p>
+<ul id="p-1341" class="disc">
+<li id="li-749">You might recognize \(s(k)\) as simply being \(k + 1\text{.}\)</li>
+<li id="li-750">Axiom 4 is the one that makes mathematical induction possible. In an induction proof, we simply apply that axiom to the truth set of a proposition.</li>
+</ul></section><section class="exercises" id="exercises-3-7"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber">3.7.4</span> <span class="title">Exercises for Section 3.7</span>
+</h3>
+<a href="s-induction.html#exercises-3-7" class="permalink">¶</a><article class="exercise-like" id="exercise-139"><h6 class="heading"><span class="codenumber">1.</span></h6>
+<p id="p-1342">Prove that the sum of the first \(n\) odd integers equals \(n^2\) .</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-answer-69" id="answer-69"><span class="type">Answer</span></a><div id="hk-answer-69" class="hidden-content tex2jax_ignore"><div class="solution">
+<p id="p-1343">We wish to prove that \(P(n):1+3+5+\cdots +(2n-1)=n^2\) is true for \(n \geqslant 1\text{.}\) Recall that the \(n\)th odd positive integer is 2n - 1.</p>
+<p id="p-1344">Basis:  for \(n=1\text{,}\) \(P(n)\) is \(1=1^2\text{,}\) which is true</p>
+<p id="p-1345">Induction:  Assume that for some \(n\geqslant 1, P(n)\) is true. Then:</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{split}
+1+3+\cdots +(2(n+1)-1) &amp;= (1+3+\cdots +(2n-1) ) +(2(n+1)-1)\\
+&amp; =n^2+(2n+1) \quad \textrm{by } P(n) \textrm{ and basic algebra}\\
+&amp; =(n+1)^2 \quad \blacksquare
+\end{split}
+\end{equation*}
+</div>
+</div></div>
+</div></article><article class="exercise-like" id="exercise-140"><h6 class="heading"><span class="codenumber">2.</span></h6>
+<p id="p-1346">Prove that if \(n \geq  1\text{,}\) then \(1(1!) + 2(2!) + \cdots  + n(n!) = (n + 1)! - 1\text{.}\)</p></article><article class="exercise-like" id="exercise-141"><h6 class="heading"><span class="codenumber">3.</span></h6>
+<p id="p-1347">Prove that for \(n \geq  1\text{:}\) \(\sum_{k=1}^n k^2= \frac{1}{6} n(n+1) (2 n+1)\text{.}\)</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-answer-70" id="answer-70"><span class="type">Answer</span></a><div id="hk-answer-70" class="hidden-content tex2jax_ignore"><div class="solution">
+<p id="p-1348">Proof:</p>
+<ul id="p-1349" class="disc">
+<li id="li-751">Basis: \(1=1(2)(3)/6=1\)</li>
+<li id="li-752">Induction:<div class="displaymath">
+\begin{equation*}
+\begin{split}
+\sum_1^{n+1} k^2 &amp;=\sum_1^n k^2+(n+1)^2\\
+&amp;=\frac{n(n+1)(2n+1)}{6}+(n+1)^2\\
+&amp;=\frac{(n+1)(2n^2+7n+6)}{6}\\
+&amp;=\frac{(n+1)(n+2)(2n+3)}{6}\textrm{   }\blacksquare\\
+\end{split}
+\end{equation*}
+</div>
+</li>
+</ul>
+</div></div>
+</div></article><article class="exercise-like" id="exercise-142"><h6 class="heading"><span class="codenumber">4.</span></h6>
+<p id="p-1350">Prove that for \(n \geq  1\text{:}\) \(\sum_{k=0}^n 2^k = 2^{n+1}-1\text{.}\)</p></article><article class="exercise-like" id="exercise-143"><h6 class="heading"><span class="codenumber">5.</span></h6>
+<p id="p-1351">Use mathematical induction to show that for \(n\geq 1\text{,}\)</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{1}{1\cdot 2 }+ \frac{1}{2\cdot 3}+ \cdots  + \frac{1}{n(n+1)}= \frac{n}{n+1}\text{.}
+\end{equation*}
+</div>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-answer-71" id="answer-71"><span class="type">Answer</span></a><div id="hk-answer-71" class="hidden-content tex2jax_ignore"><div class="solution">
+<p id="p-1352">Basis:  For \(n=1\text{,}\) we observe that \(\frac{1}{(1\cdot 2)}=\frac{1}{(1+1)}\)</p>
+<p id="p-1353">Induction: Assume that for some \(n\geqslant 1\text{,}\) the formula is true.</p>
+<p id="p-1354">Then:</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{split}
+\frac{1}{(1\cdot 2)}+\cdots +\frac{1}{n(n+1)} +\frac{1}{(n+1)(n+2)} &amp;=\frac{n}{n+1}+\frac{1}{(n+1)(n+2)}\\
+&amp;=\frac{(n+2)n}{(n+1)(n+2)}+\frac{1}{(n+1)(n+2)}\\
+&amp;=\frac{(n+1)^2}{(n+1)(n+2)}\\
+&amp;=\frac{n+1}{n+2} \quad \blacksquare\\
+\end{split}
+\end{equation*}
+</div>
+</div></div>
+</div></article><article class="exercise-like" id="exercise-144"><h6 class="heading"><span class="codenumber">6.</span></h6>
+<p id="p-1355">Prove that if \(n \geq  2\text{,}\)  the generalized DeMorgan's Law is true:</p>
+<div class="displaymath">
+\begin{equation*}
+\neg (p_1 \land p_2\land \text{...} \land p_n)\Leftrightarrow (\neg p_1)\lor  (\neg p_2) \lor  \cdots
+\lor (\neg p_n)\text{.}
+\end{equation*}
+</div>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-solution-7" id="solution-7"><span class="type">Solution</span></a><div id="hk-solution-7" class="hidden-content tex2jax_ignore"><div class="solution">
+<p id="p-1356">Basis:   (\(n=2\))  Proven with a truth table already.</p>
+<p id="p-1357">Induction:  Assume the generalized DeMorgan's Law with \(n\) propositions is true for some \(n\geq 2\text{.}\)</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{split}
+\neg \left(p_1\land p_2\land  \cdots \land p_n\land p_{n+1}\right) 
+&amp; \Leftrightarrow \neg \left(\left(p_1\land p_2\land  \cdots \land p_n\right)\land
+p_{n+1}\right)\\
+&amp;\Leftrightarrow \neg \left(p_1\land p_2\land  \cdots \land p_n\right)\lor \left(\neg p_{n+1} \right)\\
+&amp; \Leftrightarrow \left( \left( \neg p_1\right)\lor \left(\neg p_2\right)\lor  \cdots \lor \left(\neg p_n\right)\right)\lor
+\left(\neg p_{n+1}\right)\\
+&amp; \Leftrightarrow  \left( \neg p_1\right)\lor \left(\neg p_2\right)\lor  \cdots \lor \left(\neg p_n\right)\lor \left(\neg p_{n+1}\right)
+\end{split}
+\end{equation*}
+</div>
+</div></div>
+</div></article><article class="exercise-like" id="exercise-145"><h6 class="heading"><span class="codenumber">7.</span></h6>
+<p id="p-1358">The number of strings of \(n\) zeros and ones that contain an even number of ones is \(2^{n-1}\text{.}\)   Prove this fact by induction for \(n \geq  1\text{.}\)</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-answer-72" id="answer-72"><span class="type">Answer</span></a><div id="hk-answer-72" class="hidden-content tex2jax_ignore"><div class="solution">
+<p id="p-1359">Let \(A_n\) be the set of strings of zeros and ones of length \(n\) (we assume that \(\lvert A_n \rvert =2^n\) is known). Let  \(E_n\) be the set of the “even” strings, and \(E_{n}^{c}=\) the odd strings. The problem is to prove that for \(n\geqslant 1\text{,}\) \(\lvert E_n \rvert =2^{n-1}\text{.}\) Clearly, \(\lvert E_1\rvert =1\text{,}\) and, if for some \(n\geqslant 1, \lvert E_n\rvert =2^{n-1}\text{,}\) it follows that \(\lvert E_{n+1}\rvert  =2^n\) by the following reasoning.</p>
+<p id="p-1360">We partition \(E_{n+1}\) according to the first bit: \(E_{n+1}=\{1s\mid s \in E_n^c \}\cup \{ 0s \mid s \in E_n\}\)</p>
+<p id="p-1361">Since \(\{1s\mid s \in E_n^c\}\) and \(\{0s \mid s \in E_n\}\) are disjoint, we can apply the addition law. Therefore,</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{split}
+\quad \lvert  E_{n+1}\rvert &amp; =\lvert E_n^c \rvert  +\lvert  E_n \rvert  \\
+&amp; =2^{n-1}+ (2^n-2^{n-1}) =2^n.\quad \blacksquare
+\end{split}
+\end{equation*}
+</div>
+</div></div>
+</div></article><article class="exercise-like" id="exercise-146"><h6 class="heading"><span class="codenumber">8.</span></h6>
+<p id="p-1362">Let \(p(n)\) be \(8^n-3^n\) is a multiple of 5.  Prove that \(p(n)\) is a tautology over \(\mathbb{N}\text{.}\)</p></article><article class="exercise-like" id="exercise-147"><h6 class="heading"><span class="codenumber">9.</span></h6>
+<p id="p-1363">Suppose that there are \(n\) people in a room, \(n \geq  1\text{,}\) and that they all shake hands with one another. Prove that \(\frac{n(n-1)}{2}\) handshakes will have occurred.</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-answer-73" id="answer-73"><span class="type">Answer</span></a><div id="hk-answer-73" class="hidden-content tex2jax_ignore"><div class="solution">
+<p id="p-1364">Assume that for \(n\) persons \((n\geqslant 1),\frac{(n-1)n}{2}\) handshakes take place. If one more person enters the room, he or she will shake hands with n people,</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{split}
+\frac{(n-1)n}{2}+n &amp; =\frac{n^2-n+2n}{2}\\
+&amp;=\frac{n^2+n}{2}=\frac{n(n+1)}{2}\\
+&amp;=\frac{((n+1)-1)(n+1)}{2}
+\end{split}
+\end{equation*}
+</div>
+<p>Also, for \(n=1\text{,}\) there are no handshakes, which matches the conjectured formula:</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{(1-1)(1)}{2}=0 \quad \blacksquare.
+\end{equation*}
+</div>
+</div></div>
+</div></article><article class="exercise-like" id="exercise-148"><h6 class="heading"><span class="codenumber">10.</span></h6>
+<p id="p-1365">Prove that it is possible to make up any postage of eight cents or more using only three- and five-cent stamps.</p></article><article class="exercise-like" id="exercise-149"><h6 class="heading"><span class="codenumber">11.</span></h6>
+<p id="p-1366">Generalized associativity. It is well known that if \(a_1\text{,}\) \(a_2\text{,}\) and \(a_3\) are numbers, then no matter what order the sums in the expression \(a_1+ a_2+a_3\) are taken in, the result is always the same. Call this fact \(p(3)\) and assume it is true. Prove using course-of-values induction that if \(a_1\text{,}\) \(a_2\text{,}\) \(\ldots ,\) and \(a_n\)  are numbers, then no matter what order the sums in the expression \(a_1+ a_2+\cdots +a_n\) are taken in, the result is always the same.</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-solution-8" id="solution-8"><span class="type">Solution</span></a><div id="hk-solution-8" class="hidden-content tex2jax_ignore"><div class="solution">
+<p id="p-1367">Let \(p(n)\) be “\(a_{1} + a_2 + \cdots + a_n\) has the same value no matter how it is evaluated.”</p>
+<p id="p-1368">Basis: \(a_1 + a_2 + a_3\) may be evaluated only two ways. Since + is associative, \((a_1 + a_2) + a_3 = a_1 + (a_2 + a_3)\text{.}\) Hence, \(p(3)\) is true.</p>
+<p id="p-1369">Induction: Assume that for some \(n\geq 3\text{,}\) \(p(3), p(4), \dots , p(n)\) are all true. Now consider the sum \(a_1 + a_2 + \cdots + a_n + a_{n+1}\text{.}\) Any of the \(n\) additions in this expression can be applied last. If the \(j\)th addition is applied last, we have \(c_j=(a_1+a_2+\cdots +a_j)+(a_{j+1}+\cdots +a_{n+1})\text{.}\) No matter how the expression to the left and right of the \(j^{\text{th}}\) addition are evaluated, the result will always be the same by the induction hypothesis, specifically \(p(j)\) and \(p(n+1-j)\text{.}\) We now can prove that \(c_1=c_2=\cdots =c_n\text{.}\) If \(i &lt; j\text{,}\)</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{split}
+c_i &amp;=(a_1+a_2+\cdots +a_i)+(a_{i+1}+\cdots +a_{n+1})\\
+&amp;=(a_1+a_2+\cdots +a_i)+((a_{i+1}+\cdots +a_j)+(a_{j+1}+\cdots +a_{n+1})\\
+&amp;=((a_1+a_2+\cdots +a_i)+((a_{i+1}+\cdots +a_j))+(a_{j+1}+\cdots +a_{n+1})\\
+&amp;=((a_1+a_2+\cdots +a_j))+(a_{j+1}+\cdots +a_{n+1})\\
+&amp;=c_j \quad\quad \square
+\end{split}
+\end{equation*}
+</div>
+</div></div>
+</div></article><article class="exercise-like" id="exercise-150"><h6 class="heading"><span class="codenumber">12.</span></h6>
+<p id="p-1370">Let \(S\) be the set of all numbers that can be produced by applying any of the rules below in any order a finite number of times.</p>
+<ul class="disc">
+<li id="li-753">Rule 1: \(\frac{1}{2} \in  S\)</li>
+<li id="li-754">Rule 2: \(1 \in  S\)</li>
+<li id="li-755">Rule 3: If \(a\) and \(b\) have been produced by the rules, then \(a b \in  S\text{.}\)</li>
+<li id="li-756">Rule 4: If \(a\) and \(b\) have been produced by the rules, then \(\frac{a+b}{2}\in S\text{.}\)</li>
+</ul>
+<p>Prove  that \(a\in S \Rightarrow  0 \le a \leq  1\text{.}\)</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-hint-4" id="hint-4"><span class="type">Hint</span></a><div id="hk-hint-4" class="hidden-content tex2jax_ignore"><div class="solution"><p id="p-1371">The number of times the rules are applied should be the integer that you do the induction on.</p></div></div>
+</div></article><article class="exercise-like" id="exercise-151"><h6 class="heading"><span class="codenumber">13.</span></h6>
+<p id="p-1372">Proofs involving objects that are defined recursively are often inductive.  A recursive definition is similar to an inductive proof. It consists of a basis, usually the simple part of the definition, and the recursion, which defines complex objects in terms of simpler ones. For example, if \(x\) is a real number and \(n\) is a positive integer, we can define \(x^n\) as follows:</p>
+<ul class="disc">
+<li id="li-757">Basis: \(x^1=x\text{.}\)</li>
+<li id="li-758">Recursion: if \(n \geq  2\text{,}\) \(x^n= x^{n-1}x\text{.}\)</li>
+</ul>
+<p>For example, \(x^3= x^2x\) = \((x^1x)x = (x x) x\text{.}\)</p>
+<p id="p-1373">Prove that if \(n, m \in  \mathbb{P}\text{,}\) \(x^{m+n}= x^mx^n\text{.}\)  There is much more on recursion in Chapter 8.</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-hint-5" id="hint-5"><span class="type">Hint</span></a><div id="hk-hint-5" class="hidden-content tex2jax_ignore"><div class="solution"><p id="p-1374">Let \(p(m)\) be the proposition that \(x^{m+n}= x^mx^n\) for all \(n\geq 1\text{.}\)</p></div></div>
+<a data-knowl="" class="id-ref" data-refid="hk-solution-9" id="solution-9"><span class="type">Solution</span></a><div id="hk-solution-9" class="hidden-content tex2jax_ignore"><div class="solution">
+<p id="p-1375">For \(m\geqslant 1\text{,}\) let \(p(m)\textrm{ be } x^{n+m}=x^nx^m\) for all \(n\geqslant 1\text{.}\) The basis for this proof follows directly from the basis for the definition of exponentiation.</p>
+<p id="p-1376">Induction: Assume that for some \(m\geqslant 1, p(m)\) is true. Then</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{split}
+x^{n+(m+1)} &amp; =x^{(n+m)+1}\quad \textrm{by associativity of integer addition}\\
+&amp;=x^{n+m}x^1 \quad \textrm{  by recursive definition}\\
+&amp;=x^nx^mx^1 \quad \textrm{induction hypothesis}\\
+&amp;=x^nx^{m+1}\quad \textrm{recursive definition}\quad \square
+\end{split}
+\end{equation*}
+</div>
+</div></div>
+</div></article><article class="exercise-like" id="exercise-152"><h6 class="heading"><span class="codenumber">14.</span></h6>
+<p id="p-1377">Let \(S\) be a finite set and let \(P_n\) be defined recursively by \(P_{1 } = S\)  and \(P_n= S\times P_{n-1}\) for \(n\geq 2\text{.}\)</p>
+<ul class="disc">
+<li id="li-759">List the elements of \(P_3\) for the case \(S = \{a, b\}\text{.}\)</li>
+<li id="li-760">Determine the formula for \(\lvert P_n \rvert\text{,}\) given that \(\lvert S \rvert= k\text{,}\) and prove your formula by induction.</li>
+</ul></article></section></section></div></main>
+</div>
+<!--Start: StatCounter code--><script>
+var sc_project=11204831;
+var sc_invisible=1;
+var sc_security="957c565b";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "https://www.");
+document.write("<sc"+"ript src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+</script><noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/11204831/0/957c565b/1/" alt="web analytics"></a></div></noscript>
+<!--End: StatCounter code-->
+<div class="login-link"><span id="loginlogout" class="login">login</span></div>
+<script src="https://pretextbook.org/js/0.11/login.js"></script>
+</body>
+</html>

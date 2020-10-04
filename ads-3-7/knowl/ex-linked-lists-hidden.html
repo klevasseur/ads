@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-01-01T10:18:28-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body><article class="example example-like"><p>Using the identity \((x + y) + x = y\text{,}\) in \(\mathbb{Z}_2\text{,}\) we can devise a scheme for representing a symmetrically linked list using only one link field. A symmetrically linked list is a list in which each node contains a pointer to its immediate successor and its immediate predecessor (see <a class="xref" data-knowl="./knowl/fig-linked-list.html" title="Figure 11.6.10">Figure 11.6.10</a>). If the pointers are \(n\)-digit binary addresses, then each pointer can be taken as an element of \(\mathbb{Z}_2{}^n\text{.}\)  Lists of this type can be accomplished using cells with only one link.  In place of a left and a right pointer, the only “link” is the value  of the sum (left link) + (right link). All standard list operations (merge, insert, delete, traverse, and so on) are possible with this structure, provided that you know the value of the nil pointer and the address, \(f\text{,}\) of the first (i. e., leftmost) cell. Since first \(f.\textrm{ left}\) is nil, we can recover \(f.\textrm{ right}\) by adding the value of nil: \(f + \textrm{ nil} = (\textrm{ nil} + f.\textrm{right}) + \textrm{nil} = f.\textrm{right}\text{,}\) which is the address of the second item. Now if we temporarily retain the address, \(s\text{,}\)  of the second cell, we can recover the address of the third item. The link field of the second item contains the sum \(s.\textrm{ left} + s.\textrm{ right} = \textrm{ first} + \textrm{ third}\text{.}\)  Therefore</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{split}
+(\textrm{first} + \textrm{third})+ \textrm{first} &amp;= s + s.\textrm{left}\\
+&amp;=( s.\textrm{left} + s.\textrm{right})+ s.\textrm{left}\\
+&amp;=s.\textrm{right}\\
+&amp;= \textrm{third}
+\end{split}
+\end{equation*}
+</div>
+<p>We no longer need the address of the first cell, only the second and third, to recover the fourth address, and so forth.</p>
+<figure class="figure figure-like"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="images/fig-linked-list.png" style="width: 100%; height: auto;" alt="Symmetric Linked Lists"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.6.10<span class="period">.</span></span><span class="space"> </span>Symmetric Linked Lists</figcaption></figure><p>The following more formal algorithm uses names that reflects the timing of the visits.</p>
+<p>Given a symmetric list, a traversal of the list is accomplished as follows, where \(\textit{first}\) is the address of the first cell.  We presume that each item has some information that is represented by \(\textrm{item}.\textrm{info}\) and a field called item.link that is the sum of the left and right links.</p>
+<figure class="table figure-like"><table>
+<tr><td class="l m b0 r0 l0 t0 lines">(1) yesterday =nil</td></tr>
+<tr><td class="l m b0 r0 l0 t0 lines">(2) today =first</td></tr>
+<tr><td class="l m b0 r0 l0 t0 lines">(3)\(\quad \)while \(\textrm{today} \neq  \textrm{nil}\text{:}\)</td></tr>
+<tr><td class="l m b0 r0 l0 t0 lines">\(\quad \quad \quad \)(3.1)Write(today.info)</td></tr>
+<tr><td class="l m b0 r0 l0 t0 lines">\(\quad \quad \quad  \)(3.2)tomorrow = today.link + yesterday</td></tr>
+<tr><td class="l m b0 r0 l0 t0 lines">\(\quad \quad \quad  \)(3.3)yesterday = today</td></tr>
+<tr><td class="l m b0 r0 l0 t0 lines">\(\quad \quad \quad  \)(3.4)today = tomorrow.</td></tr>
+</table>
+<figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">11.6.11<span class="period">.</span></span><span class="space"> </span></figcaption></figure><p>At any point in this algorithm it would be quite easy to insert a cell between today and tomorrow. Can you describe how this would be accomplished?</p></article></body>
+</html>

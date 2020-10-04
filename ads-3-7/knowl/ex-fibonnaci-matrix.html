@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2020-01-01T10:18:39-05:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<article class="example example-like"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">12.5.1</span><span class="period">.</span><span class="space"> </span><span class="title">Application to Recursion: Matrix Computation of the Fibonnaci Sequence.</span>
+</h6>
+<p>Consider the computation of terms of the Fibonnaci Sequence.  Recall that  \(F_0= 1, F_1= 1\) and \(F_k= F_{k-1}+F_{k-2}\)  for \(k\geq 2\text{.}\)</p>
+<p>In order to formulate the calculation in matrix form, we introduced the “dummy equation” \(F_{k-1}= F_{k-1}\) so that now we have two equations</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{array}{c}
+F_k= F_{k-1}+F_{k-2}\\
+F_{k-1}= F_{k-1}\\
+\end{array}
+\end{equation*}
+</div>
+<p>If \(A = \left(
+\begin{array}{cc}
+1 &amp; 1 \\
+1 &amp; 0 \\
+\end{array}
+\right)\text{,}\) these two equations can be expressed in matrix form as</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{split}
+\left(
+\begin{array}{c}
+F_k \\
+F_{k-1} \\
+\end{array}
+\right) &amp;=\left(
+\begin{array}{cc}
+1 &amp; 1 \\
+1 &amp; 0 \\
+\end{array}
+\right)\left(
+\begin{array}{c}
+F_{k-1} \\
+F_{k-2} \\
+\end{array}
+\right) \quad\textrm{ if } k\geq 2\\
+&amp;= A \left(
+\begin{array}{c}
+F_{k-1} \\
+F_{k-2} \\
+\end{array}
+\right)\\
+&amp;= A^2\left(
+\begin{array}{c}
+F_{k-2} \\
+F_{k-3} \\
+\end{array}
+\right) \quad\textrm{ if } k\geq 3\\
+&amp; etc.\\
+\end{split}
+\end{equation*}
+</div>
+<p>We can use induction to prove that if \(k\geq 2\text{,}\)</p>
+<div class="displaymath">
+\begin{equation*}
+\left(
+\begin{array}{c}
+F_k \\
+F_{k-1} \\
+\end{array}
+\right)=A^{k-1} \left(
+\begin{array}{c}
+1 \\
+1 \\
+\end{array}
+\right)
+\end{equation*}
+</div>
+<p>Next, by diagonalizing \(A\) and using the fact that \(A^{m }= P D^m P^{-1}\text{.}\) we can show that</p>
+<div class="displaymath">
+\begin{equation*}
+F_k= \frac{1}{\sqrt{5}}\left( \left(\frac{1+\sqrt{5}}{2}\right)^k- \left(\frac{1-\sqrt{5}}{2}\right)^k\right)
+\end{equation*}
+</div>
+<p>Some comments on this example:</p>
+<ol class="decimal">
+<li><p>An equation of the form \(F_k = a F_{k-1} + b F_{k-2}\) , where \(a\) and \(b\) are given constants, is  referred to as a linear homogeneous second-order difference equation. The conditions \(F_0=c_0\) and \(F_1= c_1\) , where \(c_1\) and \(c_2\) are constants, are called initial conditions. Those of you who are familiar with differential equations may recognize that this language parallels what is used in differential equations. Difference (aka recurrence) equations move forward discretely; that is, in a finite number of positive steps.  On the other hand,  a differential equation moves continuously; that is, takes an infinite number of infinitesimal steps.</p></li>
+<li>
+<p>A recurrence relationship of the form \(S_k = a S_{k-1} + b\text{,}\) where \(a\) and \(b\) are constants, is called a first-order difference equation. In order to write out the sequence, we need to know one initial condition.  Equations of this type can be solved similarly to the method outlined in the example by introducing the superfluous equation \(1 =0\cdot F_{k-1}+1\) to obtain in matrix equation:</p>
+<div class="displaymath">
+\begin{equation*}
+\left(
+\begin{array}{c}
+F_k \\
+1 \\
+\end{array}
+\right)=\left(
+\begin{array}{cc}
+a &amp; b \\
+0 &amp; 1 \\
+\end{array}
+\right)\left(
+\begin{array}{c}
+S_{k-1} \\
+1 \\
+\end{array}
+\right)\textrm{     }\Rightarrow \left(
+\begin{array}{c}
+F_k \\
+1 \\
+\end{array}
+\right)=\left(
+\begin{array}{cc}
+a &amp; b \\
+0 &amp; 1 \\
+\end{array}
+\right)^k\left(
+\begin{array}{c}
+F_0 \\
+1 \\
+\end{array}
+\right)
+\end{equation*}
+</div>
+</li>
+</ol></article><span class="incontext"><a href="s-some-applications.html#ex-fibonnaci-matrix">in-context</a></span>
+</body>
+</html>

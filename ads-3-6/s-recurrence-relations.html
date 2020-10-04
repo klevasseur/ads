@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-05-14T09:24:22-04:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ADS Recurrence Relations</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://pretextbook.org/js/lib/mathjaxknowl.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.11/pretext.js"></script><script src="https://pretextbook.org/js/0.11/pretext_add_on.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/toc.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/setcolors.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.2/features.css" rel="stylesheet" type="text/css">
+<script>var logged_in = false;
+var role = 'student';
+var guest_access = true;
+var login_required = false;
+var js_version = 0.11;
+</script>
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div class="hidden-content" style="display:none">\(\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href="http://discretemath.org" target="_blank"><img src="http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="ads.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<p class="byline">Al Doerr, Ken Levasseur</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="s-Sequences.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="chapter_8.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="s-some-common-rrs.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="s-Sequences.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="chapter_8.html" title="Up">Up</a><a class="next-button button toolbar-item" href="s-some-common-rrs.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link">
+<a href="index.html" data-scroll="index"><span class="title">Front Matter</span></a><ul>
+<li><a href="colophon-1.html" data-scroll="colophon-1">Colophon</a></li>
+<li><a href="dedication-1.html" data-scroll="dedication-1">Dedication</a></li>
+<li><a href="acknowledgement-1.html" data-scroll="acknowledgement-1">Acknowledgements</a></li>
+<li><a href="ads-preface.html" data-scroll="ads-preface">Preface</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_1.html" data-scroll="chapter_1"><span class="codenumber">1</span> <span class="title">Set Theory</span></a><ul>
+<li><a href="s-set-Notation-and-Relations.html" data-scroll="s-set-Notation-and-Relations">Set Notation and Relations</a></li>
+<li><a href="s-basic_Set_Operations.html" data-scroll="s-basic_Set_Operations">Basic Set Operations</a></li>
+<li><a href="s-cartesian_Products_and_Power_Sets.html" data-scroll="s-cartesian_Products_and_Power_Sets">Cartesian Products and Power Sets</a></li>
+<li><a href="s-binary_Representation_of_Positive_Integers.html" data-scroll="s-binary_Representation_of_Positive_Integers">Binary Representation of Positive Integers</a></li>
+<li><a href="s-summation_Notation_and_Generalizations.html" data-scroll="s-summation_Notation_and_Generalizations">Summation Notation and Generalizations</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_2.html" data-scroll="chapter_2"><span class="codenumber">2</span> <span class="title">Combinatorics</span></a><ul>
+<li><a href="s-the-rule-of-products.html" data-scroll="s-the-rule-of-products">Basic Counting Techniques - The Rule of Products</a></li>
+<li><a href="s-permutations.html" data-scroll="s-permutations">Permutations</a></li>
+<li><a href="s-partitions-and-law-of-addition.html" data-scroll="s-partitions-and-law-of-addition">Partitions of Sets and the Law of Addition</a></li>
+<li><a href="s-combinations-and-the-binomial-theorem.html" data-scroll="s-combinations-and-the-binomial-theorem">Combinations and the Binomial Theorem</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter3.html" data-scroll="chapter3"><span class="codenumber">3</span> <span class="title">Logic</span></a><ul>
+<li><a href="s-propositions-logic-operators.html" data-scroll="s-propositions-logic-operators">Propositions and Logical Operators</a></li>
+<li><a href="s-truth-tables.html" data-scroll="s-truth-tables">Truth Tables and Propositions Generated by a Set</a></li>
+<li><a href="s-equivalence-implication.html" data-scroll="s-equivalence-implication">Equivalence and Implication</a></li>
+<li><a href="s-logic-laws.html" data-scroll="s-logic-laws">The Laws of Logic</a></li>
+<li><a href="s-math-systems.html" data-scroll="s-math-systems">Mathematical Systems and Proofs</a></li>
+<li><a href="s-propositions-over-universe.html" data-scroll="s-propositions-over-universe">Propositions over a Universe</a></li>
+<li><a href="s-induction.html" data-scroll="s-induction">Mathematical Induction</a></li>
+<li><a href="s-quantifiers.html" data-scroll="s-quantifiers">Quantifiers</a></li>
+<li><a href="s-proof-review.html" data-scroll="s-proof-review">A Review of Methods of Proof</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_4.html" data-scroll="chapter_4"><span class="codenumber">4</span> <span class="title">More on Sets</span></a><ul>
+<li><a href="s-proof-methods-sets.html" data-scroll="s-proof-methods-sets">Methods of Proof for Sets</a></li>
+<li><a href="s-laws-of-set-theory.html" data-scroll="s-laws-of-set-theory">Laws of Set Theory</a></li>
+<li><a href="s-minsets.html" data-scroll="s-minsets">Minsets</a></li>
+<li><a href="s-duality-principle.html" data-scroll="s-duality-principle">The Duality Principle</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_5.html" data-scroll="chapter_5"><span class="codenumber">5</span> <span class="title">Introduction to Matrix Algebra</span></a><ul>
+<li><a href="s-basic-matrix-definitions.html" data-scroll="s-basic-matrix-definitions">Basic Definitions and Operations</a></li>
+<li><a href="s-special-matrices.html" data-scroll="s-special-matrices">Special Types of Matrices</a></li>
+<li><a href="s-laws-of-matrix-algebra.html" data-scroll="s-laws-of-matrix-algebra">Laws of Matrix Algebra</a></li>
+<li><a href="s-matrix-oddities.html" data-scroll="s-matrix-oddities">Matrix Oddities</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_6.html" data-scroll="chapter_6"><span class="codenumber">6</span> <span class="title">Relations</span></a><ul>
+<li><a href="s-basic-definitions.html" data-scroll="s-basic-definitions">Basic Definitions</a></li>
+<li><a href="s-graphs-of-relations-on-a-set.html" data-scroll="s-graphs-of-relations-on-a-set">Graphs of Relations on a Set</a></li>
+<li><a href="s-properties-of-relations.html" data-scroll="s-properties-of-relations">Properties of Relations</a></li>
+<li><a href="s-matrices-of-relations.html" data-scroll="s-matrices-of-relations">Matrices of Relations</a></li>
+<li><a href="s-closure-operations-on-relations.html" data-scroll="s-closure-operations-on-relations">Closure Operations on Relations</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_7.html" data-scroll="chapter_7"><span class="codenumber">7</span> <span class="title">Functions</span></a><ul>
+<li><a href="s-function-def-notation.html" data-scroll="s-function-def-notation">Definition and Notation</a></li>
+<li><a href="s-properties-of-functions.html" data-scroll="s-properties-of-functions">Properties of Functions</a></li>
+<li><a href="s-function-composition.html" data-scroll="s-function-composition">Function Composition</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_8.html" data-scroll="chapter_8"><span class="codenumber">8</span> <span class="title">Recursion and Recurrence Relations</span></a><ul>
+<li><a href="s-faces-of-recursion.html" data-scroll="s-faces-of-recursion">The Many Faces of Recursion</a></li>
+<li><a href="s-Sequences.html" data-scroll="s-Sequences">Sequences</a></li>
+<li><a href="s-recurrence-relations.html" data-scroll="s-recurrence-relations" class="active">Recurrence Relations</a></li>
+<li><a href="s-some-common-rrs.html" data-scroll="s-some-common-rrs">Some Common Recurrence Relations</a></li>
+<li><a href="s-generating-functions.html" data-scroll="s-generating-functions">Generating Functions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_9.html" data-scroll="chapter_9"><span class="codenumber">9</span> <span class="title">Graph Theory</span></a><ul>
+<li><a href="s-graphs-introduction.html" data-scroll="s-graphs-introduction">Graphs - General Introduction</a></li>
+<li><a href="s-data-structures-for-graphs.html" data-scroll="s-data-structures-for-graphs">Data Structures for Graphs</a></li>
+<li><a href="s-Connectivity.html" data-scroll="s-Connectivity">Connectivity</a></li>
+<li><a href="s-traversals.html" data-scroll="s-traversals">Traversals: Eulerian and Hamiltonian Graphs</a></li>
+<li><a href="s-graph-optimization.html" data-scroll="s-graph-optimization">Graph Optimization</a></li>
+<li><a href="s-planarity-and-colorings.html" data-scroll="s-planarity-and-colorings">Planarity and Colorings</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_10.html" data-scroll="chapter_10"><span class="codenumber">10</span> <span class="title">Trees</span></a><ul>
+<li><a href="s-what-is-a-tree.html" data-scroll="s-what-is-a-tree">What Is a Tree?</a></li>
+<li><a href="s-spanning-trees.html" data-scroll="s-spanning-trees">Spanning Trees</a></li>
+<li><a href="s-rooted-trees.html" data-scroll="s-rooted-trees">Rooted Trees</a></li>
+<li><a href="s-binary-trees.html" data-scroll="s-binary-trees">Binary Trees</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_11.html" data-scroll="chapter_11"><span class="codenumber">11</span> <span class="title">Algebraic Structures</span></a><ul>
+<li><a href="s-Operations.html" data-scroll="s-Operations">Operations</a></li>
+<li><a href="s-algebraic-systems.html" data-scroll="s-algebraic-systems">Algebraic Systems</a></li>
+<li><a href="s-general-properties-of-groups.html" data-scroll="s-general-properties-of-groups">Some General Properties of Groups</a></li>
+<li><a href="s-gcds-and-zsubn.html" data-scroll="s-gcds-and-zsubn">Greatest Common Divisors  and the Integers Modulo \(n\)</a></li>
+<li><a href="s-Subsystems.html" data-scroll="s-Subsystems">Subsystems</a></li>
+<li><a href="s-direct-products.html" data-scroll="s-direct-products">Direct Products</a></li>
+<li><a href="s-isomorphisms.html" data-scroll="s-isomorphisms">Isomorphisms</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_12.html" data-scroll="chapter_12"><span class="codenumber">12</span> <span class="title">More Matrix Algebra</span></a><ul>
+<li><a href="s-systems-linear-equations.html" data-scroll="s-systems-linear-equations">Systems of Linear Equations</a></li>
+<li><a href="s-matrix-inversion.html" data-scroll="s-matrix-inversion">Matrix Inversion</a></li>
+<li><a href="s-intro-to-vector-spaces.html" data-scroll="s-intro-to-vector-spaces">An Introduction to Vector Spaces</a></li>
+<li><a href="s-the-diagonalization-process.html" data-scroll="s-the-diagonalization-process">The Diagonalization Process</a></li>
+<li><a href="s-some-applications.html" data-scroll="s-some-applications">Some Applications</a></li>
+<li><a href="s-systems-linear-equations-mod-2.html" data-scroll="s-systems-linear-equations-mod-2">Linear Equations over the Integers Mod 2</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_13.html" data-scroll="chapter_13"><span class="codenumber">13</span> <span class="title">Boolean Algebra</span></a><ul>
+<li><a href="s-posets-revisited.html" data-scroll="s-posets-revisited">Posets Revisited</a></li>
+<li><a href="s-lattices.html" data-scroll="s-lattices">Lattices</a></li>
+<li><a href="s-boolean-algebras.html" data-scroll="s-boolean-algebras">Boolean Algebras</a></li>
+<li><a href="s-atoms-of-a-boolean-algebra.html" data-scroll="s-atoms-of-a-boolean-algebra">Atoms of a Boolean Algebra</a></li>
+<li><a href="s-finite-boolean-algebras-ntuples.html" data-scroll="s-finite-boolean-algebras-ntuples">Finite Boolean Algebras as \(n\)-tuples of 0's and 1's</a></li>
+<li><a href="s-boolean-expressions.html" data-scroll="s-boolean-expressions">Boolean Expressions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_14.html" data-scroll="chapter_14"><span class="codenumber">14</span> <span class="title">Monoids and Automata</span></a><ul>
+<li><a href="s-Monoids.html" data-scroll="s-Monoids">Monoids</a></li>
+<li><a href="s-free-monoids-and-languages.html" data-scroll="s-free-monoids-and-languages">Free Monoids and Languages</a></li>
+<li><a href="s-automata-finite-state-machines.html" data-scroll="s-automata-finite-state-machines">Automata, Finite-State Machines</a></li>
+<li><a href="s-monoid-of-fsm.html" data-scroll="s-monoid-of-fsm">The Monoid of a Finite-State Machine</a></li>
+<li><a href="s-machine-of-monoid.html" data-scroll="s-machine-of-monoid">The Machine of a Monoid</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_15.html" data-scroll="chapter_15"><span class="codenumber">15</span> <span class="title">Group Theory and Applications</span></a><ul>
+<li><a href="s-cyclic-groups.html" data-scroll="s-cyclic-groups">Cyclic Groups</a></li>
+<li><a href="s-cosets-and-factor-groups.html" data-scroll="s-cosets-and-factor-groups">Cosets and Factor Groups</a></li>
+<li><a href="s-permutation-groups.html" data-scroll="s-permutation-groups">Permutation Groups</a></li>
+<li><a href="s-normal-subgroups-homomorphisms.html" data-scroll="s-normal-subgroups-homomorphisms">Normal Subgroups and Group Homomorphisms</a></li>
+<li><a href="s-coding-theory-groups.html" data-scroll="s-coding-theory-groups">Coding Theory, Group Codes</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="chapter_16.html" data-scroll="chapter_16"><span class="codenumber">16</span> <span class="title">An Introduction to Rings and Fields</span></a><ul>
+<li><a href="s-rings-basic.html" data-scroll="s-rings-basic">Rings, Basic Definitions and Concepts</a></li>
+<li><a href="s-fields.html" data-scroll="s-fields">Fields</a></li>
+<li><a href="s-polynomial-rings.html" data-scroll="s-polynomial-rings">Polynomial Rings</a></li>
+<li><a href="s-field-extensions.html" data-scroll="s-field-extensions">Field Extensions</a></li>
+<li><a href="s-power-series.html" data-scroll="s-power-series">Power Series</a></li>
+</ul>
+</li>
+<li class="link"><a href="backmatter.html" data-scroll="backmatter"><span class="title">Back Matter</span></a></li>
+<li class="link">
+<a href="app-algorithms.html" data-scroll="app-algorithms"><span class="codenumber">A</span> <span class="title">Algorithms</span></a><ul>
+<li><a href="app-alg1.html" data-scroll="app-alg1">An Introduction to Algorithms</a></li>
+<li><a href="app-alg2.html" data-scroll="app-alg2">The Invariant Relation Theorem</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="app-pythonsage.html" data-scroll="app-pythonsage"><span class="codenumber">B</span> <span class="title">Python and SageMath</span></a><ul>
+<li><a href="app-python-iterators.html" data-scroll="app-python-iterators">Python Iterators</a></li>
+<li><a href="app-pythonsage-dictionaries.html" data-scroll="app-pythonsage-dictionaries">Dictionaries</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="app-determinants.html" data-scroll="app-determinants"><span class="codenumber">C</span> <span class="title">Determinants</span></a><ul>
+<li><a href="section-88.html" data-scroll="section-88">Definition</a></li>
+<li><a href="section-89.html" data-scroll="section-89">Computation</a></li>
+</ul>
+</li>
+<li class="link"><a href="solutions-backmatter.html" data-scroll="solutions-backmatter"><span class="codenumber">D</span> <span class="title">Hints and Solutions to Selected Exercises</span></a></li>
+<li class="link"><a href="appendix-4.html" data-scroll="appendix-4"><span class="codenumber">E</span> <span class="title">Notation</span></a></li>
+<li class="link"><a href="references-2.html" data-scroll="references-2"><span class="title">References</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1"><span class="title">Index</span></a></li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="s-recurrence-relations"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">8.3</span> <span class="title">Recurrence Relations</span>
+</h2>
+<a href="s-recurrence-relations.html" class="permalink">¶</a><section class="introduction" id="introduction-20"><p id="p-2611">In this section we will begin our study of recurrence relations and their solutions. Our primary focus will be on the class of finite order linear recurrence relations with constant coefficients (shortened to finite order linear relations). First, we will examine closed form expressions from which these relations arise. Second, we will present an algorithm for solving them. In later sections we will consider some other common relations (8.4) and introduce two additional tools for studying recurrence relations: generating functions (8.5) and matrix methods (Chapter 12).</p></section><section class="subsection" id="defs-rr"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">8.3.1</span> <span class="title">Definition and Terminology</span>
+</h3>
+<a href="s-recurrence-relations.html#defs-rr" class="permalink">¶</a><article class="definition-like" id="def-recurrence-relation"><h6 class="heading">
+<span class="type">Definition</span> <span class="codenumber">8.3.1</span>. <span class="title">Recurrence Relation.</span>
+</h6>
+<p id="p-2612">Let \(S\) be a sequence of numbers.  A recurrence relation on \(S\) is a formula that relates all but a finite number of terms of \(S\) to previous terms of \(S\text{.}\) That is, there is a \(k_0\) in the domain of \(S\) such that if \(k \geq  k_0\text{,}\) then \(S(k)\) is expressed in terms of some (and possibly all) of the terms that precede \(S(k)\text{.}\) If the domain of \(S\) is \(\{0,1,2,\dots \}\text{,}\) the terms \(S
+(0), S(1), . . . , S\left(k_0-1\right)\) are not defined by the recurrence formula. Their values are the initial conditions (or boundary conditions, or basis) that complete the definition of \(S\text{.}\)</p></article><article class="example-like" id="ex-some-recurrence-relations"><a data-knowl="" class="id-ref" data-refid="hk-ex-some-recurrence-relations"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">8.3.2</span>. <span class="title">Some Examples of Recurrence Relations.</span>
+</h6></a></article><div id="hk-ex-some-recurrence-relations" class="hidden-content tex2jax_ignore"><article class="example-like"><ol id="p-2613" class="lower-alpha">
+<li id="li-1300"><p id="p-2614">The Fibonacci sequence is defined by the recurrence relation \(F_k= F_{k-2}+ F_{k-1}\text{,}\) \(k\geq 2,\) with the initial conditions \(F_0=1\) and \(F_1=1\text{.}\) The recurrence relation is called a second-order relation because \(F_k\) depends on the two previous terms of \(F\text{.}\) Recall that the sequence \(C\) in Section 8.2, <a data-knowl="./knowl/ex-three-sequences.html" title="Example 8.2.2: Three sequences defined in different ways">Example 8.2.2</a>, can be defined with the same recurrence relation, but with different initial conditions.</p></li>
+<li id="li-1301"><p id="p-2615">The relation \(T(k) = 2T(k - 1)^2 - k T(k - 3)\) is a third-order recurrence relation. If values of \(T(0)\text{,}\) \(T(1)\text{,}\) and \(T(2)\) are specified, then \(T\) is completely defined.</p></li>
+<li id="li-1302"><p id="p-2616">The recurrence relation \(S(n) = S(\lfloor n/2\rfloor ) + 5\text{,}\) \(n &gt; 0\text{,}\) with \(S(0)=0\) has infinite order. To determine \(S(n)\) when \(n\) is even, you must go back \(n/2\) terms. Since \(n/2\) grows unbounded with \(n\text{,}\) no finite order can be given to \(S\text{.}\)</p></li>
+</ol></article></div></section><section class="subsection" id="ss-solving-recurrence-relations"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">8.3.2</span> <span class="title">Solving Recurrence Relations</span>
+</h3>
+<a href="s-recurrence-relations.html#ss-solving-recurrence-relations" class="permalink">¶</a><p id="p-2617">Sequences are often most easily defined with a recurrence relation; however, the calculation of terms by directly applying a recurrence relation can be time-consuming. The process of determining a closed form expression for the terms of a sequence from its recurrence relation is called solving the relation. There is no single technique or algorithm that can be used to solve all recurrence relations. In fact, some recurrence relations cannot be solved. The relation that defines \(T\) above is one such example. Most of the recurrence relations that you are likely to encounter in the future are classified as finite order linear recurrence relations with constant coefficients. This class is the one that we will spend most of our time with in this chapter.</p>
+<article class="definition-like" id="def-n-th-order-rr"><h6 class="heading">
+<span class="type">Definition</span> <span class="codenumber">8.3.3</span>. <span class="title">\(n^{th}\) Order Linear Recurrence Relation.</span>
+</h6>
+<p id="p-2618">Let \(S\) be a sequence of numbers with domain \(k\geq 0\text{.}\) An \(n^{\textrm{th}}\) order linear recurrence relation on \(S\) with constant coefficients is a recurrence relation that can be written in the form</p>
+<div class="displaymath">
+\begin{equation*}
+S(k) + C_1 S(k - 1) + . . . + C_n S(k - n) = f(k)\textrm{  for  }k \geq  n
+\end{equation*}
+</div>
+<p>where \(C_1, C_2, \ldots , C_n\) are constants and \(f\) is a numeric function that is defined for \(k \geq n\text{.}\)</p></article><p id="p-2619">Note: We will shorten the name of this class of relations to \(n^{\textrm{th}}\) order linear relations. Therefore, in further discussions, \(S(k)
++ 2k S(k - 1) = 0\) would not be considered a first-order linear relation.</p>
+<article class="example-like" id="ex-some-finite-order-rr"><a data-knowl="" class="id-ref" data-refid="hk-ex-some-finite-order-rr"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">8.3.4</span>. <span class="title">Some Finite Order Linear  Relations.</span>
+</h6></a></article><div id="hk-ex-some-finite-order-rr" class="hidden-content tex2jax_ignore"><article class="example-like"><ol id="p-2620" class="lower-alpha">
+<li id="li-1303"><p id="p-2621">The Fibonacci sequence is defined by the second-order linear relation because \(F_k- F_{k-1}- F_{k-2}=0\)</p></li>
+<li id="li-1304"><p id="p-2622">The relation \(P(j) + 2P(j - 3) = j^2\) is a third-order linear relation. In this case, \(C_1= C_2= 0\text{.}\)</p></li>
+<li id="li-1305"><p id="p-2623">The relation \(A(k)= 2(A(k - 1) + k)\) can be written as \(A(k) - 2A(k - 1) = 2k\text{.}\) Therefore, it is a first-order linear relation.</p></li>
+</ol></article></div></section><section class="subsection" id="sss-recurrence-relations-obtained-from-solutions"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">8.3.3</span> <span class="title">Recurrence relations obtained from “solutions”</span>
+</h3>
+<a href="s-recurrence-relations.html#sss-recurrence-relations-obtained-from-solutions" class="permalink">¶</a><p id="p-2624">Before giving an algorithm for solving finite order linear relations, we will examine recurrence relations that arise from certain closed form expressions. The closed form expressions are selected so that we will obtain finite order linear relations from them. This approach may seem a bit contrived, but if you were to write down a few simple algebraic expressions, chances are that most of them would be similar to the ones we are about to examine.</p>
+<p id="p-2625">For our first example, consider \(D\text{,}\) defined by \(D(k) =5\cdot 2^k\text{,}\) \(k \geq  0\text{.}\) If \(k \geq  1\text{,}\) \(\quad\)\(D(k) =5\cdot 2^k = 2\cdot 5\cdot 2^{k-1} = 2 D(k - 1)\text{.}\) Therefore, \(D\) satisfies the first order linear relation \(D(k) - 2 D(k - 1) = 0\) and the initial condition \(D(0) = 5\) serves as an initial condition for \(D\text{.}\)</p>
+<p id="p-2626">As a second example, consider \(C(k) =3^{k-1}+2^{k+1}+k\) , \(k \geq  0\text{.}\) Quite a bit more algebraic manipulation is required to get our result:</p>
+<figure class="figure-like" id="table-40"><table>
+<tr>
+<td class="l m b0 r0 l0 t3 lines">\(C(k) =3^{k-1}+2^{k+1}+k\)</td>
+<td class="l m b0 r0 l0 t3 lines">\(\textrm{Original equation}\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">\(3C(k-1) =3^{k-1}+3\cdot 2^k+3(k-1)\)</td>
+<td class="l m b0 r0 l0 t0 lines">\(\textrm{Substitute } k-1 \textrm{ for } k \)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r0 l0 t0 lines">\(\textrm{ and multiply by } 3\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">\(\)</td>
+<td class="l m b0 r0 l0 t0 lines">\(\textrm{Subtract the second equation}\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r0 l0 t0 lines">\(\textrm{from the first.}\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">\(C(k)-3C(k-1)=-2^k-2k+3\)</td>
+<td class="l m b0 r0 l0 t0 lines">\(3^{k-1} \textrm{ term  is eliminated.} \)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r0 l0 t0 lines">\(\textrm{ This is  a  first order relation}\text{.}\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">\(2C(k-1)-6C(k-2)=-2^k-2(2(k-1))+6\)</td>
+<td class="l m b0 r0 l0 t0 lines">\(\textrm{Substitute } k-1 \textrm{ for } k \textrm{ in the}\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r0 l0 t0 lines">\(\textrm{third equation, multiply by } 2\text{.}\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">\(\)</td>
+<td class="l m b0 r0 l0 t0 lines">\(\textrm{Subtract the 4th equation from the 3rd.}\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">\(C(k)-5C(k-1)+6C(k-2)=2k-7\)</td>
+<td class="l m b0 r0 l0 t0 lines">\(2^{k+1}\textrm{term is eliminated.}\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r0 l0 t0 lines">\(\textrm{This is 2nd order relation.}\)</td>
+</tr>
+</table>
+<figcaption><span class="type">Table</span> <span class="codenumber">8.3.5.</span> </figcaption></figure><p id="p-2627">The recurrence relation that we have just obtained, defined for \(k \geq  2\text{,}\) together with the initial conditions \(C(0) = 7/3\) and \(C(1) = 6\text{,}\) define \(C\text{.}\)</p>
+<p id="p-2628"><a data-knowl="./knowl/table-reverse-solutions-rr.html" title="Table 8.3.6">Table 8.3.6</a> summarizes our results together with a few other examples that we will let the reader derive. Based on these results, we might conjecture that any closed form expression for a sequence that combines exponential expressions and polynomial expressions will be solutions of finite order linear relations. Not only is this true, but the converse is true: a finite order linear relation defines a closed form expression that is similar to the ones that were just examined. The only additional information that is needed is a set of initial conditions.</p>
+<figure class="figure-like" id="table-reverse-solutions-rr"><table>
+<tr>
+<td class="c m b0 r0 l0 t3 lines">Closed Form Expression</td>
+<td class="c m b0 r0 l0 t3 lines">Recurrence Relation</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">\(D(k)=5\cdot 2^k\)</td>
+<td class="c m b0 r0 l0 t0 lines">\(D(k)-2D(k-1)=0\)</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">\(C(k)=3^{k-1}+2^{k+1}+k\)</td>
+<td class="c m b0 r0 l0 t0 lines">\(C(k)-2C(k-1)-6C(k-2)=2k-7\)</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">\(Q(k)=2k + 9\)</td>
+<td class="c m b0 r0 l0 t0 lines">\(Q(k)-Q(k-1)=2\)</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">\(A(k)=k^2-k\)</td>
+<td class="c m b0 r0 l0 t0 lines">\(A(k)-2A(k-1)+A(k-2)=2\)</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">\(B(k)=2 k^2+1\)</td>
+<td class="c m b0 r0 l0 t0 lines">\(B(k)-2B(k-1)+B(k-2)=4\)</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">\(G(k)=2\cdot 4^k-5(-3)^k\)</td>
+<td class="c m b0 r0 l0 t0 lines">\(G(k)-G(k-1)+12G(k-2)=0\)</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">\(J(k)=(3+k) 2^k\)</td>
+<td class="c m b0 r0 l0 t0 lines">\(J(k)-4J(k-1)+4J(k-2)=0\)</td>
+</tr>
+</table>
+<figcaption><span class="type">Table</span> <span class="codenumber">8.3.6.</span> Recurrence relations obtained from given sequences</figcaption></figure><article class="definition-like" id="def-homogeneous-recurrence-relation"><h6 class="heading">
+<span class="type">Definition</span> <span class="codenumber">8.3.7</span>. <span class="title">Homogeneous Recurrence Relation.</span>
+</h6>
+<p id="p-2629">An \(n^{th}\) order linear relation is homogeneous if \(f(k)
+= 0\) for all \(k\text{.}\) For each recurrence relation \(S(k) + C_1S(k - 1) +\ldots + C_n S(k - n) = f(k)\text{,}\) the associated homogeneous relation is \(S(k)
++ C_1S(k - 1) +\ldots + C_n S(k - n) =0\)</p></article><article class="example-like" id="ex-first-order-homogeneous-rr"><a data-knowl="" class="id-ref" data-refid="hk-ex-first-order-homogeneous-rr"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">8.3.8</span>. <span class="title">First Order Homogeneous Recurrence Relations.</span>
+</h6></a></article><div id="hk-ex-first-order-homogeneous-rr" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-2630">\(D(k) - 2D(k - 1) = 0\) is a first-order homogeneous relation. Since it can also be written as \(D(k) = 2D(k - 1)\text{,}\) it should be no surprise that it arose from an expression that involves powers of 2. More generally, you would expect that the solution of \(L(k) - a L(k - 1)\) would involve \(a^k\text{.}\) Actually, the solution is \(L(k) = L(0)a^k\text{,}\) where the value of \(L(0)\) is given by the initial condition.</p></article></div>
+<article class="example-like" id="ex-second-order-rr"><a data-knowl="" class="id-ref" data-refid="hk-ex-second-order-rr"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">8.3.9</span>. <span class="title">A Second Order Example.</span>
+</h6></a></article><div id="hk-ex-second-order-rr" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-2631">Consider the second-order homogeneous relation \(S(k) - 7S(k - 1) + 12 S(k- 2) = 0\) together with the initial conditions \(S(0) = 4\) and \(S(1) = 4\text{.}\) From our discussion above, we can predict that the solution to this relation involves terms of the form \(b a^k\text{,}\) where \(b\) and \(a\) are nonzero constants that must be determined. If the solution were to equal this quantity exactly, then</p>
+<div class="displaymath">
+\begin{equation*}
+\quad \quad \quad  \begin{array}{ccc}
+S(k)=b a^k &amp;   &amp;   \\
+S(k-1)=b a^{k-1} &amp; \textrm{   } &amp; \textrm{  } \\
+S(k-2)=b a^{k-2} &amp;   &amp;   \\
+\end{array}
+\end{equation*}
+</div>
+<p>Substitute these expressions into the recurrence relation to get</p>
+<div class="displaymath">
+\begin{equation*}
+b a^k-7 b a^{k-1}+12 b a^{k-2}=0
+\end{equation*}
+</div>
+<p>Each term on the left-hand side of this equation has a factor of \(b a^{k-2}\text{,}\) which is nonzero. Dividing through by this common factor yields</p>
+<div class="displaymath">
+\begin{gather}
+a^2 - 7a + 12 = (a - 3) (a - 4) = 0\label{eq-characteristic-example}\tag{8.3.1}
+\end{gather}
+</div>
+<p id="p-2632">Therefore, the only possible values of \(a\) are 3 and 4. Equation <a data-knowl="./knowl/eq-characteristic-example.html" title="Equation 8.3.1">(8.3.1)</a> is called the characteristic equation of the recurrence relation. The fact is that our original recurrence relation is true for any sequence of the form \(S(k) = b_1 3^k + b_24^k\text{,}\) where \(b_1\) and \(b_2\) are real numbers. This set of sequences is called the general solution of the recurrence relation. If we didn't have initial conditions for \(S\text{,}\) we would stop here. The initial conditions make it possible for us to find definite values for \(b_1\) and \(b_2\text{.}\)</p>
+<div class="displaymath">
+\begin{equation*}
+\left\{
+\begin{array}{c}
+S(0)=4 \\
+S(1)=4 \\
+\end{array}
+\right\}\textrm{  }\Rightarrow \left\{
+\begin{array}{c}
+b_13^0+b_24^0=4 \\
+b_13^1+b_24^1=4 \\
+\end{array}
+\right\}\textrm{  }\Rightarrow \left\{
+\begin{array}{c}
+b_1+b_2=4 \\
+3b_1+4b_2=4 \\
+\end{array}
+\right\}\textrm{  }
+\end{equation*}
+</div>
+<p id="p-2633">The solution of this set of simultaneous equations is \(b_1 = 12\) and \(b_2 = -8\) and so the solution is \(S(k) = 12 \cdot 3^k - 8 \cdot 4^k\text{.}\)</p></article></div>
+<article class="definition-like" id="def-characteristic-equation"><h6 class="heading">
+<span class="type">Definition</span> <span class="codenumber">8.3.10</span>. <span class="title">Characteristic Equation.</span>
+</h6>
+<p id="p-2634">The characteristic equation of the homogeneous \(n^{\textrm{th}}\) order linear relation \(S(k) + C_1 S(k- 1) +\ldots + C_n S(k - n) =0\) is the \(n\)th degree polynomial equation</p>
+<div class="displaymath">
+\begin{equation*}
+a^n+\sum_{j=1}^n C_j a^{n-j}=a^n+ C_1a^{n-1}+\cdots +C_{n-1}a+C_n=0
+\end{equation*}
+</div>
+<p>The left-hand side of this equation is called the characteristic polynomial.  The roots of the characteristic polynomial are called the characteristic roots of the equation.</p></article><article class="example-like" id="ex-some-char-equations"><a data-knowl="" class="id-ref" data-refid="hk-ex-some-char-equations"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">8.3.11</span>. <span class="title">Some characteristic equations.</span>
+</h6></a></article><div id="hk-ex-some-char-equations" class="hidden-content tex2jax_ignore"><article class="example-like"><ol id="p-2635" class="lower-alpha">
+<li id="li-1306"><p id="p-2636">The characteristic equation of \(F(k) - F(k - 1) - F(k - 2) = 0\) is \(a^2-a-1=0\text{.}\)</p></li>
+<li id="li-1307"><p id="p-2637">The characteristic equation of \(Q(k) + 2Q(k - 1) - 3Q(k - 2) - 6 Q(k- 4) = 0\) is \(a^4+ 2a^3 - 3a^2 - 6 = 0.\) Note that the absence of a \(Q(k - 3)\) term means that there is not an \(x^{4-3}=x\) term appearing in the characteristic equation.</p></li>
+</ol></article></div>
+<article class="theorem-like" id="algorithm-linear-homogeneous-recurrence-relations"><h6 class="heading">
+<span class="type">Algorithm</span> <span class="codenumber">8.3.12</span>. <span class="title">Algorithm for Solving Homogeneous Finite-order Linear Relations.</span>
+</h6>
+<ol id="p-2638" class="lower-alpha">
+<li id="li-1308"><p id="p-2639">Write out the characteristic equation of the relation \(S(k) + C_1S(k - 1) +\ldots + C_n S(k - n) =0\text{,}\) which is \(a^n+ C_1a^{n-1}+\cdots
++C_{n-1}a+C_n=0\text{.}\)</p></li>
+<li id="li-1309"><p id="p-2640">Find all roots of the characteristic equation, the characteristic roots.</p></li>
+<li id="li-1310"><p id="p-2641">If there are \(n\) distinct characteristic roots, \(a_1, a_2, \dots a_n\text{,}\) then the general solution of the recurrence relation is \(S(k) = b_1a_1{}^k+ b_2a_2{}^k+\cdots +b_na_n{}^k\text{.}\) If there are fewer than \(n\) characteristic roots, then at least one root is a multiple root. If \(a_j\) is a double root, then the \(b_ja_j{}^k\) term is replaced with \(\left(b_{j 0}+b_{j 1}k\right)a_j^{k}\textrm{.}\) In general, if \(a_j\) is a root of multiplicity \(p\text{,}\) then the \(b_ja_j{}^k\) term is replaced with \(\left(b_{j 0}+b_{j 1}k+\cdots +b_{j(p-1)}k^{p-1}\right)a_j^{k}\text{.}\)</p></li>
+<li id="li-1311"><p id="p-2642">If \(n\) initial conditions are given, we get \(n\) linear equations in \(n\) unknowns (the \({b_j}'s\) from Step 3) by substitution. If possible, solve these equations to determine a final form for \(S(k)\text{.}\)</p></li>
+</ol></article><p id="p-2643">Although this algorithm is valid for all values of \(n\text{,}\) there are limits to the size of \(n\) for which the algorithm is feasible. Using just a pencil and paper, we can always solve second-order equations. The quadratic formula for the roots of \(a x^2 + b x + c = 0\) is</p>
+<div class="displaymath">
+\begin{equation*}
+x=\frac{-b\pm \sqrt{b^2-4 a c}}{2 a}
+\end{equation*}
+</div>
+<p>The solutions of \(a^2+ C_1a + C_2 = 0\) are then</p>
+<div class="displaymath">
+\begin{equation*}
+\frac{1}{2}\left(-C_1+\sqrt{C_1{}^2-4 C_2}\right)\textrm{ and }\frac{1}{2}\left(-C_1-\sqrt{C_1{}^2-4 C_2}\right)
+\end{equation*}
+</div>
+<p id="p-2644">Although cubic and quartic formulas exist, they are too lengthy to introduce here. For this reason, the only higher-order relations (\(n\geq 3\)) that you could be expected to solve by hand are ones for which there is an easy factorization of the characteristic polynomial.</p>
+<article class="example-like" id="ex-hrr-solution-example-1"><a data-knowl="" class="id-ref" data-refid="hk-ex-hrr-solution-example-1"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">8.3.13</span>. <span class="title">A solution using the algorithm.</span>
+</h6></a></article><div id="hk-ex-hrr-solution-example-1" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-2645">Suppose that \(T\) is defined by \(T(k) =7T(k-1)-10T(k-2)\text{,}\) with \(T(0) = 4\) and \(T(1) = 17\text{.}\) We can solve this recurrence relation with <a data-knowl="./knowl/algorithm-linear-homogeneous-recurrence-relations.html" title="Algorithm 8.3.12: Algorithm for Solving Homogeneous Finite-order Linear Relations">Algorithm 8.3.12</a>:</p>
+<ol id="p-2646" class="lower-alpha">
+<li id="li-1312"><p id="p-2647">Note that we have written the recurrence relation in “nonstandard” form. To avoid errors in this easy step, you might consider a rearrangement of the equation to, in this case, \(T(k) -7T(k-1)+10T(k-2)=0\text{.}\) Therefore, the characteristic equation is \(a^2 -7a + 10 = 0\text{.}\)</p></li>
+<li id="li-1313"><p id="p-2648">The characteristic roots are \(\frac{1}{2}\left(7+\sqrt{49-40}\right)=5\) and \(\frac{1}{2}\left(7-\sqrt{49-40}\right)=2\text{.}\) These roots can be just as easily obtained by factoring the characteristic polynomial into \((a - 5)(a - 2)\text{.}\)</p></li>
+<li id="li-1314"><p id="p-2649">The general solution of the recurrence relation is \(T(k) =b_12^k+ b_25^k\text{.}\)</p></li>
+<li id="li-1315"><p id="p-2650">\(\quad\) \(\left\{
+\begin{array}{c}
+T(0)=4 \\
+T(1)=17 \\
+\end{array}
+\right\}\textrm{  }\Rightarrow \left\{
+\begin{array}{c}
+b_12^0+b_25^0=4 \\
+b_12^1+b_25^1=17 \\
+\end{array}
+\right\}\textrm{  }\Rightarrow \left\{
+\begin{array}{c}
+b_1+b_2=4 \\
+2b_1+5b_2=17 \\
+\end{array}
+\right\}\textrm{  }\) The simultaneous equations have the solution \(b_1=1\) and \(b_2=3\text{.}\) Therefore, \(T(k)=2^{k }+3\cdot 5^k\text{.}\)</p></li>
+</ol></article></div>
+<p id="p-2651">Here is one rule that might come in handy: If the coefficients of the characteristic polynomial are all integers, with the constant term equal to \(m\text{,}\) then the only possible rational characteristic roots are divisors of \(m\) (both positive and negative).</p>
+<p id="p-2652">With the aid of a computer (or possibly only a calculator), we can increase \(n\text{.}\) Approximations of the characteristic roots can be obtained by any of several well-known methods, some of which are part of standard software packages. There is no general rule that specifies the values of \(n\) for which numerical approximations will be feasible. The accuracy that you get will depend on the relation that you try to solve. (See Exercise 17 of this section.)</p>
+<article class="example-like" id="ex-hrr-solution-example-2"><a data-knowl="" class="id-ref" data-refid="hk-ex-hrr-solution-example-2"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">8.3.14</span>. <span class="title">Solution of a Third Order Recurrence Relation.</span>
+</h6></a></article><div id="hk-ex-hrr-solution-example-2" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-2653">Solve \(S(k) - 7S(k - 2) + 6S(k - 3) = 0\text{,}\) where \(S(0) =8\text{,}\) \(S(1) = 6\text{,}\) and \(S(2) = 22\text{.}\)</p>
+<ol id="p-2654" class="lower-alpha">
+<li id="li-1316"><p id="p-2655">The characteristic equation is \(a^3 - 7a + 6 = 0\text{.}\)</p></li>
+<li id="li-1317"><p id="p-2656">The only rational roots that we can attempt are \(\pm  1, \pm 2, \pm 3, \textrm{and} \pm 6\text{.}\) By checking these, we obtain the three roots 1, 2, and \(-3\text{.}\)</p></li>
+<li id="li-1318"><p id="p-2657">The general solution is \(S(k) =b_11^k+b_22^k+b_3(-3){}^k\text{.}\) The first term can simply be written \(b_1\) .</p></li>
+<li id="li-1319"><p id="p-2658">\(\left\{
+\begin{array}{c}
+S(0)=8 \\
+S(1)=6 \\
+S(2)=22 \\
+\end{array}
+\right\}\textrm{   }\Rightarrow \left\{
+\begin{array}{c}
+b_1+b_2+b_3=8 \\
+b_1+2b_2-3b_3=6 \\
+b_1+4b_2+9b_3=22 \\
+\end{array}
+\right\}\textrm{  }\) You can solve this system by elimination to obtain \(b_1=5\text{,}\) \(b_2=2\text{,}\) and \(b_3=1\text{.}\) Therefore, \(\quad\)\(S(k) = 5 + 2\cdot 2^k + (-3)^k = 5 + 2^{k+1} + (-3)^k\)</p></li>
+</ol></article></div>
+<article class="example-like" id="ex-hrr-solution-example-3"><a data-knowl="" class="id-ref" data-refid="hk-ex-hrr-solution-example-3"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">8.3.15</span>. <span class="title">Solution with a Double Characteristic Root.</span>
+</h6></a></article><div id="hk-ex-hrr-solution-example-3" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-2659">Solve \(D(k) - 8D(k - 1) + 16D(k - 2) = 0\text{,}\) where \(D(2) = 16\) and \(D(3) = 80\text{.}\)</p>
+<ol id="p-2660" class="lower-alpha">
+<li id="li-1320"><p id="p-2661">Characteristic equation: \(a^2- 8a + 16 = 0\text{.}\)</p></li>
+<li id="li-1321"><p id="p-2662">\(a^2- 8a + 16 = (a - 4)^2\text{.}\) Therefore, there is a double characteristic root, 4.</p></li>
+<li id="li-1322"><p id="p-2663">General solution: \(D(k) = \left(b_{10}+b_{11}k\right)4^k\text{.}\)</p></li>
+<li id="li-1323">
+<p id="p-2664">\(\left\{
+\begin{array}{c}
+D(2)=16 \\
+D(3)=80 \\
+\end{array}
+\right\}\textrm{  }\Rightarrow \left\{
+\begin{array}{c}
+\left(b_{10}+b_{11}2\right)4^2=16 \\
+\left(b_{10}+b_{11}3\right)4^3=80 \\
+\end{array}
+\right\}\textrm{  } \\ \Rightarrow \left\{
+\begin{array}{c}
+16b_{10}+32b_{11}=16 \\
+64b_{10}+192b_{11}=80 \\
+\end{array}
+\right\} \Rightarrow  \left\{
+\begin{array}{c}
+b_{10}=\frac{1}{2} \\
+b_{11}=\frac{1}{4} \\
+\end{array}
+\right\}\)</p>
+<p id="p-2665">Therefore \(D (k) = (1/2 + (1/4) k) 4^k= (2 + k)4^{k-1}\text{.}\)</p>
+</li>
+</ol></article></div></section><section class="subsection" id="ss-solution-of-nonhomogeneous-relations"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">8.3.4</span> <span class="title">Solution of Nonhomogeneous Finite Order Linear Relations</span>
+</h3>
+<a href="s-recurrence-relations.html#ss-solution-of-nonhomogeneous-relations" class="permalink">¶</a><p id="p-2666">Our algorithm for nonhomogeneous relations will not be as complete as for the homogeneous case. This is due to the fact that different right-hand sides (\(f(k)\)'s) call for different rules in obtaining a particular solution.</p>
+<article class="theorem-like" id="algorithm-linear-nonhomogeneous-recurrence-relations"><h6 class="heading">
+<span class="type">Algorithm</span> <span class="codenumber">8.3.16</span>. <span class="title">Algorithm for Solving Nonhomogeneous Finite-order Linear Relations.</span>
+</h6>
+<p id="p-2667">To solve the recurrence relation \(S(k) + C_1S(k - 1) +\ldots + C_n S(k - n) = f(k)\)</p>
+<ol id="p-2668" class="decimal">
+<li id="li-1324"><p id="p-2669">Write the associated homogeneous relation and find its general solution (Steps (a) through (c) of <a data-knowl="./knowl/algorithm-linear-homogeneous-recurrence-relations.html" title="Algorithm 8.3.12: Algorithm for Solving Homogeneous Finite-order Linear Relations">Algorithm 8.3.12</a>). Call this the homogeneous solution, \(S^{(h)}(k)\text{.}\)</p></li>
+<li id="li-1325"><p id="p-2670">Start to obtain what is called a particular solution, \(S^{(p)}(k)\) of the recurrence relation by taking an educated guess at the form of a particular solution. For a large class of right-hand sides, this is not really a guess, since the particular solution is often the same type of function as \(f(k)\) (see <a data-knowl="./knowl/tab-particular-sols.html" title="Table 8.3.17">Table 8.3.17</a>).</p></li>
+<li id="li-1326"><p id="p-2671">Substitute your guess from Step 2 into the recurrence relation. If you made a good guess, you should be able to determine the unknown coefficients of your guess. If you made a wrong guess, it should be apparent from the result of this substitution, so go back to Step 2.</p></li>
+<li id="li-1327"><p id="p-2672">The general solution of the recurrence relation is the sum of the homogeneous and particular solutions. If no conditions are given, then you are finished. If \(n\) initial conditions are given, they will translate to \(n\) linear equations in \(n\) unknowns and solve the system to get a complete solution.</p></li>
+</ol></article><figure class="figure-like" id="tab-particular-sols"><table>
+<tr>
+<td class="c m b0 r0 l0 t3 lines">Right Hand Side, \(f(k)\)</td>
+<td class="c m b0 r0 l0 t3 lines">Form of Particular Solution, \(S^{(p)}(k)\)</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">Constant, \(q\)</td>
+<td class="c m b0 r0 l0 t0 lines">Constant, \(d\)</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">Linear Function, \(q_0+q_1 k\)</td>
+<td class="c m b0 r0 l0 t0 lines">Linear Function, \(d_0+d_1 k\)</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">\(m^{th}\) degree polynomial, \(q_0+q_1k+\cdots +q_m k^m\)</td>
+<td class="c m b0 r0 l0 t0 lines">\(m^{th}\) degree polynomial, \(d_0+d_1k+\cdots +d_m k^m\)</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">exponential function, \(q a^k\)</td>
+<td class="c m b0 r0 l0 t0 lines">exponential function, \(d a^k\)</td>
+</tr>
+</table>
+<figcaption><span class="type">Table</span> <span class="codenumber">8.3.17.</span> Particular solutions for given right-hand sides</figcaption></figure><article class="example-like" id="ex-nhrr-solution-example-1"><a data-knowl="" class="id-ref" data-refid="hk-ex-nhrr-solution-example-1"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">8.3.18</span>. <span class="title">Solution of a Nonhomogeneous First Order Recurrence Relation.</span>
+</h6></a></article><div id="hk-ex-nhrr-solution-example-1" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-2673">Solve \(S(k) + 5S(k - 1) = 9\text{,}\) with \(S(0) = 6\text{.}\)</p>
+<ol id="p-2674" class="lower-alpha">
+<li id="li-1328"><p id="p-2675">The associated homogeneous relation,\(S(k) + 5S(k - 1) = 0\) has the characteristic equation \(a + 5 = 0\text{;}\) therefore, \(a = -5\text{.}\) The homogeneous solution is \(S^{(h)}(k) =b (-5)^k\text{.}\)</p></li>
+<li id="li-1329"><p id="p-2676">Since the right-hand side is a constant, we guess that the particular solution will be a constant, \(d\text{.}\)</p></li>
+<li id="li-1330"><p id="p-2677">If we substitute \(S^{(p)}(k) = d\) into the recurrence relation, we get \(d + 5d = 9\text{,}\) or \(6d = 9\text{.}\) Therefore, \(S^{(p)}(k)=1.5\text{.}\)</p></li>
+<li id="li-1331"><p id="p-2678">The general solution of the recurrence relation is \(\quad\)\(S(k)= S^{(h)}(k)+S^{(p)}(k) =b (-5)^k+1.5\) The initial condition will give us one equation to solve in order to determine \(b\text{.}\) \(\quad\)\(S(0) = 6 \Rightarrow \textrm{   }b(-5)^0+ 1.5 = 6\textrm{   }\Rightarrow \textrm{    }b\textrm{  }+ 1.5 = 6\) Therefore, \(b = 4.5\) and \(S(k) = 4.5(-5)^k + 1.5\text{.}\)</p></li>
+</ol></article></div>
+<article class="example-like" id="ex-nhrr-solution-example-2"><a data-knowl="" class="id-ref" data-refid="hk-ex-nhrr-solution-example-2"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">8.3.19</span>. <span class="title">Solution of a Nonhomogeneous Second Order Recurrence Relation.</span>
+</h6></a></article><div id="hk-ex-nhrr-solution-example-2" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-2679">Consider \(T(k) - 7T(k - 1) + 10T(k - 2) = 6 + 8k\) with \(T(0) = 1\) and \(T(1) = 2\text{.}\)</p>
+<ol id="p-2680" class="lower-alpha">
+<li id="li-1332"><p id="p-2681">From <a data-knowl="./knowl/ex-hrr-solution-example-1.html" title="Example 8.3.13: A solution using the algorithm">Example 8.3.13</a>, we know that \(T^{(h)}(k)=b_12^k+ b_25^k\text{.}\) Caution:Don't apply the initial conditions to \(T^{(h)}\) until you add \(T^{(p)}\text{!}\)</p></li>
+<li id="li-1333"><p id="p-2682">Since the right-hand side is a linear polynomial, \(T^{(p)}\) is linear; that is, \(T^{(p)}(k)=d_0+d_1k\text{.}\)</p></li>
+<li id="li-1334"><p id="p-2683">Substitution into the recurrence relation yields: \(\left(d_0+d_1k\right)-7\left(d_0+d_1(k-1)\right)+10\left(d_0+d_1(k-2)\right)=6+8k\) \(\quad\)\(\Rightarrow  \left(4d_0-13d_1\right)+ \left(4d_1\right)k = 6 + 8 k\) Two polynomials are equal only if their coefficients are equal. Therefore, \(\quad\) \(\left\{
+\begin{array}{c}
+4d_0-13d_1=6 \\
+4d_1=8 \\
+\end{array}
+\right\}\Rightarrow \left\{
+\begin{array}{c}
+d_0=8 \\
+d_1=2 \\
+\end{array}
+\right\}\)</p></li>
+<li id="li-1335">
+<p id="p-2684">Use the general solution \(T(k) =b_12^k+ b_25^k+8+2k\) and the initial conditions to get a final solution: \(\quad\) \(\left\{
+\begin{array}{c}
+T(0)=1 \\
+T(1)=2 \\
+\end{array}
+\right\}\textrm{  }\Rightarrow \left\{
+\begin{array}{c}
+b_1+ b_2+8=1 \\
+2b_1+5b_2+10=2 \\
+\end{array}
+\right\}\textrm{  }\\
+\\
+\quad \quad \Rightarrow \left\{
+\begin{array}{c}
+b_1+b_2=-7 \\
+2b_1+5b_2=-8 \\
+\end{array}
+\right\}\\
+\\
+\quad \quad \Rightarrow \left\{
+\begin{array}{c}
+b_1=-9 \\
+b_2=2 \\
+\end{array}
+\right\}\textrm{  }\)</p>
+<p id="p-2685">Therefore,  \(T(k) =-9\cdot 2^k+ 2\cdot 5^k+8+2k\text{.}\)</p>
+</li>
+</ol></article></div>
+<article class="remark-like" id="note-4"><h6 class="heading">
+<span class="type">Note</span> <span class="codenumber">8.3.20</span>. <span class="title">A quick note on interest rates.</span>
+</h6>
+<p id="p-2686">When a quantity, such as a savings account balance, is increased by some fixed percent, it is most easily computed with a multiplier. In the case of an \(8\%\) increase, the multiplier is 1.08 because any original amount \(A\text{,}\) has \(0.08A\) added to it, so that the new balance is \(A+0.08A = (1+0.08)A = 1.08 A\text{.}\)</p>
+<p id="p-2687">Another example is that if the interest rate is \(3.5\%\text{,}\) the multiplier would be 1.035. This presumes that the interest is applied at the end of year for \(3.5\%\) annual interest, often called <dfn class="terminology">simple interest</dfn>. If the interest is applied monthly, and we assume a simplifed case where each month has the same length, the multiplier after every month would be \(\left(1+\frac{0.035}{12}\right) \approx  1.00292\text{.}\) After a year passes, this multiplier would be applied 12 times, which is the same as multiplying by \(1.00292^{12}\approx 1.03557\text{.}\) That increase from 1.035 to 1.03557 is the effect of <dfn class="terminology">compound interest</dfn>.</p></article><article class="example-like" id="ex-a-novel-annuity"><a data-knowl="" class="id-ref" data-refid="hk-ex-a-novel-annuity"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">8.3.21</span>. <span class="title">A Sort of Annuity.</span>
+</h6></a></article><div id="hk-ex-a-novel-annuity" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-2688">Suppose you open a savings account that pays an annual interest rate of \(8\%\text{.}\) In addition, suppose you decide to deposit one dollar when you open the account, and you intend to double your deposit each year. Let \(B(k)\) be your balance after \(k\) years. \(B\) can be described by the relation \(B(k) = 1.08 B(k - 1) + 2^k\text{,}\) with \(S(0) = 1\text{.}\) If, instead of doubling the deposit each year, you deposited a constant amount, \(q\text{,}\) the \(2^k\) term would be replaced with \(q\text{.}\)  A sequence of regular deposits such as this is called a simple annuity.</p>
+<p id="p-2689">Returning to the original situation,</p>
+<ol id="p-2690" class="lower-alpha">
+<li id="li-1336"><p id="p-2691">\(B^{(h)}(k)=b_1(1.08){}^k\)</p></li>
+<li id="li-1337"><p id="p-2692">\(B^{(p)}(k)\) should be of the form \(d 2^k\text{.}\)</p></li>
+<li id="li-1338">
+<div class="displaymath" id="p-2693">
+\begin{equation*}
+\begin{split}
+d 2^k = 1.08d 2^{k-1}+2^k &amp; \Rightarrow (2d) 2^{k-1} = 1.08d 2^{k-1}+ 2\cdot 2^{k-1}\\
+&amp; \Rightarrow  2d = 1.08 d + 2\\
+&amp;\Rightarrow .92d = 2 \\
+&amp;\Rightarrow d= 2.174 \textrm{  to the nearest thousandth})
+\end{split}
+\end{equation*}
+</div>
+<p>Therefore \(B^{(p)}(k)=2.174\cdot  2^k\text{.}\)</p>
+</li>
+<li id="li-1339">
+<p id="p-2694">\(B(0) = 1 \Rightarrow \textrm{   }b_1+2.174 = 1\\
+\\ 
+\quad     \Rightarrow \textrm{   }b_1= -1.174\)</p>
+<p id="p-2695">Therefore,  \(B(k) = -1.174\cdot  1.08^k+ 2.174\cdot  2^k\text{.}\)</p>
+</li>
+</ol></article></div>
+<article class="example-like" id="ex-matching-roots"><a data-knowl="" class="id-ref" data-refid="hk-ex-matching-roots"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">8.3.22</span>. <span class="title">Matching Roots.</span>
+</h6></a></article><div id="hk-ex-matching-roots" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-2696">Find the general solution to \(S(k) - 3 S(k - 1) - 4 S(k - 2) = 4^k\text{.}\)</p>
+<ol id="p-2697" class="lower-alpha">
+<li id="li-1340"><p id="p-2698">The characteristic roots of the associated homogeneous relation are \(-1\) and 4. Therefore, \(S^{(h)}(k)=b_1(-1){}^k+ b_2 4^k\text{.}\)</p></li>
+<li id="li-1341"><p id="p-2699">A function of the form \(d 4^k\) will not be a particular solution of the nonhomogeneous relation since it solves the associated homogeneous relation. When the right-hand side involves an exponential function with a base that equals a characteristic root,you should multiply your guess at a particular solution by \(k\text{.}\) Our guess at \(S^{(p)}(k)\) would then be \(d k 4^k\) . See <a data-knowl="./knowl/obs-matching-base.html" title="Observation 8.3.23: When the base of right-hand side is equal to a characteristic root">Observation 8.3.23</a> for a more complete description of this rule.</p></li>
+<li id="li-1342">
+<p id="p-2700">Substitute \(d k 4^k\) into the recurrence relation for \(S(k)\text{:}\)</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{array}{c}
+d k 4^k-3d (k-1) 4^{k-1}-4d (k-2) 4^{k-2}=4^k\\
+16d k 4^{k-2}-12d (k-1) 4^{k-2}-4d (k-2) 4^{k-2}=4^k\\
+\end{array}
+\end{equation*}
+</div>
+<p>Each term on the left-hand side has a factor of \(4^{k-2}\)</p>
+<div class="displaymath">
+\begin{equation*}
+16 d k - 12d(k - 1) - 4d(k - 2) = 4^220 d = 16 \Rightarrow d=0.8
+\end{equation*}
+</div>
+<p>Therefore, \(S^{(p)}(k) = 0.8 k 4^k\text{.}\)</p>
+</li>
+<li id="li-1343">
+<p id="p-2701">The general solution to the recurrence relation is</p>
+<div class="displaymath">
+\begin{equation*}
+S(k) =b_1(-1){}^k+ b_2 4^k +0.8 k 4^k
+\end{equation*}
+</div>
+</li>
+</ol></article></div>
+<article class="remark-like" id="obs-matching-base"><h6 class="heading">
+<span class="type">Observation</span> <span class="codenumber">8.3.23</span>. <span class="title">When the base of right-hand side is equal to a characteristic root.</span>
+</h6>
+<p id="p-2702">If the right-hand side of a nonhomogeneous relation involves an exponential with base \(a\text{,}\) and \(a\) is also a characteristic root of multiplicity \(p\text{,}\) then multiply your guess at a particular solution as prescribed in <a data-knowl="./knowl/tab-particular-sols.html" title="Table 8.3.17">Table 8.3.17</a> by \(k^p\text{,}\) where \(k\) is the index of the sequence.</p></article><article class="example-like" id="ex-base-match"><a data-knowl="" class="id-ref" data-refid="hk-ex-base-match"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">8.3.24</span>. <span class="title">Examples of matching bases.</span>
+</h6></a></article><div id="hk-ex-base-match" class="hidden-content tex2jax_ignore"><article class="example-like"><ol id="p-2703" class="lower-alpha">
+<li id="li-1344"><p id="p-2704">If  \(S(k) - 9S(k - 1) + 20 S(k - 2) = 2\cdot 5^k\text{,}\) the characteristic roots are 4 and 5.  Since 5 matches the base of the right side, \(S^{(p)}(k)\) will take the form \(d k 5^k\text{.}\)</p></li>
+<li id="li-1345"><p id="p-2705">If \(S(n)- 6S(n - 1) + 9 S(n - 2) = 3^{n+1}\) the only characteristic root is 3, but it is a double root (multiplicity 2). Therefore, the form of the particular solution is \(d n^2 3^n\text{.}\)</p></li>
+<li id="li-1346"><p id="p-2706">If \(Q(j)-Q(j-1)-12Q(j-2)=(-3)^j+ 6\cdot 4^j\text{,}\) the characteristic roots are \(-3\) and 4. The form of the particular solution will be \(d_1j (-3)^j+ d_2j\cdot 4^j\text{.}\)</p></li>
+<li id="li-1347"><p id="p-2707">If \(S(k) - 9S(k - 1) + 8S(k- 2) = 9k + 1 = (9k + 1)1^k\text{,}\) the characteristic roots are 1 and 8. If the right-hand side is a polynomial, as it is in this case, then the exponential factor \(1^k\) can be introduced. The particular solution will take the form \(k\left(d_0+ d_1k\right)\text{.}\)</p></li>
+</ol></article></div>
+<p id="p-2708">We conclude this section with a comment on the situation in which the characteristic equation gives rise to complex roots. If we restrict the coefficients of our finite order linear relations to real numbers, or even to integers, we can still encounter characteristic equations whose roots are complex. Here, we will simply take the time to point out that our algorithms are still valid with complex characteristic roots, but the customary method for expressing the solutions of these relations is different. Since an understanding of these representations requires some background in complex numbers, we will simply suggest that an interested reader can refer to a more advanced treatment of recurrence relations (see also difference equations).</p></section><section class="exercises" id="exercises-8-3"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber">8.3.5</span> <span class="title">Exercises for Section 8.3</span>
+</h3>
+<a href="s-recurrence-relations.html#exercises-8-3" class="permalink">¶</a><div class="exercisegroup" id="exercisegroup-1">
+<div class="introduction" id="introduction-21"><p id="p-2709">Solve the following sets of recurrence relations and initial conditions:</p></div>
+<div class="exercisegroup-exercises">
+<article class="exercise-like" id="exercise-319"><h6 class="heading"><span class="codenumber">1.</span></h6>
+<p id="p-2710">\(S(k) - 10S(k - 1) + 9S(k - 2) = 0\text{,}\) \(S(0) = 3\text{,}\) \(S(1) = 11\)</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-answer-151" id="answer-151"><span class="type">Answer</span></a><div id="hk-answer-151" class="hidden-content tex2jax_ignore"><div class="solution"><p id="p-2711">\(S(k)=2+9^k\)</p></div></div>
+</div></article><article class="exercise-like" id="exercise-320"><h6 class="heading"><span class="codenumber">2.</span></h6>
+<p id="p-2712">\(S(k) - 9S(k - 1) + 18S(k - 2) = 0\text{,}\) \(S(0) = 0\text{,}\) \(S(1) = 3\)</p></article><article class="exercise-like" id="exercise-321"><h6 class="heading"><span class="codenumber">3.</span></h6>
+<p id="p-2713">\(S(k) - 0.25S(k - 1) = 0\text{,}\) \(S(0) = 6\)</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-answer-152" id="answer-152"><span class="type">Answer</span></a><div id="hk-answer-152" class="hidden-content tex2jax_ignore"><div class="solution"><p id="p-2714">\(S(k)=6(1/4)^k\)</p></div></div>
+</div></article><article class="exercise-like" id="exercise-322"><h6 class="heading"><span class="codenumber">4.</span></h6>
+<p id="p-2715">\(S(k) - 20S(k - 1) + 100S(k - 2) = 0\text{,}\) \(S(0) = 2\text{,}\) \(S(1) = 50\)</p></article><article class="exercise-like" id="exercise-323"><h6 class="heading"><span class="codenumber">5.</span></h6>
+<p id="p-2716">\(S(k) - 2S(k - 1) + S(k - 2) = 2 \textrm{,  }S(0) = 25,\textrm{  }S(1) = 16\)</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-answer-153" id="answer-153"><span class="type">Answer</span></a><div id="hk-answer-153" class="hidden-content tex2jax_ignore"><div class="solution"><p id="p-2717">\(S(k)=k^2-10k+25\)</p></div></div>
+</div></article><article class="exercise-like" id="exercise-324"><h6 class="heading"><span class="codenumber">6.</span></h6>
+<p id="p-2718">\(S(k) - S(k - 1) - 6S(k - 2) = -30\text{,}\) \(S(0) = 7\text{,}\) \(S(1) = 10\)</p></article><article class="exercise-like" id="exercise-325"><h6 class="heading"><span class="codenumber">7.</span></h6>
+<p id="p-2719">\(S(k) - 5S (k - 1) = 5^k,\textrm{  }S(0) = 3\)</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-answer-154" id="answer-154"><span class="type">Answer</span></a><div id="hk-answer-154" class="hidden-content tex2jax_ignore"><div class="solution"><p id="p-2720">\(S(k)=(3+k)5^k\)</p></div></div>
+</div></article><article class="exercise-like" id="exercise-326"><h6 class="heading"><span class="codenumber">8.</span></h6>
+<p id="p-2721">\(S(k) - 5S(k - 1) + 6S(k - 2) = 2,\textrm{  }S(0) = -1,\textrm{  }S(1) = 0\)</p></article><article class="exercise-like" id="exercise-327"><h6 class="heading"><span class="codenumber">9.</span></h6>
+<p id="p-2722">\(S(k) - 4S(k - 1) + 4S(k - 2) = 3k + 2^k \textrm{,  }S(0) = 1, S(1) = 1\)</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-answer-155" id="answer-155"><span class="type">Answer</span></a><div id="hk-answer-155" class="hidden-content tex2jax_ignore"><div class="solution"><p id="p-2723">\(S(k)=(12+3k)+\left(k^2+7k-22\right)2^{k-1}\)</p></div></div>
+</div></article><article class="exercise-like" id="exercise-328"><h6 class="heading"><span class="codenumber">10.</span></h6>
+<p id="p-2724">\(S(k) = r S(k - 1) + a\text{,}\) \(S(0) = 0\text{,}\) \(r, a \geq  0, r \neq  1\)</p></article><article class="exercise-like" id="exercise-329"><h6 class="heading"><span class="codenumber">11.</span></h6>
+<p id="p-2725">\(S(k) - 4S(k - 1) - 11S(k- 2)+ 30S(k - 3) = 0\text{,}\) \(S(0) = 0\text{,}\)\(S(1) = -35,\textrm{  }S(2) = -85\)</p>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-answer-156" id="answer-156"><span class="type">Answer</span></a><div id="hk-answer-156" class="hidden-content tex2jax_ignore"><div class="solution"><p id="p-2726">\(P(k)=4(-3)^k+2^k-5^{k+1}\)</p></div></div>
+</div></article>
+</div>
+</div>
+<article class="exercise-like" id="exercise-330"><h6 class="heading"><span class="codenumber">12.</span></h6>
+<p id="p-2727">Find a closed form expression for \(P(k)\) in Exercise 3 of Section 8.2.</p></article><article class="exercise-like" id="exercise-331"><h6 class="heading"><span class="codenumber">13.</span></h6>
+<ol id="p-2728" class="lower-alpha">
+<li id="li-1348"><p id="p-2729">Find a closed form expression for the terms of the Fibonacci sequence (see <a data-knowl="./knowl/ex-fibonacci-sequence.html" title="Example 8.1.8: The Fibonacci Sequence">Example 8.1.8</a>).</p></li>
+<li id="li-1349"><p id="p-2730">The sequence \(C\) was defined by \(C_r\) = the number of strings of zeros and ones with length \(r\) having no consecutive zeros (<a data-knowl="./knowl/ex-three-sequences.html" title="Example 8.2.2: Three sequences defined in different ways">Example 8.2.2</a>(c)). Its recurrence relation is the same as that of the Fibonacci sequence. Determine a closed form expression for \(C_r\text{,}\) \(r \geq  1\text{.}\)</p></li>
+</ol>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-answer-157" id="answer-157"><span class="type">Answer</span></a><div id="hk-answer-157" class="hidden-content tex2jax_ignore"><div class="solution"><ol id="p-2731" class="lower-alpha">
+<li id="li-1350">
+<p id="p-2732">The characteristic equation is \(a^2-a-1=0\text{,}\) which has solutions \(\alpha =\left.\left(1+\sqrt{5}\right)\right/2\) and \(\beta =\left.\left(1-\sqrt{5}\right)\right/2\text{,}\) It is useful to point out that \(\alpha +\beta =1\) and \(\alpha -\beta =\sqrt{5}\text{.}\) The general solution is \(F(k)=b_1\alpha ^k+b_2\beta ^k\text{.}\) Using the initial conditions, we obtain the system: \(b_1+b_2=1\) and \(b_1\alpha +b_2\beta =1\text{.}\) The solution to this system is \(b_1=\alpha /(\alpha -\beta )=\left.\left(5+\sqrt{5}\right)\right/2\sqrt{5}\) and  \(b_2=\beta /(\alpha -\beta )=\left.\left(5-\sqrt{5}\right)\right/2\sqrt{5}\)</p>
+<p id="p-2733">Therefore the final solution is</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{split}
+F(n) &amp; = \frac{\alpha^{n+1}-\beta^{n+1}}{\alpha-\beta} \\
+&amp; = \frac{\left(\left.\left(1+\sqrt{5}\right)\right/2\right)^{n+1}
+-\left(\left.\left(1-\sqrt{5}\right)\right/2\right)^{n+1}}{\sqrt{5}}\\
+\end{split}
+\end{equation*}
+</div>
+</li>
+<li id="li-1351"><p id="p-2734">\(C_r=F(r+1)\)</p></li>
+</ol></div></div>
+</div></article><article class="exercise-like" id="exercise-332"><h6 class="heading"><span class="codenumber">14.</span></h6>
+<p id="p-2735">If \(S(n)=\sum_{j=1}^n g(j)\text{,}\)\(n\geq 1\text{,}\) then \(S\) can be described with the recurrence relation \(S(n) = S(n-1) + g(n)\text{.}\) For each of the following sequences that are defined using a summation, find a closed form expression:</p>
+<ol id="p-2736" class="lower-alpha">
+<li id="li-1352"><p id="p-2737">\(S(n) =\sum_{j=1}^n j\text{,}\) \(n\geq 1\)</p></li>
+<li id="li-1353"><p id="p-2738">\(Q(n) = \sum_{j=1}^n j^2\text{,}\) \(n\geq 1\)</p></li>
+<li id="li-1354"><p id="p-2739">\(P(n) =\)\(\sum_{j=1}^n \left(\frac{1}{2}\right)^j\text{,}\) \(n\geq 0\)</p></li>
+<li id="li-1355"><p id="p-2740">\(T(n)= \sum_{j=1}^n j^3\text{,}\) \(n\geq 1\)</p></li>
+</ol></article><article class="exercise-like" id="exercise-333"><h6 class="heading"><span class="codenumber">15.</span></h6>
+<p id="p-2741">Let \(D(n)\) be the number of ways that the set \(\{1, 2, . . . , n\}\text{,}\) \(n \geq  1\text{,}\) can be partitioned into two nonempty subsets.</p>
+<ol id="p-2742" class="lower-alpha">
+<li id="li-1356"><p id="p-2743">Find a recurrence relation for \(D\text{.}\) (Hint: It will be a first-order linear relation.)</p></li>
+<li id="li-1357"><p id="p-2744">Solve the recurrence relation.</p></li>
+</ol>
+<div class="solutions">
+<a data-knowl="" class="id-ref" data-refid="hk-answer-158" id="answer-158"><span class="type">Answer</span></a><div id="hk-answer-158" class="hidden-content tex2jax_ignore"><div class="solution"><ol id="p-2745" class="lower-alpha">
+<li id="li-1358"><p id="p-2746">For each two-block partition of \(\{1,2,\dots, n-1\}\text{,}\) there are two partitions we can create when we add \(n\text{,}\) but there is one additional two-block partition to count for which one block is \(\{n\}\text{.}\)  Therefore,  \(D(n)=2D(n-1)+1 \textrm{ for } n \geq 2 \textrm{ and } D(1)=0.\)</p></li>
+<li id="li-1359"><p id="p-2747">\(D(n)=2^{n-1}-1\)</p></li>
+</ol></div></div>
+</div></article><article class="exercise-like" id="exercise-334"><h6 class="heading"><span class="codenumber">16.</span></h6>
+<p id="p-2748">If you were to deposit a certain amount of money at the end of each year for a number of years, this sequence of payments would be called an annuity (see <a data-knowl="./knowl/ex-a-novel-annuity.html" title="Example 8.3.21: A Sort of Annuity">Example 8.3.21</a>).</p>
+<ol class="lower-alpha">
+<li id="li-1360"><p id="p-2749">Find a closed form expression for the balance or value of an annuity that consists of payments of \(q\) dollars at a rate of interest of \(i\text{.}\) Note that for a normal annuity, the first payment is made after one year.</p></li>
+<li id="li-1361"><p id="p-2750">With an interest rate of 5.5 percent, how much would you need to deposit into an annuity to have a value of one million dollars after 18 years?</p></li>
+<li id="li-1362"><p id="p-2751">The payment of a loan is a form of annuity in which the initial value is some negative amount (the amount of the loan) and the annuity ends when the value is raised to zero. How much could you borrow if you can afford to pay $5,000 per year for 25 years at 11 percent interest?</p></li>
+</ol></article><article class="exercise-like" id="exercise-335"><h6 class="heading"><span class="codenumber">17.</span></h6>
+<p id="p-2752">Suppose that \(C\) is a small positive number. Consider the recurrence relation \(B(k) - 2B(k - 1) + \left(1 - C ^2\right)B(k - 2)
+= C^2\text{,}\) with initial conditions \(B(0) = 1\) and \(B(1) = 1\text{.}\) If \(C\) is small enough, we might consider approximating the relation by replacing \(1 - C^2\) with 1 and \(C^2\) with 0. Solve the original relation and its approximation. Let \(B_a\) a be the solution of the approximation. Compare closed form expressions for \(B(k)\) and \(B_a(k)\text{.}\) Their forms are very different because the characteristic roots of the original relation were close together and the approximation resulted in one double characteristic root.If characteristic roots of a relation are relatively far apart, this problem will not occur. For example, compare the general solutions of \(S(k) + 1.001S(k - 1) - 2.004002 S(k - 2) = 0.0001\) and \(S_a(k) + S_a(k - 1) - 2S_a(k - 2) = 0\text{.}\)</p></article></section></section></div></main>
+</div>
+<!--Start: StatCounter code--><script>
+var sc_project=11204831;
+var sc_invisible=1;
+var sc_security="957c565b";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "https://www.");
+document.write("<sc"+"ript src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+</script><noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/11204831/0/957c565b/1/" alt="web analytics"></a></div></noscript>
+<!--End: StatCounter code-->
+<div class="login-link"><span id="loginlogout" class="login">login</span></div>
+<script src="https://pretextbook.org/js/0.11/login.js"></script>
+</body>
+</html>
