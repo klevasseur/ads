@@ -210,9 +210,9 @@ binomial(n,2)
 ︡bfc19f30-4c37-4acb-bff0-a75c1ad87a12︡{"stdout": "1/2*(n - 1)*n"}︡
 ︠0cb6f9c7-5463-41c7-94d6-82e0d506f83di︠
 %html
-<p>The <span style="font-family: 'courier new', courier;">binomial_coefficents</span> function creates a dictionary of values.</p>
+<p>The <span style="font-family: 'courier new', courier;">binomial_coefficients</span> function creates a dictionary of values.</p>
 
-︡2270b35a-79fc-46b1-b199-6e1b06942a69︡{"html": "<p>The <span style=\"font-family: 'courier new', courier;\">binomial_coefficents</span> function creates a dictionary of values.</p>"}︡
+︡2270b35a-79fc-46b1-b199-6e1b06942a69︡{"html": "<p>The <span style=\"font-family: 'courier new', courier;\">binomial_coefficients</span> function creates a dictionary of values.</p>"}︡
 ︠8ae431f5-643d-477c-87c7-6ed1795a654b︠
 binomial_coefficients(8)
 ︡eb850147-51e3-44e9-bb88-58ebf7fae947︡{"stdout": "{(5, 3): 56, (2, 6): 28, (7, 1): 8, (8, 0): 1, (4, 4): 70, (6, 2): 28, (1, 7): 8, (0, 8): 1, (3, 5): 56}"}︡
