@@ -480,6 +480,31 @@ a list containing the mod 6 sum and product, respectively, of 5 and 4:</p>
 [3, 2]
 </output>
 </sage>
+<p>Generating the multiplication table for the family of groups <m>\mathbb{U}_n</m> takes a bit more code.  Here we restrict the allowed inputs to be integers from 2 to 64.</p>
+<sage>
+<input>
+def U_table(n):
+    if n.parent()!=2.parent() or n &lt; 2 or n &gt; 64:
+        return "input error/out of range"
+    R=Integers(n)
+    els=[]
+    for k in filter(lambda k:gcd(n,k)==1,range(n)):
+        els=els+[str(k)]
+    return R.multiplication_table(elements=els,names="elements")
+    
+U_table(18)
+</input>
+<output>
+ *   1  5  7 11 13 17
+  +------------------
+ 1|  1  5  7 11 13 17
+ 5|  5  7 17  1 11 13
+ 7|  7 17 13  5  1 11
+11| 11  1  5 13 17  7
+13| 13 11  1 17  7  5
+17| 17 13 11  7  5  1
+</output>
+</sage>
 </subsection>
 <exercises xml:id="exercises-11-4">
 <title>Exercises</title>
@@ -602,6 +627,14 @@ f(2)=4  \Rightarrow  2 \times_{17} a +_{17} b =4\\
 Therefore  <m>f^{-1}(i) = 12\times_{17}( i +_{17} 16) = 12\times_{17} i +_{17} 5</m>.</p>
 </solution>
 </exercise>
+		
+<exercise  number="12">
+			<statement><p>Write out the operation table for mod 10 multiplication on
+				 <m>T=\{0,2,4,6,8\}</m>. Is <m>[T;\times_{10}]</m>	 a monoid? Is it a group?</p>
+			</statement>
+			<solution><p>This system is a monoid with identity 6 (surprise!).  However it is not a group since 0 has no inverse.</p></solution>
+</exercise>
+
 
 
 </exercises>
