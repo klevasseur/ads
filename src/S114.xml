@@ -219,6 +219,20 @@ If two numbers, <m>a</m> and <m>b</m>, differ by a multiple of <m>n</m>, we say 
 </ol>
 </p>
 </note>
+
+<example xml:id="ex-11-4-modular"><title>Some Examples</title><p><ol label="(a)">
+<li><p> We are all somewhat familiar with <m>\mathbb{Z}_{12}</m> since the hours of the day are counted using this group, except for the fact that 12 is
+used in place of 0.  Military time uses the mod 24 system and does begin at 0.  If someone started a four-hour trip at hour 21, the time at which
+she would arrive is <m>21 +_{24} 4 = 1</m>. If a satellite orbits the earth every four hours and starts its first orbit at hour 5, it would end its
+first orbit at time  <m>5 +_{24}4 =9</m>. Its tenth orbit would end at <m>5 +_{24} 10\times_{24}4 =21</m> hours on the clock</p></li>
+<li><p> Virtually all computers represent unsigned integers in binary form with a fixed number of digits. A very small computer might reserve seven bits
+to store the value of an integer. There are only <m>2^7</m> different values that can be stored in seven bits. Since the smallest value is 0, represented
+as 0000000, the maximum value will be <m>2^7 - 1 = 127</m>, represented as 1111111. When a command is given to add two integer values, and the two values
+have a sum of 128 or more, overflow occurs. For example, if we try to add 56 and 95, the sum is an eight-digit binary integer 10010111. One common
+procedure is to retain the seven lowest-ordered digits. The result of adding 56 and 95 would be <m>0010111_{\textrm{ two}} = 23 \equiv  56 + 95\pmod{128}</m>. Integer arithmetic with this computer would actually be modulo 128 arithmetic.</p></li>
+</ol>
+</p></example>
+
 </subsection>
 <subsection xml:id="ss-properties-modular-arithmetic"><title>Properties of Modular Arithmetic</title><idx><h>Modular Arithmetic</h><h>Properties</h></idx>
 
@@ -253,20 +267,152 @@ inverse.  These properties can be summarized by noting that for each <m>n\geq 1<
 		<p>The Multiplicative Group of Integers Modulo <m>n</m> is the group with domain <m>\{k\in \mathbb{Z} \vert  1 \leq k \leq n-1 \textrm{ and }\gcd(n,k)=1\}</m> and with the operation of mod <m>n</m> multiplication.  It is  denoted as <m>\mathbb{U}_n</m>.</p>
 	</statement>
 </definition>
+<example xml:id="ex-11-4-op-tables"><title>Some operation tables</title>
+<p> </p>
+<sidebyside  widths="40% 40%" margins="auto">
+<p>Here are examples of operation tables for modular groups. Notice that although 8 is greater than 5, the two groups <m>\mathbb{U}_5</m> and <m>\mathbb{U}_8</m> both have order 4. In the case of <m>\mathbb{U}_5</m>, since 5 is prime all of the nonzero elements of <m>\mathbb{Z}_5</m> are included.  Since 8 isn't prime we don't include integers that share a common factor with 8, the even integers in this case.
+</p>
+				<table>
+				  <title>Operation Table for the group <m>\mathbb{Z}_5</m></title>
+				  <tabular halign="center">
+					<row bottom="minor" >
+					  <cell right="minor"><m>+_5</m></cell>
+					  <cell><m>0</m></cell>
+					  <cell><m>1</m></cell>
+					  <cell><m>2</m></cell>
+					  <cell><m>3</m></cell>
+					   <cell><m>4</m></cell>
+				   </row>
+					<row>
+					  <cell right="minor">0</cell>
+					  <cell>0</cell>
+					  <cell>1</cell>
+					  <cell>2</cell>
+					  <cell>3</cell>
+					  <cell>4</cell>
+					</row>
+					<row>
+					  <cell right="minor">1</cell>
+					  <cell>1</cell>
+					  <cell>2</cell>
+					  <cell>3</cell>
+					  <cell>4</cell>
+					  <cell>0</cell>
+					</row>
+					<row>
+					  <cell right="minor">2</cell>
+					  <cell>2</cell>
+					  <cell>3</cell>
+					  <cell>4</cell>
+					  <cell>0</cell>
+					  <cell>1</cell>
+					</row>
+					<row>
+					  <cell right="minor">3</cell>
+					  <cell>3</cell>
+					  <cell>4</cell>
+					  <cell>0</cell>
+					  <cell>1</cell>
+					  <cell>2</cell>
+					</row>
+					<row>
+					  <cell right="minor">4</cell>
+					  <cell>4</cell>
+					  <cell>0</cell>
+					  <cell>1</cell>
+					  <cell>2</cell>
+					  <cell>3</cell>
+					</row>
+				  </tabular>
+				</table>
+</sidebyside>
+<sidebyside  widths="40% 40%" margins="auto">
+				<table>
+				  <title>Operation table for the group <m>\mathbb{U}_5</m></title>
+				  <tabular halign="center">
+					<row bottom="minor" >
+					  <cell right="minor"><m>\times_5</m></cell>
+					  <cell><m>1		</m></cell>
+					  <cell><m>2</m></cell>
+					  <cell><m>3</m></cell>
+					   <cell><m>4</m></cell>
+				   </row>
+					<row>
+					  <cell right="minor">1</cell>
+					  <cell>1</cell>
+					  <cell>2</cell>
+					  <cell>3</cell>
+					  <cell>4</cell>
+					</row>
+					<row>
+					  <cell right="minor">2</cell>
+					  <cell>2</cell>
+					  <cell>4</cell>
+					  <cell>1</cell>
+					  <cell>3</cell>
+					</row>
+					<row>
+					  <cell right="minor">3</cell>
+					  <cell>3</cell>
+					  <cell>1</cell>
+					  <cell>4</cell>
+					  <cell>2</cell>
+					</row>
+					<row>
+					  <cell right="minor">4</cell>
+					  <cell>4</cell>
+					  <cell>3</cell>
+					  <cell>2</cell>
+					  <cell>1</cell>
+					</row>
+				  </tabular>
+				</table>
+				<table>
+				  <title>Operation table for the group <m>\mathbb{U}_8</m></title>
+				  <tabular halign="center">
+					<row bottom="minor" >
+					  <cell right="minor"><m>\times_8</m></cell>
+					  <cell><m>1		</m></cell>
+					  <cell><m>3</m></cell>
+					  <cell><m>5</m></cell>
+					   <cell><m>7</m></cell>
+				   </row>
+					<row>
+					  <cell right="minor">1</cell>
+					  <cell>1</cell>
+					  <cell>3</cell>
+					  <cell>5</cell>
+					  <cell>7</cell>
+					</row>
+					<row>
+					  <cell right="minor">3</cell>
+					  <cell>3</cell>
+					  <cell>1</cell>
+					  <cell>7</cell>
+					  <cell>5</cell>
+					</row>
+					<row>
+					  <cell right="minor">5</cell>
+					  <cell>5</cell>
+					  <cell>7</cell>
+					  <cell>1</cell>
+					  <cell>3</cell>
+					</row>
+					<row>
+					  <cell right="minor">7</cell>
+					  <cell>7</cell>
+					  <cell>5</cell>
+					  <cell>3</cell>
+					  <cell>1</cell>
+					</row>
+				  </tabular>
+				</table>
+
+</sidebyside>
+
+</example>
 
 
-<example xml:id="ex-11-4-modular"><title>Some Examples</title><p><ol label="(a)">
-<li><p> We are all somewhat familiar with <m>\mathbb{Z}_{12}</m> since the hours of the day are counted using this group, except for the fact that 12 is
-used in place of 0.  Military time uses the mod 24 system and does begin at 0.  If someone started a four-hour trip at hour 21, the time at which
-she would arrive is <m>21 +_{24} 4 = 1</m>. If a satellite orbits the earth every four hours and starts its first orbit at hour 5, it would end its
-first orbit at time  <m>5 +_{24}4 =9</m>. Its tenth orbit would end at <m>5 +_{24} 10\times_{24}4 =21</m> hours on the clock</p></li>
-<li><p> Virtually all computers represent unsigned integers in binary form with a fixed number of digits. A very small computer might reserve seven bits
-to store the value of an integer. There are only <m>2^7</m> different values that can be stored in seven bits. Since the smallest value is 0, represented
-as 0000000, the maximum value will be <m>2^7 - 1 = 127</m>, represented as 1111111. When a command is given to add two integer values, and the two values
-have a sum of 128 or more, overflow occurs. For example, if we try to add 56 and 95, the sum is an eight-digit binary integer 10010111. One common
-procedure is to retain the seven lowest-ordered digits. The result of adding 56 and 95 would be <m>0010111_{\textrm{ two}} = 23 \equiv  56 + 95\pmod{128}</m>. Integer arithmetic with this computer would actually be modulo 128 arithmetic.</p></li>
-</ol>
-</p></example>
 </subsection>
 <subsection xml:id="ss-sage-modular"><title>SageMath Note - Modular Arithmetic</title><idx><h>SageMath Note</h><h>Modular Arithmetic</h></idx>
 <p>Sage inherits the basic integer division functions from Python that compute a quotient and remainder in integer division.  For example, here is how to divide 561 into 2017 and get the quotient and remainder.</p>
