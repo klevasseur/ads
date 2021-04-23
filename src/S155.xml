@@ -218,33 +218,35 @@ The rate for this code is <m>\frac{1}{2}</m>.
  <example xml:id="ex-another-linear-code"><title>Another Linear Code</title>
 <statement><p>Consider the linear code with generator matrix  
 <me>G = \left( \begin{array}{ccccc} 
-1 & 1 & 0 & 1 & 0 \\
-0 & 1 & 1 & 0 & 0 \\
-0 & 0 & 0 & 1 & 1 \\
-  \end{array} \right).<me> 
-Since <m>G</m> is <m>3 \times 5</m>, this code encodes three bits into five bits.  The natural question to ask is what detection or correction does it afford? We can answer this question by constructing the parity check matrix.  We observe that if <m>\vec{b}=(b_1 b_2 b_3)</m> the encoding function is 
+1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\
+  \end{array} \right).</me> 
+Since <m>G</m> is <m>3 \times 5</m>, this code encodes three bits into five bits.  The natural question to ask is what detection or correction does it afford? We can answer this question by constructing the parity check matrix.  We observe that if <m>\vec{b}=(b_1, b_2, b_3)</m> the encoding function is 
 <me>e(\vec{b}) = \vec{b}G = (b_1,b_1+b_2,b_2,b_1+b_3,b_3)</me>
-where addition is mod 2 addition. If we receive five bits <m>(c_1,c_2,c_3,c_4,c_5)</m> and on error has occurred, the following two equations would be true.
-<mn>c_1+c_2+c_3 = 0</mn>
-<mn>c_1+c_4+c_5 = 0</mn>
-Notice that in general, the number of parity check equations is equal to the number of extra bits that are added by the encoding function.  These equations are equivalent to the single matrix equation <m>(c_1,c_2,c_3,c_4,c_5)H = \vec{0}</m> where 
+where addition is mod 2 addition. If we receive five bits <m>(c_1,c_2,c_3,c_4,c_5)</m> and no error has occurred, the following two equations would be true.
+<mdn><mrow>c_1+c_2+c_3 = 0</mrow>
+<mrow>c_1+c_4+c_5 = 0</mrow>
+</mdn>
+Notice that in general, the number of parity check equations is equal to the number of extra bits that are added by the encoding function.  These equations are equivalent to the single matrix equation <m>(c_1,c_2,c_3,c_4,c_5)H = \vec{0}</m>, where 
 
 <me>H = \left(\begin{array}{cc} 
-1 & 1 \\
-1 & 0 \\
-1 & 0 \\
-0 & 1 \\
-0 & 1 \\
+1 &amp; 1 \\
+1 &amp; 0 \\
+1 &amp; 0 \\
+0 &amp; 1 \\
+0 &amp; 1 \\
   \end{array} \right)</me>
   </p>
   
 <p>At a glance, we can see that this code will not correct most single bit errors. Suppose an error <m>\vec{e}=(e_1,e_2,e_3,e_4,e_5)</m> is added in the transmission of the five bits. Specifically, suppose that 1 is added (mod 2) in position <m>j</m>, where <m>1 \leq j\leq 5</m> and the other coordinates of <m>\vec{e}</m> are  0.  Then when we compute the syndrome of our received transmission, we see that   
-<me>\vec{c}H = (\vec{b}G + \vec{e})H = = (\vec{b}G)H + \vec{e}H = \vec{e}H.</m> 
+<me>\vec{c}H = (\vec{b}G + \vec{e})H  = (\vec{b}G)H + \vec{e}H = \vec{e}H.</me> 
 But <m>\vec{e}H</m> is the <m>j^{th}</m> row of <m>H</m>.  If the syndrome is <m>(1,1)</m> we know that the error occurred in position 1 and we can correct it.  However, if the error is in any other position we can't pinpoint its location.  If the syndrome is <m>(1,0)</m>, then the error could have occurred in either position 2 or position 3.    This code does detect all single bit errors but only corrects one fifth of them.
 
 </p>
 </statement>
-</example>
+</example> 
+ 
 </subsection>
 <exercises xml:id="exercises-15-5">
 <title>Exercises</title>
@@ -287,9 +289,7 @@ But <m>\vec{e}H</m> is the <m>j^{th}</m> row of <m>H</m>.  If the syndrome is <m
 </ol>
 </p></answer>
 </exercise>
-<exercise number="4"><statement><p>  Describe how the triple-repetition code with encoding function, <m>e:\mathbb{Z}_2\to \mathbb{Z}_2{}^3</m>, where <m>e\left(a_1\right) = \left(a_1,a_1,a_1\right)</m>
-can allow us to correct a single error. What is the probability of success for the <m>p = 0.001</m>, 3000-bit situation?  What are the generator and
-parity-check matrices for this code?</p></statement></exercise>
+
 <exercise number="5"><statement><p>Consider the  linear code defined by the generator matrix
 <me>G=\left(
 \begin{array}{cccc}
@@ -343,5 +343,22 @@ and the code word is the string 11001110.</p>
 </ol>
 </p></statement>
 </exercise>
+
+<exercise number="7"><statement><p> Suppose that the code in <xref ref="ex-another-linear-code" text="type-global"/> is expanded to add the column <me> \left(\begin{array}{c} 
+0 \\
+1 \\
+1 \\
+  \end{array} \right)</me> to the generator matrix <m>G</m>, can all single bit errors be corrected? Explain your answer. </p></statement>
+  <solution><p>Yes, you can correct all single bit errors because the parity check matrix for the expanded code is 
+<me>H = \left(\begin{array}{ccc} 
+1 &amp; 1 &amp; 0\\
+1 &amp; 0 &amp; 0\\
+1 &amp; 0 &amp; 1\\
+0 &amp; 1 &amp; 0\\
+0 &amp; 1 &amp; 1\\
+0 &amp; 0 &amp; 1\\
+  \end{array} \right).</me>
+  Since each possible syndrome of single bit errors is unique we can correct any error.</p>
+</solution></exercise>
 </exercises>
 </section>
