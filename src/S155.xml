@@ -304,7 +304,25 @@ But <m>\vec{e}H</m> is the <m>j^{th}</m> row of <m>H</m>.  If the syndrome is <m
 <li><p>  With this code, can you detect single bit errors?  Can you correct all, some, or no single bit errors?</p></li>
 </ol>  
 </p></statement>
-<answer><p> Let <m>G</m> be the <m>9 \times 10</m> matrix obtained by augmenting the <m>9\times 9</m> 	. The function <m>e:\mathbb{Z}_2{}^9\to \mathbb{Z}_2{}^{10}</m>  defined by <m>e(a) = a G</m> will allow us to detect single errors, since <m>e(a)</m> will always have an even number of ones.</p>
+<answer><p><ol label="(a)">
+<li><p> Blocks of two bits are encoded into code words of length 4.</p></li>
+<li><p>The code words are  0000, 1010, 0111 and 1101.</p></li>
+<li><p>Since the first two code words have a Hamming distance of 2, not all single bit errors can be corrected.  For example, if 0000 is transmitted and the first bit is switch, then 1000 is recieved and we can't tell for sure whether this came from 0000 or 1010.  To see what can be corrected, we note that <m>a_1 a_2</m> is encoded to <m>a_1 a_2 (a_1 +_2 a_2) a_2</m> and so if <m>b_1 b_2 b_3 b_4</m> is receved and no error has occured, 
+<md>
+  <mrow>b_1 +_2 b_2 +_2 b_3  =0</mrow>
+  <mrow> b_2  +_2 b_4 	=0</mrow>
+</md>
+</p>
+<p>We can extract the parity check matrix from this set of equations. It is 
+<me> \begin{pmatrix}
+1 &amp; 0 \\
+1  &amp; 1 \\
+1  &amp; 0 \\
+0  &amp; 1 
+\end{pmatrix}</me>
+The rows of this matrix correspond with the syndromes for errors in bits 1 through 4, which are all nonzero, so we can detect any single bit error.  Notice that the syndromes for bits 1 and 3 are identical. This reflects the fact that errors in these bits can't be corrected.  However, the syndromes for bits 2 and 4 are unique and so we can correct them. Therefore the second bit of the original message can be sent with more confidence than the first.
+</p></li>
+</ol>   </p>
 </answer>
 </exercise>
 <exercise number="6"><title>Rectangular codes</title>
@@ -339,7 +357,7 @@ and the code word is the string 11001110.</p>
 			<li><p>10001111</p></li>
 			</ol></p></li>
 <li><p>If you encoded <m>n^2</m> bits in this manner, what would be the rate of the code?</p></li>
-<li><p>Rectangular codes are linear codes.  For the 3 by 2 rectangular code, what are the generator and parity check matrices?</p></li>
+<li><p>Rectangular codes are linear codes.  For the 2 by 2 rectangular code, what are the generator and parity check matrices?</p></li>
 </ol>
 </p></statement>
 </exercise>
