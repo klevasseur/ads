@@ -58,7 +58,7 @@ offset this poor probability.</p>
 </definition>
 <p>For example,  <m>d_H((1,1,0,0),(1,1,0,1))=1</m> since these two elements of <m>\mathbb{Z}_2{}^4</m> differ in just the last position; and <m>d_H((1,1,0,0),(1,1,0,0))=0</m>.  Notice that we can compute the distance between two bit strings by adding them coordinatewise in the Cartesion product  and counting the number <m>1</m>'s that appear in the sum.  For example  <m>(1,1,0,0)+(1,0,0,1)=(0,1,0,1)</m>. The sum has two <m>1</m>'s, so the distance between <m>(1,1,0,0) \textrm{ and }(1,0,0,1)</m> is <m>2</m>. In addition, the location of the <m>1</m>'s in the sum tell us where the two bit strings differ. </p> 
 <p> When we look at groups like <m>\mathbb{Z}_2{}^4</m> from a point of view, we refer to these sets as <term>metric spaces</term> or simply <term>spaces</term>.  In the case of <m>\mathbb{Z}_2{}^4</m>, there just <m>2^4=16</m> points in the space and the maximum distance between the points is <m>4</m>. More generally <m>\mathbb{Z}_2{}^n</m> has <m>2^n</m> points and the maximum distance between points in that space is <m>n</m>.  Looking at the group <m>\mathbb{Z}_2{}^n</m> from this geometric point of view is essentially the same as the <xref ref="def-n-cube"><m>n</m>-cube</xref> we considered in discussing Hamiltonian graphs.  In this section we will use <m>n</m>-tuples such as <m>(1,1,0,1)</m> interchangeably with strings of bits such as <m>1101</m>. </p>
-<p>For any distance in a space, the ball of radius <m>r</m> centered at a point <m>a</m>, denoted <m>B_r(a)</m>, is the set of all points whose distance from <m>a</m> is <m>r</m> or less.   For example, in the space <m>\mathbb{Z}_2{}^4</m>, <me>B_1((1,1,0,0))=\{(1,1,0,0), (0,1,0,0), (1,0,0,0), (1,1,1,0), (1,1,0,1)\}.</me></p>
+<p>For any distance <m>r</m> in a space, the ball of radius <m>r</m> centered at a point <m>a</m>, denoted <m>B_r(a)</m>, is the set of all points whose distance from <m>a</m> is <m>r</m> or less.   For example, in the space <m>\mathbb{Z}_2{}^4</m>, <me>B_1((1,1,0,0))=\{(1,1,0,0), (0,1,0,0), (1,0,0,0), (1,1,1,0), (1,1,0,1)\}.</me></p>
 <p>The ultimate goal of our encoding will be to take a set of possible messages, the <term>message space</term>, and distribute them in a larger space, the <term>code space</term>, in such a way that the encoded message, called a <term>code word</term> is at least a certain distance away from any another code word.  The minimum distance between the code words will determine whether we can correct errors or just detect them.  Now let's turn to some examples.</p>
 </subsection>
 <subsection xml:id="ss-error-detection"><title>Error Detection</title>
@@ -87,7 +87,7 @@ approximately 0.990 and the rate is approximately <m>3/5</m>. The rate includes 
 <p>Next, we will consider coding functions that allow us correct errors at the receiving end so that only one-way communication is needed. Before we begin, recall that every element of <m>\mathbb{Z}_2{}^n</m>, <m>n \geq  1</m>, is its own inverse; that is, <m>-b = b</m>. Therefore, <m>a - b = a + b</m>.</p>
 <example><title>The Triple Repetition Code</title>
 <idx>Triple Repetition Code</idx>
-<statement><p>Suppose we take each individual bit in our message and encode it by repeating it three times.  In other words, if <m>a</m> is a single bit, <m>e(a)=(a,a,a)</m> The code words for this code are <m>(0,0,0)</m> and <m>(1,1,1)</m>.  Let's look at the geometry behind this code.  The message space has just two points, but the code space is <m>\mathbb{Z}_2{}^3</m>, which has 8 points, the vertices of the <m>3</m>-cube, which appears in <xref ref="fig-triplecube" text="global"/>.</p>
+<statement><p>Suppose we take each individual bit in our message and encode it by repeating it three times.  In other words, if <m>a</m> is a single bit, <m>e(a)=(a,a,a)</m> The code words for this code are <m>(0,0,0)</m> and <m>(1,1,1)</m>.  Let's look at the geometry behind this code.  The message space has just two points, but the code space is <m>\mathbb{Z}_2{}^3</m>, which has 8 points, the vertices of the <m>3</m>-cube, which appears in <xref ref="fig-triplecube" text="type-global"/>.</p>
 
             <figure xml:id="fig-triplecube">
                 <caption>The <m>3</m>-cube with code words displayed as circular vertices
@@ -212,14 +212,17 @@ The three equations on the right are called parity-check equations. If any of th
 <me>
 \begin{split}
 p(b) &amp; = p(b) + p(w)\quad \textrm{  since }p(w) = (0, 0, 0)\\
-	&amp;=p(b+w)\quad\textrm{ since }p \textrm{ is a homomorphism}\\
+	&amp;=b P + w P \\
+	&amp;=(b+w)P\quad \textrm{ by the distributive property}\\
+	&amp;=p(b+w)\\
 	&amp; =p(1,0,0,0,0,0)\\
 	&amp; =(1,1,0)\\
 \end{split}
 </me>
 This is the first row of <m>P</m>!
 </p>
-<p>Note that we haven't specified <m>b</m> or <m>w</m>, only that they differ in the first bit. Therefore, if <m>b</m> is received, there was probably an error in the first bit and <m>p(b)= (1, 1, 0)</m>, the transmitted code word was probably <m>b + (1, 0, 0, 0, 0, 0)</m> and the message block was <m>\left(b_1+_2 1, b_2, b_3\right)</m>. The same analysis can be done if <m>b</m> and <m>w</m> differ in any of the other five bits. In general, if the syndrome of a received string of bits is the <m>k</m>th row of the parity check matrix, the error has occurred in the <m>k</m>th bit.</p>
+<p>Note that we haven't specified <m>b</m> or <m>w</m>, only that they differ in the first bit. Therefore, if <m>b</m> is received, there was probably an error in the first bit and <m>p(b)= (1, 1, 0)</m>, the transmitted code word was probably <m>b + (1, 0, 0, 0, 0, 0)</m> and the message block was <m>\left(b_1+_2 1, b_2, b_3\right)</m>. The same analysis can be done if <m>b</m> and <m>w</m> differ in any of the other five bits.</p>
+<p><term>In general</term>, if the syndrome of a received string of bits is the <m>k</m>th row of the parity check matrix, the error has occurred in the <m>k</m>th bit.</p>
 <!-- 
 <p>This process can be described in terms of cosets. Let <m>W</m> be the set of code words; that is, <m>W = e\left(\mathbb{Z}_2{}^3 \right)</m>. Since <m>e</m> is a homomorphism, <m>W</m> is a subgroup of <m>\mathbb{Z}_2{}^6</m>. Consider the factor group <m>\left.\mathbb{Z}_2{}^6\right/W</m>:
 
@@ -287,9 +290,9 @@ add to <m>b</m> the error correction that matches <m>p(b)</m>.</p>
  -->
 </statement>
 </example>
-<p><term>Probability Epilog.</term> For the two error correction examples we've looked at, we can compare their probabilities of successfully receiving all 3000 bits correctly on a binary symmetric channel with <m>p=0.001.</m></p>
-<p>For the triple repetition code, the probability is <m>\left(0.999^3 + 3 \cdot 0.999^2 \cdot 0.001\right)^{3000}= 0.991</m>, and the rate of this code is <m>\frac{1}{3}</m> which means we need to transmit 9000 bits.
-<p>For the second code, the probability of success is  <m>\left(0.999^6 + 6 \cdot 0.999^5 \cdot 0.001\right)^{1000}=0.985</m>, and rate for this code is <m>\frac{1}{2}, which means we need to transmit 6000 bits.</m>.</p>
+<p><term>Probability Epilog.</term> For the two error correction examples we've looked at, we can compare their probabilities of successfully receiving all 3000 bits correctly over a binary symmetric channel with <m>p=0.001.</m></p>
+<p>For the triple repetition code, the probability is <me>\left(0.999^3 + 3 \cdot 0.999^2 \cdot 0.001\right)^{3000}= 0.991,</me> and the rate of this code is <m>\frac{1}{3}</m> which means we need to transmit 9000 bits.</p>
+<p>For the second code, the probability of success is  <me>\left(0.999^6 + 6 \cdot 0.999^5 \cdot 0.001\right)^{1000}=0.985</me>, and rate for this code is <m>\frac{1}{2}</m>, which means we need to transmit 6000 bits.</p>
 <p>Clearly, there is a trade-off between accuracy and speed.
 </p>
 
@@ -475,6 +478,9 @@ Determine the generator matrix, <m>G</m>, and in so doing, identify the number o
 </solution>
  -->
 </exercise>
+<exercise number="9"><idx>Perfect Codes</idx><statement><p>A code with minimum distance <m>d</m> is called <em>perfect</em> if every string of bits is within Hamming distance <m>r=\frac{d-1}{2}</m> of some codeword. For such a code, the spheres of radius <m>r</m> around the codewords partition the set of all strings.  This is analogous to packing objects into a box with no wasted space.  Using just the number of bit strings of length <m>n</m> and the number of strings in a sphere of radius <m>1</m>, for what values of <m>n</m> is it possible to find a perfect code of distance <m>3</m>?  You don't have to actually find the codes.</p></statement>
+</exercise>
+
 
 </exercises>
 </section>
