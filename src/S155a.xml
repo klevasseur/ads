@@ -190,7 +190,7 @@ b_1 &amp;     &amp;     &amp; +_2  &amp;b_3&amp;   &amp;    &amp; +_2&amp; b_5 &
 
 The three equations on the right are called parity-check equations. If any of them are not true, an error has occurred. This error checking can be described in matrix form.</p>
 <p>Let
-<me>P=\left(
+<me>H=\left(
 \begin{array}{ccc}
  1 &amp; 1 &amp; 0 \\
  1 &amp; 0 &amp; 1 \\
@@ -202,7 +202,7 @@ The three equations on the right are called parity-check equations. If any of th
 \right)</me>
 </p>
 
-<p><idx>Syndrome</idx><m>P</m> is called the parity-check matrix for this code. Now define <m>p:\mathbb{Z}_2{}^6 \to \mathbb{Z}_2{}^3</m> by <m>p(b) = b P</m>.  We call
+<p><idx>Syndrome</idx>The matrix <m>H</m> is called the parity-check matrix for this code. Now define <m>p:\mathbb{Z}_2{}^6 \to \mathbb{Z}_2{}^3</m> by <m>p(b) = b H</m>.  We call
 <m>p(b)</m> the <term>syndrome</term> of the received block. For example,
 <m>p(0,1,0,1,0,1)=(0,0,0)</m>  and   <m>p(1,1,1,1,0,0)=(1,0,0)</m></p>
 
@@ -212,17 +212,17 @@ The three equations on the right are called parity-check equations. If any of th
 <me>
 \begin{split}
 p(b) &amp; = p(b) + p(w)\quad \textrm{  since }p(w) = (0, 0, 0)\\
-	&amp;=b P + w P \\
-	&amp;=(b+w)P\quad \textrm{ by the distributive property}\\
+	&amp;=b H + w H \\
+	&amp;=(b+w)H\quad \textrm{ by the distributive property}\\
 	&amp;=p(b+w)\\
 	&amp; =p(1,0,0,0,0,0)\\
 	&amp; =(1,1,0)\\
 \end{split}
 </me>
-This is the first row of <m>P</m>!
+This is the first row of <m>H</m>!
 </p>
 <p>Note that we haven't specified <m>b</m> or <m>w</m>, only that they differ in the first bit. Therefore, if <m>b</m> is received, there was probably an error in the first bit and <m>p(b)= (1, 1, 0)</m>, the transmitted code word was probably <m>b + (1, 0, 0, 0, 0, 0)</m> and the message block was <m>\left(b_1+_2 1, b_2, b_3\right)</m>. The same analysis can be done if <m>b</m> and <m>w</m> differ in any of the other five bits.</p>
-<p><term>In general</term>, if the syndrome of a received string of bits is the <m>k</m>th row of the parity check matrix, the error has occurred in the <m>k</m>th bit.</p>
+<p>In general, if the syndrome of a received string of bits is the <m>k</m>th row of the parity check matrix, the error has occurred in the <m>k</m>th bit.</p>
 <!-- 
 <p>This process can be described in terms of cosets. Let <m>W</m> be the set of code words; that is, <m>W = e\left(\mathbb{Z}_2{}^3 \right)</m>. Since <m>e</m> is a homomorphism, <m>W</m> is a subgroup of <m>\mathbb{Z}_2{}^6</m>. Consider the factor group <m>\left.\mathbb{Z}_2{}^6\right/W</m>:
 
@@ -303,8 +303,8 @@ add to <m>b</m> the error correction that matches <m>p(b)</m>.</p>
 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\
 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\
   \end{array} \right).</me> 
-Since <m>G</m> is <m>3 \times 5</m>, this code encodes three bits into five bits.  The natural question to ask is what detection or correction does it afford? We can answer this question by constructing the parity check matrix.  We observe that if <m>\vec{b}=(b_1, b_2, b_3)</m> the encoding function is 
-<me>e(\vec{b}) = \vec{b}G = (b_1,b_1+b_2,b_2,b_1+b_3,b_3)</me>
+Since <m>G</m> is <m>3 \times 5</m>, this code encodes three bits into five bits.  The natural question to ask is what detection or correction does it afford? We can answer this question by constructing the parity check matrix.  We observe that if <m>\vec{a}=(a_1, a_2, a_3)</m> the encoding function is 
+<me>e(\vec{a}) = \vec{a}G = (a_1,a_1+a_2,a_2,a_1+a_3,a_3)</me>
 where addition is mod 2 addition. If we receive five bits <m>(c_1,c_2,c_3,c_4,c_5)</m> and no error has occurred, the following two equations would be true.
 <mdn><mrow>c_1+c_2+c_3 = 0</mrow>
 <mrow>c_1+c_4+c_5 = 0</mrow>
@@ -321,7 +321,7 @@ Notice that in general, the number of parity check equations is equal to the num
   </p>
   
 <p>At a glance, we can see that this code will not correct most single bit errors. Suppose an error <m>\vec{e}=(e_1,e_2,e_3,e_4,e_5)</m> is added in the transmission of the five bits. Specifically, suppose that 1 is added (mod 2) in position <m>j</m>, where <m>1 \leq j\leq 5</m> and the other coordinates of <m>\vec{e}</m> are  0.  Then when we compute the syndrome of our received transmission, we see that   
-<me>\vec{c}H = (\vec{b}G + \vec{e})H  = (\vec{b}G)H + \vec{e}H = \vec{e}H.</me> 
+<me>\vec{c}H = (\vec{a}G + \vec{e})H  = (\vec{a}G)H + \vec{e}H = \vec{e}H.</me> 
 But <m>\vec{e}H</m> is the <m>j^{th}</m> row of <m>H</m>.  If the syndrome is <m>(1,1)</m> we know that the error occurred in position 1 and we can correct it.  However, if the error is in any other position we can't pinpoint its location.  If the syndrome is <m>(1,0)</m>, then the error could have occurred in either position 2 or position 3.    This code does detect all single bit errors but only corrects one fifth of them.
 
 </p>
@@ -461,7 +461,7 @@ and the code word is the string 11001110.</p>
   Since each possible syndrome of single bit errors is unique we can correct any error.</p>
 </solution></exercise>
 <exercise number="8"><statement><p> Suppose that a linear code has parity check matrix 
-<me>P=\left(
+<me>H=\left(
 \begin{array}{ccc}
  1 &amp; 1 &amp; 1 \\
  1 &amp; 1 &amp; 0 \\
