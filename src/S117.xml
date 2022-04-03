@@ -228,6 +228,92 @@ therefore,
 
 </subsection>
 
+
+<subsection><title>
+The order sequence of a finite group
+</title>
+<p>This topic is somewhat obscure. 
+ It doesn't appear in most texts, but is a nice companion to degree sequences in graph theory.  Recall that every undirected graph has a degree sequence, and graphs with different <xref ref="def-degree-sequence">degree sequences</xref> are not isomorphic. This is a convenient way to identify non-isomorphic graphs. We see below that order sequences play exactly the same role in identifying whether two finite groups are isomorphic.  Furthermore, identical order sequences of two finite groups give an excellent set of hints for constructing an isomorphism, if one such exists.  My collegue, Jim Propp, has been using this idea for a while in his classes and I <q>discovered</q> it later.   Neither of us can claim originality. Much of the following discussion is paraphrased from Jim's notes. </p>
+
+<definition><title>Order Sequence</title><idx>Order Sequence</idx>
+<statement><p>The order sequence of a finite group
+is the sequence whose terms are the respective orders
+of all the elements of the group,
+arranged in increasing order.
+</p></statement>
+</definition>
+
+<p>In <m>\mathbb{Z}_3</m> the element 0 has order 1,
+the element 1 has order 3, and the element 2 has order 3,
+so the order sequence of this group is 1,3,3.
+</p>
+
+<p>In <m>\mathbb{Z}_4</m> the element 0 has order 1, the element 1 has order 4,
+the element 2 has order 2, and the element 3 has order 4,
+so the order sequence of this group is 1,2,4,4.
+(Note that we have arranged the numbers 1,4,2,4 in increasing order.)
+</p>
+
+<theorem></statement><p>If <m>G_1</m> and <m>G_2</m> are finite groups
+and <m>f</m> is an isomorphism between them,
+with <m>g \in G_1</m> and <m>f(g) \in G_2</m>,
+the order of <m>g</m> in <m>G_1</m>
+equals the order of <m>f(g)</m> in <m>G_2</m>.
+</p></statement>
+</theorem>
+
+<p>Consequently:
+</p>
+
+<corollary><statement><p> If two groups are isomorphic,
+they have the same order sequence.</p></statement></corollary>
+
+
+<p>The theorem is a handy tools for proving that
+two particular groups are not isomorphic.
+Consider the group <m>\mathbb{Z}_2 \times \mathbb{Z}_2</m>;
+the element <m>(0,0)</m> has order 1
+while the other elements <m>(0,1)</m>, <m>(1,0)</m>, and <m>(1,1)</m>
+each have order 2,
+implying that the order sequence is 1,2,2,2.
+Since this is different from the sequence 1,2,4,4,
+the group <m>\mathbb{Z}_2 \times \mathbb{Z}_2</m> is not isomorphic to the group <m>\mathbb{Z}_4</m>.
+</p>
+
+<p>Order sequences are also useful in helping one find isomorphisms. 
+Consider the group <m>\U_5</m> (the set <m>\{1,2,3,4\}</m> with mod-5 multiplication).
+Its order sequence is <m>1,2,4,4</m>,
+which suggests that it might be isomorphic to <m>\mathbb{Z}_4</m>.
+In fact, any isomorphism <m>f</m> from <m>\mathbb{Z}_4</m> to <m>\U_5</m>
+must map <m>0</m> (the only element of order 1 in <m>\mathbb{Z}_4</m>)
+to <m>1</m> (the only element of order 1 in <m>\U_4</m>)
+and must map <m>2</m> (the only element of order 2 in <m>\mathbb{Z}_4</m>)
+to <m>4</m> (the only element of order 2 in <m>\U_4</m>).
+There are only two bijections <m>f</m> from <m>\mathbb{Z}_4</m> to <m>\mathbb{U}_4</m>
+satisfying <m>f(0) = 1</m> and <m>f(2) = 4</m>,
+so these are the only two candidate isomorphisms
+(and both candidates turn out to be true isomorphisms).</p>
+<p>The following code will compute the order sequence for the group of integers mod <m>n</m>.  The default value of <m>n</m> is 12 and you can change it in the last line of input.
+</p>
+<sage>
+	<input>
+		def order_sequence_Z(n):
+			G = Integers(n)
+			os=[ ]
+			for a in G:
+				os=os+[a.order()]
+			print(sorted(os))
+
+		order_sequence_Z(12)
+	</input>
+	<output>
+		[1, 2, 3, 3, 4, 4, 6, 6, 12, 12, 12, 12]	
+	</output>
+</sage>
+
+</subsection>
+
+
 <subsection xml:id="ss-when-are-groups-not-isomorphic"><title>Conditions for groups to not be isomorphic</title>
 
 <p>How do you decide that two groups are not isomorphic to one another? The negation of <q><m>G</m> and <m>H</m> are isomorphic</q> is that no translation rule between <m>G</m> and <m>H</m> exists. If <m>G</m> and <m>H</m> have different cardinalities, then no bijection from <m>G</m> into <m>H</m> can exist. Hence they are not isomorphic. Given that <m>\left| G\right| =\left| H\right|</m>, it is usually impractical to list all bijections from <m>G</m> into <m>H</m> and show that none of them satisfy Condition b of the formal definition. The best way to prove that two groups are not isomorphic is to find a true statement about one group that is not true about the other group. We illustrate this method
@@ -343,6 +429,18 @@ Otherwise, <m>a</m> would have a finite order and would not generate <m>G</m>.</
 <exercise number="10"><statement><p>  It can be shown that there are five non-isomorphic groups of order eight. You should be able to describe at least three of them. Do so without use of tables. Be sure to explain why they are not isomorphic.</p></statement>
 <answer><p>  <m>\mathbb{Z}_8</m>, <m>\mathbb{Z}_2\times  \mathbb{Z}_4</m> , and <m>\mathbb{Z}_2^3</m>. One other is the fourth dihedral group, introduced in Section 15.3. 
 </p></answer>
+</exercise>
+<exercise>
+<statement><p>Prove that the number of 3's in an order sequence is even. </p>
+</statement>
+<answer><p>Each 3 is the order of an element whose inverse is it's square; i.  e., if <m>a</m> has order 3, <m>a^2=a^{-1}</m> is distinct from <m>a</m> and also has order 3 and contributes a second matching 3. </m></p>
+</answer>
+</exercise>
+<exercise>
+<statement><p>Prove that the number of 5's an order sequence is a multiple of four. </p>
+</statement>
+<answer><p> <m>\</m></p>
+</answer>
 </exercise>
 </exercises>
 </section>
