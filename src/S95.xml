@@ -57,10 +57,10 @@ by minimizing (maximizing) the quantity associated with only the first step.</p>
 
 <algorithm xml:id="alg-closest-neighbor"><title>The Closest Neighbor Algorithm</title><idx>Closest Neighbor Algorithm</idx><statement> <p>Let <m>G = (V, E, w)</m> be a complete weighted graph with <m>|V| = n</m>. The closest neighbor
 circuit through G starting at <m>v_1</m> is <m>\left(v_1, v_2,\ldots ,v_n\right)</m>, defined by the steps:</p>
-<p><ol label="(1)">
+<p><ol marker="(1)">
 <li><p> <m>V_1= V-\left\{v_1\right\}</m>.</p></li>
 <li><p>For <m>k\text{  }= 2  \textrm{ to } n - 1</m> </p>
-		<p><ol label="(a)">
+		<p><ol marker="(a)">
 		<li><p> <m>v_k= \textrm{ the closest vertex in } V_{k-1} \textrm{ to }
 						 v_{k-1}</m>:
 	 <me>w\left(v_{k-1} , v _k\right) = \min  \left(w\left(v_{k-1} ,v\right) \mid v \in  V_{k-1}\right)</me> 
@@ -157,13 +157,13 @@ There are <m>(n - 1)!</m> such bijections.  Since a circuit and its reversal hav
 
 <heuristic xml:id="alg-strip-algorithm"><title>The Strip Algorithm</title><statement>
 <p> Given <m>n</m> points in the unit square:</p>
-<p>Phase 1:<ol label="(1)">
+<p>Phase 1:<ol marker="(1)">
 <li><p>Divide the square into <m>\left\lceil \sqrt{n/2}\right\rceil</m> vertical strips, as in <xref ref="fig-strip-alg-tsp" text="type-global" />. Let d be the width of each strip. If a point lies on a boundary between two strips, consider it part of the left-hand strip.</p></li>
 <li><p>Starting from the left, find the first strip that contains one of the points. Locate the starting point by selecting the first point that is encountered in that strip as you travel from bottom to top. We will assume that the first point is <m>\left(x_1,y_1\right)</m></p></li>
 <li xml:id="step-1-3"><p>Alternate traveling up and down the strips that contain vertices until all of the vertices have been reached.</p></li>
 <li><p>Return to the starting point.</p></li>
 </ol></p>
-<p>Phase 2:<ol label="(1)">
+<p>Phase 2:<ol marker="(1)">
 <li><p>Shift all strips <m>d/2</m> units to the right (creating a small strip on the left).</p></li>
 <li><p>Repeat Steps 1.2 through 1.4 of Phase 1 with the new strips.</p></li>
 </ol></p>
@@ -290,14 +290,14 @@ algorithm directs us to decrease the flow through that edge.</p></example>
 
 <algorithm xml:id="alg-ford-fulkerson"><title>The Ford and Fulkerson Algorithm</title>
 <statement>
-<p><ol label="(1)">
+<p><ol marker="(1)">
 <li><p> Define the flow function <m>f_0</m> by <m>f_0(e)=0</m> for each edge <m>e \in  E</m>.</p></li>
 <li><p>i = 0.</p></li>
 <li><p>Repeat:</p>
-		<p><ol label="(a)">
+		<p><ol marker="(a)">
 		<li><p>If possible, find a flow augmenting path with respect to <m>f_i</m>.</p></li>
 		<li><p>If a flow augmenting path exists, then:</p>
-					<p><ol label="(i)">
+					<p><ol marker="(i)">
 					<li><p>Determine
 		   <me>\begin{split}
 		     d &amp; = \min  \{\{w(e) - f_i(e) \mid e \text{ is used in the forward direction}\},\\
@@ -321,7 +321,7 @@ algorithm directs us to decrease the flow through that edge.</p></example>
 </algorithm>
 
 <list><title>Notes on the Ford and Fulkerson Algorithm</title>
-<ol label="(1)">
+<ol marker="(1)">
 <li><p> It should be clear that every flow augmenting path leads to a flow of increased value and that none of the capacities of the network can be violated.</p></li>
 <li><p> The depth-first search should be used to find flow augmenting paths since it is far more efficient than the breadth-first search in this situation. The depth-first search differs from the breadth-first algorithm  in that you sequentially visit vertices
 until you reach a <q>dead end</q> and then backtrack.</p></li>
@@ -333,11 +333,11 @@ until you reach a <q>dead end</q> and then backtrack.</p></li>
 <algorithm xml:id="alg-depth-first-search"><title>Depth-First Search for a Flow Augmenting Path</title>
 <statement>
 <p> This is a  depth-first search for the Sink Initiating at the Source. Let <m>E'</m> be the set of directed edges that can be used in producing a flow augmenting path. Add to the network a vertex called  start and the edge <m>(\text{start}, \text{source}).</m></p>
-<p><ol label="(1)">
+<p><ol marker="(1)">
 <li><p><m>S = </m>vertex set of the network.</p></li>
 <li><p><m>p = </m>source <m>\quad \quad</m>  Move <m>p</m> along the edge <m>(start, source)</m> </p></li>
 <li><p>while <m>p</m> is not equal to  start or  sink:</p>
-			<p><ol label="(a)">
+			<p><ol marker="(a)">
 			<li><p>if an edge in <m>E'</m> exists that takes you from <m>p</m> to another vertex in <m>S</m>:
 <me>\quad \text{then set } p \text{ to be that next vertex and delete the edge from } E'</me>
 <me>\quad \text{else reassign }p \text{ to be the vertex that }p\text{ was reached from (i.e., backtrack)}</me>.</p></li></ol></p></li>
@@ -377,7 +377,7 @@ the new flow that we obtain is 8. This flow must be maximal since the capacities
 </subsection>
 <subsection xml:id="ss-other-optimization"><title>Other Graph Optimization Problems</title>
 
-<p><ol label="(1)">
+<p><ol marker="(1)">
 <li><p>  The Minimum Spanning Tree Problem: Given a weighted graph, <m>(V, E, w)</m>, find a subset <m>E'</m> of <m>E</m> with
 the properties that <m>(V, E')</m> is connected and the sum of the weights of edges in <m>E'</m> is as small as possible. We will discuss this problem in Chapter 10.</p></li>
 <li><p>  The Minimum Matching Problem: Given an undirected weighted graph, <m>(K, E, w)</m>, with an even number of vertices, pair up the vertices
@@ -398,7 +398,7 @@ for example, your mileage will be higher.</p></answer>
 <exercise number="2"><statement><p> Is the estimate in <xref ref="th-cn-theorem-9-5" text="type-global" /> sharp for <m>n = 3</m>? For <m>n = 4</m>?</p></statement></exercise>
 <exercise number="3"><statement><p> Given the following sets of points in the unit square, find the shortest circuit that visits all the points and find the circuit that is obtained
 with the strip algorithm.</p>
-<p><ol label="(a)">
+<p><ol marker="(a)">
 <li><p> <m>\{(0.1k, 0.1k) : k = 0, 1, 2, . . . , 10\}</m></p></li>
 <li><p> <m>\{(0.1, 0.3), (0.3, 0.8), (0.5, 0.3), (0.7, 0.9), (0.9, 0.1)\}</m></p></li>
 <li><p> <m>\{(0.0, 0.5), (0.5, 0.0), (0.5, 1.0), (1.0, 0.5)\}</m></p></li>
@@ -406,7 +406,7 @@ with the strip algorithm.</p>
 </ol></p>
 </statement>
 <answer>
-<p><ol label="(a)"><li><p> Optimal cost <m>=2\sqrt{2}</m>.
+<p><ol marker="(a)"><li><p> Optimal cost <m>=2\sqrt{2}</m>.
 Phase 1 cost <m>=2.4\sqrt{2}</m>.
 Phase 2 cost <m>=2.6\sqrt{2}</m>.
 </p></li>
@@ -441,14 +441,14 @@ Phase 2 cost <m>2\sqrt{2}</m>.
                     <description>Figure for Exercise 9-5-5</description>
                 </image>
             </figure>
-<p><ol label="(a)">
+<p><ol marker="(a)">
 <li><p> A function <m>f</m> is partially defined on the edges of this network by:
 <m>f(\text{Source}, c) =2</m>, <m>f(\text{Source}, b) =2</m>, <m>f(\text{Source}, a) = 2</m>, and <m>f(a, d) = 1</m>.  Define <m>f</m> on the rest of the other edges so that <m>f</m> is a flow. What is the value of  <m>f</m> ?</p></li>
 <li><p> Find a flow augmenting path with respect to <m>f</m> for this network. What is the value of the augmented flow?</p></li>
 <li><p> Is the augmented flow a maximum flow? Explain.</p></li>
 </ol></p>
 </statement>
-<answer><p><ol label="(a)"><li><p> <m>f(c,d)=2</m>, <m>f(b,d)=2</m>, <m>f(d,k)=5</m>, <m>f(a,g)=1</m>, and <m>f(g,k)=1</m>.
+<answer><p><ol marker="(a)"><li><p> <m>f(c,d)=2</m>, <m>f(b,d)=2</m>, <m>f(d,k)=5</m>, <m>f(a,g)=1</m>, and <m>f(g,k)=1</m>.
 </p></li>
 <li><p>  There are three possible flow-augmenting paths.
 
@@ -492,7 +492,7 @@ can be augmented by 2 units with <m>s,a,g,k</m>.
                 </image>
             </figure>
 </statement>
-<answer><p><ol label="(a)"><li><p> Value of maximal flow <m>=31</m>.</p></li>
+<answer><p><ol marker="(a)"><li><p> Value of maximal flow <m>=31</m>.</p></li>
 <li><p> Value of maximal flow <m>=14</m>.</p></li>
 <li><p> Value of maximal flow <m>=14</m>. See <xref ref="table-solution-9-5-7" text="type-global"/> for one way to got this flow.</p></li>
 </ol></p>
@@ -511,7 +511,7 @@ can be augmented by 2 units with <m>s,a,g,k</m>.
 </exercise>
 
 <exercise number="8"><statement>
-<p><ol label="(a)">
+<p><ol marker="(a)">
 <li><p>Find two maximal flows for the network in <xref ref="fig-flow-example-before" text="type-global" /> other than the one found in the text.</p></li>
 <li><p>Describe the set of all maximal flows for the same network.</p></li>
 <li><p>Prove that if a network has two maximal flows, then it has an infinite number of maximal flows.</p></li>
