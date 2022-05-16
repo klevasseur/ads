@@ -109,16 +109,16 @@ Therefore <m>\phi</m> is an isomorphism.</p>
 adder takes as input two bit strings  <m>a = \left\{a_0,a_1,a_2,a_3,a_4,a_5\right\}</m> and <m>b=\left\{b_0,b_1,b_2,b_3,b_4,b_5\right\}</m> and outputs
 <m>s = \left\{s_0,s_1,s_2,s_3,s_4,s_5\right\}</m>, the sum of <m>a</m> and <m>b</m>. Then, if <m>a = 31 = (1, 1, 1, 1, 1, 0)</m> and <m>b = 1 = (1, 0, 0, 0, 0, 0)</m>,
 <m>s</m> will be (0, 0, 0, 0, 0, 1), or 32. The output <m>s_{ }=1</m> cannot be determined until all other outputs have been determined. If addition is done with a finite-state machine, as in <xref ref="ex-binary-adder" text="type-global"/>, the time required to get <m>s</m> will be six time units, where one time unit is the time it takes to get one output from the machine.  In general, the time required to obtain <m>s</m> will be proportional to the number of bits.   Theoretically, this time can be decreased, but the explanation would require a long digression and our relative results would not change that much. We will use the rule that the number of time units needed to perform addition modulo <m>n</m> is proportional to  <m>\left\lceil \log_2n\right\rceil</m>.</p>
-<p>Now we will introduce a hypothetical problem that we will use to illustrate the idea of a fast adder. Suppose that we had to add 1,000 numbers modulo <m>27720 = 8 \cdot  9 \cdot  5 \cdot 7\cdot 11</m>. By the rule above, since <m>2^{14} &lt; 27720 &lt; 2^{15}</m>, each addition would take 15 time units. If the sum is initialized to zero, 1,000 additions would be needed; thus, 15,000 time units would be needed to do the additions. We can improve this time dramatically by applying Sun Tzu's Theorem.  Recall that <m>k%n</m> is the remainder upon division of <m>k</m> by <m>n</m>.</p>
+<p>Now we will introduce a hypothetical problem that we will use to illustrate the idea of a fast adder. Suppose that we had to add 1,000 numbers modulo <m>27720 = 8 \cdot  9 \cdot  5 \cdot 7\cdot 11</m>. By the rule above, since <m>2^{14} &lt; 27720 &lt; 2^{15}</m>, each addition would take 15 time units. If the sum is initialized to zero, 1,000 additions would be needed; thus, 15,000 time units would be needed to do the additions. We can improve this time dramatically by applying Sun Tzu's Theorem.  Recall that <m>k\%n</m> is the remainder upon division of <m>k</m> by <m>n</m>.</p>
 <theorem xml:id="th-crt"><title>Sun Tzu's Theorem</title>
 <idx>Sun Tzu's Theorem</idx>
 <idx>Chinese Remainder Theorem</idx>
-<idx>STT</idx>
+<idx><h>STT</h><see>Sun Tzu's Theorem</see></idx>
 <statement><p>Let <m>n_1</m>, <m>n_2</m>, <m>\ldots</m>, <m>n_p</m> be integers that have no common factor greater than one between
-any pair of them; i. e., they are relatively prime.  Let <m>n = n_1n_2\cdots  n_p</m>. Define
+any pair of them; i. e., they are relatively prime.  Let <m>n = n_1 n_2 \cdots  n_p</m>. Define
 <me>\theta:\mathbb{Z}_n\to  \mathbb{Z}_{n_1}\times \mathbb{Z}_{n_2}\times  \cdots \times \mathbb{Z}_{n_p}</me>
 by   
-<me>\theta(k) = \left(k_1, k_2, \ldots , k_p\right)= \left(k%n_1,k%n_2, \ldots, k%n_p\right)</me>
+<me>\theta(k) = \left(k_1, k_2, \ldots , k_p\right)= \left(k \% n_1,k \% n_2, \ldots, k \% n_p\right)</me>
 where for <m>1\leq i\leq p</m>,   <m>0\leq k_i &lt; n_i</m>   and  <m>k\equiv k_i\left(\textrm{mod } n_i\right)</m>.  Then <m>\theta</m> is an isomorphism from <m>\mathbb{Z}_n</m> into <m>\mathbb{Z}_{n_1}\times \mathbb{Z}_{n_2}\times  \cdots \times \mathbb{Z}_{n_p}</m>.</p></statement></theorem>
 <p>Sun Tzu's Theorem can be stated in several different forms, and its proof can be found in many abstract algebra texts.  Older texts most likely will refer to the theorem as the Chinese Remainder Theorem.</p>
 <p>As we saw in Chapter 11, <m>\mathbb{Z}_6</m> is isomorphic to <m>\mathbb{Z}_2 \times  \mathbb{Z}_3</m> . This is the smallest case to which  can be applied. An isomorphism between <m>\mathbb{Z}_6</m> and <m>\mathbb{Z}_2 \times  \mathbb{Z}_3</m> is
