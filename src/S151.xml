@@ -104,23 +104,24 @@ Therefore <m>\phi</m> is an isomorphism.</p>
 <proof><p>The proof of this theorem is left to the reader.</p></proof></theorem> 
 
 <example xml:id="ex-order-of-element-cyclic"><title>Computation of an order in a cyclic group</title><p>To compute the order of <m>\langle 18 \rangle</m> in <m>\mathbb{Z}_{30}</m>, we first observe that 1 is a generator of <m>\mathbb{Z}_{30}</m>  and <m>18= 18(1)</m>. The greatest common divisor of 18 and 30 is 6. Hence, the order of <m>\langle 18 \rangle</m> is 30/6, or 5.</p></example>
-<p>At this point, we will introduce the idea of a fast adder, a relatively modern application (Winograd, 1965) of an ancient theorem, the Chinese Remainder Theorem. We will present only an overview of the theory and rely primarily on examples.</p>
+<p>At this point, we will introduce the idea of a fast adder, a relatively modern application (Winograd, 1965) of an ancient theorem, Sun Tzu's Theorem. We will present only an overview of the theory and rely primarily on examples.</p>
 <p>Out of necessity, integer addition with a computer is addition modulo <m>n</m>, for <m>n</m> some larger number. Consider the case where <m>n</m> is small, like 64. Then addition involves the addition of six-digit binary numbers. Consider the process of adding 31 and 1. Assume the computer's
 adder takes as input two bit strings  <m>a = \left\{a_0,a_1,a_2,a_3,a_4,a_5\right\}</m> and <m>b=\left\{b_0,b_1,b_2,b_3,b_4,b_5\right\}</m> and outputs
 <m>s = \left\{s_0,s_1,s_2,s_3,s_4,s_5\right\}</m>, the sum of <m>a</m> and <m>b</m>. Then, if <m>a = 31 = (1, 1, 1, 1, 1, 0)</m> and <m>b = 1 = (1, 0, 0, 0, 0, 0)</m>,
 <m>s</m> will be (0, 0, 0, 0, 0, 1), or 32. The output <m>s_{ }=1</m> cannot be determined until all other outputs have been determined. If addition is done with a finite-state machine, as in <xref ref="ex-binary-adder" text="type-global"/>, the time required to get <m>s</m> will be six time units, where one time unit is the time it takes to get one output from the machine.  In general, the time required to obtain <m>s</m> will be proportional to the number of bits.   Theoretically, this time can be decreased, but the explanation would require a long digression and our relative results would not change that much. We will use the rule that the number of time units needed to perform addition modulo <m>n</m> is proportional to  <m>\left\lceil \log_2n\right\rceil</m>.</p>
-<p>Now we will introduce a hypothetical problem that we will use to illustrate the idea of a fast adder. Suppose that we had to add 1,000 numbers modulo <m>27720 = 8 \cdot  9 \cdot  5 \cdot 7\cdot 11</m>. By the rule above, since <m>2^{14} &lt; 27720 &lt; 2^{15}</m>, each addition would take 15 time units. If the sum is initialized to zero, 1,000 additions would be needed; thus, 15,000 time units would be needed to do the additions. We can improve this time dramatically by applying the Chinese Remainder Theorem.</p>
-<theorem xml:id="th-crt"><title>Chinese Remainder Theorem (CRT)</title>
+<p>Now we will introduce a hypothetical problem that we will use to illustrate the idea of a fast adder. Suppose that we had to add 1,000 numbers modulo <m>27720 = 8 \cdot  9 \cdot  5 \cdot 7\cdot 11</m>. By the rule above, since <m>2^{14} &lt; 27720 &lt; 2^{15}</m>, each addition would take 15 time units. If the sum is initialized to zero, 1,000 additions would be needed; thus, 15,000 time units would be needed to do the additions. We can improve this time dramatically by applying Sun Tzu's Theorem.  Recall that <m>k%n</m> is the remainder upon division of <m>k</m> by <m>n</m>.</p>
+<theorem xml:id="th-crt"><title>Sun Tzu's Theorem</title>
+<idx>Sun Tzu's Theorem</idx>
 <idx>Chinese Remainder Theorem</idx>
-<idx>CRT</idx>
+<idx>STT</idx>
 <statement><p>Let <m>n_1</m>, <m>n_2</m>, <m>\ldots</m>, <m>n_p</m> be integers that have no common factor greater than one between
 any pair of them; i. e., they are relatively prime.  Let <m>n = n_1n_2\cdots  n_p</m>. Define
 <me>\theta:\mathbb{Z}_n\to  \mathbb{Z}_{n_1}\times \mathbb{Z}_{n_2}\times  \cdots \times \mathbb{Z}_{n_p}</me>
 by   
-<me>\theta(k) = \left(k_1, k_2, \ldots , k_p\right)</me>
+<me>\theta(k) = \left(k_1, k_2, \ldots , k_p\right)= \left(k%n_1,k%n_2, \ldots, k%n_p\right)</me>
 where for <m>1\leq i\leq p</m>,   <m>0\leq k_i &lt; n_i</m>   and  <m>k\equiv k_i\left(\textrm{mod } n_i\right)</m>.  Then <m>\theta</m> is an isomorphism from <m>\mathbb{Z}_n</m> into <m>\mathbb{Z}_{n_1}\times \mathbb{Z}_{n_2}\times  \cdots \times \mathbb{Z}_{n_p}</m>.</p></statement></theorem>
-<p>The Chinese Remainder Theorem can be stated in several different forms, and its proof can be found in many abstract algebra texts.</p>
-<p>As we saw in Chapter 11, <m>\mathbb{Z}_6</m> is isomorphic to <m>\mathbb{Z}_2 \times  \mathbb{Z}_3</m> . This is the smallest case to which the CRT can be applied. An isomorphism between <m>\mathbb{Z}_6</m> and <m>\mathbb{Z}_2 \times  \mathbb{Z}_3</m> is
+<p>Sun Tzu's Theorem can be stated in several different forms, and its proof can be found in many abstract algebra texts.  Older texts most likely will refer to the theorem as the Chinese Remainder Theorem.</p>
+<p>As we saw in Chapter 11, <m>\mathbb{Z}_6</m> is isomorphic to <m>\mathbb{Z}_2 \times  \mathbb{Z}_3</m> . This is the smallest case to which  can be applied. An isomorphism between <m>\mathbb{Z}_6</m> and <m>\mathbb{Z}_2 \times  \mathbb{Z}_3</m> is
 <me>\begin{array}{cc}
 \theta(0) = (0,0) &amp; \theta(3) = (1,0)\\
 \theta(1) = (1, 1) &amp; \theta(4) = (0, 1)\\ 
@@ -128,7 +129,7 @@ where for <m>1\leq i\leq p</m>,   <m>0\leq k_i &lt; n_i</m>   and  <m>k\equiv k_
 \end{array}
 </me></p>
 <p>Let's consider a somewhat larger case.  We start by selecting a modulus that can be factored into a product of relatively prime integers: <m>n=21,600=2^5 3^3 5^2</m>.  In this case the factors are <m>2^5=32</m>, <m>3^3=27</m>, and <m>5^2=25</m>.  They need not be powers of primes, but it is easy to break the factors into
-this form to assure relatively prime numbers.  To add in <m>\mathbb{Z}_n</m>, we need <m>\left\lceil \log _2n\right\rceil =15</m> time units.  Let <m>G=\mathbb{Z}_{32}\times \mathbb{Z}_{27}\times \mathbb{Z}_{25}</m>.   The CRT gives us an isomorphism between <m>\mathbb{Z}_{21600}</m> and <m>G</m>. The basic idea behind the fast adder, illustrated in <xref ref="fig-parallel-sum" text="type-global" />, is to make use of this isomorphism. The notation <c>x += a</c> is interpreted as the instruction to add the value of <c>a</c> to the variable <c>x</c>.</p>
+this form to assure relatively prime numbers.  To add in <m>\mathbb{Z}_n</m>, we need <m>\left\lceil \log _2n\right\rceil =15</m> time units.  Let <m>G=\mathbb{Z}_{32}\times \mathbb{Z}_{27}\times \mathbb{Z}_{25}</m>.   Sun Tzu's Theorem gives us an isomorphism between <m>\mathbb{Z}_{21600}</m> and <m>G</m>. The basic idea behind the fast adder, illustrated in <xref ref="fig-parallel-sum" text="type-global" />, is to make use of this isomorphism. The notation <c>x += a</c> is interpreted as the instruction to add the value of <c>a</c> to the variable <c>x</c>.</p>
 
         <figure xml:id="fig-parallel-sum">
                 <caption>Fast Adder Scheme
@@ -178,7 +179,7 @@ sum
 </output>
 </sage>
 <p>Addition in <m>G</m> can be done in parallel so that each new subtotal in the form of the triple 
-<m>(s_1,s_2, s_3)</m>  takes only as long to compute as it takes to add in the largest modulus, <m>\log _232=5</m> time units, if calculations are done in parallel. By the time rule that we have established, the addition of 20 numbers can be done in <m>20\cdot 5= 100</m> time units, as opposed to <m>20\cdot 15 =300</m> time units if we do the calculations in <m>\mathbb{Z}_{21600}</m>.  However the result is a triple in <m>G</m>.  The function that performs the inverse of <c>theta</c> is built into most mathematics programs, including Sage.  In Sage the function is <c>crt</c>.  We use this function to compute the inverse of our triple, which is an element of <m>\mathbb{Z}_{21600}</m>.   The result isn't the true sum because the modulus 21600 is not large enough.  However, we verify that our result is congruent to the true sum modulo 21600.</p>
+<m>(s_1,s_2, s_3)</m>  takes only as long to compute as it takes to add in the largest modulus, <m>\log _232=5</m> time units, if calculations are done in parallel. By the time rule that we have established, the addition of 20 numbers can be done in <m>20\cdot 5= 100</m> time units, as opposed to <m>20\cdot 15 =300</m> time units if we do the calculations in <m>\mathbb{Z}_{21600}</m>.  However the result is a triple in <m>G</m>.  The function that performs the inverse of <c>theta</c> is built into most mathematics programs, including Sage.  In Sage the function is <c>crt</c>, short for Chinese Remainder Theorem, the other common name of Sun Tzu's Theorem.  We use this function to compute the inverse of our triple, which is an element of <m>\mathbb{Z}_{21600}</m>.   The result isn't the true sum because the modulus 21600 is not large enough.  However, we verify that our result is congruent to the true sum modulo 21600.</p>
 
 <sage>
 <input>
@@ -219,7 +220,7 @@ u
 </sage>
 <p>To further illustrate the potential of fast adders, consider increasing the modulus to 
 <m>n=2^53^35^27^211\cdot 13\cdot 17\cdot 19\cdot 23\cdot 29\cdot 31\cdot 37\cdot 41\cdot 43\cdot 47\approx 3.1\times 10^{21}</m>. Each addition using the usual modulo <m>n</m> addition with full adders would take 72 time units. By decomposing each summand into 15-tuples according
-to the CRT, the time is reduced to <m>\left\lceil \log _249\right\rceil =6</m> time units per addition.</p>
+to Sun Tzu's Theorem, the time is reduced to <m>\left\lceil \log _249\right\rceil =6</m> time units per addition.</p>
 <exercises xml:id="exercises-15-1">
 <title>Exercises</title>
 <exercise number="1"><statement><p>What generators besides 1 does <m>[\mathbb{Z}; +]</m> have?</p></statement><answer><p>  The only other generator is <m>-1</m>.
