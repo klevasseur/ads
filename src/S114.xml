@@ -119,7 +119,7 @@ and the <m>y</m> values on top.</p>
             </figure>
 <p>Do you notice any patterns?   What is the smallest positive value that you see in this table?  How is it connected to 36 and 27?</p>
 
-<theorem xml:id="theorem-11-4-1">
+<theorem xml:id="theorem-11-4-1"><title>Bézout's lemma</title><idx> Bézout's lemma</idx>
 <statement><p>If <m>a</m> and <m>b</m> are positive integers, the smallest positive value of <m>a x + b y</m> is the greatest common
 divisor of <m>a</m> and <m>b</m>, <m>\gcd(a,b)</m>.</p></statement>
 <proof><p>If  <m>g = \gcd(a, b)</m>, since <m>g \mid a</m> and  <m>g \mid b</m>, we know that  <m>g \mid (a x + b y)</m> for any integers <m>x</m> and <m>y</m>, so <m>a x + b y</m> can't be less than <m>g</m>.  To show that <m>g</m> is exactly the least positive value, we show that <m>g</m> can be attained by extending the Euclidean Algorithm.  Performing the extended algorithm involves building a table of numbers.  The way in which it is built  maintains an invariant, and by <xref ref="th-invariant-relation-theorem" text="title" />, we can be sure that the desired values of <m>x</m> and <m>y</m> are produced. </p>
@@ -412,7 +412,13 @@ inverse.  These properties can be summarized by noting that for each <m>n\geq 1<
 
 </example>
 
-
+<p><em>Computing Modular Multiplicative Inverses.</em>
+Unlike the nice neat formula for additive inverses mod <m>n</m>, multiplicative inverses can most easily computed by applying <xref ref="theorem-11-4-1" text="title">.  If <m>a</m> is an element of the group <m>\mathbb{U}_n</m>, then by definition <m>\gcd(n,a)=1</m>, and so there exist integers <m>s</m> and <m>t</m> such that <m>1 = n s + a t</m>.  They can be computed with the Extended Euclidean Algorithm. 
+<me>1 = n s + a t  \Rightarrow   a t = 1 +(-s)n  \Rightarrow  a \times_n t =1</me>
+Since <m>t</m> might not be in \mathbb{U}_n</m> you might need take the remainder after dividing it by <m>n</m>.  Normally, that involves simply adding <m>n</m> to <m>t</m>.</p>
+<p>For example, in <m>\mathbb{U}_{2048}</m>, if we want the muliplicative inverse of <m>1001</m>, we run the Extended Euclidean Algorithm and find that 
+	<me>gcd(2048,1001) = 1 =457\cdot 2028+ (-935)\cdot 1001 </m>
+Thus, the multiplicative inverse of 1001 is  2048-935 = 1113.  See the SageMath Note below to see how to run the Extended Euclidean Algorithm .</p>
 </subsection>
 <subsection xml:id="ss-sage-modular"><title>SageMath Note - Modular Arithmetic</title><idx><h>SageMath Note</h><h>Modular Arithmetic</h></idx>
 <p>Sage inherits the basic integer division functions from Python that compute a quotient and remainder in integer division.  For example, here is how to divide 561 into 2017 and get the quotient and remainder.</p>
