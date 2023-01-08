@@ -413,12 +413,12 @@ inverse.  These properties can be summarized by noting that for each <m>n\geq 1<
 </example>
 
 <p><em>Computing Modular Multiplicative Inverses.</em>
-Unlike the nice neat formula for additive inverses mod <m>n</m>, multiplicative inverses can most easily computed by applying <xref ref="theorem-11-4-1" text="title">.  If <m>a</m> is an element of the group <m>\mathbb{U}_n</m>, then by definition <m>\gcd(n,a)=1</m>, and so there exist integers <m>s</m> and <m>t</m> such that <m>1 = n s + a t</m>.  They can be computed with the Extended Euclidean Algorithm. 
+Unlike the nice neat formula for additive inverses mod <m>n</m>, multiplicative inverses can most easily computed by applying <xref ref="theorem-11-4-1" text="title"/>.  If <m>a</m> is an element of the group <m>\mathbb{U}_n</m>, then by definition <m>\gcd(n,a)=1</m>, and so there exist integers <m>s</m> and <m>t</m> such that <m>1 = n s + a t</m>.  They can be computed with the Extended Euclidean Algorithm. 
 <me>1 = n s + a t  \Rightarrow   a t = 1 +(-s)n  \Rightarrow  a \times_n t =1</me>
-Since <m>t</m> might not be in \mathbb{U}_n</m> you might need take the remainder after dividing it by <m>n</m>.  Normally, that involves simply adding <m>n</m> to <m>t</m>.</p>
+Since <m>t</m> might not be in <m>\mathbb{U}_n</m> you might need take the remainder after dividing it by <m>n</m>.  Normally, that involves simply adding <m>n</m> to <m>t</m>.</p>
 <p>For example, in <m>\mathbb{U}_{2048}</m>, if we want the muliplicative inverse of <m>1001</m>, we run the Extended Euclidean Algorithm and find that 
-	<me>gcd(2048,1001) = 1 =457\cdot 2028+ (-935)\cdot 1001 </m>
-Thus, the multiplicative inverse of 1001 is  2048-935 = 1113.  See the SageMath Note below to see how to run the Extended Euclidean Algorithm .</p>
+	<me>\gcd(2048,1001) = 1 =457\cdot 2048+ (-935)\cdot 1001 </me>
+Thus, the multiplicative inverse of 1001 is  <m>2048-935 = 1113</m>.  See the SageMath Note below to see how to run the Extended Euclidean Algorithm.</p>
 </subsection>
 <subsection xml:id="ss-sage-modular"><title>SageMath Note - Modular Arithmetic</title><idx><h>SageMath Note</h><h>Modular Arithmetic</h></idx>
 <p>Sage inherits the basic integer division functions from Python that compute a quotient and remainder in integer division.  For example, here is how to divide 561 into 2017 and get the quotient and remainder.</p>
@@ -641,7 +641,20 @@ Therefore  <m>f^{-1}(i) = 12\times_{17}( i +_{17} 16) = 12\times_{17} i +_{17} 5
 			<solution><p>This system is a monoid with identity 6 (surprise!).  However it is not a group since 0 has no inverse.</p></solution>
 </exercise>
 
-
-
+<exercise  number="13">
+			<statement><p>Given that <m>1 = 2021\cdot(-169) +450 \cdot 759</m>, explain why <m>450</m> is an element of the group <m>\mathbb{U}_{2021}</m> and determine its inverse in that group.</p>
+			</statement>
+			<solution><p>By <xref ref="theorem-11-4-1" text="title"/>, <m>450</m> is an element of  <m>\mathbb{U}_{2021}</m>.  It's inverse in the group is <m>759</m> because 
+			<me>450 \cdot 759 = 2021\cdot 169 +1 \quad \Rightarrow \quad 450 \times_{2021} 759 =1.</me>
+			</p></solution>
+</exercise>
+<exercise  number="14">
+			<statement><p>Let <m>n=104729</m>.  Solve <m>12321 \times_{n} x = 32123</m> for <m>x</m> in the group  <m>\mathbb{U}_{n}</m></p>
+			</statement>
+<!-- 
+			<solution><p>
+			</p></solution>
+ -->
+</exercise>
 </exercises>
 </section>
