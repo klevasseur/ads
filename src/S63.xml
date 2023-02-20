@@ -142,8 +142,28 @@ partial orderings. This can be quite confusing for the novice, so we continue to
 <p>The classic example of an equivalence relation is equality on a set <m>A</m>. In fact, the term equivalence relation is used because those relations which satisfy the definition behave quite like the equality relation. Here is another important equivalence relation.</p>
 
 <example xml:id="ex-fraction-equivalence"><title>Equivalent Fractions</title><statement><p>Let <m>\mathbb{Z}^*</m> be the set of nonzero integers. One of the most basic equivalence relations in mathematics is the relation <m>q</m> on <m>\mathbb{Z}\times \mathbb{Z}^*</m> defined by <m>(a, b) q(c, d)</m> if and only if <m>a d = b c</m>. We will leave it to the reader to, verify
-that <m>q</m> is indeed an equivalence relation. Be aware that since the elements of <m>\mathbb{Z}\times \mathbb{Z}^*</m> are ordered pairs, proving symmetry involves four numbers and transitivity involves six numbers. Two ordered pairs, <m>(a, b)</m> and <m>(c, d)</m>, are related if the fractions <m>\frac{a}{b}</m> and <m>\frac{c}{d}</m> are numerically equal.
-</p></statement></example> 
+that <m>q</m> is indeed an equivalence relation. Be aware that since the elements of <m>\mathbb{Z}\times \mathbb{Z}^*</m> are ordered pairs, proving symmetry involves four numbers and transitivity involves six numbers. Two ordered pairs, <m>(a, b)</m> and <m>(c, d)</m>, are related if the fractions <m>\frac{a}{b}</m> and <m>\frac{c}{d}</m> are numerically equal. 
+</p>
+<p>Reflecting on these comments on fractions, we see that any fraction is a member of a set of equivalent fractions that can be exchanged for one another when doing arithmetic.  This is an instance of an important property of all equivalence relations that motivates the following definition.</p></statement></example> 
+
+<definition xml:id="def-equivalence-classes">
+<title>Equivalence Classes</title>
+<idx>Equivalence Classes</idx>
+<notation><usage><m>[a]</m></usage><description>The equivalence class of a</description></notation>
+<statement><p>Let <m>r</m> be an equivalence relation on <m>A</m>, and <m>a \in A</m>.  The equivalence class of <m>a</m> is the set, <m>[a]</m>,  of all elements to which <m>a</m> is related. 
+<me>[a]=\{b\in A : a r b\}</me></p></statement>
+</definition> 
+<p>When we want to make it clear that an equivalence class defined by an element <m>a</m> is based on a specific equivalence relation <m>r</m> we would refer to it as <q>the equivalence class of <m>a</m> under <m>r</m>.</q>  Whenever we encounter an equivalence relation on a set, we should immediately think about how the set is partitioned because of the following theorem.</p>
+
+<theorem xml:id="equivalence-partition">
+<notation><usage><m>A/r</m></usage>
+	<description>Partition of <m>A</m> with respect to an equivalence relation 
+		<m>r</m></description></notation>
+<statement><p>Let <m>r</m> be an equivalence relation on <m>A</m>.  Then the set of all distinct equivalence 
+classes determined by <m>r</m> form a partition of <m>A</m> denoted <m>A/r</m> and read <q><m>A</m> mod <m>r</m>.</q></p></statement>
+<proof><p>We leave it to the reader to prove this theorem.  All three properties of an equivalence relation play a role in the proof.</p></proof>
+</theorem> 
+
 
 <p>Our next example involves the following fundamental relations on the set of integers.</p>
 <definition xml:id="def-congruence-mod-n"><title>Congruence Modulo <m>n</m></title>
@@ -301,29 +321,22 @@ or transitive. Try to develop procedures for determining the validity of these p
             </figure>
 </answer>
 </exercise>
-<exercise number="6"><statement><p>For the set of cities on a map, consider the relation <m>x r y</m> if and only if city <m>x</m> is connected by a road to city <m>y</m>. A city is considered to be connected to itself, and two cities are connected even though there are cities on the road between them. Is this an equivalence
-relation or a partial ordering? Explain.</p>
-</statement>
 
-</exercise>
-<exercise number="7" xml:id="equivalence-classes"><title>Equivalence Classes</title><statement><p> Let <m>A = \{0, 1, 2, 3\}</m> and let
+<exercise number="6"><statement><p> Let <m>A = \{0, 1, 2, 3\}</m> and let
 <me>r = \{(0, 0), (1, 1), (2, 2), (3, 3), (1, 2),(2, 1), (3, 2), (2, 3), (3, 1), (1, 3)\}</me>
 <ol marker="(a)">
 <li><p>Verify that <m>r</m> is an equivalence relation on <m>A</m>.</p></li>
-<li><p>Let <m>a \in A</m> and define <m>c(a) = \{b \in A \mid a rb\}</m>.
-<notation><usage><m>c(a)</m></usage><description>the equivalence class of <m>a</m> under <m>r</m></description></notation> <m>c(a)</m> is called the <term>equivalence class of <m>a</m> under <m>r</m></term><idx>Equivalence Class</idx>. Find <m>c(a)</m> for each element <m>a \in A</m>.</p></li>
-<li><p>Show that <m>\{c(a) \mid  a \in A\}</m> forms a partition of <m>A</m> for this set <m>A</m>.</p></li>
-<li><p>Let <m>r</m> be an equivalence relation on an arbitrary set <m>A</m>. Prove that the set of all equivalence classes under <m>r</m> constitutes a partition of <m>A</m>.
-</p></li>
+<li><p>Find <m>[a]</m> for each element <m>a \in A</m>, and observe that <m>\{[a] \mid  a \in A\}</m> forms a partition of <m>A</m>.</p></li>
 </ol></p>
 </statement>
+</exercise>
+
+<exercise number="7"><statement>
+<p>Let <m>r</m> be an equivalence relation on an arbitrary nonempty set <m>A</m>. Prove that the set of all equivalence classes under <m>r</m> constitutes a partition of <m>A</m>.
+</p></statement>
 <answer>
-<p><ol marker="(a)">
-<li></li>
-<li><p> <m>c(0)=\{0\}, c(1)=\{1,2,3\}=c(2)=c(3)</m></p></li>
-<li><p> <m>c(0)\cup c(1)=A</m> and <m>c(0)\cap c(1)=\emptyset</m></p></li>
-<li><p> Let <m>A</m> be any set and let <m>r</m> be an equivalence relation on <m>A</m>. Let <m>a</m> be any element of <m>A</m>. <m>a\in c(a)</m> since <m>r</m> is reflexive, so each element of <m>A</m> is in some equivalence class. Therefore, the union of all equivalence classes equals <m>A</m>. Next we show that any two equivalence classes are either identical or disjoint and we are done. Let <m>c(a)</m> and <m>c(b)</m> be two equivalence classes, and assume that <m>c(a)\cap c(b)\neq \emptyset</m>. We want to show that <m>c(a)=c(b)</m>. To show that <m>c(a)\subseteq c(b)</m>, let <m>x\in c(a)</m>. <m>x\in c(a) \Rightarrow a r x </m>. Also, there exists an element, <m>y</m>, of <m>A</m> that is in the intersection of <m>c(a)</m>
-and <m>c(b)</m> by our assumption. Therefore,
+<p>Let <m>a</m> be any element of <m>A</m>. <m>a\in [a]</m> since <m>r</m> is reflexive, so each element of <m>A</m> is in some equivalence class. Therefore, the union of all equivalence classes equals <m>A</m>. Next we show that any two equivalence classes are either identical or disjoint and we are done. Let <m>[a]</m> and <m>[b]</m> be two equivalence classes, and assume that <m>[a]\cap [b]\neq \emptyset</m>. We want to show that <m>[a]=[b]</m>. To show that <m>[a]\subseteq [b]</m>, let <m>x\in [a]</m>. <m>x\in [a] \Rightarrow a r x </m>. Also, there exists an element, <m>y</m>, of <m>A</m> that is in the intersection of <m>[a]</m>
+and <m>[b]</m> by our assumption. Therefore,
   <me>
   \begin{split}
   a r y \land b r y &amp;\Rightarrow  a r y \land y r b \quad r\textrm{  is symmetric}\\
@@ -336,12 +349,11 @@ and <m>c(b)</m> by our assumption. Therefore,
      a r x \land a r b &amp;\Rightarrow x r a \land a r b\\
 		&amp;\Rightarrow  x r b\\
 		&amp;\Rightarrow  b r x\\
-		&amp; \Rightarrow  x \in c(b)\\
+		&amp; \Rightarrow  x \in [b]\\
 		\end{split}
 		</me>
 		</p>
-<p> Similarly, <m>c(b)\subseteq c(a)</m>.  <m>\square</m> </p></li>
-</ol></p>
+<p> Similarly, <m>[b]\subseteq [a]</m>.  <m>\square</m> </p>
 </answer>
 </exercise>
 <exercise number="8"><statement><p>Define <m>r</m> on the power set of <m>\{1, 2, 3\}</m> by <m>A r B \Leftrightarrow  \lvert A \rvert = \lvert B \rvert </m>. Prove that <m>r</m> is an equivalence
@@ -357,18 +369,18 @@ relation. What are the equivalence classes under <m>r</m>?</p>
 </ol></p>
 </statement>
 <answer><p><ol marker="(a)"><li>Equivalence Relation,
- <m>c(0)=\{0\},c(1)=\{1\},c(2)=\{2,3\} =c(3),c(4)=\{4,5\}=c(5)</m>, and
- <m>c(6)=\{6,7\}=c(7)</m></li>
+ <m>[0]=\{0\},[1]=\{1\},[2]=\{2,3\} =[3],[4]=\{4,5\}=[5]</m>, and
+ <m>[6]=\{6,7\}=[7]</m></li>
 <li><p>  Not an Equivalence Relation.</p></li>
 <li><p>  Equivalence Relation,
- <m>c(0)=\{0,2,4,6\}=c(2)=c(4)=c(6)</m>  and 
- <m>c(1)=\{1,3,5,7\}=c(3)=c(5)=c(7)</m></p>
+ <m>[0]=\{0,2,4,6\}=[2]=[4]=[6]</m>  and 
+ <m>[1]=\{1,3,5,7\}=[3]=[5]=[7]</m></p>
 </li>
 </ol></p>
 </answer>
 </exercise>
 
-<exercise number="10"><statement><p>Building on <xref ref="equivalence-classes" text="type-global"/>:</p>  
+<exercise number="10"><statement><p>Let <m>m</m> be a positive integer greater than or equal to two.</p>  
 <p><ol marker="(a)">
 <li><p>Prove that congruence modulo <m>m</m> is transitive.</p></li>
 <li><p>What are the equivalence classes under congruence modulo 2?</p></li>
@@ -380,10 +392,10 @@ relation. What are the equivalence classes under <m>r</m>?</p>
 
 
 
-<exercise number="11"><statement><p>In this exercise, we prove that implication is a partial ordering. Let <m>A</m> be any set of propositions.</p>
+<exercise number="11"><statement><p>In this exercise, we prove that implication is a partial ordering. Let <m>A</m> be any set of propositions, no two of which is equivalent to one another.</p>
 <p><ol marker="(a)">
 <li><p> Verify that <m>q \to  q</m> is a tautology, thereby showing that <m>\Rightarrow</m> is a reflexive relation on <m>A</m>.</p></li>
-<li> Prove that <m>\Rightarrow</m> is antisymmetric on <m>A</m>. Note: we do not use = when speaking of propositions, but rather equivalence, <m>\Leftrightarrow</m>.</li>
+<li> Prove that <m>\Rightarrow</m> is antisymmetric on <m>A</m>. Note: we do not use <m>=</m> when speaking of propositions, but rather equivalence, <m>\Leftrightarrow</m>.</li>
 <li><p> Prove that <m>\Rightarrow</m> is transitive on <m>A</m>.</p></li>
 <li><p> Given that <m>q_i</m> is the proposition <m>n &lt; i</m> on <m>\mathbb{N}</m>, draw the Hasse diagram for the relation <m>\Rightarrow</m> on <m>\{q_1, q_2, q_3,\ldots \}</m>.</p></li>
 </ol></p>
