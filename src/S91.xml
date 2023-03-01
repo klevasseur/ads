@@ -19,38 +19,19 @@ labels on this graph later.</p>
 		 </image>
 	</figure>
 </example>
-<p>In certain cases there may be a need for more than one edge between two vertices, and we need to expand the class of directed graphs.</p>
-<definition xml:id="def-multigraph"><title>Multigraph</title>
-<idx>Multigraph</idx>
-<idx><h>Graph</h><h>Multigraph</h></idx>
-<statement><p>
-A multigraph is a set of vertices <m>V</m> with a set of edges that can contain more than one edge between the vertices.</p></statement></definition>
-<p>One important point to keep in mind is that if we identify a graph as being a multigraph, it isn't necessary that there are two or more edges between some of the vertices.  It is only just <em>allowed</em>. In other words, every simple graph is a multigraph. This is analogous to how a rectangle is a more general geometric figure than a square, but a square is still considered a rectangle.</p>
-<example xml:id="ex-multigraph-9-1"><title>A Multigraph</title><p>A common occurrence of a multigraph is a road map. The cities and towns on the map can be thought of as vertices, while the roads are the edges. It is not uncommon to have more than one road connecting two cities. In order to give clear travel directions, we name or number roads so that there is no ambiguity. We use the same method to describe the edges of the multigraph in <xref ref="fig-multigraph-ex1" text="type-global"/>. There is no question
-what <m>e3</m> is; however, referring to the edge <m>(2, 3)</m> would be ambiguous.
-</p>
-	<figure xml:id="fig-multigraph-ex1">
-		 <caption>A directed multigraph</caption>
-		 <image width="100%" source="images/fig-multigraph-ex1.png">
-			  <description>A directed multigraph</description>
-		 </image>
-	</figure>
-
-</example>
 
 <p>There are cases where the order of the vertices is not significant and so we use a different mathematical model for this situation:</p>
 
-<definition xml:id="def-undirected-graph"><title>Undirected Graph</title>
-<idx>Undirected Graph</idx>
-<idx><h>Graph</h><h>Undirected</h></idx>
-<statement><p>An undirected graph consists of a nonempty set <m>V</m>, called a vertex set, and a set <m>E</m> of two-element subsets of <m>V</m>, called the edge set. The two-element subsets are drawn as lines connecting the vertices. It is customary to not allow <q>self loops</q> in undirected graphs.</p></statement></definition>
-
+<definition xml:id="def-undirected-graph"><title>Simple Undirected Graph</title>
+<idx>Simple Undirected Graph</idx>
+<idx><h>Graph</h><h>Simple Undirected</h></idx>
+<statement><p>A simple undirected graph consists of a nonempty set <m>V</m>, called a vertex set, and a set <m>E</m> of two-element subsets of <m>V</m>, called the edge set. </p></statement></definition>
+<p>Henceforth, we will refer to simple undirected graphs as <em>undirected graphs</em>.  When drawing an undirected graph, the two-element subsets are drawn as undirected lines or arcs connecting the vertices.  It is customary to not allow <q>self loops</q> in undirected graphs since <m>\{v,v\}</m> isn't a two element subset of vertices.</p>
 <note><title>On Empty Graphs</title><idx>Empty Graph</idx>
-<p>It may occur to some readers that a graph could be empty, in the sense that it has empty vertex and edge sets.  We might refer to this graph as the <term>empty graph</term>.  However, there doesn't seem to be a universally agreed upon definition of an empty graph. In some works, a graph with any number of vertices and no edges is called an empty graph.  To avoid this dilemma, we have defined both directed and undirected graphs to have nonempty vertex sets.  For convenience, we've relaxed this rule in our definition of a <xref ref="def-rooted-tree" text="title"/> and allowed for an empty tree.</p>
+<p>It may occur to some readers that a graph could be empty, in the sense that it has empty vertex and edge sets.  We might refer to this graph as the <term>empty graph</term>.  However, there doesn't seem to be a universally agreed upon definition of an empty graph. In some works, a graph with any number of vertices and no edges is called an empty graph.  To avoid this dilemma, we have defined both directed and undirected graphs to have nonempty vertex sets.  For convenience, we've relaxed this rule in our definition of a <xref ref="def-binary-tree" text="title"/> and allowed for an empty binary tree.</p>
 </note>
 
-<example xml:id="ex-undirected-1"><title>An Undirected Graph</title><p>A network of computers can be described easily using a graph.  <xref ref="fig-undirected-1" text="type-global"/> describes a network of five
-computers, <m>a</m>, <m>b</m>, <m>c</m>, <m>d</m>, and <m>e</m>. An edge between any two vertices indicates that direct two-way communication is possible between the two computers. Note that the edges of this graph are not directed. This is due to the fact that the relation that is being displayed is symmetric (i.e., if <m>X</m> can communicate with <m>Y</m>, then <m>Y</m> can communicate with <m>X</m>). Although directed
+<example xml:id="ex-undirected-1"><title>An Undirected Graph</title><p>A network of computers can be described easily using a graph.  <xref ref="fig-undirected-1" text="type-global"/> describes a network of five computers, <m>a</m>, <m>b</m>, <m>c</m>, <m>d</m>, and <m>e</m>. An edge between any two vertices indicates that direct two-way communication is possible between the two computers. Note that the edges of this graph are not directed. This is due to the fact that the relation that is being displayed is symmetric (i.e., if <m>X</m> can communicate with <m>Y</m>, then <m>Y</m> can communicate with <m>X</m>). Although directed
 edges could be used here, it would simply clutter the graph.</p>
                 <sidebyside valign="middle">
                    <figure  xml:id="fig-undirected-1">
@@ -73,6 +54,26 @@ them. </p>
 
 <definition xml:id="def-complete-undirected-graph"><title>Complete Undirected Graph</title><idx>Complete Undirected Graph.</idx><notation><usage><m>K_n</m></usage><description>A complete undirected graph with <m>n</m> vertices</description></notation>
 <statement><p>A complete undirected graph on <m>n</m> vertices is an undirected graph with the property that each pair of distinct vertices are connected to one another. Such a graph is usually denoted by <m>K_n</m>.</p></statement></definition>
+
+
+<p>In certain cases there may be a need for more than one edge between two vertices, and we need to expand the class of directed graphs.</p>
+<definition xml:id="def-multigraph"><title>Multigraph</title>
+<idx>Multigraph</idx>
+<idx><h>Graph</h><h>Multigraph</h></idx>
+<statement><p>
+A multigraph is a set of vertices <m>V</m> with a set of edges that can contain more than one edge between the vertices.</p></statement></definition>
+<p>One important point to keep in mind is that if we identify a graph as being a multigraph, it isn't necessary that there are two or more edges between some of the vertices.  It is only just <em>allowed</em>. In other words, every simple graph is a multigraph. This is analogous to how a rectangle is a more general geometric figure than a square, but a square is still considered a rectangle.</p>
+<example xml:id="ex-multigraph-9-1"><title>A Multigraph</title><p>A common occurrence of a multigraph is a road map. The cities and towns on the map can be thought of as vertices, while the roads are the edges. It is not uncommon to have more than one road connecting two cities. In order to give clear travel directions, we name or number roads so that there is no ambiguity. We use the same method to describe the edges of the multigraph in <xref ref="fig-multigraph-ex1" text="type-global"/>. There is no question
+what <m>e3</m> is; however, referring to the edge <m>(2, 3)</m> would be ambiguous.
+</p>
+	<figure xml:id="fig-multigraph-ex1">
+		 <caption>A directed multigraph</caption>
+		 <image width="100%" source="images/fig-multigraph-ex1.png">
+			  <description>A directed multigraph</description>
+		 </image>
+	</figure>
+
+</example>
 
  <example xml:id="ex-labeled-graph-9-1"><title>A Labeled Graph</title><p> A flowchart is a common example of a simple graph that requires labels for its vertices and some of its edges. <xref ref="fig-labeled-graph-9-1" text="type-global"/>
 is one such example that illustrates how many problems are solved. 
@@ -235,7 +236,7 @@ at <m>v</m>. The indegree of <m>v</m>, denoted <m>indeg(v)</m>, is the number of
 </ol></p>
 </statement></definition>
 <definition xml:id="def-degree-sequence"><title>Degree Sequence of a Graph</title><idx>Degree Sequence of a Graph</idx>
-<statement><p>The degree sequence of an undirected graph is the non-increasing sequence of its vertex degrees.</p></statement></definition>
+<statement><p>The degree sequence of a simple undirected graph is the non-increasing sequence of its vertex degrees.</p></statement></definition>
 <example xml:id="ex-degrees-9-1"><title>Some degrees</title>
  <figure xml:id="fig-degrees-example-9-1">
  					<caption>An undirected graph</caption>
@@ -248,7 +249,7 @@ at <m>v</m>. The indegree of <m>v</m>, denoted <m>indeg(v)</m>, is the number of
 </ol></p>
 </example>
 <definition xml:id="def-graphic-sequence"><title>Graphic Sequence</title><idx>Graphic Sequence</idx>
-<statement><p>A finite nonincreasing sequence of integers <m>d_1,d_2, \ldots , d_n</m> is graphic if there exists an undirected graph with  <m>n</m> vertices having the sequence as its degree sequence.</p></statement></definition>
+<statement><p>A finite nonincreasing sequence of integers <m>d_1,d_2, \ldots , d_n</m> is graphic if there exists a simple undirected graph with  <m>n</m> vertices having the sequence as its degree sequence.</p></statement></definition>
 <p> For example, <m>4,2,1,1,1,1</m> is graphic because the degrees of the graph in <xref ref="fig-degree-sequence-example" text="type-global"/>  match these numbers. There is no connection between the vertex number and its degree in this graph.</p>
 <figure xml:id="fig-degree-sequence-example">
                 <caption>A graph that shows that  <m>4,2,1,1,1,1</m>  is a graphic sequence.
