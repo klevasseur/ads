@@ -324,11 +324,11 @@ G2
 </statement></exercise>
 <exercise number="5"><statement>
 <p><ol marker="(a)">
-<li><p> Draw a binary tree with seven vertices and only one leaf.</p></li>
+<li><p> Draw a binary tree with seven vertices and only one leaf. Your answer won't be unique.  How many different possible answers are there?</p></li>
 <li><p> Draw a binary tree with seven vertices and as many leaves as possible.</p></li>
 </ol></p>
 </statement>
-<answer>
+<answer><p>There are <m>2^6=64</m> different possible answers to part (a).  The answer to (b) is unique.</p>
             <figure xml:id="fig-sol-10-4-5"><caption/>
                 <image width="90%" source="images/fig-sol-10-4-5.png">
                     <description>Solution to exercise 10-4-5</description>
@@ -366,5 +366,64 @@ internal vertices by one. Although we lose a leaf, the two added leaves create a
 
 </exercise>
 
+<exercise><statement>
+<sidebyside><p>There is a one to one correspondence between ordered rooted trees and binary trees.  If you start with an ordered rooted tree, <m>T</m>, you can build a binary tree <m>B</m> with an empty right subtree by placing the the root of <m>T</m> at the root of <m>B</m>.  Then for every vertex <m>v</m> from <m>T</m> that has been placed in <m>B</m>, place it's leftmost child (if there is one) as <m>v</m>'s left child in <m>B</m>. Make <m>v</m>'s next sibling (if there is one) in <m>T</m> the right child in <m>B</m>.</p>
+		<figure xml:id="fig-ex-ordered-tree"><caption>An ordered rooted tree with root <m>r</m>.</caption>
+		 <image width="25%" source="images/fig-ex-ordered-tree.png">
+			  <description>An ordered rooted tree with root <m>r</m> specifed by the dictionary of children {r:[a,d,c],a:[b,c],e:[f,g,h]}.</description>
+		 </image>
+		 </figure>
+  </sidebyside>
+<sidebyside>
+		<figure xml:id="fig-ex-ordered-tree-linked"><caption>Blue (left) and Red (right) links added to the ordered rooted tree with root r.</caption>
+		 <image width="25%" source="images/fig-ex-ordered-tree-linked.png">
+			  <description>An ordered rooted tree with root r specifed by the dictionary of children {r:[a,d,c],a:[b,c],e:[f,g,h]}  with colored edges added to indicate the correspondence with a binary tree.</description>
+		 </image>
+		 </figure>
+		 		<figure xml:id="fig-ex-binary-tree"><caption>Binary tree corresponding to the ordered rooted tree.</caption>
+		 <image width="20%" source="images/fig-ex-binary-tree.png">
+			  <description>The binary tree corresponding with the ordered rooted tree rooted at r specified by the dictionary of children {r:[a,d,c],a:[b,c],e:[f,g,h]}.</description>
+		 </image>
+		 </figure>
+</sidebyside>
+<p><ol marker="(a)">
+			<li><p>Why will <m>B</m> have no right children in this correspondence?</p></li>
+			<li><p>Draw the binary tree that is produced by the ordered rooted tree in <xref ref="fig-ort-to-bt"/>.</p></li>
+
+			<li><p>The left subtree of the binary tree in <xref ref="fig-bt-to-ort"/> is one of 5 different binary trees with three vertices.  Draw each of them and also the ordered rooted tree that each corresponds with.</p></li>
+			<li><p>What does this correspondence tell us about how the numbers of different binary trees and ordered rooted trees are related?</p></li>
+</ol></p>
+<sidebyside>
+		<figure xml:id="fig-ort-to-bt"><caption>What binary tree does this correspond with?</caption>
+		 <image width="25%" source="images/fig-ort-to-bt.png">
+			  <description>An ordered rooted tree.</description>
+		 </image>
+		 </figure>
+		 		<figure xml:id="fig-bt-to-ort"><caption>What ordered rooted tree does this correspond with?</caption>
+		 <image width="25%" source="images/fig-bt-to-ort.png">
+			  <description>A binary tree rooted at r with dictionary of left child- right child values {r:[a,nil],a:[b,c],b:[nil,nil],c:[nil,nil]}.</description>
+		 </image>
+		 </figure>
+
+</sidebyside>
+
+
+</statement>
+<solution>
+<p><ol marker="(a)">
+			<li><p>The root of <m>B</m> is the root of the corresponding ordered rooted tree, which as no siblings.</p></li>
+			<li><figure xml:id="fig-ort-to-bt_sol"><caption></caption>
+		 <image  width="30%" source="images/fig-ort-to-bt_sol.png">
+			  <description>Two columns of five graphs</description>
+		 </image>
+		 </figure></li>
+			<li><figure xml:id="fig-tree_correspondence"><caption></caption>
+		 <image  width="70%" source="images/fig-tree_correspondence.png">
+			  <description>Two columns of five graphs</description>
+		 </image>
+		 </figure>	</li>
+			<li><p>The number of ordered rooted trees with <m>n</m> vertices is equal to the number of binary trees with <m>n-1</m> vertices, <m>\frac{1}{n} \binom{2(n-1)}{n-1}</m></p></li>
+</ol></p>
+</solution></exercise>
 </exercises>
 </section>
