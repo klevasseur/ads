@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ads Graph Optimization</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://runestone.academy/ns/books/published/ads/s-graph-optimization.html">
+<meta property="og:type" content="book">
+<meta property="og:image" content="discretemath.org/external/http://discretemath.org/images/ads_v3_cover.jpg">
+<meta property="book:title" content="Applied Discrete Structures">
+<meta property="book:author" content="Al Doerr">
+<meta property="book:author" content="Ken Levasseur">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.98,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+  startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<link href="https://pretextbook.org/css/0.7/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/colors_blue_red.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/setcolors.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = true;
+eBookConfig.host = '';
+eBookConfig.app = eBookConfig.host + '/runestone';
+eBookConfig.course = '~._ course_name _.~';
+eBookConfig.basecourse = '~._ base_course _.~';
+eBookConfig.isLoggedIn = ~._ is_logged_in _.~;
+eBookConfig.email = '~._ user_email _.~';
+eBookConfig.isInstructor = ~._ is_instructor _.~;
+eBookConfig.logLevel = 10;
+eBookConfig.ajaxURL = eBookConfig.app + "/ajax/";
+eBookConfig.username = '~._ user_id _.~';
+eBookConfig.readings = ~._ readings|safe _.~;
+eBookConfig.activities = ~._ activity_info|safe _.~;
+eBookConfig.downloadsEnabled = ~._ downloads_enabled _.~;
+eBookConfig.allow_pairs = ~._ allow_pairs _.~;
+eBookConfig.enableScratchAC = true;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.new_server_prefix = "/ns";
+eBookConfig.runestone_version = '7.0.7';
+</script>
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
+    position: relative;
+    display: inline-block;
+    height: 39px;
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 7px;
+    text-align: center;
+    background-color: #eeeeee;
+    border: 1px solid;
+    border-color: #aaaaaa;
+ }
+ .dropdown-content {
+    position: absolute;
+    display: none;
+    left: 300px;
+    text-align: left;
+    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
+}
+.dropdown:hover {
+    background-color: #ddd;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+    position: fixed;
+}
+.dropdown-content {
+    background-color: white;
+    z-index: 1800;
+    min-width: 100px;
+    padding: 5px;
+}
+.dropdown-content a {
+    display: block;
+    text-decoration: none;
+    color: #662211;
+}
+.dropdown-content a:hover {
+    background-color: #671d12;
+    color: #ffffff;
+}
+</style>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+</head>
+<body id="ads" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<p class="byline">Al Doerr, Ken Levasseur</p>
+</div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" class="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms" class="searchterms"></span>
+</h2>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+{% if settings.academy_mode: %}
+<a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
+<a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
+<a href="/runestone/default/courses">Change Course</a><hr>
+<a id="ip_dropdown_link" href="/runestone/admin/index">Instructor's Page</a><hr>
+{% endif %}
+<a href="/runestone/dashboard/studentreport">Progress Page</a><hr>
+{% if is_logged_in %}
+<a href="/runestone/default/user/profile">Edit Profile</a><a href="/runestone/default/user/change_password">Change Password</a><a href="/runestone/default/user/logout">Log Out</a>
+{% else %}
+<a href="/runestone/default/user/register">Register</a><a href="/runestone/default/user/login">Login</a>
+{% endif %}
+</div>
+</div>
+<a href="javascript:runestoneComponents.popupScratchAC()" class="activecode-toggle" title="Scratch ActiveCode"><span class="icon">✏</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="avatarbutton" class="avatarbutton name">You!</span><div id="preferences_menu_holder" class="preferences_menu_holder hidden"><ol id="preferences_menu" class="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+<li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden avatar">
+<li data-val="You!" tabindex="-1">
+<span id="theYou!" class="avatarcheck">✔️</span>You!</li>
+<li data-val="😺" tabindex="-1">
+<span id="the😺" class="avatarcheck"></span>😺</li>
+<li data-val="👤" tabindex="-1">
+<span id="the👤" class="avatarcheck"></span>👤</li>
+<li data-val="👽" tabindex="-1">
+<span id="the👽" class="avatarcheck"></span>👽</li>
+<li data-val="🐶" tabindex="-1">
+<span id="the🐶" class="avatarcheck"></span>🐶</li>
+<li data-val="🐼" tabindex="-1">
+<span id="the🐼" class="avatarcheck"></span>🐼</li>
+<li data-val="🌈" tabindex="-1">
+<span id="the🌈" class="avatarcheck"></span>🌈</li>
+</ol>
+</li>
+<li data-env="fontfamily" tabindex="-1">Font family<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fontfamily">
+<li data-val="face" data-change="OS" tabindex="-1" style="font-family: 'Open Sans'">
+<span id="theOS" class="ffcheck">✔️</span><span class="name">Open Sans</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+<li data-val="face" data-change="RS" tabindex="-1" style="font-family: 'Roboto Serif'">
+<span id="theRS" class="ffcheck"></span><span class="name">Roboto Serif</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+</ol>
+</li>
+<li data-env="font" tabindex="-1">Adjust font<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fonts">
+<li>Size</li>
+<li><span id="thesize">12</span></li>
+<li data-val="size" data-change="-1" tabindex="-1" style="font-size: 80%">Smaller</li>
+<li data-val="size" data-change="1" tabindex="-1" style="font-size: 110%">Larger</li>
+<li>Width</li>
+<li><span id="thewdth">100</span></li>
+<li data-val="wdth" data-change="-5" tabindex="-1" style="font-variation-settings: 'wdth' 60">narrower</li>
+<li data-val="wdth" data-change="5" tabindex="-1" style="font-variation-settings: 'wdth' 150">wider</li>
+<li>Weight</li>
+<li><span id="thewght">400</span></li>
+<li data-val="wght" data-change="-50" tabindex="-1" style="font-weight: 200">thinner</li>
+<li data-val="wght" data-change="50" tabindex="-1" style="font-weight: 700">heavier</li>
+<li>Letter spacing</li>
+<li>
+<span id="thelspace">0</span><span class="byunits">/200</span>
+</li>
+<li data-val="lspace" data-change="-1" tabindex="-1">closer</li>
+<li data-val="lspace" data-change="1" tabindex="-1">f a r t h e r</li>
+<li>Word spacing</li>
+<li>
+<span id="thewspace">0</span><span class="byunits">/50</span>
+</li>
+<li data-val="wspace" data-change="-1" tabindex="-1">smaller gap </li>
+<li data-val="wspace" data-change="1" tabindex="-1">larger gap</li>
+<li>Line Spacing</li>
+<li>
+<span id="theheight">135</span><span class="byunits">/100</span>
+</li>
+<li data-val="height" data-change="-5" tabindex="-1" style="line-height: 1">closer<br>together</li>
+<li data-val="height" data-change="5" tabindex="-1" style="line-height: 1.75">further<br>apart</li>
+</ol>
+</li>
+<li data-env="atmosphere" tabindex="-1">Light/dark mode<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden atmosphere">
+<li data-val="default" tabindex="-1">
+<span id="thedefault" class="atmospherecheck">✔️</span>default</li>
+<li data-val="pastel" tabindex="-1">
+<span id="thepastel" class="atmospherecheck"></span>pastel</li>
+<li data-val="darktwilight" tabindex="-1">
+<span id="thedarktwilight" class="atmospherecheck"></span>twilight</li>
+<li data-val="dark" tabindex="-1">
+<span id="thedark" class="atmospherecheck"></span>dark</li>
+<li data-val="darkmidnight" tabindex="-1">
+<span id="thedarkmidnight" class="atmospherecheck"></span>midnight</li>
+</ol>
+</li>
+<li data-env="ruler" tabindex="-1">Reading ruler<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden ruler">
+<li data-val="none" tabindex="-1">
+<span id="thenone" class="rulercheck">✔️</span>none</li>
+<li data-val="underline" tabindex="-1">
+<span id="theunderline" class="rulercheck"></span>underline</li>
+<li data-val="lunderline" tabindex="-1">
+<span id="thelunderline" class="rulercheck"></span>L-underline</li>
+<li data-val="greybar" tabindex="-1">
+<span id="thegreybar" class="rulercheck"></span>grey bar</li>
+<li data-val="lightbox" tabindex="-1">
+<span id="thelightbox" class="rulercheck"></span>light box</li>
+<li data-val="sunrise" tabindex="-1">
+<span id="thesunrise" class="rulercheck"></span>sunrise</li>
+<li data-val="sunriseunderline" tabindex="-1">
+<span id="thesunriseunderline" class="rulercheck"></span>sunrise underline</li>
+<li class="moveQ">Motion by:</li>
+<li data-val="mouse" tabindex="-1">
+<span id="themouse" class="motioncheck">✔️</span>follow the mouse</li>
+<li data-val="arrow" tabindex="-1">
+<span id="thearrow" class="motioncheck"></span>up/down arrows - not yet</li>
+<li data-val="eye" tabindex="-1">
+<span id="theeye" class="motioncheck"></span>eye tracking - not yet</li>
+</ol>
+</li>
+</ol></div></button><span class="treebuttons"><a class="previous-button button" href="s-traversals.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="chapter_9.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="s-planarity-and-colorings.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
+<input id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" class="searchbutton" type="button" onclick="doSearch()">🔍</button>
+</div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2"><ul class="structural">
+<li>
+<div class="toc-item"><a href="index-ads.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="colophon-1.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li><div class="toc-item"><a href="dedication-1.html" class="internal"><span class="title">Dedication</span></a></div></li>
+<li><div class="toc-item"><a href="acknowledgement-1.html" class="internal"><span class="title">Acknowledgements</span></a></div></li>
+<li><div class="toc-item"><a href="ads-preface.html" class="internal"><span class="title">Preface</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_1.html" class="internal"><span class="codenumber">1</span> <span class="title">Set Theory</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
+<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-basic_Set_Operations.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Basic Set Operations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-basic_Set_Operations.html#subsection-3" class="internal"><span class="codenumber">1.2.1</span> <span class="title">Definitions</span></a></div></li>
+<li><div class="toc-item"><a href="s-basic_Set_Operations.html#subsection-4" class="internal"><span class="codenumber">1.2.2</span> <span class="title">Set Operations and their Venn Diagrams</span></a></div></li>
+<li><div class="toc-item"><a href="s-basic_Set_Operations.html#Sage_Note_Sets-1-2" class="internal"><span class="codenumber">1.2.3</span> <span class="title">SageMath Note: Sets</span></a></div></li>
+<li><div class="toc-item"><a href="s-basic_Set_Operations.html#exercises-1-2" class="internal"><span class="codenumber">1.2.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-cartesian_Products_and_Power_Sets.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Cartesian Products and Power Sets</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-cartesian_Products_and_Power_Sets.html#Cartesian-products" class="internal"><span class="codenumber">1.3.1</span> <span class="title">Cartesian Products</span></a></div></li>
+<li><div class="toc-item"><a href="s-cartesian_Products_and_Power_Sets.html#power-sets" class="internal"><span class="codenumber">1.3.2</span> <span class="title">Power Sets</span></a></div></li>
+<li><div class="toc-item"><a href="s-cartesian_Products_and_Power_Sets.html#Sage_Note_Sets-1-3" class="internal"><span class="codenumber">1.3.3</span> <span class="title">SageMath Note: Cartesian Products and Power Sets</span></a></div></li>
+<li><div class="toc-item"><a href="s-cartesian_Products_and_Power_Sets.html#exercises-1-3" class="internal"><span class="codenumber">1.3.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-binary_Representation_of_Positive_Integers.html" class="internal"><span class="codenumber">1.4</span> <span class="title">Binary Representation of Positive Integers</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-binary_Representation_of_Positive_Integers.html#ss-grouping-by-twos" class="internal"><span class="codenumber">1.4.1</span> <span class="title">Grouping by Twos</span></a></div></li>
+<li><div class="toc-item"><a href="s-binary_Representation_of_Positive_Integers.html#ss-conversion-algorithm" class="internal"><span class="codenumber">1.4.2</span> <span class="title">A Conversion Algorithm</span></a></div></li>
+<li><div class="toc-item"><a href="s-binary_Representation_of_Positive_Integers.html#exercises-1-4" class="internal"><span class="codenumber">1.4.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-summation_Notation_and_Generalizations.html" class="internal"><span class="codenumber">1.5</span> <span class="title">Summation Notation and Generalizations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-summation_Notation_and_Generalizations.html#ss-sums" class="internal"><span class="codenumber">1.5.1</span> <span class="title">Sums</span></a></div></li>
+<li><div class="toc-item"><a href="s-summation_Notation_and_Generalizations.html#ss-generalizations" class="internal"><span class="codenumber">1.5.2</span> <span class="title">Generalizations</span></a></div></li>
+<li><div class="toc-item"><a href="s-summation_Notation_and_Generalizations.html#exercises-1-5" class="internal"><span class="codenumber">1.5.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_2.html" class="internal"><span class="codenumber">2</span> <span class="title">Combinatorics</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-the-rule-of-products.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Basic Counting Techniques - The Rule of Products</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-the-rule-of-products.html#What-is-Combinatorics" class="internal"><span class="codenumber">2.1.1</span> <span class="title">What is Combinatorics?</span></a></div></li>
+<li><div class="toc-item"><a href="s-the-rule-of-products.html#rule-of-products" class="internal"><span class="codenumber">2.1.2</span> <span class="title">The Rule Of Products</span></a></div></li>
+<li><div class="toc-item"><a href="s-the-rule-of-products.html#EXERCISES-FOR-SECTION-2-1" class="internal"><span class="codenumber">2.1.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-permutations.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Permutations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-permutations.html#subsection-15" class="internal"><span class="codenumber">2.2.1</span> <span class="title">Ordering Things</span></a></div></li>
+<li><div class="toc-item"><a href="s-permutations.html#exercises-7" class="internal"><span class="codenumber">2.2.2</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-partitions-and-law-of-addition.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Partitions of Sets and the Law of Addition</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-partitions-and-law-of-addition.html#subsection-16" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Partitions</span></a></div></li>
+<li><div class="toc-item"><a href="s-partitions-and-law-of-addition.html#subsection-17" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Addition Laws</span></a></div></li>
+<li><div class="toc-item"><a href="s-partitions-and-law-of-addition.html#exercises-2-3" class="internal"><span class="codenumber">2.3.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-combinations-and-the-binomial-theorem.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Combinations and the Binomial Theorem</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-combinations-and-the-binomial-theorem.html#combinations" class="internal"><span class="codenumber">2.4.1</span> <span class="title">Combinations</span></a></div></li>
+<li><div class="toc-item"><a href="s-combinations-and-the-binomial-theorem.html#the-binomial-theorem" class="internal"><span class="codenumber">2.4.2</span> <span class="title">The Binomial Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="s-combinations-and-the-binomial-theorem.html#sage-bridge-hands" class="internal"><span class="codenumber">2.4.3</span> <span class="title">SageMath Note</span></a></div></li>
+<li><div class="toc-item"><a href="s-combinations-and-the-binomial-theorem.html#exercises-2-4" class="internal"><span class="codenumber">2.4.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter3.html" class="internal"><span class="codenumber">3</span> <span class="title">Logic</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-propositions-logic-operators.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Propositions and Logical Operators</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-propositions-logic-operators.html#ss-propositions" class="internal"><span class="codenumber">3.1.1</span> <span class="title">Propositions</span></a></div></li>
+<li><div class="toc-item"><a href="s-propositions-logic-operators.html#ss-logical-operations" class="internal"><span class="codenumber">3.1.2</span> <span class="title">Logical Operations</span></a></div></li>
+<li><div class="toc-item"><a href="s-propositions-logic-operators.html#exercises-3-1" class="internal"><span class="codenumber">3.1.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-truth-tables.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Truth Tables and Propositions Generated by a Set</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-truth-tables.html#truth-tables" class="internal"><span class="codenumber">3.2.1</span> <span class="title">Truth Tables</span></a></div></li>
+<li><div class="toc-item"><a href="s-truth-tables.html#proposition-generated-by-set" class="internal"><span class="codenumber">3.2.2</span> <span class="title">Propositions Generated by a Set</span></a></div></li>
+<li><div class="toc-item"><a href="s-truth-tables.html#exercises-3-2" class="internal"><span class="codenumber">3.2.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-equivalence-implication.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Equivalence and Implication</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-equivalence-implication.html#tautology-contradiction" class="internal"><span class="codenumber">3.3.1</span> <span class="title">Tautologies and Contradictions</span></a></div></li>
+<li><div class="toc-item"><a href="s-equivalence-implication.html#subsection-26" class="internal"><span class="codenumber">3.3.2</span> <span class="title">Equivalence</span></a></div></li>
+<li><div class="toc-item"><a href="s-equivalence-implication.html#subsection-27" class="internal"><span class="codenumber">3.3.3</span> <span class="title">Implication</span></a></div></li>
+<li><div class="toc-item"><a href="s-equivalence-implication.html#subsection-28" class="internal"><span class="codenumber">3.3.4</span> <span class="title">A Universal Operation</span></a></div></li>
+<li><div class="toc-item"><a href="s-equivalence-implication.html#exercises-3-3" class="internal"><span class="codenumber">3.3.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-logic-laws.html" class="internal"><span class="codenumber">3.4</span> <span class="title">The Laws of Logic</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-logic-laws.html#subsection-29" class="internal"><span class="codenumber">3.4.1</span> <span class="title"></span></a></div></li>
+<li><div class="toc-item"><a href="s-logic-laws.html#exercises-3-4" class="internal"><span class="codenumber">3.4.2</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-math-systems.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Mathematical Systems and Proofs</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-math-systems.html#subsection-30" class="internal"><span class="codenumber">3.5.1</span> <span class="title">Mathematical Systems</span></a></div></li>
+<li><div class="toc-item"><a href="s-math-systems.html#subsection-31" class="internal"><span class="codenumber">3.5.2</span> <span class="title">Direct Proof</span></a></div></li>
+<li><div class="toc-item"><a href="s-math-systems.html#sub-indirect-proof" class="internal"><span class="codenumber">3.5.3</span> <span class="title">Indirect Proof</span></a></div></li>
+<li><div class="toc-item"><a href="s-math-systems.html#exercises-3-5" class="internal"><span class="codenumber">3.5.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-propositions-over-universe.html" class="internal"><span class="codenumber">3.6</span> <span class="title">Propositions over a Universe</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-propositions-over-universe.html#ss-propositions-over-a-universe" class="internal"><span class="codenumber">3.6.1</span> <span class="title">Propositions over a Universe</span></a></div></li>
+<li><div class="toc-item"><a href="s-propositions-over-universe.html#ss-truth-sets" class="internal"><span class="codenumber">3.6.2</span> <span class="title">Truth Sets</span></a></div></li>
+<li><div class="toc-item"><a href="s-propositions-over-universe.html#exercises-3-6" class="internal"><span class="codenumber">3.6.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-induction.html" class="internal"><span class="codenumber">3.7</span> <span class="title">Mathematical Induction</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-induction.html#subsection-35" class="internal"><span class="codenumber">3.7.1</span> <span class="title">Introduction, First Example</span></a></div></li>
+<li><div class="toc-item"><a href="s-induction.html#subsection-36" class="internal"><span class="codenumber">3.7.2</span> <span class="title">More Examples</span></a></div></li>
+<li><div class="toc-item"><a href="s-induction.html#subsection-37" class="internal"><span class="codenumber">3.7.3</span> <span class="title">Course of Values Induction</span></a></div></li>
+<li><div class="toc-item"><a href="s-induction.html#exercises-3-7" class="internal"><span class="codenumber">3.7.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-quantifiers.html" class="internal"><span class="codenumber">3.8</span> <span class="title">Quantifiers</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-quantifiers.html#ss-existential" class="internal"><span class="codenumber">3.8.1</span> <span class="title">The Existential Quantifier</span></a></div></li>
+<li><div class="toc-item"><a href="s-quantifiers.html#ss-universal-quantifier" class="internal"><span class="codenumber">3.8.2</span> <span class="title">The Universal Quantifier</span></a></div></li>
+<li><div class="toc-item"><a href="s-quantifiers.html#ss-negated-quantifiers" class="internal"><span class="codenumber">3.8.3</span> <span class="title">The Negation of Quantified Propositions</span></a></div></li>
+<li><div class="toc-item"><a href="s-quantifiers.html#ss-multiple-quantifiers" class="internal"><span class="codenumber">3.8.4</span> <span class="title">Multiple Quantifiers</span></a></div></li>
+<li><div class="toc-item"><a href="s-quantifiers.html#exercises-3-8" class="internal"><span class="codenumber">3.8.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-proof-review.html" class="internal"><span class="codenumber">3.9</span> <span class="title">A Review of Methods of Proof</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-proof-review.html#ss-proof-concepts" class="internal"><span class="codenumber">3.9.1</span> <span class="title">Key Concepts in Proof</span></a></div></li>
+<li><div class="toc-item"><a href="s-proof-review.html#ss-art-of-proving-ifpthenq" class="internal"><span class="codenumber">3.9.2</span> <span class="title">The Art of Proving <span class="process-math">\(P \Rightarrow  C\)</span></span></a></div></li>
+<li><div class="toc-item"><a href="s-proof-review.html#exercises-3-9" class="internal"><span class="codenumber">3.9.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_4.html" class="internal"><span class="codenumber">4</span> <span class="title">More on Sets</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-proof-methods-sets.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Methods of Proof for Sets</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-proof-methods-sets.html#ss-examples-and-counterexamples" class="internal"><span class="codenumber">4.1.1</span> <span class="title">Examples and Counterexamples</span></a></div></li>
+<li><div class="toc-item"><a href="s-proof-methods-sets.html#ss-venn-proofs" class="internal"><span class="codenumber">4.1.2</span> <span class="title">Proof Using Venn Diagrams</span></a></div></li>
+<li><div class="toc-item"><a href="s-proof-methods-sets.html#ss-membership-table-proof" class="internal"><span class="codenumber">4.1.3</span> <span class="title">Proof using Set-membership Tables</span></a></div></li>
+<li><div class="toc-item"><a href="s-proof-methods-sets.html#ss-proofs-using-definitions-sets" class="internal"><span class="codenumber">4.1.4</span> <span class="title">Proof Using Definitions</span></a></div></li>
+<li><div class="toc-item"><a href="s-proof-methods-sets.html#exercises-19" class="internal"><span class="codenumber">4.1.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-laws-of-set-theory.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Laws of Set Theory</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-laws-of-set-theory.html#subsection-48" class="internal"><span class="codenumber">4.2.1</span> <span class="title">Tables of Laws</span></a></div></li>
+<li><div class="toc-item"><a href="s-laws-of-set-theory.html#ss-proof-with-theorems" class="internal"><span class="codenumber">4.2.2</span> <span class="title">Proof Using Previously Proven Theorems</span></a></div></li>
+<li><div class="toc-item"><a href="s-laws-of-set-theory.html#ss-proof-sets-contradiction" class="internal"><span class="codenumber">4.2.3</span> <span class="title">Proof Using the Indirect Method/Contradiction</span></a></div></li>
+<li><div class="toc-item"><a href="s-laws-of-set-theory.html#exer-4-2" class="internal"><span class="codenumber">4.2.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-minsets.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Minsets</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-minsets.html#subsection-51" class="internal"><span class="codenumber">4.3.1</span> <span class="title">Definition of Minsets</span></a></div></li>
+<li><div class="toc-item"><a href="s-minsets.html#subsection-52" class="internal"><span class="codenumber">4.3.2</span> <span class="title">Properties of Minsets</span></a></div></li>
+<li><div class="toc-item"><a href="s-minsets.html#exercises-4-3" class="internal"><span class="codenumber">4.3.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-duality-principle.html" class="internal"><span class="codenumber">4.4</span> <span class="title">The Duality Principle</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-duality-principle.html#subsection-53" class="internal"><span class="codenumber">4.4.1</span> <span class="title"></span></a></div></li>
+<li><div class="toc-item"><a href="s-duality-principle.html#exer-4-4" class="internal"><span class="codenumber">4.4.2</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_5.html" class="internal"><span class="codenumber">5</span> <span class="title">Introduction to Matrix Algebra</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-basic-matrix-definitions.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Basic Definitions and Operations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-basic-matrix-definitions.html#ss-order-equality" class="internal"><span class="codenumber">5.1.1</span> <span class="title">Matrix Order and Equality</span></a></div></li>
+<li><div class="toc-item"><a href="s-basic-matrix-definitions.html#ss-matrix-addition-scalarmult" class="internal"><span class="codenumber">5.1.2</span> <span class="title">Matrix Addition and Scalar Multiplication</span></a></div></li>
+<li><div class="toc-item"><a href="s-basic-matrix-definitions.html#ss-matrix-multiplication" class="internal"><span class="codenumber">5.1.3</span> <span class="title">Matrix Multiplication</span></a></div></li>
+<li><div class="toc-item"><a href="s-basic-matrix-definitions.html#exercises-5-1" class="internal"><span class="codenumber">5.1.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-special-matrices.html" class="internal"><span class="codenumber">5.2</span> <span class="title">Special Types of Matrices</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-special-matrices.html#subsection-57" class="internal"><span class="codenumber">5.2.1</span> <span class="title">Diagonal Matrices</span></a></div></li>
+<li><div class="toc-item"><a href="s-special-matrices.html#subsection-58" class="internal"><span class="codenumber">5.2.2</span> <span class="title">The Identity Matrix and Matrix Inverses</span></a></div></li>
+<li><div class="toc-item"><a href="s-special-matrices.html#exercises-5-4" class="internal"><span class="codenumber">5.2.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-laws-of-matrix-algebra.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Laws of Matrix Algebra</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-laws-of-matrix-algebra.html#subsection-59" class="internal"><span class="codenumber">5.3.1</span> <span class="title">The Laws</span></a></div></li>
+<li><div class="toc-item"><a href="s-laws-of-matrix-algebra.html#subsection-60" class="internal"><span class="codenumber">5.3.2</span> <span class="title">Commentary</span></a></div></li>
+<li><div class="toc-item"><a href="s-laws-of-matrix-algebra.html#exercises-5-5" class="internal"><span class="codenumber">5.3.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-matrix-oddities.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Matrix Oddities</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-matrix-oddities.html#subsection-61" class="internal"><span class="codenumber">5.4.1</span> <span class="title">Dissimilarities with elementary algebra</span></a></div></li>
+<li><div class="toc-item"><a href="s-matrix-oddities.html#exercises-5-6" class="internal"><span class="codenumber">5.4.2</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_6.html" class="internal"><span class="codenumber">6</span> <span class="title">Relations</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-basic-definitions.html" class="internal"><span class="codenumber">6.1</span> <span class="title">Basic Definitions</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-basic-definitions.html#subsection-62" class="internal"><span class="codenumber">6.1.1</span> <span class="title">Relations between two sets</span></a></div></li>
+<li><div class="toc-item"><a href="s-basic-definitions.html#subsection-63" class="internal"><span class="codenumber">6.1.2</span> <span class="title">Relations on a Set</span></a></div></li>
+<li><div class="toc-item"><a href="s-basic-definitions.html#subsection-64" class="internal"><span class="codenumber">6.1.3</span> <span class="title">Composition of Relations</span></a></div></li>
+<li><div class="toc-item"><a href="s-basic-definitions.html#exercises-6-1" class="internal"><span class="codenumber">6.1.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-graphs-of-relations-on-a-set.html" class="internal"><span class="codenumber">6.2</span> <span class="title">Graphs of Relations on a Set</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-graphs-of-relations-on-a-set.html#subsection-65" class="internal"><span class="codenumber">6.2.1</span> <span class="title">Digraphs</span></a></div></li>
+<li><div class="toc-item"><a href="s-graphs-of-relations-on-a-set.html#exercises-6-2" class="internal"><span class="codenumber">6.2.2</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-properties-of-relations.html" class="internal"><span class="codenumber">6.3</span> <span class="title">Properties of Relations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-properties-of-relations.html#ss-individual-properties" class="internal"><span class="codenumber">6.3.1</span> <span class="title">Individual Properties</span></a></div></li>
+<li><div class="toc-item"><a href="s-properties-of-relations.html#ss-partial-ordering" class="internal"><span class="codenumber">6.3.2</span> <span class="title">Partial Orderings</span></a></div></li>
+<li><div class="toc-item"><a href="s-properties-of-relations.html#ss-equivalence-relations" class="internal"><span class="codenumber">6.3.3</span> <span class="title">Equivalence Relations</span></a></div></li>
+<li><div class="toc-item"><a href="s-properties-of-relations.html#exercises-6-3" class="internal"><span class="codenumber">6.3.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-matrices-of-relations.html" class="internal"><span class="codenumber">6.4</span> <span class="title">Matrices of Relations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-matrices-of-relations.html#subsection-69" class="internal"><span class="codenumber">6.4.1</span> <span class="title">Representing a Relation with a Matrix</span></a></div></li>
+<li><div class="toc-item"><a href="s-matrices-of-relations.html#subsection-70" class="internal"><span class="codenumber">6.4.2</span> <span class="title">Composition as Matrix Multiplication</span></a></div></li>
+<li><div class="toc-item"><a href="s-matrices-of-relations.html#exercises-6-4" class="internal"><span class="codenumber">6.4.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-closure-operations-on-relations.html" class="internal"><span class="codenumber">6.5</span> <span class="title">Closure Operations on Relations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-closure-operations-on-relations.html#subsection-71" class="internal"><span class="codenumber">6.5.1</span> <span class="title">Transitive Closure</span></a></div></li>
+<li><div class="toc-item"><a href="s-closure-operations-on-relations.html#subsection-72" class="internal"><span class="codenumber">6.5.2</span> <span class="title">Algorithms for computing transitive closure</span></a></div></li>
+<li><div class="toc-item"><a href="s-closure-operations-on-relations.html#exercises-6-5" class="internal"><span class="codenumber">6.5.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_7.html" class="internal"><span class="codenumber">7</span> <span class="title">Functions</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-function-def-notation.html" class="internal"><span class="codenumber">7.1</span> <span class="title">Definition and Notation</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-function-def-notation.html#ss-fundamentals-functions" class="internal"><span class="codenumber">7.1.1</span> <span class="title">Fundamentals</span></a></div></li>
+<li><div class="toc-item"><a href="s-function-def-notation.html#ss-two-variables" class="internal"><span class="codenumber">7.1.2</span> <span class="title">Functions of Two Variables</span></a></div></li>
+<li><div class="toc-item"><a href="s-function-def-notation.html#ss-sage-note-functions" class="internal"><span class="codenumber">7.1.3</span> <span class="title">SageMath Note</span></a></div></li>
+<li><div class="toc-item"><a href="s-function-def-notation.html#ss-non-functions" class="internal"><span class="codenumber">7.1.4</span> <span class="title">Non-Functions</span></a></div></li>
+<li><div class="toc-item"><a href="s-function-def-notation.html#exercises-7-1" class="internal"><span class="codenumber">7.1.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-properties-of-functions.html" class="internal"><span class="codenumber">7.2</span> <span class="title">Properties of Functions</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-properties-of-functions.html#subsection-77" class="internal"><span class="codenumber">7.2.1</span> <span class="title">Properties</span></a></div></li>
+<li><div class="toc-item"><a href="s-properties-of-functions.html#subsection-78" class="internal"><span class="codenumber">7.2.2</span> <span class="title">Counting</span></a></div></li>
+<li><div class="toc-item"><a href="s-properties-of-functions.html#exercises-7-2" class="internal"><span class="codenumber">7.2.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-function-composition.html" class="internal"><span class="codenumber">7.3</span> <span class="title">Function Composition</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-function-composition.html#ss-function-equality" class="internal"><span class="codenumber">7.3.1</span> <span class="title">Function Equality</span></a></div></li>
+<li><div class="toc-item"><a href="s-function-composition.html#ss-composition" class="internal"><span class="codenumber">7.3.2</span> <span class="title">Function Composition</span></a></div></li>
+<li><div class="toc-item"><a href="s-function-composition.html#ss-inverse-functions" class="internal"><span class="codenumber">7.3.3</span> <span class="title">Inverse Functions</span></a></div></li>
+<li><div class="toc-item"><a href="s-function-composition.html#exercises-7-3" class="internal"><span class="codenumber">7.3.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_8.html" class="internal"><span class="codenumber">8</span> <span class="title">Recursion and Recurrence Relations</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-faces-of-recursion.html" class="internal"><span class="codenumber">8.1</span> <span class="title">The Many Faces of Recursion</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-faces-of-recursion.html#ss-binomial-coefficients" class="internal"><span class="codenumber">8.1.1</span> <span class="title">Binomial Coefficients</span></a></div></li>
+<li><div class="toc-item"><a href="s-faces-of-recursion.html#ss-polynomials-and-their-evaluation" class="internal"><span class="codenumber">8.1.2</span> <span class="title">Polynomials and Their Evaluation</span></a></div></li>
+<li><div class="toc-item"><a href="s-faces-of-recursion.html#ss-recursive-searching" class="internal"><span class="codenumber">8.1.3</span> <span class="title">Recursive Searching - The Binary Search</span></a></div></li>
+<li><div class="toc-item"><a href="s-faces-of-recursion.html#ss-recursive-sequences" class="internal"><span class="codenumber">8.1.4</span> <span class="title">Recursively Defined Sequences</span></a></div></li>
+<li><div class="toc-item"><a href="s-faces-of-recursion.html#ss-recursion" class="internal"><span class="codenumber">8.1.5</span> <span class="title">Recursion</span></a></div></li>
+<li><div class="toc-item"><a href="s-faces-of-recursion.html#ss-iteration" class="internal"><span class="codenumber">8.1.6</span> <span class="title">Iteration</span></a></div></li>
+<li><div class="toc-item"><a href="s-faces-of-recursion.html#ss-induction-and-recursion" class="internal"><span class="codenumber">8.1.7</span> <span class="title">Induction and Recursion</span></a></div></li>
+<li><div class="toc-item"><a href="s-faces-of-recursion.html#exercises-35" class="internal"><span class="codenumber">8.1.8</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-Sequences.html" class="internal"><span class="codenumber">8.2</span> <span class="title">Sequences</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-Sequences.html#subsection-89" class="internal"><span class="codenumber">8.2.1</span> <span class="title">Sequences and Ways They Are Defined</span></a></div></li>
+<li><div class="toc-item"><a href="s-Sequences.html#subsection-90" class="internal"><span class="codenumber">8.2.2</span> <span class="title">A Fundamental Problem</span></a></div></li>
+<li><div class="toc-item"><a href="s-Sequences.html#exercises-8-2" class="internal"><span class="codenumber">8.2.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-recurrence-relations.html" class="internal"><span class="codenumber">8.3</span> <span class="title">Recurrence Relations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-recurrence-relations.html#defs-rr" class="internal"><span class="codenumber">8.3.1</span> <span class="title">Definition and Terminology</span></a></div></li>
+<li><div class="toc-item"><a href="s-recurrence-relations.html#ss-solving-recurrence-relations" class="internal"><span class="codenumber">8.3.2</span> <span class="title">Solving Recurrence Relations</span></a></div></li>
+<li><div class="toc-item"><a href="s-recurrence-relations.html#sss-recurrence-relations-obtained-from-solutions" class="internal"><span class="codenumber">8.3.3</span> <span class="title">Recurrence Relations Obtained from “Solutions”</span></a></div></li>
+<li><div class="toc-item"><a href="s-recurrence-relations.html#ss-solution-of-nonhomogeneous-relations" class="internal"><span class="codenumber">8.3.4</span> <span class="title">Solution of Nonhomogeneous Finite Order Linear Relations</span></a></div></li>
+<li><div class="toc-item"><a href="s-recurrence-relations.html#exercises-8-3" class="internal"><span class="codenumber">8.3.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-some-common-rrs.html" class="internal"><span class="codenumber">8.4</span> <span class="title">Some Common Recurrence Relations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-some-common-rrs.html#rr-basic-example" class="internal"><span class="codenumber">8.4.1</span> <span class="title">A  First Basic Example</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-some-common-rrs.html#analysis-of-binary-search" class="internal"><span class="codenumber">8.4.2</span> <span class="title">An Analysis of the Binary Search Algorithm</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-some-common-rrs.html#subsubsection-1" class="internal"><span class="codenumber">8.4.2.1</span> <span class="title"></span></a></div></li>
+<li><div class="toc-item"><a href="s-some-common-rrs.html#sss-review-of-logarithms" class="internal"><span class="codenumber">8.4.2.2</span> <span class="title">Review of Logarithms</span></a></div></li>
+<li><div class="toc-item"><a href="s-some-common-rrs.html#subsubsection-3" class="internal"><span class="codenumber">8.4.2.3</span> <span class="title"></span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="s-some-common-rrs.html#ss-bubblesort-analysis" class="internal"><span class="codenumber">8.4.3</span> <span class="title">Analysis of Bubble Sort and Merge Sort</span></a></div></li>
+<li><div class="toc-item"><a href="s-some-common-rrs.html#ss-derangements" class="internal"><span class="codenumber">8.4.4</span> <span class="title">Derangements</span></a></div></li>
+<li><div class="toc-item"><a href="s-some-common-rrs.html#exercises-8-4" class="internal"><span class="codenumber">8.4.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-generating-functions.html" class="internal"><span class="codenumber">8.5</span> <span class="title">Generating Functions</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-generating-functions.html#ss-what-is-a-generating-function" class="internal"><span class="codenumber">8.5.1</span> <span class="title">Definition</span></a></div></li>
+<li><div class="toc-item"><a href="s-generating-functions.html#ss-solution-of-rr-using-generating-functions" class="internal"><span class="codenumber">8.5.2</span> <span class="title">Solution of a Recurrence Relation Using Generating Functions</span></a></div></li>
+<li><div class="toc-item"><a href="s-generating-functions.html#ops-on-sequences" class="internal"><span class="codenumber">8.5.3</span> <span class="title">Operations on Sequences</span></a></div></li>
+<li><div class="toc-item"><a href="s-generating-functions.html#sss-operations-on-generating-functions" class="internal"><span class="codenumber">8.5.4</span> <span class="title">Operations on Generating Functions</span></a></div></li>
+<li><div class="toc-item"><a href="s-generating-functions.html#ss-closed-form-expressions-for-generating-functions" class="internal"><span class="codenumber">8.5.5</span> <span class="title">Closed Form Expressions for Generating Functions</span></a></div></li>
+<li><div class="toc-item"><a href="s-generating-functions.html#ss-extra-for-experts" class="internal"><span class="codenumber">8.5.6</span> <span class="title">Extra for Experts</span></a></div></li>
+<li><div class="toc-item"><a href="s-generating-functions.html#exercises-39" class="internal"><span class="codenumber">8.5.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_9.html" class="internal"><span class="codenumber">9</span> <span class="title">Graph Theory</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-graphs-introduction.html" class="internal"><span class="codenumber">9.1</span> <span class="title">Graphs - General Introduction</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-graphs-introduction.html#subsection-105" class="internal"><span class="codenumber">9.1.1</span> <span class="title">Definitions</span></a></div></li>
+<li><div class="toc-item"><a href="s-graphs-introduction.html#subsection-106" class="internal"><span class="codenumber">9.1.2</span> <span class="title">Subgraphs</span></a></div></li>
+<li><div class="toc-item"><a href="s-graphs-introduction.html#subsection-107" class="internal"><span class="codenumber">9.1.3</span> <span class="title">Graph Isomorphisms</span></a></div></li>
+<li><div class="toc-item"><a href="s-graphs-introduction.html#subsection-108" class="internal"><span class="codenumber">9.1.4</span> <span class="title">Next Steps</span></a></div></li>
+<li><div class="toc-item"><a href="s-graphs-introduction.html#exercises-9-1" class="internal"><span class="codenumber">9.1.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-data-structures-for-graphs.html" class="internal"><span class="codenumber">9.2</span> <span class="title">Data Structures for Graphs</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-data-structures-for-graphs.html#ss-graph-data-structures" class="internal"><span class="codenumber">9.2.1</span> <span class="title">Basic Data Structures</span></a></div></li>
+<li><div class="toc-item"><a href="s-data-structures-for-graphs.html#sss-sage-graphs" class="internal"><span class="codenumber">9.2.2</span> <span class="title">Sage Graphs</span></a></div></li>
+<li><div class="toc-item"><a href="s-data-structures-for-graphs.html#exercises-9-2" class="internal"><span class="codenumber">9.2.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-Connectivity.html" class="internal"><span class="codenumber">9.3</span> <span class="title">Connectivity</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-Connectivity.html#ss-connectivity-prelim" class="internal"><span class="codenumber">9.3.1</span> <span class="title">Preliminaries</span></a></div></li>
+<li><div class="toc-item"><a href="s-Connectivity.html#ss-adjacency-matrix-method" class="internal"><span class="codenumber">9.3.2</span> <span class="title">Adjacency Matrix Method</span></a></div></li>
+<li><div class="toc-item"><a href="s-Connectivity.html#ss-breadth-first-search" class="internal"><span class="codenumber">9.3.3</span> <span class="title">Breadth-First Search</span></a></div></li>
+<li><div class="toc-item"><a href="s-Connectivity.html#ss-ecc-rad-diameter" class="internal"><span class="codenumber">9.3.4</span> <span class="title">Graph Measurements</span></a></div></li>
+<li><div class="toc-item"><a href="s-Connectivity.html#ss-sage-note-search" class="internal"><span class="codenumber">9.3.5</span> <span class="title">SageMath Note - Graph Searching</span></a></div></li>
+<li><div class="toc-item"><a href="s-Connectivity.html#exercises-9-3" class="internal"><span class="codenumber">9.3.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-traversals.html" class="internal"><span class="codenumber">9.4</span> <span class="title">Traversals: Eulerian and Hamiltonian Graphs</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-traversals.html#ss-eulerian" class="internal"><span class="codenumber">9.4.1</span> <span class="title">Eulerian  Graphs</span></a></div></li>
+<li><div class="toc-item"><a href="s-traversals.html#ss-hamiltonian-graphs" class="internal"><span class="codenumber">9.4.2</span> <span class="title">Hamiltonian Graphs</span></a></div></li>
+<li><div class="toc-item"><a href="s-traversals.html#exercises-9-4" class="internal"><span class="codenumber">9.4.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="active">
+<div class="toc-item"><a href="s-graph-optimization.html" class="internal"><span class="codenumber">9.5</span> <span class="title">Graph Optimization</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-graph-optimization.html#ss-weighted-graph" class="internal"><span class="codenumber">9.5.1</span> <span class="title">Weighted Graphs</span></a></div></li>
+<li><div class="toc-item"><a href="s-graph-optimization.html#ss-traveling-salesman-problem" class="internal"><span class="codenumber">9.5.2</span> <span class="title">The Traveling Salesman Problem</span></a></div></li>
+<li><div class="toc-item"><a href="s-graph-optimization.html#ss-networks-and-flows" class="internal"><span class="codenumber">9.5.3</span> <span class="title">Networks and the Maximum Flow Problem</span></a></div></li>
+<li><div class="toc-item"><a href="s-graph-optimization.html#ss-other-optimization" class="internal"><span class="codenumber">9.5.4</span> <span class="title">Other Graph Optimization Problems</span></a></div></li>
+<li><div class="toc-item"><a href="s-graph-optimization.html#exercises-9-5" class="internal"><span class="codenumber">9.5.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-planarity-and-colorings.html" class="internal"><span class="codenumber">9.6</span> <span class="title">Planarity and Colorings</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-planarity-and-colorings.html#ss-planarity" class="internal"><span class="codenumber">9.6.1</span> <span class="title">Planar Graphs</span></a></div></li>
+<li><div class="toc-item"><a href="s-planarity-and-colorings.html#ss-graph-coloring" class="internal"><span class="codenumber">9.6.2</span> <span class="title">Graph Coloring</span></a></div></li>
+<li><div class="toc-item"><a href="s-planarity-and-colorings.html#exercises-9-6" class="internal"><span class="codenumber">9.6.3</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="s-planarity-and-colorings.html#references-1" class="internal"><span class="codenumber">9.6.4</span> <span class="title">Further Reading</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_10.html" class="internal"><span class="codenumber">10</span> <span class="title">Trees</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-what-is-a-tree.html" class="internal"><span class="codenumber">10.1</span> <span class="title">What Is a Tree?</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-what-is-a-tree.html#subsection-124" class="internal"><span class="codenumber">10.1.1</span> <span class="title">Definition</span></a></div></li>
+<li><div class="toc-item"><a href="s-what-is-a-tree.html#subsection-125" class="internal"><span class="codenumber">10.1.2</span> <span class="title">Conditions for a Graph to be a Tree</span></a></div></li>
+<li><div class="toc-item"><a href="s-what-is-a-tree.html#exercises-10-1" class="internal"><span class="codenumber">10.1.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-spanning-trees.html" class="internal"><span class="codenumber">10.2</span> <span class="title">Spanning Trees</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-spanning-trees.html#subsection-126" class="internal"><span class="codenumber">10.2.1</span> <span class="title">Motivation</span></a></div></li>
+<li><div class="toc-item"><a href="s-spanning-trees.html#subsection-127" class="internal"><span class="codenumber">10.2.2</span> <span class="title">Definition</span></a></div></li>
+<li><div class="toc-item"><a href="s-spanning-trees.html#subsection-128" class="internal"><span class="codenumber">10.2.3</span> <span class="title">Prim’s Algorithm</span></a></div></li>
+<li><div class="toc-item"><a href="s-spanning-trees.html#exercises-10-2" class="internal"><span class="codenumber">10.2.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-rooted-trees.html" class="internal"><span class="codenumber">10.3</span> <span class="title">Rooted Trees</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-rooted-trees.html#ss-rooted-trees" class="internal"><span class="codenumber">10.3.1</span> <span class="title">Definition and Terminology</span></a></div></li>
+<li><div class="toc-item"><a href="s-rooted-trees.html#ss-kruskal-algorithm" class="internal"><span class="codenumber">10.3.2</span> <span class="title">Kruskal’s Algorithm</span></a></div></li>
+<li><div class="toc-item"><a href="s-rooted-trees.html#ss-sage-note-kruskal" class="internal"><span class="codenumber">10.3.3</span> <span class="title">SageMath Note - Implementation of Kruskal’s Algorithm</span></a></div></li>
+<li><div class="toc-item"><a href="s-rooted-trees.html#exercises-10-3" class="internal"><span class="codenumber">10.3.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-binary-trees.html" class="internal"><span class="codenumber">10.4</span> <span class="title">Binary Trees</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-binary-trees.html#subsection-132" class="internal"><span class="codenumber">10.4.1</span> <span class="title">Definition of a Binary Tree</span></a></div></li>
+<li><div class="toc-item"><a href="s-binary-trees.html#ss-traversals" class="internal"><span class="codenumber">10.4.2</span> <span class="title">Traversals of Binary Trees</span></a></div></li>
+<li><div class="toc-item"><a href="s-binary-trees.html#ss-expression-trees" class="internal"><span class="codenumber">10.4.3</span> <span class="title">Expression Trees</span></a></div></li>
+<li><div class="toc-item"><a href="s-binary-trees.html#ss-counting-binary-trees" class="internal"><span class="codenumber">10.4.4</span> <span class="title">Counting Binary Trees</span></a></div></li>
+<li><div class="toc-item"><a href="s-binary-trees.html#ss-sage-note-powerseries" class="internal"><span class="codenumber">10.4.5</span> <span class="title">SageMath Note - Power Series</span></a></div></li>
+<li><div class="toc-item"><a href="s-binary-trees.html#exercises-10-4" class="internal"><span class="codenumber">10.4.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_11.html" class="internal"><span class="codenumber">11</span> <span class="title">Algebraic Structures</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-Operations.html" class="internal"><span class="codenumber">11.1</span> <span class="title">Operations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-Operations.html#ss-definition-of-operations" class="internal"><span class="codenumber">11.1.1</span> <span class="title">What is an Operation?</span></a></div></li>
+<li><div class="toc-item"><a href="s-Operations.html#ss-operation-properties" class="internal"><span class="codenumber">11.1.2</span> <span class="title">Properties of Operations</span></a></div></li>
+<li><div class="toc-item"><a href="s-Operations.html#ss-operation-tables" class="internal"><span class="codenumber">11.1.3</span> <span class="title">Operation Tables</span></a></div></li>
+<li><div class="toc-item"><a href="s-Operations.html#exercises-11-1" class="internal"><span class="codenumber">11.1.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-algebraic-systems.html" class="internal"><span class="codenumber">11.2</span> <span class="title">Algebraic Systems</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-algebraic-systems.html#ss-monoids" class="internal"><span class="codenumber">11.2.1</span> <span class="title">Monoids at Two Levels</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-algebraic-systems.html#ss-levels-of-abstraction" class="internal"><span class="codenumber">11.2.2</span> <span class="title">Levels of Abstraction</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-algebraic-systems.html#sss-concrete-level" class="internal"><span class="codenumber">11.2.2.1</span> <span class="title">The Concrete Level</span></a></div></li>
+<li><div class="toc-item"><a href="s-algebraic-systems.html#sss-axiomatic-level" class="internal"><span class="codenumber">11.2.2.2</span> <span class="title">The Axiomatic Level</span></a></div></li>
+<li><div class="toc-item"><a href="s-algebraic-systems.html#sss-universal-level" class="internal"><span class="codenumber">11.2.2.3</span> <span class="title">The Universal Level</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="s-algebraic-systems.html#ss-groups" class="internal"><span class="codenumber">11.2.3</span> <span class="title">Groups</span></a></div></li>
+<li><div class="toc-item"><a href="s-algebraic-systems.html#exercises-11-2" class="internal"><span class="codenumber">11.2.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-general-properties-of-groups.html" class="internal"><span class="codenumber">11.3</span> <span class="title">Some General Properties of Groups</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-general-properties-of-groups.html#subsection-143" class="internal"><span class="codenumber">11.3.1</span> <span class="title">First Theorems</span></a></div></li>
+<li><div class="toc-item"><a href="s-general-properties-of-groups.html#subsection-144" class="internal"><span class="codenumber">11.3.2</span> <span class="title">Exponents</span></a></div></li>
+<li><div class="toc-item"><a href="s-general-properties-of-groups.html#exercises-11-3" class="internal"><span class="codenumber">11.3.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-gcds-and-zsubn.html" class="internal"><span class="codenumber">11.4</span> <span class="title">Greatest Common Divisors  and the Integers Modulo <span class="process-math">\(n\)</span></span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-gcds-and-zsubn.html#ss-greatest-common-divisors" class="internal"><span class="codenumber">11.4.1</span> <span class="title">Greatest Common Divisors</span></a></div></li>
+<li><div class="toc-item"><a href="s-gcds-and-zsubn.html#sss-euclidean-algorithm" class="internal"><span class="codenumber">11.4.2</span> <span class="title">The Euclidean Algorithm</span></a></div></li>
+<li><div class="toc-item"><a href="s-gcds-and-zsubn.html#ss-modular-arithmetic" class="internal"><span class="codenumber">11.4.3</span> <span class="title">Modular Arithmetic</span></a></div></li>
+<li><div class="toc-item"><a href="s-gcds-and-zsubn.html#ss-properties-modular-arithmetic" class="internal"><span class="codenumber">11.4.4</span> <span class="title">Properties of Modular Arithmetic</span></a></div></li>
+<li><div class="toc-item"><a href="s-gcds-and-zsubn.html#ss-sage-modular" class="internal"><span class="codenumber">11.4.5</span> <span class="title">SageMath Note - Modular Arithmetic</span></a></div></li>
+<li><div class="toc-item"><a href="s-gcds-and-zsubn.html#exercises-11-4" class="internal"><span class="codenumber">11.4.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-Subsystems.html" class="internal"><span class="codenumber">11.5</span> <span class="title">Subsystems</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-Subsystems.html#subsection-150" class="internal"><span class="codenumber">11.5.1</span> <span class="title">Definition</span></a></div></li>
+<li><div class="toc-item"><a href="s-Subsystems.html#subsection-151" class="internal"><span class="codenumber">11.5.2</span> <span class="title">Subgroups</span></a></div></li>
+<li><div class="toc-item"><a href="s-Subsystems.html#sage-note-subgroup-finite" class="internal"><span class="codenumber">11.5.3</span> <span class="title">Sage Note - Applying the condition for a subgroup of a finite group</span></a></div></li>
+<li><div class="toc-item"><a href="s-Subsystems.html#subsection-153" class="internal"><span class="codenumber">11.5.4</span> <span class="title">Cyclic Subgroups</span></a></div></li>
+<li><div class="toc-item"><a href="s-Subsystems.html#exercises-11-5" class="internal"><span class="codenumber">11.5.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-direct-products.html" class="internal"><span class="codenumber">11.6</span> <span class="title">Direct Products</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-direct-products.html#subsection-154" class="internal"><span class="codenumber">11.6.1</span> <span class="title">Definition</span></a></div></li>
+<li><div class="toc-item"><a href="s-direct-products.html#subsection-155" class="internal"><span class="codenumber">11.6.2</span> <span class="title">Direct Products of Groups</span></a></div></li>
+<li><div class="toc-item"><a href="s-direct-products.html#exercises-11-6" class="internal"><span class="codenumber">11.6.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-isomorphisms.html" class="internal"><span class="codenumber">11.7</span> <span class="title">Isomorphisms</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-isomorphisms.html#ss-group-isomorphisms" class="internal"><span class="codenumber">11.7.1</span> <span class="title">Group Isomorphisms</span></a></div></li>
+<li><div class="toc-item"><a href="s-isomorphisms.html#subsection-157" class="internal"><span class="codenumber">11.7.2</span> <span class="title">The order sequence of a finite group</span></a></div></li>
+<li><div class="toc-item"><a href="s-isomorphisms.html#ss-when-are-groups-not-isomorphic" class="internal"><span class="codenumber">11.7.3</span> <span class="title">Conditions for groups to not be isomorphic</span></a></div></li>
+<li><div class="toc-item"><a href="s-isomorphisms.html#sss-exercises-11-7" class="internal"><span class="codenumber">11.7.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_12.html" class="internal"><span class="codenumber">12</span> <span class="title">More Matrix Algebra</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-systems-linear-equations.html" class="internal"><span class="codenumber">12.1</span> <span class="title">Systems of Linear Equations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-systems-linear-equations.html#subsection-159" class="internal"><span class="codenumber">12.1.1</span> <span class="title">Solutions</span></a></div></li>
+<li><div class="toc-item"><a href="s-systems-linear-equations.html#subsection-160" class="internal"><span class="codenumber">12.1.2</span> <span class="title">Elementary Operations on Equations</span></a></div></li>
+<li><div class="toc-item"><a href="s-systems-linear-equations.html#subsection-161" class="internal"><span class="codenumber">12.1.3</span> <span class="title">Transition to Matrices</span></a></div></li>
+<li><div class="toc-item"><a href="s-systems-linear-equations.html#subsection-162" class="internal"><span class="codenumber">12.1.4</span> <span class="title">Elementary Row Operations</span></a></div></li>
+<li><div class="toc-item"><a href="s-systems-linear-equations.html#subsection-163" class="internal"><span class="codenumber">12.1.5</span> <span class="title">The Gauss-Jordan Algorithm</span></a></div></li>
+<li><div class="toc-item"><a href="s-systems-linear-equations.html#sage-note-linear-equations" class="internal"><span class="codenumber">12.1.6</span> <span class="title">SageMath Note - Matrix Reduction</span></a></div></li>
+<li><div class="toc-item"><a href="s-systems-linear-equations.html#exercises-12-1" class="internal"><span class="codenumber">12.1.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-matrix-inversion.html" class="internal"><span class="codenumber">12.2</span> <span class="title">Matrix Inversion</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-matrix-inversion.html#subsection-165" class="internal"><span class="codenumber">12.2.1</span> <span class="title">Developing the Process</span></a></div></li>
+<li><div class="toc-item"><a href="s-matrix-inversion.html#subsection-166" class="internal"><span class="codenumber">12.2.2</span> <span class="title">The General Method for Computing Inverses</span></a></div></li>
+<li><div class="toc-item"><a href="s-matrix-inversion.html#exercises-12-2" class="internal"><span class="codenumber">12.2.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-intro-to-vector-spaces.html" class="internal"><span class="codenumber">12.3</span> <span class="title">An Introduction to Vector Spaces</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-intro-to-vector-spaces.html#subsection-167" class="internal"><span class="codenumber">12.3.1</span> <span class="title">Motivation for the study of vector spaces</span></a></div></li>
+<li><div class="toc-item"><a href="s-intro-to-vector-spaces.html#subsection-168" class="internal"><span class="codenumber">12.3.2</span> <span class="title">Vector Spaces</span></a></div></li>
+<li><div class="toc-item"><a href="s-intro-to-vector-spaces.html#exercises-12-3" class="internal"><span class="codenumber">12.3.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-the-diagonalization-process.html" class="internal"><span class="codenumber">12.4</span> <span class="title">The Diagonalization Process</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-the-diagonalization-process.html#subsection-169" class="internal"><span class="codenumber">12.4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div></li>
+<li><div class="toc-item"><a href="s-the-diagonalization-process.html#subsection-170" class="internal"><span class="codenumber">12.4.2</span> <span class="title">Diagonalization</span></a></div></li>
+<li><div class="toc-item"><a href="s-the-diagonalization-process.html#sage-note-diag" class="internal"><span class="codenumber">12.4.3</span> <span class="title">SageMath Note - Diagonalization</span></a></div></li>
+<li><div class="toc-item"><a href="s-the-diagonalization-process.html#exercises-12-4" class="internal"><span class="codenumber">12.4.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-some-applications.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Some Applications</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-some-applications.html#subsection-172" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Diagonalization</span></a></div></li>
+<li><div class="toc-item"><a href="s-some-applications.html#subsection-173" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Path Counting</span></a></div></li>
+<li><div class="toc-item"><a href="s-some-applications.html#subsection-174" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Matrix Calculus</span></a></div></li>
+<li><div class="toc-item"><a href="s-some-applications.html#subsection-175" class="internal"><span class="codenumber">12.5.4</span> <span class="title">SageMath Note - Matrix Exponential</span></a></div></li>
+<li><div class="toc-item"><a href="s-some-applications.html#exercises-12-5" class="internal"><span class="codenumber">12.5.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-systems-linear-equations-mod-2.html" class="internal"><span class="codenumber">12.6</span> <span class="title">Linear Equations over the Integers Mod 2</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-systems-linear-equations-mod-2.html#subsection-176" class="internal"><span class="codenumber">12.6.1</span> <span class="title">Row reduction mod 2</span></a></div></li>
+<li><div class="toc-item"><a href="s-systems-linear-equations-mod-2.html#exercises-12-6" class="internal"><span class="codenumber">12.6.2</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_13.html" class="internal"><span class="codenumber">13</span> <span class="title">Boolean Algebra</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-posets-revisited.html" class="internal"><span class="codenumber">13.1</span> <span class="title">Posets Revisited</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-posets-revisited.html#exercises-13-1" class="internal"><span class="codenumber">13.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-lattices.html" class="internal"><span class="codenumber">13.2</span> <span class="title">Lattices</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-lattices.html#exercises-13-2" class="internal"><span class="codenumber">13.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-boolean-algebras.html" class="internal"><span class="codenumber">13.3</span> <span class="title">Boolean Algebras</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-boolean-algebras.html#exercises-13-3" class="internal"><span class="codenumber">13.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-atoms-of-a-boolean-algebra.html" class="internal"><span class="codenumber">13.4</span> <span class="title">Atoms of a Boolean Algebra</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-atoms-of-a-boolean-algebra.html#exercises-13-4" class="internal"><span class="codenumber">13.4</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-finite-boolean-algebras-ntuples.html" class="internal"><span class="codenumber">13.5</span> <span class="title">Finite Boolean Algebras as <span class="process-math">\(n\)</span>-tuples of 0’s and 1’s</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-finite-boolean-algebras-ntuples.html#exercises-13-5" class="internal"><span class="codenumber">13.5</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-boolean-expressions.html" class="internal"><span class="codenumber">13.6</span> <span class="title">Boolean Expressions</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-boolean-expressions.html#exercises-13-6" class="internal"><span class="codenumber">13.6</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-logic-design.html" class="internal"><span class="codenumber">13.7</span> <span class="title">A Brief Introduction to Switching Theory and Logic Design</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-logic-design.html#exercises-69" class="internal"><span class="codenumber">13.7</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_14.html" class="internal"><span class="codenumber">14</span> <span class="title">Monoids and Automata</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-Monoids.html" class="internal"><span class="codenumber">14.1</span> <span class="title">Monoids</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-Monoids.html#exercises-14-1" class="internal"><span class="codenumber">14.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-free-monoids-and-languages.html" class="internal"><span class="codenumber">14.2</span> <span class="title">Free Monoids and Languages</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-free-monoids-and-languages.html#exercises-14-2" class="internal"><span class="codenumber">14.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-automata-finite-state-machines.html" class="internal"><span class="codenumber">14.3</span> <span class="title">Automata, Finite-State Machines</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-automata-finite-state-machines.html#exercises-14-3" class="internal"><span class="codenumber">14.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-monoid-of-fsm.html" class="internal"><span class="codenumber">14.4</span> <span class="title">The Monoid of a Finite-State Machine</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-monoid-of-fsm.html#exercises-14-4" class="internal"><span class="codenumber">14.4</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-machine-of-monoid.html" class="internal"><span class="codenumber">14.5</span> <span class="title">The Machine of a Monoid</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-machine-of-monoid.html#exercises-14-5" class="internal"><span class="codenumber">14.5</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_15.html" class="internal"><span class="codenumber">15</span> <span class="title">Group Theory and Applications</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-cyclic-groups.html" class="internal"><span class="codenumber">15.1</span> <span class="title">Cyclic Groups</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-cyclic-groups.html#exercises-15-1" class="internal"><span class="codenumber">15.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-cosets-and-factor-groups.html" class="internal"><span class="codenumber">15.2</span> <span class="title">Cosets and Factor Groups</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-cosets-and-factor-groups.html#exercises-15-2" class="internal"><span class="codenumber">15.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-permutation-groups.html" class="internal"><span class="codenumber">15.3</span> <span class="title">Permutation Groups</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-permutation-groups.html#ss-symmetric-groups" class="internal"><span class="codenumber">15.3.1</span> <span class="title">The Symmetric Groups</span></a></div></li>
+<li><div class="toc-item"><a href="s-permutation-groups.html#ss-cycle-notation" class="internal"><span class="codenumber">15.3.2</span> <span class="title">Cycle Notation</span></a></div></li>
+<li><div class="toc-item"><a href="s-permutation-groups.html#ss-alternating-group" class="internal"><span class="codenumber">15.3.3</span> <span class="title">Parity of Permutations and the Alternating Group</span></a></div></li>
+<li><div class="toc-item"><a href="s-permutation-groups.html#ss-dihedral-group" class="internal"><span class="codenumber">15.3.4</span> <span class="title">Dihedral Groups</span></a></div></li>
+<li><div class="toc-item"><a href="s-permutation-groups.html#exercises-15-3" class="internal"><span class="codenumber">15.3.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-normal-subgroups-homomorphisms.html" class="internal"><span class="codenumber">15.4</span> <span class="title">Normal Subgroups and Group Homomorphisms</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-normal-subgroups-homomorphisms.html#ss-normal-subgroups" class="internal"><span class="codenumber">15.4.1</span> <span class="title">Normal Subgroups</span></a></div></li>
+<li><div class="toc-item"><a href="s-normal-subgroups-homomorphisms.html#ss-homomorphism" class="internal"><span class="codenumber">15.4.2</span> <span class="title">Homomorphisms</span></a></div></li>
+<li><div class="toc-item"><a href="s-normal-subgroups-homomorphisms.html#exercises-15-4" class="internal"><span class="codenumber">15.4.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-coding-theory-groups.html" class="internal"><span class="codenumber">15.5</span> <span class="title">Coding Theory, Linear Codes</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-coding-theory-groups.html#ss-coding-geometry" class="internal"><span class="codenumber">15.5.1</span> <span class="title">Introduction</span></a></div></li>
+<li><div class="toc-item"><a href="s-coding-theory-groups.html#ss-error-detection" class="internal"><span class="codenumber">15.5.2</span> <span class="title">Error Detection</span></a></div></li>
+<li><div class="toc-item"><a href="s-coding-theory-groups.html#ss-error-correction" class="internal"><span class="codenumber">15.5.3</span> <span class="title">Error Correction</span></a></div></li>
+<li><div class="toc-item"><a href="s-coding-theory-groups.html#exercises-15-5" class="internal"><span class="codenumber">15.5.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_16.html" class="internal"><span class="codenumber">16</span> <span class="title">An Introduction to Rings and Fields</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-rings-basic.html" class="internal"><span class="codenumber">16.1</span> <span class="title">Rings, Basic Definitions and Concepts</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-rings-basic.html#ss-ring-definitions" class="internal"><span class="codenumber">16.1.1</span> <span class="title">Basic Definitions</span></a></div></li>
+<li><div class="toc-item"><a href="s-rings-basic.html#ss-ring-direct-products" class="internal"><span class="codenumber">16.1.2</span> <span class="title">Direct Products of Rings</span></a></div></li>
+<li><div class="toc-item"><a href="s-rings-basic.html#ss-ring-inverses" class="internal"><span class="codenumber">16.1.3</span> <span class="title">Multiplicative Inverses in Rings</span></a></div></li>
+<li><div class="toc-item"><a href="s-rings-basic.html#ss-universal-ring" class="internal"><span class="codenumber">16.1.4</span> <span class="title">More universal concepts, isomorphisms and subrings</span></a></div></li>
+<li><div class="toc-item"><a href="s-rings-basic.html#ss-integral-domains" class="internal"><span class="codenumber">16.1.5</span> <span class="title">Integral Domains and Zero Divisors</span></a></div></li>
+<li><div class="toc-item"><a href="s-rings-basic.html#exercises-16-1" class="internal"><span class="codenumber">16.1.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-fields.html" class="internal"><span class="codenumber">16.2</span> <span class="title">Fields</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-fields.html#exercises-16-2" class="internal"><span class="codenumber">16.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-polynomial-rings.html" class="internal"><span class="codenumber">16.3</span> <span class="title">Polynomial Rings</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-polynomial-rings.html#exercises-16-3" class="internal"><span class="codenumber">16.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-field-extensions.html" class="internal"><span class="codenumber">16.4</span> <span class="title">Field Extensions</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-field-extensions.html#exercises-16-4" class="internal"><span class="codenumber">16.4</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-power-series.html" class="internal"><span class="codenumber">16.5</span> <span class="title">Power Series</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-power-series.html#subsection-191" class="internal"><span class="codenumber">16.5.1</span> <span class="title">Definition</span></a></div></li>
+<li><div class="toc-item"><a href="s-power-series.html#subsection-192" class="internal"><span class="codenumber">16.5.2</span> <span class="title">Properties, Units</span></a></div></li>
+<li><div class="toc-item"><a href="s-power-series.html#exercises-16-5" class="internal"><span class="codenumber">16.5.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="backmatter.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="app-algorithms.html" class="internal"><span class="codenumber">A</span> <span class="title">Algorithms</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="app-alg1.html" class="internal"><span class="codenumber">A.1</span> <span class="title">An Introduction to Algorithms</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="app-alg1.html#ss-assignments" class="internal"><span class="codenumber">A.1.1</span> <span class="title">Assignments</span></a></div></li>
+<li><div class="toc-item"><a href="app-alg1.html#ss-conditionalstep" class="internal"><span class="codenumber">A.1.2</span> <span class="title">Conditional steps</span></a></div></li>
+<li><div class="toc-item"><a href="app-alg1.html#ss-loops" class="internal"><span class="codenumber">A.1.3</span> <span class="title">Loops</span></a></div></li>
+<li><div class="toc-item"><a href="app-alg1.html#exercises-app-alg-1" class="internal"><span class="codenumber">A.1.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="app-alg2.html" class="internal"><span class="codenumber">A.2</span> <span class="title">The Invariant Relation Theorem</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="app-alg2.html#subsection-196" class="internal"><span class="codenumber">A.2.1</span> <span class="title">Two Exponentiation Algorithms</span></a></div></li>
+<li><div class="toc-item"><a href="app-alg2.html#subsection-197" class="internal"><span class="codenumber">A.2.2</span> <span class="title">Proving the correctness of the fast algorithm</span></a></div></li>
+<li><div class="toc-item"><a href="app-alg2.html#exercises-app-alg1" class="internal"><span class="codenumber">A.2.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="app-pythonsage.html" class="internal"><span class="codenumber">B</span> <span class="title">Python and SageMath</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="app-python-iterators.html" class="internal"><span class="codenumber">B.1</span> <span class="title">Python Iterators</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="app-python-iterators.html#subsection-198" class="internal"><span class="codenumber">B.1.1</span> <span class="title">Counting Subsets</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="app-pythonsage-dictionaries.html" class="internal"><span class="codenumber">B.2</span> <span class="title">Dictionaries</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="app-pythonsage-dictionaries.html#subsection-199" class="internal"><span class="codenumber">B.2.1</span> <span class="title">Colors of Fruits</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="app-determinants.html" class="internal"><span class="codenumber">C</span> <span class="title">Determinants</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-89.html" class="internal"><span class="codenumber">C.1</span> <span class="title">Definition</span></a></div></li>
+<li><div class="toc-item"><a href="section-90.html" class="internal"><span class="codenumber">C.2</span> <span class="title">Computation</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="solutions-backmatter.html" class="internal"><span class="codenumber">D</span> <span class="title">Hints and Solutions to Selected Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="appendix-4.html" class="internal"><span class="codenumber">E</span> <span class="title">Notation</span></a></div></li>
+<li>
+<div class="toc-item"><a href="appendix-5.html" class="internal"><span class="codenumber">F</span> <span class="title">Glossary</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="ads-glossary.html" class="internal"><span class="codenumber">F</span> <span class="title">An Informal Glossary of Terms</span></a></div></li></ul>
+</li>
+<li><div class="toc-item"><a href="references-2.html" class="internal"><span class="title">References</span></a></div></li>
+<li><div class="toc-item"><a href="index-1.html" class="internal"><span class="title">Index</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="s-graph-optimization"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">9.5</span> <span class="title">Graph Optimization</span>
+</h2>
+<section class="introduction" id="introduction-33"><div class="para" id="p-3401">The common thread that connects all of the problems in this section is the desire to optimize (maximize or minimize) a quantity that is associated with a graph. We will concentrate most of our attention on two of these problems, the Traveling Salesman Problem and the Maximum Flow Problem. At the close of this section, we will discuss some other common optimization problems.</div></section><section class="subsection" id="ss-weighted-graph"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">9.5.1</span> <span class="title">Weighted Graphs</span>
+</h3>
+<article class="definition definition-like" id="def-weighted-graph"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">9.5.1</span><span class="period">.</span><span class="space"> </span><span class="title">Weighted Graph.</span>
+</h4>
+<div class="para" id="p-3402">A weighted graph, <span class="process-math">\((V, E, w)\text{,}\)</span> is a graph <span class="process-math">\((V, E)\)</span> together with a weight function <span class="process-math">\(w: E \to \mathbb{R}\text{.}\)</span> If <span class="process-math">\(e \in  E\text{,}\)</span> <span class="process-math">\(w(e)\)</span> is the weight on edge <span class="process-math">\(e\text{.}\)</span>
+</div></article><div class="para" id="p-3403">As you will see in our examples, <span class="process-math">\(w(e)\)</span> is often a cost associated with the edge <span class="process-math">\(e\text{;}\)</span> therefore, most weights will be positive.</div>
+<article class="example example-like" id="ex-distance-graph"><a href="" data-knowl="" class="id-ref example-knowl original has-tabular" data-refid="hk-ex-distance-graph"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">9.5.2</span><span class="period">.</span><span class="space"> </span><span class="title">A Distance Graph.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-distance-graph"><article class="example example-like"><div class="para" id="p-3404">Let <span class="process-math">\(V\)</span> be the set of six capital cities in New England: Boston, Augusta, Hartford, Providence, Concord, and Montpelier. Let <span class="process-math">\(E\)</span> be <span class="process-math">\(\{\{a, b\} \in  V \times V \mid a\neq  b\}\text{;}\)</span> that is, <span class="process-math">\((V,E)\)</span> is a complete unordered graph. An example of a weight function on this graph is <span class="process-math">\(w\left(c_1, c _2\right) = \textrm{the distance, in miles, from } c_1 \textrm{ to } c_2\text{.}\)</span>
+</div> <div class="para" id="p-3405">Many road maps define distance functions as in the following table.</div> <figure class="table table-like" id="table-ne-capitals"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">9.5.3<span class="period">.</span></span><span class="space"> </span>Distances between capital cities in New England</figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="c m b0 r0 l0 t3 lines">--</td>
+<td class="c m b0 r0 l0 t3 lines">Augusta</td>
+<td class="c m b0 r0 l0 t3 lines">Boston</td>
+<td class="c m b0 r0 l0 t3 lines">Concord</td>
+<td class="c m b0 r0 l0 t3 lines">Hartford</td>
+<td class="c m b0 r0 l0 t3 lines">Montpelier</td>
+<td class="c m b0 r0 l0 t3 lines">Providence</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">Augusta, ME</td>
+<td class="c m b0 r0 l0 t0 lines">--</td>
+<td class="c m b0 r0 l0 t0 lines">165</td>
+<td class="c m b0 r0 l0 t0 lines">148</td>
+<td class="c m b0 r0 l0 t0 lines">266</td>
+<td class="c m b0 r0 l0 t0 lines">190</td>
+<td class="c m b0 r0 l0 t0 lines">208</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">Boston, MA</td>
+<td class="c m b0 r0 l0 t0 lines">165</td>
+<td class="c m b0 r0 l0 t0 lines">--</td>
+<td class="c m b0 r0 l0 t0 lines">75</td>
+<td class="c m b0 r0 l0 t0 lines">103</td>
+<td class="c m b0 r0 l0 t0 lines">192</td>
+<td class="c m b0 r0 l0 t0 lines">43</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">Concord, NH</td>
+<td class="c m b0 r0 l0 t0 lines">148</td>
+<td class="c m b0 r0 l0 t0 lines">75</td>
+<td class="c m b0 r0 l0 t0 lines">--</td>
+<td class="c m b0 r0 l0 t0 lines">142</td>
+<td class="c m b0 r0 l0 t0 lines">117</td>
+<td class="c m b0 r0 l0 t0 lines">109</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">Hartford, CT</td>
+<td class="c m b0 r0 l0 t0 lines">266</td>
+<td class="c m b0 r0 l0 t0 lines">103</td>
+<td class="c m b0 r0 l0 t0 lines">142</td>
+<td class="c m b0 r0 l0 t0 lines">--</td>
+<td class="c m b0 r0 l0 t0 lines">204</td>
+<td class="c m b0 r0 l0 t0 lines">70</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">Montpelier, VT</td>
+<td class="c m b0 r0 l0 t0 lines">190</td>
+<td class="c m b0 r0 l0 t0 lines">192</td>
+<td class="c m b0 r0 l0 t0 lines">117</td>
+<td class="c m b0 r0 l0 t0 lines">204</td>
+<td class="c m b0 r0 l0 t0 lines">--</td>
+<td class="c m b0 r0 l0 t0 lines">223</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">Providence, RI</td>
+<td class="c m b0 r0 l0 t0 lines">208</td>
+<td class="c m b0 r0 l0 t0 lines">43</td>
+<td class="c m b0 r0 l0 t0 lines">109</td>
+<td class="c m b0 r0 l0 t0 lines">70</td>
+<td class="c m b0 r0 l0 t0 lines">223</td>
+<td class="c m b0 r0 l0 t0 lines">--</td>
+</tr>
+</table></div></figure></article></div></section><section class="subsection" id="ss-traveling-salesman-problem"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">9.5.2</span> <span class="title">The Traveling Salesman Problem</span>
+</h3>
+<div class="para" id="p-3406">The Traveling Salesman Problem is, given a weighted graph, to find a circuit <span class="process-math">\(\left(e_1, e_2,\ldots ,e_n\right)\)</span> that visits every vertex at least once and minimizes the sum of the weights, <span class="process-math">\(\sum_{i=1}^n w\left(e_i\right)\text{.}\)</span>  Any such circuit is called an  optimal path.</div>
+<div class="para" id="p-3407">Some statements of the Traveling Salesman Problem require that the circuit be Hamiltonian. In many applications, the graph in question will be complete and this restriction presents no problem.  If the weight on each edge is constant, for example, <span class="process-math">\(w(e) = 1\text{,}\)</span> then an optimal path would be any Hamiltonian circuit.</div>
+<article class="example example-like" id="ex-boston-salesman"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-boston-salesman"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">9.5.4</span><span class="period">.</span><span class="space"> </span><span class="title">The problem of a Boston salesman.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-boston-salesman"><article class="example example-like"><div class="para" id="p-3408">The Traveling Salesman Problem gets its name from the situation of a salesman who wants to minimize the number of miles that he travels in visiting his customers. For example, if a salesman from Boston must visit the other capital cities of New England, then the problem is to find a circuit in the weighted graph of <a href="" class="xref" data-knowl="./knowl/ex-distance-graph.html" title="Example 9.5.2: A Distance Graph">Example 9.5.2</a>. Note that distance and cost are clearly related in this case. In addition, tolls and traffic congestion might also be taken into account.</div></article></div>
+<div class="para" id="p-3409">The search for an efficient algorithm that solves the Traveling Salesman has occupied researchers for years. If the graph in question is complete, there are <span class="process-math">\((n -1)!\)</span> different circuits. As <span class="process-math">\(n\)</span> gets large, it is impossible to check every possible circuit. The most efficient algorithms for solving the Traveling Salesman Problem take an amount of time that is proportional to <span class="process-math">\(n 2^n\text{.}\)</span> Since this quantity grows so quickly, we can’t expect to have the time to solve the Traveling Salesman Problem for large values of <span class="process-math">\(n\text{.}\)</span> Most of the useful algorithms that have been developed have to be heuristic; that is, they find a circuit that should be close to the optimal one. One such algorithm is the “closest neighbor” algorithm, one of the earliest attempts at solving the Traveling Salesman Problem. The general idea behind this algorithm is, starting at any vertex, to visit the closest neighbor to the starting point. At each vertex, the next vertex that is visited is the closest one that has not been reached. This shortsighted approach typifies heuristic algorithms called  greedy algorithms, which attempt to solve a minimization (maximization) problem by minimizing (maximizing) the quantity associated with only the first step.</div>
+<article class="algorithm theorem-like" id="alg-closest-neighbor"><h4 class="heading">
+<span class="type">Algorithm</span><span class="space"> </span><span class="codenumber">9.5.5</span><span class="period">.</span><span class="space"> </span><span class="title">The Closest Neighbor Algorithm.</span>
+</h4>
+<div class="para" id="p-3410">Let <span class="process-math">\(G = (V, E, w)\)</span> be a complete weighted graph with <span class="process-math">\(|V| = n\text{.}\)</span> The closest neighbor circuit through G starting at <span class="process-math">\(v_1\)</span> is <span class="process-math">\(\left(v_1, v_2,\ldots ,v_n\right)\text{,}\)</span> defined by the steps:</div> <div class="para logical" id="p-3411"><ol class="decimal">
+<li id="li-1622"><div class="para" id="p-3412"><span class="process-math">\(V_1= V-\left\{v_1\right\}\text{.}\)</span></div></li>
+<li id="li-1623">
+<div class="para" id="p-3413">For <span class="process-math">\(k= 2\)</span> to <span class="process-math">\(n - 1\)</span>
+</div>
+<div class="para logical" id="p-3414"><ol class="lower-alpha">
+<li id="li-1624">
+<div class="para" id="p-3415">
+<span class="process-math">\(v_k=\)</span> the closest vertex in <span class="process-math">\(V_{k-1}\)</span> to <span class="process-math">\(v_{k-1}\)</span>
+</div>
+<div class="para" id="p-3416">## <span class="process-math">\(w\left(v_{k-1} , v _k\right) = \min  \left(w\left(v_{k-1} ,v\right) \mid v \in  V_{k-1}\right)\)</span>
+</div>
+<div class="para" id="p-3417">## In case of a tie for closest, <span class="process-math">\(v_k\)</span> may be chosen arbitrarily.</div>
+</li>
+<li id="li-1625"><div class="para" id="p-3418"><span class="process-math">\(\displaystyle V_k= V_{k-1} - \left\{v_k \right\}\)</span></div></li>
+</ol></div>
+</li>
+<li id="li-1626"><div class="para" id="p-3419">
+<span class="process-math">\(v_n=\)</span> the only element of  <span class="process-math">\(V_n\)</span>
+</div></li>
+</ol></div> <div class="para" id="p-3420">The cost of the closest neighbor circuit is <span class="process-math">\(\sum_{k=1}^{n-1} w\left(v_k,v_{k+1}\right)+w\left(v_n,v_1\right)\)</span>
+</div></article><article class="example example-like" id="ex-tsp-small-example"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-tsp-small-example"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">9.5.6</span><span class="period">.</span><span class="space"> </span><span class="title">A small example.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-tsp-small-example"><article class="example example-like"><div class="para" id="p-3421">The closest neighbor circuit starting at 1 in <a href="" class="xref" data-knowl="./knowl/fig-small-tsp-example.html" title="Figure 9.5.7">Figure 9.5.7</a> is <span class="process-math">\((1,3,2,4,1)\text{,}\)</span> with a cost of 29. The optimal path is <span class="process-math">\((1,2,3,4,1)\text{,}\)</span> with a cost of 27.</div> <figure class="figure figure-like" id="fig-small-tsp-example"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig-small-tsp-example.png" class="contained" alt="A small weighted graph"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.5.7<span class="period">.</span></span><span class="space"> </span>A small example</figcaption></figure></article></div>
+<div class="para" id="p-3422">Although the closest neighbor circuit is often not optimal, we may be satisfied if it is close to optimal. If <span class="process-math">\(C_{opt}\)</span> and <span class="process-math">\(C_{cn}\)</span> are the costs of optimal and closest neighbor circuits in a graph, then it is always the case that <span class="process-math">\(C_{opt}\leq C_{cn}\)</span> or <span class="process-math">\(\frac{C_{cn}}{C_{opt}}\geq
+1\text{.}\)</span> We can assess how good the closest neighbor algorithm is by determining how small the quantity <span class="process-math">\(\frac{C_{cn}}{C_{opt}}\)</span> gets. If it is always near 1, then the algorithm is good. However, if there are graphs for which it is large, then the algorithm may be discarded. Note that in <a href="" class="xref" data-knowl="./knowl/ex-tsp-small-example.html" title="Example 9.5.6: A small example">Example 9.5.6</a>, <span class="process-math">\(\frac{C_{cn}}{C_{opt}} = \frac{29}{27}\approx 1.074\text{.}\)</span> A 7 percent increase in cost may or may not be considered significant, depending on the situation.</div>
+<article class="example example-like" id="ex-one-way-street"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-one-way-street"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">9.5.8</span><span class="period">.</span><span class="space"> </span><span class="title">The One-way Street.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-one-way-street"><article class="example example-like"><div class="para" id="p-3423">A salesman must make stops at vertices A, B, and C, which are all on the same one-way street. The graph in <a href="" class="xref" data-knowl="./knowl/fig-directed-tsp-example.html" title="Figure 9.5.9">Figure 9.5.9</a> is weighted by the function <span class="process-math">\(w(i, j)\)</span> equal to the time it takes to drive from vertex <span class="process-math">\(i\)</span> to vertex <span class="process-math">\(j\text{.}\)</span>
+</div> <figure class="figure figure-like" id="fig-directed-tsp-example"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig-directed-tsp-example.png" class="contained" alt="A small directed weighted graph"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.5.9<span class="period">.</span></span><span class="space"> </span>Traveling a one-way street</figcaption></figure> <div class="para" id="p-3424">Note that if <span class="process-math">\(j\)</span> is down the one-way street from <span class="process-math">\(i\text{,}\)</span> then <span class="process-math">\(w(i, j) &lt; w(j, i)\text{.}\)</span> The values of <span class="process-math">\(C_{opt}\text{,}\)</span> and <span class="process-math">\(C_{cn}\)</span> are 20 and 32, respectively. Verify that <span class="process-math">\(C_{cn}\)</span> is 32 by using the closest neighbor algorithm. The value of <span class="process-math">\(\frac{C_{cn}}{C_{opt}} = 1.6\)</span> is significant in this case since our salesman would spend 60 percent more time on the road if he used the closest neighbor algorithm.</div></article></div>
+<div class="para" id="p-3425">A more general result relating to the closest neighbor algorithm presumes that the graph in question is complete and that the weight function satisfies the conditions</div>
+<div class="para logical" id="p-3426"><ul class="disc">
+<li id="li-1627"><div class="para" id="p-3427">
+<span class="process-math">\(w(x, y) = w(y, x)\)</span> for all  <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\)</span> in the vertex set, and</div></li>
+<li id="li-1628"><div class="para" id="p-3428">
+<span class="process-math">\(w(x, y) + w(y, z) \geq  w(x, z)\)</span> for all   <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> <span class="process-math">\(z\)</span> in the vertex set.</div></li>
+</ul></div>
+<div class="para" id="p-3429">The first condition is called the  symmetry condition and the second is the  triangle inequality.</div>
+<article class="theorem theorem-like" id="th-cn-theorem-9-5"><h4 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">9.5.10</span><span class="period">.</span>
+</h4>
+<div class="para logical" id="p-3430">
+<div class="para">If <span class="process-math">\((V, E, w)\)</span> is a complete weighted graph that satisfies the symmetry and triangle inequality conditions, then</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\frac{C_{cn}}{C_{opt}}\leq \frac{\lceil \log_2 (2n)\rceil}{2}
+\end{equation*}
+</div>
+</div></article><article class="observation remark-like" id="observation-4"><h4 class="heading">
+<span class="type">Observation</span><span class="space"> </span><span class="codenumber">9.5.11</span><span class="period">.</span>
+</h4>
+<div class="para" id="p-3431">If <span class="process-math">\(|V|=8\text{,}\)</span> then this theorem says that <span class="process-math">\(C_{cn}\)</span> can be no larger than twice the size of <span class="process-math">\(C_{opt}\text{;}\)</span> however, it doesn’t say that the closest neighbor circuit will necessarily be that far from an optimal circuit. The quantity <span class="process-math">\(\frac{\left\lceil \log _2 (2n)\right\rceil
+}{2}\)</span> is called an upper bound for the ratio <span class="process-math">\(\frac{C_{cn}}{C_{opt}}\text{.}\)</span> It tells us only that things can’t be any worse than the upper bound. Certainly, there are many graphs with eight vertices such that the optimal and closest neighbor circuits are the same. What is left unstated in this theorem is whether there are graphs for which the quantities are equal. If there are such graphs, we say that the upper bound is  sharp.</div> <div class="para" id="p-3432">The value of <span class="process-math">\(\frac{C_{cn}}{C_{opt}}\)</span> in Example <a href="" class="xref" data-knowl="./knowl/ex-one-way-street.html" title="Example 9.5.8: The One-way Street">Example 9.5.8</a> is 1.6, which is greater than <span class="process-math">\(\frac{\lceil \log _2 (2\cdot 4)\rceil}{2} = 1.5\text{;}\)</span> however, the weight function in this example does not satisfy the conditions of the theorem.</div></article><article class="example example-like" id="ex-unit-square"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-unit-square"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">9.5.12</span><span class="period">.</span><span class="space"> </span><span class="title">The Unit Square Problem.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-unit-square"><article class="example example-like"><div class="para logical" id="p-3433">
+<div class="para">Suppose a robot is programmed to weld joints on square metal plates. Each plate must be welded at prescribed points on the square. To minimize the time it takes to complete the job, the total distance that a robot’s arm moves should be minimized. Let <span class="process-math">\(d(P, Q)\)</span> be the distance between <span class="process-math">\(P\)</span> and <span class="process-math">\(Q\text{.}\)</span> Assume that before each plate can be welded, the arm must be positioned at a certain point <span class="process-math">\(P_0\)</span> . Given a list of <span class="process-math">\(n\)</span> points, we want to put them in order so that</div>
+<div class="displaymath process-math">
+\begin{equation*}
+d\left(P _0,P_1\right) + d\left(P_1,P _2 \right) +\cdots +d\left(P_{n-1},P_n\right)+ d\left(P_n ,P _0 \right)
+\end{equation*}
+</div>
+<div class="para">is as small as possible.</div>
+</div></article></div>
+<div class="para" id="p-3434">The type of problem that is outlined in the example above is of such importance that it is one of the most studied version of the Traveling Salesman Problem. What follows is the usual statement of the problem. Let <span class="process-math">\([0, 1] = \{x \in \mathbb{R} \mid \text{  }0 \leq x\leq  1\}\text{,}\)</span> and let <span class="process-math">\(S = [0,1]^2\text{,}\)</span> the unit square. Given <span class="process-math">\(n\)</span> pairs of real numbers <span class="process-math">\(\left(x_1, y_1\right),\left(x_2,y_2\right), \dots , \left(x_n,y_n\right)\)</span> in <span class="process-math">\(S\)</span> that represent the <span class="process-math">\(n\)</span> vertices of a <span class="process-math">\(K_n\text{,}\)</span> find a circuit of the graph that minimizes the sum of the distances traveled in traversing the circuit.</div>
+<div class="para logical" id="p-3435">
+<div class="para">Since the problem calls for a circuit, it doesn’t matter which vertex we start at; assume that we will start at <span class="process-math">\(\left(x_1,y_1\right)\text{.}\)</span> Once the problem is solved, we can always change our starting position. A function can most efficiently describe a circuit in this problem. Every bijection <span class="process-math">\(f: \{1, . . . , n\} \to  \{1, . . . , n\}\)</span> with <span class="process-math">\(f(1) = 1\)</span> describes a circuit</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\left(x_1, y_1\right),\left(x_{f(2)},y_{f(2)}\right),\ldots ,\left(x_{f(n)},y_{f(n)}\right)
+\end{equation*}
+</div>
+<div class="para">There are <span class="process-math">\((n - 1)!\)</span> such bijections.  Since a circuit and its reversal have the same associated cost, there are <span class="process-math">\(\frac{(n - 1)!}{2}\)</span> cases to consider.  An examination of all possible cases is not feasible for large values of <span class="process-math">\(n\text{.}\)</span>
+</div>
+</div>
+<div class="para" id="p-3436">One popular heuristic algorithm is the strip algorithm:</div>
+<article class="heuristic theorem-like" id="alg-strip-algorithm"><h4 class="heading">
+<span class="type">Heuristic</span><span class="space"> </span><span class="codenumber">9.5.13</span><span class="period">.</span><span class="space"> </span><span class="title">The Strip Algorithm.</span>
+</h4>
+<div class="para" id="p-3437">Given <span class="process-math">\(n\)</span> points in the unit square:</div> <div class="para logical" id="p-3438">
+<div class="para">Phase 1:</div>
+<ol class="decimal">
+<li id="li-1629"><div class="para" id="p-3439">Divide the square into <span class="process-math">\(\left\lceil \sqrt{n/2}\right\rceil\)</span> vertical strips, as in <a href="" class="xref" data-knowl="./knowl/fig-strip-alg-tsp.html" title="Figure 9.5.14">Figure 9.5.14</a>. Let d be the width of each strip. If a point lies on a boundary between two strips, consider it part of the left-hand strip.</div></li>
+<li id="li-1630"><div class="para" id="p-3440">Starting from the left, find the first strip that contains one of the points. Locate the starting point by selecting the first point that is encountered in that strip as you travel from bottom to top. We will assume that the first point is <span class="process-math">\(\left(x_1,y_1\right)\)</span>
+</div></li>
+<li id="step-1-3"><div class="para" id="p-3441">Alternate traveling up and down the strips that contain vertices until all of the vertices have been reached.</div></li>
+<li id="li-1632"><div class="para" id="p-3442">Return to the starting point.</div></li>
+</ol>
+</div> <div class="para logical" id="p-3443">
+<div class="para">Phase 2:</div>
+<ol class="decimal">
+<li id="li-1633"><div class="para" id="p-3444">Shift all strips <span class="process-math">\(d/2\)</span> units to the right (creating a small strip on the left).</div></li>
+<li id="li-1634"><div class="para" id="p-3445">Repeat Steps 1.2 through 1.4 of Phase 1 with the new strips.</div></li>
+</ol>
+</div> <div class="para" id="p-3446">When the two phases are complete, choose the shorter of the two circuits obtained.</div></article><figure class="figure figure-like" id="fig-strip-alg-tsp"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig-strip-alg-tsp.png" class="contained" alt="The Strip Algorithm"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.5.14<span class="period">.</span></span><span class="space"> </span>The Strip Algorithm</figcaption></figure><div class="para" id="p-3447">Step <a href="" class="xref" data-knowl="./knowl/step-1-3.html" title="Item 3">Item 3</a> may need a bit more explanation. How do you travel up or down a strip? In most cases, the vertices in a strip will be vertically distributed so that the order in which they are visited is obvious. In some cases, however, the order might not be clear, as in the third strip in Phase I of <a href="" class="xref" data-knowl="./knowl/fig-strip-alg-tsp.html" title="Figure 9.5.14">Figure 9.5.14</a>. Within a strip, the order in which you visit the points (if you are going up the strip) is determined thusly: <span class="process-math">\(\left(x_i,y_i\right)\)</span> precedes <span class="process-math">\(\left(x_j,y_j\right)\)</span> if <span class="process-math">\(y_i &lt;y_j\)</span> or if <span class="process-math">\(y_i=y_j\)</span> and <span class="process-math">\(x_i &lt; x_j\)</span> . In traveling down a strip, replace <span class="process-math">\(y_i &lt; y_j\)</span> with <span class="process-math">\(y_i &gt;y_j\text{.}\)</span>
+</div>
+<div class="para" id="p-3448">The selection of <span class="process-math">\(\left\lceil \sqrt{n/2}\right\rceil\)</span> strips was made in a 1959 paper by Beardwood, Halton, and Hammersley. It balances the problems that arise if the number of strips is too small or too large. If the square is divided into too few strips, some strips may be packed with vertices so that visiting them would require excessive horizontal motion. If too many strips are used, excessive vertical motion tends to be the result. An update on what is known about this algorithm is contained in <a href="" class="xref" data-knowl="./knowl/biblio-sopowit-1983.html" title="Bibliographic Entry 40: The Traveling Salesman Problem and Minimum Matching in the Unit Square">[40]</a>.</div>
+<div class="para" id="p-3449">Since the construction of a circuit in the square consists of sorting the given points, it should come as no surprise that the strip algorithm requires a time that is roughly a multiple of <span class="process-math">\(n \log  n\)</span> time units when <span class="process-math">\(n\)</span> points are to be visited.</div>
+<div class="para" id="p-3450">The worst case that has been encountered with this algorithm is one in which the circuit obtained has a total distance of approximately <span class="process-math">\(\sqrt{2n}\)</span> (see Sopowit et al.).</div></section><section class="subsection" id="ss-networks-and-flows"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">9.5.3</span> <span class="title">Networks and the Maximum Flow Problem</span>
+</h3>
+<article class="definition definition-like" id="def-network"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">9.5.15</span><span class="period">.</span><span class="space"> </span><span class="title">Network.</span>
+</h4> <div class="para" id="p-3451">A network is a simple weighted directed graph that contains two distinguished vertices called the  source and the  sink with the properties that the indegree of the source and outdegree of the sink are both zero, and source is connected to sink.  The weight function on a network is the capacity function, which has positive weights.</div></article><div class="para" id="p-3452">An example of a real situation that can be represented by a network is a city’s water system. A reservoir would be the source, while a distribution point in the city to all of the users would be the sink. The system of pumps and pipes that carries the water from source to sink makes up the remaining network. We can assume that the water that passes through a pipe in one minute is controlled by a pump and the maximum rate is determined by the size of the pipe and the strength of the pump. This maximum rate of flow through a pipe is called its capacity and is the information that the weight function of a network contains.</div>
+<article class="example example-like" id="ex-city-water"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-city-water"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">9.5.16</span><span class="period">.</span><span class="space"> </span><span class="title">A City Water System.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-city-water"><article class="example example-like"><div class="para" id="p-3453">Consider the system that is illustrated in <a href="" class="xref" data-knowl="./knowl/fig-water-system.html" title="Figure 9.5.17">Figure 9.5.17</a>. The numbers that appear next to each pipe indicate the capacity of that pipe in thousands of gallons per minute. This map can be drawn in the form of a network, as in <a href="" class="xref" data-knowl="./knowl/fig-water-network.html" title="Figure 9.5.18">Figure 9.5.18</a>.</div> <figure class="figure figure-like" id="fig-water-system"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/images/fig-water-system.png" class="contained" alt="City Water System"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.5.17<span class="period">.</span></span><span class="space"> </span>City Water System</figcaption></figure> <figure class="figure figure-like" id="fig-water-network"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/images/fig-water-network.png" class="contained" alt="City Water Network"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.5.18<span class="period">.</span></span><span class="space"> </span>Flow Diagram for a City’s Water Network</figcaption></figure> <div class="para" id="p-3454">Although the material passing through this network is water, networks can also represent the flow of other materials, such as automobiles, electricity, bits, telephone calls, or patients in a health system.</div></article></div>
+<article class="problem example-like" id="problem-maximal-flow"><a href="" data-knowl="" class="id-ref problem-knowl original" data-refid="hk-problem-maximal-flow"><h4 class="heading">
+<span class="type">Problem</span><span class="space"> </span><span class="codenumber">9.5.19</span><span class="period">.</span><span class="space"> </span><span class="title">The Maximum Flow Problem.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-problem-maximal-flow"><article class="problem example-like"><div class="para logical" id="p-3455">
+<div class="para">The Maximum Flow Problem is derived from the objective of moving the maximum amount of water or other material from the source to the sink. To measure this amount, we define a flow as a function <span class="process-math">\(f: E \to \mathbb{R}\)</span> such that (1) the flow of material through any edge is nonnegative and no larger than its capacity: <span class="process-math">\(0 \leq  f(e) \leq  w(e)\text{,}\)</span> for all <span class="process-math">\(e\in  E\text{;}\)</span> and (2) for each vertex other than the source and sink, the total amount of material that is directed into a vertex is equal to the total amount that is directed out:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/flow-rules.html" id="mdn-21">
+\begin{align}
+\begin{array}{ccc}
+\sum_{(x,v)\in E} f(x,v)  &amp; = &amp; \sum_{(v,y)\in E} f(v,y) \\
+\textrm{Flow into } v &amp; = &amp; \textrm{ Flow out of } v \\
+\end{array}\tag{9.5.1}
+\end{align}
+</div>
+<div class="para">The summation on the left of <a href="" class="xref" data-knowl="./knowl/flow-rules.html" title="Equation 9.5.1">(9.5.1)</a> represents the sum of the flows through each edge in <span class="process-math">\(E\)</span> that has <span class="process-math">\(v\)</span> as a terminal vertex. The right-hand side indicates that you should add all of the flows through edges that initiate at <span class="process-math">\(v\text{.}\)</span>
+</div>
+</div></article></div>
+<article class="theorem theorem-like" id="theorem-flow-inout"><h4 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">9.5.20</span><span class="period">.</span><span class="space"> </span><span class="title">Flow out of Source equals Flow in Sink.</span>
+</h4>
+<div class="para" id="p-3456">If <span class="process-math">\(f\)</span> is a flow, then <span class="process-math">\(\quad \quad\)</span><span class="process-math">\(\sum_{(\text{source},v)\in E} f(\text{source},v)\text{  }=\sum_{(v,\text{sink})\in E} f(v,\text{sink})\)</span>
+</div></article><article class="hiddenproof" id="proof-22"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-22"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-22"><article class="hiddenproof"><div class="para logical" id="p-3457">
+<div class="para">Subtract the right-hand side of <a href="" class="xref" data-knowl="./knowl/flow-rules.html" title="Equation 9.5.1">(9.5.1)</a> from the left-hand side. The result is:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/flow-rules.html">
+\begin{equation*}
+\text{Flow into } v - \text{ Flow out of } v = 0
+\end{equation*}
+</div>
+<div class="para">Now sum up these differences for each vertex in <span class="process-math">\(V' = V - \{\text{source}, \text{sink}\}\text{.}\)</span> The result is</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/flow-rules.html" id="mdn-22">
+\begin{gather}
+\sum_{v\in V'}  \left(\sum_{(x,v)\in E} f(x,v)-\sum_{(v,y)\in E} f(v,y)\right)= 0\tag{9.5.2}
+\end{gather}
+</div>
+</div> <div class="para logical" id="p-3458">
+<div class="para">Now observe that if an edge connects two vertices in <span class="process-math">\(V'\text{,}\)</span> its flow appears as both a positive and a negative term in <a href="" class="xref" data-knowl="./knowl/proof-step-9-5.html" title="Equation 9.5.2">(9.5.2)</a>. This means that the only positive terms that are not cancelled out are the flows into the sink. In addition, the only negative terms that remain are the flows out of the source. Therefore,</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/proof-step-9-5.html">
+\begin{equation*}
+\sum_{(v,\text{sink})\in E} f(v,\text{sink})-\sum_{(\text{source},v)\in E} f(\text{source},v) =0
+\end{equation*}
+</div>
+</div></article></div>
+<article class="definition definition-like" id="def-value-of-flow"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">9.5.21</span><span class="period">.</span><span class="space"> </span><span class="title">The Value of a Flow.</span>
+</h4> <div class="para" id="p-3459">The two values <dfn class="terminology">flow into the sink</dfn> and <dfn class="terminology">flow out of the source</dfn> were proved to be equal in <a href="" class="xref" data-knowl="./knowl/theorem-flow-inout.html" title="Theorem 9.5.20: Flow out of Source equals Flow in Sink">Theorem 9.5.20</a> and this common value is called the <dfn class="terminology">value of the flow</dfn>. It is denoted by <span class="process-math">\(V(f)\text{.}\)</span> The value of a flow represents the amount of material that passes through the network with that flow.</div></article><div class="para" id="p-3460">Since the Maximum Flow Problem consists of maximizing the amount of material that passes through a given network, it is equivalent to finding a flow with the largest possible value. Any such flow is called a <dfn class="terminology">maximal flow</dfn>.</div>
+<div class="para" id="p-3461">For the network in <a href="" class="xref" data-knowl="./knowl/fig-water-network.html" title="Figure 9.5.18">Figure 9.5.18</a>, one flow is <span class="process-math">\(f_1\text{,}\)</span> defined by <span class="process-math">\(f_1\left(e_1\right)=25\text{,}\)</span> <span class="process-math">\(f_1\left(e_2\right)=20\text{,}\)</span> <span class="process-math">\(f_1\left(e_3\right)=0\text{,}\)</span> <span class="process-math">\(f_1\left(e_4\right)= 25\text{,}\)</span> and <span class="process-math">\(f_1\left(e_5\right)=20\text{.}\)</span> The value of <span class="process-math">\(f_1\text{,}\)</span> <span class="process-math">\(V\left(f_1\right)\text{,}\)</span> is 45. Since the total flow into the sink can be no larger than 50 (<span class="process-math">\(w \left(e_4\right) + w \left(e_5\right) = 30 + 20\)</span>), we can tell that <span class="process-math">\(f_1\)</span> is not very far from the solution. Can you improve on <span class="process-math">\(f_1\)</span> at all? The sum of the capacities into the sink can’t always be obtained by a flow. The same is true for the sum of the capacities out of the source. In this case, the sum of the capacities out of the source is 60, which obviously can’t be reached in this network.</div>
+<div class="para" id="p-3462">A solution of the Maximum Flow Problem for this network is the maximal flow <span class="process-math">\(f_2\text{,}\)</span> where <span class="process-math">\(f_2\left(e_1\right)=25\text{,}\)</span> <span class="process-math">\(f_2\left(e_2\right)=25\text{,}\)</span> <span class="process-math">\(f_2\left(e_3\right)=5\text{,}\)</span> <span class="process-math">\(f_2\left(e_4\right)= 30\text{,}\)</span> and <span class="process-math">\(f_2\left(e_5\right)=20\text{,}\)</span> with <span class="process-math">\(V\left(f_2\right) = 50\text{.}\)</span> This solution is not unique. In fact, there is an infinite number of maximal flows for this problem.</div>
+<div class="para" id="p-3463">There have been several algorithms developed to solve the Maximal Flow Problem. One of these is the Ford and Fulkerson Algorithm (FFA). The FFA consists of repeatedly finding paths in a network called flow augmenting paths until no improvement can be made in the flow that has been obtained.</div>
+<article class="definition definition-like" id="def-flow-augmenting-path"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">9.5.22</span><span class="period">.</span><span class="space"> </span><span class="title">Flow Augmenting Path.</span>
+</h4> <div class="para" id="p-3464">Given a flow <span class="process-math">\(f\)</span> in a network <span class="process-math">\((V, E)\text{,}\)</span> a flow augmenting path with respect to <span class="process-math">\(f\)</span> is a simple path from the source to the sink using edges both in their forward and their reverse directions such that for each edge <span class="process-math">\(e\)</span> in the path, <span class="process-math">\(w(e) - f(e) &gt; 0\)</span> if <span class="process-math">\(e\)</span> is used in its forward direction and <span class="process-math">\(f(e) &gt; 0\)</span> if <span class="process-math">\(e\)</span> is used in the reverse direction.</div></article><article class="example example-like" id="example-water-augmenting"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-water-augmenting"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">9.5.23</span><span class="period">.</span><span class="space"> </span><span class="title">Augmenting City Water Flow.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-water-augmenting"><article class="example example-like"> <div class="para" id="p-3465">For <span class="process-math">\(f_1\)</span> in <a href="" class="xref" data-knowl="./knowl/fig-water-network.html" title="Figure 9.5.18">Figure 9.5.18</a>, a flow augmenting path would be<span class="process-math">\(\left(e_2 , e_3 , e_4 \right)\)</span> since <span class="process-math">\(w\left(e_2\right)-f_1\left(e_2\right)= 15\text{,}\)</span> <span class="process-math">\(w\left(e_3\right)-f_1\left(e_3\right)=5\text{,}\)</span> and <span class="process-math">\(w\left(e_4\right)-f_1\left(e_4\right)=5\text{.}\)</span>
+</div> <div class="para" id="p-3466">These positive differences represent unused capacities, and the smallest value represents the amount of flow that can be added to each edge in the path. Note that by adding 5 to each edge in our path, we obtain <span class="process-math">\(f_2\text{,}\)</span> which is maximal. If an edge with a positive flow is used in its reverse direction, it is contributing a movement of material that is counterproductive to the objective of maximizing flow. This is why the algorithm directs us to decrease the flow through that edge.</div></article></div>
+<article class="algorithm theorem-like" id="alg-ford-fulkerson"><h4 class="heading">
+<span class="type">Algorithm</span><span class="space"> </span><span class="codenumber">9.5.24</span><span class="period">.</span><span class="space"> </span><span class="title">The Ford and Fulkerson Algorithm.</span>
+</h4>
+<div class="para logical" id="p-3467"><ol class="decimal">
+<li id="li-1635"><div class="para" id="p-3468">Define the flow function <span class="process-math">\(f_0\)</span> by <span class="process-math">\(f_0(e)=0\)</span> for each edge <span class="process-math">\(e \in  E\text{.}\)</span>
+</div></li>
+<li id="li-1636"><div class="para" id="p-3469">i = 0.</div></li>
+<li id="li-1637">
+<div class="para" id="p-3470">Repeat:</div>
+<div class="para logical" id="p-3471"><ol class="lower-alpha">
+<li id="li-1638"><div class="para" id="p-3472">If possible, find a flow augmenting path with respect to <span class="process-math">\(f_i\text{.}\)</span>
+</div></li>
+<li id="li-1639">
+<div class="para" id="p-3473">If a flow augmenting path exists, then:</div>
+<div class="para logical" id="p-3474"><ol class="lower-roman">
+<li id="li-1640"><div class="para logical" id="p-3475">
+<div class="para">Determine</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{split}
+d &amp; = \min  \{\{w(e) - f_i(e) \mid e \text{ is used in the forward direction}\},\\
+&amp; \quad \quad \quad \{f_i(e) \mid e \text{ is used in the reverse direction}\}\}\\
+\\
+\end{split}
+\end{equation*}
+</div>
+</div></li>
+<li id="li-1641"><div class="para logical" id="p-3476">
+<div class="para">Define <span class="process-math">\(f_{i+1}\)</span> by</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{cc}
+f_{i+1}(e) = f_i(e) &amp;  \text{if } e \text{ is not part of the flow augmenting path} \\
+f_{i+1}(e)=f_i(e)+d &amp; \text{if } e \text{ is used in the forward direction} \\
+f_{i+1}(e)=f_i(e)-d &amp; \text{if } e \text{ is used in the reverse direction} \\
+\end{array}
+\end{equation*}
+</div>
+</div></li>
+<li id="li-1642"><div class="para" id="p-3477"><span class="process-math">\(\displaystyle i = i + 1\)</span></div></li>
+</ol></div>
+</li>
+</ol></div>
+<div class="para" id="p-3478">until no flow augmenting path exists.</div>
+</li>
+<li id="li-1643"><div class="para" id="p-3479">Terminate with a maximal flow <span class="process-math">\(f_i\)</span>
+</div></li>
+</ol></div></article><figure class="list table-like" id="list-7"><figcaption><span class="type">List</span><span class="space"> </span><span class="codenumber">9.5.25<span class="period">.</span></span><span class="space"> </span>Notes on the Ford and Fulkerson Algorithm</figcaption><div class="named-list-content"><ol class="decimal">
+<li id="li-1644"><div class="para" id="p-3480">It should be clear that every flow augmenting path leads to a flow of increased value and that none of the capacities of the network can be violated.</div></li>
+<li id="li-1645"><div class="para" id="p-3481">The depth-first search should be used to find flow augmenting paths since it is far more efficient than the breadth-first search in this situation. The depth-first search differs from the breadth-first algorithm  in that you sequentially visit vertices until you reach a “dead end” and then backtrack.</div></li>
+<li id="li-1646"><div class="para" id="p-3482">There have been networks discovered for which the FFA does not terminate in a finite number of steps. These examples all have irrational capacities. It has been proven that if all capacities are positive integers, the FFA terminates in a finite number of steps. See Ford and Fulkerson, Even, or Berge for details.</div></li>
+<li id="li-1647"><div class="para" id="p-3483">When you use the FFA to solve the Maximum Flow Problem by hand it is convenient to label each edge of the network with the fraction <span class="process-math">\(\frac{f_i(e)}{w(e)}\text{.}\)</span>
+</div></li>
+</ol></div></figure><article class="algorithm theorem-like" id="alg-depth-first-search"><h4 class="heading">
+<span class="type">Algorithm</span><span class="space"> </span><span class="codenumber">9.5.26</span><span class="period">.</span><span class="space"> </span><span class="title">Depth-First Search for a Flow Augmenting Path.</span>
+</h4>
+<div class="para" id="p-3484">This is a  depth-first search for the Sink Initiating at the Source. Let <span class="process-math">\(E'\)</span> be the set of directed edges that can be used in producing a flow augmenting path. Add to the network a vertex called  start and the edge <span class="process-math">\((\text{start}, \text{source}).\)</span>
+</div> <div class="para logical" id="p-3485"><ol class="decimal">
+<li id="li-1648"><div class="para" id="p-3486">
+<span class="process-math">\(S = \)</span>vertex set of the network.</div></li>
+<li id="li-1649"><div class="para" id="p-3487">
+<span class="process-math">\(p = \)</span>source <span class="process-math">\(\quad \quad\)</span>  Move <span class="process-math">\(p\)</span> along the edge <span class="process-math">\((start, source)\)</span>
+</div></li>
+<li id="li-1650">
+<div class="para" id="p-3488">while <span class="process-math">\(p\)</span> is not equal to  start or  sink:</div>
+<div class="para logical" id="p-3489"><ol class="lower-alpha"><li id="li-1651"><div class="para logical" id="p-3490">
+<div class="para">if an edge in <span class="process-math">\(E'\)</span> exists that takes you from <span class="process-math">\(p\)</span> to another vertex in <span class="process-math">\(S\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\quad \text{then set } p \text{ to be that next vertex and delete the edge from } E'
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\quad \text{else reassign }p \text{ to be the vertex that }p\text{ was reached from (i.e., backtrack)}\text{.}
+\end{equation*}
+</div>
+</div></li></ol></div>
+</li>
+<li id="li-1652"><div class="para logical" id="p-3491">
+<div class="para"><span class="process-math">\(\text{if } p = \text{start:}\)</span></div>
+<div class="displaymath process-math">
+\begin{equation*}
+\text{ then no flow augmenting path exists.}
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\text{ else }p = \text{sink and you have found a flow augmenting path.}
+\end{equation*}
+</div>
+</div></li>
+</ol></div></article><article class="example example-like" id="ex-fap-1"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-fap-1"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">9.5.27</span><span class="period">.</span><span class="space"> </span><span class="title">A flow augmenting path going against the flow.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-fap-1"><article class="example example-like"><div class="para" id="p-3492">Consider the network in <a href="" class="xref" data-knowl="./knowl/fig-flow-example-before.html" title="Figure 9.5.28">Figure 9.5.28</a>, where the current flow, <span class="process-math">\(f\text{,}\)</span> is indicated by a labeling of the edges.</div> <figure class="figure figure-like" id="fig-flow-example-before"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/images/fig-flow-example-before.png" class="contained" alt="Current Flow"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.5.28<span class="period">.</span></span><span class="space"> </span>Current Flow</figcaption></figure> <div class="para" id="p-3493">The path <span class="process-math">\(\left(Source, v_2 , v_1,v_3 , Sink\right)\)</span> is a flow augmenting path that allows us to increase the flow by one unit. Note that <span class="process-math">\(\left(v_1,v_3\right)\)</span> is used in the reverse direction, which is allowed because <span class="process-math">\(f\left(v_1,v_3\right)&gt;0\text{.}\)</span> The value of the new flow that we obtain is 8. This flow must be maximal since the capacities out of the source add up to 8. This maximal flow is defined by <a href="" class="xref" data-knowl="./knowl/fig-updated-flow.html" title="Figure 9.5.29">Figure 9.5.29</a>.</div> <figure class="figure figure-like" id="fig-updated-flow"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/images/fig-updated-flow.png" class="contained" alt="Updated Flow"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.5.29<span class="period">.</span></span><span class="space"> </span>Updated Flow</figcaption></figure></article></div></section><section class="subsection" id="ss-other-optimization"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">9.5.4</span> <span class="title">Other Graph Optimization Problems</span>
+</h3>
+<div class="para logical" id="p-3494"><ol class="decimal">
+<li id="li-1653"><div class="para" id="p-3495">The Minimum Spanning Tree Problem: Given a weighted graph, <span class="process-math">\((V, E, w)\text{,}\)</span> find a subset <span class="process-math">\(E'\)</span> of <span class="process-math">\(E\)</span> with the properties that <span class="process-math">\((V, E')\)</span> is connected and the sum of the weights of edges in <span class="process-math">\(E'\)</span> is as small as possible. We will discuss this problem in Chapter 10.</div></li>
+<li id="li-1654"><div class="para" id="p-3496">The Minimum Matching Problem: Given an undirected weighted graph, <span class="process-math">\((K, E, w)\text{,}\)</span> with an even number of vertices, pair up the vertices so that each pair is connected by an edge and the sum of these edges is as small as possible. A unit square version of this problem has been studied extensively. See <a href="" class="xref" data-knowl="./knowl/biblio-sopowit-1983.html" title="Bibliographic Entry 40: The Traveling Salesman Problem and Minimum Matching in the Unit Square">[40]</a> for details on what is known about this version of the problem.</div></li>
+<li id="li-1655"><div class="para" id="p-3497">  The Graph Center Problem: Given a connected, undirected, weighted graph, find a vertex (called a center) in the graph with the property that the distance from the center to every other vertex is as small as possible. “As small as possible” is  normally interpreted  as minimizing the maximum distance from the center to a vertex.</div></li>
+</ol></div></section><section class="exercises" id="exercises-9-5"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber">9.5.5</span> <span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="exercise-395"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para" id="p-3498">Find the closest neighbor circuit through the six capitals of New England starting at Boston. If you start at a different city, will you get a different circuit?</div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-183" id="answer-183"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-183"><div class="answer solution-like"><div class="para" id="p-3499">The circuit would be Boston, Providence, Hartford, Concord, Montpelier, Augusta, Boston. It does matter where you start. If you start in Concord, for example, your mileage will be higher.</div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-396"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para" id="p-3500">Is the estimate in <a href="" class="xref" data-knowl="./knowl/th-cn-theorem-9-5.html" title="Theorem 9.5.10">Theorem 9.5.10</a> sharp for <span class="process-math">\(n = 3\text{?}\)</span> For <span class="process-math">\(n = 4\text{?}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-397"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para" id="p-3501">Given the following sets of points in the unit square, find the shortest circuit that visits all the points and find the circuit that is obtained with the strip algorithm.</div> <div class="para logical" id="p-3502"><ol class="lower-alpha">
+<li id="li-1656"><div class="para" id="p-3503"><span class="process-math">\(\displaystyle \{(0.1k, 0.1k) : k = 0, 1, 2, . . . , 10\}\)</span></div></li>
+<li id="li-1657"><div class="para" id="p-3504"><span class="process-math">\(\displaystyle \{(0.1, 0.3), (0.3, 0.8), (0.5, 0.3), (0.7, 0.9), (0.9, 0.1)\}\)</span></div></li>
+<li id="li-1658"><div class="para" id="p-3505"><span class="process-math">\(\displaystyle \{(0.0, 0.5), (0.5, 0.0), (0.5, 1.0), (1.0, 0.5)\}\)</span></div></li>
+<li id="li-1659"><div class="para" id="p-3506"><span class="process-math">\(\displaystyle \{(0, 0), (0.2, 0.6), (0.4, 0.1), (0.6, 0.8), (0.7, 0.5)\}\)</span></div></li>
+</ol></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-184" id="answer-184"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-184"><div class="answer solution-like"><div class="para logical" id="p-3507"><ol class="lower-alpha">
+<li id="li-1660"><div class="para" id="p-3508">Optimal cost <span class="process-math">\(=2\sqrt{2}\text{.}\)</span> Phase 1 cost <span class="process-math">\(=2.4\sqrt{2}\text{.}\)</span> Phase 2 cost <span class="process-math">\(=2.6\sqrt{2}\text{.}\)</span>
+</div></li>
+<li id="li-1661"><div class="para" id="p-3509">Optimal cost <span class="process-math">\(=2.60.\)</span> Phase 1 cost <span class="process-math">\(=3.00\text{.}\)</span> Phase 2 cost <span class="process-math">\(2\sqrt{2}\text{.}\)</span>
+</div></li>
+<li id="li-1662">
+<div class="para" id="p-3510"><span class="process-math">\(A=(0.0, 0.5), B=(0.5, 0.0), C=(0.5, 1.0), D=(1.0, 0.5)\)</span></div>
+<div class="para logical" id="p-3511">
+<div class="para">There are 4 points; so we will divide the unit square into two strips.</div>
+<ul class="disc">
+<li id="li-1663"><div class="para" id="p-3512">Optimal Path: <span class="process-math">\((B,A,C,D)\quad \quad \text{Distance } =2\sqrt{2}\)</span>
+</div></li>
+<li id="li-1664"><div class="para" id="p-3513">Phase I Path: <span class="process-math">\((B,A,C,D)\quad \quad \text{Distance }=2\sqrt{2}\)</span>
+</div></li>
+<li id="li-1665"><div class="para" id="p-3514">Phase II Path: <span class="process-math">\((A,C,B,D) \quad \quad\textrm{Distance }=2+\sqrt{2}\)</span>
+</div></li>
+</ul>
+</div>
+</li>
+<li id="li-1666">
+<div class="para" id="p-3515"><span class="process-math">\(A=(0,0), B=(0.2,0.6), C=(0.4,0.1), D=(0.6,0.8), E=(0.7,0.5)\)</span></div>
+<div class="para logical" id="p-3516">
+<div class="para">There are 5 points; so we will divide the unit square into three strips.</div>
+<ul class="disc">
+<li id="li-1667"><div class="para" id="p-3517">Optimal Path: <span class="process-math">\((A,B,D,E,C)\quad \quad \text{Distance }=2.31\)</span>
+</div></li>
+<li id="li-1668"><div class="para" id="p-3518">Phase I Path: <span class="process-math">\((A,C,B,C,E)\quad \quad \text{Distance }= 2.57\)</span>
+</div></li>
+<li id="li-1669"><div class="para" id="p-3519">Phase II Path: <span class="process-math">\((A,B,D,E,C) \quad \quad\textrm{Distance }=2.31\)</span>
+</div></li>
+</ul>
+</div>
+</li>
+</ol></div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-398"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para" id="p-3520">For <span class="process-math">\(n = 4, 5, \text{and } 6\text{,}\)</span> locate <span class="process-math">\(n\)</span> points in the unit square for which the strip algorithm works poorly.</div></article><article class="exercise exercise-like" id="exercise-399"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para" id="p-3521">Consider the network whose maximum capacities are shown on the following graph.</div> <figure class="figure figure-like" id="fig-exercise-9-5-5"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig-exercise-9-5-5.png" class="contained" alt="Figure for Exercise 9-5-5"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.5.30<span class="period">.</span></span><span class="space"> </span></figcaption></figure> <div class="para logical" id="p-3522"><ol class="lower-alpha">
+<li id="li-1670"><div class="para" id="p-3523">A function <span class="process-math">\(f\)</span> is partially defined on the edges of this network by: <span class="process-math">\(f(\text{Source}, c) =2\text{,}\)</span> <span class="process-math">\(f(\text{Source}, b) =2\text{,}\)</span> <span class="process-math">\(f(\text{Source}, a) = 2\text{,}\)</span> and <span class="process-math">\(f(a, d) = 1\text{.}\)</span>  Define <span class="process-math">\(f\)</span> on the rest of the other edges so that <span class="process-math">\(f\)</span> is a flow. What is the value of  <span class="process-math">\(f\)</span> ?</div></li>
+<li id="li-1671"><div class="para" id="p-3524">Find a flow augmenting path with respect to <span class="process-math">\(f\)</span> for this network. What is the value of the augmented flow?</div></li>
+<li id="li-1672"><div class="para" id="p-3525">Is the augmented flow a maximum flow? Explain.</div></li>
+</ol></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-185" id="answer-185"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-185"><div class="answer solution-like"><div class="para logical" id="p-3526"><ol class="lower-alpha">
+<li id="li-1673"><div class="para" id="p-3527">
+<span class="process-math">\(f(c,d)=2\text{,}\)</span> <span class="process-math">\(f(b,d)=2\text{,}\)</span> <span class="process-math">\(f(d,k)=5\text{,}\)</span> <span class="process-math">\(f(a,g)=1\text{,}\)</span> and <span class="process-math">\(f(g,k)=1\text{.}\)</span>
+</div></li>
+<li id="li-1674"><div class="para" id="p-3528">There are three possible flow-augmenting paths. <span class="process-math">\(s,b,d,k\)</span> with flow increase of 1. <span class="process-math">\(s,a,d,k\)</span> with flow increase of 1, and <span class="process-math">\(s,a,g,k\)</span> with flow increase of 2.</div></li>
+<li id="li-1675"><div class="para" id="p-3529">The new flow is never maximal, since another flow-augmenting path will always exist. For example, if <span class="process-math">\(s,b,d,k\)</span> is used above, the new flow can be augmented by 2 units with <span class="process-math">\(s,a,g,k\text{.}\)</span>
+</div></li>
+</ol></div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-400"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div class="para" id="p-3530">Given the following network with capacity function <span class="process-math">\(c\)</span> and flow function <span class="process-math">\(f\text{,}\)</span> find a maximal flow function. The labels on the edges of the network are of the form <span class="process-math">\(f(e)/c(e)\text{,}\)</span> where <span class="process-math">\(c(e)\)</span> is the capacity of edge <span class="process-math">\(e\)</span> and <span class="process-math">\(f(e)\)</span> is the used capacity for flow <span class="process-math">\(f\text{.}\)</span>
+</div> <figure class="figure figure-like" id="fig-exercise-9-5-6"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="external/images/fig-exercise-9-5-6.png" class="contained" alt="Figure for Exercise 9-5-6"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.5.31<span class="period">.</span></span><span class="space"> </span></figcaption></figure></article><article class="exercise exercise-like" id="exercise-401"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="para" id="p-3531">Find maximal flows for the following networks.</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;"><figure class="figure figure-like" id="fig-exercise-9-5-7a"><img src="external/images/fig-exercise-9-5-7a.png" class="contained" alt="Figure for Exercise 9-5-7a"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.5.32<span class="period">.</span></span><span class="space"> </span></figcaption></figure></div>
+<div class="sbspanel top" style="width:50%;"><figure class="figure figure-like" id="fig-exercise-9-5-7b"><img src="external/images/fig-exercise-9-5-7b.png" class="contained" alt="Figure for Exercise 9-5-7b"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.5.33<span class="period">.</span></span><span class="space"> </span></figcaption></figure></div>
+</div></div> <figure class="figure figure-like" id="fig-exercise-9-5-7c"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="external/images/fig-exercise-9-5-7c.png" class="contained" alt="Figure for Exercise 9-5-7c"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.5.34<span class="period">.</span></span><span class="space"> </span></figcaption></figure><div class="solutions">
+<a href="" data-knowl="" class="id-ref answer-knowl original has-tabular" data-refid="hk-answer-186" id="answer-186"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-186"><div class="answer solution-like">
+<div class="para logical" id="p-3532"><ol class="lower-alpha">
+<li id="li-1676"><div class="para" id="p-3533">Value of maximal flow <span class="process-math">\(=31\text{.}\)</span>
+</div></li>
+<li id="li-1677"><div class="para" id="p-3534">Value of maximal flow <span class="process-math">\(=14\text{.}\)</span>
+</div></li>
+<li id="li-1678"><div class="para" id="p-3535">Value of maximal flow <span class="process-math">\(=14\text{.}\)</span> See <a href="" class="xref" data-knowl="./knowl/table-solution-9-5-7.html" title="Table 9.5.35: ">Table 9.5.35</a> for one way to got this flow.</div></li>
+</ol></div> <figure class="table table-like" id="table-solution-9-5-7"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">9.5.35<span class="period">.</span></span><span class="space"> </span></figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="c m b0 r0 l0 t3 lines">Step</td>
+<td class="c m b0 r0 l0 t3 lines">Flow-augmenting path</td>
+<td class="c m b0 r0 l0 t3 lines">Flow added</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">1</td>
+<td class="c m b0 r0 l0 t0 lines"><span class="process-math">\(\text{Source},A,\text{Sink}\)</span></td>
+<td class="c m b0 r0 l0 t0 lines">2</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">2</td>
+<td class="c m b0 r0 l0 t0 lines"><span class="process-math">\(\text{Source}, C,B, \text{Sink}\)</span></td>
+<td class="c m b0 r0 l0 t0 lines">3</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">3</td>
+<td class="c m b0 r0 l0 t0 lines"><span class="process-math">\(\text{Source},E,D, \text{Sink}\)</span></td>
+<td class="c m b0 r0 l0 t0 lines">4</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">4</td>
+<td class="c m b0 r0 l0 t0 lines"><span class="process-math">\(\text{Source},A,B,\text{Sink}\)</span></td>
+<td class="c m b0 r0 l0 t0 lines">1</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">5</td>
+<td class="c m b0 r0 l0 t0 lines"><span class="process-math">\(\text{Source},C,D, \text{Sink}\)</span></td>
+<td class="c m b0 r0 l0 t0 lines">2</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">6</td>
+<td class="c m b0 r0 l0 t0 lines"><span class="process-math">\(\text{Source},A,B,C,D, \text{Sink}\)</span></td>
+<td class="c m b0 r0 l0 t0 lines">2</td>
+</tr>
+</table></div></figure>
+</div></div>
+</div></article><article class="exercise exercise-like" id="exercise-402"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div class="para logical" id="p-3536"><ol class="lower-alpha">
+<li id="li-1679"><div class="para" id="p-3537">Find two maximal flows for the network in <a href="" class="xref" data-knowl="./knowl/fig-flow-example-before.html" title="Figure 9.5.28">Figure 9.5.28</a> other than the one found in the text.</div></li>
+<li id="li-1680"><div class="para" id="p-3538">Describe the set of all maximal flows for the same network.</div></li>
+<li id="li-1681"><div class="para" id="p-3539">Prove that if a network has two maximal flows, then it has an infinite number of maximal flows.</div></li>
+</ol></div></article><article class="exercise exercise-like" id="exercise-403"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div class="para" id="p-3540">Discuss reasons that the closest neighbor algorithm is not used in the unit square version of the Traveling Salesman Problem.</div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-14" id="hint-14"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-14"><div class="hint solution-like"><div class="para" id="p-3541">Count the number of comparisons of distances that must be done.</div></div></div>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-187" id="answer-187"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-187"><div class="answer solution-like"><div class="para" id="p-3542">To locate the closest neighbor among the list of <span class="process-math">\(k\)</span> other points on the unit square requires a time proportional to <span class="process-math">\(k\text{.}\)</span> Therefore the time required for the closest-neighbor algorithm with <span class="process-math">\(n\)</span> points is proportional to <span class="process-math">\((n-1)+(n-2)+\cdots +2+1\text{,}\)</span> which is proportional to <span class="process-math">\(n^2\text{.}\)</span> Since the strip algorithm takes a time proportional to <span class="process-math">\(n(\log  n)\text{,}\)</span> it is much faster for large values of <span class="process-math">\(n\text{.}\)</span>
+</div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-404"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
+<div class="para" id="p-3543">Explore the possibility of solving the Traveling Salesman Problem in the “unit box”: <span class="process-math">\([0,1]^3\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-405"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
+<div class="para" id="p-3544">Devise a “closest neighbor” algorithm for matching points in the unit square.</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
+</div></section></div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="s-traversals.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="s-planarity-and-colorings.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
+</div>{% if show_ethical_ad %}<div style="width: 100%"><div data-ea-publisher="runestoneacademy" data-ea-type="image" style="display: flex; justify-content: center"></div></div>{% endif %}</body>
+</html>

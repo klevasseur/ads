@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math"><article class="example example-like"><div class="para logical">
+<div class="para">Consider the linear code with generator matrix</div>
+<div class="displaymath process-math">
+\begin{equation*}
+G = \left( \begin{array}{ccccc} 
+1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\
+\end{array} \right).
+\end{equation*}
+</div>
+<div class="para">Since <span class="process-math">\(G\)</span> is <span class="process-math">\(3 \times 5\text{,}\)</span> this code encodes three bits into five bits.  The natural question to ask is what detection or correction does it afford? We can answer this question by constructing the parity check matrix.  We observe that if <span class="process-math">\(\vec{a}=(a_1, a_2, a_3)\)</span> the encoding function is</div>
+<div class="displaymath process-math">
+\begin{equation*}
+e(\vec{a}) = \vec{a}G = (a_1,a_1+a_2,a_2,a_1+a_3,a_3)
+\end{equation*}
+</div>
+<div class="para">where addition is mod 2 addition. If we receive five bits <span class="process-math">\((c_1,c_2,c_3,c_4,c_5)\)</span> and no error has occurred, the following two equations would be true.</div>
+<div class="displaymath process-math">
+\begin{gather}
+c_1+c_2+c_3 = 0\tag{15.5.1}\\
+c_1+c_4+c_5 = 0\tag{15.5.2}
+\end{gather}
+</div>
+<div class="para">Notice that in general, the number of parity check equations is equal to the number of extra bits that are added by the encoding function.  These equations are equivalent to the single matrix equation <span class="process-math">\((c_1,c_2,c_3,c_4,c_5)H = \vec{0}\text{,}\)</span> where</div>
+<div class="displaymath process-math">
+\begin{equation*}
+H = \left(\begin{array}{cc} 
+1 &amp; 1 \\
+1 &amp; 0 \\
+1 &amp; 0 \\
+0 &amp; 1 \\
+0 &amp; 1 \\
+\end{array} \right)
+\end{equation*}
+</div>
+</div> <div class="para logical">
+<div class="para">At a glance, we can see that this code will not correct most single bit errors. Suppose an error <span class="process-math">\(\vec{e}=(e_1,e_2,e_3,e_4,e_5)\)</span> is added in the transmission of the five bits. Specifically, suppose that 1 is added (mod 2) in position <span class="process-math">\(j\text{,}\)</span> where <span class="process-math">\(1 \leq j\leq 5\)</span> and the other coordinates of <span class="process-math">\(\vec{e}\)</span> are  0.  Then when we compute the syndrome of our received transmission, we see that</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\vec{c}H = (\vec{a}G + \vec{e})H  = (\vec{a}G)H + \vec{e}H = \vec{e}H.
+\end{equation*}
+</div>
+<div class="para">But <span class="process-math">\(\vec{e}H\)</span> is the <span class="process-math">\(j^{th}\)</span> row of <span class="process-math">\(H\text{.}\)</span>  If the syndrome is <span class="process-math">\((1,1)\)</span> we know that the error occurred in position 1 and we can correct it.  However, if the error is in any other position we can’t pinpoint its location.  If the syndrome is <span class="process-math">\((1,0)\text{,}\)</span> then the error could have occurred in either position 2 or position 3.    This code does detect all single bit errors but only corrects one fifth of them.</div>
+</div></article></body>
+</html>

@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ads An Introduction to Vector Spaces</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://runestone.academy/ns/books/published/ads/s-intro-to-vector-spaces.html">
+<meta property="og:type" content="book">
+<meta property="og:image" content="discretemath.org/external/http://discretemath.org/images/ads_v3_cover.jpg">
+<meta property="book:title" content="Applied Discrete Structures">
+<meta property="book:author" content="Al Doerr">
+<meta property="book:author" content="Ken Levasseur">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.98,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+  startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<link href="https://pretextbook.org/css/0.7/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/colors_blue_red.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/setcolors.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = true;
+eBookConfig.host = '';
+eBookConfig.app = eBookConfig.host + '/runestone';
+eBookConfig.course = '~._ course_name _.~';
+eBookConfig.basecourse = '~._ base_course _.~';
+eBookConfig.isLoggedIn = ~._ is_logged_in _.~;
+eBookConfig.email = '~._ user_email _.~';
+eBookConfig.isInstructor = ~._ is_instructor _.~;
+eBookConfig.logLevel = 10;
+eBookConfig.ajaxURL = eBookConfig.app + "/ajax/";
+eBookConfig.username = '~._ user_id _.~';
+eBookConfig.readings = ~._ readings|safe _.~;
+eBookConfig.activities = ~._ activity_info|safe _.~;
+eBookConfig.downloadsEnabled = ~._ downloads_enabled _.~;
+eBookConfig.allow_pairs = ~._ allow_pairs _.~;
+eBookConfig.enableScratchAC = true;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.new_server_prefix = "/ns";
+eBookConfig.runestone_version = '7.0.7';
+</script>
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
+    position: relative;
+    display: inline-block;
+    height: 39px;
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 7px;
+    text-align: center;
+    background-color: #eeeeee;
+    border: 1px solid;
+    border-color: #aaaaaa;
+ }
+ .dropdown-content {
+    position: absolute;
+    display: none;
+    left: 300px;
+    text-align: left;
+    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
+}
+.dropdown:hover {
+    background-color: #ddd;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+    position: fixed;
+}
+.dropdown-content {
+    background-color: white;
+    z-index: 1800;
+    min-width: 100px;
+    padding: 5px;
+}
+.dropdown-content a {
+    display: block;
+    text-decoration: none;
+    color: #662211;
+}
+.dropdown-content a:hover {
+    background-color: #671d12;
+    color: #ffffff;
+}
+</style>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+</head>
+<body id="ads" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<p class="byline">Al Doerr, Ken Levasseur</p>
+</div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" class="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms" class="searchterms"></span>
+</h2>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+{% if settings.academy_mode: %}
+<a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
+<a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
+<a href="/runestone/default/courses">Change Course</a><hr>
+<a id="ip_dropdown_link" href="/runestone/admin/index">Instructor's Page</a><hr>
+{% endif %}
+<a href="/runestone/dashboard/studentreport">Progress Page</a><hr>
+{% if is_logged_in %}
+<a href="/runestone/default/user/profile">Edit Profile</a><a href="/runestone/default/user/change_password">Change Password</a><a href="/runestone/default/user/logout">Log Out</a>
+{% else %}
+<a href="/runestone/default/user/register">Register</a><a href="/runestone/default/user/login">Login</a>
+{% endif %}
+</div>
+</div>
+<a href="javascript:runestoneComponents.popupScratchAC()" class="activecode-toggle" title="Scratch ActiveCode"><span class="icon">✏</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="avatarbutton" class="avatarbutton name">You!</span><div id="preferences_menu_holder" class="preferences_menu_holder hidden"><ol id="preferences_menu" class="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+<li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden avatar">
+<li data-val="You!" tabindex="-1">
+<span id="theYou!" class="avatarcheck">✔️</span>You!</li>
+<li data-val="😺" tabindex="-1">
+<span id="the😺" class="avatarcheck"></span>😺</li>
+<li data-val="👤" tabindex="-1">
+<span id="the👤" class="avatarcheck"></span>👤</li>
+<li data-val="👽" tabindex="-1">
+<span id="the👽" class="avatarcheck"></span>👽</li>
+<li data-val="🐶" tabindex="-1">
+<span id="the🐶" class="avatarcheck"></span>🐶</li>
+<li data-val="🐼" tabindex="-1">
+<span id="the🐼" class="avatarcheck"></span>🐼</li>
+<li data-val="🌈" tabindex="-1">
+<span id="the🌈" class="avatarcheck"></span>🌈</li>
+</ol>
+</li>
+<li data-env="fontfamily" tabindex="-1">Font family<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fontfamily">
+<li data-val="face" data-change="OS" tabindex="-1" style="font-family: 'Open Sans'">
+<span id="theOS" class="ffcheck">✔️</span><span class="name">Open Sans</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+<li data-val="face" data-change="RS" tabindex="-1" style="font-family: 'Roboto Serif'">
+<span id="theRS" class="ffcheck"></span><span class="name">Roboto Serif</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+</ol>
+</li>
+<li data-env="font" tabindex="-1">Adjust font<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fonts">
+<li>Size</li>
+<li><span id="thesize">12</span></li>
+<li data-val="size" data-change="-1" tabindex="-1" style="font-size: 80%">Smaller</li>
+<li data-val="size" data-change="1" tabindex="-1" style="font-size: 110%">Larger</li>
+<li>Width</li>
+<li><span id="thewdth">100</span></li>
+<li data-val="wdth" data-change="-5" tabindex="-1" style="font-variation-settings: 'wdth' 60">narrower</li>
+<li data-val="wdth" data-change="5" tabindex="-1" style="font-variation-settings: 'wdth' 150">wider</li>
+<li>Weight</li>
+<li><span id="thewght">400</span></li>
+<li data-val="wght" data-change="-50" tabindex="-1" style="font-weight: 200">thinner</li>
+<li data-val="wght" data-change="50" tabindex="-1" style="font-weight: 700">heavier</li>
+<li>Letter spacing</li>
+<li>
+<span id="thelspace">0</span><span class="byunits">/200</span>
+</li>
+<li data-val="lspace" data-change="-1" tabindex="-1">closer</li>
+<li data-val="lspace" data-change="1" tabindex="-1">f a r t h e r</li>
+<li>Word spacing</li>
+<li>
+<span id="thewspace">0</span><span class="byunits">/50</span>
+</li>
+<li data-val="wspace" data-change="-1" tabindex="-1">smaller gap </li>
+<li data-val="wspace" data-change="1" tabindex="-1">larger gap</li>
+<li>Line Spacing</li>
+<li>
+<span id="theheight">135</span><span class="byunits">/100</span>
+</li>
+<li data-val="height" data-change="-5" tabindex="-1" style="line-height: 1">closer<br>together</li>
+<li data-val="height" data-change="5" tabindex="-1" style="line-height: 1.75">further<br>apart</li>
+</ol>
+</li>
+<li data-env="atmosphere" tabindex="-1">Light/dark mode<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden atmosphere">
+<li data-val="default" tabindex="-1">
+<span id="thedefault" class="atmospherecheck">✔️</span>default</li>
+<li data-val="pastel" tabindex="-1">
+<span id="thepastel" class="atmospherecheck"></span>pastel</li>
+<li data-val="darktwilight" tabindex="-1">
+<span id="thedarktwilight" class="atmospherecheck"></span>twilight</li>
+<li data-val="dark" tabindex="-1">
+<span id="thedark" class="atmospherecheck"></span>dark</li>
+<li data-val="darkmidnight" tabindex="-1">
+<span id="thedarkmidnight" class="atmospherecheck"></span>midnight</li>
+</ol>
+</li>
+<li data-env="ruler" tabindex="-1">Reading ruler<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden ruler">
+<li data-val="none" tabindex="-1">
+<span id="thenone" class="rulercheck">✔️</span>none</li>
+<li data-val="underline" tabindex="-1">
+<span id="theunderline" class="rulercheck"></span>underline</li>
+<li data-val="lunderline" tabindex="-1">
+<span id="thelunderline" class="rulercheck"></span>L-underline</li>
+<li data-val="greybar" tabindex="-1">
+<span id="thegreybar" class="rulercheck"></span>grey bar</li>
+<li data-val="lightbox" tabindex="-1">
+<span id="thelightbox" class="rulercheck"></span>light box</li>
+<li data-val="sunrise" tabindex="-1">
+<span id="thesunrise" class="rulercheck"></span>sunrise</li>
+<li data-val="sunriseunderline" tabindex="-1">
+<span id="thesunriseunderline" class="rulercheck"></span>sunrise underline</li>
+<li class="moveQ">Motion by:</li>
+<li data-val="mouse" tabindex="-1">
+<span id="themouse" class="motioncheck">✔️</span>follow the mouse</li>
+<li data-val="arrow" tabindex="-1">
+<span id="thearrow" class="motioncheck"></span>up/down arrows - not yet</li>
+<li data-val="eye" tabindex="-1">
+<span id="theeye" class="motioncheck"></span>eye tracking - not yet</li>
+</ol>
+</li>
+</ol></div></button><span class="treebuttons"><a class="previous-button button" href="s-matrix-inversion.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="chapter_12.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="s-the-diagonalization-process.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
+<input id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" class="searchbutton" type="button" onclick="doSearch()">🔍</button>
+</div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2"><ul class="structural">
+<li>
+<div class="toc-item"><a href="index-ads.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="colophon-1.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li><div class="toc-item"><a href="dedication-1.html" class="internal"><span class="title">Dedication</span></a></div></li>
+<li><div class="toc-item"><a href="acknowledgement-1.html" class="internal"><span class="title">Acknowledgements</span></a></div></li>
+<li><div class="toc-item"><a href="ads-preface.html" class="internal"><span class="title">Preface</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_1.html" class="internal"><span class="codenumber">1</span> <span class="title">Set Theory</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
+<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-basic_Set_Operations.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Basic Set Operations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-basic_Set_Operations.html#subsection-3" class="internal"><span class="codenumber">1.2.1</span> <span class="title">Definitions</span></a></div></li>
+<li><div class="toc-item"><a href="s-basic_Set_Operations.html#subsection-4" class="internal"><span class="codenumber">1.2.2</span> <span class="title">Set Operations and their Venn Diagrams</span></a></div></li>
+<li><div class="toc-item"><a href="s-basic_Set_Operations.html#Sage_Note_Sets-1-2" class="internal"><span class="codenumber">1.2.3</span> <span class="title">SageMath Note: Sets</span></a></div></li>
+<li><div class="toc-item"><a href="s-basic_Set_Operations.html#exercises-1-2" class="internal"><span class="codenumber">1.2.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-cartesian_Products_and_Power_Sets.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Cartesian Products and Power Sets</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-cartesian_Products_and_Power_Sets.html#Cartesian-products" class="internal"><span class="codenumber">1.3.1</span> <span class="title">Cartesian Products</span></a></div></li>
+<li><div class="toc-item"><a href="s-cartesian_Products_and_Power_Sets.html#power-sets" class="internal"><span class="codenumber">1.3.2</span> <span class="title">Power Sets</span></a></div></li>
+<li><div class="toc-item"><a href="s-cartesian_Products_and_Power_Sets.html#Sage_Note_Sets-1-3" class="internal"><span class="codenumber">1.3.3</span> <span class="title">SageMath Note: Cartesian Products and Power Sets</span></a></div></li>
+<li><div class="toc-item"><a href="s-cartesian_Products_and_Power_Sets.html#exercises-1-3" class="internal"><span class="codenumber">1.3.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-binary_Representation_of_Positive_Integers.html" class="internal"><span class="codenumber">1.4</span> <span class="title">Binary Representation of Positive Integers</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-binary_Representation_of_Positive_Integers.html#ss-grouping-by-twos" class="internal"><span class="codenumber">1.4.1</span> <span class="title">Grouping by Twos</span></a></div></li>
+<li><div class="toc-item"><a href="s-binary_Representation_of_Positive_Integers.html#ss-conversion-algorithm" class="internal"><span class="codenumber">1.4.2</span> <span class="title">A Conversion Algorithm</span></a></div></li>
+<li><div class="toc-item"><a href="s-binary_Representation_of_Positive_Integers.html#exercises-1-4" class="internal"><span class="codenumber">1.4.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-summation_Notation_and_Generalizations.html" class="internal"><span class="codenumber">1.5</span> <span class="title">Summation Notation and Generalizations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-summation_Notation_and_Generalizations.html#ss-sums" class="internal"><span class="codenumber">1.5.1</span> <span class="title">Sums</span></a></div></li>
+<li><div class="toc-item"><a href="s-summation_Notation_and_Generalizations.html#ss-generalizations" class="internal"><span class="codenumber">1.5.2</span> <span class="title">Generalizations</span></a></div></li>
+<li><div class="toc-item"><a href="s-summation_Notation_and_Generalizations.html#exercises-1-5" class="internal"><span class="codenumber">1.5.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_2.html" class="internal"><span class="codenumber">2</span> <span class="title">Combinatorics</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-the-rule-of-products.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Basic Counting Techniques - The Rule of Products</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-the-rule-of-products.html#What-is-Combinatorics" class="internal"><span class="codenumber">2.1.1</span> <span class="title">What is Combinatorics?</span></a></div></li>
+<li><div class="toc-item"><a href="s-the-rule-of-products.html#rule-of-products" class="internal"><span class="codenumber">2.1.2</span> <span class="title">The Rule Of Products</span></a></div></li>
+<li><div class="toc-item"><a href="s-the-rule-of-products.html#EXERCISES-FOR-SECTION-2-1" class="internal"><span class="codenumber">2.1.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-permutations.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Permutations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-permutations.html#subsection-15" class="internal"><span class="codenumber">2.2.1</span> <span class="title">Ordering Things</span></a></div></li>
+<li><div class="toc-item"><a href="s-permutations.html#exercises-7" class="internal"><span class="codenumber">2.2.2</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-partitions-and-law-of-addition.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Partitions of Sets and the Law of Addition</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-partitions-and-law-of-addition.html#subsection-16" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Partitions</span></a></div></li>
+<li><div class="toc-item"><a href="s-partitions-and-law-of-addition.html#subsection-17" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Addition Laws</span></a></div></li>
+<li><div class="toc-item"><a href="s-partitions-and-law-of-addition.html#exercises-2-3" class="internal"><span class="codenumber">2.3.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-combinations-and-the-binomial-theorem.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Combinations and the Binomial Theorem</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-combinations-and-the-binomial-theorem.html#combinations" class="internal"><span class="codenumber">2.4.1</span> <span class="title">Combinations</span></a></div></li>
+<li><div class="toc-item"><a href="s-combinations-and-the-binomial-theorem.html#the-binomial-theorem" class="internal"><span class="codenumber">2.4.2</span> <span class="title">The Binomial Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="s-combinations-and-the-binomial-theorem.html#sage-bridge-hands" class="internal"><span class="codenumber">2.4.3</span> <span class="title">SageMath Note</span></a></div></li>
+<li><div class="toc-item"><a href="s-combinations-and-the-binomial-theorem.html#exercises-2-4" class="internal"><span class="codenumber">2.4.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter3.html" class="internal"><span class="codenumber">3</span> <span class="title">Logic</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-propositions-logic-operators.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Propositions and Logical Operators</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-propositions-logic-operators.html#ss-propositions" class="internal"><span class="codenumber">3.1.1</span> <span class="title">Propositions</span></a></div></li>
+<li><div class="toc-item"><a href="s-propositions-logic-operators.html#ss-logical-operations" class="internal"><span class="codenumber">3.1.2</span> <span class="title">Logical Operations</span></a></div></li>
+<li><div class="toc-item"><a href="s-propositions-logic-operators.html#exercises-3-1" class="internal"><span class="codenumber">3.1.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-truth-tables.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Truth Tables and Propositions Generated by a Set</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-truth-tables.html#truth-tables" class="internal"><span class="codenumber">3.2.1</span> <span class="title">Truth Tables</span></a></div></li>
+<li><div class="toc-item"><a href="s-truth-tables.html#proposition-generated-by-set" class="internal"><span class="codenumber">3.2.2</span> <span class="title">Propositions Generated by a Set</span></a></div></li>
+<li><div class="toc-item"><a href="s-truth-tables.html#exercises-3-2" class="internal"><span class="codenumber">3.2.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-equivalence-implication.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Equivalence and Implication</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-equivalence-implication.html#tautology-contradiction" class="internal"><span class="codenumber">3.3.1</span> <span class="title">Tautologies and Contradictions</span></a></div></li>
+<li><div class="toc-item"><a href="s-equivalence-implication.html#subsection-26" class="internal"><span class="codenumber">3.3.2</span> <span class="title">Equivalence</span></a></div></li>
+<li><div class="toc-item"><a href="s-equivalence-implication.html#subsection-27" class="internal"><span class="codenumber">3.3.3</span> <span class="title">Implication</span></a></div></li>
+<li><div class="toc-item"><a href="s-equivalence-implication.html#subsection-28" class="internal"><span class="codenumber">3.3.4</span> <span class="title">A Universal Operation</span></a></div></li>
+<li><div class="toc-item"><a href="s-equivalence-implication.html#exercises-3-3" class="internal"><span class="codenumber">3.3.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-logic-laws.html" class="internal"><span class="codenumber">3.4</span> <span class="title">The Laws of Logic</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-logic-laws.html#subsection-29" class="internal"><span class="codenumber">3.4.1</span> <span class="title"></span></a></div></li>
+<li><div class="toc-item"><a href="s-logic-laws.html#exercises-3-4" class="internal"><span class="codenumber">3.4.2</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-math-systems.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Mathematical Systems and Proofs</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-math-systems.html#subsection-30" class="internal"><span class="codenumber">3.5.1</span> <span class="title">Mathematical Systems</span></a></div></li>
+<li><div class="toc-item"><a href="s-math-systems.html#subsection-31" class="internal"><span class="codenumber">3.5.2</span> <span class="title">Direct Proof</span></a></div></li>
+<li><div class="toc-item"><a href="s-math-systems.html#sub-indirect-proof" class="internal"><span class="codenumber">3.5.3</span> <span class="title">Indirect Proof</span></a></div></li>
+<li><div class="toc-item"><a href="s-math-systems.html#exercises-3-5" class="internal"><span class="codenumber">3.5.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-propositions-over-universe.html" class="internal"><span class="codenumber">3.6</span> <span class="title">Propositions over a Universe</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-propositions-over-universe.html#ss-propositions-over-a-universe" class="internal"><span class="codenumber">3.6.1</span> <span class="title">Propositions over a Universe</span></a></div></li>
+<li><div class="toc-item"><a href="s-propositions-over-universe.html#ss-truth-sets" class="internal"><span class="codenumber">3.6.2</span> <span class="title">Truth Sets</span></a></div></li>
+<li><div class="toc-item"><a href="s-propositions-over-universe.html#exercises-3-6" class="internal"><span class="codenumber">3.6.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-induction.html" class="internal"><span class="codenumber">3.7</span> <span class="title">Mathematical Induction</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-induction.html#subsection-35" class="internal"><span class="codenumber">3.7.1</span> <span class="title">Introduction, First Example</span></a></div></li>
+<li><div class="toc-item"><a href="s-induction.html#subsection-36" class="internal"><span class="codenumber">3.7.2</span> <span class="title">More Examples</span></a></div></li>
+<li><div class="toc-item"><a href="s-induction.html#subsection-37" class="internal"><span class="codenumber">3.7.3</span> <span class="title">Course of Values Induction</span></a></div></li>
+<li><div class="toc-item"><a href="s-induction.html#exercises-3-7" class="internal"><span class="codenumber">3.7.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-quantifiers.html" class="internal"><span class="codenumber">3.8</span> <span class="title">Quantifiers</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-quantifiers.html#ss-existential" class="internal"><span class="codenumber">3.8.1</span> <span class="title">The Existential Quantifier</span></a></div></li>
+<li><div class="toc-item"><a href="s-quantifiers.html#ss-universal-quantifier" class="internal"><span class="codenumber">3.8.2</span> <span class="title">The Universal Quantifier</span></a></div></li>
+<li><div class="toc-item"><a href="s-quantifiers.html#ss-negated-quantifiers" class="internal"><span class="codenumber">3.8.3</span> <span class="title">The Negation of Quantified Propositions</span></a></div></li>
+<li><div class="toc-item"><a href="s-quantifiers.html#ss-multiple-quantifiers" class="internal"><span class="codenumber">3.8.4</span> <span class="title">Multiple Quantifiers</span></a></div></li>
+<li><div class="toc-item"><a href="s-quantifiers.html#exercises-3-8" class="internal"><span class="codenumber">3.8.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-proof-review.html" class="internal"><span class="codenumber">3.9</span> <span class="title">A Review of Methods of Proof</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-proof-review.html#ss-proof-concepts" class="internal"><span class="codenumber">3.9.1</span> <span class="title">Key Concepts in Proof</span></a></div></li>
+<li><div class="toc-item"><a href="s-proof-review.html#ss-art-of-proving-ifpthenq" class="internal"><span class="codenumber">3.9.2</span> <span class="title">The Art of Proving <span class="process-math">\(P \Rightarrow  C\)</span></span></a></div></li>
+<li><div class="toc-item"><a href="s-proof-review.html#exercises-3-9" class="internal"><span class="codenumber">3.9.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_4.html" class="internal"><span class="codenumber">4</span> <span class="title">More on Sets</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-proof-methods-sets.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Methods of Proof for Sets</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-proof-methods-sets.html#ss-examples-and-counterexamples" class="internal"><span class="codenumber">4.1.1</span> <span class="title">Examples and Counterexamples</span></a></div></li>
+<li><div class="toc-item"><a href="s-proof-methods-sets.html#ss-venn-proofs" class="internal"><span class="codenumber">4.1.2</span> <span class="title">Proof Using Venn Diagrams</span></a></div></li>
+<li><div class="toc-item"><a href="s-proof-methods-sets.html#ss-membership-table-proof" class="internal"><span class="codenumber">4.1.3</span> <span class="title">Proof using Set-membership Tables</span></a></div></li>
+<li><div class="toc-item"><a href="s-proof-methods-sets.html#ss-proofs-using-definitions-sets" class="internal"><span class="codenumber">4.1.4</span> <span class="title">Proof Using Definitions</span></a></div></li>
+<li><div class="toc-item"><a href="s-proof-methods-sets.html#exercises-19" class="internal"><span class="codenumber">4.1.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-laws-of-set-theory.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Laws of Set Theory</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-laws-of-set-theory.html#subsection-48" class="internal"><span class="codenumber">4.2.1</span> <span class="title">Tables of Laws</span></a></div></li>
+<li><div class="toc-item"><a href="s-laws-of-set-theory.html#ss-proof-with-theorems" class="internal"><span class="codenumber">4.2.2</span> <span class="title">Proof Using Previously Proven Theorems</span></a></div></li>
+<li><div class="toc-item"><a href="s-laws-of-set-theory.html#ss-proof-sets-contradiction" class="internal"><span class="codenumber">4.2.3</span> <span class="title">Proof Using the Indirect Method/Contradiction</span></a></div></li>
+<li><div class="toc-item"><a href="s-laws-of-set-theory.html#exer-4-2" class="internal"><span class="codenumber">4.2.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-minsets.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Minsets</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-minsets.html#subsection-51" class="internal"><span class="codenumber">4.3.1</span> <span class="title">Definition of Minsets</span></a></div></li>
+<li><div class="toc-item"><a href="s-minsets.html#subsection-52" class="internal"><span class="codenumber">4.3.2</span> <span class="title">Properties of Minsets</span></a></div></li>
+<li><div class="toc-item"><a href="s-minsets.html#exercises-4-3" class="internal"><span class="codenumber">4.3.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-duality-principle.html" class="internal"><span class="codenumber">4.4</span> <span class="title">The Duality Principle</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-duality-principle.html#subsection-53" class="internal"><span class="codenumber">4.4.1</span> <span class="title"></span></a></div></li>
+<li><div class="toc-item"><a href="s-duality-principle.html#exer-4-4" class="internal"><span class="codenumber">4.4.2</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_5.html" class="internal"><span class="codenumber">5</span> <span class="title">Introduction to Matrix Algebra</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-basic-matrix-definitions.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Basic Definitions and Operations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-basic-matrix-definitions.html#ss-order-equality" class="internal"><span class="codenumber">5.1.1</span> <span class="title">Matrix Order and Equality</span></a></div></li>
+<li><div class="toc-item"><a href="s-basic-matrix-definitions.html#ss-matrix-addition-scalarmult" class="internal"><span class="codenumber">5.1.2</span> <span class="title">Matrix Addition and Scalar Multiplication</span></a></div></li>
+<li><div class="toc-item"><a href="s-basic-matrix-definitions.html#ss-matrix-multiplication" class="internal"><span class="codenumber">5.1.3</span> <span class="title">Matrix Multiplication</span></a></div></li>
+<li><div class="toc-item"><a href="s-basic-matrix-definitions.html#exercises-5-1" class="internal"><span class="codenumber">5.1.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-special-matrices.html" class="internal"><span class="codenumber">5.2</span> <span class="title">Special Types of Matrices</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-special-matrices.html#subsection-57" class="internal"><span class="codenumber">5.2.1</span> <span class="title">Diagonal Matrices</span></a></div></li>
+<li><div class="toc-item"><a href="s-special-matrices.html#subsection-58" class="internal"><span class="codenumber">5.2.2</span> <span class="title">The Identity Matrix and Matrix Inverses</span></a></div></li>
+<li><div class="toc-item"><a href="s-special-matrices.html#exercises-5-4" class="internal"><span class="codenumber">5.2.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-laws-of-matrix-algebra.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Laws of Matrix Algebra</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-laws-of-matrix-algebra.html#subsection-59" class="internal"><span class="codenumber">5.3.1</span> <span class="title">The Laws</span></a></div></li>
+<li><div class="toc-item"><a href="s-laws-of-matrix-algebra.html#subsection-60" class="internal"><span class="codenumber">5.3.2</span> <span class="title">Commentary</span></a></div></li>
+<li><div class="toc-item"><a href="s-laws-of-matrix-algebra.html#exercises-5-5" class="internal"><span class="codenumber">5.3.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-matrix-oddities.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Matrix Oddities</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-matrix-oddities.html#subsection-61" class="internal"><span class="codenumber">5.4.1</span> <span class="title">Dissimilarities with elementary algebra</span></a></div></li>
+<li><div class="toc-item"><a href="s-matrix-oddities.html#exercises-5-6" class="internal"><span class="codenumber">5.4.2</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_6.html" class="internal"><span class="codenumber">6</span> <span class="title">Relations</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-basic-definitions.html" class="internal"><span class="codenumber">6.1</span> <span class="title">Basic Definitions</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-basic-definitions.html#subsection-62" class="internal"><span class="codenumber">6.1.1</span> <span class="title">Relations between two sets</span></a></div></li>
+<li><div class="toc-item"><a href="s-basic-definitions.html#subsection-63" class="internal"><span class="codenumber">6.1.2</span> <span class="title">Relations on a Set</span></a></div></li>
+<li><div class="toc-item"><a href="s-basic-definitions.html#subsection-64" class="internal"><span class="codenumber">6.1.3</span> <span class="title">Composition of Relations</span></a></div></li>
+<li><div class="toc-item"><a href="s-basic-definitions.html#exercises-6-1" class="internal"><span class="codenumber">6.1.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-graphs-of-relations-on-a-set.html" class="internal"><span class="codenumber">6.2</span> <span class="title">Graphs of Relations on a Set</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-graphs-of-relations-on-a-set.html#subsection-65" class="internal"><span class="codenumber">6.2.1</span> <span class="title">Digraphs</span></a></div></li>
+<li><div class="toc-item"><a href="s-graphs-of-relations-on-a-set.html#exercises-6-2" class="internal"><span class="codenumber">6.2.2</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-properties-of-relations.html" class="internal"><span class="codenumber">6.3</span> <span class="title">Properties of Relations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-properties-of-relations.html#ss-individual-properties" class="internal"><span class="codenumber">6.3.1</span> <span class="title">Individual Properties</span></a></div></li>
+<li><div class="toc-item"><a href="s-properties-of-relations.html#ss-partial-ordering" class="internal"><span class="codenumber">6.3.2</span> <span class="title">Partial Orderings</span></a></div></li>
+<li><div class="toc-item"><a href="s-properties-of-relations.html#ss-equivalence-relations" class="internal"><span class="codenumber">6.3.3</span> <span class="title">Equivalence Relations</span></a></div></li>
+<li><div class="toc-item"><a href="s-properties-of-relations.html#exercises-6-3" class="internal"><span class="codenumber">6.3.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-matrices-of-relations.html" class="internal"><span class="codenumber">6.4</span> <span class="title">Matrices of Relations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-matrices-of-relations.html#subsection-69" class="internal"><span class="codenumber">6.4.1</span> <span class="title">Representing a Relation with a Matrix</span></a></div></li>
+<li><div class="toc-item"><a href="s-matrices-of-relations.html#subsection-70" class="internal"><span class="codenumber">6.4.2</span> <span class="title">Composition as Matrix Multiplication</span></a></div></li>
+<li><div class="toc-item"><a href="s-matrices-of-relations.html#exercises-6-4" class="internal"><span class="codenumber">6.4.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-closure-operations-on-relations.html" class="internal"><span class="codenumber">6.5</span> <span class="title">Closure Operations on Relations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-closure-operations-on-relations.html#subsection-71" class="internal"><span class="codenumber">6.5.1</span> <span class="title">Transitive Closure</span></a></div></li>
+<li><div class="toc-item"><a href="s-closure-operations-on-relations.html#subsection-72" class="internal"><span class="codenumber">6.5.2</span> <span class="title">Algorithms for computing transitive closure</span></a></div></li>
+<li><div class="toc-item"><a href="s-closure-operations-on-relations.html#exercises-6-5" class="internal"><span class="codenumber">6.5.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_7.html" class="internal"><span class="codenumber">7</span> <span class="title">Functions</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-function-def-notation.html" class="internal"><span class="codenumber">7.1</span> <span class="title">Definition and Notation</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-function-def-notation.html#ss-fundamentals-functions" class="internal"><span class="codenumber">7.1.1</span> <span class="title">Fundamentals</span></a></div></li>
+<li><div class="toc-item"><a href="s-function-def-notation.html#ss-two-variables" class="internal"><span class="codenumber">7.1.2</span> <span class="title">Functions of Two Variables</span></a></div></li>
+<li><div class="toc-item"><a href="s-function-def-notation.html#ss-sage-note-functions" class="internal"><span class="codenumber">7.1.3</span> <span class="title">SageMath Note</span></a></div></li>
+<li><div class="toc-item"><a href="s-function-def-notation.html#ss-non-functions" class="internal"><span class="codenumber">7.1.4</span> <span class="title">Non-Functions</span></a></div></li>
+<li><div class="toc-item"><a href="s-function-def-notation.html#exercises-7-1" class="internal"><span class="codenumber">7.1.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-properties-of-functions.html" class="internal"><span class="codenumber">7.2</span> <span class="title">Properties of Functions</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-properties-of-functions.html#subsection-77" class="internal"><span class="codenumber">7.2.1</span> <span class="title">Properties</span></a></div></li>
+<li><div class="toc-item"><a href="s-properties-of-functions.html#subsection-78" class="internal"><span class="codenumber">7.2.2</span> <span class="title">Counting</span></a></div></li>
+<li><div class="toc-item"><a href="s-properties-of-functions.html#exercises-7-2" class="internal"><span class="codenumber">7.2.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-function-composition.html" class="internal"><span class="codenumber">7.3</span> <span class="title">Function Composition</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-function-composition.html#ss-function-equality" class="internal"><span class="codenumber">7.3.1</span> <span class="title">Function Equality</span></a></div></li>
+<li><div class="toc-item"><a href="s-function-composition.html#ss-composition" class="internal"><span class="codenumber">7.3.2</span> <span class="title">Function Composition</span></a></div></li>
+<li><div class="toc-item"><a href="s-function-composition.html#ss-inverse-functions" class="internal"><span class="codenumber">7.3.3</span> <span class="title">Inverse Functions</span></a></div></li>
+<li><div class="toc-item"><a href="s-function-composition.html#exercises-7-3" class="internal"><span class="codenumber">7.3.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_8.html" class="internal"><span class="codenumber">8</span> <span class="title">Recursion and Recurrence Relations</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-faces-of-recursion.html" class="internal"><span class="codenumber">8.1</span> <span class="title">The Many Faces of Recursion</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-faces-of-recursion.html#ss-binomial-coefficients" class="internal"><span class="codenumber">8.1.1</span> <span class="title">Binomial Coefficients</span></a></div></li>
+<li><div class="toc-item"><a href="s-faces-of-recursion.html#ss-polynomials-and-their-evaluation" class="internal"><span class="codenumber">8.1.2</span> <span class="title">Polynomials and Their Evaluation</span></a></div></li>
+<li><div class="toc-item"><a href="s-faces-of-recursion.html#ss-recursive-searching" class="internal"><span class="codenumber">8.1.3</span> <span class="title">Recursive Searching - The Binary Search</span></a></div></li>
+<li><div class="toc-item"><a href="s-faces-of-recursion.html#ss-recursive-sequences" class="internal"><span class="codenumber">8.1.4</span> <span class="title">Recursively Defined Sequences</span></a></div></li>
+<li><div class="toc-item"><a href="s-faces-of-recursion.html#ss-recursion" class="internal"><span class="codenumber">8.1.5</span> <span class="title">Recursion</span></a></div></li>
+<li><div class="toc-item"><a href="s-faces-of-recursion.html#ss-iteration" class="internal"><span class="codenumber">8.1.6</span> <span class="title">Iteration</span></a></div></li>
+<li><div class="toc-item"><a href="s-faces-of-recursion.html#ss-induction-and-recursion" class="internal"><span class="codenumber">8.1.7</span> <span class="title">Induction and Recursion</span></a></div></li>
+<li><div class="toc-item"><a href="s-faces-of-recursion.html#exercises-35" class="internal"><span class="codenumber">8.1.8</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-Sequences.html" class="internal"><span class="codenumber">8.2</span> <span class="title">Sequences</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-Sequences.html#subsection-89" class="internal"><span class="codenumber">8.2.1</span> <span class="title">Sequences and Ways They Are Defined</span></a></div></li>
+<li><div class="toc-item"><a href="s-Sequences.html#subsection-90" class="internal"><span class="codenumber">8.2.2</span> <span class="title">A Fundamental Problem</span></a></div></li>
+<li><div class="toc-item"><a href="s-Sequences.html#exercises-8-2" class="internal"><span class="codenumber">8.2.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-recurrence-relations.html" class="internal"><span class="codenumber">8.3</span> <span class="title">Recurrence Relations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-recurrence-relations.html#defs-rr" class="internal"><span class="codenumber">8.3.1</span> <span class="title">Definition and Terminology</span></a></div></li>
+<li><div class="toc-item"><a href="s-recurrence-relations.html#ss-solving-recurrence-relations" class="internal"><span class="codenumber">8.3.2</span> <span class="title">Solving Recurrence Relations</span></a></div></li>
+<li><div class="toc-item"><a href="s-recurrence-relations.html#sss-recurrence-relations-obtained-from-solutions" class="internal"><span class="codenumber">8.3.3</span> <span class="title">Recurrence Relations Obtained from “Solutions”</span></a></div></li>
+<li><div class="toc-item"><a href="s-recurrence-relations.html#ss-solution-of-nonhomogeneous-relations" class="internal"><span class="codenumber">8.3.4</span> <span class="title">Solution of Nonhomogeneous Finite Order Linear Relations</span></a></div></li>
+<li><div class="toc-item"><a href="s-recurrence-relations.html#exercises-8-3" class="internal"><span class="codenumber">8.3.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-some-common-rrs.html" class="internal"><span class="codenumber">8.4</span> <span class="title">Some Common Recurrence Relations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-some-common-rrs.html#rr-basic-example" class="internal"><span class="codenumber">8.4.1</span> <span class="title">A  First Basic Example</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-some-common-rrs.html#analysis-of-binary-search" class="internal"><span class="codenumber">8.4.2</span> <span class="title">An Analysis of the Binary Search Algorithm</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-some-common-rrs.html#subsubsection-1" class="internal"><span class="codenumber">8.4.2.1</span> <span class="title"></span></a></div></li>
+<li><div class="toc-item"><a href="s-some-common-rrs.html#sss-review-of-logarithms" class="internal"><span class="codenumber">8.4.2.2</span> <span class="title">Review of Logarithms</span></a></div></li>
+<li><div class="toc-item"><a href="s-some-common-rrs.html#subsubsection-3" class="internal"><span class="codenumber">8.4.2.3</span> <span class="title"></span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="s-some-common-rrs.html#ss-bubblesort-analysis" class="internal"><span class="codenumber">8.4.3</span> <span class="title">Analysis of Bubble Sort and Merge Sort</span></a></div></li>
+<li><div class="toc-item"><a href="s-some-common-rrs.html#ss-derangements" class="internal"><span class="codenumber">8.4.4</span> <span class="title">Derangements</span></a></div></li>
+<li><div class="toc-item"><a href="s-some-common-rrs.html#exercises-8-4" class="internal"><span class="codenumber">8.4.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-generating-functions.html" class="internal"><span class="codenumber">8.5</span> <span class="title">Generating Functions</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-generating-functions.html#ss-what-is-a-generating-function" class="internal"><span class="codenumber">8.5.1</span> <span class="title">Definition</span></a></div></li>
+<li><div class="toc-item"><a href="s-generating-functions.html#ss-solution-of-rr-using-generating-functions" class="internal"><span class="codenumber">8.5.2</span> <span class="title">Solution of a Recurrence Relation Using Generating Functions</span></a></div></li>
+<li><div class="toc-item"><a href="s-generating-functions.html#ops-on-sequences" class="internal"><span class="codenumber">8.5.3</span> <span class="title">Operations on Sequences</span></a></div></li>
+<li><div class="toc-item"><a href="s-generating-functions.html#sss-operations-on-generating-functions" class="internal"><span class="codenumber">8.5.4</span> <span class="title">Operations on Generating Functions</span></a></div></li>
+<li><div class="toc-item"><a href="s-generating-functions.html#ss-closed-form-expressions-for-generating-functions" class="internal"><span class="codenumber">8.5.5</span> <span class="title">Closed Form Expressions for Generating Functions</span></a></div></li>
+<li><div class="toc-item"><a href="s-generating-functions.html#ss-extra-for-experts" class="internal"><span class="codenumber">8.5.6</span> <span class="title">Extra for Experts</span></a></div></li>
+<li><div class="toc-item"><a href="s-generating-functions.html#exercises-39" class="internal"><span class="codenumber">8.5.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_9.html" class="internal"><span class="codenumber">9</span> <span class="title">Graph Theory</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-graphs-introduction.html" class="internal"><span class="codenumber">9.1</span> <span class="title">Graphs - General Introduction</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-graphs-introduction.html#subsection-105" class="internal"><span class="codenumber">9.1.1</span> <span class="title">Definitions</span></a></div></li>
+<li><div class="toc-item"><a href="s-graphs-introduction.html#subsection-106" class="internal"><span class="codenumber">9.1.2</span> <span class="title">Subgraphs</span></a></div></li>
+<li><div class="toc-item"><a href="s-graphs-introduction.html#subsection-107" class="internal"><span class="codenumber">9.1.3</span> <span class="title">Graph Isomorphisms</span></a></div></li>
+<li><div class="toc-item"><a href="s-graphs-introduction.html#subsection-108" class="internal"><span class="codenumber">9.1.4</span> <span class="title">Next Steps</span></a></div></li>
+<li><div class="toc-item"><a href="s-graphs-introduction.html#exercises-9-1" class="internal"><span class="codenumber">9.1.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-data-structures-for-graphs.html" class="internal"><span class="codenumber">9.2</span> <span class="title">Data Structures for Graphs</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-data-structures-for-graphs.html#ss-graph-data-structures" class="internal"><span class="codenumber">9.2.1</span> <span class="title">Basic Data Structures</span></a></div></li>
+<li><div class="toc-item"><a href="s-data-structures-for-graphs.html#sss-sage-graphs" class="internal"><span class="codenumber">9.2.2</span> <span class="title">Sage Graphs</span></a></div></li>
+<li><div class="toc-item"><a href="s-data-structures-for-graphs.html#exercises-9-2" class="internal"><span class="codenumber">9.2.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-Connectivity.html" class="internal"><span class="codenumber">9.3</span> <span class="title">Connectivity</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-Connectivity.html#ss-connectivity-prelim" class="internal"><span class="codenumber">9.3.1</span> <span class="title">Preliminaries</span></a></div></li>
+<li><div class="toc-item"><a href="s-Connectivity.html#ss-adjacency-matrix-method" class="internal"><span class="codenumber">9.3.2</span> <span class="title">Adjacency Matrix Method</span></a></div></li>
+<li><div class="toc-item"><a href="s-Connectivity.html#ss-breadth-first-search" class="internal"><span class="codenumber">9.3.3</span> <span class="title">Breadth-First Search</span></a></div></li>
+<li><div class="toc-item"><a href="s-Connectivity.html#ss-ecc-rad-diameter" class="internal"><span class="codenumber">9.3.4</span> <span class="title">Graph Measurements</span></a></div></li>
+<li><div class="toc-item"><a href="s-Connectivity.html#ss-sage-note-search" class="internal"><span class="codenumber">9.3.5</span> <span class="title">SageMath Note - Graph Searching</span></a></div></li>
+<li><div class="toc-item"><a href="s-Connectivity.html#exercises-9-3" class="internal"><span class="codenumber">9.3.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-traversals.html" class="internal"><span class="codenumber">9.4</span> <span class="title">Traversals: Eulerian and Hamiltonian Graphs</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-traversals.html#ss-eulerian" class="internal"><span class="codenumber">9.4.1</span> <span class="title">Eulerian  Graphs</span></a></div></li>
+<li><div class="toc-item"><a href="s-traversals.html#ss-hamiltonian-graphs" class="internal"><span class="codenumber">9.4.2</span> <span class="title">Hamiltonian Graphs</span></a></div></li>
+<li><div class="toc-item"><a href="s-traversals.html#exercises-9-4" class="internal"><span class="codenumber">9.4.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-graph-optimization.html" class="internal"><span class="codenumber">9.5</span> <span class="title">Graph Optimization</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-graph-optimization.html#ss-weighted-graph" class="internal"><span class="codenumber">9.5.1</span> <span class="title">Weighted Graphs</span></a></div></li>
+<li><div class="toc-item"><a href="s-graph-optimization.html#ss-traveling-salesman-problem" class="internal"><span class="codenumber">9.5.2</span> <span class="title">The Traveling Salesman Problem</span></a></div></li>
+<li><div class="toc-item"><a href="s-graph-optimization.html#ss-networks-and-flows" class="internal"><span class="codenumber">9.5.3</span> <span class="title">Networks and the Maximum Flow Problem</span></a></div></li>
+<li><div class="toc-item"><a href="s-graph-optimization.html#ss-other-optimization" class="internal"><span class="codenumber">9.5.4</span> <span class="title">Other Graph Optimization Problems</span></a></div></li>
+<li><div class="toc-item"><a href="s-graph-optimization.html#exercises-9-5" class="internal"><span class="codenumber">9.5.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-planarity-and-colorings.html" class="internal"><span class="codenumber">9.6</span> <span class="title">Planarity and Colorings</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-planarity-and-colorings.html#ss-planarity" class="internal"><span class="codenumber">9.6.1</span> <span class="title">Planar Graphs</span></a></div></li>
+<li><div class="toc-item"><a href="s-planarity-and-colorings.html#ss-graph-coloring" class="internal"><span class="codenumber">9.6.2</span> <span class="title">Graph Coloring</span></a></div></li>
+<li><div class="toc-item"><a href="s-planarity-and-colorings.html#exercises-9-6" class="internal"><span class="codenumber">9.6.3</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="s-planarity-and-colorings.html#references-1" class="internal"><span class="codenumber">9.6.4</span> <span class="title">Further Reading</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_10.html" class="internal"><span class="codenumber">10</span> <span class="title">Trees</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-what-is-a-tree.html" class="internal"><span class="codenumber">10.1</span> <span class="title">What Is a Tree?</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-what-is-a-tree.html#subsection-124" class="internal"><span class="codenumber">10.1.1</span> <span class="title">Definition</span></a></div></li>
+<li><div class="toc-item"><a href="s-what-is-a-tree.html#subsection-125" class="internal"><span class="codenumber">10.1.2</span> <span class="title">Conditions for a Graph to be a Tree</span></a></div></li>
+<li><div class="toc-item"><a href="s-what-is-a-tree.html#exercises-10-1" class="internal"><span class="codenumber">10.1.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-spanning-trees.html" class="internal"><span class="codenumber">10.2</span> <span class="title">Spanning Trees</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-spanning-trees.html#subsection-126" class="internal"><span class="codenumber">10.2.1</span> <span class="title">Motivation</span></a></div></li>
+<li><div class="toc-item"><a href="s-spanning-trees.html#subsection-127" class="internal"><span class="codenumber">10.2.2</span> <span class="title">Definition</span></a></div></li>
+<li><div class="toc-item"><a href="s-spanning-trees.html#subsection-128" class="internal"><span class="codenumber">10.2.3</span> <span class="title">Prim’s Algorithm</span></a></div></li>
+<li><div class="toc-item"><a href="s-spanning-trees.html#exercises-10-2" class="internal"><span class="codenumber">10.2.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-rooted-trees.html" class="internal"><span class="codenumber">10.3</span> <span class="title">Rooted Trees</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-rooted-trees.html#ss-rooted-trees" class="internal"><span class="codenumber">10.3.1</span> <span class="title">Definition and Terminology</span></a></div></li>
+<li><div class="toc-item"><a href="s-rooted-trees.html#ss-kruskal-algorithm" class="internal"><span class="codenumber">10.3.2</span> <span class="title">Kruskal’s Algorithm</span></a></div></li>
+<li><div class="toc-item"><a href="s-rooted-trees.html#ss-sage-note-kruskal" class="internal"><span class="codenumber">10.3.3</span> <span class="title">SageMath Note - Implementation of Kruskal’s Algorithm</span></a></div></li>
+<li><div class="toc-item"><a href="s-rooted-trees.html#exercises-10-3" class="internal"><span class="codenumber">10.3.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-binary-trees.html" class="internal"><span class="codenumber">10.4</span> <span class="title">Binary Trees</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-binary-trees.html#subsection-132" class="internal"><span class="codenumber">10.4.1</span> <span class="title">Definition of a Binary Tree</span></a></div></li>
+<li><div class="toc-item"><a href="s-binary-trees.html#ss-traversals" class="internal"><span class="codenumber">10.4.2</span> <span class="title">Traversals of Binary Trees</span></a></div></li>
+<li><div class="toc-item"><a href="s-binary-trees.html#ss-expression-trees" class="internal"><span class="codenumber">10.4.3</span> <span class="title">Expression Trees</span></a></div></li>
+<li><div class="toc-item"><a href="s-binary-trees.html#ss-counting-binary-trees" class="internal"><span class="codenumber">10.4.4</span> <span class="title">Counting Binary Trees</span></a></div></li>
+<li><div class="toc-item"><a href="s-binary-trees.html#ss-sage-note-powerseries" class="internal"><span class="codenumber">10.4.5</span> <span class="title">SageMath Note - Power Series</span></a></div></li>
+<li><div class="toc-item"><a href="s-binary-trees.html#exercises-10-4" class="internal"><span class="codenumber">10.4.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_11.html" class="internal"><span class="codenumber">11</span> <span class="title">Algebraic Structures</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-Operations.html" class="internal"><span class="codenumber">11.1</span> <span class="title">Operations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-Operations.html#ss-definition-of-operations" class="internal"><span class="codenumber">11.1.1</span> <span class="title">What is an Operation?</span></a></div></li>
+<li><div class="toc-item"><a href="s-Operations.html#ss-operation-properties" class="internal"><span class="codenumber">11.1.2</span> <span class="title">Properties of Operations</span></a></div></li>
+<li><div class="toc-item"><a href="s-Operations.html#ss-operation-tables" class="internal"><span class="codenumber">11.1.3</span> <span class="title">Operation Tables</span></a></div></li>
+<li><div class="toc-item"><a href="s-Operations.html#exercises-11-1" class="internal"><span class="codenumber">11.1.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-algebraic-systems.html" class="internal"><span class="codenumber">11.2</span> <span class="title">Algebraic Systems</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-algebraic-systems.html#ss-monoids" class="internal"><span class="codenumber">11.2.1</span> <span class="title">Monoids at Two Levels</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-algebraic-systems.html#ss-levels-of-abstraction" class="internal"><span class="codenumber">11.2.2</span> <span class="title">Levels of Abstraction</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-algebraic-systems.html#sss-concrete-level" class="internal"><span class="codenumber">11.2.2.1</span> <span class="title">The Concrete Level</span></a></div></li>
+<li><div class="toc-item"><a href="s-algebraic-systems.html#sss-axiomatic-level" class="internal"><span class="codenumber">11.2.2.2</span> <span class="title">The Axiomatic Level</span></a></div></li>
+<li><div class="toc-item"><a href="s-algebraic-systems.html#sss-universal-level" class="internal"><span class="codenumber">11.2.2.3</span> <span class="title">The Universal Level</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="s-algebraic-systems.html#ss-groups" class="internal"><span class="codenumber">11.2.3</span> <span class="title">Groups</span></a></div></li>
+<li><div class="toc-item"><a href="s-algebraic-systems.html#exercises-11-2" class="internal"><span class="codenumber">11.2.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-general-properties-of-groups.html" class="internal"><span class="codenumber">11.3</span> <span class="title">Some General Properties of Groups</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-general-properties-of-groups.html#subsection-143" class="internal"><span class="codenumber">11.3.1</span> <span class="title">First Theorems</span></a></div></li>
+<li><div class="toc-item"><a href="s-general-properties-of-groups.html#subsection-144" class="internal"><span class="codenumber">11.3.2</span> <span class="title">Exponents</span></a></div></li>
+<li><div class="toc-item"><a href="s-general-properties-of-groups.html#exercises-11-3" class="internal"><span class="codenumber">11.3.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-gcds-and-zsubn.html" class="internal"><span class="codenumber">11.4</span> <span class="title">Greatest Common Divisors  and the Integers Modulo <span class="process-math">\(n\)</span></span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-gcds-and-zsubn.html#ss-greatest-common-divisors" class="internal"><span class="codenumber">11.4.1</span> <span class="title">Greatest Common Divisors</span></a></div></li>
+<li><div class="toc-item"><a href="s-gcds-and-zsubn.html#sss-euclidean-algorithm" class="internal"><span class="codenumber">11.4.2</span> <span class="title">The Euclidean Algorithm</span></a></div></li>
+<li><div class="toc-item"><a href="s-gcds-and-zsubn.html#ss-modular-arithmetic" class="internal"><span class="codenumber">11.4.3</span> <span class="title">Modular Arithmetic</span></a></div></li>
+<li><div class="toc-item"><a href="s-gcds-and-zsubn.html#ss-properties-modular-arithmetic" class="internal"><span class="codenumber">11.4.4</span> <span class="title">Properties of Modular Arithmetic</span></a></div></li>
+<li><div class="toc-item"><a href="s-gcds-and-zsubn.html#ss-sage-modular" class="internal"><span class="codenumber">11.4.5</span> <span class="title">SageMath Note - Modular Arithmetic</span></a></div></li>
+<li><div class="toc-item"><a href="s-gcds-and-zsubn.html#exercises-11-4" class="internal"><span class="codenumber">11.4.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-Subsystems.html" class="internal"><span class="codenumber">11.5</span> <span class="title">Subsystems</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-Subsystems.html#subsection-150" class="internal"><span class="codenumber">11.5.1</span> <span class="title">Definition</span></a></div></li>
+<li><div class="toc-item"><a href="s-Subsystems.html#subsection-151" class="internal"><span class="codenumber">11.5.2</span> <span class="title">Subgroups</span></a></div></li>
+<li><div class="toc-item"><a href="s-Subsystems.html#sage-note-subgroup-finite" class="internal"><span class="codenumber">11.5.3</span> <span class="title">Sage Note - Applying the condition for a subgroup of a finite group</span></a></div></li>
+<li><div class="toc-item"><a href="s-Subsystems.html#subsection-153" class="internal"><span class="codenumber">11.5.4</span> <span class="title">Cyclic Subgroups</span></a></div></li>
+<li><div class="toc-item"><a href="s-Subsystems.html#exercises-11-5" class="internal"><span class="codenumber">11.5.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-direct-products.html" class="internal"><span class="codenumber">11.6</span> <span class="title">Direct Products</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-direct-products.html#subsection-154" class="internal"><span class="codenumber">11.6.1</span> <span class="title">Definition</span></a></div></li>
+<li><div class="toc-item"><a href="s-direct-products.html#subsection-155" class="internal"><span class="codenumber">11.6.2</span> <span class="title">Direct Products of Groups</span></a></div></li>
+<li><div class="toc-item"><a href="s-direct-products.html#exercises-11-6" class="internal"><span class="codenumber">11.6.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-isomorphisms.html" class="internal"><span class="codenumber">11.7</span> <span class="title">Isomorphisms</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-isomorphisms.html#ss-group-isomorphisms" class="internal"><span class="codenumber">11.7.1</span> <span class="title">Group Isomorphisms</span></a></div></li>
+<li><div class="toc-item"><a href="s-isomorphisms.html#subsection-157" class="internal"><span class="codenumber">11.7.2</span> <span class="title">The order sequence of a finite group</span></a></div></li>
+<li><div class="toc-item"><a href="s-isomorphisms.html#ss-when-are-groups-not-isomorphic" class="internal"><span class="codenumber">11.7.3</span> <span class="title">Conditions for groups to not be isomorphic</span></a></div></li>
+<li><div class="toc-item"><a href="s-isomorphisms.html#sss-exercises-11-7" class="internal"><span class="codenumber">11.7.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_12.html" class="internal"><span class="codenumber">12</span> <span class="title">More Matrix Algebra</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-systems-linear-equations.html" class="internal"><span class="codenumber">12.1</span> <span class="title">Systems of Linear Equations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-systems-linear-equations.html#subsection-159" class="internal"><span class="codenumber">12.1.1</span> <span class="title">Solutions</span></a></div></li>
+<li><div class="toc-item"><a href="s-systems-linear-equations.html#subsection-160" class="internal"><span class="codenumber">12.1.2</span> <span class="title">Elementary Operations on Equations</span></a></div></li>
+<li><div class="toc-item"><a href="s-systems-linear-equations.html#subsection-161" class="internal"><span class="codenumber">12.1.3</span> <span class="title">Transition to Matrices</span></a></div></li>
+<li><div class="toc-item"><a href="s-systems-linear-equations.html#subsection-162" class="internal"><span class="codenumber">12.1.4</span> <span class="title">Elementary Row Operations</span></a></div></li>
+<li><div class="toc-item"><a href="s-systems-linear-equations.html#subsection-163" class="internal"><span class="codenumber">12.1.5</span> <span class="title">The Gauss-Jordan Algorithm</span></a></div></li>
+<li><div class="toc-item"><a href="s-systems-linear-equations.html#sage-note-linear-equations" class="internal"><span class="codenumber">12.1.6</span> <span class="title">SageMath Note - Matrix Reduction</span></a></div></li>
+<li><div class="toc-item"><a href="s-systems-linear-equations.html#exercises-12-1" class="internal"><span class="codenumber">12.1.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-matrix-inversion.html" class="internal"><span class="codenumber">12.2</span> <span class="title">Matrix Inversion</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-matrix-inversion.html#subsection-165" class="internal"><span class="codenumber">12.2.1</span> <span class="title">Developing the Process</span></a></div></li>
+<li><div class="toc-item"><a href="s-matrix-inversion.html#subsection-166" class="internal"><span class="codenumber">12.2.2</span> <span class="title">The General Method for Computing Inverses</span></a></div></li>
+<li><div class="toc-item"><a href="s-matrix-inversion.html#exercises-12-2" class="internal"><span class="codenumber">12.2.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="active">
+<div class="toc-item"><a href="s-intro-to-vector-spaces.html" class="internal"><span class="codenumber">12.3</span> <span class="title">An Introduction to Vector Spaces</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-intro-to-vector-spaces.html#subsection-167" class="internal"><span class="codenumber">12.3.1</span> <span class="title">Motivation for the study of vector spaces</span></a></div></li>
+<li><div class="toc-item"><a href="s-intro-to-vector-spaces.html#subsection-168" class="internal"><span class="codenumber">12.3.2</span> <span class="title">Vector Spaces</span></a></div></li>
+<li><div class="toc-item"><a href="s-intro-to-vector-spaces.html#exercises-12-3" class="internal"><span class="codenumber">12.3.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-the-diagonalization-process.html" class="internal"><span class="codenumber">12.4</span> <span class="title">The Diagonalization Process</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-the-diagonalization-process.html#subsection-169" class="internal"><span class="codenumber">12.4.1</span> <span class="title">Eigenvalues and Eigenvectors</span></a></div></li>
+<li><div class="toc-item"><a href="s-the-diagonalization-process.html#subsection-170" class="internal"><span class="codenumber">12.4.2</span> <span class="title">Diagonalization</span></a></div></li>
+<li><div class="toc-item"><a href="s-the-diagonalization-process.html#sage-note-diag" class="internal"><span class="codenumber">12.4.3</span> <span class="title">SageMath Note - Diagonalization</span></a></div></li>
+<li><div class="toc-item"><a href="s-the-diagonalization-process.html#exercises-12-4" class="internal"><span class="codenumber">12.4.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-some-applications.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Some Applications</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-some-applications.html#subsection-172" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Diagonalization</span></a></div></li>
+<li><div class="toc-item"><a href="s-some-applications.html#subsection-173" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Path Counting</span></a></div></li>
+<li><div class="toc-item"><a href="s-some-applications.html#subsection-174" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Matrix Calculus</span></a></div></li>
+<li><div class="toc-item"><a href="s-some-applications.html#subsection-175" class="internal"><span class="codenumber">12.5.4</span> <span class="title">SageMath Note - Matrix Exponential</span></a></div></li>
+<li><div class="toc-item"><a href="s-some-applications.html#exercises-12-5" class="internal"><span class="codenumber">12.5.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-systems-linear-equations-mod-2.html" class="internal"><span class="codenumber">12.6</span> <span class="title">Linear Equations over the Integers Mod 2</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-systems-linear-equations-mod-2.html#subsection-176" class="internal"><span class="codenumber">12.6.1</span> <span class="title">Row reduction mod 2</span></a></div></li>
+<li><div class="toc-item"><a href="s-systems-linear-equations-mod-2.html#exercises-12-6" class="internal"><span class="codenumber">12.6.2</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_13.html" class="internal"><span class="codenumber">13</span> <span class="title">Boolean Algebra</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-posets-revisited.html" class="internal"><span class="codenumber">13.1</span> <span class="title">Posets Revisited</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-posets-revisited.html#exercises-13-1" class="internal"><span class="codenumber">13.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-lattices.html" class="internal"><span class="codenumber">13.2</span> <span class="title">Lattices</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-lattices.html#exercises-13-2" class="internal"><span class="codenumber">13.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-boolean-algebras.html" class="internal"><span class="codenumber">13.3</span> <span class="title">Boolean Algebras</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-boolean-algebras.html#exercises-13-3" class="internal"><span class="codenumber">13.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-atoms-of-a-boolean-algebra.html" class="internal"><span class="codenumber">13.4</span> <span class="title">Atoms of a Boolean Algebra</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-atoms-of-a-boolean-algebra.html#exercises-13-4" class="internal"><span class="codenumber">13.4</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-finite-boolean-algebras-ntuples.html" class="internal"><span class="codenumber">13.5</span> <span class="title">Finite Boolean Algebras as <span class="process-math">\(n\)</span>-tuples of 0’s and 1’s</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-finite-boolean-algebras-ntuples.html#exercises-13-5" class="internal"><span class="codenumber">13.5</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-boolean-expressions.html" class="internal"><span class="codenumber">13.6</span> <span class="title">Boolean Expressions</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-boolean-expressions.html#exercises-13-6" class="internal"><span class="codenumber">13.6</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-logic-design.html" class="internal"><span class="codenumber">13.7</span> <span class="title">A Brief Introduction to Switching Theory and Logic Design</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-logic-design.html#exercises-69" class="internal"><span class="codenumber">13.7</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_14.html" class="internal"><span class="codenumber">14</span> <span class="title">Monoids and Automata</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-Monoids.html" class="internal"><span class="codenumber">14.1</span> <span class="title">Monoids</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-Monoids.html#exercises-14-1" class="internal"><span class="codenumber">14.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-free-monoids-and-languages.html" class="internal"><span class="codenumber">14.2</span> <span class="title">Free Monoids and Languages</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-free-monoids-and-languages.html#exercises-14-2" class="internal"><span class="codenumber">14.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-automata-finite-state-machines.html" class="internal"><span class="codenumber">14.3</span> <span class="title">Automata, Finite-State Machines</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-automata-finite-state-machines.html#exercises-14-3" class="internal"><span class="codenumber">14.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-monoid-of-fsm.html" class="internal"><span class="codenumber">14.4</span> <span class="title">The Monoid of a Finite-State Machine</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-monoid-of-fsm.html#exercises-14-4" class="internal"><span class="codenumber">14.4</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-machine-of-monoid.html" class="internal"><span class="codenumber">14.5</span> <span class="title">The Machine of a Monoid</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-machine-of-monoid.html#exercises-14-5" class="internal"><span class="codenumber">14.5</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_15.html" class="internal"><span class="codenumber">15</span> <span class="title">Group Theory and Applications</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-cyclic-groups.html" class="internal"><span class="codenumber">15.1</span> <span class="title">Cyclic Groups</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-cyclic-groups.html#exercises-15-1" class="internal"><span class="codenumber">15.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-cosets-and-factor-groups.html" class="internal"><span class="codenumber">15.2</span> <span class="title">Cosets and Factor Groups</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-cosets-and-factor-groups.html#exercises-15-2" class="internal"><span class="codenumber">15.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-permutation-groups.html" class="internal"><span class="codenumber">15.3</span> <span class="title">Permutation Groups</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-permutation-groups.html#ss-symmetric-groups" class="internal"><span class="codenumber">15.3.1</span> <span class="title">The Symmetric Groups</span></a></div></li>
+<li><div class="toc-item"><a href="s-permutation-groups.html#ss-cycle-notation" class="internal"><span class="codenumber">15.3.2</span> <span class="title">Cycle Notation</span></a></div></li>
+<li><div class="toc-item"><a href="s-permutation-groups.html#ss-alternating-group" class="internal"><span class="codenumber">15.3.3</span> <span class="title">Parity of Permutations and the Alternating Group</span></a></div></li>
+<li><div class="toc-item"><a href="s-permutation-groups.html#ss-dihedral-group" class="internal"><span class="codenumber">15.3.4</span> <span class="title">Dihedral Groups</span></a></div></li>
+<li><div class="toc-item"><a href="s-permutation-groups.html#exercises-15-3" class="internal"><span class="codenumber">15.3.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-normal-subgroups-homomorphisms.html" class="internal"><span class="codenumber">15.4</span> <span class="title">Normal Subgroups and Group Homomorphisms</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-normal-subgroups-homomorphisms.html#ss-normal-subgroups" class="internal"><span class="codenumber">15.4.1</span> <span class="title">Normal Subgroups</span></a></div></li>
+<li><div class="toc-item"><a href="s-normal-subgroups-homomorphisms.html#ss-homomorphism" class="internal"><span class="codenumber">15.4.2</span> <span class="title">Homomorphisms</span></a></div></li>
+<li><div class="toc-item"><a href="s-normal-subgroups-homomorphisms.html#exercises-15-4" class="internal"><span class="codenumber">15.4.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-coding-theory-groups.html" class="internal"><span class="codenumber">15.5</span> <span class="title">Coding Theory, Linear Codes</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-coding-theory-groups.html#ss-coding-geometry" class="internal"><span class="codenumber">15.5.1</span> <span class="title">Introduction</span></a></div></li>
+<li><div class="toc-item"><a href="s-coding-theory-groups.html#ss-error-detection" class="internal"><span class="codenumber">15.5.2</span> <span class="title">Error Detection</span></a></div></li>
+<li><div class="toc-item"><a href="s-coding-theory-groups.html#ss-error-correction" class="internal"><span class="codenumber">15.5.3</span> <span class="title">Error Correction</span></a></div></li>
+<li><div class="toc-item"><a href="s-coding-theory-groups.html#exercises-15-5" class="internal"><span class="codenumber">15.5.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="chapter_16.html" class="internal"><span class="codenumber">16</span> <span class="title">An Introduction to Rings and Fields</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="s-rings-basic.html" class="internal"><span class="codenumber">16.1</span> <span class="title">Rings, Basic Definitions and Concepts</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-rings-basic.html#ss-ring-definitions" class="internal"><span class="codenumber">16.1.1</span> <span class="title">Basic Definitions</span></a></div></li>
+<li><div class="toc-item"><a href="s-rings-basic.html#ss-ring-direct-products" class="internal"><span class="codenumber">16.1.2</span> <span class="title">Direct Products of Rings</span></a></div></li>
+<li><div class="toc-item"><a href="s-rings-basic.html#ss-ring-inverses" class="internal"><span class="codenumber">16.1.3</span> <span class="title">Multiplicative Inverses in Rings</span></a></div></li>
+<li><div class="toc-item"><a href="s-rings-basic.html#ss-universal-ring" class="internal"><span class="codenumber">16.1.4</span> <span class="title">More universal concepts, isomorphisms and subrings</span></a></div></li>
+<li><div class="toc-item"><a href="s-rings-basic.html#ss-integral-domains" class="internal"><span class="codenumber">16.1.5</span> <span class="title">Integral Domains and Zero Divisors</span></a></div></li>
+<li><div class="toc-item"><a href="s-rings-basic.html#exercises-16-1" class="internal"><span class="codenumber">16.1.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-fields.html" class="internal"><span class="codenumber">16.2</span> <span class="title">Fields</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-fields.html#exercises-16-2" class="internal"><span class="codenumber">16.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-polynomial-rings.html" class="internal"><span class="codenumber">16.3</span> <span class="title">Polynomial Rings</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-polynomial-rings.html#exercises-16-3" class="internal"><span class="codenumber">16.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-field-extensions.html" class="internal"><span class="codenumber">16.4</span> <span class="title">Field Extensions</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-field-extensions.html#exercises-16-4" class="internal"><span class="codenumber">16.4</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="s-power-series.html" class="internal"><span class="codenumber">16.5</span> <span class="title">Power Series</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="s-power-series.html#subsection-191" class="internal"><span class="codenumber">16.5.1</span> <span class="title">Definition</span></a></div></li>
+<li><div class="toc-item"><a href="s-power-series.html#subsection-192" class="internal"><span class="codenumber">16.5.2</span> <span class="title">Properties, Units</span></a></div></li>
+<li><div class="toc-item"><a href="s-power-series.html#exercises-16-5" class="internal"><span class="codenumber">16.5.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="backmatter.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="app-algorithms.html" class="internal"><span class="codenumber">A</span> <span class="title">Algorithms</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="app-alg1.html" class="internal"><span class="codenumber">A.1</span> <span class="title">An Introduction to Algorithms</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="app-alg1.html#ss-assignments" class="internal"><span class="codenumber">A.1.1</span> <span class="title">Assignments</span></a></div></li>
+<li><div class="toc-item"><a href="app-alg1.html#ss-conditionalstep" class="internal"><span class="codenumber">A.1.2</span> <span class="title">Conditional steps</span></a></div></li>
+<li><div class="toc-item"><a href="app-alg1.html#ss-loops" class="internal"><span class="codenumber">A.1.3</span> <span class="title">Loops</span></a></div></li>
+<li><div class="toc-item"><a href="app-alg1.html#exercises-app-alg-1" class="internal"><span class="codenumber">A.1.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="app-alg2.html" class="internal"><span class="codenumber">A.2</span> <span class="title">The Invariant Relation Theorem</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="app-alg2.html#subsection-196" class="internal"><span class="codenumber">A.2.1</span> <span class="title">Two Exponentiation Algorithms</span></a></div></li>
+<li><div class="toc-item"><a href="app-alg2.html#subsection-197" class="internal"><span class="codenumber">A.2.2</span> <span class="title">Proving the correctness of the fast algorithm</span></a></div></li>
+<li><div class="toc-item"><a href="app-alg2.html#exercises-app-alg1" class="internal"><span class="codenumber">A.2.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="app-pythonsage.html" class="internal"><span class="codenumber">B</span> <span class="title">Python and SageMath</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="app-python-iterators.html" class="internal"><span class="codenumber">B.1</span> <span class="title">Python Iterators</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="app-python-iterators.html#subsection-198" class="internal"><span class="codenumber">B.1.1</span> <span class="title">Counting Subsets</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="app-pythonsage-dictionaries.html" class="internal"><span class="codenumber">B.2</span> <span class="title">Dictionaries</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="app-pythonsage-dictionaries.html#subsection-199" class="internal"><span class="codenumber">B.2.1</span> <span class="title">Colors of Fruits</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="app-determinants.html" class="internal"><span class="codenumber">C</span> <span class="title">Determinants</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-89.html" class="internal"><span class="codenumber">C.1</span> <span class="title">Definition</span></a></div></li>
+<li><div class="toc-item"><a href="section-90.html" class="internal"><span class="codenumber">C.2</span> <span class="title">Computation</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="solutions-backmatter.html" class="internal"><span class="codenumber">D</span> <span class="title">Hints and Solutions to Selected Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="appendix-4.html" class="internal"><span class="codenumber">E</span> <span class="title">Notation</span></a></div></li>
+<li>
+<div class="toc-item"><a href="appendix-5.html" class="internal"><span class="codenumber">F</span> <span class="title">Glossary</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="ads-glossary.html" class="internal"><span class="codenumber">F</span> <span class="title">An Informal Glossary of Terms</span></a></div></li></ul>
+</li>
+<li><div class="toc-item"><a href="references-2.html" class="internal"><span class="title">References</span></a></div></li>
+<li><div class="toc-item"><a href="index-1.html" class="internal"><span class="title">Index</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="s-intro-to-vector-spaces"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">12.3</span> <span class="title">An Introduction to Vector Spaces</span>
+</h2>
+<section class="subsection" id="subsection-167"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">12.3.1</span> <span class="title">Motivation for the study of vector spaces</span>
+</h3>
+<div class="para" id="p-4645"><span class="process-math">\(\renewcommand{\vec}[1]{\mathbf{#1}}\)</span></div>
+<div class="para logical" id="p-4646">
+<div class="para">When we encountered various types of matrices in Chapter 5, it became apparent that a particular kind of matrix, the diagonal matrix, was much easier to use in computations. For example, if <span class="process-math">\(A =\left(
+\begin{array}{cc}
+2 &amp; 1 \\
+2 &amp; 3 \\
+\end{array}
+\right)\text{,}\)</span> then <span class="process-math">\(A^5\)</span> can be found, but its computation is tedious.  If <span class="process-math">\(D =\left(
+\begin{array}{cc}
+1 &amp; 0 \\
+0 &amp; 4 \\
+\end{array}
+\right)\)</span> then</div>
+<div class="displaymath process-math">
+\begin{equation*}
+D^5 =\left(
+\begin{array}{cc}
+1 &amp; 0 \\
+0 &amp; 4 \\
+\end{array}
+\right)^5= \left(
+\begin{array}{cc}
+1^5 &amp; 0 \\
+0 &amp; 4^5 \\
+\end{array}
+\right)= \left(
+\begin{array}{cc}
+1 &amp; 0 \\
+0 &amp; 1024 \\
+\end{array}
+\right)
+\end{equation*}
+</div>
+<div class="para">Even when presented with a non-diagonal matrix, we will see that it is sometimes possible to do a bit of work to be able to work with a diagonal matrix.  This process is called <dfn class="terminology">diagonalization</dfn>.</div>
+</div>
+<div class="para" id="p-4647">In a variety of applications it is beneficial to be able to diagonalize a matrix. In this section we will investigate what this means and consider a few applications. In order to understand when the diagonalization process can be performed, it is necessary to develop several of the underlying concepts of linear algebra.</div></section><section class="subsection" id="subsection-168"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">12.3.2</span> <span class="title">Vector Spaces</span>
+</h3>
+<div class="para" id="p-4648">By now, you realize that mathematicians tend to generalize. Once we have found a “good thing,” something that is useful, we apply it to as many different concepts as possible. In doing so, we frequently find that the “different concepts” are not really different but only look different. Four sentences in four different languages might look dissimilar, but when they are translated into a common language, they might very well express the exact same idea.</div>
+<div class="para" id="p-4649">Early in the development of mathematics, the concept of a vector led to a variety of applications in physics and engineering. We can certainly picture vectors, or “arrows,” in the <span class="process-math">\(x y-\textrm{ plane}\)</span> and even in the three-dimensional space. Does it make sense to talk about vectors in four-dimensional space, in ten-dimensional space, or in any other mathematical situation? If so, what is the essence of a vector? Is it its shape or  the rules it follows? The shape in two- or three-space is just a picture, or geometric interpretation, of a vector. The essence is the rules, or properties, we wish vectors to follow so we can manipulate them algebraically. What follows is a definition of what is called a vector space. It is a list of all the essential properties of vectors, and it is the basic definition of the branch of mathematics  called linear algebra.</div>
+<article class="definition definition-like" id="def-vector-space"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">12.3.1</span><span class="period">.</span><span class="space"> </span><span class="title">Vector Space.</span>
+</h4>
+<div class="para logical" id="p-4650">
+<div class="para">Let <span class="process-math">\(V\)</span> be any nonempty set of objects. Define on <span class="process-math">\(V\)</span> an operation, called addition, for any two elements <span class="process-math">\(\vec{x}, \vec{y} \in  V\text{,}\)</span> and denote this operation by <span class="process-math">\(\vec{x}+ \vec{y}\text{.}\)</span> Let scalar multiplication be defined for a real number <span class="process-math">\(a \in \mathbb{R}\)</span> and any element <span class="process-math">\(\vec{x}\in V\)</span> and denote this operation by <span class="process-math">\(a \vec{x}\text{.}\)</span> The set <span class="process-math">\(V\)</span> together with operations of addition and scalar multiplication is called a vector space over <span class="process-math">\(\mathbb{R}\)</span> if the following hold for all <span class="process-math">\(\vec{x}, \vec{y}, \vec{z}\in
+V\)</span> , and <span class="process-math">\(a,b \in \mathbb{R}\text{:}\)</span>
+</div>
+<ul class="disc">
+<li id="li-2143"><div class="para" id="p-4651"><span class="process-math">\(\displaystyle \vec{x}+ \vec{y}= \vec{y}+ \vec{x}\)</span></div></li>
+<li id="li-2144"><div class="para" id="p-4652"><span class="process-math">\(\displaystyle \left(\vec{x}+ \vec{y}\right)+ \vec{z}= \vec{x}+\left(
+\vec{y}+\vec{z}\right)\)</span></div></li>
+<li id="li-2145"><div class="para" id="p-4653">There exists a vector  <span class="process-math">\(\vec{0}\in V\text{,}\)</span> such that <span class="process-math">\(\vec{x}+\vec{0} =
+\vec{x}\)</span> for all <span class="process-math">\(x \in V\text{.}\)</span>
+</div></li>
+<li id="li-2146"><div class="para" id="p-4654">For each vector  <span class="process-math">\(\vec{x}\in V\text{,}\)</span> there exists a unique vector <span class="process-math">\(-\vec{x}\in V\text{,}\)</span> such that <span class="process-math">\(-\vec{x} +\vec{x}= \vec{0}\text{.}\)</span>
+</div></li>
+</ul>
+<div class="para">These are the main properties associated with the operation of addition. They can be summarized by saying that <span class="process-math">\([V; +]\)</span> is an abelian group.</div>
+</div> <div class="para logical" id="p-4655">
+<div class="para">The next four properties are associated with the operation of scalar multiplication and how it relates to vector addition.</div>
+<ul class="disc">
+<li id="li-2147"><div class="para" id="p-4656"><span class="process-math">\(\displaystyle a\left(\vec{x}+ \vec{y} \right) =a \vec{x}+a \vec{y}\)</span></div></li>
+<li id="li-2148"><div class="para" id="p-4657"><span class="process-math">\(\displaystyle (a +b)\vec{x}= a \vec{x} + b \vec{x}\)</span></div></li>
+<li id="li-2149"><div class="para" id="p-4658"><span class="process-math">\(\displaystyle a \left(b \vec{x}\right) = (a b)\vec{x}\)</span></div></li>
+<li id="li-2150"><div class="para" id="p-4659"><span class="process-math">\(1\vec{x} = \vec{x}\text{.}\)</span></div></li>
+</ul>
+</div></article><div class="para" id="p-4660">In a vector space it is common to call the elements of <span class="process-math">\(V\)</span> vectors and those from <span class="process-math">\(\mathbb{R}\)</span> scalars.  Vector spaces over the real numbers are also called real vector spaces.</div>
+<article class="example example-like" id="ex-matrices-as-vectors"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-matrices-as-vectors"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">12.3.2</span><span class="period">.</span><span class="space"> </span><span class="title">A Vector Space of Matrices.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-matrices-as-vectors"><article class="example example-like"><div class="para" id="p-4661">Let <span class="process-math">\(V = M_{2\times 3}(\mathbb{R})\)</span> and let the operations of addition and scalar multiplication be the usual operations of addition and scalar multiplication on matrices. Then <span class="process-math">\(V\)</span> together with these operations is a  real vector space. The reader is strongly encouraged to verify the definition for this example before proceeding further (see Exercise 3 of this section). Note we can call the elements of <span class="process-math">\(M_{2\times 3}(\mathbb{R})\)</span> vectors even though they are not arrows.</div></article></div>
+<article class="example example-like" id="ex-vector-space-r2"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-vector-space-r2"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">12.3.3</span><span class="period">.</span><span class="space"> </span><span class="title">The Vector Space <span class="process-math">\(\mathbb{R}^2\)</span>.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-vector-space-r2"><article class="example example-like"><div class="para" id="p-4662">Let <span class="process-math">\(\mathbb{R}^2 = \left\{\left(a_1, a_2 \right) \mid a_1,a_2 \in  \mathbb{R}\right\}\text{.}\)</span> If we define addition and scalar multiplication the natural way, that is, as we would on <span class="process-math">\(1\times 2\)</span> matrices, then <span class="process-math">\(\mathbb{R}^2\)</span> is a vector space over <span class="process-math">\(\mathbb{R}\text{.}\)</span> See <a href="" class="xref" data-knowl="./knowl/exercise-12-3-4.html" title="Exercise 12.3.3.4">Exercise 12.3.3.4</a> of this section.</div> <div class="para" id="p-4663">In this example, we have the “bonus” that we can illustrate the algebraic concept geometrically. In mathematics, a “geometric bonus” does not always occur and is not necessary for the development or application of the concept. However, geometric illustrations are quite useful in helping us understand concepts and should be utilized whenever available.</div> <figure class="figure figure-like" id="fig-vector-addition"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="external/images/fig-vector-addition.png" class="contained" alt="Sum of two vectors in \(\mathbb{R}^2\)"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.4<span class="period">.</span></span><span class="space"> </span>Sum of two vectors in <span class="process-math">\(\mathbb{R}^2\)</span></figcaption></figure> <div class="para" id="p-4664">Let’s consider some illustrations of the vector space <span class="process-math">\(\mathbb{R}^2\text{.}\)</span> Let  <span class="process-math">\(\vec{x}= (1, 4)\)</span> and <span class="process-math">\(\vec{y} = (3, 1)\text{.}\)</span> We illustrate the vector <span class="process-math">\(\left(a_1, a_2\right)\)</span> as a directed line segment, or “arrow,” from the point <span class="process-math">\((0, 0)\)</span> to the point<span class="process-math">\(\left(a_1, a_2\right)\text{.}\)</span>  The vectors <span class="process-math">\(\vec{x}\)</span> and <span class="process-math">\(\vec{y}\)</span> are as shown in <a href="" class="xref" data-knowl="./knowl/fig-vector-addition.html" title="Figure 12.3.4">Figure 12.3.4</a> together with <span class="process-math">\(\vec{x}+ \vec{y} = (1, 4) + (3, 1) = (4, 5)\text{.}\)</span> The vector <span class="process-math">\(2 \vec{x} = 2(1, 4) = (2, 8)\)</span> is a vector in the same direction as <span class="process-math">\(\vec{x}\text{,}\)</span> but with twice its length.</div></article></div>
+<article class="note remark-like" id="note-24"><h4 class="heading">
+<span class="type">Note</span><span class="space"> </span><span class="codenumber">12.3.5</span><span class="period">.</span>
+</h4>
+<div class="para logical" id="p-4665"><ol class="decimal">
+<li id="li-2151"><div class="para" id="p-4666">The common convention is to use that boldface letters toward the end of the alphabet for vectors, while letters early in the alphabet are scalars.</div></li>
+<li id="li-2152"><div class="para" id="p-4667">A common alternate notation for vectors is to place an arrow about a variable to indicate that it is a vector such as this:  <span class="process-math">\(\overset{\rightharpoonup }{x}\text{.}\)</span>
+</div></li>
+<li id="li-2153"><div class="para" id="p-4668">The vector <span class="process-math">\(\left(a_1,a_2,\ldots ,a_n\right)\in \mathbb{R}^n\)</span> is referred to as an <span class="process-math">\(n\)</span>-tuple.</div></li>
+<li id="li-2154"><div class="para" id="p-4669">For those familiar with vector calculus, we are expressing the vector <span class="process-math">\(x = a_1 \boldsymbol{\hat{\textbf{i}}}+ a_2 \boldsymbol{\hat{\textbf{j}}} + a_3 \boldsymbol{\hat{\textbf{k}}} \in \mathbb{R}^3\)</span> as <span class="process-math">\(\left(a_1,a_2,a_3\right)\text{.}\)</span> This allows us to discuss vectors in <span class="process-math">\(\mathbb{R}^n\)</span> in much simpler notation.</div></li>
+</ol></div></article><div class="para" id="p-4670">In many situations a vector space <span class="process-math">\(V\)</span> is given and we would like to describe the whole vector space by the smallest number of essential reference vectors. An example of this is the description of <span class="process-math">\(\mathbb{R}^2\text{,}\)</span> the <span class="process-math">\(x y\)</span>-plane, via the <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> axes. Again our concepts must be algebraic in nature so we are not restricted solely to geometric considerations.</div>
+<article class="definition definition-like" id="def-linear-combination"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">12.3.6</span><span class="period">.</span><span class="space"> </span><span class="title">Linear Combination.</span>
+</h4>
+<div class="para" id="p-4671">A vector <span class="process-math">\(\pmb{ y}\)</span> in vector space <span class="process-math">\(V\)</span> (over <span class="process-math">\(\mathbb{R}\)</span>) is a linear combination of the vectors <span class="process-math">\(\vec{x}_1\text{,}\)</span> <span class="process-math">\(\vec{x}_2, \ldots\text{,}\)</span> <span class="process-math">\(\vec{x}_n\)</span> if there exist scalars <span class="process-math">\(a_1,a_2,\ldots ,a_n\)</span> in <span class="process-math">\(\mathbb{R}\)</span> such that <span class="process-math">\(\vec{y}
+= a_1\vec{x}_1+ a_2\vec{x}_2+\ldots +a_n\vec{x}_n\)</span>
+</div></article><article class="example example-like" id="ex-basic-linear-combination"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-basic-linear-combination"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">12.3.7</span><span class="period">.</span><span class="space"> </span><span class="title">A Basic Example.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-basic-linear-combination"><article class="example example-like"><div class="para" id="p-4672">The vector <span class="process-math">\((2, 3)\)</span> in <span class="process-math">\(\mathbb{R}^2\)</span> is a linear combination of the vectors <span class="process-math">\((1, 0)\)</span> and <span class="process-math">\((0, 1)\)</span> since <span class="process-math">\((2, 3) =
+2(1, 0) + 3(0, 1)\text{.}\)</span>
+</div></article></div>
+<article class="example example-like" id="ex-lc-less-obvious"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-lc-less-obvious"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">12.3.8</span><span class="period">.</span><span class="space"> </span><span class="title">A little less obvious example.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-lc-less-obvious"><article class="example example-like"> <div class="para" id="p-4673">Prove that the vector <span class="process-math">\((4,5)\)</span> is a linear combination of the vectors (3, 1) and (1, 4).</div> <div class="para logical" id="p-4674">
+<div class="para">By the definition we must show that there exist scalars <span class="process-math">\(a_1\)</span> and <span class="process-math">\(a_2\)</span> such that:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{ccc}
+\begin{split}
+(4,5) &amp;= a_1(3, 1) + a_2 (1, 4)\\ 
+&amp; = \left(3a_1+ a_2 , a_1+4a_2\right)
+\end{split} &amp;\Rightarrow &amp; 
+\begin{array}{c}
+3a_1+ a_2 =4\\
+a_1+ 4a_2 =5\\
+\end{array}\\
+\\
+\end{array}
+\end{equation*}
+</div>
+<div class="para">This system has the solution <span class="process-math">\(a_1=1\text{,}\)</span> <span class="process-math">\(a_2=1\text{.}\)</span>
+</div>
+</div> <div class="para logical" id="p-4675">
+<div class="para">Hence, if we replace <span class="process-math">\(a_1\)</span> and <span class="process-math">\(a_2\)</span> both by 1, then the two vectors (3, 1) and (1, 4) produce, or generate, the vector (4,5). Of course, if we replace <span class="process-math">\(a_1\)</span> and <span class="process-math">\(a_2\)</span> by different scalars, we can generate more vectors from <span class="process-math">\(\mathbb{R}^2\text{.}\)</span> If, for example, <span class="process-math">\(a
+_1 = 3\)</span> and <span class="process-math">\(a_2 = -2\text{,}\)</span> then</div>
+<div class="displaymath process-math">
+\begin{equation*}
+a_1(3, 1) + a_2 (1, 4) = 3 (3, 1) +(-2) (1,4) = (9, 3) +(-2,-8) = (7, -5)
+\end{equation*}
+</div>
+</div></article></div>
+<div class="para logical" id="p-4676">
+<div class="para">Will the vectors <span class="process-math">\((3, 1)\)</span> and <span class="process-math">\((1,4)\)</span> generate any vector we choose in <span class="process-math">\(\mathbb{R}^2\text{?}\)</span>  To see if this is so, we let <span class="process-math">\(\left(b_1,b_2\right)\)</span> be an arbitrary vector in <span class="process-math">\(\mathbb{R}^2\)</span> and see if we can always find scalars <span class="process-math">\(a_1\)</span> and <span class="process-math">\(a_2\)</span> such that <span class="process-math">\(a_1(3, 1) + a_2 (1, 4)= \left(b_1,b_2\right)\text{.}\)</span> This is equivalent to solving the following system of equations:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{c}
+3a_1+ a_2 =b_1\\
+a_1+4a_2 =b_2\\
+\end{array}
+\end{equation*}
+</div>
+<div class="para">which always has solutions for <span class="process-math">\(a_1\)</span> and <span class="process-math">\(a_2\)</span> , regardless of the values of the real numbers <span class="process-math">\(b_1\)</span> and <span class="process-math">\(b_2\text{.}\)</span> Why?   We formalize this situation in a definition:</div>
+</div>
+<article class="definition definition-like" id="def-generate"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">12.3.9</span><span class="period">.</span><span class="space"> </span><span class="title">Generation of a Vector Space.</span>
+</h4>  <div class="para" id="p-4677">Let <span class="process-math">\(\left\{\vec{x}_1,\vec{x}_2, \ldots ,\vec{x}_n\right\}\)</span> be a set of vectors in a vector space <span class="process-math">\(V\)</span> over <span class="process-math">\(\mathbb{R}\text{.}\)</span> This set is said to <dfn class="terminology">generate</dfn>, or span, <span class="process-math">\(V\)</span> if, for any given vector <span class="process-math">\(\vec{y} \in V\text{,}\)</span> we can always find scalars <span class="process-math">\(a_1\text{,}\)</span> <span class="process-math">\(a_2,
+\ldots\text{,}\)</span> <span class="process-math">\(a_n\)</span> such that <span class="process-math">\(\vec{y} = a_1 \vec{x}_1+a_2 \vec{x}_2+\ldots +a_n \vec{x}_n\text{.}\)</span>  A set that generates a vector space is called a <dfn class="terminology">generating set</dfn>.</div></article><div class="para" id="p-4678">We now give a geometric interpretation of the previous examples.</div>
+<div class="para" id="p-4679">We know that the standard coordinate system, <span class="process-math">\(x\)</span> axis and <span class="process-math">\(y\)</span> axis, were introduced in basic algebra in order to describe all points in the <span class="process-math">\(xy\)</span>-plane algebraically. It is also quite clear that to describe any point in the plane we need exactly two axes.</div>
+<div class="para" id="p-4680">We can set up a new coordinate system in the following way.  Draw the vector <span class="process-math">\((3, 1)\)</span> and an axis from the origin through (3, 1) and label it the <span class="process-math">\(x'\)</span> axis. Also draw the vector <span class="process-math">\((1,4)\)</span> and an axis from the origin through <span class="process-math">\((1,4)\)</span> to be labeled the <span class="process-math">\(y'\)</span> axis. Draw the coordinate grid for the axis, that is, lines parallel, and let the unit lengths of this “new” plane be the lengths of the respective vectors, <span class="process-math">\((3, 1)\)</span> and <span class="process-math">\((1, 4)\text{,}\)</span> so that we obtain <a href="" class="xref" data-knowl="./knowl/fig-two-sets-of-axes.html" title="Figure 12.3.10">Figure 12.3.10</a>.</div>
+<div class="para" id="p-4681">From <a href="" class="xref" data-knowl="./knowl/ex-lc-less-obvious.html" title="Example 12.3.8: A little less obvious example">Example 12.3.8</a>  and <a href="" class="xref" data-knowl="./knowl/fig-two-sets-of-axes.html" title="Figure 12.3.10">Figure 12.3.10</a>, we see that any vector on the plane can be described using the standard <span class="process-math">\(xy\)</span>-axes or our new <span class="process-math">\(x'y'\)</span>-axes. Hence the position which had the name <span class="process-math">\((3,1)\)</span> in reference to the standard axes has the name <span class="process-math">\((1,0)\)</span> with respect to the <span class="process-math">\(x'y'\)</span> axes, or, in the phraseology of linear algebra, the coordinates of the point <span class="process-math">\((1,4)\)</span> with respect to the <span class="process-math">\(x'y'\)</span> axes are <span class="process-math">\((1, 0)\text{.}\)</span>
+</div>
+<figure class="figure figure-like" id="fig-two-sets-of-axes"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="external/images/fig-two-sets-of-axes.png" class="contained" alt="Two sets of axes for the plane"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.10<span class="period">.</span></span><span class="space"> </span>Two sets of axes for the plane</figcaption></figure><article class="example example-like" id="ex-two-positions"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-two-positions"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">12.3.11</span><span class="period">.</span><span class="space"> </span><span class="title">One point, Two position descriptions.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-two-positions"><article class="example example-like"><div class="para" id="p-4682">From <a href="" class="xref" data-knowl="./knowl/ex-lc-less-obvious.html" title="Example 12.3.8: A little less obvious example">Example 12.3.8</a> we found that if we choose <span class="process-math">\(a_1=1\)</span> and <span class="process-math">\(a_2=1\text{,}\)</span> then the two vectors <span class="process-math">\((3, 1)\)</span> and <span class="process-math">\((1,4)\)</span> generate the vector <span class="process-math">\((4,5)\text{.}\)</span> Another geometric interpretation of this problem is that the coordinates of the position <span class="process-math">\((4,5)\)</span> with respect to the <span class="process-math">\(x'y'\)</span> axes of <a href="" class="xref" data-knowl="./knowl/fig-two-sets-of-axes.html" title="Figure 12.3.10">Figure 12.3.10</a> is <span class="process-math">\((1, 1)\text{.}\)</span> In other words, a position in the plane has the name <span class="process-math">\((4,5)\)</span> in reference to the <span class="process-math">\(xy\)</span>-axes and the same position has the name <span class="process-math">\((1, 1)\)</span> in reference to the <span class="process-math">\(x'y'\)</span> axes.</div> <div class="para" id="p-4683">From the above, it is clear that we can use different axes to describe points or vectors in the plane. No matter what choice we use, we want to be able to describe each position in a unique manner. This is not the case in <a href="" class="xref" data-knowl="./knowl/fig-three-axes.html" title="Figure 12.3.12">Figure 12.3.12</a>. Any point in the plane could be described via the <span class="process-math">\(x'y'\)</span> axes, the <span class="process-math">\(x'z'\)</span> axes or the <span class="process-math">\(y'z'\)</span> axes. Therefore, in this case, a single point would have three different names, a very confusing situation.</div> <figure class="figure figure-like" id="fig-three-axes"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig-three-axes.png" class="contained" alt="Three axes on a plane"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.12<span class="period">.</span></span><span class="space"> </span>Three axes on a plane</figcaption></figure></article></div>
+<div class="para" id="p-4684">We formalize the our observations in the previous examples in two definitions and a theorem.</div>
+<article class="definition definition-like" id="def-linear-independence"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">12.3.13</span><span class="period">.</span><span class="space"> </span><span class="title">Linear Independence/Linear Dependence.</span>
+</h4>  <div class="para" id="p-4685">A set of vectors <span class="process-math">\(\left\{\vec{x}_1,\vec{x}_2, \ldots ,\vec{x}_n\right\}\)</span> from a real vector space <span class="process-math">\(V\)</span>  is <dfn class="terminology">linearly independent</dfn> if the only solution to the equation <span class="process-math">\(a_1 \vec{x}_1+a_2 \vec{x}_2+\ldots
++a_n \vec{x}_n= \vec{0}\)</span> is  <span class="process-math">\(a_1 = a_2 = \ldots  = a_n = 0\text{.}\)</span> Otherwise the set is called a <dfn class="terminology">linearly dependent</dfn> set.</div></article><article class="definition definition-like" id="def-basis"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">12.3.14</span><span class="period">.</span><span class="space"> </span><span class="title">Basis.</span>
+</h4>  <div class="para logical" id="p-4686">
+<div class="para">A set of vectors <span class="process-math">\(B=\left\{\vec{x}_1,\vec{x}_2, \ldots ,\vec{x}_n\right\}\)</span> is a basis for a vector space <span class="process-math">\(V\)</span> if:</div>
+<ol class="decimal">
+<li id="li-2155"><div class="para" id="p-4687">
+<span class="process-math">\(B\)</span> generates <span class="process-math">\(V\text{,}\)</span> and</div></li>
+<li id="li-2156"><div class="para" id="p-4688">
+<span class="process-math">\(B\)</span> is linearly independent.</div></li>
+</ol>
+</div></article><article class="theorem theorem-like" id="theorem-basis-property"><h4 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">12.3.15</span><span class="period">.</span><span class="space"> </span><span class="title">The fundamental property of a basis.</span>
+</h4>
+<div class="para" id="p-4689">If <span class="process-math">\(\left\{\vec{x}_1,\vec{x}_2, \ldots ,\vec{x}_n\right\}\)</span> is a basis for a vector space V over <span class="process-math">\(\mathbb{R}\text{,}\)</span> then any vector <span class="process-math">\(y \in V\)</span> can be uniquely expressed as a linear combination of the <span class="process-math">\(\vec{x}_i\textrm{'s}\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-45"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-45"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-45"><article class="hiddenproof"><div class="para logical" id="p-4690">
+<div class="para">Assume that <span class="process-math">\(\left\{\vec{x}_1,\vec{x}_2, \ldots ,\vec{x}_n\right\}\)</span> is a basis for <span class="process-math">\(V\)</span> over <span class="process-math">\(\mathbb{R}\text{.}\)</span> We must prove two facts:</div>
+<ol class="decimal">
+<li id="li-2157"><div class="para" id="p-4691">each vector <span class="process-math">\(y \in V\)</span> can be expressed as a linear combination of the <span class="process-math">\(\vec{x}_i\textrm{'s}\text{,}\)</span> and</div></li>
+<li id="li-2158"><div class="para" id="p-4692">each such expression is unique.</div></li>
+</ol>
+</div> <div class="para" id="p-4693">Part 1 is trivial since a basis, by its definition, must generate all of  <span class="process-math">\(V\text{.}\)</span>
+</div> <div class="para logical" id="p-4694">
+<div class="para">The proof of part 2 is a bit more difficult. We follow the standard approach for any uniqueness facts. Let <span class="process-math">\(y\)</span> be any vector in <span class="process-math">\(V\)</span> and assume that there are two different ways of expressing <span class="process-math">\(y\text{,}\)</span> namely</div>
+<div class="displaymath process-math">
+\begin{equation*}
+y = a_1 \vec{x}_1+a_2 \vec{x}_2+\ldots +a_n \vec{x}_n
+\end{equation*}
+</div>
+<div class="para">and</div>
+<div class="displaymath process-math">
+\begin{equation*}
+y = b_1 \vec{x}_1+b_2 \vec{x}_2+\ldots +b_n \vec{x}_n
+\end{equation*}
+</div>
+<div class="para">where at least one <span class="process-math">\(a_i\)</span> is different from the corresponding <span class="process-math">\(b_i\text{.}\)</span>   Then equating these two linear combinations we get</div>
+<div class="displaymath process-math">
+\begin{equation*}
+a_1 \vec{x}_1+a_2 \vec{x}_2+\ldots +a_n \vec{x}_n=b_1 \vec{x}_1+b_2 \vec{x}_2+\ldots +b_n \vec{x}_n
+\end{equation*}
+</div>
+<div class="para">so that</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\left(a_1-b_1\right) \vec{x}_1+\left(a_2-b_2\right) \vec{x}_2+\ldots +\left(a_n-b_n\right) \vec{x}_n=\vec{0}
+\end{equation*}
+</div>
+</div> <div class="para" id="p-4695">Now a crucial observation: since the <span class="process-math">\(\vec{x}_i's\)</span> form a linearly independent set, the only solution to the previous equation is that each of the coefficients must equal zero, so <span class="process-math">\(a_i-b_i=0\)</span> for <span class="process-math">\(i = 1, 2, \ldots  ,n\text{.}\)</span>   Hence <span class="process-math">\(a_i=b_i\text{,}\)</span> for all <span class="process-math">\(i\text{.}\)</span> This contradicts our assumption that at least one <span class="process-math">\(a_i\)</span> is different from the corresponding <span class="process-math">\(b_i\text{,}\)</span> so each vector <span class="process-math">\(\vec{y} \in  V\)</span> can be expressed in one and only one way.</div></article></div>
+<div class="para" id="p-4696">This theorem, together with the previous examples, gives us a clear insight into the significance of linear independence, namely uniqueness in representing any vector.</div>
+<article class="example example-like" id="ex-another-basis-for-r2"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-another-basis-for-r2"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">12.3.16</span><span class="period">.</span><span class="space"> </span><span class="title">Another basis for <span class="process-math">\(\mathbb{R}^2\)</span>.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-another-basis-for-r2"><article class="example example-like"><div class="para" id="p-4697">Prove that <span class="process-math">\(\{(1, 1), (-1, 1)\}\)</span> is a basis for <span class="process-math">\(\mathbb{R}^2\)</span> over <span class="process-math">\(\mathbb{R}\)</span> and explain what this means geometrically.</div> <div class="para" id="p-4698">First we show that the vectors <span class="process-math">\((1, 1)\)</span> and <span class="process-math">\((-1, 1)\)</span> generate all of <span class="process-math">\(\mathbb{R}^2\text{.}\)</span> We can do this by imitating <a href="" class="xref" data-knowl="./knowl/ex-lc-less-obvious.html" title="Example 12.3.8: A little less obvious example">Example 12.3.8</a> and leave it to the reader (see <a href="" class="xref" data-knowl="./knowl/exercise-12-3-10.html" title="Exercise 12.3.3.10">Exercise 12.3.3.10</a> of this section). Secondly, we must prove that the set is linearly independent.</div> <div class="para logical" id="p-4699">
+<div class="para">Let <span class="process-math">\(a_1\)</span> and <span class="process-math">\(a_2\)</span> be scalars such that <span class="process-math">\(a_1 (1, 1) + a_2 (-1, 1) = (0, 0)\text{.}\)</span> We must prove that the only solution to the equation is that <span class="process-math">\(a_1\)</span> and <span class="process-math">\(a_2\)</span> must both equal zero. The above equation becomes <span class="process-math">\(\left(a_1- a_2 , a_1 + a_2 \right) = (0, 0)\)</span> which gives us the system</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{c}
+a_1 - a_{2 }=0 \\
+a_1 + a_2=0\\
+\end{array}
+\end{equation*}
+</div>
+<div class="para">The augmented matrix of this system reduces in such way that the only solution is the trivial one of all zeros:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\left(
+\begin{array}{cc|c}
+1 &amp; -1 &amp; 0 \\
+1 &amp; 1 &amp; 0 \\
+\end{array}
+\right)\longrightarrow \left(
+\begin{array}{cc|c}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+\end{array}
+\right)\textrm{    }\Rightarrow \textrm{    }a_1 = a_2 =0
+\end{equation*}
+</div>
+<div class="para">Therefore, the set is linearly independent.</div>
+</div></article></div>
+<div class="para" id="p-4700">To explain the results geometrically, note through Exercise 12, part a, that the coordinates of each vector <span class="process-math">\(\vec{y} \in \mathbb{R}^2\)</span> can be determined uniquely using the vectors (1,1) and (-1, 1). The concept of dimension is quite obvious for those vector spaces that have an immediate geometric interpretation.  For example, the dimension of <span class="process-math">\(\mathbb{R}^2\)</span> is two and that of <span class="process-math">\(\mathbb{R}^3\)</span> is three. How can we define the concept of dimension algebraically so that the resulting definition correlates with that of <span class="process-math">\(\mathbb{R}^2\)</span> and <span class="process-math">\(\mathbb{R}^3\text{?}\)</span> First we need a theorem, which we will state without proof.</div>
+<article class="theorem theorem-like" id="theorem-basis-size"><h4 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">12.3.17</span><span class="period">.</span><span class="space"> </span><span class="title">Basis Size is Constant.</span>
+</h4>
+<div class="para" id="p-4701">If <span class="process-math">\(V\)</span> is a vector space with a basis containing <span class="process-math">\(n\)</span> elements, then all bases of <span class="process-math">\(V\)</span> contain <span class="process-math">\(n\)</span> elements.</div></article><article class="definition definition-like" id="def-def-dimension"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">12.3.18</span><span class="period">.</span><span class="space"> </span><span class="title">Dimension of a Vector Space.</span>
+</h4>  <div class="para" id="p-4702">Let <span class="process-math">\(V\)</span> be a vector space over <span class="process-math">\(\mathbb{R}\)</span> with basis <span class="process-math">\(\left\{\vec{x}_1,\vec{x}_2, \ldots ,\vec{x}_n\right\}\text{.}\)</span> Then the dimension of <span class="process-math">\(V\)</span> is <span class="process-math">\(n\text{.}\)</span>   We use the notation  <span class="process-math">\(\dim  V = n\)</span> to indicate that <span class="process-math">\(V\)</span> is <span class="process-math">\(n\)</span>-dimensional.</div></article></section><section class="exercises" id="exercises-12-3"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber">12.3.3</span> <span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="exercise-520"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para" id="p-4703">If <span class="process-math">\(a = 2\text{,}\)</span> <span class="process-math">\(b = -3\text{,}\)</span> <span class="process-math">\(A=\left(
+\begin{array}{ccc}
+1 &amp; 0 &amp; -1 \\
+2 &amp; 3 &amp; 4 \\
+\end{array}
+\right)\text{,}\)</span>    <span class="process-math">\(B=\left(
+\begin{array}{ccc}
+2 &amp; -2 &amp; 3 \\
+4 &amp; 5 &amp; 8 \\
+\end{array}
+\right)\text{,}\)</span>  and <span class="process-math">\(C=\left(
+\begin{array}{ccc}
+1 &amp; 0 &amp; 0 \\
+3 &amp; 2 &amp; -2 \\
+\end{array}
+\right)\)</span> verify that all properties of the definition of a vector space are true for <span class="process-math">\(M_{2\times 3}(\mathbb{R})\)</span> with these values.</div></article><article class="exercise exercise-like" id="exercise-521"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para" id="p-4704">Let <span class="process-math">\(a = 3\text{,}\)</span> <span class="process-math">\(b = 4\text{,}\)</span> <span class="process-math">\(\vec{x}\pmb = (-1, 3)\text{,}\)</span> <span class="process-math">\(\vec{y} = (2, 3)\text{,}\)</span>and <span class="process-math">\(\vec{z} = (1, 0)\text{.}\)</span> Verify that all properties of the definition of a vector space are true for <span class="process-math">\(\mathbb{R}^2\)</span> for these values.</div></article><article class="exercise exercise-like" id="exercise-522"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para logical" id="p-4705"><ol class="lower-alpha">
+<li id="li-2159"><div class="para" id="p-4706">Verify that <span class="process-math">\(M_{2\times 3}(\mathbb{R})\)</span> is a vector space over <span class="process-math">\(\mathbb{R}\text{.}\)</span>  What is its dimension?</div></li>
+<li id="li-2160"><div class="para" id="p-4707">Is <span class="process-math">\(M_{m\times n}(\mathbb{R})\)</span> a vector space over <span class="process-math">\(\mathbb{R}\text{?}\)</span>  If so, what is its dimension?</div></li>
+</ol></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-239" id="answer-239"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-239"><div class="answer solution-like"><div class="para" id="p-4708">The dimension of <span class="process-math">\(M_{2\times 3}(\mathbb{R})\)</span> is 6 and yes, <span class="process-math">\(M_{m\times n}(\mathbb{R})\)</span> is also a vector space of dimension <span class="process-math">\(m \cdot n\text{.}\)</span>   One basis for <span class="process-math">\(M_{m\times n}(\mathbb{R})\)</span> is <span class="process-math">\(\{A_{ij} \mid 1 \leq i \leq m, 1 \leq j \leq n\}\)</span> where <span class="process-math">\(A_{ij}\)</span> is the <span class="process-math">\(m\times n\)</span> matrix with entries all equal to zero except for in row <span class="process-math">\(i\text{,}\)</span> column <span class="process-math">\(j\)</span> where the entry is 1.</div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-12-3-4"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para logical" id="p-4709"><ol class="lower-alpha">
+<li id="li-2161"><div class="para" id="p-4710">Verify that <span class="process-math">\(\mathbb{R}^2\)</span> is a vector space over <span class="process-math">\(\mathbb{R}\text{.}\)</span>
+</div></li>
+<li id="li-2162"><div class="para" id="p-4711">Is <span class="process-math">\(\mathbb{R}^n\)</span> a vector space over <span class="process-math">\(\mathbb{R}\)</span> for every positive integer <span class="process-math">\(n\text{?}\)</span>
+</div></li>
+</ol></div></article><article class="exercise exercise-like" id="exercise-524"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para" id="p-4712">Let <span class="process-math">\(P^3= \left\{a_0 + a_1x + a_2x^2 + a_3x^3 \mid a_0,a_1,a_2,a_3\in \mathbb{R}\right\}\text{;}\)</span> that is, <span class="process-math">\(P^3\)</span> is the set of all polynomials in <span class="process-math">\(x\)</span> having real coefficients with degree less than or equal to three. Verify that <span class="process-math">\(P^3\)</span> is a vector space over <span class="process-math">\(\mathbb{R}\text{.}\)</span> What is its dimension?</div></article><article class="exercise exercise-like" id="exercise-525"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div class="para logical" id="p-4713">
+<div class="para">For each of the following, express the vector <span class="process-math">\(\pmb{y}\)</span> as a linear combination of the vectors <span class="process-math">\(x_1\)</span> and <span class="process-math">\(x_2\text{.}\)</span>
+</div>
+<ol class="lower-alpha">
+<li id="li-2163"><div class="para" id="p-4714">
+<span class="process-math">\(\vec{y} = (5, 6)\text{,}\)</span>  <span class="process-math">\(\vec{x}_1 =(1, 0)\text{,}\)</span> and <span class="process-math">\(\vec{x}_2 = (0, 1)\)</span>
+</div></li>
+<li id="li-2164"><div class="para" id="p-4715">
+<span class="process-math">\(\vec{y} = (2, 1)\text{,}\)</span>  <span class="process-math">\(\vec{x}_1 =(2, 1)\text{,}\)</span> and  <span class="process-math">\(\vec{x}_2 = (1, 1)\)</span>
+</div></li>
+<li id="li-2165"><div class="para" id="p-4716">
+<span class="process-math">\(\vec{y} = (3,4)\text{,}\)</span>   <span class="process-math">\(\vec{x}_1 = (1, 1)\text{,}\)</span> and  <span class="process-math">\(\vec{x}_2 = (-1, 1)\)</span>
+</div></li>
+</ol>
+</div></article><article class="exercise exercise-like" id="exercise-526"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="para" id="p-4717">Express the vector  <span class="process-math">\(\left(
+\begin{array}{cc}
+1 &amp; 2 \\
+-3 &amp; 3 \\
+\end{array}
+\right)\in M_{2\times 2}(\mathbb{R})\text{,}\)</span> as a linear combination of <span class="process-math">\(\left(
+\begin{array}{cc}
+1 &amp; 1 \\
+1 &amp; 1 \\
+\end{array}
+\right)\text{,}\)</span>   <span class="process-math">\(\left(
+\begin{array}{cc}
+-1 &amp; 5 \\
+2 &amp; 1 \\
+\end{array}
+\right)\text{,}\)</span>  <span class="process-math">\(\left(
+\begin{array}{cc}
+0 &amp; 1 \\
+1 &amp; 1 \\
+\end{array}
+\right)\)</span>  and <span class="process-math">\(\left(
+\begin{array}{cc}
+0 &amp; 0 \\
+0 &amp; 1 \\
+\end{array}
+\right)\)</span>
+</div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-240" id="answer-240"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-240"><div class="answer solution-like"><div class="para logical" id="p-4718">
+<div class="para">If the matrices are named <span class="process-math">\(B\text{,}\)</span> <span class="process-math">\(A_1\text{,}\)</span> <span class="process-math">\(A_2\)</span> , <span class="process-math">\(A_3\text{,}\)</span> and <span class="process-math">\(A_4\)</span> , then</div>
+<div class="displaymath process-math">
+\begin{equation*}
+B = \frac{8}{3}A_1 + \frac{5}{3}A_2+\frac{-5}{3}A_3+\frac{23}{3}A_4
+\end{equation*}
+</div>
+</div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-527"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div class="para" id="p-4719">Express the vector <span class="process-math">\(x^3-4x^2+3\in P^3\)</span> as a linear combination of the vectors 1, <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(x^2\)</span> , and <span class="process-math">\(x^3\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-528"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div class="para logical" id="p-4720"><ol class="lower-alpha">
+<li id="li-2166"><div class="para" id="p-4721">Show that the set <span class="process-math">\(\left\{\vec{x}_1,\vec{x}_2\right\}\)</span> generates <span class="process-math">\(\mathbb{R}^2\)</span> for each of the parts in Exercise 6 of this section.</div></li>
+<li id="li-2167"><div class="para" id="p-4722">Show that <span class="process-math">\(\left\{\vec{x}_1,\vec{x}_2,\vec{x}_3\right\}\)</span> generates <span class="process-math">\(\mathbb{R}^2\)</span> where <span class="process-math">\(\vec{x}_1= (1, 1)\text{,}\)</span> <span class="process-math">\(\vec{x}_2= (3,4)\text{,}\)</span> and <span class="process-math">\(\vec{x}_3 = (-1, 5)\text{.}\)</span>
+</div></li>
+<li id="li-2168"><div class="para" id="p-4723">Create a set of four or more vectors that generates <span class="process-math">\(\mathbb{R}^2\text{.}\)</span>
+</div></li>
+<li id="li-2169"><div class="para" id="p-4724">What is the smallest number of vectors needed to generate <span class="process-math">\(\mathbb{R}^2\text{?}\)</span>   <span class="process-math">\(\mathbb{R}^n\text{?}\)</span>
+</div></li>
+<li id="li-2170"><div class="para logical" id="p-4725">
+<div class="para">Show that the set</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\{A_1, A_2 ,A_3, A_4\} =\{
+\left(
+\begin{array}{cc}
+1 &amp; 0 \\
+0 &amp; 0 \\
+\end{array}
+\right),
+\left(
+\begin{array}{cc}
+0 &amp; 1 \\
+0 &amp; 0 \\
+\end{array}
+\right),
+\left(
+\begin{array}{cc}
+0 &amp; 0 \\
+1 &amp; 0 \\
+\end{array}
+\right),
+\left(
+\begin{array}{cc}
+0 &amp; 0 \\
+0 &amp; 1 \\
+\end{array}
+\right)\}
+\end{equation*}
+</div>
+<div class="para">generates <span class="process-math">\(M_{2\times 2}(\mathbb{R})\)</span>
+</div>
+</div></li>
+<li id="li-2171"><div class="para" id="p-4726">Show that <span class="process-math">\(\left\{1,x,x^2 ,x^3\right\}\)</span> generates <span class="process-math">\(P^3\text{.}\)</span>
+</div></li>
+</ol></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-241" id="answer-241"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-241"><div class="answer solution-like"><div class="para logical" id="p-4727"><ol class="lower-alpha">
+<li id="li-2172"><div class="para" id="p-4728">If <span class="process-math">\(x_1 = (1, 0)\text{,}\)</span> <span class="process-math">\(x_2= (0, 1)\text{,}\)</span> and <span class="process-math">\(y = \left(b_1, b_2\right)\text{,}\)</span> then <span class="process-math">\(y = b_1x_1+b_2x_2\text{.}\)</span>   If  <span class="process-math">\(x_1 = (3, 2)\text{,}\)</span> <span class="process-math">\(x_2= (2,1)\text{,}\)</span> and <span class="process-math">\(y = \left(b_1, b_2\right)\text{,}\)</span> then <span class="process-math">\(y =\left(- b_1+2b_2\right)x_1+\left(2b_1-3b_2\right)x_2\text{.}\)</span>
+</div></li>
+<li id="li-2173"><div class="para" id="p-4729">If <span class="process-math">\(y = \left(b_1, b_2\right)\)</span> is any vector in <span class="process-math">\(\mathbb{R}^2\)</span> , then <span class="process-math">\(y =\left(- 3b_1+4b_2\right)x_1+\left(-b_1+b_2\right)x_2 + (0)x_3\)</span>
+</div></li>
+<li id="li-2174"><div class="para" id="p-4730">One solution is to add any vector(s) to <span class="process-math">\(x_1\text{,}\)</span> <span class="process-math">\(x_2\text{,}\)</span> and <span class="process-math">\(x_3\)</span> of part b.</div></li>
+<li id="li-2175"><div class="para" id="p-4731">2, <span class="process-math">\(n\)</span>
+</div></li>
+<li id="li-2176"><div class="para" id="p-4732"><span class="process-math">\(\displaystyle \left(
+\begin{array}{cc}
+x &amp; y \\
+z &amp; w \\
+\end{array}
+\right)= x A_1+y A_2+ z A_3+ w A_4\)</span></div></li>
+<li id="li-2177"><div class="para" id="p-4733"><span class="process-math">\(a_0+a_1x + a_2x^2+ a_3x^3=a_0(1)+a_1(x) + a_2\left(x^2\right)+ a_3\left(x^3\right)\text{.}\)</span></div></li>
+</ol></div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-12-3-10"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
+<div class="para" id="p-4734">Complete <a href="" class="xref" data-knowl="./knowl/ex-another-basis-for-r2.html" title="Example 12.3.16: Another basis for \mathbb{R}^2">Example 12.3.16</a> by showing that <span class="process-math">\(\{(1, 1), (-1, 1)\}\)</span> generates <span class="process-math">\(\mathbb{R}^2\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-530"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
+<div class="para logical" id="p-4735"><ol class="lower-alpha">
+<li id="li-2178"><div class="para" id="p-4736">Prove that <span class="process-math">\(\{(4, 1), (1, 3)\}\)</span> is a basis for <span class="process-math">\(\mathbb{R}^2\)</span> over <span class="process-math">\(\mathbb{R}\text{.}\)</span>
+</div></li>
+<li id="li-2179"><div class="para" id="p-4737">Prove that <span class="process-math">\(\{(1, 0), (3, 4)\}\)</span> is a basis for <span class="process-math">\(\mathbb{R}^2\)</span> over <span class="process-math">\(\mathbb{R}\text{.}\)</span>
+</div></li>
+<li id="li-2180"><div class="para" id="p-4738">Prove that <span class="process-math">\(\{(1,0, -1), (2, 1, 1), (1, -3, -1)\}\)</span> is a basis for <span class="process-math">\(\mathbb{R}^3\)</span> over <span class="process-math">\(\mathbb{R}\text{.}\)</span>
+</div></li>
+<li id="li-2181"><div class="para" id="p-4739">Prove that the sets in Exercise 9, parts e and f, form bases of the respective vector spaces.</div></li>
+</ol></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-242" id="answer-242"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-242"><div class="answer solution-like"><div class="para logical" id="p-4740"><ol class="lower-alpha"><li id="li-2182"><div class="para" id="p-4741">The set is linearly independent: let <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> be scalars such that <span class="process-math">\(a(4, 1) + b(1, 3) = (0, 0)\text{,}\)</span> then <span class="process-math">\(4a + b = 0\textrm{   and  } a + 3b= 0\)</span> which has <span class="process-math">\(a = b = 0\)</span> as its only solutions. The set generates all of <span class="process-math">\(\mathbb{R}^2\text{:}\)</span> let <span class="process-math">\((a, b)\)</span> be an arbitrary vector in <span class="process-math">\(\mathbb{R}^2\)</span> . We want to show that we can always find scalars <span class="process-math">\(\beta _1\)</span> and <span class="process-math">\(\beta _2\)</span> such that <span class="process-math">\(\beta _1(4, 1) +\beta _2 (1,3) = (a, b)\text{.}\)</span> This is equivalent to finding scalars such that <span class="process-math">\(4\beta _1 +\beta _2 = a\)</span> and <span class="process-math">\(\beta _1 + 3\beta _2 = b\text{.}\)</span> This system has a unique solution  <span class="process-math">\(\beta _1=\frac{3a - b}{11}\text{,}\)</span> and <span class="process-math">\(\beta _2= \frac{4b-a}{11}\text{.}\)</span> Therefore, the set generates <span class="process-math">\(\mathbb{R}^2\text{.}\)</span>
+</div></li></ol></div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-531"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
+<div class="para logical" id="p-4742"><ol class="lower-alpha">
+<li id="li-2183"><div class="para" id="p-4743">Determine the coordinates of the points or vectors <span class="process-math">\((3, 4)\text{,}\)</span> <span class="process-math">\((-1, 1)\text{,}\)</span> and <span class="process-math">\((1, 1)\)</span> with respect to the basis <span class="process-math">\(\{(1, 1),(-1, 1)\}\)</span> of <span class="process-math">\(\mathbb{R}^2\text{.}\)</span> Interpret your results geometrically.</div></li>
+<li id="li-2184"><div class="para" id="p-4744">Determine the coordinates of the points or vector <span class="process-math">\((3, 5, 6)\)</span> with respect to the basis <span class="process-math">\(\{(1, 0, 0), (0, 1, 0), (0, 0, 1)\}\text{.}\)</span> Explain why this basis is called the standard basis for <span class="process-math">\(\mathbb{R}^3\text{.}\)</span>
+</div></li>
+</ol></div></article><article class="exercise exercise-like" id="exercise-532"><h4 class="heading"><span class="codenumber">13<span class="period">.</span></span></h4>
+<div class="para logical" id="p-4745"><ol class="lower-alpha">
+<li id="li-2185"><div class="para" id="p-4746">Let <span class="process-math">\(\vec{y}_1= (1,3, 5, 9)\text{,}\)</span>  <span class="process-math">\(\vec{y}_2= (5,7, 6, 3)\text{,}\)</span> and <span class="process-math">\(c = 2\text{.}\)</span>  Find <span class="process-math">\(\vec{y}_1+\vec{y}_2\)</span> and <span class="process-math">\(c \vec{y}_1\text{.}\)</span>
+</div></li>
+<li id="li-2186"><div class="para" id="p-4747">Let  <span class="process-math">\(f_1(x) = 1 + 3x + 5x^2 + 9x^3\)</span> , <span class="process-math">\(f_2(x)=5 + 7x+6x^2+3x^3\)</span> and <span class="process-math">\(c = 2\text{.}\)</span> Find <span class="process-math">\(f_1(x)+f_2(x)\)</span> and <span class="process-math">\(c f_1(x)\text{.}\)</span>
+</div></li>
+<li id="li-2187"><div class="para" id="p-4748">Let <span class="process-math">\(A =\left(
+\begin{array}{cc}
+1 &amp; 3 \\
+5 &amp; 9 \\
+\end{array}
+\right)\text{,}\)</span> <span class="process-math">\(B=\left(
+\begin{array}{cc}
+5 &amp; 7 \\
+6 &amp; 3 \\
+\end{array}
+\right)\text{,}\)</span> and <span class="process-math">\(c=2\text{.}\)</span> Find <span class="process-math">\(A + B\)</span> and <span class="process-math">\(c A\text{.}\)</span>
+</div></li>
+<li id="li-2188"><div class="para" id="p-4749">Are the vector spaces <span class="process-math">\(\mathbb{R}^4\)</span> , <span class="process-math">\(P^3\)</span> and <span class="process-math">\(M_{2\times 2}(\mathbb{R})\)</span> isomorphic to each other? Discuss with reference to previous parts of this exercise.</div></li>
+</ol></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-243" id="answer-243"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-243"><div class="answer solution-like"><div class="para logical" id="p-4750">
+<div class="para">The answer to the last part is that the three vector spaces are all isomorphic to one another.  Once you have completed part (a) of this exercise, the following translation rules will give you the answer to parts (b) and (c),</div>
+<div class="displaymath process-math">
+\begin{equation*}
+(a,b,c,d) \leftrightarrow  \left(
+\begin{array}{cc}
+a &amp; b \\
+c &amp; d \\
+\end{array}
+\right)\leftrightarrow  a + b x+c x^2+ d x^2
+\end{equation*}
+</div>
+</div></div></div>
+</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
+</div></section></div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="s-matrix-inversion.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="s-the-diagonalization-process.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
+</div>{% if show_ethical_ad %}<div style="width: 100%"><div data-ea-publisher="runestoneacademy" data-ea-type="image" style="display: flex; justify-content: center"></div></div>{% endif %}</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script>
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">16.5.4</span><span class="period">.</span><span class="space"> </span><span class="title">Some Power Series Calcuations.</span>
+</h4> <div class="para logical">
+<div class="para">Let</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{c}
+f(x)=\sum_{i=0}^{\infty}  i x^i=0 + 1 x+2 x^2+3x^3+ \cdots \quad \textrm{and}\\
+g(x)=\sum_{i=0}^{\infty} 2^i x^i=1 +2 x+4 x^2+8x^3+ \cdots \\
+\end{array}
+\end{equation*}
+</div>
+<div class="para">be elements in <span class="process-math">\(\mathbb{Z}[[x]]\text{.}\)</span>  Let us compute <span class="process-math">\(f(x) + g(x)\)</span> and <span class="process-math">\(f(x)\cdot g(x)\text{.}\)</span>  First the sum:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{split}
+f(x) + g(x) &amp; =\sum_{i=0}^{\infty } i x^i+\sum_{i=0}^{\infty } 2^i x^i\\
+&amp;=\sum_{i=0}^{\infty} \left(i+2^i\right) x^i\\
+&amp; =1+3x+6x^2+11x^3+ \cdots\\
+\end{split}
+\end{equation*}
+</div>
+<div class="para">The product is a bit more involved:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{split}
+f(x) \cdot g(x) &amp; =\left(\sum_{i=0}^{\infty } i x^i\right)\cdot \left(\sum_{i=0}^{\infty } 2^i x^i\right)\\
+&amp;=\left(0+ 1 x+2 x^2+3x^3+ \cdots \right)\cdot \left(1 +2 x+4 x^2+8x^3+ \cdots \right)\\
+&amp;=0\cdot 1 + (0\cdot 2 + 1\cdot 1)x + (0\cdot 4+1\cdot 2+2\cdot 1)x^2+ \cdots\\
+&amp;= x + 4 x^2+ 11 x^3 + \cdots\\
+&amp;= \sum_{i=0}^{\infty } d_i x^i\quad\quad\textrm{where } d_i= \sum_{j=0}^i j 2^{i-j}\\
+\end{split}
+\end{equation*}
+</div>
+<div class="para">We can compute any value of <span class="process-math">\(d_i\text{,}\)</span> with the amount of time/work required increasing as <span class="process-math">\(i\)</span> increases.</div>
+</div> <pre class="ptx-sagecell sagecell-sage" id="sage-65"><script type="text/x-sage">def d(i):
+    s=0
+    for j in range(1,i+1):
+        s+=j*2^(i-j)
+    return s
+d(20)
+</script></pre> <div class="para">A closed-form expression for <span class="process-math">\(d_i\)</span> would be desirable.  Using techniques from Chapter 8,  the formula is  <span class="process-math">\(d_i=2^{i+1}-i-2\text{,}\)</span> which we leave it to the reader to derive.  Hence, <span class="process-math">\(f(x)\cdot g(x) =\sum_{i=0}^{\infty } (2^{i+1}-i-2) x^i\)</span>
+</div></article><span class="incontext"><a href="s-power-series.html#ex-ps-calculations" class="internal">in-context</a></span>
+</body>
+</html>

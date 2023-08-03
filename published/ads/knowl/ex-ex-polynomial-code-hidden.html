@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math"><article class="example example-like">  <div class="para logical">
+<div class="para">An important observation regarding the previous example is that the nonzero elements of <span class="process-math">\(GF(4)\)</span> can be represented two ways.  First as a linear combination of 1 and <span class="process-math">\(a\text{.}\)</span>   There are four such linear combinations, one of which is zero.  Second, as powers of <span class="process-math">\(a\text{.}\)</span>  There are three distinct powers and the each match up with a nonzero linear combination:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{c}
+a^0 = 1\cdot 1 + 0 \cdot a\\
+a^1 = 0\cdot 1 + 1 \cdot a\\
+a^2 = 1\cdot 1 + 1 \cdot a\\
+\end{array}
+\end{equation*}
+</div>
+</div> <div class="para">Next, we briefly describe the field <span class="process-math">\(GF(8)\)</span> and how an error correcting code can be build on a the same observation about that field.</div> <div class="para">First, we start with the irreducible polynomial <span class="process-math">\(p(x)=x^3 + x + 1\)</span> over <span class="process-math">\(\mathbb{Z}_2\text{.}\)</span> There is another such cubic polynomial, but its choice produces essentially the same result.    Just as we did in the previous example, we assume we have a zero of <span class="process-math">\(p(x)\)</span> and call it  <span class="process-math">\(\beta\text{.}\)</span>  Since we have assumed that <span class="process-math">\(p(\beta)= \beta^3+\beta + 1=0\text{,}\)</span> we get the recurrence relation for powers <span class="process-math">\(\beta^3=\beta + 1\)</span> that lets us reduce the seven powers <span class="process-math">\(\beta^k\text{,}\)</span> <span class="process-math">\(0 \leq k \leq 6\text{,}\)</span> to  linear combinations of 1, <span class="process-math">\(\beta\text{,}\)</span> and <span class="process-math">\(\beta^2\text{.}\)</span> Higher powers will reduce to these seven, which make up the elements of a field with <span class="process-math">\(2^3=8\)</span> elements when we add zero to the set.   We leave as an exercise for you to set up a table relating powers of <span class="process-math">\(\beta\)</span> with the linear combinations.</div> <div class="para logical">
+<div class="para">With this information we are now in a position to take blocks of four bits and encode them with three parity bits to create an error correcting code.   If the bits are <span class="process-math">\(b_3b_4b_5b_6\text{,}\)</span> then we reduce the expression <span class="process-math">\(B_m= b_3\cdot \beta^3 +b_4\cdot \beta^4 +b_5\cdot \beta^5 +b_6\cdot \beta^6\)</span> using the recurrence relation to an expression <span class="process-math">\(B_p=b_0\cdot 1 +b_1\cdot \beta +b_2\cdot \beta^2\text{.}\)</span>   Since we are equating equals within <span class="process-math">\(GF(8)\text{,}\)</span> we have <span class="process-math">\(B_p=B_m\text{,}\)</span> or <span class="process-math">\(B_p+B_m=0\text{.}\)</span>  The encoded message is <span class="process-math">\(b_0b_1b_2b_3b_4b_5b_6\text{,}\)</span> which is a representation of 0 in <span class="process-math">\(GF(8)\text{.}\)</span>  If the transmitted sequence of bits is received as <span class="process-math">\(c_0c_1c_2c_3c_4c_5c_6\)</span> we reduce <span class="process-math">\(C=c_0\cdot 1 +c_1\cdot \beta +c_2\cdot \beta^2 +c_3\cdot \beta^3 +c_4\cdot \beta^4 +c_5\cdot \beta^5 +c_6\cdot \beta^6\)</span> using the recurrence.   If there was no transmission error, the result is zero.  If the reduced result is zero it is most likely that the original message was <span class="process-math">\(c_3c_4c_5c_6\text{.}\)</span>  If  bit <span class="process-math">\(k\)</span> is switched in the transmission, then</div>
+<div class="displaymath process-math">
+\begin{equation*}
+C = B_p+B_m+ \beta^k= \beta^k
+\end{equation*}
+</div>
+<div class="para">Therefore if we reduce <span class="process-math">\(C\)</span> with the recurrence, we get the linear combination of  1, <span class="process-math">\(\beta\text{,}\)</span> and <span class="process-math">\(\beta^2\)</span> that is equal to <span class="process-math">\(\beta^k\)</span> and so we can identify the location of the error and correct it.</div>
+</div></article></body>
+</html>
