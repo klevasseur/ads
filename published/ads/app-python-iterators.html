@@ -105,7 +105,7 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.0';
 </script>
 <script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
     position: relative;
@@ -151,13 +151,13 @@ eBookConfig.runestone_version = '7.0.7';
 }
 </style>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.e1d331afa8369f4c.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -321,7 +321,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1130,15 +1133,15 @@ eBookConfig.runestone_version = '7.0.7';
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="app-python-iterators"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">B.1</span> <span class="title">Python Iterators</span>
 </h2>
-<section class="introduction" id="introduction-59"><div class="para" id="p-6448">All programming languages allow for looping.  A common form of loop is one in which a series of instructions are executed for each value of some index variable, commonly for values between two integers.  Python allows a bit more generality by having structures called “iterators” over which looping can be done.   An iterator can be as simple as a list, such as <code class="code-inline tex2jax_ignore">[0,1,2,3]</code>, but also can be a power set of a finite set, as we see below, or the keys in a dictionary, which is described in the next section.</div></section><section class="subsection" id="subsection-198"><h3 class="heading hide-type">
+<section class="introduction" id="introduction-59"><div class="para" id="p-6464">All programming languages allow for looping.  A common form of loop is one in which a series of instructions are executed for each value of some index variable, commonly for values between two integers.  Python allows a bit more generality by having structures called “iterators” over which looping can be done.   An iterator can be as simple as a list, such as <code class="code-inline tex2jax_ignore">[0,1,2,3]</code>, but also can be a power set of a finite set, as we see below, or the keys in a dictionary, which is described in the next section.</div></section><section class="subsection" id="subsection-198"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">B.1.1</span> <span class="title">Counting Subsets</span>
 </h3>
-<div class="para" id="p-6449">Suppose we want to count the number of subsets of <span class="process-math">\(\{0,1,2,...,9\}\)</span> that contain no adjacent elements.  First, we will define our universe and its power set.  The plan will be to define a function that determines whether a subset is "valid" in the sense that it contains no adjacent elements.  Then we will iterate over the subsets, counting the valid ones.  We know that the number of all subsets will be 2 raised to the number of elements in <span class="process-math">\(U\text{,}\)</span> which would be <span class="process-math">\(2^{10}=1024\text{,}\)</span> but let’s check.</div>
+<div class="para" id="p-6465">Suppose we want to count the number of subsets of <span class="process-math">\(\{0,1,2,...,9\}\)</span> that contain no adjacent elements.  First, we will define our universe and its power set.  The plan will be to define a function that determines whether a subset is "valid" in the sense that it contains no adjacent elements.  Then we will iterate over the subsets, counting the valid ones.  We know that the number of all subsets will be 2 raised to the number of elements in <span class="process-math">\(U\text{,}\)</span> which would be <span class="process-math">\(2^{10}=1024\text{,}\)</span> but let’s check.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-69"><script type="text/x-sage">U=Set(range(10))
 power_set=U.subsets()
 len(power_set)
 </script></pre>
-<div class="para" id="p-6450">The validity check in this case is very simple.  For each element, <span class="process-math">\(k\text{,}\)</span> of a set, <span class="process-math">\(B\text{,}\)</span> we ask whether its successor, <span class="process-math">\(k+1\text{,}\)</span> is also in the set.  If we never get an answer of "True" then we consider the set valid.  This function could be edited to define validity in other ways to answer different counting questions.  It’s always a good idea to test your functions, so we try two tests, one with a valid set and one with an invalid one.</div>
+<div class="para" id="p-6466">The validity check in this case is very simple.  For each element, <span class="process-math">\(k\text{,}\)</span> of a set, <span class="process-math">\(B\text{,}\)</span> we ask whether its successor, <span class="process-math">\(k+1\text{,}\)</span> is also in the set.  If we never get an answer of "True" then we consider the set valid.  This function could be edited to define validity in other ways to answer different counting questions.  It’s always a good idea to test your functions, so we try two tests, one with a valid set and one with an invalid one.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-70"><script type="text/x-sage">def valid(B):
     v=true
     for k in B:
@@ -1148,7 +1151,7 @@ len(power_set)
     return v
 [valid(Set([1,3,5,9])),valid(Set([1,2,4,9]))]
 </script></pre>
-<div class="para" id="p-6451">Finally we do the counting over our power set, incrementing the count variable with each valid set.</div>
+<div class="para" id="p-6467">Finally we do the counting over our power set, incrementing the count variable with each valid set.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-71"><script type="text/x-sage">count=0
 for B in power_set:
     if valid(B):

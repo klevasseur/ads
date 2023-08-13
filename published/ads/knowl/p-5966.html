@@ -12,25 +12,35 @@
 </head>
 <body class="ignore-math">
 <h5 class="heading"><span class="type">Paragraph</span></h5>
+<div class="para logical"><ol class="lower-alpha">
+<li><div class="para">Blocks of two bits are encoded into code words of length 4.</div></li>
+<li><div class="para">The code words are  0000, 1010, 0111 and 1101.</div></li>
+<li>
 <div class="para logical">
-<div class="para">Suppose that a linear code has parity check matrix</div>
+<div class="para">Since the first two code words have a Hamming distance of 2, not all single bit errors can be corrected.  For example, if 0000 is transmitted and the first bit is switch, then 1000 is received and we can’t tell for sure whether this came from 0000 or 1010.  To see what can be corrected, we note that <span class="process-math">\(a_1 a_2\)</span> is encoded to <span class="process-math">\(a_1 a_2 (a_1 +_2 a_2) a_2\)</span> and so if <span class="process-math">\(b_1 b_2 b_3 b_4\)</span> is recieved and no error has occurred,</div>
+<div class="displaymath process-math">
+\begin{gather*}
+b_1 +_2 b_2 +_2 b_3  =0\\
+b_2  +_2 b_4 	=0
+\end{gather*}
+</div>
+</div>
+<div class="para logical">
+<div class="para">We can extract the parity check matrix from this set of equations. It is</div>
 <div class="displaymath process-math">
 \begin{equation*}
-H=\left(
-\begin{array}{ccc}
-1 &amp; 1 &amp; 1 \\
-1 &amp; 1 &amp; 0 \\
-1 &amp; 0 &amp; 1 \\
-0 &amp; 1 &amp; 1 \\
-1 &amp; 0 &amp; 0 \\
-0 &amp; 1 &amp; 0 \\
-0 &amp; 0 &amp; 1 \\
-\end{array}
-\right)
+\begin{pmatrix}
+1 &amp; 0 \\
+1  &amp; 1 \\
+1  &amp; 0 \\
+0  &amp; 1 
+\end{pmatrix}
 \end{equation*}
 </div>
-<div class="para">Determine the generator matrix, <span class="process-math">\(G\text{,}\)</span> and in so doing, identify the number of bits in each message block and the number of parity bits.</div>
+<div class="para">The rows of this matrix correspond with the syndromes for errors in bits 1 through 4, which are all nonzero, so we can detect any single bit error.  Notice that the syndromes for bits 1 and 3 are identical. This reflects the fact that errors in these bits can’t be corrected.  However, the syndromes for bits 2 and 4 are unique and so we can correct them. Therefore the second bit of the original message can be sent with more confidence than the first.</div>
 </div>
+</li>
+</ol></div>
 <span class="incontext"><a href="s-coding-theory-groups.html#p-5966" class="internal">in-context</a></span>
 </body>
 </html>

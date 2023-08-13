@@ -99,7 +99,7 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.0';
 </script>
 <script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
     position: relative;
@@ -145,13 +145,13 @@ eBookConfig.runestone_version = '7.0.7';
 }
 </style>
 <!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.e1d331afa8369f4c.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -315,7 +315,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1125,9 +1128,9 @@ eBookConfig.runestone_version = '7.0.7';
 <span class="type">Section</span> <span class="codenumber">15.5</span> <span class="title">Coding Theory, Linear Codes</span>
 </h2>
 <section class="introduction" id="introduction-54"><h3 class="heading">A Transmission Problem.<span></span>
-</h3> <div class="para" id="p-5879">In this section, we will introduce the basic ideas involved in coding theory and consider solutions of a coding problem by means of linear codes.</div> <div class="para" id="p-5880">Imagine a situation in which information is being transmitted between two points. The information takes the form of high and low pulses (for example, radio waves or electric currents), which we will label 1 and 0, respectively.  As these pulses are sent and received, they are grouped together in blocks of fixed length.   The length determines how much information can be contained in one block.  If the length is <span class="process-math">\(r\text{,}\)</span> there are <span class="process-math">\(2^r\)</span> different values that a block can have. If the information being sent takes the form of text, each block might be a character. In that case, the length of a block may be seven, so that <span class="process-math">\(2^7 = 128\)</span> block values can represent letters (both upper and lower case), digits, punctuation, and so on.  During the transmission of data, noise can alter the signal so that what is received differs from what is sent. <a href="" class="xref" data-knowl="./knowl/fig-noise.html" title="Figure 15.5.1">Figure 15.5.1</a> illustrates the problem that can be encountered if information is transmitted between two points.</div> <figure class="figure figure-like" id="fig-noise"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="external/images/fig-noise.png" class="contained" alt="A noisy transmission"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">15.5.1<span class="period">.</span></span><span class="space"> </span>A noisy transmission</figcaption></figure> <div class="para" id="p-5881">
-<dfn class="terminology">Noise</dfn> is a fact of life for anyone who tries to transmit information.  Fortunately, in most situations we could expect a high percentage of the pulses that are sent to be received properly. However, when large numbers of pulses are transmitted, there are usually some errors due to noise. For the remainder of the discussion, we will make assumptions about the nature of the noise and the message that we want to send. Henceforth, we will refer to the pulses as bits.</div> <div class="para" id="p-5882">We will assume that our information is being sent along a <dfn class="terminology">binary symmetric channel</dfn>. By this, we mean that any single bit that is transmitted will be received improperly with a certain fixed probability, <span class="process-math">\(p\text{,}\)</span> independent of the bit value.   The magnitude of <span class="process-math">\(p\)</span> is usually quite small. To illustrate the process, we will assume that <span class="process-math">\(p = 0.001\text{,}\)</span> which, in the real world, would be considered somewhat large. Since <span class="process-math">\(1 - p = 0.999\text{,}\)</span> we can expect <span class="process-math">\(99.9\%\)</span> of all bits to be properly received.</div> <div class="para logical" id="p-5883">
+</h3> <div class="para" id="p-5895">In this section, we will introduce the basic ideas involved in coding theory and consider solutions of a coding problem by means of linear codes.</div> <div class="para" id="p-5896">Imagine a situation in which information is being transmitted between two points. The information takes the form of high and low pulses (for example, radio waves or electric currents), which we will label 1 and 0, respectively.  As these pulses are sent and received, they are grouped together in blocks of fixed length.   The length determines how much information can be contained in one block.  If the length is <span class="process-math">\(r\text{,}\)</span> there are <span class="process-math">\(2^r\)</span> different values that a block can have. If the information being sent takes the form of text, each block might be a character. In that case, the length of a block may be seven, so that <span class="process-math">\(2^7 = 128\)</span> block values can represent letters (both upper and lower case), digits, punctuation, and so on.  During the transmission of data, noise can alter the signal so that what is received differs from what is sent. <a href="" class="xref" data-knowl="./knowl/fig-noise.html" title="Figure 15.5.1">Figure 15.5.1</a> illustrates the problem that can be encountered if information is transmitted between two points.</div> <figure class="figure figure-like" id="fig-noise"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="external/images/fig-noise.png" class="contained" alt="A noisy transmission"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">15.5.1<span class="period">.</span></span><span class="space"> </span>A noisy transmission</figcaption></figure> <div class="para" id="p-5897">
+<dfn class="terminology">Noise</dfn> is a fact of life for anyone who tries to transmit information.  Fortunately, in most situations we could expect a high percentage of the pulses that are sent to be received properly. However, when large numbers of pulses are transmitted, there are usually some errors due to noise. For the remainder of the discussion, we will make assumptions about the nature of the noise and the message that we want to send. Henceforth, we will refer to the pulses as bits.</div> <div class="para" id="p-5898">We will assume that our information is being sent along a <dfn class="terminology">binary symmetric channel</dfn>. By this, we mean that any single bit that is transmitted will be received improperly with a certain fixed probability, <span class="process-math">\(p\text{,}\)</span> independent of the bit value.   The magnitude of <span class="process-math">\(p\)</span> is usually quite small. To illustrate the process, we will assume that <span class="process-math">\(p = 0.001\text{,}\)</span> which, in the real world, would be considered somewhat large. Since <span class="process-math">\(1 - p = 0.999\text{,}\)</span> we can expect <span class="process-math">\(99.9\%\)</span> of all bits to be properly received.</div> <div class="para logical" id="p-5899">
 <div class="para">In addition to assuming <span class="process-math">\(p=0.001\)</span> throughout, we will also suppose that our message consists of 3,000 bits of information. Two factors will be considered in evaluating a method of transmission. The first is the probability that the message is received with no errors. The second is the number of bits that will be transmitted in order to send the message. This quantity is called the rate of transmission:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1135,17 +1138,17 @@ eBookConfig.runestone_version = '7.0.7';
 \end{equation*}
 </div>
 <div class="para">As you might expect, as we devise methods to improve the probability of success, the rate will decrease.</div>
-</div> <div class="para" id="p-5884">Suppose that we ignore the noise and transmit the message without any coding. The probability of success is <span class="process-math">\(0.999^{3000}= 0.0497124\text{.}\)</span>  Therefore we only successfully receive the message in a totally correct form less than <span class="process-math">\(5\%\)</span> of the time.  The rate of <span class="process-math">\(\frac{3000}{3000} = 1\)</span> certainly doesn’t offset this poor probability.</div> <div class="para" id="p-5885">Our strategy  for improving our chances of success will be to send an encoded message. The encoding will be done in such a way that small errors can be identified and corrected. This idea is illustrated in <a href="" class="xref" data-knowl="./knowl/fig-coding-process.html" title="Figure 15.5.2">Figure 15.5.2</a>.</div> <figure class="figure figure-like" id="fig-coding-process"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/images/fig-coding-process.png" class="contained" alt="The Coding Process"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">15.5.2<span class="period">.</span></span><span class="space"> </span>The Coding Process</figcaption></figure> <div class="para" id="p-5886">In all of our examples, the functions that will correspond to our encoding devices  will involve multiplication of messages by matrices using mod 2 arithmetic. First we will introduce some geometric ideas to  make the process more intuitive.</div></section><section class="subsection" id="ss-coding-geometry"><h3 class="heading hide-type">
+</div> <div class="para" id="p-5900">Suppose that we ignore the noise and transmit the message without any coding. The probability of success is <span class="process-math">\(0.999^{3000}= 0.0497124\text{.}\)</span>  Therefore we only successfully receive the message in a totally correct form less than <span class="process-math">\(5\%\)</span> of the time.  The rate of <span class="process-math">\(\frac{3000}{3000} = 1\)</span> certainly doesn’t offset this poor probability.</div> <div class="para" id="p-5901">Our strategy  for improving our chances of success will be to send an encoded message. The encoding will be done in such a way that small errors can be identified and corrected. This idea is illustrated in <a href="" class="xref" data-knowl="./knowl/fig-coding-process.html" title="Figure 15.5.2">Figure 15.5.2</a>.</div> <figure class="figure figure-like" id="fig-coding-process"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/images/fig-coding-process.png" class="contained" alt="The Coding Process"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">15.5.2<span class="period">.</span></span><span class="space"> </span>The Coding Process</figcaption></figure> <div class="para" id="p-5902">In all of our examples, the functions that will correspond to our encoding devices  will involve multiplication of messages by matrices using mod 2 arithmetic. First we will introduce some geometric ideas to  make the process more intuitive.</div></section><section class="subsection" id="ss-coding-geometry"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">15.5.1</span> <span class="title">Introduction</span>
 </h3>
-<div class="para" id="p-5887">Although we’ll be using algebra to help improve communications, the basic solution can be imagined from a geometric point of view.  For any positive integer <span class="process-math">\(n\text{,}\)</span> we define a distance function on the elements of the group <span class="process-math">\(\mathbb{Z}_2{}^n\text{.}\)</span>  This distance is called the <dfn class="terminology">Hamming Distance</dfn>.</div>
+<div class="para" id="p-5903">Although we’ll be using algebra to help improve communications, the basic solution can be imagined from a geometric point of view.  For any positive integer <span class="process-math">\(n\text{,}\)</span> we define a distance function on the elements of the group <span class="process-math">\(\mathbb{Z}_2{}^n\text{.}\)</span>  This distance is called the <dfn class="terminology">Hamming Distance</dfn>.</div>
 <article class="definition definition-like" id="def-hammingdistance"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">15.5.3</span><span class="period">.</span><span class="space"> </span><span class="title">Hamming Distance.</span>
-</h4>  <div class="para" id="p-5888">Given two elements of <span class="process-math">\(\mathbb{Z}_2{}^n\text{,}\)</span> <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{,}\)</span> the Hamming Distance, <span class="process-math">\(d_H(a,b)\)</span> between them is the number of positions in which they differ.</div></article><div class="para" id="p-5889">For example,  <span class="process-math">\(d_H((1,1,0,0),(1,1,0,1))=1\)</span> since these two elements of <span class="process-math">\(\mathbb{Z}_2{}^4\)</span> differ in just the last position; and <span class="process-math">\(d_H((1,1,0,0),(1,1,0,0))=0\text{.}\)</span>  Notice that we can compute the distance between two bit strings by adding them coordinatewise in the Cartesian product  and counting the number <span class="process-math">\(1\)</span>’s that appear in the sum.  For example  <span class="process-math">\((1,1,0,0)+(1,0,0,1)=(0,1,0,1)\text{.}\)</span> The sum has two <span class="process-math">\(1\)</span>’s, so the distance between <span class="process-math">\((1,1,0,0) \textrm{ and }(1,0,0,1)\)</span> is <span class="process-math">\(2\text{.}\)</span> In addition, the location of the <span class="process-math">\(1\)</span>’s in the sum tell us where the two bit strings differ.</div>
-<div class="para" id="p-5890">When we look at groups like <span class="process-math">\(\mathbb{Z}_2{}^4\)</span> from a point of view, we refer to these sets as <dfn class="terminology">metric spaces</dfn> or simply <dfn class="terminology">spaces</dfn>.  In the case of <span class="process-math">\(\mathbb{Z}_2{}^4\text{,}\)</span> there are just <span class="process-math">\(2^4=16\)</span> points in the space and the maximum distance between the points is <span class="process-math">\(4\text{.}\)</span> More generally <span class="process-math">\(\mathbb{Z}_2{}^n\)</span> has <span class="process-math">\(2^n\)</span> points and the maximum distance between points in that space is <span class="process-math">\(n\text{.}\)</span>  Looking at the group <span class="process-math">\(\mathbb{Z}_2{}^n\)</span> from this geometric point of view is essentially the same as the <a href="" class="xref" data-knowl="./knowl/def-n-cube.html" title="Definition 9.4.17: The n-cube"><span class="process-math">\(n\)</span>-cube 9.4.17</a> we considered in discussing Hamiltonian graphs.  In this section we will use <span class="process-math">\(n\)</span>-tuples such as <span class="process-math">\((1,1,0,1)\)</span> interchangeably with strings of bits such as <span class="process-math">\(1101\text{.}\)</span>
+</h4>  <div class="para" id="p-5904">Given two elements of <span class="process-math">\(\mathbb{Z}_2{}^n\text{,}\)</span> <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{,}\)</span> the Hamming Distance, <span class="process-math">\(d_H(a,b)\)</span> between them is the number of positions in which they differ.</div></article><div class="para" id="p-5905">For example,  <span class="process-math">\(d_H((1,1,0,0),(1,1,0,1))=1\)</span> since these two elements of <span class="process-math">\(\mathbb{Z}_2{}^4\)</span> differ in just the last position; and <span class="process-math">\(d_H((1,1,0,0),(1,1,0,0))=0\text{.}\)</span>  Notice that we can compute the distance between two bit strings by adding them coordinatewise in the Cartesian product  and counting the number <span class="process-math">\(1\)</span>’s that appear in the sum.  For example  <span class="process-math">\((1,1,0,0)+(1,0,0,1)=(0,1,0,1)\text{.}\)</span> The sum has two <span class="process-math">\(1\)</span>’s, so the distance between <span class="process-math">\((1,1,0,0) \textrm{ and }(1,0,0,1)\)</span> is <span class="process-math">\(2\text{.}\)</span> In addition, the location of the <span class="process-math">\(1\)</span>’s in the sum tell us where the two bit strings differ.</div>
+<div class="para" id="p-5906">When we look at groups like <span class="process-math">\(\mathbb{Z}_2{}^4\)</span> from a point of view, we refer to these sets as <dfn class="terminology">metric spaces</dfn> or simply <dfn class="terminology">spaces</dfn>.  In the case of <span class="process-math">\(\mathbb{Z}_2{}^4\text{,}\)</span> there are just <span class="process-math">\(2^4=16\)</span> points in the space and the maximum distance between the points is <span class="process-math">\(4\text{.}\)</span> More generally <span class="process-math">\(\mathbb{Z}_2{}^n\)</span> has <span class="process-math">\(2^n\)</span> points and the maximum distance between points in that space is <span class="process-math">\(n\text{.}\)</span>  Looking at the group <span class="process-math">\(\mathbb{Z}_2{}^n\)</span> from this geometric point of view is essentially the same as the <a href="" class="xref" data-knowl="./knowl/def-n-cube.html" title="Definition 9.4.17: The n-cube"><span class="process-math">\(n\)</span>-cube 9.4.17</a> we considered in discussing Hamiltonian graphs.  In this section we will use <span class="process-math">\(n\)</span>-tuples such as <span class="process-math">\((1,1,0,1)\)</span> interchangeably with strings of bits such as <span class="process-math">\(1101\text{.}\)</span>
 </div>
-<div class="para logical" id="p-5891">
+<div class="para logical" id="p-5907">
 <div class="para">For any distance <span class="process-math">\(r\)</span> in a space, the ball of radius <span class="process-math">\(r\)</span> centered at a point <span class="process-math">\(a\text{,}\)</span> denoted <span class="process-math">\(B_r(a)\text{,}\)</span> is the set of all points whose distance from <span class="process-math">\(a\)</span> is <span class="process-math">\(r\)</span> or less.   For example, in the space <span class="process-math">\(\mathbb{Z}_2{}^4\text{,}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1154,10 +1157,10 @@ B_1((1,1,0,0))=\{(1,1,0,0), (0,1,0,0), (1,0,0,0), (1,1,1,0), (1,1,0,1)\}.
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-5892">The ultimate goal of our encoding will be to take a set of possible messages, the <dfn class="terminology">message space</dfn>, and distribute them in a larger space, the <dfn class="terminology">code space</dfn>, in such a way that the encoded message, called a <dfn class="terminology">code word</dfn> is at least a certain distance away from any other code word.  The minimum distance between the code words will determine whether we can correct errors or just detect them.  Now let’s turn to some examples.</div></section><section class="subsection" id="ss-error-detection"><h3 class="heading hide-type">
+<div class="para" id="p-5908">The ultimate goal of our encoding will be to take a set of possible messages, the <dfn class="terminology">message space</dfn>, and distribute them in a larger space, the <dfn class="terminology">code space</dfn>, in such a way that the encoded message, called a <dfn class="terminology">code word</dfn> is at least a certain distance away from any other code word.  The minimum distance between the code words will determine whether we can correct errors or just detect them.  Now let’s turn to some examples.</div></section><section class="subsection" id="ss-error-detection"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">15.5.2</span> <span class="title">Error Detection</span>
 </h3>
-<div class="para logical" id="p-5893">
+<div class="para logical" id="p-5909">
 <div class="para">Suppose that each block of three bits <span class="process-math">\(a = \left(a_1, a_2 , a_3 \right)\)</span> is encoded with the function <span class="process-math">\(e: \mathbb{Z}_2{}^3\to \mathbb{Z}_2{}^4\text{,}\)</span> where</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1167,8 +1170,8 @@ e(a) = \left(a _1, a _2 , a _3, a_1+_2a_2+_2a_3 \right)
 <div class="para">The fourth bit of <span class="process-math">\(e(a)\)</span> is called the parity-check bit. When the encoded block is received, the four bits will probably all be correct (they are correct approximately <span class="process-math">\(99.6\%\)</span> of the time under our assumed parameters), but the added bit that is sent will make it possible to detect single bit errors in the block. Note that when <span class="process-math">\(e(a)\)</span> is transmitted, the sum of its components is <span class="process-math">\(a_1+_2 a_2 +_2 a_3+_2 \left( a_1+_2 a_2+_2 a_3\right)= 0\text{,}\)</span> since  <span class="process-math">\(a_i+a_i=0\)</span> in <span class="process-math">\(\mathbb{Z}_2\text{.}\)</span>
 </div>
 </div>
-<div class="para" id="p-5894">If any single bit is garbled by noise, the sum of the received bits will be 1.  A <dfn class="terminology">parity error</dfn> occurs if the sum of the received bits is 1. Since more than one error is unlikely when <span class="process-math">\(p\)</span> is small, a high percentage of all errors can be detected.</div>
-<div class="para logical" id="p-5895">
+<div class="para" id="p-5910">If any single bit is garbled by noise, the sum of the received bits will be 1.  A <dfn class="terminology">parity error</dfn> occurs if the sum of the received bits is 1. Since more than one error is unlikely when <span class="process-math">\(p\)</span> is small, a high percentage of all errors can be detected.</div>
+<div class="para logical" id="p-5911">
 <div class="para">At the receiving end, the decoding function acts on the four-bit block <span class="process-math">\(b = \left(b_1,b _2 ,b_3,b_4 \right)\)</span> with the function  <span class="process-math">\(d: \mathbb{Z}_2{}^4\to \mathbb{Z}_2^4\text{,}\)</span> where</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1178,24 +1181,24 @@ d(b) = \left(b_1,b _2 ,b_3,b_1+_2b _2 +_2b_3+_2b_4 \right)
 <div class="para">Notice that the fourth bit of <span class="process-math">\(d(b)\)</span> is an indicator of whether there is a parity error - 0 if no error, and 1 if an error. If no parity error occurs, the first three bits are recorded as part of the message. If a parity error occurs, we will assume that a retransmission of that block can be requested. This request can take the form of automatically having the parity-check bit of <span class="process-math">\(d(b)\)</span> sent back to the source. If 1 is received, the previous block is retransmitted; if 0 is received, the next block is sent. This assumption of two-way communication is significant, but it is desirable to make this coding system useful. For our calculations, it is reasonable to expect that the probability of a transmission error in the opposite direction is also 0.001.  Without going into the details, we will report that the probability of success in sending 3000 bits is approximately 0.990 and the rate is approximately <span class="process-math">\(3/5\text{.}\)</span> The rate includes the transmission of the parity-check bit to the source and is only approximate because the resent blocks will decrease the rate below <span class="process-math">\(3/5\)</span> somewhat.</div>
 </div>
 <figure class="figure figure-like" id="fig-paritycube"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="external/images/fig-paritycube.png" class="contained" alt="The \(4\)-cube with code words displayed as larger vertices."></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">15.5.4<span class="period">.</span></span><span class="space"> </span>The <span class="process-math">\(4\)</span>-cube with code words displayed as larger vertices</figcaption></figure><div class="para" id="p-5896">Let’s consider the geometry of this code. If we examine the <span class="process-math">\(4\)</span>-cube in <a href="" class="xref" data-knowl="./knowl/fig-paritycube.html" title="Figure 15.5.4">Figure 15.5.4</a>, the code words are the strings of four bits with an even number of ones. These vertices are the larger ones.  Notice that the ball of radius 1 centered around any of the code words consists of that code word and the smaller vertices that are connected to the code word with an edge of the <span class="process-math">\(4\)</span>-cube.  Since there are no other code-words in the ball, a single bit error produces a non-code word and so an error can be detected.</div></section><section class="subsection" id="ss-error-correction"><h3 class="heading hide-type">
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">15.5.4<span class="period">.</span></span><span class="space"> </span>The <span class="process-math">\(4\)</span>-cube with code words displayed as larger vertices</figcaption></figure><div class="para" id="p-5912">Let’s consider the geometry of this code. If we examine the <span class="process-math">\(4\)</span>-cube in <a href="" class="xref" data-knowl="./knowl/fig-paritycube.html" title="Figure 15.5.4">Figure 15.5.4</a>, the code words are the strings of four bits with an even number of ones. These vertices are the larger ones.  Notice that the ball of radius 1 centered around any of the code words consists of that code word and the smaller vertices that are connected to the code word with an edge of the <span class="process-math">\(4\)</span>-cube.  Since there are no other code-words in the ball, a single bit error produces a non-code word and so an error can be detected.</div></section><section class="subsection" id="ss-error-correction"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">15.5.3</span> <span class="title">Error Correction</span>
 </h3>
-<div class="para" id="p-5897">Next, we will consider coding functions that allow us to correct errors at the receiving end so that only one-way communication is needed. Before we begin, recall that every element of <span class="process-math">\(\mathbb{Z}_2{}^n\text{,}\)</span> <span class="process-math">\(n \geq  1\text{,}\)</span> is its own inverse; that is, <span class="process-math">\(-b = b\text{.}\)</span> Therefore, <span class="process-math">\(a - b = a + b\text{.}\)</span>
+<div class="para" id="p-5913">Next, we will consider coding functions that allow us to correct errors at the receiving end so that only one-way communication is needed. Before we begin, recall that every element of <span class="process-math">\(\mathbb{Z}_2{}^n\text{,}\)</span> <span class="process-math">\(n \geq  1\text{,}\)</span> is its own inverse; that is, <span class="process-math">\(-b = b\text{.}\)</span> Therefore, <span class="process-math">\(a - b = a + b\text{.}\)</span>
 </div>
 <article class="example example-like" id="example-286"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-example-286"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.5.5</span><span class="period">.</span><span class="space"> </span><span class="title">The Triple Repetition Code.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-286"><article class="example example-like"><div class="para" id="p-5898">Suppose we take each individual bit in our message and encode it by repeating it three times.  In other words, if <span class="process-math">\(a\)</span> is a single bit, <span class="process-math">\(e(a)=(a,a,a)\text{.}\)</span> The code words for this code are <span class="process-math">\((0,0,0)\)</span> and <span class="process-math">\((1,1,1)\text{.}\)</span>  Let’s look at the geometry behind this code.  The message space has just two points, but the code space is <span class="process-math">\(\mathbb{Z}_2{}^3\text{,}\)</span> which has 8 points, the vertices of the <span class="process-math">\(3\)</span>-cube, which appears in <a href="" class="xref" data-knowl="./knowl/fig-triplecube.html" title="Figure 15.5.6">Figure 15.5.6</a>.</div> <figure class="figure figure-like" id="fig-triplecube"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="external/images/fig-triplecube.png" class="contained" alt="The \(3\)-cube with code words displayed as circular vertices."></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">15.5.6<span class="period">.</span></span><span class="space"> </span>The <span class="process-math">\(3\)</span>-cube with code words displayed as circular vertices</figcaption></figure> <div class="para" id="p-5899">In the figure for this code, the code words are circular vertices. If we identify the balls of radius 1 centered around the two code words, you might notice that the two balls do not intersect.  Each has a different vertex with triangular, square and pentagonal shapes.  From a geometric point of view, this is why we can correct a single bit error.  If any string of three bits in the code space is received it is in one of the two balls and the code word in that ball had to have been the one that was transmitted.</div> <div class="para logical" id="p-5900">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-286"><article class="example example-like"><div class="para" id="p-5914">Suppose we take each individual bit in our message and encode it by repeating it three times.  In other words, if <span class="process-math">\(a\)</span> is a single bit, <span class="process-math">\(e(a)=(a,a,a)\text{.}\)</span> The code words for this code are <span class="process-math">\((0,0,0)\)</span> and <span class="process-math">\((1,1,1)\text{.}\)</span>  Let’s look at the geometry behind this code.  The message space has just two points, but the code space is <span class="process-math">\(\mathbb{Z}_2{}^3\text{,}\)</span> which has 8 points, the vertices of the <span class="process-math">\(3\)</span>-cube, which appears in <a href="" class="xref" data-knowl="./knowl/fig-triplecube.html" title="Figure 15.5.6">Figure 15.5.6</a>.</div> <figure class="figure figure-like" id="fig-triplecube"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="external/images/fig-triplecube.png" class="contained" alt="The \(3\)-cube with code words displayed as circular vertices."></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">15.5.6<span class="period">.</span></span><span class="space"> </span>The <span class="process-math">\(3\)</span>-cube with code words displayed as circular vertices</figcaption></figure> <div class="para" id="p-5915">In the figure for this code, the code words are circular vertices. If we identify the balls of radius 1 centered around the two code words, you might notice that the two balls do not intersect.  Each has a different vertex with triangular, square and pentagonal shapes.  From a geometric point of view, this is why we can correct a single bit error.  If any string of three bits in the code space is received it is in one of the two balls and the code word in that ball had to have been the one that was transmitted.</div> <div class="para logical" id="p-5916">
 <div class="para">Regarding the actual correction process, the shapes have a meaning, as outlined in the following list.</div>
 <ul class="disc">
-<li id="li-2603"><div class="para" id="p-derived-li-2603">Circle:  No correction needed</div></li>
-<li id="li-2604"><div class="para" id="p-derived-li-2604">Pentagon: Correct the first bit</div></li>
-<li id="li-2605"><div class="para" id="p-derived-li-2605">Square: Correct the second bit</div></li>
-<li id="li-2606"><div class="para" id="p-derived-li-2606">Triangle: Correct the third bit</div></li>
+<li id="li-2615"><div class="para" id="p-derived-li-2615">Circle:  No correction needed</div></li>
+<li id="li-2616"><div class="para" id="p-derived-li-2616">Pentagon: Correct the first bit</div></li>
+<li id="li-2617"><div class="para" id="p-derived-li-2617">Square: Correct the second bit</div></li>
+<li id="li-2618"><div class="para" id="p-derived-li-2618">Triangle: Correct the third bit</div></li>
 </ul>
-</div> <div class="para" id="p-5901">Of course, once the correction is made, only the first bit is extracted from the code word since all bits will be equal. The simplicity of the final result masks an important property of all error correcting codes we consider. All of the possible points in the code space can be partitioned in such a way that each block in the partition corresponds with a specific correction that we can make to recover the correct code word.</div> <div class="para" id="p-5902">If you have read about cosets, you will see that the partition we refer to is the set of left cosets of the set of code words.</div></article></div>
-<div class="para logical" id="p-5903">
+</div> <div class="para" id="p-5917">Of course, once the correction is made, only the first bit is extracted from the code word since all bits will be equal. The simplicity of the final result masks an important property of all error correcting codes we consider. All of the possible points in the code space can be partitioned in such a way that each block in the partition corresponds with a specific correction that we can make to recover the correct code word.</div> <div class="para" id="p-5918">If you have read about cosets, you will see that the partition we refer to is the set of left cosets of the set of code words.</div></article></div>
+<div class="para logical" id="p-5919">
 <div class="para">Triple repetition is effective, but not very efficient since its rate is quite low, <span class="process-math">\(1/3\text{.}\)</span>  Next we consider a slightly more efficient error correcting code based on matrix multiplication. Any such code that is computed with a matrix multiplication is called a <dfn class="terminology">linear code</dfn>. We should point out that both the parity check code and the triple repetition code are linear codes. For the parity check code, the encoding function can be thought of as acting on a <span class="process-math">\(1 \times 3\)</span> row vector <span class="process-math">\(a=(a_1,a_2,a_3)\)</span> by multiplying times a <span class="process-math">\(3 \times 4\)</span> matrix:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1226,7 +1229,7 @@ a &amp; a &amp; a \\
 </div>
 <article class="example example-like" id="example-287"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-287"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.5.7</span><span class="period">.</span><span class="space"> </span><span class="title">A Somewhat More Efficient Linear Code.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-287"><article class="example example-like"><div class="para" id="p-5904">The encoding that we will consider here takes a block <span class="process-math">\(a = \left(a_1, a_2, a_3 \right)\)</span> and produces a code word of length 6. As in the triple repetition code, each code word will differ from each other code word by at least three bits. As a result, any single error will not push a code word close enough to another code word to cause confusion. Now for the details.</div> <div class="para logical" id="p-5905">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-287"><article class="example example-like"><div class="para" id="p-5920">The encoding that we will consider here takes a block <span class="process-math">\(a = \left(a_1, a_2, a_3 \right)\)</span> and produces a code word of length 6. As in the triple repetition code, each code word will differ from each other code word by at least three bits. As a result, any single error will not push a code word close enough to another code word to cause confusion. Now for the details.</div> <div class="para logical" id="p-5921">
 <div class="para">Let</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1255,7 +1258,7 @@ a_6  &amp;= &amp;  &amp;              &amp;  a_2   &amp;{}+_2{}  &amp; a_3  \\
 \end{array}
 \end{equation*}
 </div>
-</div>  <div class="para logical" id="p-5906">
+</div>  <div class="para logical" id="p-5922">
 <div class="para">Notice that since matrix multiplication is distributive over addition, we have</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1263,7 +1266,7 @@ e(a + b)= (a+b)G = aG + bG = e(a)+e(b)
 \end{equation*}
 </div>
 <div class="para">for all <span class="process-math">\(a, b \in \mathbb{Z}_2{}^3\text{.}\)</span> This equality, may look familiar from the definition of an isomorphism, but in this case the function <span class="process-math">\(e\)</span> is not onto.  If you’ve read about homomorphisms, this is indeed an example of one.</div>
-</div> <div class="para logical" id="p-5907">
+</div> <div class="para logical" id="p-5923">
 <div class="para">One way to see that any two distinct code words have a distance from one another of at least 3 is to consider the images of any two distinct messages.  If <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> are distinct elements of <span class="process-math">\(\mathbb{Z}_2{}^3\text{,}\)</span> then <span class="process-math">\(c = a + b\)</span> has at least one coordinate equal to 1. Now consider the difference between <span class="process-math">\(e(a)\)</span> and <span class="process-math">\(e(b)\text{:}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1275,7 +1278,7 @@ e(a) + e(b) &amp;= e(a + b) \\
 \end{equation*}
 </div>
 <div class="para">Whether <span class="process-math">\(c\)</span> has 1, 2, or 3 ones, <span class="process-math">\(e(c)\)</span> must have at least three ones.  This can be seen by considering the three cases separately.  For example, if <span class="process-math">\(c\)</span> has a single one, two of the parity bits are also 1.  Therefore, <span class="process-math">\(e(a)\)</span> and <span class="process-math">\(e(b)\)</span> differ in at least three bits. By the same logic as with triple repetition, a single bit error in any code word produces an element of the code space that is contained in on of the balls of radius 1 centered about a code word.</div>
-</div> <div class="para logical" id="p-5908">
+</div> <div class="para logical" id="p-5924">
 <div class="para">Now consider the problem of decoding received transmissions. Imagine that a code word, <span class="process-math">\(e(a)\text{,}\)</span> is transmitted, and <span class="process-math">\(b= \left(b_1, b_2, b_3,b_4, b_5, b_6\right)\)</span> is received. At the receiving end, we know the formula for <span class="process-math">\(e(a)\text{,}\)</span> and if no error has occurred in transmission,</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1296,7 +1299,7 @@ b_1 &amp;     &amp;     &amp; +_2  &amp;b_3&amp;   &amp;    &amp; +_2&amp; b_5 &
 \end{equation*}
 </div>
 <div class="para">The three equations on the right are called parity-check equations. If any of them are not true, an error has occurred. This error checking can be described in matrix form.</div>
-</div> <div class="para logical" id="p-5909">
+</div> <div class="para logical" id="p-5925">
 <div class="para">Let</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1312,9 +1315,9 @@ H=\left(
 \right)
 \end{equation*}
 </div>
-</div> <div class="para" id="p-5910">The matrix <span class="process-math">\(H\)</span> is called the parity-check matrix for this code. Now define <span class="process-math">\(p:\mathbb{Z}_2{}^6 \to \mathbb{Z}_2{}^3\)</span> by <span class="process-math">\(p(b) = b H\text{.}\)</span>  We call <span class="process-math">\(p(b)\)</span> the <dfn class="terminology">syndrome</dfn> of the received block. For example, <span class="process-math">\(p(0,1,0,1,0,1)=(0,0,0)\)</span>  and   <span class="process-math">\(p(1,1,1,1,0,0)=(1,0,0)\)</span>
-</div> <div class="para" id="p-5911">Note that <span class="process-math">\(p\)</span> has a similar property as <span class="process-math">\(e\text{,}\)</span> that <span class="process-math">\(p(b_1+b_2)=p(b_1)+p(b_2)\text{.}\)</span> If the syndrome of a block is <span class="process-math">\((0, 0, 0)\text{,}\)</span> we can be almost certain that the message block is <span class="process-math">\(\left(b_1, b_2, b_3\right)\text{.}\)</span>
-</div> <div class="para logical" id="p-5912">
+</div> <div class="para" id="p-5926">The matrix <span class="process-math">\(H\)</span> is called the parity-check matrix for this code. Now define <span class="process-math">\(p:\mathbb{Z}_2{}^6 \to \mathbb{Z}_2{}^3\)</span> by <span class="process-math">\(p(b) = b H\text{.}\)</span>  We call <span class="process-math">\(p(b)\)</span> the <dfn class="terminology">syndrome</dfn> of the received block. For example, <span class="process-math">\(p(0,1,0,1,0,1)=(0,0,0)\)</span>  and   <span class="process-math">\(p(1,1,1,1,0,0)=(1,0,0)\)</span>
+</div> <div class="para" id="p-5927">Note that <span class="process-math">\(p\)</span> has a similar property as <span class="process-math">\(e\text{,}\)</span> that <span class="process-math">\(p(b_1+b_2)=p(b_1)+p(b_2)\text{.}\)</span> If the syndrome of a block is <span class="process-math">\((0, 0, 0)\text{,}\)</span> we can be almost certain that the message block is <span class="process-math">\(\left(b_1, b_2, b_3\right)\text{.}\)</span>
+</div> <div class="para logical" id="p-5928">
 <div class="para">Next we turn to the method of correcting errors. Despite the fact that there are only eight code words, one for each three-bit block value, the set of possible received blocks is <span class="process-math">\(\mathbb{Z}_2{}^6\text{,}\)</span> with 64 elements. Suppose that <span class="process-math">\(b\)</span> is not a code word, but that it differs from a code word by exactly one bit. In other words, it is the result of a single error in transmission. Suppose that <span class="process-math">\(w\)</span> is the code word that <span class="process-math">\(b\)</span> is closest to and that they differ in the first bit. Then <span class="process-math">\(b + w = (1, 0, 0, 0, 0, 0)\)</span> and</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1330,11 +1333,11 @@ p(b) &amp; = p(b) + p(w)\quad \textrm{  since }p(w) = (0, 0, 0)\\
 </div>
 <div class="para">This is the first row of <span class="process-math">\(H\text{!}\)</span>
 </div>
-</div> <div class="para" id="p-5913">Note that we haven’t specified <span class="process-math">\(b\)</span> or <span class="process-math">\(w\text{,}\)</span> only that they differ in the first bit. Therefore, if <span class="process-math">\(b\)</span> is received, there was probably an error in the first bit and <span class="process-math">\(p(b)= (1, 1, 0)\text{,}\)</span> the transmitted code word was probably <span class="process-math">\(b + (1, 0, 0, 0, 0, 0)\)</span> and the message block was <span class="process-math">\(\left(b_1+_2 1, b_2, b_3\right)\text{.}\)</span> The same analysis can be done if <span class="process-math">\(b\)</span> and <span class="process-math">\(w\)</span> differ in any of the other five bits.</div> <div class="para" id="p-5914">In general, if the syndrome of a received string of bits is the <span class="process-math">\(k\)</span>th row of the parity check matrix, the error has occurred in the <span class="process-math">\(k\)</span>th bit.</div> </article></div>
-<div class="para" id="p-5915">
+</div> <div class="para" id="p-5929">Note that we haven’t specified <span class="process-math">\(b\)</span> or <span class="process-math">\(w\text{,}\)</span> only that they differ in the first bit. Therefore, if <span class="process-math">\(b\)</span> is received, there was probably an error in the first bit and <span class="process-math">\(p(b)= (1, 1, 0)\text{,}\)</span> the transmitted code word was probably <span class="process-math">\(b + (1, 0, 0, 0, 0, 0)\)</span> and the message block was <span class="process-math">\(\left(b_1+_2 1, b_2, b_3\right)\text{.}\)</span> The same analysis can be done if <span class="process-math">\(b\)</span> and <span class="process-math">\(w\)</span> differ in any of the other five bits.</div> <div class="para" id="p-5930">In general, if the syndrome of a received string of bits is the <span class="process-math">\(k\)</span>th row of the parity check matrix, the error has occurred in the <span class="process-math">\(k\)</span>th bit.</div> </article></div>
+<div class="para" id="p-5931">
 <dfn class="terminology">Probability Epilog.</dfn> For the two error correction examples we’ve looked at, we can compare their probabilities of successfully receiving all 3000 bits correctly over a binary symmetric channel with <span class="process-math">\(p=0.001.\)</span>
 </div>
-<div class="para logical" id="p-5916">
+<div class="para logical" id="p-5932">
 <div class="para">For the triple repetition code, the probability is</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1343,7 +1346,7 @@ p(b) &amp; = p(b) + p(w)\quad \textrm{  since }p(w) = (0, 0, 0)\\
 </div>
 <div class="para">and the rate of this code is <span class="process-math">\(\frac{1}{3}\)</span> which means we need to transmit 9000 bits.</div>
 </div>
-<div class="para logical" id="p-5917">
+<div class="para logical" id="p-5933">
 <div class="para">For the second code, the probability of success is</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1352,10 +1355,10 @@ p(b) &amp; = p(b) + p(w)\quad \textrm{  since }p(w) = (0, 0, 0)\\
 </div>
 <div class="para">and rate for this code is <span class="process-math">\(\frac{1}{2}\text{,}\)</span> which means we need to transmit 6000 bits.</div>
 </div>
-<div class="para" id="p-5918">Clearly, there is a trade-off between accuracy and speed.</div>
+<div class="para" id="p-5934">Clearly, there is a trade-off between accuracy and speed.</div>
 <article class="example example-like" id="ex-another-linear-code"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-another-linear-code"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.5.8</span><span class="period">.</span><span class="space"> </span><span class="title">Another Linear Code.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-another-linear-code"><article class="example example-like"><div class="para logical" id="p-5919">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-another-linear-code"><article class="example example-like"><div class="para logical" id="p-5935">
 <div class="para">Consider the linear code with generator matrix</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1391,7 +1394,7 @@ H = \left(\begin{array}{cc}
 \end{array} \right)
 \end{equation*}
 </div>
-</div> <div class="para logical" id="p-5920">
+</div> <div class="para logical" id="p-5936">
 <div class="para">At a glance, we can see that this code will not correct most single bit errors. Suppose an error <span class="process-math">\(\vec{e}=(e_1,e_2,e_3,e_4,e_5)\)</span> is added in the transmission of the five bits. Specifically, suppose that 1 is added (mod 2) in position <span class="process-math">\(j\text{,}\)</span> where <span class="process-math">\(1 \leq j\leq 5\)</span> and the other coordinates of <span class="process-math">\(\vec{e}\)</span> are  0.  Then when we compute the syndrome of our received transmission, we see that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1402,51 +1405,51 @@ H = \left(\begin{array}{cc}
 </div></article></div></section><section class="exercises" id="exercises-15-5"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">15.5.4</span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-662"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5921">
+<article class="exercise exercise-like" id="exercise-665"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5937">
 <div class="para">If the error-detecting code is being used, how would you act on the following received blocks?</div>
 <ol class="lower-alpha">
-<li id="li-2607"><div class="para" id="p-5922"><span class="process-math">\(\displaystyle (1, 0, 1, 1)\)</span></div></li>
-<li id="li-2608"><div class="para" id="p-5923"><span class="process-math">\(\displaystyle (1, 1, 1, 1)\)</span></div></li>
-<li id="li-2609"><div class="para" id="p-5924"><span class="process-math">\(\displaystyle (0, 0, 0, 0)\)</span></div></li>
+<li id="li-2619"><div class="para" id="p-5938"><span class="process-math">\(\displaystyle (1, 0, 1, 1)\)</span></div></li>
+<li id="li-2620"><div class="para" id="p-5939"><span class="process-math">\(\displaystyle (1, 1, 1, 1)\)</span></div></li>
+<li id="li-2621"><div class="para" id="p-5940"><span class="process-math">\(\displaystyle (0, 0, 0, 0)\)</span></div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-306" id="answer-306"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-306"><div class="answer solution-like"><div class="para logical" id="p-5925"><ol class="lower-alpha">
-<li id="li-2610"><div class="para" id="p-5926">Error detected, since an odd number of 1’s was received; ask for retransmission.</div></li>
-<li id="li-2611"><div class="para" id="p-5927">No error detected; accept this block.</div></li>
-<li id="li-2612"><div class="para" id="p-5928">No error detected; accept this block.</div></li>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-308" id="answer-308"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-308"><div class="answer solution-like"><div class="para logical" id="p-5941"><ol class="lower-alpha">
+<li id="li-2622"><div class="para" id="p-5942">Error detected, since an odd number of 1’s was received; ask for retransmission.</div></li>
+<li id="li-2623"><div class="para" id="p-5943">No error detected; accept this block.</div></li>
+<li id="li-2624"><div class="para" id="p-5944">No error detected; accept this block.</div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-663"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para" id="p-5929">Determine the parity check matrix for the triple repetition code.</div></article><article class="exercise exercise-like" id="exercise-664"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5930">
+</div></article><article class="exercise exercise-like" id="exercise-666"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para" id="p-5945">Determine the parity check matrix for the triple repetition code.</div></article><article class="exercise exercise-like" id="exercise-667"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5946">
 <div class="para">If the error-correcting code from this section is being used, how would you decode the following blocks? Expect an error that cannot be fixed with one of these.</div>
 <ol class="lower-alpha">
-<li id="li-2613"><div class="para" id="p-5931"><span class="process-math">\(\displaystyle (1,0,0,0,1,1)\)</span></div></li>
-<li id="li-2614"><div class="para" id="p-5932"><span class="process-math">\(\displaystyle (1,0,1,0,1,1)\)</span></div></li>
-<li id="li-2615"><div class="para" id="p-5933"><span class="process-math">\(\displaystyle (0,1,1,1,1,0)\)</span></div></li>
-<li id="li-2616"><div class="para" id="p-5934"><span class="process-math">\(\displaystyle (0,0,0,1,1,0)\)</span></div></li>
-<li id="li-2617"><div class="para" id="p-5935"><span class="process-math">\(\displaystyle (1,0,0,0,0,1)\)</span></div></li>
-<li id="li-2618"><div class="para" id="p-5936"><span class="process-math">\(\displaystyle (1,0,0,1,0,0)\)</span></div></li>
+<li id="li-2625"><div class="para" id="p-5947"><span class="process-math">\(\displaystyle (1,0,0,0,1,1)\)</span></div></li>
+<li id="li-2626"><div class="para" id="p-5948"><span class="process-math">\(\displaystyle (1,0,1,0,1,1)\)</span></div></li>
+<li id="li-2627"><div class="para" id="p-5949"><span class="process-math">\(\displaystyle (0,1,1,1,1,0)\)</span></div></li>
+<li id="li-2628"><div class="para" id="p-5950"><span class="process-math">\(\displaystyle (0,0,0,1,1,0)\)</span></div></li>
+<li id="li-2629"><div class="para" id="p-5951"><span class="process-math">\(\displaystyle (1,0,0,0,0,1)\)</span></div></li>
+<li id="li-2630"><div class="para" id="p-5952"><span class="process-math">\(\displaystyle (1,0,0,1,0,0)\)</span></div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-307" id="answer-307"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-307"><div class="answer solution-like"><div class="para logical" id="p-5937"><ol class="lower-alpha">
-<li id="li-2619"><div class="para" id="p-5938">Syndrome = <span class="process-math">\((1,0,1)\text{.}\)</span> Corrected coded message is <span class="process-math">\((1,1,0,0,1,1)\)</span> and original message was <span class="process-math">\((1, 1, 0)\text{.}\)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-309" id="answer-309"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-309"><div class="answer solution-like"><div class="para logical" id="p-5953"><ol class="lower-alpha">
+<li id="li-2631"><div class="para" id="p-5954">Syndrome = <span class="process-math">\((1,0,1)\text{.}\)</span> Corrected coded message is <span class="process-math">\((1,1,0,0,1,1)\)</span> and original message was <span class="process-math">\((1, 1, 0)\text{.}\)</span>
 </div></li>
-<li id="li-2620"><div class="para" id="p-5939">Syndrome = <span class="process-math">\((1,1,0)\text{.}\)</span> Corrected coded message is <span class="process-math">\((0,0,1,0,1,1)\)</span> and original message was <span class="process-math">\((0, 0, 1)\text{.}\)</span>
+<li id="li-2632"><div class="para" id="p-5955">Syndrome = <span class="process-math">\((1,1,0)\text{.}\)</span> Corrected coded message is <span class="process-math">\((0,0,1,0,1,1)\)</span> and original message was <span class="process-math">\((0, 0, 1)\text{.}\)</span>
 </div></li>
-<li id="li-2621"><div class="para" id="p-5940">Syndrome = <span class="process-math">\((0,0,0)\text{.}\)</span>  No error, coded message is <span class="process-math">\((0,1,1,1,1,0)\)</span> and original message was <span class="process-math">\((0, 1, 1)\text{.}\)</span>
+<li id="li-2633"><div class="para" id="p-5956">Syndrome = <span class="process-math">\((0,0,0)\text{.}\)</span>  No error, coded message is <span class="process-math">\((0,1,1,1,1,0)\)</span> and original message was <span class="process-math">\((0, 1, 1)\text{.}\)</span>
 </div></li>
-<li id="li-2622"><div class="para" id="p-5941">Syndrome = <span class="process-math">\((1, 1,0)\text{.}\)</span> Corrected coded message is <span class="process-math">\((1,0,0,1,1,0)\)</span> and original message was <span class="process-math">\((1, 0, 0)\text{.}\)</span>
+<li id="li-2634"><div class="para" id="p-5957">Syndrome = <span class="process-math">\((1, 1,0)\text{.}\)</span> Corrected coded message is <span class="process-math">\((1,0,0,1,1,0)\)</span> and original message was <span class="process-math">\((1, 0, 0)\text{.}\)</span>
 </div></li>
-<li id="li-2623"><div class="para" id="p-5942">Syndrome = <span class="process-math">\((1,1,1)\text{.}\)</span> This syndrome occurs only if two bits have been switched. No reliable correction is possible.</div></li>
-<li id="li-2624"><div class="para" id="p-5943">Syndrome = <span class="process-math">\((0,1,0)\text{.}\)</span> Corrected coded message is <span class="process-math">\((1,0,0,1,1,0)\)</span> and original message was <span class="process-math">\((1, 0, 0)\text{.}\)</span>
+<li id="li-2635"><div class="para" id="p-5958">Syndrome = <span class="process-math">\((1,1,1)\text{.}\)</span> This syndrome occurs only if two bits have been switched. No reliable correction is possible.</div></li>
+<li id="li-2636"><div class="para" id="p-5959">Syndrome = <span class="process-math">\((0,1,0)\text{.}\)</span> Corrected coded message is <span class="process-math">\((1,0,0,1,1,0)\)</span> and original message was <span class="process-math">\((1, 0, 0)\text{.}\)</span>
 </div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-665"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para" id="p-5944">Suppose that the code words of a coding function have the property that any two of them have a Hamming distance of at least 5.  How many bit errors could be corrected with such a code?</div></article><article class="exercise exercise-like" id="exercise-666"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5945">
+</div></article><article class="exercise exercise-like" id="exercise-668"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para" id="p-5960">Suppose that the code words of a coding function have the property that any two of them have a Hamming distance of at least 5.  How many bit errors could be corrected with such a code?</div></article><article class="exercise exercise-like" id="exercise-669"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5961">
 <div class="para">Consider the  linear code defined by the generator matrix</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1458,17 +1461,17 @@ G=\left(
 \right)
 \end{equation*}
 </div>
-</div> <div class="para logical" id="p-5946"><ol class="lower-alpha">
-<li id="li-2625"><div class="para" id="p-5947">What size blocks does this code encode and what is the length of the code words?</div></li>
-<li id="li-2626"><div class="para" id="p-5948">What are the code words for this code?</div></li>
-<li id="li-2627"><div class="para" id="p-5949">With this code, can you detect single bit errors?  Can you correct all, some, or no single bit errors?</div></li>
+</div> <div class="para logical" id="p-5962"><ol class="lower-alpha">
+<li id="li-2637"><div class="para" id="p-5963">What size blocks does this code encode and what is the length of the code words?</div></li>
+<li id="li-2638"><div class="para" id="p-5964">What are the code words for this code?</div></li>
+<li id="li-2639"><div class="para" id="p-5965">With this code, can you detect single bit errors?  Can you correct all, some, or no single bit errors?</div></li>
 </ol></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-308" id="answer-308"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-308"><div class="answer solution-like"><div class="para logical" id="p-5950"><ol class="lower-alpha">
-<li id="li-2628"><div class="para" id="p-5951">Blocks of two bits are encoded into code words of length 4.</div></li>
-<li id="li-2629"><div class="para" id="p-5952">The code words are  0000, 1010, 0111 and 1101.</div></li>
-<li id="li-2630">
-<div class="para logical" id="p-5953">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-310" id="answer-310"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-310"><div class="answer solution-like"><div class="para logical" id="p-5966"><ol class="lower-alpha">
+<li id="li-2640"><div class="para" id="p-5967">Blocks of two bits are encoded into code words of length 4.</div></li>
+<li id="li-2641"><div class="para" id="p-5968">The code words are  0000, 1010, 0111 and 1101.</div></li>
+<li id="li-2642">
+<div class="para logical" id="p-5969">
 <div class="para">Since the first two code words have a Hamming distance of 2, not all single bit errors can be corrected.  For example, if 0000 is transmitted and the first bit is switch, then 1000 is received and we can’t tell for sure whether this came from 0000 or 1010.  To see what can be corrected, we note that <span class="process-math">\(a_1 a_2\)</span> is encoded to <span class="process-math">\(a_1 a_2 (a_1 +_2 a_2) a_2\)</span> and so if <span class="process-math">\(b_1 b_2 b_3 b_4\)</span> is recieved and no error has occurred,</div>
 <div class="displaymath process-math" id="md-1">
 \begin{gather*}
@@ -1477,7 +1480,7 @@ b_2  +_2 b_4 	=0
 \end{gather*}
 </div>
 </div>
-<div class="para logical" id="p-5954">
+<div class="para logical" id="p-5970">
 <div class="para">We can extract the parity check matrix from this set of equations. It is</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1493,10 +1496,10 @@ b_2  +_2 b_4 	=0
 </div>
 </li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-667"><h4 class="heading">
+</div></article><article class="exercise exercise-like" id="exercise-670"><h4 class="heading">
 <span class="codenumber">6<span class="period">.</span></span><span class="space"> </span><span class="title">Rectangular codes.</span>
 </h4>
-<div class="para logical" id="p-5955">
+<div class="para logical" id="p-5971">
 <div class="para">To build a rectangular code, you partition your message into blocks of length <span class="process-math">\(m\)</span> and then factor <span class="process-math">\(m\)</span> into <span class="process-math">\(k_1\cdot k_2\)</span>  and arrange the bits in a  <span class="process-math">\(k_1 \times k_2\)</span> rectangular array as in the figure below.  Then you add parity bits along the right side and bottom of the rows and columns.   The code word is then read row by row.</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1512,7 +1515,7 @@ b_2  +_2 b_4 	=0
 \end{array}
 \end{equation*}
 </div>
-</div> <div class="para logical" id="p-5956">
+</div> <div class="para logical" id="p-5972">
 <div class="para">For example, if <span class="process-math">\(m\)</span> is 4, then our only choice is a 2 by 2 array.  The message 1101 would be encoded as</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1525,19 +1528,19 @@ b_2  +_2 b_4 	=0
 \end{equation*}
 </div>
 <div class="para">and the code word is the string 11001110.</div>
-</div> <div class="para logical" id="p-5957"><ol class="lower-alpha">
-<li id="li-2631"><div class="para logical" id="p-5958">
+</div> <div class="para logical" id="p-5973"><ol class="lower-alpha">
+<li id="li-2643"><div class="para logical" id="p-5974">
 <div class="para">Suppose that you were sent four bit messages using this code and you received the following strings.  What were the messages, assuming no more than one error in the transmission of coded data?</div>
 <ol class="lower-roman cols3">
-<li id="li-2632"><div class="para" id="p-5959">11011000</div></li>
-<li id="li-2633"><div class="para" id="p-5960">01110010</div></li>
-<li id="li-2634"><div class="para" id="p-5961">10001111</div></li>
+<li id="li-2644"><div class="para" id="p-5975">11011000</div></li>
+<li id="li-2645"><div class="para" id="p-5976">01110010</div></li>
+<li id="li-2646"><div class="para" id="p-5977">10001111</div></li>
 </ol>
 </div></li>
-<li id="li-2635"><div class="para" id="p-5962">If you encoded <span class="process-math">\(n^2\)</span> bits in this manner, what would be the rate of the code?</div></li>
-<li id="li-2636"><div class="para" id="p-5963">Rectangular codes are linear codes.  For the 2 by 2 rectangular code, what are the generator and parity check matrices?</div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-668"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5964">
+<li id="li-2647"><div class="para" id="p-5978">If you encoded <span class="process-math">\(n^2\)</span> bits in this manner, what would be the rate of the code?</div></li>
+<li id="li-2648"><div class="para" id="p-5979">Rectangular codes are linear codes.  For the 2 by 2 rectangular code, what are the generator and parity check matrices?</div></li>
+</ol></div></article><article class="exercise exercise-like" id="exercise-671"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5980">
 <div class="para">Suppose that the code in <a href="" class="xref" data-knowl="./knowl/ex-another-linear-code.html" title="Example 15.5.8: Another Linear Code">Example 15.5.8</a> is expanded to add the column</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-another-linear-code.html">
 \begin{equation*}
@@ -1551,7 +1554,7 @@ b_2  +_2 b_4 	=0
 <div class="para">to the generator matrix <span class="process-math">\(G\text{,}\)</span> can all single bit errors be corrected? Explain your answer.</div>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-23" id="solution-23"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-23"><div class="solution solution-like"><div class="para logical" id="p-5965">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-24" id="solution-24"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-24"><div class="solution solution-like"><div class="para logical" id="p-5981">
 <div class="para">Yes, you can correct all single bit errors because the parity check matrix for the expanded code is</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1567,8 +1570,8 @@ H = \left(\begin{array}{ccc}
 </div>
 <div class="para">Since each possible syndrome of single bit errors is unique we can correct any error.</div>
 </div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-669"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5966">
+</div></article><article class="exercise exercise-like" id="exercise-672"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5982">
 <div class="para">Suppose that a linear code has parity check matrix</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1588,9 +1591,9 @@ H=\left(
 <div class="para">Determine the generator matrix, <span class="process-math">\(G\text{,}\)</span> and in so doing, identify the number of bits in each message block and the number of parity bits.</div>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-22" id="hint-22"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-22"><div class="hint solution-like"><div class="para" id="p-5967">There is a parity check equation for each parity bit.</div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-670"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
-<div class="para" id="p-5968">A code with minimum distance <span class="process-math">\(d\)</span> is called <em class="emphasis">perfect</em> if every string of bits is within Hamming distance <span class="process-math">\(r=\frac{d-1}{2}\)</span> of some code word. For such a code, the spheres of radius <span class="process-math">\(r\)</span> around the code words partition the set of all strings.  This is analogous to packing objects into a box with no wasted space.  Using just the number of bit strings of length <span class="process-math">\(n\)</span> and the number of strings in a sphere of radius <span class="process-math">\(1\text{,}\)</span> for what values of <span class="process-math">\(n\)</span> is it possible to find a perfect code of distance <span class="process-math">\(3\text{?}\)</span>  You don’t have to actually find the codes.</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-22" id="hint-22"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-22"><div class="hint solution-like"><div class="para" id="p-5983">There is a parity check equation for each parity bit.</div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-673"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div class="para" id="p-5984">A code with minimum distance <span class="process-math">\(d\)</span> is called <em class="emphasis">perfect</em> if every string of bits is within Hamming distance <span class="process-math">\(r=\frac{d-1}{2}\)</span> of some code word. For such a code, the spheres of radius <span class="process-math">\(r\)</span> around the code words partition the set of all strings.  This is analogous to packing objects into a box with no wasted space.  Using just the number of bit strings of length <span class="process-math">\(n\)</span> and the number of strings in a sphere of radius <span class="process-math">\(1\text{,}\)</span> for what values of <span class="process-math">\(n\)</span> is it possible to find a perfect code of distance <span class="process-math">\(3\text{?}\)</span>  You don’t have to actually find the codes.</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>
 <div class="ptx-content-footer">
 <a class="previous-button button" href="s-normal-subgroups-homomorphisms.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="chapter_16.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>

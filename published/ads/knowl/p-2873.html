@@ -13,25 +13,20 @@
 <body class="ignore-math">
 <h5 class="heading"><span class="type">Paragraph</span></h5>
 <div class="para logical">
-<div class="para">A further generalization would be to add a coefficient to <span class="process-math">\(T(\lfloor n/2 \rfloor )\text{:}\)</span> <span class="process-math">\(T(n)= a + b T (\lfloor n/2 \rfloor )\)</span> with <span class="process-math">\(T(0) = c\text{,}\)</span> where <span class="process-math">\(a, b, c\in \mathbb{R}\text{,}\)</span> and <span class="process-math">\(b\neq 0\)</span> is not quite as simple to derive. First, if we consider values of <span class="process-math">\(n\)</span> that are powers of 2:</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/eq-bin-search-recursion.html ./knowl/eq-bin-search-basis.html">
-\begin{equation*}
-\begin{array}{c}
-T(1) = a + b T(0) = a + b c\\
-T(2)=a + b(a+b c) = a + a b +c b^2\\
-T(4)=a+b\left(a + a b +c b^2\right) = a + a b + a b^2+ c b^3\\
-\vdots \\
-T\left(2^r\right) = a + a b + a b^2+\cdots  + a b^r + c b^{r+1}
-\end{array}
-\end{equation*}
+<div class="para">For those who prefer to see a numeric example, suppose <span class="process-math">\(n = 21\text{.}\)</span>
 </div>
-<div class="para">If <span class="process-math">\(n\)</span> is not a power of 2, by reasoning that is identical to what we used to <a href="" class="xref" data-knowl="./knowl/eq-bin-search-recursion.html" title="Equation 8.4.1">(8.4.1)</a>  and <a href="" class="xref" data-knowl="./knowl/eq-bin-search-basis.html" title="Equation 8.4.2">(8.4.2)</a>,</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/eq-bin-search-recursion.html ./knowl/eq-bin-search-basis.html">
+<div class="displaymath process-math">
 \begin{equation*}
-T(n) =\sum_{k=0}^r a b^k+ c b^{r+1}
+\begin{split}
+T(21) &amp;= T(10101) \\
+&amp; = 1 + T(1010) \\
+&amp;  = 1 + (1 + T(101)) \\
+&amp;  = 1 + (1 + (1 + T(10))) \\
+&amp;  = 1 + (1 + (1 + (1 + T(1))))\\
+&amp;  = 1 + (1 + (1 + (1 + (1 +T(0)))))\\
+&amp;  = 5
+\end{split}
 \end{equation*}
-</div>
-<div class="para">where <span class="process-math">\(r = \left\lfloor \log_2n\right\rfloor\text{.}\)</span>
 </div>
 </div>
 <span class="incontext"><a href="s-some-common-rrs.html#p-2873" class="internal">in-context</a></span>

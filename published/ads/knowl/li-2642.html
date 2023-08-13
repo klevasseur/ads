@@ -12,9 +12,30 @@
 </head>
 <body class="ignore-math">
 <article class="li"><h5 class="heading">
-<span class="type">Item</span><span class="space"> </span><span class="codenumber">3</span><span class="period">.</span>
+<span class="type">Item</span><span class="space"> </span><span class="codenumber">15.5.4.5.c</span><span class="period">.</span>
 </h5>
-<div class="para">For the abelian group <span class="process-math">\([R; +]\text{,}\)</span> we use additive notation. In particular, the group identity is designated by 0 rather than by <span class="process-math">\(e\)</span> and is customarily called the “zero” of the ring. The group inverse is also written in additive notation: <span class="process-math">\(-a\)</span> rather than <span class="process-math">\(a^{-1}\text{.}\)</span>
-</div></article><span class="incontext"><a href="s-rings-basic.html#li-2642" class="internal">in-context</a></span>
+<div class="para logical">
+<div class="para">Since the first two code words have a Hamming distance of 2, not all single bit errors can be corrected.  For example, if 0000 is transmitted and the first bit is switch, then 1000 is received and we can’t tell for sure whether this came from 0000 or 1010.  To see what can be corrected, we note that <span class="process-math">\(a_1 a_2\)</span> is encoded to <span class="process-math">\(a_1 a_2 (a_1 +_2 a_2) a_2\)</span> and so if <span class="process-math">\(b_1 b_2 b_3 b_4\)</span> is recieved and no error has occurred,</div>
+<div class="displaymath process-math">
+\begin{gather*}
+b_1 +_2 b_2 +_2 b_3  =0\\
+b_2  +_2 b_4 	=0
+\end{gather*}
+</div>
+</div>
+<div class="para logical">
+<div class="para">We can extract the parity check matrix from this set of equations. It is</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{pmatrix}
+1 &amp; 0 \\
+1  &amp; 1 \\
+1  &amp; 0 \\
+0  &amp; 1 
+\end{pmatrix}
+\end{equation*}
+</div>
+<div class="para">The rows of this matrix correspond with the syndromes for errors in bits 1 through 4, which are all nonzero, so we can detect any single bit error.  Notice that the syndromes for bits 1 and 3 are identical. This reflects the fact that errors in these bits can’t be corrected.  However, the syndromes for bits 2 and 4 are unique and so we can correct them. Therefore the second bit of the original message can be sent with more confidence than the first.</div>
+</div></article><span class="incontext"><a href="s-coding-theory-groups.html#li-2642" class="internal">in-context</a></span>
 </body>
 </html>
