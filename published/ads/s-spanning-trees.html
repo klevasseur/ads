@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Spanning Trees</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,25 +58,36 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
@@ -99,59 +128,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -160,7 +146,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -315,7 +301,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1127,120 +1116,120 @@ eBookConfig.runestone_version = '7.0.7';
 <section class="subsection" id="subsection-126"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">10.2.1</span> <span class="title">Motivation</span>
 </h3>
-<div class="para" id="p-3685">The topic of spanning trees is motivated by a graph-optimization problem.</div>
-<div class="para" id="p-3686">A graph of  Atlantis University  (<a href="" class="xref" data-knowl="./knowl/fig-atlantis-10.html" title="Figure 10.2.1">Figure 10.2.1</a>) shows that there are four campuses in the system. A new secure communications system is being installed and the objective is to allow for communication between any two campuses; to achieve this objective, the university must buy direct lines between certain pairs of campuses. Let <span class="process-math">\(G\)</span> be the graph with a vertex for each campus and an edge for each direct line. Total communication is equivalent to <span class="process-math">\(G\)</span> being a connected graph. This is due to the fact that two campuses can communicate over any number of lines. To minimize costs, the university wants to buy a minimum number of lines.</div>
+<div class="para" id="p-3701">The topic of spanning trees is motivated by a graph-optimization problem.</div>
+<div class="para" id="p-3702">A graph of  Atlantis University  (<a href="" class="xref" data-knowl="./knowl/fig-atlantis-10.html" title="Figure 10.2.1">Figure 10.2.1</a>) shows that there are four campuses in the system. A new secure communications system is being installed and the objective is to allow for communication between any two campuses; to achieve this objective, the university must buy direct lines between certain pairs of campuses. Let <span class="process-math">\(G\)</span> be the graph with a vertex for each campus and an edge for each direct line. Total communication is equivalent to <span class="process-math">\(G\)</span> being a connected graph. This is due to the fact that two campuses can communicate over any number of lines. To minimize costs, the university wants to buy a minimum number of lines.</div>
 <figure class="figure figure-like" id="fig-atlantis-10"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig-atlantis-10.png" class="contained" alt="Atlantis University Graph"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.2.1<span class="period">.</span></span><span class="space"> </span>Atlantis University Graph</figcaption></figure><div class="para" id="p-3687">The solutions to this problem are all trees. Any graph that satisfies the requirements of the university must be connected, and if a cycle does exist, any line in the cycle can be deleted, reducing the cost. Each of the sixteen trees that can be drawn to connect the vertices North, South, East, and West (see <a href="" class="xref" data-knowl="./knowl/exercise-trees.html" title="Exercise 10.1.3.1">Exercise 10.1.3.1</a>) solves the problem as it is stated. Note that in each case, three direct lines must be purchased. There are two considerations that can help reduce the number of solutions that would be considered.</div>
-<div class="para logical" id="p-3688"><ul class="disc">
-<li id="li-1723"><div class="para" id="p-3689">Objective 1: Given that the cost of each line depends on certain factors, such as the distance between the campuses, select a tree whose cost is as low as possible.</div></li>
-<li id="li-1724"><div class="para" id="p-3690">Objective 2: Suppose that communication over multiple lines is noisier as the number of lines increases. Select a tree with the property that the maximum number of lines that any pair of campuses must use to communicate with is as small as possible.</div></li>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.2.1<span class="period">.</span></span><span class="space"> </span>Atlantis University Graph</figcaption></figure><div class="para" id="p-3703">The solutions to this problem are all trees. Any graph that satisfies the requirements of the university must be connected, and if a cycle does exist, any line in the cycle can be deleted, reducing the cost. Each of the sixteen trees that can be drawn to connect the vertices North, South, East, and West (see <a href="" class="xref" data-knowl="./knowl/exercise-trees.html" title="Exercise 10.1.3.1">Exercise 10.1.3.1</a>) solves the problem as it is stated. Note that in each case, three direct lines must be purchased. There are two considerations that can help reduce the number of solutions that would be considered.</div>
+<div class="para logical" id="p-3704"><ul class="disc">
+<li id="li-1735"><div class="para" id="p-3705">Objective 1: Given that the cost of each line depends on certain factors, such as the distance between the campuses, select a tree whose cost is as low as possible.</div></li>
+<li id="li-1736"><div class="para" id="p-3706">Objective 2: Suppose that communication over multiple lines is noisier as the number of lines increases. Select a tree with the property that the maximum number of lines that any pair of campuses must use to communicate with is as small as possible.</div></li>
 </ul></div>
-<div class="para" id="p-3691">Typically, these objectives are not compatible; that is, you cannot always simultaneously achieve these objectives. In the case of the Atlantis university system, the solution with respect to Objective 1 is indicated with solid lines in <a href="" class="xref" data-knowl="./knowl/fig-atlantis-10.html" title="Figure 10.2.1">Figure 10.2.1</a>. There are four solutions to the problem with respect to Objective 2: any tree in which one campus is directly connected to the other three. One solution with respect to Objective 2 is indicated with dotted lines in <a href="" class="xref" data-knowl="./knowl/fig-atlantis-10.html" title="Figure 10.2.1">Figure 10.2.1</a>. After satisfying the conditions of Objective 2, it would seem reasonable to select the cheapest of the four trees.</div></section><section class="subsection" id="subsection-127"><h3 class="heading hide-type">
+<div class="para" id="p-3707">Typically, these objectives are not compatible; that is, you cannot always simultaneously achieve these objectives. In the case of the Atlantis university system, the solution with respect to Objective 1 is indicated with solid lines in <a href="" class="xref" data-knowl="./knowl/fig-atlantis-10.html" title="Figure 10.2.1">Figure 10.2.1</a>. There are four solutions to the problem with respect to Objective 2: any tree in which one campus is directly connected to the other three. One solution with respect to Objective 2 is indicated with dotted lines in <a href="" class="xref" data-knowl="./knowl/fig-atlantis-10.html" title="Figure 10.2.1">Figure 10.2.1</a>. After satisfying the conditions of Objective 2, it would seem reasonable to select the cheapest of the four trees.</div></section><section class="subsection" id="subsection-127"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">10.2.2</span> <span class="title">Definition</span>
 </h3>
 <article class="definition definition-like" id="def-spanning-tree"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">10.2.2</span><span class="period">.</span><span class="space"> </span><span class="title">Spanning Tree.</span>
-</h4>  <div class="para" id="p-3692">Let <span class="process-math">\(G = (V, E)\)</span> be a connected undirected graph. A spanning tree for <span class="process-math">\(G\)</span> is a <a href="" class="xref" data-knowl="./knowl/def-subgraph.html" title="Definition 9.1.17: Subgraph">spanning subgraph 9.1.17</a> of <span class="process-math">\(G\)</span> that is a tree.</div></article><article class="note remark-like" id="note-12"><h4 class="heading">
+</h4>  <div class="para" id="p-3708">Let <span class="process-math">\(G = (V, E)\)</span> be a connected undirected graph. A spanning tree for <span class="process-math">\(G\)</span> is a <a href="" class="xref" data-knowl="./knowl/def-subgraph.html" title="Definition 9.1.17: Subgraph">spanning subgraph 9.1.17</a> of <span class="process-math">\(G\)</span> that is a tree.</div></article><article class="note remark-like" id="note-12"><h4 class="heading">
 <span class="type">Note</span><span class="space"> </span><span class="codenumber">10.2.3</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-3693"><ol class="lower-alpha">
-<li id="li-1725"><div class="para" id="p-3694">If <span class="process-math">\((V, E')\)</span> is a spanning tree, <span class="process-math">\(\lvert  E' \rvert  =\lvert  V \rvert  - 1\text{.}\)</span>
+<div class="para logical" id="p-3709"><ol class="lower-alpha">
+<li id="li-1737"><div class="para" id="p-3710">If <span class="process-math">\((V, E')\)</span> is a spanning tree, <span class="process-math">\(\lvert  E' \rvert  =\lvert  V \rvert  - 1\text{.}\)</span>
 </div></li>
-<li id="li-1726"><div class="para" id="p-3695">The significance of a spanning tree is that it is a minimal spanning set. A smaller set would not span the graph, while a larger set would have a cycle, which has an edge that is superfluous.</div></li>
-</ol></div></article><div class="para" id="p-3696">For the remainder of this section, we will discuss two of the many topics that relate to spanning trees. The first is the problem of finding Minimal Spanning Trees, which addresses Objective 1 above. The second is the problem of finding Minimum Diameter Spanning Trees, which addresses Objective 2.</div>
+<li id="li-1738"><div class="para" id="p-3711">The significance of a spanning tree is that it is a minimal spanning set. A smaller set would not span the graph, while a larger set would have a cycle, which has an edge that is superfluous.</div></li>
+</ol></div></article><div class="para" id="p-3712">For the remainder of this section, we will discuss two of the many topics that relate to spanning trees. The first is the problem of finding Minimal Spanning Trees, which addresses Objective 1 above. The second is the problem of finding Minimum Diameter Spanning Trees, which addresses Objective 2.</div>
 <article class="definition definition-like" id="def-min-spanning-tree"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">10.2.4</span><span class="period">.</span><span class="space"> </span><span class="title">Minimal Spanning Tree.</span>
-</h4>  <div class="para" id="p-3697">Given a weighted connected undirected graph <span class="process-math">\(G = (V, E, w)\text{,}\)</span> a minimal spanning tree is a spanning tree <span class="process-math">\((V, E')\)</span> for which <span class="process-math">\(\sum_{e\in E'} w(e)\)</span> is as small as possible.</div></article></section><section class="subsection" id="subsection-128"><h3 class="heading hide-type">
+</h4>  <div class="para" id="p-3713">Given a weighted connected undirected graph <span class="process-math">\(G = (V, E, w)\text{,}\)</span> a minimal spanning tree is a spanning tree <span class="process-math">\((V, E')\)</span> for which <span class="process-math">\(\sum_{e\in E'} w(e)\)</span> is as small as possible.</div></article></section><section class="subsection" id="subsection-128"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">10.2.3</span> <span class="title">Prim’s Algorithm</span>
 </h3>
-<div class="para" id="p-3698">Unlike many of the graph-optimization problems that we’ve examined, a solution to this problem can be obtained efficiently. It is a situation in which a greedy algorithm works.</div>
+<div class="para" id="p-3714">Unlike many of the graph-optimization problems that we’ve examined, a solution to this problem can be obtained efficiently. It is a situation in which a greedy algorithm works.</div>
 <article class="definition definition-like" id="def-bridge"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">10.2.5</span><span class="period">.</span><span class="space"> </span><span class="title">Bridge.</span>
-</h4>  <div class="para" id="p-3699">Let <span class="process-math">\(G = (V, E)\)</span> be an undirected graph and let <span class="process-math">\(\{L, R\}\)</span> be a partition of <span class="process-math">\(V\text{.}\)</span> A bridge between <span class="process-math">\(L\)</span> and <span class="process-math">\(R\)</span> is an edge in <span class="process-math">\(E\)</span> that connects a vertex in <span class="process-math">\(L\)</span> to a vertex in <span class="process-math">\(R\text{.}\)</span>
+</h4>  <div class="para" id="p-3715">Let <span class="process-math">\(G = (V, E)\)</span> be an undirected graph and let <span class="process-math">\(\{L, R\}\)</span> be a partition of <span class="process-math">\(V\text{.}\)</span> A bridge between <span class="process-math">\(L\)</span> and <span class="process-math">\(R\)</span> is an edge in <span class="process-math">\(E\)</span> that connects a vertex in <span class="process-math">\(L\)</span> to a vertex in <span class="process-math">\(R\text{.}\)</span>
 </div></article><article class="theorem theorem-like" id="theorem-10-2-1"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">10.2.6</span><span class="period">.</span>
 </h4>
-<div class="para" id="p-3700">Let <span class="process-math">\(G = (V, E, w)\)</span> be a weighted connected undirected graph. Let <span class="process-math">\(V\)</span> be partitioned into two sets <span class="process-math">\(L\)</span> and <span class="process-math">\(R\text{.}\)</span> If <span class="process-math">\(e^*\)</span> is a bridge of least weight between <span class="process-math">\(L\)</span> and <span class="process-math">\(R\text{,}\)</span> then there exists a minimal spanning tree for <span class="process-math">\(G\)</span> that includes <span class="process-math">\(e^*\text{.}\)</span>
-</div></article><article class="hiddenproof" id="proof-30"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-30"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-30"><article class="hiddenproof"><div class="para" id="p-3701">Suppose that no minimal spanning tree including <span class="process-math">\(e^*\)</span> exists. Let <span class="process-math">\(T = (V, E')\)</span> be a minimal spanning tree. If we add <span class="process-math">\(e^*\)</span> to <span class="process-math">\(T\text{,}\)</span> a cycle is created, and this cycle must contain another bridge, <span class="process-math">\(e\text{,}\)</span> between <span class="process-math">\(L\)</span> and <span class="process-math">\(R\text{.}\)</span> Since <span class="process-math">\(w\left(e^*\right) \leq  w(e)\text{,}\)</span> we can delete <span class="process-math">\(e\)</span> and the new tree, which includes <span class="process-math">\(e^*\)</span> must also be a minimal spanning tree.</div></article></div>
+<div class="para" id="p-3716">Let <span class="process-math">\(G = (V, E, w)\)</span> be a weighted connected undirected graph. Let <span class="process-math">\(V\)</span> be partitioned into two sets <span class="process-math">\(L\)</span> and <span class="process-math">\(R\text{.}\)</span> If <span class="process-math">\(e^*\)</span> is a bridge of least weight between <span class="process-math">\(L\)</span> and <span class="process-math">\(R\text{,}\)</span> then there exists a minimal spanning tree for <span class="process-math">\(G\)</span> that includes <span class="process-math">\(e^*\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-30"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-30"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-30"><article class="hiddenproof"><div class="para" id="p-3717">Suppose that no minimal spanning tree including <span class="process-math">\(e^*\)</span> exists. Let <span class="process-math">\(T = (V, E')\)</span> be a minimal spanning tree. If we add <span class="process-math">\(e^*\)</span> to <span class="process-math">\(T\text{,}\)</span> a cycle is created, and this cycle must contain another bridge, <span class="process-math">\(e\text{,}\)</span> between <span class="process-math">\(L\)</span> and <span class="process-math">\(R\text{.}\)</span> Since <span class="process-math">\(w\left(e^*\right) \leq  w(e)\text{,}\)</span> we can delete <span class="process-math">\(e\)</span> and the new tree, which includes <span class="process-math">\(e^*\)</span> must also be a minimal spanning tree.</div></article></div>
 <article class="example example-like" id="ex-some-bridges"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-some-bridges"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">10.2.7</span><span class="period">.</span><span class="space"> </span><span class="title">Some Bridges.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-some-bridges"><article class="example example-like"><div class="para" id="p-3702">The bridges between the vertex sets <span class="process-math">\(\{a, b, c\}\)</span> and <span class="process-math">\(\{d, e\}\)</span> in <a href="" class="xref" data-knowl="./knowl/fig-bridges-10.html" title="Figure 10.2.8">Figure 10.2.8</a> are the edges <span class="process-math">\(\{b, d\}\)</span> and <span class="process-math">\(\{c, e\}\text{.}\)</span> According to the theorem above, a minimal spanning tree that includes <span class="process-math">\(\{b, d\}\)</span> exists. By examination, you should be able to see that this is true. Is it true that only the bridges of minimal weight can be part of a minimal spanning tree?</div> <figure class="figure figure-like" id="fig-bridges-10"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig-bridges-10.png" class="contained" alt="Bridges between two sets"></div>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-some-bridges"><article class="example example-like"><div class="para" id="p-3718">The bridges between the vertex sets <span class="process-math">\(\{a, b, c\}\)</span> and <span class="process-math">\(\{d, e\}\)</span> in <a href="" class="xref" data-knowl="./knowl/fig-bridges-10.html" title="Figure 10.2.8">Figure 10.2.8</a> are the edges <span class="process-math">\(\{b, d\}\)</span> and <span class="process-math">\(\{c, e\}\text{.}\)</span> According to the theorem above, a minimal spanning tree that includes <span class="process-math">\(\{b, d\}\)</span> exists. By examination, you should be able to see that this is true. Is it true that only the bridges of minimal weight can be part of a minimal spanning tree?</div> <figure class="figure figure-like" id="fig-bridges-10"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig-bridges-10.png" class="contained" alt="Bridges between two sets"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.2.8<span class="period">.</span></span><span class="space"> </span>Bridges between two sets</figcaption></figure></article></div>
-<div class="para" id="p-3703">
+<div class="para" id="p-3719">
 <a href="" class="xref" data-knowl="./knowl/theorem-10-2-1.html" title="Theorem 10.2.6">Theorem 10.2.6</a> essentially tells us that a minimal spanning tree can be constructed recursively by continually adding minimally weighted bridges to a set of edges.</div>
 <article class="algorithm theorem-like" id="alg-prim"><h4 class="heading">
 <span class="type">Algorithm</span><span class="space"> </span><span class="codenumber">10.2.9</span><span class="period">.</span><span class="space"> </span><span class="title">Prim’s Algorithm.</span>
 </h4>
-<div class="para" id="p-3704">Let <span class="process-math">\(G = (V, E, w)\)</span> be a connected, weighted, undirected graph, and let <span class="process-math">\(v_0\)</span> be an arbitrary vertex in <span class="process-math">\(V\text{.}\)</span> The following steps lead to a minimal spanning tree for <span class="process-math">\(G\text{.}\)</span>  <span class="process-math">\(L\)</span> and <span class="process-math">\(R\)</span> will be sets of vertices and <span class="process-math">\(E'\)</span> is a set of edges.</div> <div class="para logical" id="p-3705"><ol class="decimal">
-<li id="li-1727"><div class="para" id="p-3706">(Initialize) <span class="process-math">\(L = V - \left\{v_0\right\}\text{;}\)</span>  <span class="process-math">\(R = \left\{v_0\right\}\text{;}\)</span> <span class="process-math">\(E' = \emptyset\text{.}\)</span>
+<div class="para" id="p-3720">Let <span class="process-math">\(G = (V, E, w)\)</span> be a connected, weighted, undirected graph, and let <span class="process-math">\(v_0\)</span> be an arbitrary vertex in <span class="process-math">\(V\text{.}\)</span> The following steps lead to a minimal spanning tree for <span class="process-math">\(G\text{.}\)</span>  <span class="process-math">\(L\)</span> and <span class="process-math">\(R\)</span> will be sets of vertices and <span class="process-math">\(E'\)</span> is a set of edges.</div> <div class="para logical" id="p-3721"><ol class="decimal">
+<li id="li-1739"><div class="para" id="p-3722">(Initialize) <span class="process-math">\(L = V - \left\{v_0\right\}\text{;}\)</span>  <span class="process-math">\(R = \left\{v_0\right\}\text{;}\)</span> <span class="process-math">\(E' = \emptyset\text{.}\)</span>
 </div></li>
-<li id="li-1728">
-<div class="para" id="p-3707">(Build the tree) While <span class="process-math">\(L\neq  \emptyset\text{:}\)</span>
+<li id="li-1740">
+<div class="para" id="p-3723">(Build the tree) While <span class="process-math">\(L\neq  \emptyset\text{:}\)</span>
 </div>
-<div class="para logical" id="p-3708"><ol class="decimal">
-<li id="li-1729"><div class="para" id="p-3709">Find <span class="process-math">\(e^* = \left\{v_L,v_R\right\}\text{,}\)</span> a bridge of minimum weight between <span class="process-math">\(L\)</span> and <span class="process-math">\(R\text{.}\)</span>
+<div class="para logical" id="p-3724"><ol class="decimal">
+<li id="li-1741"><div class="para" id="p-3725">Find <span class="process-math">\(e^* = \left\{v_L,v_R\right\}\text{,}\)</span> a bridge of minimum weight between <span class="process-math">\(L\)</span> and <span class="process-math">\(R\text{.}\)</span>
 </div></li>
-<li id="li-1730"><div class="para" id="p-3710">
+<li id="li-1742"><div class="para" id="p-3726">
 <span class="process-math">\(R = R \cup  \left\{v_L \right\}\text{;}\)</span> <span class="process-math">\(L = L - \left\{v_L\right\}\)</span> ; <span class="process-math">\(E' =E'\cup  \left\{e^*\right\}\)</span>
 </div></li>
 </ol></div>
 </li>
-<li id="li-1731"><div class="para" id="p-3711">Terminate with a minimal spanning tree <span class="process-math">\((V, E')\text{.}\)</span>
+<li id="li-1743"><div class="para" id="p-3727">Terminate with a minimal spanning tree <span class="process-math">\((V, E')\text{.}\)</span>
 </div></li>
 </ol></div></article><article class="note remark-like" id="note-13"><h4 class="heading">
 <span class="type">Note</span><span class="space"> </span><span class="codenumber">10.2.10</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-3712"><ol class="lower-alpha">
-<li id="li-1732"><div class="para" id="p-3713">If more than one minimal spanning tree exists, then the one that is obtained depends on <span class="process-math">\(v_0\)</span> and the means by which <span class="process-math">\(e^*\)</span> is selected in Step 2.</div></li>
-<li id="li-1733"><div class="para" id="p-3714">Warning: If two minimally weighted bridges exist between <span class="process-math">\(L\)</span> and <span class="process-math">\(R\text{,}\)</span> do not try to speed up the algorithm by adding both of them to <span class="process-math">\(E\)</span>’.</div></li>
-<li id="li-1734"><div class="para" id="p-3715">That <a href="" class="xref" data-knowl="./knowl/alg-prim.html" title="Algorithm 10.2.9: Prim’s Algorithm">Algorithm 10.2.9</a> yields a minimal spanning tree can be proven by induction with the use of <a href="" class="xref" data-knowl="./knowl/theorem-10-2-1.html" title="Theorem 10.2.6">Theorem 10.2.6</a>.</div></li>
-<li id="li-1735"><div class="para" id="p-3716">If it is not known whether <span class="process-math">\(G\)</span> is connected, <a href="" class="xref" data-knowl="./knowl/alg-prim.html" title="Algorithm 10.2.9: Prim’s Algorithm">Algorithm 10.2.9</a> can be revised to handle this possibility. The key change (in Step 2.1) would be to determine whether any bridge at all exists between <span class="process-math">\(L\)</span> and <span class="process-math">\(R\text{.}\)</span> The condition of the while loop in Step 2 must also be changed somewhat.</div></li>
+<div class="para logical" id="p-3728"><ol class="lower-alpha">
+<li id="li-1744"><div class="para" id="p-3729">If more than one minimal spanning tree exists, then the one that is obtained depends on <span class="process-math">\(v_0\)</span> and the means by which <span class="process-math">\(e^*\)</span> is selected in Step 2.</div></li>
+<li id="li-1745"><div class="para" id="p-3730">Warning: If two minimally weighted bridges exist between <span class="process-math">\(L\)</span> and <span class="process-math">\(R\text{,}\)</span> do not try to speed up the algorithm by adding both of them to <span class="process-math">\(E\)</span>’.</div></li>
+<li id="li-1746"><div class="para" id="p-3731">That <a href="" class="xref" data-knowl="./knowl/alg-prim.html" title="Algorithm 10.2.9: Prim’s Algorithm">Algorithm 10.2.9</a> yields a minimal spanning tree can be proven by induction with the use of <a href="" class="xref" data-knowl="./knowl/theorem-10-2-1.html" title="Theorem 10.2.6">Theorem 10.2.6</a>.</div></li>
+<li id="li-1747"><div class="para" id="p-3732">If it is not known whether <span class="process-math">\(G\)</span> is connected, <a href="" class="xref" data-knowl="./knowl/alg-prim.html" title="Algorithm 10.2.9: Prim’s Algorithm">Algorithm 10.2.9</a> can be revised to handle this possibility. The key change (in Step 2.1) would be to determine whether any bridge at all exists between <span class="process-math">\(L\)</span> and <span class="process-math">\(R\text{.}\)</span> The condition of the while loop in Step 2 must also be changed somewhat.</div></li>
 </ol></div></article><article class="example example-like" id="ex-an-example"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-an-example"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">10.2.11</span><span class="period">.</span><span class="space"> </span><span class="title">A Small Example.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-an-example"><article class="example example-like"><div class="para" id="p-3717">Consider the graph in <a href="" class="xref" data-knowl="./knowl/fig-weighted-graph-10.html" title="Figure 10.2.12">Figure 10.2.12</a>. If we apply <a href="" class="xref" data-knowl="./knowl/alg-prim.html" title="Algorithm 10.2.9: Prim’s Algorithm">Prim’s Algorithm</a> starting at <span class="process-math">\(a\text{,}\)</span> we obtain the following edge list in the order given: <span class="process-math">\(\{a, f\}, \{f, e\}, \{e, c\}, \{c, d\}, \{f, b\}, \{b, g\}\text{.}\)</span> The total of the weights of these edges is 20. The method that we have used (in Step 2.1) to select a bridge when more than one minimally weighted bridge exists is to order all bridges alphabetically by the vertex in <span class="process-math">\(L\)</span> and then, if further ties exist, by the vertex in <span class="process-math">\(R\text{.}\)</span> The first vertex in that order is selected in Step 2.1 of the algorithm.</div> <figure class="figure figure-like" id="fig-weighted-graph-10"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/images/fig-weighted-graph-10.png" class="contained" alt="A weighted graph"></div>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-an-example"><article class="example example-like"><div class="para" id="p-3733">Consider the graph in <a href="" class="xref" data-knowl="./knowl/fig-weighted-graph-10.html" title="Figure 10.2.12">Figure 10.2.12</a>. If we apply <a href="" class="xref" data-knowl="./knowl/alg-prim.html" title="Algorithm 10.2.9: Prim’s Algorithm">Prim’s Algorithm</a> starting at <span class="process-math">\(a\text{,}\)</span> we obtain the following edge list in the order given: <span class="process-math">\(\{a, f\}, \{f, e\}, \{e, c\}, \{c, d\}, \{f, b\}, \{b, g\}\text{.}\)</span> The total of the weights of these edges is 20. The method that we have used (in Step 2.1) to select a bridge when more than one minimally weighted bridge exists is to order all bridges alphabetically by the vertex in <span class="process-math">\(L\)</span> and then, if further ties exist, by the vertex in <span class="process-math">\(R\text{.}\)</span> The first vertex in that order is selected in Step 2.1 of the algorithm.</div> <figure class="figure figure-like" id="fig-weighted-graph-10"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/images/fig-weighted-graph-10.png" class="contained" alt="A weighted graph"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.2.12<span class="period">.</span></span><span class="space"> </span>A small weighted graph</figcaption></figure></article></div>
 <article class="definition definition-like" id="def-min-diameter-spanning-tree"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">10.2.13</span><span class="period">.</span><span class="space"> </span><span class="title">Minimum Diameter Spanning Tree.</span>
-</h4> <div class="para" id="p-3718">Given a connected undirected graph <span class="process-math">\(G = (V, E)\text{,}\)</span> find a spanning tree <span class="process-math">\(T = (V, E')\)</span> of <span class="process-math">\(G\)</span> such that the longest path in <span class="process-math">\(T\)</span> is as short as possible.</div></article><article class="example example-like" id="ex-min-diameter-k5"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-min-diameter-k5"><h4 class="heading">
+</h4> <div class="para" id="p-3734">Given a connected undirected graph <span class="process-math">\(G = (V, E)\text{,}\)</span> find a spanning tree <span class="process-math">\(T = (V, E')\)</span> of <span class="process-math">\(G\)</span> such that the longest path in <span class="process-math">\(T\)</span> is as short as possible.</div></article><article class="example example-like" id="ex-min-diameter-k5"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-min-diameter-k5"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">10.2.14</span><span class="period">.</span><span class="space"> </span><span class="title">The Case for Complete Graphs.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-min-diameter-k5"><article class="example example-like"><div class="para" id="p-3719">The Minimum Diameter Spanning Tree Problem is trivial to solve in a <span class="process-math">\(K_n\text{.}\)</span> Select any vertex <span class="process-math">\(v_0\)</span> and construct the spanning tree whose edge set is the set of edges that connect <span class="process-math">\(v_0\)</span> to the other vertices in the <span class="process-math">\(K_n\)</span> . <a href="" class="xref" data-knowl="./knowl/fig-min-diameter-k5.html" title="Figure 10.2.15">Figure 10.2.15</a> illustrates a solution for <span class="process-math">\(n=5\text{.}\)</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-min-diameter-k5"><article class="example example-like"><div class="para" id="p-3735">The Minimum Diameter Spanning Tree Problem is trivial to solve in a <span class="process-math">\(K_n\text{.}\)</span> Select any vertex <span class="process-math">\(v_0\)</span> and construct the spanning tree whose edge set is the set of edges that connect <span class="process-math">\(v_0\)</span> to the other vertices in the <span class="process-math">\(K_n\)</span> . <a href="" class="xref" data-knowl="./knowl/fig-min-diameter-k5.html" title="Figure 10.2.15">Figure 10.2.15</a> illustrates a solution for <span class="process-math">\(n=5\text{.}\)</span>
 </div> <figure class="figure figure-like" id="fig-min-diameter-k5"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/images/fig-min-diameter-k5.png" class="contained" alt="Minimum diameter spanning tree for K_5"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.2.15<span class="period">.</span></span><span class="space"> </span>Minimum diameter spanning tree for <span class="process-math">\(K_5\)</span></figcaption></figure></article></div>
-<div class="para" id="p-3720">For incomplete graphs, a two-stage algorithm is needed. In short, the first step is to locate a “center” of the graph. The maximum distance from a center to any other vertex is as small as possible. Once a center is located, a breadth-first search of the graph is used to construct the spanning tree.</div></section><section class="exercises" id="exercises-10-2"><h3 class="heading hide-type">
+<div class="para" id="p-3736">For incomplete graphs, a two-stage algorithm is needed. In short, the first step is to locate a “center” of the graph. The maximum distance from a center to any other vertex is as small as possible. Once a center is located, a breadth-first search of the graph is used to construct the spanning tree.</div></section><section class="exercises" id="exercises-10-2"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">10.2.4</span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-426"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para" id="p-3721">Suppose that after Atlantis University’s phone system is in place, a fifth campus is established and that a transmission line can be bought to connect the new campus to any old campus. Is this larger system the most economical one possible with respect to Objective 1? Can you always satisfy Objective 2?</div>
+<article class="exercise exercise-like" id="exercise-429"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para" id="p-3737">Suppose that after Atlantis University’s phone system is in place, a fifth campus is established and that a transmission line can be bought to connect the new campus to any old campus. Is this larger system the most economical one possible with respect to Objective 1? Can you always satisfy Objective 2?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-197" id="answer-197"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-197"><div class="answer solution-like"><div class="para" id="p-3722">It might not be most economical with respect to Objective 1. You should be able to find an example to illustrate this claim. The new system can always be made most economical with respect to Objective 2 if the old system were designed with that objective in mind.</div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-427"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para" id="p-3723">Construct a minimal spanning tree for the capital cities in New England (see <a href="" class="xref" data-knowl="./knowl/table-ne-capitals.html" title="Table 9.5.3: Distances between capital cities in New England">Table 9.5.3</a>).</div></article><article class="exercise exercise-like" id="exercise-428"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para" id="p-3724">Show that the answer to the question posed in <a href="" class="xref" data-knowl="./knowl/ex-some-bridges.html" title="Example 10.2.7: Some Bridges">Example 10.2.7</a> is “no.”</div>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-199" id="answer-199"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-199"><div class="answer solution-like"><div class="para" id="p-3738">It might not be most economical with respect to Objective 1. You should be able to find an example to illustrate this claim. The new system can always be made most economical with respect to Objective 2 if the old system were designed with that objective in mind.</div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-430"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para" id="p-3739">Construct a minimal spanning tree for the capital cities in New England (see <a href="" class="xref" data-knowl="./knowl/table-ne-capitals.html" title="Table 9.5.3: Distances between capital cities in New England">Table 9.5.3</a>).</div></article><article class="exercise exercise-like" id="exercise-431"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para" id="p-3740">Show that the answer to the question posed in <a href="" class="xref" data-knowl="./knowl/ex-some-bridges.html" title="Example 10.2.7: Some Bridges">Example 10.2.7</a> is “no.”</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original has-image" data-refid="hk-answer-198" id="answer-198"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-198"><div class="answer solution-like">
-<div class="para" id="p-3725">In the figure below, <span class="process-math">\(\{1,2\}\)</span> is not a minimal bridge between <span class="process-math">\(L=\{1,4\} \textrm{ and } R=\{2,3\}\text{,}\)</span> but it is part of the minimal spanning tree for this graph.</div> <figure class="figure figure-like" id="fig-sol-e-10-2-3"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/images/fig-sol-e-10-2-3.png" class="contained" alt="Solution to exercise 10-2-3"></div>
+<a href="" data-knowl="" class="id-ref answer-knowl original has-image" data-refid="hk-answer-200" id="answer-200"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-200"><div class="answer solution-like">
+<div class="para" id="p-3741">In the figure below, <span class="process-math">\(\{1,2\}\)</span> is not a minimal bridge between <span class="process-math">\(L=\{1,4\} \textrm{ and } R=\{2,3\}\text{,}\)</span> but it is part of the minimal spanning tree for this graph.</div> <figure class="figure figure-like" id="fig-sol-e-10-2-3"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/images/fig-sol-e-10-2-3.png" class="contained" alt="Solution to exercise 10-2-3"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.2.16<span class="period">.</span></span><span class="space"> </span></figcaption></figure>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-429"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para" id="p-3726">Find a minimal spanning tree for the following graphs.</div> <figure class="figure figure-like" id="fig-exercise-10-2-4a"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/images/fig-exercise-10-2-4a.png" class="contained" alt="Figure for exercise-10-2-4a"></div>
+</div></article><article class="exercise exercise-like" id="exercise-432"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para" id="p-3742">Find a minimal spanning tree for the following graphs.</div> <figure class="figure figure-like" id="fig-exercise-10-2-4a"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/images/fig-exercise-10-2-4a.png" class="contained" alt="Figure for exercise-10-2-4a"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.2.17<span class="period">.</span></span><span class="space"> </span></figcaption></figure> <figure class="figure figure-like" id="fig-exercise-10-2-4b"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/images/fig-exercise-10-2-4b.png" class="contained" alt="Figure for exercise-10-2-4b"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.2.18<span class="period">.</span></span><span class="space"> </span></figcaption></figure> <figure class="figure figure-like" id="fig-exercise-10-2-4c"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="external/images/fig-exercise-10-2-4c.png" class="contained" alt="Figure for exercise-10-2-4c"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.2.19<span class="period">.</span></span><span class="space"> </span></figcaption></figure></article><article class="exercise exercise-like" id="exercise-430"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
-<div class="para" id="p-3727">Find a minimum diameter spanning tree for the following graphs.</div> <figure class="figure figure-like" id="fig-exercise-10-2-5a"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/images/fig-exercise-10-2-5a.png" class="contained" alt="Figure for exercise-10-2-5a"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.2.19<span class="period">.</span></span><span class="space"> </span></figcaption></figure></article><article class="exercise exercise-like" id="exercise-433"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para" id="p-3743">Find a minimum diameter spanning tree for the following graphs.</div> <figure class="figure figure-like" id="fig-exercise-10-2-5a"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/images/fig-exercise-10-2-5a.png" class="contained" alt="Figure for exercise-10-2-5a"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.2.20<span class="period">.</span></span><span class="space"> </span></figcaption></figure> <figure class="figure figure-like" id="fig-exercise-10-2-5b"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/images/fig-exercise-10-2-5b.png" class="contained" alt="Figure for exercise-10-2-5b"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.2.21<span class="period">.</span></span><span class="space"> </span></figcaption></figure><div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-199" id="answer-199"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-199"><div class="answer solution-like"><div class="para logical" id="p-3728"><ol class="lower-alpha">
-<li id="li-1736"><div class="para" id="p-3729">Edges in one solution are: <span class="process-math">\(\{8,7\},\{8,9\},\{8,13\},\{7,6\},\{9,4\},\{13,12\},\{13,14\},\{6,11\},\{6,1\},\{1,2\},\{4,3\},\{4,5\},\{14,15\},
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-201" id="answer-201"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-201"><div class="answer solution-like"><div class="para logical" id="p-3744"><ol class="lower-alpha">
+<li id="li-1748"><div class="para" id="p-3745">Edges in one solution are: <span class="process-math">\(\{8,7\},\{8,9\},\{8,13\},\{7,6\},\{9,4\},\{13,12\},\{13,14\},\{6,11\},\{6,1\},\{1,2\},\{4,3\},\{4,5\},\{14,15\},
 \textrm{ and } \{5,10\}\)</span>
 </div></li>
-<li id="li-1737"><div class="para" id="p-3730">Vertices 8 and 9 are centers of the graph. Starting from vertex 8, a minimum diameter spanning tree is <span class="process-math">\(\{\{8, 3\}, \{8, 7\}, \{8, 13\},
+<li id="li-1749"><div class="para" id="p-3746">Vertices 8 and 9 are centers of the graph. Starting from vertex 8, a minimum diameter spanning tree is <span class="process-math">\(\{\{8, 3\}, \{8, 7\}, \{8, 13\},
 \{8, 14\}, \{8, 9\}, \{3, 2\}, \{3, 4\}, \{7, 6\}, \{13, 12\}, \{13, 19\}, \{14, 15\}, \{9, 16\}, \{9, 10\}, \{6, 1\}, \{12, 18\}, \{16, 20\}, \{16,
 17\}, \{10, 11\}, \{20, 21\}, \{11, 5\}\}.\)</span>    The diameter of the tree is 7.</div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-431"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
-<div class="para" id="p-3731">In each of the following parts justify your answer with either a proof or a counterexample.</div> <div class="para logical" id="p-3732"><ol class="lower-alpha">
-<li id="li-1738"><div class="para" id="p-3733">Suppose a weighted undirected graph had distinct edge weights. Is it possible that no minimal spanning tree includes the edge of minimal weight?</div></li>
-<li id="li-1739"><div class="para" id="p-3734">Suppose a weighted undirected graph had distinct edge weights. Is it possible that every minimal spanning tree includes the edge of maximal weight? If true, under what conditions would it happen?</div></li>
+</div></article><article class="exercise exercise-like" id="exercise-434"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div class="para" id="p-3747">In each of the following parts justify your answer with either a proof or a counterexample.</div> <div class="para logical" id="p-3748"><ol class="lower-alpha">
+<li id="li-1750"><div class="para" id="p-3749">Suppose a weighted undirected graph had distinct edge weights. Is it possible that no minimal spanning tree includes the edge of minimal weight?</div></li>
+<li id="li-1751"><div class="para" id="p-3750">Suppose a weighted undirected graph had distinct edge weights. Is it possible that every minimal spanning tree includes the edge of maximal weight? If true, under what conditions would it happen?</div></li>
 </ol></div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>
 <div class="ptx-content-footer">

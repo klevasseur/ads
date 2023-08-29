@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Partitions of Sets and the Law of Addition</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,25 +58,36 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
@@ -99,59 +128,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -160,7 +146,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -315,7 +301,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1127,44 +1116,44 @@ eBookConfig.runestone_version = '7.0.7';
 <section class="subsection" id="subsection-16"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">2.3.1</span> <span class="title">Partitions</span>
 </h3>
-<div class="para" id="p-751">One way of counting the number of students in your class would be to count the number in each row and to add these totals. Of course this problem is simple because there are no duplications, no person is sitting in two different rows. The basic counting technique that you used involves an extremely important first step, namely that of partitioning a set. The concept of a partition must be clearly understood before we proceed further.</div>
+<div class="para" id="p-767">One way of counting the number of students in your class would be to count the number in each row and to add these totals. Of course this problem is simple because there are no duplications, no person is sitting in two different rows. The basic counting technique that you used involves an extremely important first step, namely that of partitioning a set. The concept of a partition must be clearly understood before we proceed further.</div>
 <article class="definition definition-like" id="partition"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">2.3.1</span><span class="period">.</span><span class="space"> </span><span class="title">Partition.</span>
 </h4>
-<div class="para" id="p-752">A partition of set <span class="process-math">\(A\)</span> is a set of one or more nonempty subsets of <span class="process-math">\(A\text{:}\)</span> <span class="process-math">\(A_1, A_2, A_3, \cdots\text{,}\)</span> such that every element of <span class="process-math">\(A\)</span> is in exactly one set.  Symbolically,</div> <div class="para logical" id="p-753"><ol class="lower-alpha">
-<li id="li-488"><div class="para" id="p-754"><span class="process-math">\(\displaystyle A_1 \cup A_2 \cup A_3 \cup \cdots = A\)</span></div></li>
-<li id="li-489"><div class="para" id="p-755">If  <span class="process-math">\(i \neq j\)</span> then <span class="process-math">\(A_i \cap A_j = \emptyset\)</span>
+<div class="para" id="p-768">A partition of set <span class="process-math">\(A\)</span> is a set of one or more nonempty subsets of <span class="process-math">\(A\text{:}\)</span> <span class="process-math">\(A_1, A_2, A_3, \cdots\text{,}\)</span> such that every element of <span class="process-math">\(A\)</span> is in exactly one set.  Symbolically,</div> <div class="para logical" id="p-769"><ol class="lower-alpha">
+<li id="li-500"><div class="para" id="p-770"><span class="process-math">\(\displaystyle A_1 \cup A_2 \cup A_3 \cup \cdots = A\)</span></div></li>
+<li id="li-501"><div class="para" id="p-771">If  <span class="process-math">\(i \neq j\)</span> then <span class="process-math">\(A_i \cap A_j = \emptyset\)</span>
 </div></li>
-</ol></div></article><div class="para" id="p-756">The subsets in a partition are often referred to as blocks. Note how our definition allows us to partition infinite sets, and to partition a set into an infinite number of subsets. Of course, if <span class="process-math">\(A\)</span>  is finite the number of subsets can be no larger than <span class="process-math">\(\lvert A \rvert \text{.}\)</span>
+</ol></div></article><div class="para" id="p-772">The subsets in a partition are often referred to as blocks. Note how our definition allows us to partition infinite sets, and to partition a set into an infinite number of subsets. Of course, if <span class="process-math">\(A\)</span>  is finite the number of subsets can be no larger than <span class="process-math">\(\lvert A \rvert \text{.}\)</span>
 </div>
 <article class="example example-like" id="some-partitions-4"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-some-partitions-4"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.3.2</span><span class="period">.</span><span class="space"> </span><span class="title">Some partitions of a four element set.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-some-partitions-4"><article class="example example-like"><div class="para" id="p-757">Let <span class="process-math">\(A = \{a, b, c, d\}\text{.}\)</span> Examples of partitions of <span class="process-math">\(A\)</span>  are:</div> <div class="para logical" id="p-758"><ul class="disc">
-<li id="li-490"><div class="para" id="p-759"><span class="process-math">\(\displaystyle \{\{a\}, \{b\}, \{c, d\}\}\)</span></div></li>
-<li id="li-491"><div class="para" id="p-760"><span class="process-math">\(\displaystyle \{\{a, b\}, \{c, d\}\}\)</span></div></li>
-<li id="li-492"><div class="para" id="p-761"><span class="process-math">\(\displaystyle \{\{a\}, \{b\}, \{c\}, \{d\}\}\)</span></div></li>
-</ul></div> <div class="para" id="p-762">How many others are there, do you suppose?</div> <div class="para" id="p-763">There are 15 different partitions.  The most efficient way to count them all is to classify them by the size of blocks.   For example, the partition <span class="process-math">\(\{\{a\}, \{b\}, \{c, d\}\}\)</span> has block sizes 1, 1, and 2.</div></article></div>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-some-partitions-4"><article class="example example-like"><div class="para" id="p-773">Let <span class="process-math">\(A = \{a, b, c, d\}\text{.}\)</span> Examples of partitions of <span class="process-math">\(A\)</span>  are:</div> <div class="para logical" id="p-774"><ul class="disc">
+<li id="li-502"><div class="para" id="p-775"><span class="process-math">\(\displaystyle \{\{a\}, \{b\}, \{c, d\}\}\)</span></div></li>
+<li id="li-503"><div class="para" id="p-776"><span class="process-math">\(\displaystyle \{\{a, b\}, \{c, d\}\}\)</span></div></li>
+<li id="li-504"><div class="para" id="p-777"><span class="process-math">\(\displaystyle \{\{a\}, \{b\}, \{c\}, \{d\}\}\)</span></div></li>
+</ul></div> <div class="para" id="p-778">How many others are there, do you suppose?</div> <div class="para" id="p-779">There are 15 different partitions.  The most efficient way to count them all is to classify them by the size of blocks.   For example, the partition <span class="process-math">\(\{\{a\}, \{b\}, \{c, d\}\}\)</span> has block sizes 1, 1, and 2.</div></article></div>
 <article class="example example-like" id="some-integer-partitions"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-some-integer-partitions"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.3.3</span><span class="period">.</span><span class="space"> </span><span class="title">Some Integer Partitions.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-some-integer-partitions"><article class="example example-like"><div class="para" id="p-764">Two examples of partitions of set of integers <span class="process-math">\(\mathbb{Z}\)</span> are</div> <div class="para logical" id="p-765"><ul class="disc">
-<li id="li-493"><div class="para" id="p-766">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-some-integer-partitions"><article class="example example-like"><div class="para" id="p-780">Two examples of partitions of set of integers <span class="process-math">\(\mathbb{Z}\)</span> are</div> <div class="para logical" id="p-781"><ul class="disc">
+<li id="li-505"><div class="para" id="p-782">
 <span class="process-math">\(\{\{n\} \mid n \in \mathbb{Z}\}\)</span> and</div></li>
-<li id="li-494"><div class="para" id="p-767"><span class="process-math">\(\{\{ n \in \mathbb{Z} \mid n &lt; 0\}, \{0\},\{ n \in \mathbb{Z} \mid 0 &lt; n \}\}\text{.}\)</span></div></li>
-</ul></div> <div class="para" id="p-768">The set of subsets <span class="process-math">\(\{\{n \in \mathbb{Z} \mid n \geq 0\},\{n \in \mathbb{Z} \mid  n \leq 0\}\}\)</span> is not a partition because the two subsets have a nonempty intersection. A second example of a non-partition is <span class="process-math">\(\{\{n \in \mathbb{Z} \mid  \lvert n \rvert = k\} \mid k = -1, 0, 1, 2, \cdots\}\)</span> because one of the blocks, when <span class="process-math">\(k=-1\)</span> is empty.</div></article></div>
-<div class="para" id="p-769">One could also think of the concept of partitioning a set as a “packaging problem.” How can one “package” a carton of, say, twenty-four cans? We could use: four six-packs, three eight-packs, two twelve-packs, etc. In all cases: (a) the sum of all cans in all packs must be twenty-four, and (b) a can must be in one and only one pack.</div></section><section class="subsection" id="subsection-17"><h3 class="heading hide-type">
+<li id="li-506"><div class="para" id="p-783"><span class="process-math">\(\{\{ n \in \mathbb{Z} \mid n &lt; 0\}, \{0\},\{ n \in \mathbb{Z} \mid 0 &lt; n \}\}\text{.}\)</span></div></li>
+</ul></div> <div class="para" id="p-784">The set of subsets <span class="process-math">\(\{\{n \in \mathbb{Z} \mid n \geq 0\},\{n \in \mathbb{Z} \mid  n \leq 0\}\}\)</span> is not a partition because the two subsets have a nonempty intersection. A second example of a non-partition is <span class="process-math">\(\{\{n \in \mathbb{Z} \mid  \lvert n \rvert = k\} \mid k = -1, 0, 1, 2, \cdots\}\)</span> because one of the blocks, when <span class="process-math">\(k=-1\)</span> is empty.</div></article></div>
+<div class="para" id="p-785">One could also think of the concept of partitioning a set as a “packaging problem.” How can one “package” a carton of, say, twenty-four cans? We could use: four six-packs, three eight-packs, two twelve-packs, etc. In all cases: (a) the sum of all cans in all packs must be twenty-four, and (b) a can must be in one and only one pack.</div></section><section class="subsection" id="subsection-17"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">2.3.2</span> <span class="title">Addition Laws</span>
 </h3>
 <article class="theorem theorem-like" id="basic-law-addition"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">2.3.4</span><span class="period">.</span><span class="space"> </span><span class="title">The Basic Law Of Addition:.</span>
 </h4>
-<div class="para logical" id="p-770">
+<div class="para logical" id="p-786">
 <div class="para">If <span class="process-math">\(A\)</span> is a finite set, and if <span class="process-math">\(\{A_1,A_2,\ldots ,A_n\}\)</span> is a partition of <span class="process-math">\(A\)</span> , then</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \lvert A \rvert = \lvert A_1 \rvert + \lvert A_2 \rvert + \cdots + \lvert A_n \rvert = \sum_{k=1}^n  \lvert A_k \rvert
 \end{equation*}
 </div>
-</div></article><div class="para logical" id="p-771">
+</div></article><div class="para logical" id="p-787">
 <div class="para">The basic law of addition can be rephrased as follows: If <span class="process-math">\(A\)</span>  is a finite set where <span class="process-math">\(A_1 \cup A_2 \cup \cdots \cup A_n = A\)</span> and where <span class="process-math">\(A_i \cap A_j = \emptyset\)</span> whenever <span class="process-math">\(i \neq j\text{,}\)</span> then</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1174,26 +1163,26 @@ eBookConfig.runestone_version = '7.0.7';
 </div>
 <article class="example example-like" id="counting-all-students"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-counting-all-students"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.3.5</span><span class="period">.</span><span class="space"> </span><span class="title">Counting All Students.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-counting-all-students"><article class="example example-like"><div class="para" id="p-772">The number of students in a class could be determined by adding the numbers of students who are freshmen, sophomores, juniors, and seniors, and those who belong to none of these categories. However, you probably couldn’t add the students by major, since some students may have double majors.</div></article></div>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-counting-all-students"><article class="example example-like"><div class="para" id="p-788">The number of students in a class could be determined by adding the numbers of students who are freshmen, sophomores, juniors, and seniors, and those who belong to none of these categories. However, you probably couldn’t add the students by major, since some students may have double majors.</div></article></div>
 <article class="example example-like" id="student-counting-disjoint"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-student-counting-disjoint"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.3.6</span><span class="period">.</span><span class="space"> </span><span class="title">Counting Students in Disjoint Classes.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-student-counting-disjoint"><article class="example example-like"><div class="para" id="p-773">The sophomore computer science majors were told they must take one and only one of the following courses that are open only to them: Cryptography, Data Structures, or Javascript. The numbers in each course, respectively, for sophomore CS majors, were 75, 60, 55. How many sophomore CS majors are there? The Law of Addition applies here. There are exactly <span class="process-math">\(75 + 60 + 55 = 190\)</span> CS majors since the rosters of the three courses listed above would be a partition of the CS majors.</div></article></div>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-student-counting-disjoint"><article class="example example-like"><div class="para" id="p-789">The sophomore computer science majors were told they must take one and only one of the following courses that are open only to them: Cryptography, Data Structures, or Javascript. The numbers in each course, respectively, for sophomore CS majors, were 75, 60, 55. How many sophomore CS majors are there? The Law of Addition applies here. There are exactly <span class="process-math">\(75 + 60 + 55 = 190\)</span> CS majors since the rosters of the three courses listed above would be a partition of the CS majors.</div></article></div>
 <article class="example example-like" id="student-counting-nondisjoint"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-student-counting-nondisjoint"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.3.7</span><span class="period">.</span><span class="space"> </span><span class="title">Counting Students in Non-disjoint Classes.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-student-counting-nondisjoint"><article class="example example-like"><div class="para" id="p-774">It was determined that all junior computer science majors take at least one of the following courses: Algorithms, Logic Design, and Compiler Construction. Assume the number in each course was 75, 60 and 55, respectively for the three courses listed. Further investigation indicated ten juniors took all three courses, twenty-five took  Algorithms and Logic Design, twelve took Algorithms and Compiler Construction, and fifteen took Logic Design and Compiler Construction. How many junior C.S. majors are there?</div> <div class="para" id="p-775">
-<a href="" class="xref" data-knowl="./knowl/student-counting-disjoint.html" title="Example 2.3.6: Counting Students in Disjoint Classes">Example 2.3.6</a> was a simple application of the law of addition, however in this example some students are taking two or more courses, so a simple application of the law of addition would lead to double or triple counting. We rephrase information in the language of sets to describe the situation more explicitly.</div> <div class="para" id="p-776">
-<span class="process-math">\(A\)</span> = the set of all junior computer science majors</div> <div class="para" id="p-777">
-<span class="process-math">\(A_1\)</span> = the set of all junior computer science majors who took Algorithms</div> <div class="para" id="p-778">
-<span class="process-math">\(A_2\)</span> = the set of all junior computer science majors who took Logic Design</div> <div class="para" id="p-779">
-<span class="process-math">\(A_3\)</span> = the set of all junior computer science majors who took Compiler Construction</div> <div class="para logical" id="p-780">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-student-counting-nondisjoint"><article class="example example-like"><div class="para" id="p-790">It was determined that all junior computer science majors take at least one of the following courses: Algorithms, Logic Design, and Compiler Construction. Assume the number in each course was 75, 60 and 55, respectively for the three courses listed. Further investigation indicated ten juniors took all three courses, twenty-five took  Algorithms and Logic Design, twelve took Algorithms and Compiler Construction, and fifteen took Logic Design and Compiler Construction. How many junior C.S. majors are there?</div> <div class="para" id="p-791">
+<a href="" class="xref" data-knowl="./knowl/student-counting-disjoint.html" title="Example 2.3.6: Counting Students in Disjoint Classes">Example 2.3.6</a> was a simple application of the law of addition, however in this example some students are taking two or more courses, so a simple application of the law of addition would lead to double or triple counting. We rephrase information in the language of sets to describe the situation more explicitly.</div> <div class="para" id="p-792">
+<span class="process-math">\(A\)</span> = the set of all junior computer science majors</div> <div class="para" id="p-793">
+<span class="process-math">\(A_1\)</span> = the set of all junior computer science majors who took Algorithms</div> <div class="para" id="p-794">
+<span class="process-math">\(A_2\)</span> = the set of all junior computer science majors who took Logic Design</div> <div class="para" id="p-795">
+<span class="process-math">\(A_3\)</span> = the set of all junior computer science majors who took Compiler Construction</div> <div class="para logical" id="p-796">
 <div class="para">Since all junior CS majors must take at least one of the courses, the number we want is:</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \lvert A \rvert = \lvert A_1 \cup A_2 \cup A_3 \rvert = \lvert A_1 \rvert + \lvert A_2 \rvert + \lvert A_3 \rvert - \textrm{repeats}.
 \end{equation*}
 </div>
-</div> <div class="para" id="p-781">A Venn diagram is helpful to visualize the problem. In this case the universal set <span class="process-math">\(U\)</span>  can stand for 	all students in the university.</div> <figure class="figure figure-like" id="venn_diagram_CS_Students"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="generated/sageplot/sageplot-venn-CS_Students.svg" role="img" class="contained" alt="A three set Venn Diagram to solve the Junior CS student example."></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">2.3.8<span class="period">.</span></span><span class="space"> </span>Venn Diagram</figcaption></figure> <div class="para" id="p-782">We see that the whole universal set is naturally partitioned into subsets that are labeled by the numbers 1 through 8, and the set <span class="process-math">\(A\)</span>  is  partitioned into subsets labeled 1 through 7. The region labeled 8 represents all students who are not junior CS majors.  Note also that students in the subsets labeled 2, 3, and 4 are double counted, and those in the subset labeled 1 are triple counted. To adjust, we must subtract the numbers in regions 2, 3 and 4.  This can be done by subtracting the numbers in the intersections of each pair of sets.  However, the individuals in region 1 will have been removed three times, just as they had been originally added three times.  Therefore, we must finally add their number back in.</div> <div class="para logical" id="p-783"><div class="displaymath process-math">
+</div> <div class="para" id="p-797">A Venn diagram is helpful to visualize the problem. In this case the universal set <span class="process-math">\(U\)</span>  can stand for 	all students in the university.</div> <figure class="figure figure-like" id="venn_diagram_CS_Students"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="generated/sageplot/sageplot-venn-CS_Students.svg" role="img" class="contained" alt="A three set Venn Diagram to solve the Junior CS student example."></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">2.3.8<span class="period">.</span></span><span class="space"> </span>Venn Diagram</figcaption></figure> <div class="para" id="p-798">We see that the whole universal set is naturally partitioned into subsets that are labeled by the numbers 1 through 8, and the set <span class="process-math">\(A\)</span>  is  partitioned into subsets labeled 1 through 7. The region labeled 8 represents all students who are not junior CS majors.  Note also that students in the subsets labeled 2, 3, and 4 are double counted, and those in the subset labeled 1 are triple counted. To adjust, we must subtract the numbers in regions 2, 3 and 4.  This can be done by subtracting the numbers in the intersections of each pair of sets.  However, the individuals in region 1 will have been removed three times, just as they had been originally added three times.  Therefore, we must finally add their number back in.</div> <div class="para logical" id="p-799"><div class="displaymath process-math">
 \begin{equation*}
 \begin{split}
 \lvert A \rvert &amp; =  \lvert A_1 \cup A_2 \cup A_3 \rvert \\ 
@@ -1204,14 +1193,14 @@ eBookConfig.runestone_version = '7.0.7';
 \end{split}
 \end{equation*}
 </div></div></article></div>
-<div class="para" id="p-784">The ideas used in this latest example gives rise to a basic counting technique:</div>
+<div class="para" id="p-800">The ideas used in this latest example gives rise to a basic counting technique:</div>
 <article class="theorem theorem-like" id="inclusion-exclusion"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">2.3.9</span><span class="period">.</span><span class="space"> </span><span class="title">Laws of Inclusion-Exclusion.</span>
 </h4>
-<div class="para logical" id="p-785">
+<div class="para logical" id="p-801">
 <div class="para">Given finite sets <span class="process-math">\(A_1, A_2, A_3\text{,}\)</span> then</div>
 <ol class="lower-alpha">
-<li id="ie2"><div class="para logical" id="p-786">
+<li id="ie2"><div class="para logical" id="p-802">
 <div class="para">The Two Set Inclusion-Exclusion Law:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1219,7 +1208,7 @@ eBookConfig.runestone_version = '7.0.7';
 \end{equation*}
 </div>
 </div></li>
-<li id="ie3"><div class="para logical" id="p-787">
+<li id="ie3"><div class="para logical" id="p-803">
 <div class="para">The Three Set Inclusion-Exclusion Law:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1232,57 +1221,57 @@ eBookConfig.runestone_version = '7.0.7';
 </div>
 </div></li>
 </ol>
-</div></article><div class="para" id="p-788">The inclusion-exclusion laws extend to more than three sets, as will be explored in the exercises.</div>
-<div class="para" id="p-789">In this section we saw that being able to partition a set into disjoint subsets gives rise to a handy counting technique. Given a set, there are many ways to partition depending on what one would wish to accomplish. One natural partitioning of sets is apparent when one draws a Venn diagram. This particular partitioning of a set will be discussed further in Chapters 4 and 13.</div></section><section class="exercises" id="exercises-2-3"><h3 class="heading hide-type">
+</div></article><div class="para" id="p-804">The inclusion-exclusion laws extend to more than three sets, as will be explored in the exercises.</div>
+<div class="para" id="p-805">In this section we saw that being able to partition a set into disjoint subsets gives rise to a handy counting technique. Given a set, there are many ways to partition depending on what one would wish to accomplish. One natural partitioning of sets is apparent when one draws a Venn diagram. This particular partitioning of a set will be discussed further in Chapters 4 and 13.</div></section><section class="exercises" id="exercises-2-3"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">2.3.3</span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-74"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para" id="p-790">List all partitions of the set <span class="process-math">\(A =\{a, b, c\}\text{.}\)</span>
+<article class="exercise exercise-like" id="exercise-77"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para" id="p-806">List all partitions of the set <span class="process-math">\(A =\{a, b, c\}\text{.}\)</span>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-38" id="answer-38"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-38"><div class="answer solution-like"><div class="para" id="p-791"><span class="process-math">\(\{\{a\}, \{b\}, \{c\}\}, \{\{a, b\}, \{c\}\}, \{\{a, c\}, \{b\}\}, \{\{a\}, \{b, c\}\}, \{\{a, b, c\}\}\)</span></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-75"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para" id="p-792">Which of the following collections of subsets of the plane, <span class="process-math">\(\mathbb{R}^2\text{,}\)</span> are partitions?</div> <div class="para logical" id="p-793"><ol class="lower-alpha">
-<li id="li-497"><div class="para" id="p-794"><span class="process-math">\(\displaystyle \{ \{(x, y) \mid x + y = c \} \mid c \in \mathbb{R} \}\)</span></div></li>
-<li id="li-498"><div class="para" id="p-795">The set of all circles in <span class="process-math">\(\mathbb{R}^2 \)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-40" id="answer-40"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-40"><div class="answer solution-like"><div class="para" id="p-807"><span class="process-math">\(\{\{a\}, \{b\}, \{c\}\}, \{\{a, b\}, \{c\}\}, \{\{a, c\}, \{b\}\}, \{\{a\}, \{b, c\}\}, \{\{a, b, c\}\}\)</span></div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-78"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para" id="p-808">Which of the following collections of subsets of the plane, <span class="process-math">\(\mathbb{R}^2\text{,}\)</span> are partitions?</div> <div class="para logical" id="p-809"><ol class="lower-alpha">
+<li id="li-509"><div class="para" id="p-810"><span class="process-math">\(\displaystyle \{ \{(x, y) \mid x + y = c \} \mid c \in \mathbb{R} \}\)</span></div></li>
+<li id="li-510"><div class="para" id="p-811">The set of all circles in <span class="process-math">\(\mathbb{R}^2 \)</span>
 </div></li>
-<li id="li-499"><div class="para" id="p-796">The set of all circles in <span class="process-math">\(\mathbb{R}^2\)</span> centered at the origin together with the set <span class="process-math">\(\{(0,0)\}\)</span>
+<li id="li-511"><div class="para" id="p-812">The set of all circles in <span class="process-math">\(\mathbb{R}^2\)</span> centered at the origin together with the set <span class="process-math">\(\{(0,0)\}\)</span>
 </div></li>
-<li id="li-500"><div class="para" id="p-797"><span class="process-math">\(\displaystyle \{\{(x, y)\} \mid (x, y) \in \mathbb{R}^2  \} \)</span></div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-76"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para" id="p-798">A student, on an exam paper, defined the term partition the following way: “Let <span class="process-math">\(A\)</span>  be a set. A partition of <span class="process-math">\(A\)</span> is any set of nonempty subsets <span class="process-math">\(A_1, A_2, A_3, \dots\)</span>  of <span class="process-math">\(A\)</span> such that each element of <span class="process-math">\(A\)</span> is in one of the subsets.”  Is this definition correct? Why?</div>
+<li id="li-512"><div class="para" id="p-813"><span class="process-math">\(\displaystyle \{\{(x, y)\} \mid (x, y) \in \mathbb{R}^2  \} \)</span></div></li>
+</ol></div></article><article class="exercise exercise-like" id="exercise-79"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para" id="p-814">A student, on an exam paper, defined the term partition the following way: “Let <span class="process-math">\(A\)</span>  be a set. A partition of <span class="process-math">\(A\)</span> is any set of nonempty subsets <span class="process-math">\(A_1, A_2, A_3, \dots\)</span>  of <span class="process-math">\(A\)</span> such that each element of <span class="process-math">\(A\)</span> is in one of the subsets.”  Is this definition correct? Why?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-39" id="answer-39"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-39"><div class="answer solution-like"><div class="para" id="p-799">No. By this definition it is possible that an element of <span class="process-math">\(A\)</span> might belong to two of the subsets.</div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-77"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para" id="p-800">Let <span class="process-math">\(A_1\)</span> and <span class="process-math">\(A_2\)</span> be subsets of a set <span class="process-math">\(U\text{.}\)</span>   Draw a Venn diagram of this situation and shade in the subsets <span class="process-math">\(A_1 \cap A_2\text{,}\)</span> <span class="process-math">\(A_1^c \cap A_2\text{,}\)</span> <span class="process-math">\(A_1 \cap A_2^c\text{,}\)</span> and <span class="process-math">\(A_1^c \cap A_2^c\)</span> . Use the resulting diagram and the definition of partition to convince yourself that the subset of these four subsets that are nonempty form a partition of <span class="process-math">\(U\text{.}\)</span>
-</div></article><article class="exercise exercise-like" id="exercise-78"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
-<div class="para" id="p-801">Show that <span class="process-math">\(\{\{2 n \mid n \in \mathbb{Z}\}, \{2 n + 1 \mid n \in \mathbb{Z}\}\}\)</span> is a partition of <span class="process-math">\(\mathbb{Z}\text{.}\)</span> Describe this partition using only words.</div>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-41" id="answer-41"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-41"><div class="answer solution-like"><div class="para" id="p-815">No. By this definition it is possible that an element of <span class="process-math">\(A\)</span> might belong to two of the subsets.</div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-80"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para" id="p-816">Let <span class="process-math">\(A_1\)</span> and <span class="process-math">\(A_2\)</span> be subsets of a set <span class="process-math">\(U\text{.}\)</span>   Draw a Venn diagram of this situation and shade in the subsets <span class="process-math">\(A_1 \cap A_2\text{,}\)</span> <span class="process-math">\(A_1^c \cap A_2\text{,}\)</span> <span class="process-math">\(A_1 \cap A_2^c\text{,}\)</span> and <span class="process-math">\(A_1^c \cap A_2^c\)</span> . Use the resulting diagram and the definition of partition to convince yourself that the subset of these four subsets that are nonempty form a partition of <span class="process-math">\(U\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-81"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para" id="p-817">Show that <span class="process-math">\(\{\{2 n \mid n \in \mathbb{Z}\}, \{2 n + 1 \mid n \in \mathbb{Z}\}\}\)</span> is a partition of <span class="process-math">\(\mathbb{Z}\text{.}\)</span> Describe this partition using only words.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-40" id="answer-40"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-40"><div class="answer solution-like"><div class="para" id="p-802">The first subset is all the even integers and the second is all the odd integers. These two sets do not intersect and they cover the integers completely.</div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-79"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
-<div class="para logical" id="p-803"><ol class="lower-alpha">
-<li id="li-501"><div class="para" id="p-804">A group of 30 students were surveyed and it was found that 18 of them took Calculus and 12 took Physics. If all students took at least one course, how many took both Calculus and Physics? Illustrate using a Venn diagram.</div></li>
-<li id="li-502"><div class="para" id="p-805">What is the answer to the question in part (a) if five students did not take either of the two courses? Illustrate using a Venn diagram.</div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-80"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
-<div class="para" id="p-806">A survey of 90 people, 47 of them played tennis and 42 of them swam. If 17 of them participated in both activities, how many of them participated in neither?</div>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-42" id="answer-42"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-42"><div class="answer solution-like"><div class="para" id="p-818">The first subset is all the even integers and the second is all the odd integers. These two sets do not intersect and they cover the integers completely.</div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-82"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div class="para logical" id="p-819"><ol class="lower-alpha">
+<li id="li-513"><div class="para" id="p-820">A group of 30 students were surveyed and it was found that 18 of them took Calculus and 12 took Physics. If all students took at least one course, how many took both Calculus and Physics? Illustrate using a Venn diagram.</div></li>
+<li id="li-514"><div class="para" id="p-821">What is the answer to the question in part (a) if five students did not take either of the two courses? Illustrate using a Venn diagram.</div></li>
+</ol></div></article><article class="exercise exercise-like" id="exercise-83"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="para" id="p-822">A survey of 90 people, 47 of them played tennis and 42 of them swam. If 17 of them participated in both activities, how many of them participated in neither?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-41" id="answer-41"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-41"><div class="answer solution-like"><div class="para" id="p-807">Since 17 participated in both activities, 30 of the tennis players only played tennis and 25 of the swimmers only swam. Therefore, <span class="process-math">\(17+30+25=72\)</span> of those who were surveyed participated in an activity and so 18 did not.</div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-81"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
-<div class="para" id="p-808">A survey of 300 people found that 60 owned an iPhone, 75 owned a Blackberry, and 30 owned an Android phone. Furthermore, 40 owned both an iPhone and a Blackberry, 12 owned both an iPhone and an Android phone, and 8 owned a Blackberry and an Android phone. Finally, 3 owned all three phones.</div> <div class="para logical" id="p-809"><ol class="lower-alpha">
-<li id="li-503"><div class="para" id="p-810">How many people surveyed owned none of the three phones?</div></li>
-<li id="li-504"><div class="para" id="p-811">How many people owned a Blackberry but not an iPhone?</div></li>
-<li id="li-505"><div class="para" id="p-812">How many owned a Blackberry but not an Android?</div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-82"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
-<div class="para logical" id="p-813">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-43" id="answer-43"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-43"><div class="answer solution-like"><div class="para" id="p-823">Since 17 participated in both activities, 30 of the tennis players only played tennis and 25 of the swimmers only swam. Therefore, <span class="process-math">\(17+30+25=72\)</span> of those who were surveyed participated in an activity and so 18 did not.</div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-84"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div class="para" id="p-824">A survey of 300 people found that 60 owned an iPhone, 75 owned a Blackberry, and 30 owned an Android phone. Furthermore, 40 owned both an iPhone and a Blackberry, 12 owned both an iPhone and an Android phone, and 8 owned a Blackberry and an Android phone. Finally, 3 owned all three phones.</div> <div class="para logical" id="p-825"><ol class="lower-alpha">
+<li id="li-515"><div class="para" id="p-826">How many people surveyed owned none of the three phones?</div></li>
+<li id="li-516"><div class="para" id="p-827">How many people owned a Blackberry but not an iPhone?</div></li>
+<li id="li-517"><div class="para" id="p-828">How many owned a Blackberry but not an Android?</div></li>
+</ol></div></article><article class="exercise exercise-like" id="exercise-85"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div class="para logical" id="p-829">
 <div class="para">Regarding the <a href="" class="xref" data-knowl="./knowl/inclusion-exclusion.html" title="Theorem 2.3.9: Laws of Inclusion-Exclusion">Theorem 2.3.9</a>,</div>
 <ol class="lower-alpha">
-<li id="li-506"><div class="para" id="p-814">Use the two set inclusion-exclusion law  to derive the  three set inclusion-exclusion law. Note: A knowledge of basic set laws is needed for this exercise.</div></li>
-<li id="li-507"><div class="para" id="p-815">State and derive the inclusion-exclusion law for four sets.</div></li>
+<li id="li-518"><div class="para" id="p-830">Use the two set inclusion-exclusion law  to derive the  three set inclusion-exclusion law. Note: A knowledge of basic set laws is needed for this exercise.</div></li>
+<li id="li-519"><div class="para" id="p-831">State and derive the inclusion-exclusion law for four sets.</div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-1" id="solution-1"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-1"><div class="solution solution-like">
-<div class="para logical" id="p-816">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-2" id="solution-2"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-2"><div class="solution solution-like">
+<div class="para logical" id="p-832">
 <div class="para">We assume that <span class="process-math">\(\lvert A_1 \cup A_2 \rvert = \lvert A_1 \rvert +\lvert  A_2\rvert  -\lvert A_1\cap A_2\rvert   \text{.}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1298,7 +1287,7 @@ eBookConfig.runestone_version = '7.0.7';
 \end{split}
 \end{equation*}
 </div>
-</div> <div class="para logical" id="p-817">
+</div> <div class="para logical" id="p-833">
 <div class="para">The law for four sets is</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1312,7 +1301,7 @@ eBookConfig.runestone_version = '7.0.7';
 \end{split}
 \end{equation*}
 </div>
-</div> <div class="para logical" id="p-818">
+</div> <div class="para logical" id="p-834">
 <div class="para">Derivation:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1336,11 +1325,11 @@ eBookConfig.runestone_version = '7.0.7';
 </div>
 </div>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-83"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
-<div class="para" id="p-819">To complete your spring schedule, you must add Calculus and Physics. At 9:30, there are three Calculus sections and two Physics sections; while at 11:30, there are two Calculus sections and three Physics sections.  How many ways can you complete your schedule if your only open periods are 9:30 and 11:30?</div></article><article class="exercise exercise-like" id="exercise-84"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
-<div class="para" id="p-820">The definition of <span class="process-math">\(\mathbb{Q}  = \{a/b \mid a, b \in \mathbb{Z}, b \neq 0\}\)</span> given in Chapter 1 is  awkward. If we use the definition to list elements in <span class="process-math">\(\mathbb{Q}\text{,}\)</span> we will have duplications such as <span class="process-math">\(\frac{1}{2}\text{,}\)</span> <span class="process-math">\(\frac{-2}{-4}\)</span> and <span class="process-math">\(\frac{300}{600}\)</span>   Try to write a more precise definition of the rational numbers so that there is no duplication of elements.</div>
+</div></article><article class="exercise exercise-like" id="exercise-86"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
+<div class="para" id="p-835">To complete your spring schedule, you must add Calculus and Physics. At 9:30, there are three Calculus sections and two Physics sections; while at 11:30, there are two Calculus sections and three Physics sections.  How many ways can you complete your schedule if your only open periods are 9:30 and 11:30?</div></article><article class="exercise exercise-like" id="exercise-87"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
+<div class="para" id="p-836">The definition of <span class="process-math">\(\mathbb{Q}  = \{a/b \mid a, b \in \mathbb{Z}, b \neq 0\}\)</span> given in Chapter 1 is  awkward. If we use the definition to list elements in <span class="process-math">\(\mathbb{Q}\text{,}\)</span> we will have duplications such as <span class="process-math">\(\frac{1}{2}\text{,}\)</span> <span class="process-math">\(\frac{-2}{-4}\)</span> and <span class="process-math">\(\frac{300}{600}\)</span>   Try to write a more precise definition of the rational numbers so that there is no duplication of elements.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-42" id="answer-42"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-42"><div class="answer solution-like"><div class="para" id="p-821">Partition the set of fractions into blocks, where each block contains fractions that are numerically equivalent. Describe how you would determine whether two fractions belong to the same block. Redefine the rational numbers to be this partition. Each rational number is a set of fractions.</div></div></div>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-44" id="answer-44"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-44"><div class="answer solution-like"><div class="para" id="p-837">Partition the set of fractions into blocks, where each block contains fractions that are numerically equivalent. Describe how you would determine whether two fractions belong to the same block. Redefine the rational numbers to be this partition. Each rational number is a set of fractions.</div></div></div>
 </div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>
 <div class="ptx-content-footer">

@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Combinations and the Binomial Theorem</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,32 +58,47 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
 </script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
 <script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
@@ -105,59 +138,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -166,7 +156,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -321,7 +311,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1133,20 +1126,20 @@ eBookConfig.runestone_version = '7.0.7';
 <section class="subsection" id="combinations"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">2.4.1</span> <span class="title">Combinations</span>
 </h3>
-<div class="para" id="p-822">In Section 2.1 we investigated the most basic concept in combinatorics, namely, the rule of products. It is of paramount importance to keep this fundamental rule in mind. In Section 2.2 we saw a subclass of rule-of-products problems, permutations, and we derived a formula as a computational aid to assist us. In this section we will investigate another counting formula, one that is used to count combinations, which are subsets of a certain size.</div>
-<div class="para" id="p-823">In many rule-of-products applications the ordering is important, such as the batting order of a baseball team. In other cases it is not important, as in placing coins in a vending machine or in the listing of the elements of a set. Order is important in permutations. Order is not important in combinations.</div>
+<div class="para" id="p-838">In Section 2.1 we investigated the most basic concept in combinatorics, namely, the rule of products. It is of paramount importance to keep this fundamental rule in mind. In Section 2.2 we saw a subclass of rule-of-products problems, permutations, and we derived a formula as a computational aid to assist us. In this section we will investigate another counting formula, one that is used to count combinations, which are subsets of a certain size.</div>
+<div class="para" id="p-839">In many rule-of-products applications the ordering is important, such as the batting order of a baseball team. In other cases it is not important, as in placing coins in a vending machine or in the listing of the elements of a set. Order is important in permutations. Order is not important in combinations.</div>
 <article class="example example-like" id="counting-permuations-multiple-ways"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-counting-permuations-multiple-ways"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.4.1</span><span class="period">.</span><span class="space"> </span><span class="title">Counting Permutations.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-counting-permuations-multiple-ways"><article class="example example-like"><div class="para" id="p-824">How many different ways are there to permute three letters from the set <span class="process-math">\(A = \{a, b, c, d\}\text{?}\)</span>  From the <a href="" class="xref" data-knowl="./knowl/permutations-counting-formula.html" title="Theorem 2.2.8: Permutation Counting Formula">Permutation Counting Formula</a> there are <span class="process-math">\(P(4,3)=\frac{4!}{(4-3)!} = 24\)</span> different orderings of three letters from <span class="process-math">\(A\)</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-counting-permuations-multiple-ways"><article class="example example-like"><div class="para" id="p-840">How many different ways are there to permute three letters from the set <span class="process-math">\(A = \{a, b, c, d\}\text{?}\)</span>  From the <a href="" class="xref" data-knowl="./knowl/permutations-counting-formula.html" title="Theorem 2.2.8: Permutation Counting Formula">Permutation Counting Formula</a> there are <span class="process-math">\(P(4,3)=\frac{4!}{(4-3)!} = 24\)</span> different orderings of three letters from <span class="process-math">\(A\)</span>
 </div></article></div>
 <article class="example example-like" id="four-choose-three"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-four-choose-three"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.4.2</span><span class="period">.</span><span class="space"> </span><span class="title">Counting with No Order.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-four-choose-three"><article class="example example-like"><div class="para" id="p-825">How many ways can we select a set of three letters from  <span class="process-math">\(A = \{a, b, c, d\}\text{?}\)</span>  Note here that we are not concerned with the order of the three letters. By trial and error, abc, abd, acd, and bcd are the only listings possible. To repeat, we were looking for all three-element subsets of the set <span class="process-math">\(A\text{.}\)</span> Order is not important in sets. The notation for choosing 3 elements from 4 is most commonly <span class="process-math">\(\binom{4}{3}\)</span> or occasionally <span class="process-math">\(C(4,3)\text{,}\)</span> either of which is read “4 choose 3” or the number of combinations for four objects taken three at a time.</div></article></div>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-four-choose-three"><article class="example example-like"><div class="para" id="p-841">How many ways can we select a set of three letters from  <span class="process-math">\(A = \{a, b, c, d\}\text{?}\)</span>  Note here that we are not concerned with the order of the three letters. By trial and error, abc, abd, acd, and bcd are the only listings possible. To repeat, we were looking for all three-element subsets of the set <span class="process-math">\(A\text{.}\)</span> Order is not important in sets. The notation for choosing 3 elements from 4 is most commonly <span class="process-math">\(\binom{4}{3}\)</span> or occasionally <span class="process-math">\(C(4,3)\text{,}\)</span> either of which is read “4 choose 3” or the number of combinations for four objects taken three at a time.</div></article></div>
 <article class="definition definition-like" id="binomial-coefficient"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">2.4.3</span><span class="period">.</span><span class="space"> </span><span class="title">Binomial Coefficient.</span>
-</h4>  <div class="para" id="p-826">Let <span class="process-math">\(n\)</span> and <span class="process-math">\(k\)</span> be nonnegative integers.  The binomial coefficient <span class="process-math">\(\binom{n}{k}\)</span> represents the number of combinations of <span class="process-math">\(n\)</span> objects taken <span class="process-math">\(k\)</span> at a time, and is read “<span class="process-math">\(n\)</span> choose <span class="process-math">\(k\text{.}\)</span>”</div></article><div class="para" id="p-827">We would now like to investigate the relationship between permutation and combination problems in order to derive a formula for <span class="process-math">\(\binom{n}{k}\)</span>
+</h4>  <div class="para" id="p-842">Let <span class="process-math">\(n\)</span> and <span class="process-math">\(k\)</span> be nonnegative integers.  The binomial coefficient <span class="process-math">\(\binom{n}{k}\)</span> represents the number of combinations of <span class="process-math">\(n\)</span> objects taken <span class="process-math">\(k\)</span> at a time, and is read “<span class="process-math">\(n\)</span> choose <span class="process-math">\(k\text{.}\)</span>”</div></article><div class="para" id="p-843">We would now like to investigate the relationship between permutation and combination problems in order to derive a formula for <span class="process-math">\(\binom{n}{k}\)</span>
 </div>
-<div class="para logical" id="p-828">
+<div class="para logical" id="p-844">
 <div class="para">Let us reconsider the <a href="" class="xref" data-knowl="./knowl/four-choose-three.html" title="Example 2.4.2: Counting with No Order">Counting with No Order</a>. There are <span class="process-math">\(3 ! = 6\)</span> different orderings for each of the three-element subsets. The table below lists each subset of <span class="process-math">\(A\)</span>  and all permutations of each subset on the same line.</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/four-choose-three.html">
 \begin{equation*}
@@ -1160,27 +1153,27 @@ eBookConfig.runestone_version = '7.0.7';
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-829">Hence, <span class="process-math">\(\binom{4}{3} = \frac{P(4,3)}{3!} = \frac{4!}{(4-3)! \cdot 3!} = 4\)</span>
+<div class="para" id="p-845">Hence, <span class="process-math">\(\binom{4}{3} = \frac{P(4,3)}{3!} = \frac{4!}{(4-3)! \cdot 3!} = 4\)</span>
 </div>
-<div class="para" id="p-830">We generalize this result in the following theorem:</div>
+<div class="para" id="p-846">We generalize this result in the following theorem:</div>
 <article class="theorem theorem-like" id="binomial-coefficient-formula"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">2.4.4</span><span class="period">.</span><span class="space"> </span><span class="title">Binomial Coefficient Formula.</span>
 </h4>
-<div class="para logical" id="p-831">
+<div class="para logical" id="p-847">
 <div class="para">If <span class="process-math">\(n\)</span> and <span class="process-math">\(k\)</span> are nonnegative integers with <span class="process-math">\(0 \leq k \leq n\text{,}\)</span> then the number <span class="process-math">\(k\)</span>-element subsets of an <span class="process-math">\(n\)</span> element set is equal to</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \binom{n}{k} = \frac{n!}{(n-k)! \cdot k!} \text{.}
 \end{equation*}
 </div>
-</div></article><article class="hiddenproof" id="proof-3"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-3"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-3"><article class="hiddenproof"><div class="para logical" id="p-832">
+</div></article><article class="hiddenproof" id="proof-3"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-3"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-3"><article class="hiddenproof"><div class="para logical" id="p-848">
 <div class="para">Proof 1: There are <span class="process-math">\(k!\)</span> ways of ordering the elements of any <span class="process-math">\(k\)</span> element set. Therefore,</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \binom{n}{k} = \frac{P(n,k)}{k!} = \frac{n!}{(n-k)! k!}.\text{.}
 \end{equation*}
 </div>
-</div> <div class="para logical" id="p-833">
+</div> <div class="para logical" id="p-849">
 <div class="para">Proof 2: To “construct” a permutation of <span class="process-math">\(k\)</span>  objects from a set of <span class="process-math">\(n\)</span> elements, we can first choose one of the subsets of objects and second, choose one of the <span class="process-math">\(k!\)</span>  permutations of those objects. By the rule of products,</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1191,11 +1184,11 @@ P(n,k) = \binom{n}{k} \cdot k!
 </div></article></div>
 <article class="example example-like" id="flipping-coins"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-flipping-coins"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.4.5</span><span class="period">.</span><span class="space"> </span><span class="title">Flipping Coins.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-flipping-coins"><article class="example example-like"><div class="para" id="p-834">Assume an evenly balanced coin is tossed five times. In how many ways can three heads be obtained? This is a combination problem, because the order in which the heads appear does not matter. We can think of this as a situation involving sets by considering the set of flips of the coin, 1 through 5, in which heads comes up.   The number of ways to get three heads is <span class="process-math">\(\binom{5}{3}= \frac{5 \cdot 4}{2 \cdot 1} = 10\text{.}\)</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-flipping-coins"><article class="example example-like"><div class="para" id="p-850">Assume an evenly balanced coin is tossed five times. In how many ways can three heads be obtained? This is a combination problem, because the order in which the heads appear does not matter. We can think of this as a situation involving sets by considering the set of flips of the coin, 1 through 5, in which heads comes up.   The number of ways to get three heads is <span class="process-math">\(\binom{5}{3}= \frac{5 \cdot 4}{2 \cdot 1} = 10\text{.}\)</span>
 </div></article></div>
 <article class="example example-like" id="five-flips"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-five-flips"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.4.6</span><span class="period">.</span><span class="space"> </span><span class="title">Counting five ordered flips two ways.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-five-flips"><article class="example example-like"><div class="para logical" id="p-835">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-five-flips"><article class="example example-like"><div class="para logical" id="p-851">
 <div class="para">We determine the total number of ordered ways a fair coin can land if tossed five consecutive times. The five tosses can produce any one of the following mutually exclusive, disjoint events: 5 heads, 4 heads, 3 heads, 2 heads, 1 head, or 0 heads.  For example, by the previous example, there are <span class="process-math">\(\binom{5}{3}=10\)</span> sequences in which three heads appear. Counting the other possibilities in the same way, by the law of addition we have:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1203,20 +1196,20 @@ P(n,k) = \binom{n}{k} \cdot k!
 \end{equation*}
 </div>
 <div class="para">ways to observe the five flips.</div>
-</div> <div class="para" id="p-836">Of course, we could also have applied the extended rule of products, and since there are two possible outcomes for each of the five tosses, we have <span class="process-math">\(2^5 = 32\)</span> ways.</div></article></div>
-<div class="para" id="p-837">You might think that counting something two ways is a waste of time but solving a problem two different ways often is instructive and leads to valuable insights. In this case, it suggests a general formula for the sum <span class="process-math">\(\sum_{k=0}^n \binom{n}{k}\text{.}\)</span> In the case of <span class="process-math">\(n = 5\text{,}\)</span> we get <span class="process-math">\(2^5\)</span> so it is reasonable to expect that the general sum is <span class="process-math">\(2^n\text{,}\)</span> and it is.  A logical argument to prove the general statment simply involves generalizing the previous example to <span class="process-math">\(n\)</span> coin flips.</div>
+</div> <div class="para" id="p-852">Of course, we could also have applied the extended rule of products, and since there are two possible outcomes for each of the five tosses, we have <span class="process-math">\(2^5 = 32\)</span> ways.</div></article></div>
+<div class="para" id="p-853">You might think that counting something two ways is a waste of time but solving a problem two different ways often is instructive and leads to valuable insights. In this case, it suggests a general formula for the sum <span class="process-math">\(\sum_{k=0}^n \binom{n}{k}\text{.}\)</span> In the case of <span class="process-math">\(n = 5\text{,}\)</span> we get <span class="process-math">\(2^5\)</span> so it is reasonable to expect that the general sum is <span class="process-math">\(2^n\text{,}\)</span> and it is.  A logical argument to prove the general statment simply involves generalizing the previous example to <span class="process-math">\(n\)</span> coin flips.</div>
 <article class="example example-like" id="committee-of-five"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-committee-of-five"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.4.7</span><span class="period">.</span><span class="space"> </span><span class="title">A Committee of Five.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-committee-of-five"><article class="example example-like"><div class="para" id="p-838">A committee usually starts as an unstructured set of people selected from a larger membership. Therefore, a committee can be thought of as a combination. If a club of 25 members has a five-member social committee, there are <span class="process-math">\(\binom{25}{5}=\frac{25\cdot 24\cdot 23\cdot 22\cdot 21}{5!} = 53130\)</span> different possible social committees. If any structure or restriction is placed on the way the social committee is to be selected, the number of possible committees will probably change. For example, if the club has a rule that the treasurer must be on the social committee, then the number of possibilities is reduced to <span class="process-math">\(\binom{24}{4}=\frac{24\cdot 23\cdot 22\cdot 21}{4!} = 10626\text{.}\)</span>
-</div> <div class="para" id="p-839">If we further require that a chairperson other than the treasurer be selected for the social committee, we have  <span class="process-math">\(\binom{24}{4} \cdot 4 = 42504\)</span> different possible social committees. The choice of the four non-treasurers accounts for the factor <span class="process-math">\(\binom{24}{4}\)</span> while the need to choose a chairperson accounts for the 4.</div></article></div>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-committee-of-five"><article class="example example-like"><div class="para" id="p-854">A committee usually starts as an unstructured set of people selected from a larger membership. Therefore, a committee can be thought of as a combination. If a club of 25 members has a five-member social committee, there are <span class="process-math">\(\binom{25}{5}=\frac{25\cdot 24\cdot 23\cdot 22\cdot 21}{5!} = 53130\)</span> different possible social committees. If any structure or restriction is placed on the way the social committee is to be selected, the number of possible committees will probably change. For example, if the club has a rule that the treasurer must be on the social committee, then the number of possibilities is reduced to <span class="process-math">\(\binom{24}{4}=\frac{24\cdot 23\cdot 22\cdot 21}{4!} = 10626\text{.}\)</span>
+</div> <div class="para" id="p-855">If we further require that a chairperson other than the treasurer be selected for the social committee, we have  <span class="process-math">\(\binom{24}{4} \cdot 4 = 42504\)</span> different possible social committees. The choice of the four non-treasurers accounts for the factor <span class="process-math">\(\binom{24}{4}\)</span> while the need to choose a chairperson accounts for the 4.</div></article></div>
 <article class="example example-like" id="extreme-binomial-cases"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-extreme-binomial-cases"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.4.8</span><span class="period">.</span><span class="space"> </span><span class="title">Binomial Coefficients - Extreme Cases.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-extreme-binomial-cases"><article class="example example-like"><div class="para" id="p-840">By simply applying the definition of a <a href="" class="xref" data-knowl="./knowl/binomial-coefficient.html" title="Definition 2.4.3: Binomial Coefficient">Binomial Coefficient</a> as a number of subsets we see that there is <span class="process-math">\(\binom{n}{0} = 1\)</span> way of choosing a combination of zero elements from a set of <span class="process-math">\(n\text{.}\)</span> In addition, we see that   there is <span class="process-math">\(\binom{n}{n} = 1\)</span> way of choosing a combination of <span class="process-math">\(n\)</span> elements from a set of <span class="process-math">\(n\text{.}\)</span>
-</div> <div class="para" id="p-841">We could compute these values using the formula we have developed, but no arithmetic is really needed here.  Other properties of binomial coefficients that can be derived using the subset definition will be seen in the exercises</div></article></div></section><section class="subsection" id="the-binomial-theorem"><h3 class="heading hide-type">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-extreme-binomial-cases"><article class="example example-like"><div class="para" id="p-856">By simply applying the definition of a <a href="" class="xref" data-knowl="./knowl/binomial-coefficient.html" title="Definition 2.4.3: Binomial Coefficient">Binomial Coefficient</a> as a number of subsets we see that there is <span class="process-math">\(\binom{n}{0} = 1\)</span> way of choosing a combination of zero elements from a set of <span class="process-math">\(n\text{.}\)</span> In addition, we see that   there is <span class="process-math">\(\binom{n}{n} = 1\)</span> way of choosing a combination of <span class="process-math">\(n\)</span> elements from a set of <span class="process-math">\(n\text{.}\)</span>
+</div> <div class="para" id="p-857">We could compute these values using the formula we have developed, but no arithmetic is really needed here.  Other properties of binomial coefficients that can be derived using the subset definition will be seen in the exercises</div></article></div></section><section class="subsection" id="the-binomial-theorem"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">2.4.2</span> <span class="title">The Binomial Theorem</span>
 </h3>
-<div class="para" id="p-842">The binomial theorem gives us a formula for expanding <span class="process-math">\(( x + y )^{n}\text{,}\)</span> where <span class="process-math">\(n\)</span>  is a nonnegative integer. The coefficients of this expansion are precisely the binomial coefficients that we have used to count combinations. Using high school algebra we can  expand the expression for integers from 0 to 5:</div>
-<div class="para logical" id="p-843"><div class="displaymath process-math">
+<div class="para" id="p-858">The binomial theorem gives us a formula for expanding <span class="process-math">\(( x + y )^{n}\text{,}\)</span> where <span class="process-math">\(n\)</span>  is a nonnegative integer. The coefficients of this expansion are precisely the binomial coefficients that we have used to count combinations. Using high school algebra we can  expand the expression for integers from 0 to 5:</div>
+<div class="para logical" id="p-859"><div class="displaymath process-math">
 \begin{equation*}
 \begin{array}{cc}
 n &amp; (x + y)^n \\
@@ -1231,7 +1224,7 @@ y^3+5 x y^4+y^5 \\
 \end{array}
 \end{equation*}
 </div></div>
-<div class="para logical" id="p-844">
+<div class="para logical" id="p-860">
 <div class="para">In the expansion of <span class="process-math">\((x + y)^{5} \)</span>  we note that the coefficient of the third term is <span class="process-math">\(\binom{5}{3} = 10\text{,}\)</span> and that of the sixth term is  <span class="process-math">\(\binom{5}{5}=1\text{.}\)</span> We can rewrite the expansion as</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1239,34 +1232,34 @@ y^3+5 x y^4+y^5 \\
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-845">In summary, in the expansion of <span class="process-math">\(( x + y )^{n}\)</span> we note:</div>
-<div class="para logical" id="p-846"><ol class="lower-alpha">
-<li id="li-508"><div class="para" id="p-847">The first term is <span class="process-math">\(x^n\)</span> and the last term is <span class="process-math">\(y^n\text{.}\)</span>
+<div class="para" id="p-861">In summary, in the expansion of <span class="process-math">\(( x + y )^{n}\)</span> we note:</div>
+<div class="para logical" id="p-862"><ol class="lower-alpha">
+<li id="li-520"><div class="para" id="p-863">The first term is <span class="process-math">\(x^n\)</span> and the last term is <span class="process-math">\(y^n\text{.}\)</span>
 </div></li>
-<li id="li-509"><div class="para" id="p-848">With each successive term, exponents of <span class="process-math">\(x\)</span> decrease by 1 as those of <span class="process-math">\(y\)</span> increase by 1. For any term the sum of the exponents is <span class="process-math">\(n\text{.}\)</span>
+<li id="li-521"><div class="para" id="p-864">With each successive term, exponents of <span class="process-math">\(x\)</span> decrease by 1 as those of <span class="process-math">\(y\)</span> increase by 1. For any term the sum of the exponents is <span class="process-math">\(n\text{.}\)</span>
 </div></li>
-<li id="li-510"><div class="para" id="p-849">The coefficient of <span class="process-math">\(x^{n-k} y^k\)</span> is <span class="process-math">\(\binom{n}{k}\text{.}\)</span>
+<li id="li-522"><div class="para" id="p-865">The coefficient of <span class="process-math">\(x^{n-k} y^k\)</span> is <span class="process-math">\(\binom{n}{k}\text{.}\)</span>
 </div></li>
-<li id="li-511"><div class="para" id="p-850">The triangular array of binomial coefficients is called Pascal’s triangle after the seventeenth-century French mathematician Blaise Pascal. Note that each number in the triangle other than the 1’s at the ends of each row is the sum of the two numbers to the right and left of it in the row above.</div></li>
+<li id="li-523"><div class="para" id="p-866">The triangular array of binomial coefficients is called Pascal’s triangle after the seventeenth-century French mathematician Blaise Pascal. Note that each number in the triangle other than the 1’s at the ends of each row is the sum of the two numbers to the right and left of it in the row above.</div></li>
 </ol></div>
 <article class="theorem theorem-like" id="binomial-theorem"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">2.4.9</span><span class="period">.</span><span class="space"> </span><span class="title">The Binomial Theorem.</span>
 </h4>
-<div class="para logical" id="p-851">
+<div class="para logical" id="p-867">
 <div class="para">If <span class="process-math">\(n \geq  0\text{,}\)</span> and <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> are numbers, then</div>
 <div class="displaymath process-math">
 \begin{equation*}
 (x+y)^{n} = \sum_{k=0}^n \binom{n}{k} x^{n-k} y^k\text{.}
 \end{equation*}
 </div>
-</div></article><article class="hiddenproof" id="proof-4"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-4"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-4"><article class="hiddenproof"><div class="para" id="p-852">This theorem will be proven using a logical procedure called mathematical induction, which will be introduced in Chapter 3.</div></article></div>
+</div></article><article class="hiddenproof" id="proof-4"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-4"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-4"><article class="hiddenproof"><div class="para" id="p-868">This theorem will be proven using a logical procedure called mathematical induction, which will be introduced in Chapter 3.</div></article></div>
 <article class="example example-like" id="term-in-an-expansion"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-term-in-an-expansion"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.4.10</span><span class="period">.</span><span class="space"> </span><span class="title">Identifying a term in an expansion.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-term-in-an-expansion"><article class="example example-like"><div class="para" id="p-853">Find the third term in the expansion of <span class="process-math">\((x-y)^{4} = (x+(-y))^{4}\text{.}\)</span> The third term,  when <span class="process-math">\(k=2\text{,}\)</span> is <span class="process-math">\(\binom{4}{2} x^{4-2} (-y)^2 = 6 x^2 y^2\text{.}\)</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-term-in-an-expansion"><article class="example example-like"><div class="para" id="p-869">Find the third term in the expansion of <span class="process-math">\((x-y)^{4} = (x+(-y))^{4}\text{.}\)</span> The third term,  when <span class="process-math">\(k=2\text{,}\)</span> is <span class="process-math">\(\binom{4}{2} x^{4-2} (-y)^2 = 6 x^2 y^2\text{.}\)</span>
 </div></article></div>
 <article class="example example-like" id="a-full-expansion"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-a-full-expansion"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.4.11</span><span class="period">.</span><span class="space"> </span><span class="title">A Binomial Expansion.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-a-full-expansion"><article class="example example-like"><div class="para logical" id="p-854">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-a-full-expansion"><article class="example example-like"><div class="para logical" id="p-870">
 <div class="para">Expand <span class="process-math">\((3 x - 2 )^{3}\text{.}\)</span>  If we replace <span class="process-math">\(x\)</span>  and <span class="process-math">\(y\)</span>  in the Binomial Theorem with <span class="process-math">\(3x\)</span> and <span class="process-math">\(-2\text{,}\)</span> respectively, we get</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1279,79 +1272,79 @@ y^3+5 x y^4+y^5 \\
 </div></article></div></section><section class="subsection" id="sage-bridge-hands"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">2.4.3</span> <span class="title">SageMath Note</span>
 </h3>
-<div class="para" id="p-855">A bridge hand is a 13 element subset of a standard 52 card deck. The order in which the cards come to the player doesn’t matter. From the point of view of a single player, the number of possible bridge hands is <span class="process-math">\(\binom{52}{13}\text{,}\)</span> which can be easily computed with <span class="process-math">\(Sage\text{.}\)</span>
+<div class="para" id="p-871">A bridge hand is a 13 element subset of a standard 52 card deck. The order in which the cards come to the player doesn’t matter. From the point of view of a single player, the number of possible bridge hands is <span class="process-math">\(\binom{52}{13}\text{,}\)</span> which can be easily computed with <span class="process-math">\(Sage\text{.}\)</span>
 </div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-11"><script type="text/x-sage">binomial(52,13)
 </script></pre>
-<div class="para" id="p-856">In bridge, the location of a hand in relation to the dealer has some bearing on the game. An even truer indication of the number of possible hands takes into account <span class="process-math">\(each\)</span>  player’s possible hand. It is customary  to refer to bridge positions as West, North, East and South. We can apply the rule of product to get the total number of bridge hands with the following logic. West can get any of the <span class="process-math">\(\binom{52}{13}\)</span> hands identified above. Then North get 13 of the remaining 39 cards and so has  <span class="process-math">\(\binom{39}{13}\)</span> possible hands. East then gets 13 of the 26 remaining cards, which has <span class="process-math">\(\binom{26}{13}\)</span>  possibilities. South gets the remaining cards. Therefore the number of bridge hands is computed using the Product Rule.</div>
+<div class="para" id="p-872">In bridge, the location of a hand in relation to the dealer has some bearing on the game. An even truer indication of the number of possible hands takes into account <span class="process-math">\(each\)</span>  player’s possible hand. It is customary  to refer to bridge positions as West, North, East and South. We can apply the rule of product to get the total number of bridge hands with the following logic. West can get any of the <span class="process-math">\(\binom{52}{13}\)</span> hands identified above. Then North get 13 of the remaining 39 cards and so has  <span class="process-math">\(\binom{39}{13}\)</span> possible hands. East then gets 13 of the 26 remaining cards, which has <span class="process-math">\(\binom{26}{13}\)</span>  possibilities. South gets the remaining cards. Therefore the number of bridge hands is computed using the Product Rule.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-12"><script type="text/x-sage">binomial(52,13)*binomial(39,13)*binomial(26,13)
 </script></pre></section><section class="exercises" id="exercises-2-4"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">2.4.4</span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-85"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para" id="p-857">The judiciary committee at a college is made up of three faculty members and four students. If ten faculty members and 25 students have been nominated for the committee, how many judiciary committees could be formed at this point?</div>
+<article class="exercise exercise-like" id="exercise-88"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para" id="p-873">The judiciary committee at a college is made up of three faculty members and four students. If ten faculty members and 25 students have been nominated for the committee, how many judiciary committees could be formed at this point?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-43" id="answer-43"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-43"><div class="answer solution-like"><div class="para" id="p-858"><span class="process-math">\(\binom{10}{3}\cdot \binom{25}{4}=1,518,000\)</span></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-86"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para" id="p-859">Suppose that a single character is stored in a computer using eight bits.</div> <div class="para" id="p-860">a. How many bit patterns have exactly three 1’s?</div> <div class="para" id="p-861">b. How many bit patterns have at least two 1’s?</div>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-45" id="answer-45"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-45"><div class="answer solution-like"><div class="para" id="p-874"><span class="process-math">\(\binom{10}{3}\cdot \binom{25}{4}=1,518,000\)</span></div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-89"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para" id="p-875">Suppose that a single character is stored in a computer using eight bits.</div> <div class="para" id="p-876">a. How many bit patterns have exactly three 1’s?</div> <div class="para" id="p-877">b. How many bit patterns have at least two 1’s?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-1" id="hint-1"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-1"><div class="hint solution-like"><div class="para" id="p-862">Think of the set of positions that contain a 1 to turn this is into a question about sets.</div></div></div>
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-2" id="solution-2"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-2"><div class="solution solution-like"><div class="para" id="p-863">(a) <span class="process-math">\(\binom{8}{3}\)</span> (b) <span class="process-math">\(2^8-(\binom{8}{0}+\binom{8}{1})\)</span>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-1" id="hint-1"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-1"><div class="hint solution-like"><div class="para" id="p-878">Think of the set of positions that contain a 1 to turn this is into a question about sets.</div></div></div>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-3" id="solution-3"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-3"><div class="solution solution-like"><div class="para" id="p-879">(a) <span class="process-math">\(\binom{8}{3}\)</span> (b) <span class="process-math">\(2^8-(\binom{8}{0}+\binom{8}{1})\)</span>
 </div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-87"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para" id="p-864">How many subsets of <span class="process-math">\(\{1, 2, 3, \dots , 10\}\)</span> contain at least seven elements?</div>
+</div></article><article class="exercise exercise-like" id="exercise-90"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para" id="p-880">How many subsets of <span class="process-math">\(\{1, 2, 3, \dots , 10\}\)</span> contain at least seven elements?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-44" id="answer-44"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-44"><div class="answer solution-like"><div class="para" id="p-865"><span class="process-math">\(\binom{10}{7} +\binom{10}{8} +\binom{10}{9} +\binom{10}{10}= 120+45+10+1=176 \)</span></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-88"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para" id="p-866">The congressional committees on mathematics and computer science are made up of five representatives each, and a congressional rule is that the two committees must be disjoint. If there are 385 members of congress, how many ways could the committees be selected?</div></article><article class="exercise exercise-like" id="exercise-89"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
-<div class="para" id="p-867">The image below shows a 6 by 6 grid and an example of a <dfn class="terminology">lattice path</dfn> that could be taken from <span class="process-math">\((0,0)\)</span>  to <span class="process-math">\((6,6)\text{,}\)</span> which is a path taken by traveling along grid lines going only to the right and up. How many different lattice paths are there of this type?  Generalize to the case of lattice paths from <span class="process-math">\((0,0)\)</span> to <span class="process-math">\((m,n)\)</span>  for any nonnegative integers <span class="process-math">\(m\)</span> and <span class="process-math">\(n\text{.}\)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-46" id="answer-46"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-46"><div class="answer solution-like"><div class="para" id="p-881"><span class="process-math">\(\binom{10}{7} +\binom{10}{8} +\binom{10}{9} +\binom{10}{10}= 120+45+10+1=176 \)</span></div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-91"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para" id="p-882">The congressional committees on mathematics and computer science are made up of five representatives each, and a congressional rule is that the two committees must be disjoint. If there are 385 members of congress, how many ways could the committees be selected?</div></article><article class="exercise exercise-like" id="exercise-92"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para" id="p-883">The image below shows a 6 by 6 grid and an example of a <dfn class="terminology">lattice path</dfn> that could be taken from <span class="process-math">\((0,0)\)</span>  to <span class="process-math">\((6,6)\text{,}\)</span> which is a path taken by traveling along grid lines going only to the right and up. How many different lattice paths are there of this type?  Generalize to the case of lattice paths from <span class="process-math">\((0,0)\)</span> to <span class="process-math">\((m,n)\)</span>  for any nonnegative integers <span class="process-math">\(m\)</span> and <span class="process-math">\(n\text{.}\)</span>
 </div> <figure class="figure figure-like" id="fig-lattice-path-6"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig-lattice-path-6.png" class="contained" alt="An example of a lattice path consisting of seven parallel horizontal line segments, equally spaced together with seven parallel vertical line segments, equally spaced.  Together they form a square that is divided into 36 small squares. The bottom left point of intersection of lines is the origin and the top right is the point \((6,6)\text{.}\) A path is traced by traveling along the lines starting a the origin and ending at \((6,6)\text{.}\)"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">2.4.12<span class="period">.</span></span><span class="space"> </span>A lattice path</figcaption></figure><div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-2" id="hint-2"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-2"><div class="hint solution-like"><div class="para" id="p-868">Think of each path as a sequence of instructions to go right (R) and up (U).</div></div></div>
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-45" id="answer-45"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-45"><div class="answer solution-like"><div class="para" id="p-869">Each path can be described as a sequence or R’s and U’s with exactly six of each.   The six positions in which R’s could be placed can be selected from the twelve positions in the sequence <span class="process-math">\(\binom{12}{6}\)</span> ways.  We can generalize this logic and see that there are <span class="process-math">\(\binom{m+n}{m}\)</span> paths from <span class="process-math">\((0,0)\)</span> to <span class="process-math">\((m,n)\text{.}\)</span>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-2" id="hint-2"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-2"><div class="hint solution-like"><div class="para" id="p-884">Think of each path as a sequence of instructions to go right (R) and up (U).</div></div></div>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-47" id="answer-47"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-47"><div class="answer solution-like"><div class="para" id="p-885">Each path can be described as a sequence or R’s and U’s with exactly six of each.   The six positions in which R’s could be placed can be selected from the twelve positions in the sequence <span class="process-math">\(\binom{12}{6}\)</span> ways.  We can generalize this logic and see that there are <span class="process-math">\(\binom{m+n}{m}\)</span> paths from <span class="process-math">\((0,0)\)</span> to <span class="process-math">\((m,n)\text{.}\)</span>
 </div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-90"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
-<div class="para" id="p-870">How many of the lattice paths from <span class="process-math">\((0,0)\)</span> to <span class="process-math">\((6,6)\)</span> pass through <span class="process-math">\((3,3)\)</span> as the one in <a href="" class="xref" data-knowl="./knowl/fig-lattice-path-6.html" title="Figure 2.4.12">Figure 12</a> does?</div></article><article class="exercise exercise-like" id="exercise-91"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
-<div class="para logical" id="p-871">
+</div></article><article class="exercise exercise-like" id="exercise-93"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div class="para" id="p-886">How many of the lattice paths from <span class="process-math">\((0,0)\)</span> to <span class="process-math">\((6,6)\)</span> pass through <span class="process-math">\((3,3)\)</span> as the one in <a href="" class="xref" data-knowl="./knowl/fig-lattice-path-6.html" title="Figure 2.4.12">Figure 12</a> does?</div></article><article class="exercise exercise-like" id="exercise-94"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="para logical" id="p-887">
 <div class="para">A poker game is played with 52 cards.  At the start of a game, each player gets five of the cards.  The order in which cards are dealt doesn’t matter.</div>
 <ol class="lower-alpha">
-<li id="li-512"><div class="para" id="p-872">How many “hands” of five cards are possible?</div></li>
-<li id="li-513"><div class="para" id="p-873">If there are four people playing, how many initial five-card “hands” are possible, taking into account all players and their positions at the table?  Position with respect to the dealer does matter.</div></li>
+<li id="li-524"><div class="para" id="p-888">How many “hands” of five cards are possible?</div></li>
+<li id="li-525"><div class="para" id="p-889">If there are four people playing, how many initial five-card “hands” are possible, taking into account all players and their positions at the table?  Position with respect to the dealer does matter.</div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-46" id="answer-46"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-46"><div class="answer solution-like"><div class="para logical" id="p-874"><ol class="lower-alpha">
-<li id="li-514"><div class="para" id="p-875"><span class="process-math">\(\displaystyle C(52,5)=2,598,960\)</span></div></li>
-<li id="li-515"><div class="para" id="p-876"><span class="process-math">\(\displaystyle \binom{52}{5}\cdot \binom{47}{5}\cdot \binom{42}{5}\cdot \binom{37}{5}\)</span></div></li>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-48" id="answer-48"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-48"><div class="answer solution-like"><div class="para logical" id="p-890"><ol class="lower-alpha">
+<li id="li-526"><div class="para" id="p-891"><span class="process-math">\(\displaystyle C(52,5)=2,598,960\)</span></div></li>
+<li id="li-527"><div class="para" id="p-892"><span class="process-math">\(\displaystyle \binom{52}{5}\cdot \binom{47}{5}\cdot \binom{42}{5}\cdot \binom{37}{5}\)</span></div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-92"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
-<div class="para" id="p-877">A flush in a five-card poker hand is five cards of the same suit. The suits are spades, clubs, diamonds and hearts.  How many spade flushes are possible in a 52-card deck? How many flushes are possible in any suit?</div></article><article class="exercise exercise-like" id="exercise-93"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
-<div class="para" id="p-878">How many five-card poker hands using 52 cards contain exactly two aces?</div>
+</div></article><article class="exercise exercise-like" id="exercise-95"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div class="para" id="p-893">A flush in a five-card poker hand is five cards of the same suit. The suits are spades, clubs, diamonds and hearts.  How many spade flushes are possible in a 52-card deck? How many flushes are possible in any suit?</div></article><article class="exercise exercise-like" id="exercise-96"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div class="para" id="p-894">How many five-card poker hands using 52 cards contain exactly two aces?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-47" id="answer-47"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-47"><div class="answer solution-like"><div class="para" id="p-879"><span class="process-math">\(\binom{4}{2} \cdot \binom{48}{3} = 6 \cdot 17296=103776\)</span></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-94"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
-<div class="para" id="p-880">In poker, a full house is three-of-a-kind and a pair in one hand; for example, three fives and two queens. How many full houses are possible from a 52-card deck?  You can use the sage cell in the <a href="s-combinations-and-the-binomial-theorem.html#sage-bridge-hands" class="internal" title="Subsection 2.4.3: SageMath Note">SageMath Note</a> to do this calculation, but also write your answer in terms of binomial coefficients.</div></article><article class="exercise exercise-like" id="exercise-95"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
-<div class="para" id="p-881">A class of twelve computer science students are to be divided into three groups of 3, 4, and 5 students to work on a project. How many ways can this be done if every student is to be in exactly one group?</div>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-49" id="answer-49"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-49"><div class="answer solution-like"><div class="para" id="p-895"><span class="process-math">\(\binom{4}{2} \cdot \binom{48}{3} = 6 \cdot 17296=103776\)</span></div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-97"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
+<div class="para" id="p-896">In poker, a full house is three-of-a-kind and a pair in one hand; for example, three fives and two queens. How many full houses are possible from a 52-card deck?  You can use the sage cell in the <a href="s-combinations-and-the-binomial-theorem.html#sage-bridge-hands" class="internal" title="Subsection 2.4.3: SageMath Note">SageMath Note</a> to do this calculation, but also write your answer in terms of binomial coefficients.</div></article><article class="exercise exercise-like" id="exercise-98"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
+<div class="para" id="p-897">A class of twelve computer science students are to be divided into three groups of 3, 4, and 5 students to work on a project. How many ways can this be done if every student is to be in exactly one group?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-48" id="answer-48"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-48"><div class="answer solution-like"><div class="para" id="p-882"><span class="process-math">\(\binom{12}{3}\cdot\binom{9}{4}\cdot\binom{5}{5}\)</span></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-96"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
-<div class="para" id="p-883">Explain in words why the following equalities are true based on number of subsets,  and then verify the equalities using the formula for binomial coefficients.</div> <div class="para logical" id="p-884"><ol class="lower-alpha">
-<li id="li-516"><div class="para" id="p-885"><span class="process-math">\(\displaystyle \binom{n}{1} = n\)</span></div></li>
-<li id="li-517"><div class="para" id="p-886">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-50" id="answer-50"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-50"><div class="answer solution-like"><div class="para" id="p-898"><span class="process-math">\(\binom{12}{3}\cdot\binom{9}{4}\cdot\binom{5}{5}\)</span></div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-99"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
+<div class="para" id="p-899">Explain in words why the following equalities are true based on number of subsets,  and then verify the equalities using the formula for binomial coefficients.</div> <div class="para logical" id="p-900"><ol class="lower-alpha">
+<li id="li-528"><div class="para" id="p-901"><span class="process-math">\(\displaystyle \binom{n}{1} = n\)</span></div></li>
+<li id="li-529"><div class="para" id="p-902">
 <span class="process-math">\(\binom{n}{k} = \binom{n}{n-k}\text{,}\)</span> <span class="process-math">\(0 \leq k \leq n\)</span>
 </div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-97"><h4 class="heading"><span class="codenumber">13<span class="period">.</span></span></h4>
-<div class="para" id="p-887">There are ten points, <span class="process-math">\(P_1, P_2, \dots , P_{10}\)</span> on a plane, no three on the same line.</div> <div class="para logical" id="p-888"><ol class="lower-alpha">
-<li id="li-518"><div class="para" id="p-889">How many lines are determined by the points?</div></li>
-<li id="li-519"><div class="para" id="p-890">How many triangles are determined by the points?</div></li>
+</ol></div></article><article class="exercise exercise-like" id="exercise-100"><h4 class="heading"><span class="codenumber">13<span class="period">.</span></span></h4>
+<div class="para" id="p-903">There are ten points, <span class="process-math">\(P_1, P_2, \dots , P_{10}\)</span> on a plane, no three on the same line.</div> <div class="para logical" id="p-904"><ol class="lower-alpha">
+<li id="li-530"><div class="para" id="p-905">How many lines are determined by the points?</div></li>
+<li id="li-531"><div class="para" id="p-906">How many triangles are determined by the points?</div></li>
 </ol></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-49" id="answer-49"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-49"><div class="answer solution-like"><div class="para logical" id="p-891"><ol class="lower-alpha">
-<li id="li-520"><div class="para" id="p-derived-li-520"><span class="process-math">\(\displaystyle \binom{10}{2}=45\)</span></div></li>
-<li id="li-521"><div class="para" id="p-derived-li-521"><span class="process-math">\(\displaystyle \binom{10}{3}=120\)</span></div></li>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-51" id="answer-51"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-51"><div class="answer solution-like"><div class="para logical" id="p-907"><ol class="lower-alpha">
+<li id="li-532"><div class="para" id="p-derived-li-532"><span class="process-math">\(\displaystyle \binom{10}{2}=45\)</span></div></li>
+<li id="li-533"><div class="para" id="p-derived-li-533"><span class="process-math">\(\displaystyle \binom{10}{3}=120\)</span></div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-98"><h4 class="heading"><span class="codenumber">14<span class="period">.</span></span></h4>
-<div class="para logical" id="p-892">
+</div></article><article class="exercise exercise-like" id="exercise-101"><h4 class="heading"><span class="codenumber">14<span class="period">.</span></span></h4>
+<div class="para logical" id="p-908">
 <div class="para">How many ways can <span class="process-math">\(n\)</span>  persons be grouped into pairs when <span class="process-math">\(n\)</span>  is even? Assume the order of the pairs matters, but not the order within the pairs. For example, if <span class="process-math">\(n=4\text{,}\)</span> the six different groupings would be</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1365,24 +1358,24 @@ y^3+5 x y^4+y^5 \\
 \end{array}
 \end{equation*}
 </div>
-</div></article><article class="exercise exercise-like" id="exercise-99"><h4 class="heading"><span class="codenumber">15<span class="period">.</span></span></h4>
-<div class="para" id="p-893">Use the binomial theorem to prove that if <span class="process-math">\(A\)</span> is a finite set, then <span class="process-math">\(\lvert P(A)\rvert =2^{\lvert A  \rvert}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-102"><h4 class="heading"><span class="codenumber">15<span class="period">.</span></span></h4>
+<div class="para" id="p-909">Use the binomial theorem to prove that if <span class="process-math">\(A\)</span> is a finite set, then <span class="process-math">\(\lvert P(A)\rvert =2^{\lvert A  \rvert}\)</span>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-50" id="answer-50"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-50"><div class="answer solution-like"><div class="para" id="p-894">Assume <span class="process-math">\(\lvert A \rvert =n\text{.}\)</span>  If we let <span class="process-math">\(x=y=1\)</span> in the Binomial Theorem, we obtain <span class="process-math">\(2^n=\binom{n}{0}+\binom{n}{1}+\cdots +\binom{n}{n}\text{,}\)</span> with the right side of the equality counting all subsets of <span class="process-math">\(A\)</span> containing <span class="process-math">\(0, 1, 2, \dots , n\)</span> elements.  Hence <span class="process-math">\(\lvert P(A)\rvert =2^{\lvert A  \rvert}\)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-52" id="answer-52"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-52"><div class="answer solution-like"><div class="para" id="p-910">Assume <span class="process-math">\(\lvert A \rvert =n\text{.}\)</span>  If we let <span class="process-math">\(x=y=1\)</span> in the Binomial Theorem, we obtain <span class="process-math">\(2^n=\binom{n}{0}+\binom{n}{1}+\cdots +\binom{n}{n}\text{,}\)</span> with the right side of the equality counting all subsets of <span class="process-math">\(A\)</span> containing <span class="process-math">\(0, 1, 2, \dots , n\)</span> elements.  Hence <span class="process-math">\(\lvert P(A)\rvert =2^{\lvert A  \rvert}\)</span>
 </div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-100"><h4 class="heading"><span class="codenumber">16<span class="period">.</span></span></h4>
-<div class="para logical" id="p-895"><ol class="lower-alpha">
-<li id="li-522"><div class="para" id="p-896">A state’s lottery involves choosing six different numbers out of a possible 36. How many ways can a person choose six numbers?</div></li>
-<li id="li-523"><div class="para" id="p-897">What is the probability of a person winning with one bet?</div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-101"><h4 class="heading"><span class="codenumber">17<span class="period">.</span></span></h4>
-<div class="para" id="p-898">Use the binomial theorem to calculate <span class="process-math">\(9998^3\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-103"><h4 class="heading"><span class="codenumber">16<span class="period">.</span></span></h4>
+<div class="para logical" id="p-911"><ol class="lower-alpha">
+<li id="li-534"><div class="para" id="p-912">A state’s lottery involves choosing six different numbers out of a possible 36. How many ways can a person choose six numbers?</div></li>
+<li id="li-535"><div class="para" id="p-913">What is the probability of a person winning with one bet?</div></li>
+</ol></div></article><article class="exercise exercise-like" id="exercise-104"><h4 class="heading"><span class="codenumber">17<span class="period">.</span></span></h4>
+<div class="para" id="p-914">Use the binomial theorem to calculate <span class="process-math">\(9998^3\text{.}\)</span>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-3" id="hint-3"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-3"><div class="hint solution-like"><div class="para" id="p-899"><span class="process-math">\(9998 = 10000-2\)</span></div></div></div>
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-51" id="answer-51"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-51"><div class="answer solution-like"><div class="para" id="p-900"><span class="process-math">\(10000^3 - 3 \cdot 2 \cdot 10000^2 +3 \cdot 2^2 \cdot 10000 - 2^3 = 999,400,119,992.\)</span></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-102"><h4 class="heading"><span class="codenumber">18<span class="period">.</span></span></h4>
-<div class="para" id="p-901">In the card game Blackjack, there are one or more players and a dealer.  Initially, each player is dealt two cards and the dealer is dealt one card down and one facing up.  As in bridge, the order of the hands, but not the order of the cards in the hands, matters.  Starting with a single 52 card deck, and three players, how many ways can the first two cards be dealt out?  You can use the sage cell in the <a href="s-combinations-and-the-binomial-theorem.html#sage-bridge-hands" class="internal" title="Subsection 2.4.3: SageMath Note">SageMath Note</a> to do this calculation.</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-3" id="hint-3"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-3"><div class="hint solution-like"><div class="para" id="p-915"><span class="process-math">\(9998 = 10000-2\)</span></div></div></div>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-53" id="answer-53"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-53"><div class="answer solution-like"><div class="para" id="p-916"><span class="process-math">\(10000^3 - 3 \cdot 2 \cdot 10000^2 +3 \cdot 2^2 \cdot 10000 - 2^3 = 999,400,119,992.\)</span></div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-105"><h4 class="heading"><span class="codenumber">18<span class="period">.</span></span></h4>
+<div class="para" id="p-917">In the card game Blackjack, there are one or more players and a dealer.  Initially, each player is dealt two cards and the dealer is dealt one card down and one facing up.  As in bridge, the order of the hands, but not the order of the cards in the hands, matters.  Starting with a single 52 card deck, and three players, how many ways can the first two cards be dealt out?  You can use the sage cell in the <a href="s-combinations-and-the-binomial-theorem.html#sage-bridge-hands" class="internal" title="Subsection 2.4.3: SageMath Note">SageMath Note</a> to do this calculation.</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>
 <div class="ptx-content-footer">
 <a class="previous-button button" href="s-partitions-and-law-of-addition.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="chapter3.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>

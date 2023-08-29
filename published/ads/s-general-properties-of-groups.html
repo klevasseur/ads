@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Some General Properties of Groups</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,25 +58,36 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
@@ -99,59 +128,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -160,7 +146,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -315,7 +301,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1124,18 +1113,18 @@ eBookConfig.runestone_version = '7.0.7';
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="s-general-properties-of-groups"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">11.3</span> <span class="title">Some General Properties of Groups</span>
 </h2>
-<section class="introduction" id="introduction-42"><div class="para" id="p-4022">In this section, we will present some of the most basic theorems of group theory. Keep in mind that each of these theorems tells us something about every group. We will illustrate this point with concrete examples at the close of the section.</div></section><section class="subsection" id="subsection-143"><h3 class="heading hide-type">
+<section class="introduction" id="introduction-42"><div class="para" id="p-4038">In this section, we will present some of the most basic theorems of group theory. Keep in mind that each of these theorems tells us something about every group. We will illustrate this point with concrete examples at the close of the section.</div></section><section class="subsection" id="subsection-143"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">11.3.1</span> <span class="title">First Theorems</span>
 </h3>
 <article class="theorem theorem-like" id="theorem-11-3-1"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">11.3.1</span><span class="period">.</span><span class="space"> </span><span class="title">Identities are Unique.</span>
 </h4>
-<div class="para" id="p-4023">The identity of a group is unique.</div></article><div class="para" id="p-4024">One difficulty that students often encounter is how to get started in proving a theorem like this. The difficulty is certainly not in the theorem’s complexity. It’s too terse! Before actually starting the proof, we rephrase the theorem so that the implication it states is clear.</div>
+<div class="para" id="p-4039">The identity of a group is unique.</div></article><div class="para" id="p-4040">One difficulty that students often encounter is how to get started in proving a theorem like this. The difficulty is certainly not in the theorem’s complexity. It’s too terse! Before actually starting the proof, we rephrase the theorem so that the implication it states is clear.</div>
 <article class="theorem theorem-like" id="theorem-11-3-1-a"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">11.3.2</span><span class="period">.</span><span class="space"> </span><span class="title">Identities are Unique - Rephrased.</span>
 </h4>
-<div class="para" id="p-4025">If <span class="process-math">\(G= [G; *]\)</span> is a group and <span class="process-math">\(e\)</span> is an identity of <span class="process-math">\(G\text{,}\)</span> then no other element of <span class="process-math">\(G\)</span> is an identity of <span class="process-math">\(G\text{.}\)</span>
-</div></article><article class="hiddenproof" id="proof-32"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-32"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-32"><article class="hiddenproof"><div class="para logical" id="p-4026">
+<div class="para" id="p-4041">If <span class="process-math">\(G= [G; *]\)</span> is a group and <span class="process-math">\(e\)</span> is an identity of <span class="process-math">\(G\text{,}\)</span> then no other element of <span class="process-math">\(G\)</span> is an identity of <span class="process-math">\(G\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-32"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-32"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-32"><article class="hiddenproof"><div class="para logical" id="p-4042">
 <div class="para">(Indirect): Suppose that <span class="process-math">\(f\in  G\text{,}\)</span> <span class="process-math">\(f\neq e\text{,}\)</span> and <span class="process-math">\(f\)</span> is an identity of <span class="process-math">\(G\text{.}\)</span> We will show that <span class="process-math">\(f = e\text{,}\)</span> which is a contradiction, completing the proof.</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1146,23 +1135,23 @@ f  &amp;= f * e \quad \textrm{  Since }e\textrm{ is an identity}\\
 \end{equation*}
 </div>
 </div></article></div>
-<div class="para" id="p-4027">Next we justify the phrase “... <em class="emphasis">the</em> inverse of an element of a group.”</div>
+<div class="para" id="p-4043">Next we justify the phrase “... <em class="emphasis">the</em> inverse of an element of a group.”</div>
 <article class="theorem theorem-like" id="theorem-11-3-2"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">11.3.3</span><span class="period">.</span><span class="space"> </span><span class="title">Inverses are Unique.</span>
 </h4>
-<div class="para" id="p-4028">The inverse of any element of a group is unique.</div></article><div class="para" id="p-4029">The same problem is encountered here as in the previous theorem. We will leave it to the reader to rephrase this theorem. The proof is also left to the reader to write out in detail. Here is a hint: If <span class="process-math">\(b\)</span> and <span class="process-math">\(c\)</span> are both inverses of <span class="process-math">\(a\text{,}\)</span> then you can prove that <span class="process-math">\(b = c\text{.}\)</span>  If you have difficulty with this proof, note that we have already proven it in a concrete setting in Chapter 5.</div>
-<div class="para" id="p-4030">As mentioned above, the significance of <a href="" class="xref" data-knowl="./knowl/theorem-11-3-2.html" title="Theorem 11.3.3: Inverses are Unique">Theorem 11.3.3</a> is that we can refer to <em class="emphasis">the</em> inverse of an element without ambiguity. The notation for the inverse of <span class="process-math">\(a\)</span> is usually <span class="process-math">\(a^{-1}\)</span> (note the exception below).</div>
+<div class="para" id="p-4044">The inverse of any element of a group is unique.</div></article><div class="para" id="p-4045">The same problem is encountered here as in the previous theorem. We will leave it to the reader to rephrase this theorem. The proof is also left to the reader to write out in detail. Here is a hint: If <span class="process-math">\(b\)</span> and <span class="process-math">\(c\)</span> are both inverses of <span class="process-math">\(a\text{,}\)</span> then you can prove that <span class="process-math">\(b = c\text{.}\)</span>  If you have difficulty with this proof, note that we have already proven it in a concrete setting in Chapter 5.</div>
+<div class="para" id="p-4046">As mentioned above, the significance of <a href="" class="xref" data-knowl="./knowl/theorem-11-3-2.html" title="Theorem 11.3.3: Inverses are Unique">Theorem 11.3.3</a> is that we can refer to <em class="emphasis">the</em> inverse of an element without ambiguity. The notation for the inverse of <span class="process-math">\(a\)</span> is usually <span class="process-math">\(a^{-1}\)</span> (note the exception below).</div>
 <article class="example example-like" id="ex-some-inverses"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-some-inverses"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">11.3.4</span><span class="period">.</span><span class="space"> </span><span class="title">Some Inverses.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-some-inverses"><article class="example example-like"><div class="para logical" id="p-4031"><ol class="lower-alpha">
-<li id="li-1859"><div class="para" id="p-4032">In any group, <span class="process-math">\(e^{-1}\)</span> is the inverse of the identity <span class="process-math">\(e\text{,}\)</span> which always is <span class="process-math">\(e\text{.}\)</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-some-inverses"><article class="example example-like"><div class="para logical" id="p-4047"><ol class="lower-alpha">
+<li id="li-1871"><div class="para" id="p-4048">In any group, <span class="process-math">\(e^{-1}\)</span> is the inverse of the identity <span class="process-math">\(e\text{,}\)</span> which always is <span class="process-math">\(e\text{.}\)</span>
 </div></li>
-<li id="li-1860"><div class="para" id="p-4033">
+<li id="li-1872"><div class="para" id="p-4049">
 <span class="process-math">\(\left(a^{-1}\right)^{-1}\)</span> is the inverse of <span class="process-math">\(a^{-1}\)</span> , which is always equal to <span class="process-math">\(a\)</span> (see <a href="" class="xref" data-knowl="./knowl/theorem-11-3-3.html" title="Theorem 11.3.5: Inverse of Inverse Theorem">Theorem 11.3.5</a> below).</div></li>
-<li id="li-1861"><div class="para" id="p-4034">
+<li id="li-1873"><div class="para" id="p-4050">
 <span class="process-math">\((x*y*z)^{-1}\)</span> is the inverse of <span class="process-math">\(x * y * z\text{.}\)</span>
 </div></li>
-<li id="li-1862"><div class="para" id="p-4035">In a concrete group with an operation that is based on addition, the inverse of <span class="process-math">\(a\)</span> is usually written <span class="process-math">\(-a\text{.}\)</span> For example, the inverse of <span class="process-math">\(k - 3\)</span> in the group <span class="process-math">\([\mathbb{Z}; +]\)</span> is written <span class="process-math">\(-(k- 3)=3-k\text{.}\)</span> In the group of <span class="process-math">\(2 \times 2 \)</span> matrices over the real numbers under matrix addition, the inverse of <span class="process-math">\(\left(
+<li id="li-1874"><div class="para" id="p-4051">In a concrete group with an operation that is based on addition, the inverse of <span class="process-math">\(a\)</span> is usually written <span class="process-math">\(-a\text{.}\)</span> For example, the inverse of <span class="process-math">\(k - 3\)</span> in the group <span class="process-math">\([\mathbb{Z}; +]\)</span> is written <span class="process-math">\(-(k- 3)=3-k\text{.}\)</span> In the group of <span class="process-math">\(2 \times 2 \)</span> matrices over the real numbers under matrix addition, the inverse of <span class="process-math">\(\left(
 \begin{array}{cc}
 4 &amp; 1 \\
 1 &amp; -3  \\
@@ -1183,13 +1172,13 @@ f  &amp;= f * e \quad \textrm{  Since }e\textrm{ is an identity}\\
 <article class="theorem theorem-like" id="theorem-11-3-3"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">11.3.5</span><span class="period">.</span><span class="space"> </span><span class="title">Inverse of Inverse Theorem.</span>
 </h4>
-<div class="para" id="p-4036">If a is an element of group <span class="process-math">\(G\text{,}\)</span> then <span class="process-math">\(\left(a^{-1}\right)^{-1}=a\text{.}\)</span>
-</div></article><div class="para" id="p-4037">Again, we rephrase the theorem to make it clear how to proceed.</div>
+<div class="para" id="p-4052">If a is an element of group <span class="process-math">\(G\text{,}\)</span> then <span class="process-math">\(\left(a^{-1}\right)^{-1}=a\text{.}\)</span>
+</div></article><div class="para" id="p-4053">Again, we rephrase the theorem to make it clear how to proceed.</div>
 <article class="theorem theorem-like" id="theorem-11-3-3-rephrased"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">11.3.6</span><span class="period">.</span><span class="space"> </span><span class="title">Inverse of Inverse Theorem (Rephrased).</span>
 </h4>
-<div class="para" id="p-4038">If <span class="process-math">\(a\)</span> has inverse <span class="process-math">\(b\)</span> and <span class="process-math">\(b\)</span> has inverse <span class="process-math">\(c\text{,}\)</span> then <span class="process-math">\(a = c\text{.}\)</span>
-</div></article><article class="hiddenproof" id="proof-33"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-33"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-33"><article class="hiddenproof"><div class="para logical" id="p-4039"><div class="displaymath process-math">
+<div class="para" id="p-4054">If <span class="process-math">\(a\)</span> has inverse <span class="process-math">\(b\)</span> and <span class="process-math">\(b\)</span> has inverse <span class="process-math">\(c\text{,}\)</span> then <span class="process-math">\(a = c\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-33"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-33"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-33"><article class="hiddenproof"><div class="para logical" id="p-4055"><div class="displaymath process-math">
 \begin{equation*}
 \begin{split}
 a  &amp;=a*e \quad \quad e\textrm{ is the identity of }G\\
@@ -1200,13 +1189,13 @@ a  &amp;=a*e \quad \quad e\textrm{ is the identity of }G\\
 \end{split}
 \end{equation*}
 </div></div></article></div>
-<div class="para" id="p-4040">The next theorem gives us a formula for the inverse of <span class="process-math">\(a * b\text{.}\)</span> This formula should be familiar. In Chapter 5 we saw that if <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are invertible matrices, then <span class="process-math">\((A B)^{-1}= B^{-1} A^{-1}\text{.}\)</span>
+<div class="para" id="p-4056">The next theorem gives us a formula for the inverse of <span class="process-math">\(a * b\text{.}\)</span> This formula should be familiar. In Chapter 5 we saw that if <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are invertible matrices, then <span class="process-math">\((A B)^{-1}= B^{-1} A^{-1}\text{.}\)</span>
 </div>
 <article class="theorem theorem-like" id="theorem-11-3-4"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">11.3.7</span><span class="period">.</span><span class="space"> </span><span class="title">Inverse of a Product.</span>
 </h4>
-<div class="para" id="p-4041">If <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> are elements of group <span class="process-math">\(G\text{,}\)</span> then <span class="process-math">\((a*b)^{-1}= b^{-1}*a^{-1}\text{.}\)</span>
-</div></article><article class="hiddenproof" id="proof-34"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-34"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-34"><article class="hiddenproof"><div class="para logical" id="p-4042">
+<div class="para" id="p-4057">If <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> are elements of group <span class="process-math">\(G\text{,}\)</span> then <span class="process-math">\((a*b)^{-1}= b^{-1}*a^{-1}\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-34"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-34"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-34"><article class="hiddenproof"><div class="para logical" id="p-4058">
 <div class="para">Let <span class="process-math">\(x = b^{-1}*a^{-1}\text{.}\)</span> We will prove that <span class="process-math">\(x\)</span> inverts <span class="process-math">\(a * b\text{.}\)</span>  Since we know that the inverse is unique, we will have proved the theorem.</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1226,7 +1215,7 @@ a  &amp;=a*e \quad \quad e\textrm{ is the identity of }G\\
 <article class="theorem theorem-like" id="theorem-11-3-cancellation"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">11.3.8</span><span class="period">.</span><span class="space"> </span><span class="title">Cancellation Laws.</span>
 </h4>
-<div class="para logical" id="p-4043">
+<div class="para logical" id="p-4059">
 <div class="para">If <span class="process-math">\(a\text{,}\)</span> <span class="process-math">\(b\text{,}\)</span> and <span class="process-math">\(c\)</span> are elements of group <span class="process-math">\(G\text{,}\)</span> then</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1236,7 +1225,7 @@ a  &amp;=a*e \quad \quad e\textrm{ is the identity of }G\\
 \end{array}
 \end{equation*}
 </div>
-</div></article><article class="hiddenproof" id="proof-35"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-35"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-35"><article class="hiddenproof"><div class="para logical" id="p-4044">
+</div></article><article class="hiddenproof" id="proof-35"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-35"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-35"><article class="hiddenproof"><div class="para logical" id="p-4060">
 <div class="para">We will prove the left cancellation law. The right law can be proved in exactly the same way. Starting with <span class="process-math">\(a * b = a * c\text{,}\)</span> we can operate on both <span class="process-math">\(a * b\)</span> and <span class="process-math">\(a * c\)</span> on the left with <span class="process-math">\(a^{-1}\text{:}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1257,9 +1246,9 @@ a^{-1}* (a * b) = a^{-1} * (a * c)
 <article class="theorem theorem-like" id="theorem-11-3-linear-in-groups"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">11.3.9</span><span class="period">.</span><span class="space"> </span><span class="title">Linear Equations in a Group.</span>
 </h4>
-<div class="para" id="p-4045">If <span class="process-math">\(G\)</span> is a group and <span class="process-math">\(a, b \in  G\text{,}\)</span> the equation <span class="process-math">\(a * x = b\)</span> has a unique solution, <span class="process-math">\(x
+<div class="para" id="p-4061">If <span class="process-math">\(G\)</span> is a group and <span class="process-math">\(a, b \in  G\text{,}\)</span> the equation <span class="process-math">\(a * x = b\)</span> has a unique solution, <span class="process-math">\(x
 = a^{-1} * b\text{.}\)</span>  In addition, the equation <span class="process-math">\(x * a = b\)</span> has a unique solution, <span class="process-math">\(x = b * a^{-1}\text{.}\)</span>
-</div></article><article class="hiddenproof" id="proof-36"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-36"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-36"><article class="hiddenproof"><div class="para logical" id="p-4046">
+</div></article><article class="hiddenproof" id="proof-36"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-36"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-36"><article class="hiddenproof"><div class="para logical" id="p-4062">
 <div class="para">We prove the theorem only for <span class="process-math">\(a * x = b\text{,}\)</span> since the second statement is proven identically.</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1272,12 +1261,12 @@ a*x = b &amp; =e * b\\
 </div>
 <div class="para">By the cancellation law, we can conclude that <span class="process-math">\(x = a ^{-1} * b\text{.}\)</span>
 </div>
-</div> <div class="para" id="p-4047">If <span class="process-math">\(c\)</span> and <span class="process-math">\(d\)</span> are two solutions of the equation <span class="process-math">\(a * x = b\text{,}\)</span> then <span class="process-math">\(a * c = b = a * d\)</span> and, by the cancellation law, <span class="process-math">\(c = d\text{.}\)</span>  This verifies that <span class="process-math">\(a ^{-1} * b\)</span> is the only solution of <span class="process-math">\(a * x = b\text{.}\)</span>
+</div> <div class="para" id="p-4063">If <span class="process-math">\(c\)</span> and <span class="process-math">\(d\)</span> are two solutions of the equation <span class="process-math">\(a * x = b\text{,}\)</span> then <span class="process-math">\(a * c = b = a * d\)</span> and, by the cancellation law, <span class="process-math">\(c = d\text{.}\)</span>  This verifies that <span class="process-math">\(a ^{-1} * b\)</span> is the only solution of <span class="process-math">\(a * x = b\text{.}\)</span>
 </div></article></div>
 <article class="note remark-like" id="note-17"><h4 class="heading">
 <span class="type">Note</span><span class="space"> </span><span class="codenumber">11.3.10</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-4048">
+<div class="para logical" id="p-4064">
 <div class="para">Our proof of <a href="" class="xref" data-knowl="./knowl/theorem-11-3-linear-in-groups.html" title="Theorem 11.3.9: Linear Equations in a Group">Theorem 11.3.9</a> was analogous to solving the concrete equation <span class="process-math">\(4x = 9\)</span> in the following way:</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/theorem-11-3-linear-in-groups.html">
 \begin{equation*}
@@ -1293,7 +1282,7 @@ x = \frac{1}{4}\cdot  9 = \frac{9}{4}
 </div></article></section><section class="subsection" id="subsection-144"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">11.3.2</span> <span class="title">Exponents</span>
 </h3>
-<div class="para logical" id="p-4049">
+<div class="para logical" id="p-4065">
 <div class="para">If <span class="process-math">\(a\)</span> is an element of a group <span class="process-math">\(G\text{,}\)</span> then we establish the notation that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1312,11 +1301,11 @@ a^{-2}= \left(a^2\right)^{-1}
 </div>
 <article class="definition definition-like" id="def-exponents-in-groups"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">11.3.11</span><span class="period">.</span><span class="space"> </span><span class="title">Exponentiation in Groups.</span>
-</h4>  <div class="para" id="p-4050">For <span class="process-math">\(n \geq  0\text{,}\)</span> define <span class="process-math">\(a^n\)</span> recursively by <span class="process-math">\(a ^0 = e\)</span> and if <span class="process-math">\(n &gt; 0, a^n= a^{n-1} *a\text{.}\)</span> Also, if <span class="process-math">\(n &gt;1\text{,}\)</span> <span class="process-math">\(a^{-n}= \left(a^n\right)^{-1}\text{.}\)</span>
+</h4>  <div class="para" id="p-4066">For <span class="process-math">\(n \geq  0\text{,}\)</span> define <span class="process-math">\(a^n\)</span> recursively by <span class="process-math">\(a ^0 = e\)</span> and if <span class="process-math">\(n &gt; 0, a^n= a^{n-1} *a\text{.}\)</span> Also, if <span class="process-math">\(n &gt;1\text{,}\)</span> <span class="process-math">\(a^{-n}= \left(a^n\right)^{-1}\text{.}\)</span>
 </div></article><article class="example example-like" id="ex-concrete-exponents"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-concrete-exponents"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">11.3.12</span><span class="period">.</span><span class="space"> </span><span class="title">Some concrete exponentiations.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-concrete-exponents"><article class="example example-like"> <div class="para logical" id="p-4051"><ol class="lower-alpha">
-<li id="li-1863"><div class="para logical" id="p-4052">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-concrete-exponents"><article class="example example-like"> <div class="para logical" id="p-4067"><ol class="lower-alpha">
+<li id="li-1875"><div class="para logical" id="p-4068">
 <div class="para">In the group of positive real numbers with multiplication,</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1331,15 +1320,15 @@ a^{-2}= \left(a^2\right)^{-1}
 \end{equation*}
 </div>
 </div></li>
-<li id="li-1864"><div class="para" id="p-4053">In a group with addition, we use a different form of notation, reflecting the fact that in addition repeated terms are multiples, not powers. For example, in <span class="process-math">\([\mathbb{Z}; +]\text{,}\)</span> <span class="process-math">\(a + a\)</span> is written as <span class="process-math">\(2a\text{,}\)</span> <span class="process-math">\(a + a + a\)</span> is written as <span class="process-math">\(3a\text{,}\)</span> etc. The inverse of a multiple of <span class="process-math">\(a\)</span> such as <span class="process-math">\(- (a + a + a + a + a) = -(5a)\)</span> is written as <span class="process-math">\((-5)a\text{.}\)</span>
+<li id="li-1876"><div class="para" id="p-4069">In a group with addition, we use a different form of notation, reflecting the fact that in addition repeated terms are multiples, not powers. For example, in <span class="process-math">\([\mathbb{Z}; +]\text{,}\)</span> <span class="process-math">\(a + a\)</span> is written as <span class="process-math">\(2a\text{,}\)</span> <span class="process-math">\(a + a + a\)</span> is written as <span class="process-math">\(3a\text{,}\)</span> etc. The inverse of a multiple of <span class="process-math">\(a\)</span> such as <span class="process-math">\(- (a + a + a + a + a) = -(5a)\)</span> is written as <span class="process-math">\((-5)a\text{.}\)</span>
 </div></li>
 </ol></div></article></div>
-<div class="para" id="p-4054">Although we define, for example, <span class="process-math">\(a^5=a^4* a\text{,}\)</span> we need to be able to extract the single factor on the left.  The following lemma justifies doing precisely that.</div>
+<div class="para" id="p-4070">Although we define, for example, <span class="process-math">\(a^5=a^4* a\text{,}\)</span> we need to be able to extract the single factor on the left.  The following lemma justifies doing precisely that.</div>
 <article class="lemma theorem-like" id="lemma-11-3-1"><h4 class="heading">
 <span class="type">Lemma</span><span class="space"> </span><span class="codenumber">11.3.13</span><span class="period">.</span>
 </h4>
-<div class="para" id="p-4055">Let <span class="process-math">\(G\)</span> be a group.  If <span class="process-math">\(b\in G\)</span> and <span class="process-math">\(n\geq 0\text{,}\)</span> then  <span class="process-math">\(b^{n+1}=b* b^n\text{,}\)</span> and hence  <span class="process-math">\(b* b^n= b^n*b\text{.}\)</span>
-</div></article><article class="hiddenproof" id="proof-37"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-37"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-37"><article class="hiddenproof"><div class="para logical" id="p-4056">
+<div class="para" id="p-4071">Let <span class="process-math">\(G\)</span> be a group.  If <span class="process-math">\(b\in G\)</span> and <span class="process-math">\(n\geq 0\text{,}\)</span> then  <span class="process-math">\(b^{n+1}=b* b^n\text{,}\)</span> and hence  <span class="process-math">\(b* b^n= b^n*b\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-37"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-37"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-37"><article class="hiddenproof"><div class="para logical" id="p-4072">
 <div class="para">(By induction):  If  <span class="process-math">\(n=0\text{,}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1352,7 +1341,7 @@ b^1 &amp;= b^0*b \textrm{          by the definition of exponentiation}\\
 \end{split}
 \end{equation*}
 </div>
-</div> <div class="para logical" id="p-4057">
+</div> <div class="para logical" id="p-4073">
 <div class="para">Now assume the formula of the lemma is true for some <span class="process-math">\(n\geq 0\text{.}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1366,27 +1355,27 @@ b^{(n+1)+1} &amp;= b^{(n+1)}* b\textrm{           by the definition of exponenti
 \end{equation*}
 </div>
 </div></article></div>
-<div class="para" id="p-4058">Based on the definitions for exponentiation above, there are several properties that can be proven. They are all identical to the exponentiation properties from elementary algebra.</div>
+<div class="para" id="p-4074">Based on the definitions for exponentiation above, there are several properties that can be proven. They are all identical to the exponentiation properties from elementary algebra.</div>
 <article class="theorem theorem-like" id="theorem-11-3-expo-properties"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">11.3.14</span><span class="period">.</span><span class="space"> </span><span class="title">Properties of Exponentiation.</span>
 </h4>
-<div class="para logical" id="p-4059">
+<div class="para logical" id="p-4075">
 <div class="para">If a is an element of a group <span class="process-math">\(G\text{,}\)</span> and <span class="process-math">\(m\)</span> and <span class="process-math">\(n\)</span> are integers,</div>
 <ol class="decimal">
-<li id="li-1865"><div class="para" id="p-4060">
+<li id="li-1877"><div class="para" id="p-4076">
 <span class="process-math">\(a^{-n}= \left(a^{-1}\right)^n\)</span>    and hence  <span class="process-math">\(\left(a^n\right)^{-1}= \left(a^{-1}\right)^n\)</span>
 </div></li>
-<li id="li-1866"><div class="para" id="p-4061"><span class="process-math">\(\displaystyle a^{n+m}= a^n*a^m\)</span></div></li>
-<li id="li-1867"><div class="para" id="p-4062"><span class="process-math">\(\displaystyle \left(a^n\right)^m= a^{n m}\)</span></div></li>
+<li id="li-1878"><div class="para" id="p-4077"><span class="process-math">\(\displaystyle a^{n+m}= a^n*a^m\)</span></div></li>
+<li id="li-1879"><div class="para" id="p-4078"><span class="process-math">\(\displaystyle \left(a^n\right)^m= a^{n m}\)</span></div></li>
 </ol>
-</div></article><article class="hiddenproof" id="proof-38"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-38"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-38"><article class="hiddenproof"><div class="para" id="p-4063">We will leave the proofs of these properties to the reader.  All three parts can be done by induction.  For example the proof of the second part would start by defining the proposition  <span class="process-math">\(p(m)\)</span> , <span class="process-math">\(m\geq 0\text{,}\)</span> to be  <span class="process-math">\(a^{n+m}=a^n*a^m \textrm{ for all } n\text{.}\)</span>   The basis is <span class="process-math">\(p(0): a^{n+0}=a^n*a^0\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-38"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-38"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-38"><article class="hiddenproof"><div class="para" id="p-4079">We will leave the proofs of these properties to the reader.  All three parts can be done by induction.  For example the proof of the second part would start by defining the proposition  <span class="process-math">\(p(m)\)</span> , <span class="process-math">\(m\geq 0\text{,}\)</span> to be  <span class="process-math">\(a^{n+m}=a^n*a^m \textrm{ for all } n\text{.}\)</span>   The basis is <span class="process-math">\(p(0): a^{n+0}=a^n*a^0\text{.}\)</span>
 </div></article></div>
-<div class="para" id="p-4064">Our final theorem is the only one that contains a hypothesis about the group in question. The theorem only applies to finite groups.</div>
+<div class="para" id="p-4080">Our final theorem is the only one that contains a hypothesis about the group in question. The theorem only applies to finite groups.</div>
 <article class="theorem theorem-like" id="theorem-11-3-finite"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">11.3.15</span><span class="period">.</span>
 </h4>
-<div class="para" id="p-4065">If <span class="process-math">\(G\)</span> is a finite group,  <span class="process-math">\(\left| G\right| = n\text{,}\)</span> and <span class="process-math">\(a\)</span> is an element of <span class="process-math">\(G\text{,}\)</span> then there exists a positive integer <span class="process-math">\(m\)</span> such that <span class="process-math">\(a^m= e\)</span> and <span class="process-math">\(m\leq n\text{.}\)</span>
-</div></article><article class="hiddenproof" id="proof-39"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-39"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-39"><article class="hiddenproof"><div class="para logical" id="p-4066">
+<div class="para" id="p-4081">If <span class="process-math">\(G\)</span> is a finite group,  <span class="process-math">\(\left| G\right| = n\text{,}\)</span> and <span class="process-math">\(a\)</span> is an element of <span class="process-math">\(G\text{,}\)</span> then there exists a positive integer <span class="process-math">\(m\)</span> such that <span class="process-math">\(a^m= e\)</span> and <span class="process-math">\(m\leq n\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-39"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-39"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-39"><article class="hiddenproof"><div class="para logical" id="p-4082">
 <div class="para">Consider the list <span class="process-math">\(a, a^2,\ldots , a^{n+1}\)</span> . Since there are <span class="process-math">\(n + 1\)</span> elements of <span class="process-math">\(G\)</span> in this list, there must be some duplication.  Suppose that <span class="process-math">\(a^p=a^q\text{,}\)</span> with <span class="process-math">\(p &lt; q\text{.}\)</span> Let <span class="process-math">\(m = q - p\text{.}\)</span>    Then</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1402,34 +1391,34 @@ a^m &amp; =a^{q-p}\\
 <div class="para">Furthermore, since <span class="process-math">\(1\leq p &lt; q \leq n+1\text{,}\)</span>   <span class="process-math">\(m= q-p\leq n\text{.}\)</span>
 </div>
 </div></article></div>
-<div class="para logical" id="p-4067">
+<div class="para logical" id="p-4083">
 <div class="para">Consider the concrete group <span class="process-math">\([\mathbb{Z}; +]\text{.}\)</span> All of the theorems that we have stated in this section except for the last one say something about <span class="process-math">\(\mathbb{Z}\text{.}\)</span> Among the facts that we conclude from the theorems about <span class="process-math">\(\mathbb{Z}\)</span> are:</div>
 <ul class="disc">
-<li id="li-1868"><div class="para" id="p-4068">Since the inverse of 5 is <span class="process-math">\(-5\text{,}\)</span> the inverse of <span class="process-math">\(-5\)</span> is 5.</div></li>
-<li id="li-1869"><div class="para" id="p-4069">The inverse of <span class="process-math">\(-6 + 71\)</span> is  <span class="process-math">\(-(71) + -(-6) = -71 + 6\text{.}\)</span>
+<li id="li-1880"><div class="para" id="p-4084">Since the inverse of 5 is <span class="process-math">\(-5\text{,}\)</span> the inverse of <span class="process-math">\(-5\)</span> is 5.</div></li>
+<li id="li-1881"><div class="para" id="p-4085">The inverse of <span class="process-math">\(-6 + 71\)</span> is  <span class="process-math">\(-(71) + -(-6) = -71 + 6\text{.}\)</span>
 </div></li>
-<li id="li-1870"><div class="para" id="p-4070">The solution of <span class="process-math">\(12 + x = 22\)</span> is <span class="process-math">\(x = -12 + 22\text{.}\)</span>
+<li id="li-1882"><div class="para" id="p-4086">The solution of <span class="process-math">\(12 + x = 22\)</span> is <span class="process-math">\(x = -12 + 22\text{.}\)</span>
 </div></li>
-<li id="li-1871"><div class="para" id="p-4071"><span class="process-math">\(-4(6) + 2(6) = (-4 + 2)(6) = -2(6) = -(2)(6)\text{.}\)</span></div></li>
-<li id="li-1872"><div class="para" id="p-4072">
+<li id="li-1883"><div class="para" id="p-4087"><span class="process-math">\(-4(6) + 2(6) = (-4 + 2)(6) = -2(6) = -(2)(6)\text{.}\)</span></div></li>
+<li id="li-1884"><div class="para" id="p-4088">
 <span class="process-math">\(7(4(3)) = (7\cdot 4)(3) = 28(3)\)</span>  (twenty-eight 3s).</div></li>
 </ul>
 </div></section><section class="exercises" id="exercises-11-3"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">11.3.3</span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-458"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para logical" id="p-4073">
+<article class="exercise exercise-like" id="exercise-461"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para logical" id="p-4089">
 <div class="para">Let <span class="process-math">\([G; * ]\)</span> be a group and <span class="process-math">\(a\)</span> be an element of <span class="process-math">\(G\text{.}\)</span>  Define <span class="process-math">\(f:G \to  G\)</span> by <span class="process-math">\(f(x) = a * x\text{.}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-1873"><div class="para" id="p-4074">Prove that <span class="process-math">\(f\)</span> is a bijection.</div></li>
-<li id="li-1874"><div class="para" id="p-4075">On the basis of part a, describe a set of bijections on the set of integers.</div></li>
+<li id="li-1885"><div class="para" id="p-4090">Prove that <span class="process-math">\(f\)</span> is a bijection.</div></li>
+<li id="li-1886"><div class="para" id="p-4091">On the basis of part a, describe a set of bijections on the set of integers.</div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-213" id="answer-213"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-213"><div class="answer solution-like"><div class="para logical" id="p-4076"><ol class="lower-alpha">
-<li id="li-1875">
-<div class="para logical" id="p-4077">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-215" id="answer-215"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-215"><div class="answer solution-like"><div class="para logical" id="p-4092"><ol class="lower-alpha">
+<li id="li-1887">
+<div class="para logical" id="p-4093">
 <div class="para">
 <span class="process-math">\(f\)</span> is injective:</div>
 <div class="displaymath process-math">
@@ -1441,19 +1430,19 @@ f(x) = f(y) &amp; \Rightarrow  a * x = a * y \\
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-4078">
+<div class="para" id="p-4094">
 <span class="process-math">\(f\)</span> is surjective:  For all <span class="process-math">\(b \in G\text{,}\)</span>   <span class="process-math">\(f(x) = b\)</span> has the solution <span class="process-math">\(a^{-1}*b\text{.}\)</span>
 </div>
 </li>
-<li id="li-1876"><div class="para" id="p-4079">Functions of the form <span class="process-math">\(f(x) = a + x\text{,}\)</span> where <span class="process-math">\(a\)</span> is any integer, are bijections</div></li>
+<li id="li-1888"><div class="para" id="p-4095">Functions of the form <span class="process-math">\(f(x) = a + x\text{,}\)</span> where <span class="process-math">\(a\)</span> is any integer, are bijections</div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-459"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para" id="p-4080">Rephrase <a href="" class="xref" data-knowl="./knowl/theorem-11-3-2.html" title="Theorem 11.3.3: Inverses are Unique">Theorem 11.3.3</a> and write out a clear proof.</div></article><article class="exercise exercise-like" id="exercise-460"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para" id="p-4081">Prove by induction on <span class="process-math">\(n\)</span> that if <span class="process-math">\(a_1\text{,}\)</span> <span class="process-math">\(a_2,\ldots , a_n\)</span> are elements of a group <span class="process-math">\(G\text{,}\)</span> <span class="process-math">\(n\geq 2\text{,}\)</span> then <span class="process-math">\(\left(a_1*a_2*\cdots *a_n\right)^{-1}= a_n^{-1}*\cdots *a_2^{-1}*a_1^{-1}\text{.}\)</span> Interpret this result in terms of <span class="process-math">\([\mathbb{Z}; +]\)</span> and <span class="process-math">\([\mathbb{R}^*;\cdot]\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-462"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para" id="p-4096">Rephrase <a href="" class="xref" data-knowl="./knowl/theorem-11-3-2.html" title="Theorem 11.3.3: Inverses are Unique">Theorem 11.3.3</a> and write out a clear proof.</div></article><article class="exercise exercise-like" id="exercise-463"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para" id="p-4097">Prove by induction on <span class="process-math">\(n\)</span> that if <span class="process-math">\(a_1\text{,}\)</span> <span class="process-math">\(a_2,\ldots , a_n\)</span> are elements of a group <span class="process-math">\(G\text{,}\)</span> <span class="process-math">\(n\geq 2\text{,}\)</span> then <span class="process-math">\(\left(a_1*a_2*\cdots *a_n\right)^{-1}= a_n^{-1}*\cdots *a_2^{-1}*a_1^{-1}\text{.}\)</span> Interpret this result in terms of <span class="process-math">\([\mathbb{Z}; +]\)</span> and <span class="process-math">\([\mathbb{R}^*;\cdot]\text{.}\)</span>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-214" id="answer-214"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-214"><div class="answer solution-like">
-<div class="para" id="p-4082">Basis: (<span class="process-math">\(n = 2\)</span>)   <span class="process-math">\(\left(a_1*a_2\right)^{-1}= a_2^{-1}*a_1^{-1}\)</span> by <a href="" class="xref" data-knowl="./knowl/theorem-11-3-4.html" title="Theorem 11.3.7: Inverse of a Product">Theorem 11.3.7</a>.</div> <div class="para logical" id="p-4083">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-216" id="answer-216"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-216"><div class="answer solution-like">
+<div class="para" id="p-4098">Basis: (<span class="process-math">\(n = 2\)</span>)   <span class="process-math">\(\left(a_1*a_2\right)^{-1}= a_2^{-1}*a_1^{-1}\)</span> by <a href="" class="xref" data-knowl="./knowl/theorem-11-3-4.html" title="Theorem 11.3.7: Inverse of a Product">Theorem 11.3.7</a>.</div> <div class="para logical" id="p-4099">
 <div class="para">Induction: Assume that for some <span class="process-math">\(n \geq  2\text{,}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1467,7 +1456,7 @@ f(x) = f(y) &amp; \Rightarrow  a * x = a * y \\
 \left(a_1*a_2* \cdots *a_n*a_{n+1}\right)^{-1}=a_{n+1}^{-1}*a_n^{-1}* \cdots * a_2^{-1}*a_1^{-1}
 \end{equation*}
 </div>
-</div> <div class="para logical" id="p-4084">
+</div> <div class="para logical" id="p-4100">
 <div class="para">This can be accomplished as follows:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1482,17 +1471,17 @@ by the associative law}\\
 </div>
 </div>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-461"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para" id="p-4085">True or false? If <span class="process-math">\(a\text{,}\)</span> <span class="process-math">\(b\text{,}\)</span> <span class="process-math">\(c\)</span> are elements of a group <span class="process-math">\(G\text{,}\)</span> and <span class="process-math">\(a * b = c * a\text{,}\)</span> then <span class="process-math">\(b = c\text{.}\)</span> Explain your answer.</div></article><article class="exercise exercise-like" id="exercise-462"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
-<div class="para" id="p-4086">Prove <a href="" class="xref" data-knowl="./knowl/theorem-11-3-expo-properties.html" title="Theorem 11.3.14: Properties of Exponentiation">Theorem 11.3.14</a>.</div>
+</div></article><article class="exercise exercise-like" id="exercise-464"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para" id="p-4101">True or false? If <span class="process-math">\(a\text{,}\)</span> <span class="process-math">\(b\text{,}\)</span> <span class="process-math">\(c\)</span> are elements of a group <span class="process-math">\(G\text{,}\)</span> and <span class="process-math">\(a * b = c * a\text{,}\)</span> then <span class="process-math">\(b = c\text{.}\)</span> Explain your answer.</div></article><article class="exercise exercise-like" id="exercise-465"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para" id="p-4102">Prove <a href="" class="xref" data-knowl="./knowl/theorem-11-3-expo-properties.html" title="Theorem 11.3.14: Properties of Exponentiation">Theorem 11.3.14</a>.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-215" id="answer-215"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-215"><div class="answer solution-like">
-<div class="para" id="p-4087">In this answer, we will refer to <a href="" class="xref" data-knowl="./knowl/lemma-11-3-1.html" title="Lemma 11.3.13">Lemma 11.3.13</a> simply as “the lemma.”</div> <div class="para logical" id="p-4088"><ol class="lower-alpha">
-<li id="li-1877">
-<div class="para" id="p-4089">Let <span class="process-math">\(p(n)\)</span> be <span class="process-math">\(a^{-n}= \left(a^{-1}\right)^n\text{,}\)</span> where <span class="process-math">\(a\)</span> is any element of group <span class="process-math">\([G; *]\text{.}\)</span> First we will prove that <span class="process-math">\(p(n)\)</span> is true for all <span class="process-math">\(n \geq  0\text{.}\)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-217" id="answer-217"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-217"><div class="answer solution-like">
+<div class="para" id="p-4103">In this answer, we will refer to <a href="" class="xref" data-knowl="./knowl/lemma-11-3-1.html" title="Lemma 11.3.13">Lemma 11.3.13</a> simply as “the lemma.”</div> <div class="para logical" id="p-4104"><ol class="lower-alpha">
+<li id="li-1889">
+<div class="para" id="p-4105">Let <span class="process-math">\(p(n)\)</span> be <span class="process-math">\(a^{-n}= \left(a^{-1}\right)^n\text{,}\)</span> where <span class="process-math">\(a\)</span> is any element of group <span class="process-math">\([G; *]\text{.}\)</span> First we will prove that <span class="process-math">\(p(n)\)</span> is true for all <span class="process-math">\(n \geq  0\text{.}\)</span>
 </div>
-<div class="para" id="p-4090">Basis: If <span class="process-math">\(n = 0\text{,}\)</span> Using the definition of the zero exponent,  <span class="process-math">\(\left(a^0\right)^{-1} = e^{-1} = e\text{,}\)</span>  while <span class="process-math">\(\left(a^{-1}\right)^0= e\text{.}\)</span> Therefore, <span class="process-math">\(p(0)\)</span> is true.</div>
-<div class="para logical" id="p-4091">
+<div class="para" id="p-4106">Basis: If <span class="process-math">\(n = 0\text{,}\)</span> Using the definition of the zero exponent,  <span class="process-math">\(\left(a^0\right)^{-1} = e^{-1} = e\text{,}\)</span>  while <span class="process-math">\(\left(a^{-1}\right)^0= e\text{.}\)</span> Therefore, <span class="process-math">\(p(0)\)</span> is true.</div>
+<div class="para logical" id="p-4107">
 <div class="para">Induction: Assume that for some <span class="process-math">\(n \geq  0\text{,}\)</span> <span class="process-math">\(p(n\)</span>) is true.</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1505,7 +1494,7 @@ by the associative law}\\
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-4092">
+<div class="para logical" id="p-4108">
 <div class="para">If <span class="process-math">\(n\)</span> is negative, then <span class="process-math">\(-n\)</span> is positive and</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1518,9 +1507,9 @@ a^{-n} &amp; = \left(\left(\left(a^{-1}\right)^{-1}\right)^{-n} \right)\\
 </div>
 </div>
 </li>
-<li id="li-1878">
-<div class="para" id="p-4093">For <span class="process-math">\(m &gt; 1\text{,}\)</span> let <span class="process-math">\(p(m)\)</span> be <span class="process-math">\(a^{n+m}=a^n*a^m\)</span> for all <span class="process-math">\(n\geq 1\text{.}\)</span> The basis for this proof follows directly from the basis for the definition of exponentiation.</div>
-<div class="para logical" id="p-4094">
+<li id="li-1890">
+<div class="para" id="p-4109">For <span class="process-math">\(m &gt; 1\text{,}\)</span> let <span class="process-math">\(p(m)\)</span> be <span class="process-math">\(a^{n+m}=a^n*a^m\)</span> for all <span class="process-math">\(n\geq 1\text{.}\)</span> The basis for this proof follows directly from the basis for the definition of exponentiation.</div>
+<div class="para logical" id="p-4110">
 <div class="para">Induction: Assume that for some <span class="process-math">\(m &gt; 1\text{,}\)</span> <span class="process-math">\(p(m)\)</span> is true. Then</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1536,11 +1525,11 @@ a^{n+(m+1)}&amp;= a^{(n+m)+1}\textrm{      by the associativity of integer addit
 <div class="para">To complete the proof, you need to consider the cases where <span class="process-math">\(m\)</span> and/or <span class="process-math">\(n\)</span> are negative.</div>
 </div>
 </li>
-<li id="li-1879">
-<div class="para" id="p-4095">Let <span class="process-math">\(p(m)\)</span>be <span class="process-math">\(\left(a^n\right)^m= a^{n m}\)</span> for all integers <span class="process-math">\(n\text{.}\)</span>
+<li id="li-1891">
+<div class="para" id="p-4111">Let <span class="process-math">\(p(m)\)</span>be <span class="process-math">\(\left(a^n\right)^m= a^{n m}\)</span> for all integers <span class="process-math">\(n\text{.}\)</span>
 </div>
-<div class="para" id="p-4096">Basis: <span class="process-math">\(\left(a^m\right)^0= e\)</span> and <span class="process-math">\(a^{m\cdot 0}=a^0= e\)</span> therefore, <span class="process-math">\(p(0)\)</span> is true.</div>
-<div class="para logical" id="p-4097">
+<div class="para" id="p-4112">Basis: <span class="process-math">\(\left(a^m\right)^0= e\)</span> and <span class="process-math">\(a^{m\cdot 0}=a^0= e\)</span> therefore, <span class="process-math">\(p(0)\)</span> is true.</div>
+<div class="para logical" id="p-4113">
 <div class="para">Induction; Assume that <span class="process-math">\(p(m)\)</span> is true for some <span class="process-math">\(m &gt;\)</span>0,</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1557,17 +1546,17 @@ a^{n+(m+1)}&amp;= a^{(n+m)+1}\textrm{      by the associativity of integer addit
 </li>
 </ol></div>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-463"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
-<div class="para logical" id="p-4098">
+</div></article><article class="exercise exercise-like" id="exercise-466"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div class="para logical" id="p-4114">
 <div class="para">Each of the following facts can be derived by identifying a certain group and then applying one of the theorems of this section to it. For each fact, list the group and the theorem that are used.</div>
 <ol class="lower-alpha">
-<li id="li-1880"><div class="para" id="p-4099">
+<li id="li-1892"><div class="para" id="p-4115">
 <span class="process-math">\(\left(\frac{1}{3}\right)5\)</span> is the only solution of <span class="process-math">\(3x = 5\text{.}\)</span>
 </div></li>
-<li id="li-1881"><div class="para" id="p-4100"><span class="process-math">\(-(-(-18)) = -18\text{.}\)</span></div></li>
-<li id="li-1882"><div class="para" id="p-4101">If <span class="process-math">\(A, B, C\)</span> are <span class="process-math">\(3\times 3\)</span> matrices over the real numbers, with <span class="process-math">\(A + B = A + C\text{,}\)</span> then <span class="process-math">\(B = C\text{.}\)</span>
+<li id="li-1893"><div class="para" id="p-4116"><span class="process-math">\(-(-(-18)) = -18\text{.}\)</span></div></li>
+<li id="li-1894"><div class="para" id="p-4117">If <span class="process-math">\(A, B, C\)</span> are <span class="process-math">\(3\times 3\)</span> matrices over the real numbers, with <span class="process-math">\(A + B = A + C\text{,}\)</span> then <span class="process-math">\(B = C\text{.}\)</span>
 </div></li>
-<li id="li-1883"><div class="para" id="p-4102">There is only one subset <span class="process-math">\(K\)</span> of the natural numbers for which <span class="process-math">\(K \oplus  A = A\)</span> for every subset <span class="process-math">\(A\)</span> of the natural numbers.</div></li>
+<li id="li-1895"><div class="para" id="p-4118">There is only one subset <span class="process-math">\(K\)</span> of the natural numbers for which <span class="process-math">\(K \oplus  A = A\)</span> for every subset <span class="process-math">\(A\)</span> of the natural numbers.</div></li>
 </ol>
 </div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>

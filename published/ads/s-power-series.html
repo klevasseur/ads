@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Power Series</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,32 +58,47 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
 </script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
 <script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
@@ -105,59 +138,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -166,7 +156,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -321,7 +311,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1133,7 +1126,7 @@ eBookConfig.runestone_version = '7.0.7';
 <section class="subsection" id="subsection-191"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">16.5.1</span> <span class="title">Definition</span>
 </h3>
-<div class="para logical" id="p-6340">
+<div class="para logical" id="p-6356">
 <div class="para">Earlier in this chapter, we found that a polynomial of degree <span class="process-math">\(n\)</span> over a ring <span class="process-math">\(R\)</span>  is an expression of the form</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1147,10 +1140,10 @@ G(s,z)= \sum_{i=0}^{\infty } s_i z^i=s_0 + s_1 z+s_2 z^2+ \cdots
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-6341">The main difference between these two expressions, disregarding notation, is that the latter is an infinite expression and the former is a finite expression. In this section we will extend the algebra of polynomials to the algebra of infinite expressions like <span class="process-math">\(G(s, z)\text{,}\)</span>  which are called power series.</div>
+<div class="para" id="p-6357">The main difference between these two expressions, disregarding notation, is that the latter is an infinite expression and the former is a finite expression. In this section we will extend the algebra of polynomials to the algebra of infinite expressions like <span class="process-math">\(G(s, z)\text{,}\)</span>  which are called power series.</div>
 <article class="definition definition-like" id="def-power-series"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">16.5.1</span><span class="period">.</span><span class="space"> </span><span class="title">Power Series.</span>
-</h4>  <div class="para logical" id="p-6342">
+</h4>  <div class="para logical" id="p-6358">
 <div class="para">Let <span class="process-math">\([R; +,\cdot ]\)</span> be a ring. A power series over <span class="process-math">\(R\)</span> is an expression of the form</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1159,14 +1152,14 @@ f(x)=\sum_{i=0}^{\infty } a_i x^i=a_0 + a_1 x+a_2 x^2+ \cdots
 </div>
 <div class="para">where <span class="process-math">\(a_1, a_2, a_3,\ldots \in  R\text{.}\)</span>  The set of all such expressions is denoted by <span class="process-math">\(R[[x]]\text{.}\)</span>
 </div>
-</div></article><div class="para" id="p-6343">Our first observation in our comparison of <span class="process-math">\(R[x]\)</span> and <span class="process-math">\(R[[x]]\)</span> is that every polynomial is a power series and so <span class="process-math">\(R[x]\subseteq R[[x]]\text{.}\)</span> This is true because a polynomial <span class="process-math">\(a_0 + a_1 x+a_2 x^2+ \cdots +a_n x^n\)</span> of degree <span class="process-math">\(n\)</span> in <span class="process-math">\(R[x]\text{,}\)</span> can be thought of as an infinite expression where <span class="process-math">\(a_i=0\)</span> for <span class="process-math">\(i &gt; n\text{.}\)</span>  In addition, we will see that <span class="process-math">\(R[[x]]\)</span> is a ring with subring <span class="process-math">\(R[x]\text{.}\)</span>
+</div></article><div class="para" id="p-6359">Our first observation in our comparison of <span class="process-math">\(R[x]\)</span> and <span class="process-math">\(R[[x]]\)</span> is that every polynomial is a power series and so <span class="process-math">\(R[x]\subseteq R[[x]]\text{.}\)</span> This is true because a polynomial <span class="process-math">\(a_0 + a_1 x+a_2 x^2+ \cdots +a_n x^n\)</span> of degree <span class="process-math">\(n\)</span> in <span class="process-math">\(R[x]\text{,}\)</span> can be thought of as an infinite expression where <span class="process-math">\(a_i=0\)</span> for <span class="process-math">\(i &gt; n\text{.}\)</span>  In addition, we will see that <span class="process-math">\(R[[x]]\)</span> is a ring with subring <span class="process-math">\(R[x]\text{.}\)</span>
 </div>
-<div class="para" id="p-6344">
+<div class="para" id="p-6360">
 <span class="process-math">\(R[[x]]\)</span> is given a ring structure by defining addition and multiplication on power series as we did in <span class="process-math">\(R[x]\text{,}\)</span> with the modification that, since we are dealing with infinite expressions, the sums and products will remain infinite expressions that we can determine term by term, as was done in with polynomials.</div>
 <article class="definition definition-like" id="def-power-series-addition"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">16.5.2</span><span class="period">.</span><span class="space"> </span><span class="title">Power Series Addition.</span>
 </h4>
-<div class="para logical" id="p-6345">
+<div class="para logical" id="p-6361">
 <div class="para">Given power series</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1188,7 +1181,7 @@ f(x)+g(x)&amp;=\sum_{i=0}^{\infty }\left(a_i+b_i\right) x^i\\
 </div></article><article class="definition definition-like" id="def-power-series-multiplication"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">16.5.3</span><span class="period">.</span><span class="space"> </span><span class="title">Power Series Multiplication.</span>
 </h4>
-<div class="para logical" id="p-6346">
+<div class="para logical" id="p-6362">
 <div class="para">Given power series</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1209,7 +1202,7 @@ f(x)\cdot g(x)&amp;=\sum_{i=0}^{\infty } d_i x^i \quad \textrm{where }d_i= \sum_
 </div>
 </div></article><article class="example example-like" id="ex-ps-calculations"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-ps-calculations"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">16.5.4</span><span class="period">.</span><span class="space"> </span><span class="title">Some Power Series Calcuations.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-ps-calculations"><article class="example example-like"> <div class="para logical" id="p-6347">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-ps-calculations"><article class="example example-like"> <div class="para logical" id="p-6363">
 <div class="para">Let</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1248,51 +1241,51 @@ f(x) \cdot g(x) &amp; =\left(\sum_{i=0}^{\infty } i x^i\right)\cdot \left(\sum_{
         s+=j*2^(i-j)
     return s
 d(20)
-</script></pre> <div class="para" id="p-6348">A closed-form expression for <span class="process-math">\(d_i\)</span> would be desirable.  Using techniques from Chapter 8,  the formula is  <span class="process-math">\(d_i=2^{i+1}-i-2\text{,}\)</span> which we leave it to the reader to derive.  Hence, <span class="process-math">\(f(x)\cdot g(x) =\sum_{i=0}^{\infty } (2^{i+1}-i-2) x^i\)</span>
+</script></pre> <div class="para" id="p-6364">A closed-form expression for <span class="process-math">\(d_i\)</span> would be desirable.  Using techniques from Chapter 8,  the formula is  <span class="process-math">\(d_i=2^{i+1}-i-2\text{,}\)</span> which we leave it to the reader to derive.  Hence, <span class="process-math">\(f(x)\cdot g(x) =\sum_{i=0}^{\infty } (2^{i+1}-i-2) x^i\)</span>
 </div></article></div></section><section class="subsection" id="subsection-192"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">16.5.2</span> <span class="title">Properties, Units</span>
 </h3>
-<div class="para" id="p-6349">We have seen that addition and multiplication in <span class="process-math">\(R[[x]]\)</span> is virtually identical to that in <span class="process-math">\(R[x]\text{.}\)</span> The following theorem parallels <a href="" class="xref" data-knowl="./knowl/theorem-polynomial-ring-properties.html" title="Theorem 16.3.8: Properties of Polynomial Rings">Theorem 16.3.8</a>, establishing the ring properties of <span class="process-math">\(R[[x]]\text{.}\)</span>
+<div class="para" id="p-6365">We have seen that addition and multiplication in <span class="process-math">\(R[[x]]\)</span> is virtually identical to that in <span class="process-math">\(R[x]\text{.}\)</span> The following theorem parallels <a href="" class="xref" data-knowl="./knowl/theorem-polynomial-ring-properties.html" title="Theorem 16.3.8: Properties of Polynomial Rings">Theorem 16.3.8</a>, establishing the ring properties of <span class="process-math">\(R[[x]]\text{.}\)</span>
 </div>
 <article class="theorem theorem-like" id="theorem-power-series-properties"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">16.5.5</span><span class="period">.</span><span class="space"> </span><span class="title">Properties of Power Series.</span>
 </h4>
-<div class="para logical" id="p-6350">
+<div class="para logical" id="p-6366">
 <div class="para">Let <span class="process-math">\([R; +, \cdot ]\)</span> be a ring. Then:</div>
 <ol class="decimal">
-<li id="li-2812"><div class="para" id="p-6351">
+<li id="li-2824"><div class="para" id="p-6367">
 <span class="process-math">\(R[[x]]\)</span> is a ring under the operations of power series addition and multiplication, which depend on  the operations in R.</div></li>
-<li id="li-2813"><div class="para" id="p-6352">If R is a commutative ring, then <span class="process-math">\(R[[x]]\)</span> is a commutative ring.</div></li>
-<li id="li-2814"><div class="para" id="p-6353">If R is a ring with unity, <span class="process-math">\(1\text{,}\)</span> then <span class="process-math">\(R[[x]]\)</span> is a ring with unity (the unity in R[x] is <span class="process-math">\(1 + 0x + 0 x^2 + \cdots\)</span>).</div></li>
-<li id="li-2815"><div class="para" id="p-6354">If R is an integral domain, then <span class="process-math">\(R[[x]]\)</span> is an integral domain.</div></li>
-<li id="li-2816"><div class="para" id="p-6355">If F is a field, then <span class="process-math">\(F[[x]]\)</span> is not a field. However, <span class="process-math">\(F[[x]]\)</span> is an integral domain.</div></li>
+<li id="li-2825"><div class="para" id="p-6368">If R is a commutative ring, then <span class="process-math">\(R[[x]]\)</span> is a commutative ring.</div></li>
+<li id="li-2826"><div class="para" id="p-6369">If R is a ring with unity, <span class="process-math">\(1\text{,}\)</span> then <span class="process-math">\(R[[x]]\)</span> is a ring with unity (the unity in R[x] is <span class="process-math">\(1 + 0x + 0 x^2 + \cdots\)</span>).</div></li>
+<li id="li-2827"><div class="para" id="p-6370">If R is an integral domain, then <span class="process-math">\(R[[x]]\)</span> is an integral domain.</div></li>
+<li id="li-2828"><div class="para" id="p-6371">If F is a field, then <span class="process-math">\(F[[x]]\)</span> is not a field. However, <span class="process-math">\(F[[x]]\)</span> is an integral domain.</div></li>
 </ol>
-</div></article><div class="para" id="p-6356">We are most interested in the situation when the set of coefficients is a field. The theorem above indicates that when <span class="process-math">\(F\)</span> is a field, <span class="process-math">\(F[[x]]\)</span> is an integral domain. A reason that <span class="process-math">\(F[[x]]\)</span> is not a field is the same as one that we can cite for <span class="process-math">\(F[x]\text{,}\)</span> namely that <span class="process-math">\(x\)</span> does not have multiplicative inverse in <span class="process-math">\(F[[x]]\text{.}\)</span>
+</div></article><div class="para" id="p-6372">We are most interested in the situation when the set of coefficients is a field. The theorem above indicates that when <span class="process-math">\(F\)</span> is a field, <span class="process-math">\(F[[x]]\)</span> is an integral domain. A reason that <span class="process-math">\(F[[x]]\)</span> is not a field is the same as one that we can cite for <span class="process-math">\(F[x]\text{,}\)</span> namely that <span class="process-math">\(x\)</span> does not have multiplicative inverse in <span class="process-math">\(F[[x]]\text{.}\)</span>
 </div>
-<div class="para" id="p-6357">With all of these similarities, one might wonder if the rings of polynomials and power series over a field are isomorphic.  It turns out that they are not. The difference between <span class="process-math">\(F[x]\)</span> and <span class="process-math">\(F[[x]]\)</span> becomes apparent when one studies which elements are units in each. First we prove that the only units in <span class="process-math">\(F[x]\)</span> are the nonzero constants; that is, the nonzero elements of <span class="process-math">\(F\text{.}\)</span>
+<div class="para" id="p-6373">With all of these similarities, one might wonder if the rings of polynomials and power series over a field are isomorphic.  It turns out that they are not. The difference between <span class="process-math">\(F[x]\)</span> and <span class="process-math">\(F[[x]]\)</span> becomes apparent when one studies which elements are units in each. First we prove that the only units in <span class="process-math">\(F[x]\)</span> are the nonzero constants; that is, the nonzero elements of <span class="process-math">\(F\text{.}\)</span>
 </div>
 <article class="theorem theorem-like" id="theorem-polynomial-units"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">16.5.6</span><span class="period">.</span><span class="space"> </span><span class="title">Polynomial Units.</span>
 </h4>
-<div class="para" id="p-6358">Let <span class="process-math">\([F; +, \cdot ]\)</span> be a field. Polynomial <span class="process-math">\(f(x)\)</span> is a unit in <span class="process-math">\(F[x]\)</span> if and only if it is a nonzero constant polynomial.</div></article><article class="hiddenproof" id="proof-77"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-77"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-77"><article class="hiddenproof"><article class="case" id="case-5"><h5 class="heading">
+<div class="para" id="p-6374">Let <span class="process-math">\([F; +, \cdot ]\)</span> be a field. Polynomial <span class="process-math">\(f(x)\)</span> is a unit in <span class="process-math">\(F[x]\)</span> if and only if it is a nonzero constant polynomial.</div></article><article class="hiddenproof" id="proof-77"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-77"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-77"><article class="hiddenproof"><article class="case" id="case-5"><h5 class="heading">
 <!--Style arrows in CSS?-->(⇒) </h5>
-<div class="para" id="p-6359">Let <span class="process-math">\(f(x)\)</span> be a unit in <span class="process-math">\(F[x]\text{.}\)</span> Then <span class="process-math">\(f(x)\)</span> has a multiplicative inverse, call it <span class="process-math">\(g(x)\text{,}\)</span> such that <span class="process-math">\(f(x) \cdot
+<div class="para" id="p-6375">Let <span class="process-math">\(f(x)\)</span> be a unit in <span class="process-math">\(F[x]\text{.}\)</span> Then <span class="process-math">\(f(x)\)</span> has a multiplicative inverse, call it <span class="process-math">\(g(x)\text{,}\)</span> such that <span class="process-math">\(f(x) \cdot
 g(x) = 1\text{.}\)</span> Hence, the <span class="process-math">\(\deg  (f(x)\cdot  g(x)) = \deg  (1) = 0\text{.}\)</span> But <span class="process-math">\(\deg  (f(x)\cdot  g(x)) = \deg  f(x) + \deg  g(x)\text{.}\)</span> So <span class="process-math">\(\deg  f(x) +
 \deg  g(x) = 0\text{,}\)</span> and since the degree of a polynomial is always nonnegative, this can only happen when the <span class="process-math">\(\deg  f(x) = \deg  g(x) = 0\text{.}\)</span> Hence, <span class="process-math">\(f(x)\)</span> is a constant, an element of <span class="process-math">\(F\text{,}\)</span> which is a unit if and only if it is nonzero.</div></article> <article class="case" id="case-6"><h5 class="heading">
 <!--Style arrows in CSS?-->(⇐) </h5>
-<div class="para" id="p-6360">If <span class="process-math">\(f(x)\)</span> is a nonzero element of <span class="process-math">\(F\text{,}\)</span> then it is a unit since <span class="process-math">\(F\)</span> is a field.  Thus it has an inverse, which is also in <span class="process-math">\(F[x]\)</span> and so <span class="process-math">\(f(x)\)</span> is a unit of <span class="process-math">\(F[x]\text{.}\)</span>
+<div class="para" id="p-6376">If <span class="process-math">\(f(x)\)</span> is a nonzero element of <span class="process-math">\(F\text{,}\)</span> then it is a unit since <span class="process-math">\(F\)</span> is a field.  Thus it has an inverse, which is also in <span class="process-math">\(F[x]\)</span> and so <span class="process-math">\(f(x)\)</span> is a unit of <span class="process-math">\(F[x]\text{.}\)</span>
 </div></article></article></div>
-<div class="para" id="p-6361">Before we proceed to categorize the units in <span class="process-math">\(F[[x]]\text{,}\)</span> we remind the reader that two power series <span class="process-math">\(a_0 + a_1 x+a_2 x^2+ \cdots\)</span> and <span class="process-math">\(b_0 + b_1
+<div class="para" id="p-6377">Before we proceed to categorize the units in <span class="process-math">\(F[[x]]\text{,}\)</span> we remind the reader that two power series <span class="process-math">\(a_0 + a_1 x+a_2 x^2+ \cdots\)</span> and <span class="process-math">\(b_0 + b_1
 x+b_2 x^2+ \cdots\)</span> are equal if and only if corresponding coefficients are equal, <span class="process-math">\(a_i=b_i\)</span> for all <span class="process-math">\(i \geq 0\text{.}\)</span>
 </div>
 <article class="theorem theorem-like" id="theorem-power-series-units"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">16.5.7</span><span class="period">.</span><span class="space"> </span><span class="title">Power Series Units.</span>
 </h4>
-<div class="para" id="p-6362">Let <span class="process-math">\([F; +, \cdot ]\)</span> be a field. Then <span class="process-math">\(f(x)=\sum_{i=0}^{\infty } a_i x^i\)</span> is a unit of <span class="process-math">\(F[[x]]\)</span>  if and only if <span class="process-math">\(a_0\neq
+<div class="para" id="p-6378">Let <span class="process-math">\([F; +, \cdot ]\)</span> be a field. Then <span class="process-math">\(f(x)=\sum_{i=0}^{\infty } a_i x^i\)</span> is a unit of <span class="process-math">\(F[[x]]\)</span>  if and only if <span class="process-math">\(a_0\neq
 0\text{.}\)</span>
 </div></article><article class="hiddenproof" id="proof-78"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-78"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-78"><article class="hiddenproof"><article class="case" id="case-7"><h5 class="heading">
 <!--Style arrows in CSS?-->(⇒) </h5>
-<div class="para logical" id="p-6363">
+<div class="para logical" id="p-6379">
 <div class="para">If <span class="process-math">\(f(x)\)</span> is a unit of <span class="process-math">\(F[[x]]\text{,}\)</span> then there exists  <span class="process-math">\(g(x)=\sum_{i=0}^{\infty } b_i x^i\)</span> in <span class="process-math">\(F[[x]]\)</span> such that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1303,10 +1296,10 @@ f(x)\cdot g(x) &amp;=\left(a_0 + a_1 x+a_2 x^2+ \cdots \right)\cdot \left(b_0 + 
 \end{split}\text{.}
 \end{equation*}
 </div>
-</div> <div class="para" id="p-6364">Since corresponding coefficients in the equation above must be equal, <span class="process-math">\(a_0\cdot b_0=1\text{,}\)</span> which implies that <span class="process-math">\(a_0\neq 0\text{.}\)</span>
+</div> <div class="para" id="p-6380">Since corresponding coefficients in the equation above must be equal, <span class="process-math">\(a_0\cdot b_0=1\text{,}\)</span> which implies that <span class="process-math">\(a_0\neq 0\text{.}\)</span>
 </div></article> <article class="case" id="case-8"><h5 class="heading">
 <!--Style arrows in CSS?-->(⇐) </h5>
-<div class="para logical" id="p-6365">
+<div class="para logical" id="p-6381">
 <div class="para">Assume that <span class="process-math">\(a_0\neq 0\text{.}\)</span> To prove that <span class="process-math">\(f(x)\)</span> is a unit of <span class="process-math">\(F[[x]]\)</span> we need to find <span class="process-math">\(g(x)=\sum_{i=0}^{\infty } b_i x^i\)</span> in <span class="process-math">\(F[[x]]\)</span> such that <span class="process-math">\(f(x) \cdot  g(x) =\sum_{i=0}^{\infty } d_i x^i= 1\text{.}\)</span> If we use the formula for the coefficients <span class="process-math">\(f(x) \cdot g(x)\)</span> and equate coefficients, we get</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1319,11 +1312,11 @@ d_s= a_0\cdot b_s+ a_1\cdot b_{s-1}+ \cdots +a_s\cdot b_0 =0 &amp;  \Rightarrow 
 \end{array}\text{.}
 \end{equation*}
 </div>
-</div> <div class="para" id="p-6366">Therefore the powers series <span class="process-math">\(\sum_{i=0}^{\infty } b_i x^i\)</span> is an expression whose coefficients lie in <span class="process-math">\(F\)</span> and that satisfies the statement <span class="process-math">\(f(x)
+</div> <div class="para" id="p-6382">Therefore the powers series <span class="process-math">\(\sum_{i=0}^{\infty } b_i x^i\)</span> is an expression whose coefficients lie in <span class="process-math">\(F\)</span> and that satisfies the statement <span class="process-math">\(f(x)
 \cdot  g(x) = 1\text{.}\)</span> Hence, <span class="process-math">\(g(x)\)</span> is the multiplicative inverse of <span class="process-math">\(f(x)\)</span> and <span class="process-math">\(f(x)\)</span> is a unit.</div></article></article></div>
 <article class="example example-like" id="ex-power-series-inversion"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-power-series-inversion"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">16.5.8</span><span class="period">.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-power-series-inversion"><article class="example example-like"><div class="para logical" id="p-6367">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-power-series-inversion"><article class="example example-like"><div class="para logical" id="p-6383">
 <div class="para">Let <span class="process-math">\(f(x) =1 + 2x + 3 x^2+ 4 x^3+ \cdots =\sum_{i=0}^{\infty } (i+1) x^i\)</span> be an element of <span class="process-math">\(\mathbb{Q}[[x]]\text{.}\)</span> Then, by <a href="" class="xref" data-knowl="./knowl/theorem-power-series-units.html" title="Theorem 16.5.7: Power Series Units">Theorem 16.5.7</a>, since <span class="process-math">\(a_0=1\neq 0\text{,}\)</span>  <span class="process-math">\(f(x)\)</span> is a unit and has an inverse, call it <span class="process-math">\(g(x)\text{.}\)</span> To compute <span class="process-math">\(g(x)\text{,}\)</span> we follow the procedure outlined in the above theorem.  Using the formulas for the <span class="process-math">\(b_i'\)</span>s, we obtain</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/theorem-power-series-units.html">
 \begin{equation*}
@@ -1347,36 +1340,36 @@ b_s= -1(2\cdot 0 + 3\cdot 0+\cdots (s-2)\cdot 0+(s-1)\cdot 1+s\cdot (-2)+(s+1)\c
 <div class="para">Hence, <span class="process-math">\(g(x) = 1 - 2x +x^2\)</span> is the multiplicative inverse of <span class="process-math">\(f(x)\text{.}\)</span>
 </div>
 </div></article></div>
-<div class="para" id="p-6368">Certainly <span class="process-math">\(F[[x]]\)</span> contains a wider variety of units than <span class="process-math">\(F[x]\text{.}\)</span> Yet <span class="process-math">\(F[[x]]\)</span> is not a field, since <span class="process-math">\(x\in  F[[x]]\)</span> is not a unit. So concerning the algebraic structure of <span class="process-math">\(F[[x]]\text{,}\)</span> we know that it is an integral domain that contains <span class="process-math">\(F[x]\text{.}\)</span> If we allow our power series to take on negative exponents; that is, consider expressions of the form <span class="process-math">\(f(x) =\sum_{i=-\infty }^{\infty } a_i x^i\)</span> where all but a finite number of terms with a negative index equal zero.  These expressions are called extended power series. The set of all such expressions is a field, call it <span class="process-math">\(E\text{.}\)</span> This set does contain, for example, the inverse of <span class="process-math">\(x\text{,}\)</span> which is <span class="process-math">\(x^{-1}\text{.}\)</span> It can be shown that each nonzero element of <span class="process-math">\(E\)</span> is a unit.</div></section><section class="exercises" id="exercises-16-5"><h3 class="heading hide-type">
+<div class="para" id="p-6384">Certainly <span class="process-math">\(F[[x]]\)</span> contains a wider variety of units than <span class="process-math">\(F[x]\text{.}\)</span> Yet <span class="process-math">\(F[[x]]\)</span> is not a field, since <span class="process-math">\(x\in  F[[x]]\)</span> is not a unit. So concerning the algebraic structure of <span class="process-math">\(F[[x]]\text{,}\)</span> we know that it is an integral domain that contains <span class="process-math">\(F[x]\text{.}\)</span> If we allow our power series to take on negative exponents; that is, consider expressions of the form <span class="process-math">\(f(x) =\sum_{i=-\infty }^{\infty } a_i x^i\)</span> where all but a finite number of terms with a negative index equal zero.  These expressions are called extended power series. The set of all such expressions is a field, call it <span class="process-math">\(E\text{.}\)</span> This set does contain, for example, the inverse of <span class="process-math">\(x\text{,}\)</span> which is <span class="process-math">\(x^{-1}\text{.}\)</span> It can be shown that each nonzero element of <span class="process-math">\(E\)</span> is a unit.</div></section><section class="exercises" id="exercises-16-5"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">16.5.3</span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-715"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para" id="p-6369">Let <span class="process-math">\(f(x)=\sum_{i=0}^{\infty} a_i x^i\)</span>  and  <span class="process-math">\(g(x)=\sum_{i=0}^{\infty } b_i x^i\)</span> be elements of <span class="process-math">\(R[[x]]\text{.}\)</span>  Let  <span class="process-math">\(f(x) \cdot  g(x) =\sum_{i=0}^{\infty } d_i x^i= 1\text{.}\)</span>   Apply basic algebra to <span class="process-math">\(\left(a_0 + a_1 x+a_2 x^2+ \cdots \right)\cdot \left(b_0 + b_1 x+b_2 x^2+ \cdots \right)\)</span> to derive the formula <span class="process-math">\(d_s= \sum_{i=0}^s a_i b_{s-i}\)</span> for the coefficients of <span class="process-math">\(f(x) \cdot  g(x)\text{.}\)</span> Hence, to show that <span class="process-math">\(f(x) \cdot  g(x) =\sum_{s=0}^{\infty } \left(\sum_{i=0}^s a_i b_{s-i}\right) x^s\)</span>
-</div></article><article class="exercise exercise-like" id="exercise-716"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para logical" id="p-6370"><ol class="lower-alpha">
-<li id="li-2817"><div class="para" id="p-6371">Prove that for any integral domain <span class="process-math">\(D\text{,}\)</span> the following can be proven: <span class="process-math">\(f(x)=\sum_{i=0}^{\infty } a_i x^i\)</span> is a unit of <span class="process-math">\(D[[x]]\)</span> if and only if <span class="process-math">\(a_0\)</span> is a unit in <span class="process-math">\(D\text{.}\)</span>
+<article class="exercise exercise-like" id="exercise-718"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para" id="p-6385">Let <span class="process-math">\(f(x)=\sum_{i=0}^{\infty} a_i x^i\)</span>  and  <span class="process-math">\(g(x)=\sum_{i=0}^{\infty } b_i x^i\)</span> be elements of <span class="process-math">\(R[[x]]\text{.}\)</span>  Let  <span class="process-math">\(f(x) \cdot  g(x) =\sum_{i=0}^{\infty } d_i x^i= 1\text{.}\)</span>   Apply basic algebra to <span class="process-math">\(\left(a_0 + a_1 x+a_2 x^2+ \cdots \right)\cdot \left(b_0 + b_1 x+b_2 x^2+ \cdots \right)\)</span> to derive the formula <span class="process-math">\(d_s= \sum_{i=0}^s a_i b_{s-i}\)</span> for the coefficients of <span class="process-math">\(f(x) \cdot  g(x)\text{.}\)</span> Hence, to show that <span class="process-math">\(f(x) \cdot  g(x) =\sum_{s=0}^{\infty } \left(\sum_{i=0}^s a_i b_{s-i}\right) x^s\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-719"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para logical" id="p-6386"><ol class="lower-alpha">
+<li id="li-2829"><div class="para" id="p-6387">Prove that for any integral domain <span class="process-math">\(D\text{,}\)</span> the following can be proven: <span class="process-math">\(f(x)=\sum_{i=0}^{\infty } a_i x^i\)</span> is a unit of <span class="process-math">\(D[[x]]\)</span> if and only if <span class="process-math">\(a_0\)</span> is a unit in <span class="process-math">\(D\text{.}\)</span>
 </div></li>
-<li id="li-2818"><div class="para" id="p-6372">Compare the statement in part a to that in <a href="" class="xref" data-knowl="./knowl/theorem-power-series-units.html" title="Theorem 16.5.7: Power Series Units">Theorem 16.5.7</a>.</div></li>
-<li id="li-2819"><div class="para" id="p-6373">Give an example of the statement in part a in <span class="process-math">\(\mathbb{Z}[[x]]\text{.}\)</span>
+<li id="li-2830"><div class="para" id="p-6388">Compare the statement in part a to that in <a href="" class="xref" data-knowl="./knowl/theorem-power-series-units.html" title="Theorem 16.5.7: Power Series Units">Theorem 16.5.7</a>.</div></li>
+<li id="li-2831"><div class="para" id="p-6389">Give an example of the statement in part a in <span class="process-math">\(\mathbb{Z}[[x]]\text{.}\)</span>
 </div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-717"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para" id="p-6374">Use the formula for the product to verify that the expression <span class="process-math">\(g(x)\)</span> of <a href="" class="xref" data-knowl="./knowl/ex-power-series-inversion.html" title="Example 16.5.8">Example 16.5.8</a> is indeed the inverse of <span class="process-math">\(f(x)\text{.}\)</span>
-</div></article><article class="exercise exercise-like" id="exercise-718"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para logical" id="p-6375"><ol class="lower-alpha">
-<li id="li-2820"><div class="para" id="p-6376">Determine the inverse of <span class="process-math">\(f(x) = 1 + x + x^2 + \cdots  = \sum_{i=0}^{\infty } x^i\)</span>in <span class="process-math">\(\mathbb{Q}[[x]]\text{.}\)</span>
+</ol></div></article><article class="exercise exercise-like" id="exercise-720"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para" id="p-6390">Use the formula for the product to verify that the expression <span class="process-math">\(g(x)\)</span> of <a href="" class="xref" data-knowl="./knowl/ex-power-series-inversion.html" title="Example 16.5.8">Example 16.5.8</a> is indeed the inverse of <span class="process-math">\(f(x)\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-721"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para logical" id="p-6391"><ol class="lower-alpha">
+<li id="li-2832"><div class="para" id="p-6392">Determine the inverse of <span class="process-math">\(f(x) = 1 + x + x^2 + \cdots  = \sum_{i=0}^{\infty } x^i\)</span>in <span class="process-math">\(\mathbb{Q}[[x]]\text{.}\)</span>
 </div></li>
-<li id="li-2821"><div class="para" id="p-6377">Repeat part a with <span class="process-math">\(f(x)\)</span> taken in <span class="process-math">\(\mathbb{Z}_2[[x]]\text{.}\)</span>
+<li id="li-2833"><div class="para" id="p-6393">Repeat part a with <span class="process-math">\(f(x)\)</span> taken in <span class="process-math">\(\mathbb{Z}_2[[x]]\text{.}\)</span>
 </div></li>
-<li id="li-2822"><div class="para" id="p-6378">Use the method outlined in Chapter 8 to show that the power series <span class="process-math">\(f(x) = \sum_{i=0}^{\infty } x^i\)</span> is the rational generating function <span class="process-math">\(\frac{1}{1-x}\text{.}\)</span> What is the inverse of this function? Compare your results with those in part a.</div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-719"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
-<div class="para logical" id="p-6379"><ol class="lower-alpha">
-<li id="li-2823"><div class="para" id="p-6380">Determine the inverse of <span class="process-math">\(h(x) = \sum_{i=0}^{\infty } 2^i x^i\)</span>  in <span class="process-math">\(\mathbb{Q}[[x]]\text{.}\)</span>
+<li id="li-2834"><div class="para" id="p-6394">Use the method outlined in Chapter 8 to show that the power series <span class="process-math">\(f(x) = \sum_{i=0}^{\infty } x^i\)</span> is the rational generating function <span class="process-math">\(\frac{1}{1-x}\text{.}\)</span> What is the inverse of this function? Compare your results with those in part a.</div></li>
+</ol></div></article><article class="exercise exercise-like" id="exercise-722"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para logical" id="p-6395"><ol class="lower-alpha">
+<li id="li-2835"><div class="para" id="p-6396">Determine the inverse of <span class="process-math">\(h(x) = \sum_{i=0}^{\infty } 2^i x^i\)</span>  in <span class="process-math">\(\mathbb{Q}[[x]]\text{.}\)</span>
 </div></li>
-<li id="li-2824"><div class="para" id="p-6381">Use the procedures in Chapter 8 to find a rational generating function for <span class="process-math">\(h(x)\)</span> in part a.  Find the multiplicative inverse of this function.</div></li>
+<li id="li-2836"><div class="para" id="p-6397">Use the procedures in Chapter 8 to find a rational generating function for <span class="process-math">\(h(x)\)</span> in part a.  Find the multiplicative inverse of this function.</div></li>
 </ol></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-327" id="answer-327"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-327"><div class="answer solution-like"><div class="para logical" id="p-6382"><ol class="lower-alpha">
-<li id="li-2825"><div class="para logical" id="p-6383">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-329" id="answer-329"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-329"><div class="answer solution-like"><div class="para logical" id="p-6398"><ol class="lower-alpha">
+<li id="li-2837"><div class="para logical" id="p-6399">
 <div class="displaymath process-math">
 \begin{equation*}
 \begin{array}{c}
@@ -1390,7 +1383,7 @@ b_3= (-1)(2\cdot 0 + 4\cdot (-2)+8\cdot 1)=0\\
 <div class="para">All other terms are zero.  Hence,  <span class="process-math">\(f(x)^{-1}= 1-2x\)</span>
 </div>
 </div></li>
-<li id="li-2826"><div class="para logical" id="p-6384">
+<li id="li-2838"><div class="para logical" id="p-6400">
 <div class="displaymath process-math">
 \begin{equation*}
 \begin{split}
@@ -1403,29 +1396,29 @@ f(x) &amp;=1+2x + 2^2x^2+ 2^3x^3+ \cdots \\
 <div class="para">The last step follows from the formula for the sum of a geometric series.</div>
 </div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-720"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
-<div class="para logical" id="p-6385">
+</div></article><article class="exercise exercise-like" id="exercise-723"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div class="para logical" id="p-6401">
 <div class="para">Let <span class="process-math">\(a(x) = 1 + 3x + 9x^2 + 27x^3 + \cdots =\sum_{i=0}^{\infty } 3^i x^i\)</span> and <span class="process-math">\(b(x) = 1 + x + x^2+ x^3+\cdots =\sum_{i=0}^{\infty }  x^i\)</span> both in <span class="process-math">\(\mathbb{R}[[x]]\text{.}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-2827"><div class="para" id="p-6386">What are the first four terms (counting the constant term as the <span class="process-math">\(0^{\textrm{ th}}\)</span> term) of <span class="process-math">\(a(x) + b(x)\text{?}\)</span>
+<li id="li-2839"><div class="para" id="p-6402">What are the first four terms (counting the constant term as the <span class="process-math">\(0^{\textrm{ th}}\)</span> term) of <span class="process-math">\(a(x) + b(x)\text{?}\)</span>
 </div></li>
-<li id="li-2828"><div class="para" id="p-6387">Find a closed form expression for <span class="process-math">\(a(x)\text{.}\)</span>
+<li id="li-2840"><div class="para" id="p-6403">Find a closed form expression for <span class="process-math">\(a(x)\text{.}\)</span>
 </div></li>
-<li id="li-2829"><div class="para" id="p-6388">What are the first four terms of <span class="process-math">\(a(x) b(x)\text{?}\)</span>
+<li id="li-2841"><div class="para" id="p-6404">What are the first four terms of <span class="process-math">\(a(x) b(x)\text{?}\)</span>
 </div></li>
 </ol>
-</div></article><article class="exercise exercise-like" id="exercise-721"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
-<div class="para logical" id="p-6389">
+</div></article><article class="exercise exercise-like" id="exercise-724"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="para logical" id="p-6405">
 <div class="para">Write as an extended power series:</div>
 <ol class="lower-alpha">
-<li id="li-2830"><div class="para" id="p-6390"><span class="process-math">\(\displaystyle \left(x^4-x^5\right)^{-1}\)</span></div></li>
-<li id="li-2831"><div class="para" id="p-6391"><span class="process-math">\(\displaystyle \left(x^2-2x^3+x^4\right)^{-1}\)</span></div></li>
+<li id="li-2842"><div class="para" id="p-6406"><span class="process-math">\(\displaystyle \left(x^4-x^5\right)^{-1}\)</span></div></li>
+<li id="li-2843"><div class="para" id="p-6407"><span class="process-math">\(\displaystyle \left(x^2-2x^3+x^4\right)^{-1}\)</span></div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-328" id="answer-328"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-328"><div class="answer solution-like"><div class="para logical" id="p-6392"><ol class="lower-alpha">
-<li id="li-2832"><div class="para logical" id="p-6393"><div class="displaymath process-math">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-330" id="answer-330"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-330"><div class="answer solution-like"><div class="para logical" id="p-6408"><ol class="lower-alpha">
+<li id="li-2844"><div class="para logical" id="p-6409"><div class="displaymath process-math">
 \begin{equation*}
 \begin{split}
 \left(x^4-x^5\right)^{-1} &amp; =(x^4 (1-x))^{-1}\\
@@ -1435,7 +1428,7 @@ f(x) &amp;=1+2x + 2^2x^2+ 2^3x^3+ \cdots \\
 \end{split}\text{.}
 \end{equation*}
 </div></div></li>
-<li id="li-2833"><div class="para logical" id="p-6394"><div class="displaymath process-math">
+<li id="li-2845"><div class="para logical" id="p-6410"><div class="displaymath process-math">
 \begin{equation*}
 \begin{split}
 \left(x^4-2 x^3+x^2\right)^{-1} &amp; =\left(x^2 \left(x^2-2 x+1\right)\right)^{-1}\\
@@ -1446,8 +1439,8 @@ f(x) &amp;=1+2x + 2^2x^2+ 2^3x^3+ \cdots \\
 \end{equation*}
 </div></div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-722"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
-<div class="para" id="p-6395">Derive the closed form expression <span class="process-math">\(d_i = 2^{i+1}-i -2 \)</span> for the coefficients of the product <span class="process-math">\(f(x)\cdot g(x)\)</span> in <a href="" class="xref" data-knowl="./knowl/ex-ps-calculations.html" title="Example 16.5.4: Some Power Series Calcuations">Example 16.5.4</a>.</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
+</div></article><article class="exercise exercise-like" id="exercise-725"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div class="para" id="p-6411">Derive the closed form expression <span class="process-math">\(d_i = 2^{i+1}-i -2 \)</span> for the coefficients of the product <span class="process-math">\(f(x)\cdot g(x)\)</span> in <a href="" class="xref" data-knowl="./knowl/ex-ps-calculations.html" title="Example 16.5.4: Some Power Series Calcuations">Example 16.5.4</a>.</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>
 <div class="ptx-content-footer">
 <a class="previous-button button" href="s-field-extensions.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="backmatter.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>

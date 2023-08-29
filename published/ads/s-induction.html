@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Mathematical Induction</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,25 +58,36 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
@@ -99,59 +128,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -160,7 +146,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -315,7 +301,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1127,16 +1116,16 @@ eBookConfig.runestone_version = '7.0.7';
 <section class="subsection" id="subsection-35"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">3.7.1</span> <span class="title">Introduction, First Example</span>
 </h3>
-<div class="para" id="p-1359">In this section, we will examine mathematical induction, a technique for proving propositions over the positive integers. Mathematical induction reduces the proof that all of the positive integers belong to a truth set to a finite number of steps.</div>
+<div class="para" id="p-1375">In this section, we will examine mathematical induction, a technique for proving propositions over the positive integers. Mathematical induction reduces the proof that all of the positive integers belong to a truth set to a finite number of steps.</div>
 <article class="example example-like" id="ex-triangular-numbers"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-triangular-numbers"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">3.7.1</span><span class="period">.</span><span class="space"> </span><span class="title">Formula for Triangular Numbers.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-triangular-numbers"><article class="example example-like"><div class="para" id="p-1360">Consider the following proposition over the positive integers, which we will label <span class="process-math">\(p(n)\text{:}\)</span> The sum of the positive integers from 1 to <span class="process-math">\(n\)</span> is <span class="process-math">\(\frac{n (n+1)}{2}\text{.}\)</span> This is a well-known formula that is quite simple to verify for a given value of <span class="process-math">\(n\text{.}\)</span>   For example, <span class="process-math">\(p(5)\)</span> is: The sum of the positive integers from 1 to 5 is <span class="process-math">\(\frac{5 (5+1)}{2}\text{.}\)</span> Indeed, <span class="process-math">\(1 + 2 + 3 + 4 + 5= 15 =\frac{5(5+1)}{2}\text{.}\)</span> However, this doesn’t serve as a proof that <span class="process-math">\(p(n)\)</span> is a tautology. All that we’ve established is that <span class="process-math">\(5\)</span> is in the truth set of <span class="process-math">\(p\text{.}\)</span> Since the positive integers are infinite, we certainly can’t use this approach to prove the formula.</div></article></div>
-<div class="para" id="p-1361">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-triangular-numbers"><article class="example example-like"><div class="para" id="p-1376">Consider the following proposition over the positive integers, which we will label <span class="process-math">\(p(n)\text{:}\)</span> The sum of the positive integers from 1 to <span class="process-math">\(n\)</span> is <span class="process-math">\(\frac{n (n+1)}{2}\text{.}\)</span> This is a well-known formula that is quite simple to verify for a given value of <span class="process-math">\(n\text{.}\)</span>   For example, <span class="process-math">\(p(5)\)</span> is: The sum of the positive integers from 1 to 5 is <span class="process-math">\(\frac{5 (5+1)}{2}\text{.}\)</span> Indeed, <span class="process-math">\(1 + 2 + 3 + 4 + 5= 15 =\frac{5(5+1)}{2}\text{.}\)</span> However, this doesn’t serve as a proof that <span class="process-math">\(p(n)\)</span> is a tautology. All that we’ve established is that <span class="process-math">\(5\)</span> is in the truth set of <span class="process-math">\(p\text{.}\)</span> Since the positive integers are infinite, we certainly can’t use this approach to prove the formula.</div></article></div>
+<div class="para" id="p-1377">
 <em class="emphasis">An Analogy</em>: A proof by mathematical induction is similar to knocking over a row of closely spaced dominos that are standing on end. To knock over the dominos in <a href="" class="xref" data-knowl="./knowl/dominos.html" title="Figure 3.7.2">Figure 3.7.2</a>, all you need to do is push the first domino over. To be assured that they all will be knocked over, some work must be done ahead of time. The dominos must be positioned so that if any domino is pushed is knocked over, it will push the next domino in the line.</div>
 <figure class="figure figure-like" id="dominos"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="external/images/Domino_effect.png" class="contained" alt="A line of dominos in the process of being knocked over."></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">3.7.2<span class="period">.</span></span><span class="space"> </span>An analogy for Mathematical Induction, Creative Commons photo by Ranveig Thattai</figcaption></figure><div class="para" id="p-1362">Returning to  <a href="" class="xref" data-knowl="./knowl/ex-triangular-numbers.html" title="Example 3.7.1: Formula for Triangular Numbers">Example 3.7.1</a> imagine the propositions <span class="process-math">\(p(1), p(2), p(3),\ldots\)</span> to be an infinite line of dominos. Let’s see if these propositions are in the same formation as the dominos were.  First, we will focus on one specific point of the line: <span class="process-math">\(p(99)\)</span> and <span class="process-math">\(p(100)\text{.}\)</span> We are not going to prove that either of these propositions is true, just that the truth of <span class="process-math">\(p(99)\)</span> implies the truth of <span class="process-math">\(p(100)\text{.}\)</span> In terms of our analogy, if <span class="process-math">\(p(99)\)</span> is knocked over, it will knock over <span class="process-math">\(p(100)\text{.}\)</span>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">3.7.2<span class="period">.</span></span><span class="space"> </span>An analogy for Mathematical Induction, Creative Commons photo by Ranveig Thattai</figcaption></figure><div class="para" id="p-1378">Returning to  <a href="" class="xref" data-knowl="./knowl/ex-triangular-numbers.html" title="Example 3.7.1: Formula for Triangular Numbers">Example 3.7.1</a> imagine the propositions <span class="process-math">\(p(1), p(2), p(3),\ldots\)</span> to be an infinite line of dominos. Let’s see if these propositions are in the same formation as the dominos were.  First, we will focus on one specific point of the line: <span class="process-math">\(p(99)\)</span> and <span class="process-math">\(p(100)\text{.}\)</span> We are not going to prove that either of these propositions is true, just that the truth of <span class="process-math">\(p(99)\)</span> implies the truth of <span class="process-math">\(p(100)\text{.}\)</span> In terms of our analogy, if <span class="process-math">\(p(99)\)</span> is knocked over, it will knock over <span class="process-math">\(p(100)\text{.}\)</span>
 </div>
-<div class="para logical" id="p-1363">
+<div class="para logical" id="p-1379">
 <div class="para">In proving <span class="process-math">\(p(99) \Rightarrow  p(100)\text{,}\)</span> we will use <span class="process-math">\(p(99)\)</span> as our premise. We must prove: The sum of the positive integers from 1 to 100 is <span class="process-math">\(\frac{100 (100+1)}{2}\text{.}\)</span> We start by observing that the sum of the positive integers from 1 to 100 is <span class="process-math">\((1 + 2 + \cdots  + 99) +100\text{.}\)</span> That is, the sum of the positive integers from 1 to 100 equals  the sum of the first ninety-nine plus the final number, 100. We can now apply our premise, <span class="process-math">\(p(99)\text{,}\)</span> to the sum <span class="process-math">\(1 + 2 + \cdots  + 99\text{.}\)</span> After rearranging our numbers, we obtain the desired expression for <span class="process-math">\(1 + 2 + \cdots  + 100\text{:}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1151,7 +1140,7 @@ eBookConfig.runestone_version = '7.0.7';
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-1364">
+<div class="para logical" id="p-1380">
 <div class="para">What we’ve just done is analogous to checking two dominos in a line and finding that they are properly positioned. Since we are dealing with an infinite line, we must check all pairs at once. This is accomplished by proving that <span class="process-math">\(p(n) \Rightarrow  p(n + 1)\)</span> for all <span class="process-math">\(n \geq  1\text{:}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1166,26 +1155,26 @@ eBookConfig.runestone_version = '7.0.7';
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-1365">They are all lined up! Now look at <span class="process-math">\(p(1)\text{:}\)</span> The sum of the positive integers from 1 to 1 is <span class="process-math">\(\frac{1\cdot(1+1)}{2}\text{.}\)</span> Clearly, <span class="process-math">\(p(1)\)</span> is true. This sets off a chain reaction. Since <span class="process-math">\(p(1) \Rightarrow  p(2)\text{,}\)</span> <span class="process-math">\(p(2)\)</span> is true. Since <span class="process-math">\(p(2) \Rightarrow  p(3)\text{,}\)</span> <span class="process-math">\(p(3)\)</span> is true; and so on.   <span class="process-math">\(\blacksquare\)</span>
+<div class="para" id="p-1381">They are all lined up! Now look at <span class="process-math">\(p(1)\text{:}\)</span> The sum of the positive integers from 1 to 1 is <span class="process-math">\(\frac{1\cdot(1+1)}{2}\text{.}\)</span> Clearly, <span class="process-math">\(p(1)\)</span> is true. This sets off a chain reaction. Since <span class="process-math">\(p(1) \Rightarrow  p(2)\text{,}\)</span> <span class="process-math">\(p(2)\)</span> is true. Since <span class="process-math">\(p(2) \Rightarrow  p(3)\text{,}\)</span> <span class="process-math">\(p(3)\)</span> is true; and so on.   <span class="process-math">\(\blacksquare\)</span>
 </div>
 <article class="theorem theorem-like" id="th-math-induction-basic"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.7.3</span><span class="period">.</span><span class="space"> </span><span class="title">The Principle of Mathematical Induction.</span>
 </h4>
-<div class="para logical" id="p-1366">
+<div class="para logical" id="p-1382">
 <div class="para">Let <span class="process-math">\(p(n)\)</span> be a proposition over the positive integers.  If</div>
 <ol class="decimal">
-<li id="li-787"><div class="para" id="p-derived-li-787">
+<li id="li-799"><div class="para" id="p-derived-li-799">
 <span class="process-math">\(p(1)\)</span> is true, and</div></li>
-<li id="li-788"><div class="para" id="p-derived-li-788">for all <span class="process-math">\(n\geq 1\text{,}\)</span>  <span class="process-math">\(p(n) \Rightarrow  p(n + 1)\text{,}\)</span>
+<li id="li-800"><div class="para" id="p-derived-li-800">for all <span class="process-math">\(n\geq 1\text{,}\)</span>  <span class="process-math">\(p(n) \Rightarrow  p(n + 1)\text{,}\)</span>
 </div></li>
 </ol>
 <div class="para">then <span class="process-math">\(p(n)\)</span> is a tautology.</div>
-</div></article><div class="para" id="p-1367">Note: The truth of <span class="process-math">\(p(1)\)</span> is called the <em class="emphasis">basis</em> for the induction proof. The premise that <span class="process-math">\(p(n)\)</span> is true in the second part is called the <em class="emphasis">induction hypothesis</em>.  The proof that <span class="process-math">\(p(n)\)</span> implies <span class="process-math">\(p(n + 1)\)</span> is called the <em class="emphasis">induction  step</em> of the proof. Despite our analogy, the basis is usually done first in an induction proof. However, order doesn’t really matter.</div></section><section class="subsection" id="subsection-36"><h3 class="heading hide-type">
+</div></article><div class="para" id="p-1383">Note: The truth of <span class="process-math">\(p(1)\)</span> is called the <em class="emphasis">basis</em> for the induction proof. The premise that <span class="process-math">\(p(n)\)</span> is true in the second part is called the <em class="emphasis">induction hypothesis</em>.  The proof that <span class="process-math">\(p(n)\)</span> implies <span class="process-math">\(p(n + 1)\)</span> is called the <em class="emphasis">induction  step</em> of the proof. Despite our analogy, the basis is usually done first in an induction proof. However, order doesn’t really matter.</div></section><section class="subsection" id="subsection-36"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">3.7.2</span> <span class="title">More Examples</span>
 </h3>
 <article class="example example-like" id="ex-logic-detachment"><a href="" data-knowl="" class="id-ref example-knowl original has-tabular" data-refid="hk-ex-logic-detachment"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">3.7.4</span><span class="period">.</span><span class="space"> </span><span class="title">Generalized Detachment.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-logic-detachment"><article class="example example-like"><div class="para logical" id="p-1368">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-logic-detachment"><article class="example example-like"><div class="para logical" id="p-1384">
 <div class="para">Consider the implication over the positive integers.</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1193,7 +1182,7 @@ p(n): q_0 \rightarrow  q_1, q_1\to q_2, \ldots  , q_{n-1}\to q_n, q_0\Rightarrow
 \end{equation*}
 </div>
 <div class="para">A proof that <span class="process-math">\(p(n)\)</span> is a tautology follows. Basis: <span class="process-math">\(p(1)\)</span> is <span class="process-math">\(q_0 \rightarrow  q_1, q_0\Rightarrow  q_1\text{.}\)</span> This is the logical law of detachment which we know is true. If you haven’t done so yet, write out the truth table of <span class="process-math">\(((q_0 \rightarrow  q_1 )\land  q_0)\to  q_1\)</span> to verify this step.</div>
-</div> <div class="para logical" id="p-1369">
+</div> <div class="para logical" id="p-1385">
 <div class="para">Induction: Assume that  <span class="process-math">\(p(n)\)</span> is true for some <span class="process-math">\(n \geq  1\text{.}\)</span> We want to prove that <span class="process-math">\(p(n + 1)\)</span> must be true. That is:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1233,7 +1222,7 @@ q_0 \rightarrow  q_1, q_1\to q_2, \ldots  , q_{n-1}\to q_n , q_n\to q_{n+1}, q_0
 </table></div></figure></article></div>
 <article class="example example-like" id="ex-number-theory-3s"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-number-theory-3s"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">3.7.6</span><span class="period">.</span><span class="space"> </span><span class="title">An example from Number Theory.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-number-theory-3s"><article class="example example-like"> <div class="para" id="p-1370">For all <span class="process-math">\(n \geq  1\text{,}\)</span> <span class="process-math">\(n^3+2n\)</span>  is a multiple of 3.  An inductive proof follows:</div> <div class="para" id="p-1371">Basis:  <span class="process-math">\(1^3+2(1)= 3\)</span> is a multiple of 3. The basis is almost always this easy!</div> <div class="para" id="p-1372">Induction: Assume that <span class="process-math">\(n \geq  1\)</span> and <span class="process-math">\(n^3+2n\)</span> is a multiple of 3. Consider <span class="process-math">\((n+1)^3+2(n+1)\text{.}\)</span> Is it a multiple of 3?</div> <div class="para logical" id="p-1373"><div class="displaymath process-math">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-number-theory-3s"><article class="example example-like"> <div class="para" id="p-1386">For all <span class="process-math">\(n \geq  1\text{,}\)</span> <span class="process-math">\(n^3+2n\)</span>  is a multiple of 3.  An inductive proof follows:</div> <div class="para" id="p-1387">Basis:  <span class="process-math">\(1^3+2(1)= 3\)</span> is a multiple of 3. The basis is almost always this easy!</div> <div class="para" id="p-1388">Induction: Assume that <span class="process-math">\(n \geq  1\)</span> and <span class="process-math">\(n^3+2n\)</span> is a multiple of 3. Consider <span class="process-math">\((n+1)^3+2(n+1)\text{.}\)</span> Is it a multiple of 3?</div> <div class="para logical" id="p-1389"><div class="displaymath process-math">
 \begin{equation*}
 \begin{split}
 (n+1)^3+2(n+1) &amp; = n^3+3 n^2+3 n+1+ (2n+2) \\ 
@@ -1241,28 +1230,28 @@ q_0 \rightarrow  q_1, q_1\to q_2, \ldots  , q_{n-1}\to q_n , q_n\to q_{n+1}, q_0
 &amp; = (n^3+2 n) + 3( n^2+ n+1)
 \end{split}\text{.}
 \end{equation*}
-</div></div> <div class="para" id="p-1374">Yes, <span class="process-math">\((n+1)^3+2(n+1)\)</span> is the sum of two multiples of 3; therefore, it is also a multiple of 3.  <span class="process-math">\(\square\)</span>
+</div></div> <div class="para" id="p-1390">Yes, <span class="process-math">\((n+1)^3+2(n+1)\)</span> is the sum of two multiples of 3; therefore, it is also a multiple of 3.  <span class="process-math">\(\square\)</span>
 </div></article></div>
-<div class="para" id="p-1375">Now we will discuss some of the variations of the principle of mathematical induction. The first simply allows for universes that are similar to <span class="process-math">\(\mathbb{P}\)</span> such as <span class="process-math">\(\{-2, -1, 0, 1,\ldots \}\)</span> or <span class="process-math">\(\{5, 6, 7, 8,\ldots \}\text{.}\)</span>
+<div class="para" id="p-1391">Now we will discuss some of the variations of the principle of mathematical induction. The first simply allows for universes that are similar to <span class="process-math">\(\mathbb{P}\)</span> such as <span class="process-math">\(\{-2, -1, 0, 1,\ldots \}\)</span> or <span class="process-math">\(\{5, 6, 7, 8,\ldots \}\text{.}\)</span>
 </div>
 <article class="theorem theorem-like" id="th-math-induction-generalized"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.7.7</span><span class="period">.</span><span class="space"> </span><span class="title">Principle of Mathematical Induction (Generalized).</span>
 </h4>
-<div class="para" id="p-1376">If <span class="process-math">\(p(n)\)</span> is a proposition over <span class="process-math">\(\{k_0 , k_0+ 1, k_0+ 2,\ldots  \}\text{,}\)</span> where <span class="process-math">\(k_0\)</span> is any integer, then <span class="process-math">\(p(n)\)</span> is a tautology if</div> <div class="para logical" id="p-1377"><ol class="decimal">
-<li id="li-789"><div class="para" id="p-derived-li-789">
+<div class="para" id="p-1392">If <span class="process-math">\(p(n)\)</span> is a proposition over <span class="process-math">\(\{k_0 , k_0+ 1, k_0+ 2,\ldots  \}\text{,}\)</span> where <span class="process-math">\(k_0\)</span> is any integer, then <span class="process-math">\(p(n)\)</span> is a tautology if</div> <div class="para logical" id="p-1393"><ol class="decimal">
+<li id="li-801"><div class="para" id="p-derived-li-801">
 <span class="process-math">\(p(k_0)\)</span> is true, and</div></li>
-<li id="li-790"><div class="para" id="p-derived-li-790">for all <span class="process-math">\(n \geq k_0\text{,}\)</span>  <span class="process-math">\(p(n) \Rightarrow  p(n + 1)\text{.}\)</span>
+<li id="li-802"><div class="para" id="p-derived-li-802">for all <span class="process-math">\(n \geq k_0\text{,}\)</span>  <span class="process-math">\(p(n) \Rightarrow  p(n + 1)\text{.}\)</span>
 </div></li>
 </ol></div></article><article class="example example-like" id="ex-permuations-formula-proof"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-permuations-formula-proof"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">3.7.8</span><span class="period">.</span><span class="space"> </span><span class="title">A proof of the permutations formula.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-permuations-formula-proof"><article class="example example-like"> <div class="para logical" id="p-1378">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-permuations-formula-proof"><article class="example example-like"> <div class="para logical" id="p-1394">
 <div class="para">In Chapter 2, we stated that the number of different permutations of <span class="process-math">\(k\)</span> elements taken from an <span class="process-math">\(n\)</span> element set, <span class="process-math">\(P(n; k)\text{,}\)</span> can be computed with the formula <span class="process-math">\(\frac{n!}{(n-k)!}\text{.}\)</span> We can prove this statement by induction on <span class="process-math">\(n\text{.}\)</span> For <span class="process-math">\(n \geq  0\text{,}\)</span> let <span class="process-math">\(q(n)\)</span> be the proposition</div>
 <div class="displaymath process-math">
 \begin{equation*}
 P(n; k) = \frac{n!}{(n-k)!} \textrm{  for all } k \textrm{, } 0 \le k \le n\text{.}
 \end{equation*}
 </div>
-</div> <div class="para" id="p-1379">Basis: <span class="process-math">\(q(0)\)</span> states that  <span class="process-math">\(P(0; 0) \)</span> if is the number of ways that <span class="process-math">\(0\)</span> elements can be selected from the empty set and arranged in order, then <span class="process-math">\(P(0; 0) = \frac{0!}{0!} = 1 \text{.}\)</span>  This is true. A general law in combinatorics is that there is exactly one way of doing nothing.</div> <div class="para logical" id="p-1380">
+</div> <div class="para" id="p-1395">Basis: <span class="process-math">\(q(0)\)</span> states that  <span class="process-math">\(P(0; 0) \)</span> if is the number of ways that <span class="process-math">\(0\)</span> elements can be selected from the empty set and arranged in order, then <span class="process-math">\(P(0; 0) = \frac{0!}{0!} = 1 \text{.}\)</span>  This is true. A general law in combinatorics is that there is exactly one way of doing nothing.</div> <div class="para logical" id="p-1396">
 <div class="para">Induction: Assume that <span class="process-math">\(q(n)\)</span> is true for some natural number <span class="process-math">\(n\text{.}\)</span> It is left for us to prove that this assumption implies that <span class="process-math">\(q(n +1)\)</span> is true. Suppose that we have a set of cardinality <span class="process-math">\(n + 1\)</span> and want to select and arrange <span class="process-math">\(k\)</span> of its elements. There are two cases to consider, the first of which is easy. If <span class="process-math">\(k = 0\text{,}\)</span> then there is one way of selecting zero elements from the set; hence</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1270,7 +1259,7 @@ P(n + 1; 0) = 1 =\frac{(n+1)!}{(n+1+0)!}
 \end{equation*}
 </div>
 <div class="para">and the formula works in this case.</div>
-</div> <div class="para" id="p-1381">The more challenging case is to verify the formula when <span class="process-math">\(k\)</span> is positive and less than or equal to <span class="process-math">\(n+1\text{.}\)</span> Here we count the value of <span class="process-math">\(P(n+ 1; k)\)</span> by counting the number of ways that the first element in the arrangement can be filled and then counting the number of ways that the remaining <span class="process-math">\(k -1\)</span> elements can be filled in using the induction hypothesis.</div> <div class="para logical" id="p-1382">
+</div> <div class="para" id="p-1397">The more challenging case is to verify the formula when <span class="process-math">\(k\)</span> is positive and less than or equal to <span class="process-math">\(n+1\text{.}\)</span> Here we count the value of <span class="process-math">\(P(n+ 1; k)\)</span> by counting the number of ways that the first element in the arrangement can be filled and then counting the number of ways that the remaining <span class="process-math">\(k -1\)</span> elements can be filled in using the induction hypothesis.</div> <div class="para logical" id="p-1398">
 <div class="para">There are <span class="process-math">\(n + 1\)</span> possible choices for the first element. Since that leaves <span class="process-math">\(n\)</span> elements to fill in the remaining <span class="process-math">\(k - 1\)</span> positions, there are <span class="process-math">\(P(n; k - 1)\)</span> ways of completing the arrangement. By the rule of products,</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1286,48 +1275,48 @@ P(n +1;k) &amp;= (n+1) P(n;k-1) \\
 </div></article></div></section><section class="subsection" id="subsection-37"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">3.7.3</span> <span class="title">Course of Values Induction</span>
 </h3>
-<div class="para" id="p-1383">A second variation allows for the expansion of the induction hypothesis. The course-of-values principle includes the previous generalization.  It is also sometimes called <em class="emphasis">strong induction</em>.</div>
+<div class="para" id="p-1399">A second variation allows for the expansion of the induction hypothesis. The course-of-values principle includes the previous generalization.  It is also sometimes called <em class="emphasis">strong induction</em>.</div>
 <article class="theorem theorem-like" id="th-math-induction-course-of-values"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.7.9</span><span class="period">.</span><span class="space"> </span><span class="title">The Course-of-Values Principle of Mathematical Induction.</span>
 </h4>
-<div class="para" id="p-1384">If <span class="process-math">\(p(n)\)</span> is a proposition over <span class="process-math">\(\{k_0 , k_0+ 1, k_0+ 2,\ldots  \}\text{,}\)</span> where <span class="process-math">\(k_0\)</span> is any integer, then <span class="process-math">\(p(n)\)</span> is a tautology if</div> <div class="para logical" id="p-1385"><ol class="decimal">
-<li id="li-791"><div class="para" id="p-derived-li-791">
+<div class="para" id="p-1400">If <span class="process-math">\(p(n)\)</span> is a proposition over <span class="process-math">\(\{k_0 , k_0+ 1, k_0+ 2,\ldots  \}\text{,}\)</span> where <span class="process-math">\(k_0\)</span> is any integer, then <span class="process-math">\(p(n)\)</span> is a tautology if</div> <div class="para logical" id="p-1401"><ol class="decimal">
+<li id="li-803"><div class="para" id="p-derived-li-803">
 <span class="process-math">\(p(k_0)\)</span> is true, and</div></li>
-<li id="li-792"><div class="para" id="p-derived-li-792">for all <span class="process-math">\(n\geq k_0\text{,}\)</span>   <span class="process-math">\(p(k_0), p(k_0 + 1), . . . , p(n) \Rightarrow  p(n + 1) \text{.}\)</span>
+<li id="li-804"><div class="para" id="p-derived-li-804">for all <span class="process-math">\(n\geq k_0\text{,}\)</span>   <span class="process-math">\(p(k_0), p(k_0 + 1), . . . , p(n) \Rightarrow  p(n + 1) \text{.}\)</span>
 </div></li>
-</ol></div></article><div class="para" id="p-1386"> A <dfn class="terminology">prime number</dfn> is defined as a positive integer that has exactly two positive divisors, 1 and itself. There are an infinite number of primes. The list of primes starts with <span class="process-math">\(2, 3, 5, 7, 11,\ldots \text{.}\)</span>
+</ol></div></article><div class="para" id="p-1402"> A <dfn class="terminology">prime number</dfn> is defined as a positive integer that has exactly two positive divisors, 1 and itself. There are an infinite number of primes. The list of primes starts with <span class="process-math">\(2, 3, 5, 7, 11,\ldots \text{.}\)</span>
 </div>
-<div class="para" id="p-1387">The proposition over <span class="process-math">\(\{2, 3, 4, . . .\}\)</span>  that we will prove here is <span class="process-math">\(p(n)\text{:}\)</span> <span class="process-math">\(n\)</span> can be written as the product of one or more primes.  In most texts, the assertion that <span class="process-math">\(p(n)\)</span> is a tautology would appear as</div>
+<div class="para" id="p-1403">The proposition over <span class="process-math">\(\{2, 3, 4, . . .\}\)</span>  that we will prove here is <span class="process-math">\(p(n)\text{:}\)</span> <span class="process-math">\(n\)</span> can be written as the product of one or more primes.  In most texts, the assertion that <span class="process-math">\(p(n)\)</span> is a tautology would appear as</div>
 <article class="theorem theorem-like" id="th-prime-factorizations-exist"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.7.10</span><span class="period">.</span><span class="space"> </span><span class="title">Existence of Prime Factorizations.</span>
 </h4>
-<div class="para" id="p-1388">Every positive integer greater than or equal to 2 has a prime decomposition.</div></article><article class="hiddenproof" id="proof-5"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-5"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-5"><article class="hiddenproof"><div class="para" id="p-1389">If you were to encounter this theorem outside the context of a discussion of mathematical induction, it might not be obvious that the proof can be done by induction. Recognizing when an induction proof is appropriate is mostly a matter of experience. Now on to the proof!</div> <div class="para" id="p-1390">Basis:  Since 2 is a prime, it is already decomposed into primes (one of them).</div> <div class="para" id="p-1391">Induction:  Suppose that for some <span class="process-math">\(n \geq  2\)</span> all of the integers <span class="process-math">\(2,3, . . . , n\)</span> have a prime decomposition.  Notice the course-of-value hypothesis.  Consider <span class="process-math">\(n + 1\text{.}\)</span> Either <span class="process-math">\(n + 1\)</span> is prime or it isn’t.   If <span class="process-math">\(n + 1\)</span> is prime, it is already decomposed into primes. If not, then <span class="process-math">\(n + 1\)</span> has a divisor, <span class="process-math">\(d\text{,}\)</span> other than 1 and <span class="process-math">\(n + 1\text{.}\)</span> Hence, <span class="process-math">\(n + 1 = c d\)</span> where both <span class="process-math">\(c\)</span> and <span class="process-math">\(d\)</span> are between 2 and <span class="process-math">\(n\text{.}\)</span> By the induction hypothesis, <span class="process-math">\(c\)</span> and <span class="process-math">\(d\)</span> have prime decompositions, <span class="process-math">\(c_1 c_2 \cdots  c_s\)</span> and <span class="process-math">\(d_1 d_2 \cdots d_t\)</span> , respectively. Therefore, <span class="process-math">\(n + 1\)</span> has the prime decomposition <span class="process-math">\(c_1 c_2 \cdots  c_s d_1 d_2 \cdots  d_t\text{.}\)</span>
+<div class="para" id="p-1404">Every positive integer greater than or equal to 2 has a prime decomposition.</div></article><article class="hiddenproof" id="proof-5"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-5"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-5"><article class="hiddenproof"><div class="para" id="p-1405">If you were to encounter this theorem outside the context of a discussion of mathematical induction, it might not be obvious that the proof can be done by induction. Recognizing when an induction proof is appropriate is mostly a matter of experience. Now on to the proof!</div> <div class="para" id="p-1406">Basis:  Since 2 is a prime, it is already decomposed into primes (one of them).</div> <div class="para" id="p-1407">Induction:  Suppose that for some <span class="process-math">\(n \geq  2\)</span> all of the integers <span class="process-math">\(2,3, . . . , n\)</span> have a prime decomposition.  Notice the course-of-value hypothesis.  Consider <span class="process-math">\(n + 1\text{.}\)</span> Either <span class="process-math">\(n + 1\)</span> is prime or it isn’t.   If <span class="process-math">\(n + 1\)</span> is prime, it is already decomposed into primes. If not, then <span class="process-math">\(n + 1\)</span> has a divisor, <span class="process-math">\(d\text{,}\)</span> other than 1 and <span class="process-math">\(n + 1\text{.}\)</span> Hence, <span class="process-math">\(n + 1 = c d\)</span> where both <span class="process-math">\(c\)</span> and <span class="process-math">\(d\)</span> are between 2 and <span class="process-math">\(n\text{.}\)</span> By the induction hypothesis, <span class="process-math">\(c\)</span> and <span class="process-math">\(d\)</span> have prime decompositions, <span class="process-math">\(c_1 c_2 \cdots  c_s\)</span> and <span class="process-math">\(d_1 d_2 \cdots d_t\)</span> , respectively. Therefore, <span class="process-math">\(n + 1\)</span> has the prime decomposition <span class="process-math">\(c_1 c_2 \cdots  c_s d_1 d_2 \cdots  d_t\text{.}\)</span>
 </div></article></div>
 <aside class="historical aside-like" id="history-peano"><h4 class="heading"><span class="title">Peano Postulates and Induction.</span></h4>
-<div class="para" id="p-1392">Mathematical induction originated in the late nineteenth century. Two mathematicians who were prominent in its development were Richard Dedekind and Giuseppe Peano. Dedekind developed a set of axioms that describe the positive integers. Peano refined these axioms and gave a logical interpretation to them. The axioms are usually called the Peano Postulates.</div></aside><article class="axiom theorem-like" id="sss-peano-postulates"><h4 class="heading">
+<div class="para" id="p-1408">Mathematical induction originated in the late nineteenth century. Two mathematicians who were prominent in its development were Richard Dedekind and Giuseppe Peano. Dedekind developed a set of axioms that describe the positive integers. Peano refined these axioms and gave a logical interpretation to them. The axioms are usually called the Peano Postulates.</div></aside><article class="axiom theorem-like" id="sss-peano-postulates"><h4 class="heading">
 <span class="type">Axiom</span><span class="space"> </span><span class="codenumber">3.7.11</span><span class="period">.</span><span class="space"> </span><span class="title">Peano Postulates.</span>
 </h4>
-<div class="para" id="p-1393">The system of positive integers consists of a nonempty set, <span class="process-math">\(\mathbb{P}\text{;}\)</span> a least element of <span class="process-math">\(\mathbb{P}\text{,}\)</span> denoted 1; and a “successor function,” s, with the properties</div> <div class="para logical" id="p-1394"><ol class="decimal">
-<li id="li-793"><div class="para" id="p-1395">If <span class="process-math">\(k \in  \mathbb{P}\)</span> , then there is an element of <span class="process-math">\(\mathbb{P}\)</span> called the successor of <span class="process-math">\(k\text{,}\)</span> denoted <span class="process-math">\(s(k)\text{.}\)</span>
+<div class="para" id="p-1409">The system of positive integers consists of a nonempty set, <span class="process-math">\(\mathbb{P}\text{;}\)</span> a least element of <span class="process-math">\(\mathbb{P}\text{,}\)</span> denoted 1; and a “successor function,” s, with the properties</div> <div class="para logical" id="p-1410"><ol class="decimal">
+<li id="li-805"><div class="para" id="p-1411">If <span class="process-math">\(k \in  \mathbb{P}\)</span> , then there is an element of <span class="process-math">\(\mathbb{P}\)</span> called the successor of <span class="process-math">\(k\text{,}\)</span> denoted <span class="process-math">\(s(k)\text{.}\)</span>
 </div></li>
-<li id="li-794"><div class="para" id="p-1396">No two elements of <span class="process-math">\(\mathbb{P}\)</span> have the same successor.</div></li>
-<li id="li-795"><div class="para" id="p-1397">No element of <span class="process-math">\(\mathbb{P}\)</span> has <span class="process-math">\(1\)</span> as its successor.</div></li>
-<li id="li-796"><div class="para" id="p-1398">If <span class="process-math">\(S \subseteq  \mathbb{P}\text{,}\)</span> <span class="process-math">\(1 \in  S\text{,}\)</span> and <span class="process-math">\(k \in S \Rightarrow  s(k) \in  S\text{,}\)</span> then <span class="process-math">\(S = \mathbb{P}\text{.}\)</span>
+<li id="li-806"><div class="para" id="p-1412">No two elements of <span class="process-math">\(\mathbb{P}\)</span> have the same successor.</div></li>
+<li id="li-807"><div class="para" id="p-1413">No element of <span class="process-math">\(\mathbb{P}\)</span> has <span class="process-math">\(1\)</span> as its successor.</div></li>
+<li id="li-808"><div class="para" id="p-1414">If <span class="process-math">\(S \subseteq  \mathbb{P}\text{,}\)</span> <span class="process-math">\(1 \in  S\text{,}\)</span> and <span class="process-math">\(k \in S \Rightarrow  s(k) \in  S\text{,}\)</span> then <span class="process-math">\(S = \mathbb{P}\text{.}\)</span>
 </div></li>
-</ol></div></article><div class="para" id="p-1399">Notes:</div>
-<div class="para logical" id="p-1400"><ul class="disc">
-<li id="li-797"><div class="para" id="p-derived-li-797">You might recognize <span class="process-math">\(s(k)\)</span> as simply being <span class="process-math">\(k + 1\text{.}\)</span>
+</ol></div></article><div class="para" id="p-1415">Notes:</div>
+<div class="para logical" id="p-1416"><ul class="disc">
+<li id="li-809"><div class="para" id="p-derived-li-809">You might recognize <span class="process-math">\(s(k)\)</span> as simply being <span class="process-math">\(k + 1\text{.}\)</span>
 </div></li>
-<li id="li-798"><div class="para" id="p-derived-li-798">Axiom 4 is the one that makes mathematical induction possible. In an induction proof, we simply apply that axiom to the truth set of a proposition.</div></li>
+<li id="li-810"><div class="para" id="p-derived-li-810">Axiom 4 is the one that makes mathematical induction possible. In an induction proof, we simply apply that axiom to the truth set of a proposition.</div></li>
 </ul></div></section><section class="exercises" id="exercises-3-7"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">3.7.4</span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-141"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para" id="p-1401">Prove that the sum of the first <span class="process-math">\(n\)</span> odd integers equals <span class="process-math">\(n^2\)</span> .</div>
+<article class="exercise exercise-like" id="exercise-144"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para" id="p-1417">Prove that the sum of the first <span class="process-math">\(n\)</span> odd integers equals <span class="process-math">\(n^2\)</span> .</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-69" id="answer-69"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-69"><div class="answer solution-like">
-<div class="para" id="p-1402">We wish to prove that <span class="process-math">\(P(n):1+3+5+\cdots +(2n-1)=n^2\)</span> is true for <span class="process-math">\(n \geqslant 1\text{.}\)</span> Recall that the <span class="process-math">\(n\)</span>th odd positive integer is <span class="process-math">\(2n - 1\text{.}\)</span>
-</div> <div class="para" id="p-1403">Basis:  for <span class="process-math">\(n=1\text{,}\)</span> <span class="process-math">\(P(n)\)</span> is <span class="process-math">\(1=1^2\text{,}\)</span> which is true</div> <div class="para logical" id="p-1404">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-71" id="answer-71"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-71"><div class="answer solution-like">
+<div class="para" id="p-1418">We wish to prove that <span class="process-math">\(P(n):1+3+5+\cdots +(2n-1)=n^2\)</span> is true for <span class="process-math">\(n \geqslant 1\text{.}\)</span> Recall that the <span class="process-math">\(n\)</span>th odd positive integer is <span class="process-math">\(2n - 1\text{.}\)</span>
+</div> <div class="para" id="p-1419">Basis:  for <span class="process-math">\(n=1\text{,}\)</span> <span class="process-math">\(P(n)\)</span> is <span class="process-math">\(1=1^2\text{,}\)</span> which is true</div> <div class="para logical" id="p-1420">
 <div class="para">Induction:  Assume that for some <span class="process-math">\(n\geqslant 1\text{,}\)</span> <span class="process-math">\(P(n)\)</span> is true. Then we infer that <span class="process-math">\(P(n+1)\)</span> follows:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1340,17 +1329,17 @@ P(n +1;k) &amp;= (n+1) P(n;k-1) \\
 </div>
 </div>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-142"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para" id="p-1405">Prove that if <span class="process-math">\(n \geq  1\text{,}\)</span> then <span class="process-math">\(1(1!) + 2(2!) + \cdots  + n(n!) = (n + 1)! - 1\text{.}\)</span>
-</div></article><article class="exercise exercise-like" id="exercise-143"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para" id="p-1406">Prove that for <span class="process-math">\(n \geq  1\text{:}\)</span> <span class="process-math">\(\sum_{k=1}^n k^2= \frac{1}{6} n(n+1) (2 n+1)\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-145"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para" id="p-1421">Prove that if <span class="process-math">\(n \geq  1\text{,}\)</span> then <span class="process-math">\(1(1!) + 2(2!) + \cdots  + n(n!) = (n + 1)! - 1\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-146"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para" id="p-1422">Prove that for <span class="process-math">\(n \geq  1\text{:}\)</span> <span class="process-math">\(\sum_{k=1}^n k^2= \frac{1}{6} n(n+1) (2 n+1)\text{.}\)</span>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-70" id="answer-70"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-70"><div class="answer solution-like">
-<div class="para" id="p-1407">Proof:</div> <div class="para logical" id="p-1408"><ul class="disc">
-<li id="li-799"><div class="para" id="p-derived-li-799">Basis: We note that the proposition is true when <span class="process-math">\(n=1\text{:}\)</span> <span class="process-math">\(\sum_{k=1}^{1} k^2 =1= \frac{1(2)(3)}{6}\text{.}\)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-72" id="answer-72"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-72"><div class="answer solution-like">
+<div class="para" id="p-1423">Proof:</div> <div class="para logical" id="p-1424"><ul class="disc">
+<li id="li-811"><div class="para" id="p-derived-li-811">Basis: We note that the proposition is true when <span class="process-math">\(n=1\text{:}\)</span> <span class="process-math">\(\sum_{k=1}^{1} k^2 =1= \frac{1(2)(3)}{6}\text{.}\)</span>
 </div></li>
-<li id="li-800"><div class="para logical" id="p-1409">
+<li id="li-812"><div class="para logical" id="p-1425">
 <div class="para">Induction:  Assume that the proposition is true for some <span class="process-math">\(n \geq 1\text{.}\)</span>  This is the induction hypothesis.</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1367,10 +1356,10 @@ P(n +1;k) &amp;= (n+1) P(n;k-1) \\
 </div></li>
 </ul></div>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-144"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para" id="p-1410">Prove that for <span class="process-math">\(n \geq  0\text{:}\)</span> <span class="process-math">\(\sum_{k=0}^n 2^k = 2^{n+1}-1\text{.}\)</span>
-</div></article><article class="exercise exercise-like" id="exercise-145"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1411">
+</div></article><article class="exercise exercise-like" id="exercise-147"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para" id="p-1426">Prove that for <span class="process-math">\(n \geq  0\text{:}\)</span> <span class="process-math">\(\sum_{k=0}^n 2^k = 2^{n+1}-1\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-148"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para logical" id="p-1427">
 <div class="para">Use mathematical induction to show that for <span class="process-math">\(n\geq 1\text{,}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1380,9 +1369,9 @@ P(n +1;k) &amp;= (n+1) P(n;k-1) \\
 </div>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-8" id="solution-8"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-8"><div class="solution solution-like">
-<div class="para" id="p-1412">Basis:  For <span class="process-math">\(n=1\text{,}\)</span> we observe that <span class="process-math">\(\frac{1}{(1\cdot 2)}=\frac{1}{(1+1)}\)</span>
-</div> <div class="para" id="p-1413">Induction: Assume that for some <span class="process-math">\(n\geqslant 1\text{,}\)</span> the formula is true.</div> <div class="para logical" id="p-1414">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-9" id="solution-9"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-9"><div class="solution solution-like">
+<div class="para" id="p-1428">Basis:  For <span class="process-math">\(n=1\text{,}\)</span> we observe that <span class="process-math">\(\frac{1}{(1\cdot 2)}=\frac{1}{(1+1)}\)</span>
+</div> <div class="para" id="p-1429">Induction: Assume that for some <span class="process-math">\(n\geqslant 1\text{,}\)</span> the formula is true.</div> <div class="para logical" id="p-1430">
 <div class="para">Then:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1396,8 +1385,8 @@ P(n +1;k) &amp;= (n+1) P(n;k-1) \\
 </div>
 </div>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-146"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1415">
+</div></article><article class="exercise exercise-like" id="exercise-149"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div class="para logical" id="p-1431">
 <div class="para">Prove that if <span class="process-math">\(n \geq  2\text{,}\)</span>  the generalized DeMorgan’s Law is true:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1407,8 +1396,8 @@ P(n +1;k) &amp;= (n+1) P(n;k-1) \\
 </div>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-9" id="solution-9"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-9"><div class="solution solution-like">
-<div class="para" id="p-1416">Basis:   (<span class="process-math">\(n=2\)</span>)  Proven with a truth table already.</div> <div class="para logical" id="p-1417">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-10" id="solution-10"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-10"><div class="solution solution-like">
+<div class="para" id="p-1432">Basis:   (<span class="process-math">\(n=2\)</span>)  Proven with a truth table already.</div> <div class="para logical" id="p-1433">
 <div class="para">Induction:  Assume the generalized DeMorgan’s Law with <span class="process-math">\(n\)</span> propositions is true for some <span class="process-math">\(n\geq 2\text{.}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1426,13 +1415,13 @@ p_{n+1}\right)\\
 </div>
 </div>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-147"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
-<div class="para" id="p-1418">The number of strings of <span class="process-math">\(n\)</span> zeros and ones that contain an even number of ones is <span class="process-math">\(2^{n-1}\text{.}\)</span>   Prove this fact by induction for <span class="process-math">\(n \geq  1\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-150"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="para" id="p-1434">The number of strings of <span class="process-math">\(n\)</span> zeros and ones that contain an even number of ones is <span class="process-math">\(2^{n-1}\text{.}\)</span>   Prove this fact by induction for <span class="process-math">\(n \geq  1\text{.}\)</span>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-71" id="answer-71"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-71"><div class="answer solution-like">
-<div class="para" id="p-1419">Let <span class="process-math">\(A_n\)</span> be the set of strings of zeros and ones of length <span class="process-math">\(n\)</span> (we assume that <span class="process-math">\(\lvert A_n \rvert =2^n\)</span> is known). Let  <span class="process-math">\(E_n\)</span> be the set of the “even” strings, and <span class="process-math">\(E_{n}^{c}=\)</span> the odd strings. The problem is to prove that for <span class="process-math">\(n\geqslant 1\text{,}\)</span> <span class="process-math">\(\lvert E_n \rvert =2^{n-1}\text{.}\)</span> Clearly, <span class="process-math">\(\lvert E_1\rvert =1\text{,}\)</span> and, if for some <span class="process-math">\(n\geqslant 1, \lvert E_n\rvert =2^{n-1}\text{,}\)</span> it follows that <span class="process-math">\(\lvert E_{n+1}\rvert  =2^n\)</span> by the following reasoning.</div> <div class="para" id="p-1420">We partition <span class="process-math">\(E_{n+1}\)</span> according to the first bit: <span class="process-math">\(E_{n+1}=\{1s\mid s \in E_n^c \}\cup \{ 0s \mid s \in E_n\}\)</span>
-</div> <div class="para logical" id="p-1421">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-73" id="answer-73"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-73"><div class="answer solution-like">
+<div class="para" id="p-1435">Let <span class="process-math">\(A_n\)</span> be the set of strings of zeros and ones of length <span class="process-math">\(n\)</span> (we assume that <span class="process-math">\(\lvert A_n \rvert =2^n\)</span> is known). Let  <span class="process-math">\(E_n\)</span> be the set of the “even” strings, and <span class="process-math">\(E_{n}^{c}=\)</span> the odd strings. The problem is to prove that for <span class="process-math">\(n\geqslant 1\text{,}\)</span> <span class="process-math">\(\lvert E_n \rvert =2^{n-1}\text{.}\)</span> Clearly, <span class="process-math">\(\lvert E_1\rvert =1\text{,}\)</span> and, if for some <span class="process-math">\(n\geqslant 1, \lvert E_n\rvert =2^{n-1}\text{,}\)</span> it follows that <span class="process-math">\(\lvert E_{n+1}\rvert  =2^n\)</span> by the following reasoning.</div> <div class="para" id="p-1436">We partition <span class="process-math">\(E_{n+1}\)</span> according to the first bit: <span class="process-math">\(E_{n+1}=\{1s\mid s \in E_n^c \}\cup \{ 0s \mid s \in E_n\}\)</span>
+</div> <div class="para logical" id="p-1437">
 <div class="para">Since <span class="process-math">\(\{1s\mid s \in E_n^c\}\)</span> and <span class="process-math">\(\{0s \mid s \in E_n\}\)</span> are disjoint, we can apply the addition law. Therefore,</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1444,12 +1433,12 @@ p_{n+1}\right)\\
 </div>
 </div>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-148"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
-<div class="para" id="p-1422">Let <span class="process-math">\(p(n)\)</span> be <span class="process-math">\(8^n-3^n\)</span> is a multiple of 5.  Prove that <span class="process-math">\(p(n)\)</span> is a tautology over <span class="process-math">\(\mathbb{N}\text{.}\)</span>
-</div></article><article class="exercise exercise-like" id="exercise-149"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
-<div class="para" id="p-1423">Suppose that there are <span class="process-math">\(n\)</span> people in a room, <span class="process-math">\(n \geq  1\text{,}\)</span> and that they all shake hands with one another. Prove that <span class="process-math">\(\frac{n(n-1)}{2}\)</span> handshakes will have occurred.</div>
+</div></article><article class="exercise exercise-like" id="exercise-151"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div class="para" id="p-1438">Let <span class="process-math">\(p(n)\)</span> be <span class="process-math">\(8^n-3^n\)</span> is a multiple of 5.  Prove that <span class="process-math">\(p(n)\)</span> is a tautology over <span class="process-math">\(\mathbb{N}\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-152"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div class="para" id="p-1439">Suppose that there are <span class="process-math">\(n\)</span> people in a room, <span class="process-math">\(n \geq  1\text{,}\)</span> and that they all shake hands with one another. Prove that <span class="process-math">\(\frac{n(n-1)}{2}\)</span> handshakes will have occurred.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-10" id="solution-10"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-10"><div class="solution solution-like"><div class="para logical" id="p-1424">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-11" id="solution-11"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-11"><div class="solution solution-like"><div class="para logical" id="p-1440">
 <div class="para">Assume that for <span class="process-math">\(n\)</span> persons <span class="process-math">\((n\geqslant 1),\frac{(n-1)n}{2}\)</span> handshakes take place. If one more person enters the room, he or she will shake hands with <span class="process-math">\(n\)</span> people,</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1467,12 +1456,12 @@ p_{n+1}\right)\\
 \end{equation*}
 </div>
 </div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-150"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
-<div class="para" id="p-1425">Prove that it is possible to make up any postage of eight cents or more using only three- and five-cent stamps.</div></article><article class="exercise exercise-like" id="exercise-151"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
-<div class="para" id="p-1426">Generalized associativity. It is well known that if <span class="process-math">\(a_1\text{,}\)</span> <span class="process-math">\(a_2\text{,}\)</span> and <span class="process-math">\(a_3\)</span> are numbers, then no matter what order the sums in the expression <span class="process-math">\(a_1+ a_2+a_3\)</span> are taken in, the result is always the same. Call this fact <span class="process-math">\(p(3)\)</span> and assume it is true. Prove using course-of-values induction that if <span class="process-math">\(a_1\text{,}\)</span> <span class="process-math">\(a_2\text{,}\)</span> <span class="process-math">\(\ldots ,\)</span> and <span class="process-math">\(a_n\)</span>  are numbers, then no matter what order the sums in the expression <span class="process-math">\(a_1+ a_2+\cdots +a_n\)</span> are taken in, the result is always the same.</div>
+</div></article><article class="exercise exercise-like" id="exercise-153"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
+<div class="para" id="p-1441">Prove that it is possible to make up any postage of eight cents or more using only three- and five-cent stamps.</div></article><article class="exercise exercise-like" id="exercise-154"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
+<div class="para" id="p-1442">Generalized associativity. It is well known that if <span class="process-math">\(a_1\text{,}\)</span> <span class="process-math">\(a_2\text{,}\)</span> and <span class="process-math">\(a_3\)</span> are numbers, then no matter what order the sums in the expression <span class="process-math">\(a_1+ a_2+a_3\)</span> are taken in, the result is always the same. Call this fact <span class="process-math">\(p(3)\)</span> and assume it is true. Prove using course-of-values induction that if <span class="process-math">\(a_1\text{,}\)</span> <span class="process-math">\(a_2\text{,}\)</span> <span class="process-math">\(\ldots ,\)</span> and <span class="process-math">\(a_n\)</span>  are numbers, then no matter what order the sums in the expression <span class="process-math">\(a_1+ a_2+\cdots +a_n\)</span> are taken in, the result is always the same.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-11" id="solution-11"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-11"><div class="solution solution-like">
-<div class="para" id="p-1427">Let <span class="process-math">\(p(n)\)</span> be “<span class="process-math">\(a_{1} + a_2 + \cdots + a_n\)</span> has the same value no matter how it is evaluated.”</div> <div class="para" id="p-1428">Basis: <span class="process-math">\(a_1 + a_2 + a_3\)</span> may be evaluated only two ways. Since + is associative, <span class="process-math">\((a_1 + a_2) + a_3 = a_1 + (a_2 + a_3)\text{.}\)</span> Hence, <span class="process-math">\(p(3)\)</span> is true.</div> <div class="para logical" id="p-1429">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-12" id="solution-12"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-12"><div class="solution solution-like">
+<div class="para" id="p-1443">Let <span class="process-math">\(p(n)\)</span> be “<span class="process-math">\(a_{1} + a_2 + \cdots + a_n\)</span> has the same value no matter how it is evaluated.”</div> <div class="para" id="p-1444">Basis: <span class="process-math">\(a_1 + a_2 + a_3\)</span> may be evaluated only two ways. Since + is associative, <span class="process-math">\((a_1 + a_2) + a_3 = a_1 + (a_2 + a_3)\text{.}\)</span> Hence, <span class="process-math">\(p(3)\)</span> is true.</div> <div class="para logical" id="p-1445">
 <div class="para">Induction: Assume that for some <span class="process-math">\(n\geq 3\text{,}\)</span> <span class="process-math">\(p(3), p(4), \dots , p(n)\)</span> are all true. Now consider the sum <span class="process-math">\(a_1 + a_2 + \cdots + a_n + a_{n+1}\text{.}\)</span> Any of the <span class="process-math">\(n\)</span> additions in this expression can be applied last. If the <span class="process-math">\(j\)</span>th addition is applied last, we have <span class="process-math">\(c_j=(a_1+a_2+\cdots +a_j)+(a_{j+1}+\cdots +a_{n+1})\text{.}\)</span> No matter how the expression to the left and right of the <span class="process-math">\(j^{\text{th}}\)</span> addition are evaluated, the result will always be the same by the induction hypothesis, specifically <span class="process-math">\(p(j)\)</span> and <span class="process-math">\(p(n+1-j)\text{.}\)</span> We now can prove that <span class="process-math">\(c_1=c_2=\cdots =c_n\text{.}\)</span> If <span class="process-math">\(i &lt; j\text{,}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1488,41 +1477,41 @@ c_i &amp;=(a_1+a_2+\cdots +a_i)+(a_{i+1}+\cdots +a_{n+1})\\
 </div>
 </div>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-152"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1430">
+</div></article><article class="exercise exercise-like" id="exercise-155"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
+<div class="para logical" id="p-1446">
 <div class="para">Let <span class="process-math">\(S\)</span> be the set of all numbers that can be produced by applying any of the rules below in any order a finite number of times.</div>
 <ul class="disc">
-<li id="li-801"><div class="para" id="p-derived-li-801">Rule 1: <span class="process-math">\(\frac{1}{2} \in  S\)</span>
+<li id="li-813"><div class="para" id="p-derived-li-813">Rule 1: <span class="process-math">\(\frac{1}{2} \in  S\)</span>
 </div></li>
-<li id="li-802"><div class="para" id="p-derived-li-802">Rule 2: <span class="process-math">\(1 \in  S\)</span>
+<li id="li-814"><div class="para" id="p-derived-li-814">Rule 2: <span class="process-math">\(1 \in  S\)</span>
 </div></li>
-<li id="li-803"><div class="para" id="p-derived-li-803">Rule 3: If <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> have been produced by the rules, then <span class="process-math">\(a b \in  S\text{.}\)</span>
+<li id="li-815"><div class="para" id="p-derived-li-815">Rule 3: If <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> have been produced by the rules, then <span class="process-math">\(a b \in  S\text{.}\)</span>
 </div></li>
-<li id="li-804"><div class="para" id="p-derived-li-804">Rule 4: If <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> have been produced by the rules, then <span class="process-math">\(\frac{a+b}{2}\in S\text{.}\)</span>
+<li id="li-816"><div class="para" id="p-derived-li-816">Rule 4: If <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> have been produced by the rules, then <span class="process-math">\(\frac{a+b}{2}\in S\text{.}\)</span>
 </div></li>
 </ul>
 <div class="para">Prove  that <span class="process-math">\(a\in S \Rightarrow  0 \le a \leq  1\text{.}\)</span>
 </div>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-4" id="hint-4"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-4"><div class="hint solution-like"><div class="para" id="p-1431">The number of times the rules are applied should be the integer that you do the induction on.</div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-153"><h4 class="heading"><span class="codenumber">13<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1432">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-4" id="hint-4"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-4"><div class="hint solution-like"><div class="para" id="p-1447">The number of times the rules are applied should be the integer that you do the induction on.</div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-156"><h4 class="heading"><span class="codenumber">13<span class="period">.</span></span></h4>
+<div class="para logical" id="p-1448">
 <div class="para">Proofs involving objects that are defined recursively are often inductive.  A recursive definition is similar to an inductive proof. It consists of a basis, usually the simple part of the definition, and the recursion, which defines complex objects in terms of simpler ones. For example, if <span class="process-math">\(x\)</span> is a real number and <span class="process-math">\(n\)</span> is a positive integer, we can define <span class="process-math">\(x^n\)</span> as follows:</div>
 <ul class="disc">
-<li id="li-805"><div class="para" id="p-derived-li-805">Basis: <span class="process-math">\(x^1=x\text{.}\)</span>
+<li id="li-817"><div class="para" id="p-derived-li-817">Basis: <span class="process-math">\(x^1=x\text{.}\)</span>
 </div></li>
-<li id="li-806"><div class="para" id="p-derived-li-806">Recursion: if <span class="process-math">\(n \geq  2\text{,}\)</span> <span class="process-math">\(x^n= x^{n-1}x\text{.}\)</span>
+<li id="li-818"><div class="para" id="p-derived-li-818">Recursion: if <span class="process-math">\(n \geq  2\text{,}\)</span> <span class="process-math">\(x^n= x^{n-1}x\text{.}\)</span>
 </div></li>
 </ul>
 <div class="para">For example, <span class="process-math">\(x^3= x^2x\)</span> = <span class="process-math">\((x^1x)x = (x x) x\text{.}\)</span>
 </div>
-</div> <div class="para" id="p-1433">Prove that if <span class="process-math">\(n, m \in  \mathbb{P}\text{,}\)</span> <span class="process-math">\(x^{m+n}= x^mx^n\text{.}\)</span>  There is much more on recursion in Chapter 8.</div>
+</div> <div class="para" id="p-1449">Prove that if <span class="process-math">\(n, m \in  \mathbb{P}\text{,}\)</span> <span class="process-math">\(x^{m+n}= x^mx^n\text{.}\)</span>  There is much more on recursion in Chapter 8.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-5" id="hint-5"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-5"><div class="hint solution-like"><div class="para" id="p-1434">Let <span class="process-math">\(p(m)\)</span> be the proposition that <span class="process-math">\(x^{m+n}= x^mx^n\)</span> for all <span class="process-math">\(n\geq 1\text{.}\)</span>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-5" id="hint-5"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-5"><div class="hint solution-like"><div class="para" id="p-1450">Let <span class="process-math">\(p(m)\)</span> be the proposition that <span class="process-math">\(x^{m+n}= x^mx^n\)</span> for all <span class="process-math">\(n\geq 1\text{.}\)</span>
 </div></div></div>
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-12" id="solution-12"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-12"><div class="solution solution-like">
-<div class="para" id="p-1435">For <span class="process-math">\(m\geqslant 1\text{,}\)</span> let <span class="process-math">\(p(m)\textrm{ be } x^{n+m}=x^nx^m\)</span> for all <span class="process-math">\(n\geqslant 1\text{.}\)</span> The basis for this proof follows directly from the basis for the definition of exponentiation.</div> <div class="para logical" id="p-1436">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-13" id="solution-13"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-13"><div class="solution solution-like">
+<div class="para" id="p-1451">For <span class="process-math">\(m\geqslant 1\text{,}\)</span> let <span class="process-math">\(p(m)\textrm{ be } x^{n+m}=x^nx^m\)</span> for all <span class="process-math">\(n\geqslant 1\text{.}\)</span> The basis for this proof follows directly from the basis for the definition of exponentiation.</div> <div class="para logical" id="p-1452">
 <div class="para">Induction: Assume that for some <span class="process-math">\(m\geqslant 1, p(m)\)</span> is true. Then</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1536,14 +1525,14 @@ x^{n+(m+1)} &amp; =x^{(n+m)+1}\quad \textrm{by associativity of integer addition
 </div>
 </div>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-154"><h4 class="heading"><span class="codenumber">14<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1437">
+</div></article><article class="exercise exercise-like" id="exercise-157"><h4 class="heading"><span class="codenumber">14<span class="period">.</span></span></h4>
+<div class="para logical" id="p-1453">
 <div class="para">Let <span class="process-math">\(S\)</span> be a finite set and let <span class="process-math">\(P_n\)</span> be defined recursively by <span class="process-math">\(P_{1 } = S\)</span>  and <span class="process-math">\(P_n= S\times P_{n-1}\)</span> for <span class="process-math">\(n\geq 2\text{.}\)</span>
 </div>
 <ul class="disc">
-<li id="li-807"><div class="para" id="p-derived-li-807">List the elements of <span class="process-math">\(P_3\)</span> for the case <span class="process-math">\(S = \{a, b\}\text{.}\)</span>
+<li id="li-819"><div class="para" id="p-derived-li-819">List the elements of <span class="process-math">\(P_3\)</span> for the case <span class="process-math">\(S = \{a, b\}\text{.}\)</span>
 </div></li>
-<li id="li-808"><div class="para" id="p-derived-li-808">Determine the formula for <span class="process-math">\(\lvert P_n \rvert\text{,}\)</span> given that <span class="process-math">\(\lvert S \rvert= k\text{,}\)</span> and prove your formula by induction.</div></li>
+<li id="li-820"><div class="para" id="p-derived-li-820">Determine the formula for <span class="process-math">\(\lvert P_n \rvert\text{,}\)</span> given that <span class="process-math">\(\lvert S \rvert= k\text{,}\)</span> and prove your formula by induction.</div></li>
 </ul>
 </div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>

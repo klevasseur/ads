@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Polynomial Rings</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,25 +58,36 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
@@ -99,59 +128,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -160,7 +146,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -315,7 +301,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1124,10 +1113,10 @@ eBookConfig.runestone_version = '7.0.7';
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="s-polynomial-rings"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">16.3</span> <span class="title">Polynomial Rings</span>
 </h2>
-<div class="para" id="p-6198">In the previous sections we examined the solutions of a few equations over different rings and fields. To solve the equation <span class="process-math">\(x^2- 2 = 0\)</span> over the field of the real numbers means to find all solutions of this equation that are in this particular field <span class="process-math">\(\mathbb{R}\text{.}\)</span> This statement can be replaced as follows: Determine all <span class="process-math">\(a \in  \mathbb{R}\)</span> such that the polynomial <span class="process-math">\(f(x) = x^2 - 2\)</span> is equal to zero when evaluated at <span class="process-math">\(x=a\text{.}\)</span> In this section, we will concentrate on  the theory of polynomials. We will develop concepts using the general setting of polynomials over rings since results proven over rings are true for fields (and integral domains). The reader should keep in mind that in most cases we are just formalizing concepts that he or she learned in high school algebra over the field of reals.</div>
+<div class="para" id="p-6214">In the previous sections we examined the solutions of a few equations over different rings and fields. To solve the equation <span class="process-math">\(x^2- 2 = 0\)</span> over the field of the real numbers means to find all solutions of this equation that are in this particular field <span class="process-math">\(\mathbb{R}\text{.}\)</span> This statement can be replaced as follows: Determine all <span class="process-math">\(a \in  \mathbb{R}\)</span> such that the polynomial <span class="process-math">\(f(x) = x^2 - 2\)</span> is equal to zero when evaluated at <span class="process-math">\(x=a\text{.}\)</span> In this section, we will concentrate on  the theory of polynomials. We will develop concepts using the general setting of polynomials over rings since results proven over rings are true for fields (and integral domains). The reader should keep in mind that in most cases we are just formalizing concepts that he or she learned in high school algebra over the field of reals.</div>
 <article class="definition definition-like" id="def-polynomial-over-r"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">16.3.1</span><span class="period">.</span><span class="space"> </span><span class="title">Polynomial over a Ring.</span>
-</h3>  <div class="para logical" id="p-6199">
+</h3>  <div class="para logical" id="p-6215">
 <div class="para">Let <span class="process-math">\([R; +, \cdot ]\)</span> be a ring.  A polynomial, <span class="process-math">\(f(x)\text{,}\)</span> over <span class="process-math">\(R\)</span> is an expression of the form</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1139,23 +1128,23 @@ f(x)=\sum _{i=0}^n a_i x^i=a_0 + a_1 x+a_2 x^2+ \cdots +a_n x^n
 </div></article><article class="note remark-like" id="note-38"><h3 class="heading">
 <span class="type">Note</span><span class="space"> </span><span class="codenumber">16.3.2</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-6200"><ul class="disc">
-<li id="li-2749"><div class="para" id="p-6201">The symbol <span class="process-math">\(x\)</span> is an object called an <dfn class="terminology">indeterminate</dfn>, which is not an element of the ring <span class="process-math">\(R\text{.}\)</span>
+<div class="para logical" id="p-6216"><ul class="disc">
+<li id="li-2761"><div class="para" id="p-6217">The symbol <span class="process-math">\(x\)</span> is an object called an <dfn class="terminology">indeterminate</dfn>, which is not an element of the ring <span class="process-math">\(R\text{.}\)</span>
 </div></li>
-<li id="li-2750"><div class="para" id="p-6202">Note that <span class="process-math">\(R\subseteq  R[x]\text{.}\)</span> The elements of <span class="process-math">\(R\)</span> are called constant polynomials, with the nonzero elements of <span class="process-math">\(R\)</span> being the polynomials of degree 0.</div></li>
-<li id="li-2751"><div class="para" id="p-6203">
+<li id="li-2762"><div class="para" id="p-6218">Note that <span class="process-math">\(R\subseteq  R[x]\text{.}\)</span> The elements of <span class="process-math">\(R\)</span> are called constant polynomials, with the nonzero elements of <span class="process-math">\(R\)</span> being the polynomials of degree 0.</div></li>
+<li id="li-2763"><div class="para" id="p-6219">
 <span class="process-math">\(R\)</span> is called the ground, or base, ring for <span class="process-math">\(R[x]\text{.}\)</span>
 </div></li>
-<li id="li-2752"><div class="para" id="p-6204">In the definition above, we have written the terms in increasing degree starting with the constant.  The ordering of terms can be reversed without changing the polynomial.  For example,  <span class="process-math">\(1 + 2 x -3x^4\)</span> and  <span class="process-math">\(-3x^4+2 x+1\)</span> are the same polynomial.</div></li>
-<li id="li-2753"><div class="para" id="p-6205">A term of the form <span class="process-math">\(x^k\)</span> in a polynomial is understood to be <span class="process-math">\(1 x^k\text{.}\)</span>
+<li id="li-2764"><div class="para" id="p-6220">In the definition above, we have written the terms in increasing degree starting with the constant.  The ordering of terms can be reversed without changing the polynomial.  For example,  <span class="process-math">\(1 + 2 x -3x^4\)</span> and  <span class="process-math">\(-3x^4+2 x+1\)</span> are the same polynomial.</div></li>
+<li id="li-2765"><div class="para" id="p-6221">A term of the form <span class="process-math">\(x^k\)</span> in a polynomial is understood to be <span class="process-math">\(1 x^k\text{.}\)</span>
 </div></li>
-<li id="li-2754"><div class="para" id="p-6206">It is understood that if <span class="process-math">\(\deg f(x) = n\text{,}\)</span> then coefficients of powers of <span class="process-math">\(x\)</span> higher than <span class="process-math">\(n\)</span> are equal to the zero of the base ring.</div></li>
+<li id="li-2766"><div class="para" id="p-6222">It is understood that if <span class="process-math">\(\deg f(x) = n\text{,}\)</span> then coefficients of powers of <span class="process-math">\(x\)</span> higher than <span class="process-math">\(n\)</span> are equal to the zero of the base ring.</div></li>
 </ul></div></article><article class="definition definition-like" id="def-polynomial-addition"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">16.3.3</span><span class="period">.</span><span class="space"> </span><span class="title">Polynomial Addition.</span>
-</h3>  <div class="para" id="p-6207">Let <span class="process-math">\(f(x) =a_0 + a_1 x+a_2 x^2+ \cdots +a_m x^m\)</span> and <span class="process-math">\(g(x) =b_0 + b_1 x+b_2 x^2+ \cdots +b_n x^n\)</span> be elements in <span class="process-math">\(R[x]\)</span> so that <span class="process-math">\(a_i \in  R\)</span> and <span class="process-math">\(b_i\in R\)</span>  for all i. Let <span class="process-math">\(k\)</span> be the maximum of <span class="process-math">\(m\)</span> and <span class="process-math">\(n\text{.}\)</span>  Then  <span class="process-math">\(f(x) + g(x) =c_0 + c_1 x+c_2 x^2+ \cdots +c_k x^k\text{,}\)</span> where <span class="process-math">\(c_i=a_i+b_i\)</span> for <span class="process-math">\(i = 0, 1, 2, \ldots , k\text{.}\)</span>
+</h3>  <div class="para" id="p-6223">Let <span class="process-math">\(f(x) =a_0 + a_1 x+a_2 x^2+ \cdots +a_m x^m\)</span> and <span class="process-math">\(g(x) =b_0 + b_1 x+b_2 x^2+ \cdots +b_n x^n\)</span> be elements in <span class="process-math">\(R[x]\)</span> so that <span class="process-math">\(a_i \in  R\)</span> and <span class="process-math">\(b_i\in R\)</span>  for all i. Let <span class="process-math">\(k\)</span> be the maximum of <span class="process-math">\(m\)</span> and <span class="process-math">\(n\text{.}\)</span>  Then  <span class="process-math">\(f(x) + g(x) =c_0 + c_1 x+c_2 x^2+ \cdots +c_k x^k\text{,}\)</span> where <span class="process-math">\(c_i=a_i+b_i\)</span> for <span class="process-math">\(i = 0, 1, 2, \ldots , k\text{.}\)</span>
 </div></article><article class="definition definition-like" id="def-polynomial-multiplication"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">16.3.4</span><span class="period">.</span><span class="space"> </span><span class="title">Polynomial Multiplication.</span>
-</h3>  <div class="para logical" id="p-6208">
+</h3>  <div class="para logical" id="p-6224">
 <div class="para">Let <span class="process-math">\(f(x) =a_0 + a_1 x+a_2 x^2+ \cdots +a_m x^m\)</span> and <span class="process-math">\(g(x) =b_0 + b_1 x+b_2 x^2+ \cdots +b_n x^n\text{.}\)</span>  Then</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1167,15 +1156,15 @@ d_s=\sum_{i=0}^s a_i b_{s-i} =a_0 b_s+a_1 b_{s-1}+a_2 b_{s-2}+\cdots +a_{s-1} b_
 \end{array}
 \end{equation*}
 </div>
-</div></article><div class="para" id="p-6209">The important fact to keep in mind is that addition and multiplication in <span class="process-math">\(R[x]\)</span> depends on addition and multiplication in <span class="process-math">\(R\text{.}\)</span> The powers of <span class="process-math">\(x\)</span> merely serve the purpose of “place holders.” All computations involving coefficients are done over the given ring.  Powers of the indeterminate are computed formally applying the rule of adding exponents when multiplying powers.</div>
+</div></article><div class="para" id="p-6225">The important fact to keep in mind is that addition and multiplication in <span class="process-math">\(R[x]\)</span> depends on addition and multiplication in <span class="process-math">\(R\text{.}\)</span> The powers of <span class="process-math">\(x\)</span> merely serve the purpose of “place holders.” All computations involving coefficients are done over the given ring.  Powers of the indeterminate are computed formally applying the rule of adding exponents when multiplying powers.</div>
 <article class="example example-like" id="ex-some-polynomials"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-some-polynomials"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">16.3.5</span><span class="period">.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-some-polynomials"><article class="example example-like"><div class="para" id="p-6210">
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-some-polynomials"><article class="example example-like"><div class="para" id="p-6226">
 <span class="process-math">\(f(x) = 3\text{,}\)</span> <span class="process-math">\(g(x) = 2 - 4x +7x^2\)</span> , and <span class="process-math">\(h(x) = 2 + x^4\)</span> are all polynomials in <span class="process-math">\(\mathbb{Z}[x]\text{.}\)</span> Their degrees are 0, 2, and 4, respectively.</div></article></div>
-<div class="para" id="p-6211">Addition and multiplication of polynomials are performed as in high school algebra. However, we must do our computations in the ground ring of the polynomials.</div>
+<div class="para" id="p-6227">Addition and multiplication of polynomials are performed as in high school algebra. However, we must do our computations in the ground ring of the polynomials.</div>
 <article class="example example-like" id="ex-polynomial-operations"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-polynomial-operations"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">16.3.6</span><span class="period">.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-polynomial-operations"><article class="example example-like"><div class="para logical" id="p-6212">
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-polynomial-operations"><article class="example example-like"><div class="para logical" id="p-6228">
 <div class="para">In <span class="process-math">\(\mathbb{Z}_3[x]\text{,}\)</span> if <span class="process-math">\(f(x) = 1+x\)</span> and  <span class="process-math">\(g(x) = 2+x\text{,}\)</span> then</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1216,7 +1205,7 @@ f(x) + g(x) = (1+x) + (2+x)  = (1 +2)+ (1 +1) x = 3 + 2x
 </div></article></div>
 <article class="example example-like" id="ex-polyomial-mult"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-polyomial-mult"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">16.3.7</span><span class="period">.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-polyomial-mult"><article class="example example-like"><div class="para logical" id="p-6213">
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-polyomial-mult"><article class="example example-like"><div class="para logical" id="p-6229">
 <div class="para">Let <span class="process-math">\(f(x) = 2 + x^2\)</span> and <span class="process-math">\(g(x) = -1 + 4x + 3x^2\text{.}\)</span> We will compute <span class="process-math">\(f(x) \cdot  g(x)\)</span> in <span class="process-math">\(\mathbb{Z}[x]\text{.}\)</span> Of course this product can be obtained by the usual methods of high school algebra. We will, for illustrative purposes, use the above definition. Using the notation of the above definition, <span class="process-math">\(a_0=2\text{,}\)</span> <span class="process-math">\(a_1=0\text{,}\)</span> <span class="process-math">\(a_2=1\text{,}\)</span> <span class="process-math">\(b_0=-1\text{,}\)</span> <span class="process-math">\(b_1= 4\text{,}\)</span> and <span class="process-math">\(b_2 = 3\text{.}\)</span> We want to compute the coefficients <span class="process-math">\(d_0\text{,}\)</span> <span class="process-math">\(d_1\text{,}\)</span> <span class="process-math">\(d_2\text{,}\)</span> <span class="process-math">\(d_3\text{,}\)</span> and <span class="process-math">\(d_4\)</span> . We will compute <span class="process-math">\(d_3\)</span> , the coefficient of the <span class="process-math">\(x^3\)</span> term of the product, and leave the remainder to the reader (see Exercise 2 of this section).  Since the degrees of both factors is 2, <span class="process-math">\(a_i= b_i= 0\)</span>  for <span class="process-math">\(i\geq 3\text{.}\)</span>  The coefficient of <span class="process-math">\(x^3\)</span> is</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1224,25 +1213,25 @@ d_3=a_0 b_3+a_1 b_2+a_2 b_1+a_3b_0 =2\cdot 0+0\cdot 3+1\cdot 4+0\cdot (-1)=4
 \end{equation*}
 </div>
 </div></article></div>
-<div class="para" id="p-6214">The proofs of the following theorem are not difficult but rather long, so we omit them.</div>
+<div class="para" id="p-6230">The proofs of the following theorem are not difficult but rather long, so we omit them.</div>
 <article class="theorem theorem-like" id="theorem-polynomial-ring-properties"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">16.3.8</span><span class="period">.</span><span class="space"> </span><span class="title">Properties of Polynomial Rings.</span>
 </h3>
-<div class="para logical" id="p-6215">
+<div class="para logical" id="p-6231">
 <div class="para">Let <span class="process-math">\([R; +, \cdot]\)</span> be a ring. Then:</div>
 <ol class="decimal">
-<li id="li-2755"><div class="para" id="p-6216">
+<li id="li-2767"><div class="para" id="p-6232">
 <span class="process-math">\(R[x]\)</span> is a ring under the operations of polynomial addition and multiplication.</div></li>
-<li id="li-2756"><div class="para" id="p-6217">If <span class="process-math">\(R\)</span> is a commutative ring, then <span class="process-math">\(R[x]\)</span> is a commutative ring.</div></li>
-<li id="li-2757"><div class="para" id="p-6218">If <span class="process-math">\(R\)</span> is a ring with unity, <span class="process-math">\(\textup{ 1}\text{,}\)</span> then <span class="process-math">\(R[x]\)</span> is a ring with unity (the unity in <span class="process-math">\(R[x]\)</span> is <span class="process-math">\(1 + 0x + 0 x^2 + \cdots\)</span>).</div></li>
-<li id="li-2758"><div class="para" id="p-6219">If <span class="process-math">\(R\)</span> is an integral domain, then <span class="process-math">\(R[x]\)</span> is an integral domain.</div></li>
-<li id="li-2759"><div class="para" id="p-6220">If <span class="process-math">\(F\)</span> is a field, then <span class="process-math">\(F[x]\)</span> is not a field. However, <span class="process-math">\(F[x]\)</span> is an integral domain.</div></li>
+<li id="li-2768"><div class="para" id="p-6233">If <span class="process-math">\(R\)</span> is a commutative ring, then <span class="process-math">\(R[x]\)</span> is a commutative ring.</div></li>
+<li id="li-2769"><div class="para" id="p-6234">If <span class="process-math">\(R\)</span> is a ring with unity, <span class="process-math">\(\textup{ 1}\text{,}\)</span> then <span class="process-math">\(R[x]\)</span> is a ring with unity (the unity in <span class="process-math">\(R[x]\)</span> is <span class="process-math">\(1 + 0x + 0 x^2 + \cdots\)</span>).</div></li>
+<li id="li-2770"><div class="para" id="p-6235">If <span class="process-math">\(R\)</span> is an integral domain, then <span class="process-math">\(R[x]\)</span> is an integral domain.</div></li>
+<li id="li-2771"><div class="para" id="p-6236">If <span class="process-math">\(F\)</span> is a field, then <span class="process-math">\(F[x]\)</span> is not a field. However, <span class="process-math">\(F[x]\)</span> is an integral domain.</div></li>
 </ol>
-</div></article><div class="para" id="p-6221">Next we turn to division of polynomials, which is not an operation since the result is a pair of polynomials, not a single one. From high school algebra we all learned the standard procedure for dividing a polynomial <span class="process-math">\(f(x)\)</span> by a second polynomial <span class="process-math">\(g(x)\text{.}\)</span> This process of polynomial long division is referred to as the division property for polynomials. Under this scheme we continue to divide until the result is a quotient <span class="process-math">\(q(x)\)</span> and a remainder <span class="process-math">\(r(x)\)</span> whose degree is strictly less than that of the divisor <span class="process-math">\(g(x)\text{.}\)</span> This property is valid over any field. Before giving a formal description, we consider some examples.</div>
+</div></article><div class="para" id="p-6237">Next we turn to division of polynomials, which is not an operation since the result is a pair of polynomials, not a single one. From high school algebra we all learned the standard procedure for dividing a polynomial <span class="process-math">\(f(x)\)</span> by a second polynomial <span class="process-math">\(g(x)\text{.}\)</span> This process of polynomial long division is referred to as the division property for polynomials. Under this scheme we continue to divide until the result is a quotient <span class="process-math">\(q(x)\)</span> and a remainder <span class="process-math">\(r(x)\)</span> whose degree is strictly less than that of the divisor <span class="process-math">\(g(x)\text{.}\)</span> This property is valid over any field. Before giving a formal description, we consider some examples.</div>
 <article class="example example-like" id="ex-poly-division-1"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-poly-division-1"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">16.3.9</span><span class="period">.</span><span class="space"> </span><span class="title">Polynomial Division.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-poly-division-1"><article class="example example-like"><div class="para" id="p-6222">Let <span class="process-math">\(f(x) = 1 + x + x^3\)</span> and <span class="process-math">\(g(x) = 1 + x\)</span> be two polynomials in  <span class="process-math">\(\mathbb{Z}_2[x]\text{.}\)</span> Let us divide <span class="process-math">\(f(x)\)</span> by <span class="process-math">\(g(x)\text{.}\)</span> Keep in mind that we are in <span class="process-math">\(\mathbb{Z}_2[x]\)</span> and that, in particular, <span class="process-math">\(-1=1\)</span> in <span class="process-math">\(\mathbb{Z}_2\)</span> .  This is a case where reordering the terms in decreasing degree is preferred.</div> <figure class="figure figure-like" id="fig-poly-divison-1"><div class="image-box" style="width: 45%; margin-left: 27.5%; margin-right: 27.5%;"><img src="external/images/fig-poly-divison-1.png" class="contained" alt="fig-poly-divison-1"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">16.3.10<span class="period">.</span></span><span class="space"> </span></figcaption></figure> <div class="para logical" id="p-6223">
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-poly-division-1"><article class="example example-like"><div class="para" id="p-6238">Let <span class="process-math">\(f(x) = 1 + x + x^3\)</span> and <span class="process-math">\(g(x) = 1 + x\)</span> be two polynomials in  <span class="process-math">\(\mathbb{Z}_2[x]\text{.}\)</span> Let us divide <span class="process-math">\(f(x)\)</span> by <span class="process-math">\(g(x)\text{.}\)</span> Keep in mind that we are in <span class="process-math">\(\mathbb{Z}_2[x]\)</span> and that, in particular, <span class="process-math">\(-1=1\)</span> in <span class="process-math">\(\mathbb{Z}_2\)</span> .  This is a case where reordering the terms in decreasing degree is preferred.</div> <figure class="figure figure-like" id="fig-poly-divison-1"><div class="image-box" style="width: 45%; margin-left: 27.5%; margin-right: 27.5%;"><img src="external/images/fig-poly-divison-1.png" class="contained" alt="fig-poly-divison-1"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">16.3.10<span class="period">.</span></span><span class="space"> </span></figcaption></figure> <div class="para logical" id="p-6239">
 <div class="para">Therefore,</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1260,165 +1249,165 @@ x^3 + x + 2= \left( x^2+ x\right)\cdot (x+1) + 1
 </div></article></div>
 <article class="example example-like" id="ex-poly-division-2"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-poly-division-2"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">16.3.11</span><span class="period">.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-poly-division-2"><article class="example example-like"><div class="para" id="p-6224">Let <span class="process-math">\(f(x) = 1 +x^4\)</span> and <span class="process-math">\(g(x) = 1 + x\)</span> be polynomials in <span class="process-math">\(\mathbb{Z}_2[x]\text{.}\)</span>  Let us divide <span class="process-math">\(f(x)\)</span> by <span class="process-math">\(g(x)\text{:}\)</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-poly-division-2"><article class="example example-like"><div class="para" id="p-6240">Let <span class="process-math">\(f(x) = 1 +x^4\)</span> and <span class="process-math">\(g(x) = 1 + x\)</span> be polynomials in <span class="process-math">\(\mathbb{Z}_2[x]\text{.}\)</span>  Let us divide <span class="process-math">\(f(x)\)</span> by <span class="process-math">\(g(x)\text{:}\)</span>
 </div> <figure class="figure figure-like" id="fig-poly-divison-2"><div class="image-box" style="width: 55%; margin-left: 22.5%; margin-right: 22.5%;"><img src="external/images/fig-poly-divison-2.png" class="contained" alt="fig-poly-divison-2"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">16.3.12<span class="period">.</span></span><span class="space"> </span></figcaption></figure> <div class="para" id="p-6225">Thus <span class="process-math">\(x^4+ 1 = \left(x^3+x^2+ x + 1\right)(x+1) \text{.}\)</span> Since we have 0 as a remainder, <span class="process-math">\(x + 1\)</span> must be a factor of <span class="process-math">\(x^4+ 1\text{.}\)</span> Also, since <span class="process-math">\(x + 1\)</span> is a factor of <span class="process-math">\(x^4 +
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">16.3.12<span class="period">.</span></span><span class="space"> </span></figcaption></figure> <div class="para" id="p-6241">Thus <span class="process-math">\(x^4+ 1 = \left(x^3+x^2+ x + 1\right)(x+1) \text{.}\)</span> Since we have 0 as a remainder, <span class="process-math">\(x + 1\)</span> must be a factor of <span class="process-math">\(x^4+ 1\text{.}\)</span> Also, since <span class="process-math">\(x + 1\)</span> is a factor of <span class="process-math">\(x^4 +
 1\text{,}\)</span>  1 is a zero (or root) of <span class="process-math">\(x^4 + 1\text{.}\)</span>   Of course we could have determined that 1 is a root of <span class="process-math">\(f(x)\)</span> simply by computing   <span class="process-math">\(f(1)
 =1^4 +_2 1 = 1 +_2 1 = 0\text{.}\)</span>
 </div></article></div>
-<div class="para" id="p-6226">Before we summarize the main results suggested by the previous examples, we should probably consider what could have happened if we had  attempted to perform divisions of polynomials in the ring <span class="process-math">\(\mathbb{Z}[x]\)</span> rather than in the polynomials over the field <span class="process-math">\(\mathbb{Z}_2\text{.}\)</span> For example, <span class="process-math">\(f(x) = x^2 - 1\)</span> and <span class="process-math">\(g(x)
+<div class="para" id="p-6242">Before we summarize the main results suggested by the previous examples, we should probably consider what could have happened if we had  attempted to perform divisions of polynomials in the ring <span class="process-math">\(\mathbb{Z}[x]\)</span> rather than in the polynomials over the field <span class="process-math">\(\mathbb{Z}_2\text{.}\)</span> For example, <span class="process-math">\(f(x) = x^2 - 1\)</span> and <span class="process-math">\(g(x)
 = 2x - 1\)</span> are  both elements of the ring <span class="process-math">\(\mathbb{Z}[x]\text{,}\)</span> yet <span class="process-math">\(x^2-1=(\frac{1}{2} x+\frac{1}{2})(2x-1)-\frac{3}{4}\)</span> The quotient and remainder are not a polynomials over <span class="process-math">\(\mathbb{Z}\)</span> but polynomials over the field of rational numbers. For this reason it would be wise to describe all results over a field <span class="process-math">\(F\)</span> rather than over an arbitrary ring <span class="process-math">\(R\)</span> so that we don’t have to expand our possible set of coefficients.</div>
 <article class="theorem theorem-like" id="theorem-poly-divison-property"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">16.3.13</span><span class="period">.</span><span class="space"> </span><span class="title">Division Property for Polynomials.</span>
 </h3>
-<div class="para" id="p-6227">Let <span class="process-math">\([F; +, \cdot ]\)</span> be a field and let <span class="process-math">\(f(x)\)</span> and <span class="process-math">\(g(x)\)</span> be two elements of <span class="process-math">\(F[x]\)</span> with <span class="process-math">\(g(x) \neq  0\text{.}\)</span> Then there exist unique polynomials <span class="process-math">\(q(x)\)</span> and <span class="process-math">\(r(x)\)</span> in <span class="process-math">\(F[x]\)</span> such that <span class="process-math">\(f(x) = g(x) q(x) + r(x)\text{,}\)</span> where <span class="process-math">\(\deg  r(x) &lt; \deg  g(x)\text{.}\)</span>
-</div></article><article class="hiddenproof" id="proof-74"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-74"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-74"><article class="hiddenproof"><div class="para" id="p-6228">This theorem can be proven by induction on <span class="process-math">\(\deg  f(x)\text{.}\)</span>
+<div class="para" id="p-6243">Let <span class="process-math">\([F; +, \cdot ]\)</span> be a field and let <span class="process-math">\(f(x)\)</span> and <span class="process-math">\(g(x)\)</span> be two elements of <span class="process-math">\(F[x]\)</span> with <span class="process-math">\(g(x) \neq  0\text{.}\)</span> Then there exist unique polynomials <span class="process-math">\(q(x)\)</span> and <span class="process-math">\(r(x)\)</span> in <span class="process-math">\(F[x]\)</span> such that <span class="process-math">\(f(x) = g(x) q(x) + r(x)\text{,}\)</span> where <span class="process-math">\(\deg  r(x) &lt; \deg  g(x)\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-74"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-74"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-74"><article class="hiddenproof"><div class="para" id="p-6244">This theorem can be proven by induction on <span class="process-math">\(\deg  f(x)\text{.}\)</span>
 </div></article></div>
 <article class="theorem theorem-like" id="theorem-polynomial-factor"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">16.3.14</span><span class="period">.</span><span class="space"> </span><span class="title">The Factor Theorem.</span>
 </h3>
-<div class="para" id="p-6229">Let <span class="process-math">\([F; +, \cdot ]\)</span> be a field. An element <span class="process-math">\(a \in  F\)</span> is a zero of <span class="process-math">\(f(x) \in  F[x]\)</span> if and only if <span class="process-math">\(x - a\)</span> is a factor of <span class="process-math">\(f(x)\)</span> in <span class="process-math">\(F[x]\text{.}\)</span>
+<div class="para" id="p-6245">Let <span class="process-math">\([F; +, \cdot ]\)</span> be a field. An element <span class="process-math">\(a \in  F\)</span> is a zero of <span class="process-math">\(f(x) \in  F[x]\)</span> if and only if <span class="process-math">\(x - a\)</span> is a factor of <span class="process-math">\(f(x)\)</span> in <span class="process-math">\(F[x]\text{.}\)</span>
 </div></article><article class="hiddenproof" id="proof-75"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-75"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-75"><article class="hiddenproof"><article class="case" id="case-3"><h4 class="heading">
 <!--Style arrows in CSS?-->(⇒) </h4>
-<div class="para" id="p-6230">Assume that <span class="process-math">\(a \in  F\)</span> is a zero of <span class="process-math">\(f(x) \in  F[x]\text{.}\)</span> We wish to show that <span class="process-math">\(x - a\)</span> is a factor of <span class="process-math">\(f(x)\text{.}\)</span> To do so, apply the division property to <span class="process-math">\(f(x)\)</span> and <span class="process-math">\(g(x) = x - a\text{.}\)</span> Hence, there exist unique polynomials <span class="process-math">\(q(x)\)</span> and <span class="process-math">\(r(x)\)</span> from <span class="process-math">\(F[x]\)</span> such that <span class="process-math">\(f(x) = (x - a)\cdot q(x) + r(x)\)</span> and the <span class="process-math">\(\deg  r(x) &lt; \deg(x - a) = 1\text{,}\)</span> so <span class="process-math">\(r (x) = c \in  F\text{,}\)</span> that is, <span class="process-math">\(r(x)\)</span> is a constant. Also, the fact that <span class="process-math">\(a\)</span> is a zero of <span class="process-math">\(f(x)\)</span> means that <span class="process-math">\(f(a) = 0\text{.}\)</span>    So  <span class="process-math">\(f(x) = (x - a)\cdot  q(x) + c\)</span>  becomes <span class="process-math">\(0 = f(a) = (a - a) q(a) + c\text{.}\)</span> Hence <span class="process-math">\(c
+<div class="para" id="p-6246">Assume that <span class="process-math">\(a \in  F\)</span> is a zero of <span class="process-math">\(f(x) \in  F[x]\text{.}\)</span> We wish to show that <span class="process-math">\(x - a\)</span> is a factor of <span class="process-math">\(f(x)\text{.}\)</span> To do so, apply the division property to <span class="process-math">\(f(x)\)</span> and <span class="process-math">\(g(x) = x - a\text{.}\)</span> Hence, there exist unique polynomials <span class="process-math">\(q(x)\)</span> and <span class="process-math">\(r(x)\)</span> from <span class="process-math">\(F[x]\)</span> such that <span class="process-math">\(f(x) = (x - a)\cdot q(x) + r(x)\)</span> and the <span class="process-math">\(\deg  r(x) &lt; \deg(x - a) = 1\text{,}\)</span> so <span class="process-math">\(r (x) = c \in  F\text{,}\)</span> that is, <span class="process-math">\(r(x)\)</span> is a constant. Also, the fact that <span class="process-math">\(a\)</span> is a zero of <span class="process-math">\(f(x)\)</span> means that <span class="process-math">\(f(a) = 0\text{.}\)</span>    So  <span class="process-math">\(f(x) = (x - a)\cdot  q(x) + c\)</span>  becomes <span class="process-math">\(0 = f(a) = (a - a) q(a) + c\text{.}\)</span> Hence <span class="process-math">\(c
 = 0\text{,}\)</span> so <span class="process-math">\(f(x) = (x - a) \cdot  q(x)\text{,}\)</span> and <span class="process-math">\(x - a\)</span> is a factor of <span class="process-math">\(f(x)\text{.}\)</span> The reader should note that a critical point of the proof of this half of the theorem was the part of the division property that stated that <span class="process-math">\(\deg  r(x) &lt; \deg  g(x)\text{.}\)</span>
 </div></article> <article class="case" id="case-4"><h4 class="heading">
 <!--Style arrows in CSS?-->(⇐) </h4>
-<div class="para" id="p-6231">We leave this half to the reader as an exercise.</div></article></article></div>
+<div class="para" id="p-6247">We leave this half to the reader as an exercise.</div></article></article></div>
 <article class="theorem theorem-like" id="theorem-max-zeros"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">16.3.15</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-6232">A nonzero polynomial <span class="process-math">\(f(x) \in  F[x]\)</span> of degree <span class="process-math">\(n\)</span> can have at most <span class="process-math">\(n\)</span> zeros.</div></article><article class="hiddenproof" id="proof-76"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-76"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-76"><article class="hiddenproof"><div class="para" id="p-6233">Let <span class="process-math">\(a \in  F\)</span> be a zero of <span class="process-math">\(f(x)\text{.}\)</span> Then <span class="process-math">\(f(x) = (x - a) \cdot  q_1(x)\text{,}\)</span> <span class="process-math">\(q_1(x)\in F[x]\text{,}\)</span> by the Factor Theorem. If <span class="process-math">\(b \in  F\)</span> is a zero of <span class="process-math">\(q_1(x)\text{,}\)</span> then again by Factor Theorem, <span class="process-math">\(f(x) = (x -a)(x - b)q_2(x)\text{,}\)</span> <span class="process-math">\(q_2(x)\in F[x]\text{.}\)</span> Continue this process, which must terminate in at most <span class="process-math">\(n\)</span> steps since the degree of <span class="process-math">\(q_k(x)\)</span> would be <span class="process-math">\(n-k\text{.}\)</span>
+<div class="para" id="p-6248">A nonzero polynomial <span class="process-math">\(f(x) \in  F[x]\)</span> of degree <span class="process-math">\(n\)</span> can have at most <span class="process-math">\(n\)</span> zeros.</div></article><article class="hiddenproof" id="proof-76"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-76"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-76"><article class="hiddenproof"><div class="para" id="p-6249">Let <span class="process-math">\(a \in  F\)</span> be a zero of <span class="process-math">\(f(x)\text{.}\)</span> Then <span class="process-math">\(f(x) = (x - a) \cdot  q_1(x)\text{,}\)</span> <span class="process-math">\(q_1(x)\in F[x]\text{,}\)</span> by the Factor Theorem. If <span class="process-math">\(b \in  F\)</span> is a zero of <span class="process-math">\(q_1(x)\text{,}\)</span> then again by Factor Theorem, <span class="process-math">\(f(x) = (x -a)(x - b)q_2(x)\text{,}\)</span> <span class="process-math">\(q_2(x)\in F[x]\text{.}\)</span> Continue this process, which must terminate in at most <span class="process-math">\(n\)</span> steps since the degree of <span class="process-math">\(q_k(x)\)</span> would be <span class="process-math">\(n-k\text{.}\)</span>
 </div></article></div>
-<div class="para" id="p-6234">From <a href="" class="xref" data-knowl="./knowl/theorem-polynomial-factor.html" title="Theorem 16.3.14: The Factor Theorem">The Factor Theorem</a>, we can get yet another insight into the problems associated with solving polynomial equations; that is, finding the zeros of a polynomial. The initial important idea here is that the zero <span class="process-math">\(a\)</span> is from the ground field <span class="process-math">\(F\text{.}\)</span> Second, <span class="process-math">\(a\)</span> is a zero only if <span class="process-math">\((x - a)\)</span> is a factor of <span class="process-math">\(f(x)\)</span> in <span class="process-math">\(F[x]\text{;}\)</span> that is, only when <span class="process-math">\(f(x)\)</span> can be factored (or reduced) to the product of <span class="process-math">\((x - a)\)</span> times some other polynomial in <span class="process-math">\(F[x]\text{.}\)</span>
+<div class="para" id="p-6250">From <a href="" class="xref" data-knowl="./knowl/theorem-polynomial-factor.html" title="Theorem 16.3.14: The Factor Theorem">The Factor Theorem</a>, we can get yet another insight into the problems associated with solving polynomial equations; that is, finding the zeros of a polynomial. The initial important idea here is that the zero <span class="process-math">\(a\)</span> is from the ground field <span class="process-math">\(F\text{.}\)</span> Second, <span class="process-math">\(a\)</span> is a zero only if <span class="process-math">\((x - a)\)</span> is a factor of <span class="process-math">\(f(x)\)</span> in <span class="process-math">\(F[x]\text{;}\)</span> that is, only when <span class="process-math">\(f(x)\)</span> can be factored (or reduced) to the product of <span class="process-math">\((x - a)\)</span> times some other polynomial in <span class="process-math">\(F[x]\text{.}\)</span>
 </div>
 <article class="example example-like" id="ex-hs-factorization-revisited"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-hs-factorization-revisited"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">16.3.16</span><span class="period">.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-hs-factorization-revisited"><article class="example example-like"><div class="para" id="p-6235">Consider the polynomial <span class="process-math">\(f(x) = x^2-2\)</span> taken as being in <span class="process-math">\(\mathbb{Q}\)</span>[x]. From high school algebra we know that <span class="process-math">\(f(x)\)</span> has two zeros (or roots), namely <span class="process-math">\(\pm \sqrt{2}\text{,}\)</span> and <span class="process-math">\(x^2 - 2\)</span> can be factored  as <span class="process-math">\(\left(x - \sqrt{2}\right) \left(x + \sqrt{2}\right)\text{.}\)</span> However, we are working in <span class="process-math">\(\mathbb{Q}[x]\text{,}\)</span> these two factors are not in the set of polynomials over the rational numbers, <span class="process-math">\(\mathbb{Q}\)</span>  since <span class="process-math">\(\sqrt{2} \notin \mathbb{Q}\)</span> .   Therefore, <span class="process-math">\(x^2 - 2\)</span> does not have a zero in <span class="process-math">\(\mathbb{Q}\)</span> since it cannot be factored over <span class="process-math">\(\mathbb{Q}\text{.}\)</span> When this happens, we say that the polynomial is irreducible over <span class="process-math">\(\mathbb{Q}\text{.}\)</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-hs-factorization-revisited"><article class="example example-like"><div class="para" id="p-6251">Consider the polynomial <span class="process-math">\(f(x) = x^2-2\)</span> taken as being in <span class="process-math">\(\mathbb{Q}\)</span>[x]. From high school algebra we know that <span class="process-math">\(f(x)\)</span> has two zeros (or roots), namely <span class="process-math">\(\pm \sqrt{2}\text{,}\)</span> and <span class="process-math">\(x^2 - 2\)</span> can be factored  as <span class="process-math">\(\left(x - \sqrt{2}\right) \left(x + \sqrt{2}\right)\text{.}\)</span> However, we are working in <span class="process-math">\(\mathbb{Q}[x]\text{,}\)</span> these two factors are not in the set of polynomials over the rational numbers, <span class="process-math">\(\mathbb{Q}\)</span>  since <span class="process-math">\(\sqrt{2} \notin \mathbb{Q}\)</span> .   Therefore, <span class="process-math">\(x^2 - 2\)</span> does not have a zero in <span class="process-math">\(\mathbb{Q}\)</span> since it cannot be factored over <span class="process-math">\(\mathbb{Q}\text{.}\)</span> When this happens, we say that the polynomial is irreducible over <span class="process-math">\(\mathbb{Q}\text{.}\)</span>
 </div></article></div>
-<div class="para" id="p-6236">The problem of factoring polynomials is tied hand-in-hand with that of the reducibility of polynomials. We give a precise definition of this concept.</div>
+<div class="para" id="p-6252">The problem of factoring polynomials is tied hand-in-hand with that of the reducibility of polynomials. We give a precise definition of this concept.</div>
 <article class="definition definition-like" id="def-reducible-over-field"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">16.3.17</span><span class="period">.</span><span class="space"> </span><span class="title">Reducibility over a Field.</span>
-</h3>  <div class="para" id="p-6237">Let <span class="process-math">\([F; +, \cdot]\)</span>  be a field and let <span class="process-math">\(f(x) \in F[x]\)</span> be a nonconstant polynomial. <span class="process-math">\(f(x)\)</span> is  <dfn class="terminology">reducible</dfn> over <span class="process-math">\(F\)</span> if and only if it can be factored as a product of two nonconstant polynomials in <span class="process-math">\(F[x]\text{.}\)</span> A polynomial is <dfn class="terminology">irreducible</dfn> over  <span class="process-math">\(F\)</span> if it is not reducible over <span class="process-math">\(F\text{.}\)</span>
+</h3>  <div class="para" id="p-6253">Let <span class="process-math">\([F; +, \cdot]\)</span>  be a field and let <span class="process-math">\(f(x) \in F[x]\)</span> be a nonconstant polynomial. <span class="process-math">\(f(x)\)</span> is  <dfn class="terminology">reducible</dfn> over <span class="process-math">\(F\)</span> if and only if it can be factored as a product of two nonconstant polynomials in <span class="process-math">\(F[x]\text{.}\)</span> A polynomial is <dfn class="terminology">irreducible</dfn> over  <span class="process-math">\(F\)</span> if it is not reducible over <span class="process-math">\(F\text{.}\)</span>
 </div></article><article class="example example-like" id="ex-reducible-over-z2"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-reducible-over-z2"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">16.3.18</span><span class="period">.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-reducible-over-z2"><article class="example example-like"><div class="para" id="p-6238">The polynomial <span class="process-math">\(f(x) = x^4 + 1\)</span>  is reducible over  <span class="process-math">\(\mathbb{Z}_2\)</span> since <span class="process-math">\(x^4 + 1 = (x + 1)\left(x^3 + x^2 + x - 1\right).\)</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-reducible-over-z2"><article class="example example-like"><div class="para" id="p-6254">The polynomial <span class="process-math">\(f(x) = x^4 + 1\)</span>  is reducible over  <span class="process-math">\(\mathbb{Z}_2\)</span> since <span class="process-math">\(x^4 + 1 = (x + 1)\left(x^3 + x^2 + x - 1\right).\)</span>
 </div></article></div>
 <article class="example example-like" id="ex-irreducible-over-z2"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-irreducible-over-z2"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">16.3.19</span><span class="period">.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-irreducible-over-z2"><article class="example example-like"><div class="para" id="p-6239">Is the polynomial <span class="process-math">\(f(x) = x^3 + x + 1\)</span> reducible over <span class="process-math">\(\mathbb{Z}_2\text{?}\)</span> Since a factorization of a cubic polynomial can only be as a product of linear and quadratic factors, or as a product of three linear factors, <span class="process-math">\(f(x)\)</span> is reducible if and only if it has at least one linear  factor. From the Factor Theorem,  <span class="process-math">\(x - a\)</span> is a factor of <span class="process-math">\(x^3 + x + 1\)</span> over <span class="process-math">\(\mathbb{Z}_2\)</span> if and only if <span class="process-math">\(a \in \mathbb{Z}_2\)</span> is a zero of <span class="process-math">\(x^3 + x + 1\text{.}\)</span> So <span class="process-math">\(x^3 + x + 1\)</span> is reducible over <span class="process-math">\(\mathbb{Z}_2\)</span> if and only if it has a zero in <span class="process-math">\(\mathbb{Z}_2\)</span> . Since <span class="process-math">\(\mathbb{Z}_2\)</span> has only two elements, 0 and 1, this is easy enough to check.  <span class="process-math">\(f(0) = 0^3 +_2 0+_2 1= 1\)</span>   and <span class="process-math">\(f(1) =1^3 +_2 1 +_2 1 = 1\text{,}\)</span> so neither 0 nor 1 is a zero of <span class="process-math">\(f(x)\)</span> over <span class="process-math">\(\mathbb{Z}_2\text{.}\)</span> Hence, <span class="process-math">\(x^3 + x + 1\)</span> is irreducible over <span class="process-math">\(\mathbb{Z}_2\text{.}\)</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-irreducible-over-z2"><article class="example example-like"><div class="para" id="p-6255">Is the polynomial <span class="process-math">\(f(x) = x^3 + x + 1\)</span> reducible over <span class="process-math">\(\mathbb{Z}_2\text{?}\)</span> Since a factorization of a cubic polynomial can only be as a product of linear and quadratic factors, or as a product of three linear factors, <span class="process-math">\(f(x)\)</span> is reducible if and only if it has at least one linear  factor. From the Factor Theorem,  <span class="process-math">\(x - a\)</span> is a factor of <span class="process-math">\(x^3 + x + 1\)</span> over <span class="process-math">\(\mathbb{Z}_2\)</span> if and only if <span class="process-math">\(a \in \mathbb{Z}_2\)</span> is a zero of <span class="process-math">\(x^3 + x + 1\text{.}\)</span> So <span class="process-math">\(x^3 + x + 1\)</span> is reducible over <span class="process-math">\(\mathbb{Z}_2\)</span> if and only if it has a zero in <span class="process-math">\(\mathbb{Z}_2\)</span> . Since <span class="process-math">\(\mathbb{Z}_2\)</span> has only two elements, 0 and 1, this is easy enough to check.  <span class="process-math">\(f(0) = 0^3 +_2 0+_2 1= 1\)</span>   and <span class="process-math">\(f(1) =1^3 +_2 1 +_2 1 = 1\text{,}\)</span> so neither 0 nor 1 is a zero of <span class="process-math">\(f(x)\)</span> over <span class="process-math">\(\mathbb{Z}_2\text{.}\)</span> Hence, <span class="process-math">\(x^3 + x + 1\)</span> is irreducible over <span class="process-math">\(\mathbb{Z}_2\text{.}\)</span>
 </div></article></div>
-<div class="para" id="p-6240">From high school algebra we know that <span class="process-math">\(x^3 + x + 1\)</span> has three zeros from some field. Can we find this field? To be more precise, can we construct the field that contains <span class="process-math">\(\mathbb{Z}_2\)</span> and all zeros of <span class="process-math">\(x^3 + x + 1\text{?}\)</span> We will consider this task in the next section.</div>
-<div class="para" id="p-6241">We close this section with a final analogy. Prime numbers play an important role in mathematics. The concept of irreducible polynomials (over a field) is analogous to that of a prime number. Just think of the definition of a prime number. A useful fact concerning primes is: If <span class="process-math">\(p\)</span> is a prime and if <span class="process-math">\(p \mid a b\text{,}\)</span> then <span class="process-math">\(p  \mid  a\)</span> or <span class="process-math">\(p  \mid  b\text{.}\)</span> We leave it to the reader to think about the veracity of the following: If <span class="process-math">\(p(x)\)</span> is an irreducible polynomial over <span class="process-math">\(F\text{,}\)</span> <span class="process-math">\(a(x), b(x) \in F[x]\)</span> and <span class="process-math">\(p(x) \mid a(x) b(x)\text{,}\)</span> then <span class="process-math">\(p(x) \mid a(x)\)</span> or <span class="process-math">\(p(x) \mid b(x)\text{.}\)</span>
+<div class="para" id="p-6256">From high school algebra we know that <span class="process-math">\(x^3 + x + 1\)</span> has three zeros from some field. Can we find this field? To be more precise, can we construct the field that contains <span class="process-math">\(\mathbb{Z}_2\)</span> and all zeros of <span class="process-math">\(x^3 + x + 1\text{?}\)</span> We will consider this task in the next section.</div>
+<div class="para" id="p-6257">We close this section with a final analogy. Prime numbers play an important role in mathematics. The concept of irreducible polynomials (over a field) is analogous to that of a prime number. Just think of the definition of a prime number. A useful fact concerning primes is: If <span class="process-math">\(p\)</span> is a prime and if <span class="process-math">\(p \mid a b\text{,}\)</span> then <span class="process-math">\(p  \mid  a\)</span> or <span class="process-math">\(p  \mid  b\text{.}\)</span> We leave it to the reader to think about the veracity of the following: If <span class="process-math">\(p(x)\)</span> is an irreducible polynomial over <span class="process-math">\(F\text{,}\)</span> <span class="process-math">\(a(x), b(x) \in F[x]\)</span> and <span class="process-math">\(p(x) \mid a(x) b(x)\text{,}\)</span> then <span class="process-math">\(p(x) \mid a(x)\)</span> or <span class="process-math">\(p(x) \mid b(x)\text{.}\)</span>
 </div>
 <section class="exercises" id="exercises-16-3"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber"></span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-696"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para logical" id="p-6242">
+<article class="exercise exercise-like" id="exercise-699"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para logical" id="p-6258">
 <div class="para">Let <span class="process-math">\(f(x) = 1 + x\)</span> and <span class="process-math">\(g(x) = 1 + x + x^2\text{.}\)</span> Compute the following sums and products in the indicated rings.</div>
 <ol class="lower-alpha">
-<li id="li-2760"><div class="para" id="p-6243">
+<li id="li-2772"><div class="para" id="p-6259">
 <span class="process-math">\(f(x) + g(x)\)</span> and <span class="process-math">\(f(x) \cdot  g(x)\)</span> in <span class="process-math">\(\mathbb{Z}[x]\)</span>
 </div></li>
-<li id="li-2761"><div class="para" id="p-6244">
+<li id="li-2773"><div class="para" id="p-6260">
 <span class="process-math">\(f(x) + g(x)\)</span> and <span class="process-math">\(f(x) \cdot  g(x)\)</span> in <span class="process-math">\(\mathbb{Z}_2[x]\)</span>
 </div></li>
-<li id="li-2762"><div class="para" id="p-6245">
+<li id="li-2774"><div class="para" id="p-6261">
 <span class="process-math">\((f(x)\cdot  g(x))\cdot f(x)\)</span>  in <span class="process-math">\(\mathbb{Q}[x]\)</span>
 </div></li>
-<li id="li-2763"><div class="para" id="p-6246">
+<li id="li-2775"><div class="para" id="p-6262">
 <span class="process-math">\((f(x) \cdot g(x)) \cdot f(x)\)</span> in <span class="process-math">\(\mathbb{Z}_2[x]\)</span>
 </div></li>
-<li id="li-2764"><div class="para" id="p-6247">
+<li id="li-2776"><div class="para" id="p-6263">
 <span class="process-math">\(f(x) \cdot  f(x) + f(x)\cdot  g(x)\)</span> in <span class="process-math">\(\mathbb{Z}_2[x]\)</span>
 </div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-318" id="answer-318"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-318"><div class="answer solution-like"><div class="para logical" id="p-6248"><ol class="lower-alpha">
-<li id="li-2765"><div class="para" id="p-6249">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-320" id="answer-320"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-320"><div class="answer solution-like"><div class="para logical" id="p-6264"><ol class="lower-alpha">
+<li id="li-2777"><div class="para" id="p-6265">
 <span class="process-math">\(f(x) + g(x) = 2 + 2x + x^2\)</span> ,  <span class="process-math">\(f(x)\cdot g(x) =1 +2x +2x^2+x^3\)</span>
 </div></li>
-<li id="li-2766"><div class="para" id="p-6250">
+<li id="li-2778"><div class="para" id="p-6266">
 <span class="process-math">\(f(x)+g(x)=x^2\text{,}\)</span>      <span class="process-math">\(f(x)\cdot g(x) =1+x^3\)</span>
 </div></li>
-<li id="li-2767"><div class="para" id="p-6251"><span class="process-math">\(\displaystyle 1 + 3x + 4x ^2 + 3x^3 + x^4\)</span></div></li>
-<li id="li-2768"><div class="para" id="p-6252"><span class="process-math">\(\displaystyle 1 + x + x^3 + x^4\)</span></div></li>
-<li id="li-2769"><div class="para" id="p-6253"><span class="process-math">\(\displaystyle x^2+ x^3\)</span></div></li>
+<li id="li-2779"><div class="para" id="p-6267"><span class="process-math">\(\displaystyle 1 + 3x + 4x ^2 + 3x^3 + x^4\)</span></div></li>
+<li id="li-2780"><div class="para" id="p-6268"><span class="process-math">\(\displaystyle 1 + x + x^3 + x^4\)</span></div></li>
+<li id="li-2781"><div class="para" id="p-6269"><span class="process-math">\(\displaystyle x^2+ x^3\)</span></div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-697"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para" id="p-6254">Complete the calculations started in <a href="" class="xref" data-knowl="./knowl/ex-polyomial-mult.html" title="Example 16.3.7">Example 16.3.7</a>.</div></article><article class="exercise exercise-like" id="exercise-698"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para logical" id="p-6255">
+</div></article><article class="exercise exercise-like" id="exercise-700"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para" id="p-6270">Complete the calculations started in <a href="" class="xref" data-knowl="./knowl/ex-polyomial-mult.html" title="Example 16.3.7">Example 16.3.7</a>.</div></article><article class="exercise exercise-like" id="exercise-701"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para logical" id="p-6271">
 <div class="para">Prove that:</div>
 <ol class="lower-alpha">
-<li id="li-2770"><div class="para" id="p-6256">The ring <span class="process-math">\(\mathbb{R}\)</span> is a subring of the ring <span class="process-math">\(\mathbb{R}[x]\text{.}\)</span>
+<li id="li-2782"><div class="para" id="p-6272">The ring <span class="process-math">\(\mathbb{R}\)</span> is a subring of the ring <span class="process-math">\(\mathbb{R}[x]\text{.}\)</span>
 </div></li>
-<li id="li-2771"><div class="para" id="p-6257">The ring <span class="process-math">\(\mathbb{Z}[x]\)</span> is a subring of the <span class="process-math">\(\mathbb{Q}[x]\text{.}\)</span>
+<li id="li-2783"><div class="para" id="p-6273">The ring <span class="process-math">\(\mathbb{Z}[x]\)</span> is a subring of the <span class="process-math">\(\mathbb{Q}[x]\text{.}\)</span>
 </div></li>
-<li id="li-2772"><div class="para" id="p-6258">The ring <span class="process-math">\(\mathbb{Q}[x]\)</span> is a subring of the ring <span class="process-math">\(\mathbb{R}[x]\text{.}\)</span>
+<li id="li-2784"><div class="para" id="p-6274">The ring <span class="process-math">\(\mathbb{Q}[x]\)</span> is a subring of the ring <span class="process-math">\(\mathbb{R}[x]\text{.}\)</span>
 </div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-319" id="answer-319"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-319"><div class="answer solution-like"><div class="para logical" id="p-6259"><ol class="lower-alpha"><li id="li-2773"><div class="para" id="p-6260">If <span class="process-math">\(a, b \in  \mathbb{R}\text{,}\)</span> <span class="process-math">\(a - b\)</span> and <span class="process-math">\(a b\)</span> are in <span class="process-math">\(\mathbb{R}\)</span> since <span class="process-math">\(\mathbb{R}\)</span> is a ring in its own right. Therefore, <span class="process-math">\(\mathbb{R}\)</span> is a subring of <span class="process-math">\(\mathbb{R}[x]\text{.}\)</span>  The proofs of parts b and c are similar.</div></li></ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-699"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para logical" id="p-6261"><ol class="lower-alpha">
-<li id="li-2774"><div class="para" id="p-6262">Find all zeros of <span class="process-math">\(x^4+ 1\)</span> in <span class="process-math">\(\mathbb{Z}_3\text{.}\)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-321" id="answer-321"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-321"><div class="answer solution-like"><div class="para logical" id="p-6275"><ol class="lower-alpha"><li id="li-2785"><div class="para" id="p-6276">If <span class="process-math">\(a, b \in  \mathbb{R}\text{,}\)</span> <span class="process-math">\(a - b\)</span> and <span class="process-math">\(a b\)</span> are in <span class="process-math">\(\mathbb{R}\)</span> since <span class="process-math">\(\mathbb{R}\)</span> is a ring in its own right. Therefore, <span class="process-math">\(\mathbb{R}\)</span> is a subring of <span class="process-math">\(\mathbb{R}[x]\text{.}\)</span>  The proofs of parts b and c are similar.</div></li></ol></div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-702"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para logical" id="p-6277"><ol class="lower-alpha">
+<li id="li-2786"><div class="para" id="p-6278">Find all zeros of <span class="process-math">\(x^4+ 1\)</span> in <span class="process-math">\(\mathbb{Z}_3\text{.}\)</span>
 </div></li>
-<li id="li-2775"><div class="para" id="p-6263">Find all zeros of <span class="process-math">\(x^5 + 1\)</span> in <span class="process-math">\(\mathbb{Z}_5\text{.}\)</span>
+<li id="li-2787"><div class="para" id="p-6279">Find all zeros of <span class="process-math">\(x^5 + 1\)</span> in <span class="process-math">\(\mathbb{Z}_5\text{.}\)</span>
 </div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-700"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
-<div class="para logical" id="p-6264">
+</ol></div></article><article class="exercise exercise-like" id="exercise-703"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para logical" id="p-6280">
 <div class="para">Determine which of the following are reducible over <span class="process-math">\(\mathbb{Z}_2\text{.}\)</span> Explain.</div>
 <ol class="lower-alpha">
-<li id="li-2776"><div class="para" id="p-6265"><span class="process-math">\(\displaystyle f(x) = x^3 + 1\)</span></div></li>
-<li id="li-2777"><div class="para" id="p-6266"><span class="process-math">\(g(x) = x^3 + x^2 + x\text{.}\)</span></div></li>
-<li id="li-2778"><div class="para" id="p-6267"><span class="process-math">\(h(x) = x^3+ x^2 + 1\text{.}\)</span></div></li>
-<li id="li-2779"><div class="para" id="p-6268">
+<li id="li-2788"><div class="para" id="p-6281"><span class="process-math">\(\displaystyle f(x) = x^3 + 1\)</span></div></li>
+<li id="li-2789"><div class="para" id="p-6282"><span class="process-math">\(g(x) = x^3 + x^2 + x\text{.}\)</span></div></li>
+<li id="li-2790"><div class="para" id="p-6283"><span class="process-math">\(h(x) = x^3+ x^2 + 1\text{.}\)</span></div></li>
+<li id="li-2791"><div class="para" id="p-6284">
 <span class="process-math">\(k(x) = x^4 +x^2+ 1\text{.}\)</span> (Be careful.)</div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-320" id="answer-320"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-320"><div class="answer solution-like"><div class="para logical" id="p-6269"><ol class="lower-alpha">
-<li id="li-2780"><div class="para" id="p-6270">Reducible, <span class="process-math">\((x+1)\left(x^2+ x+1\right)\)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-322" id="answer-322"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-322"><div class="answer solution-like"><div class="para logical" id="p-6285"><ol class="lower-alpha">
+<li id="li-2792"><div class="para" id="p-6286">Reducible, <span class="process-math">\((x+1)\left(x^2+ x+1\right)\)</span>
 </div></li>
-<li id="li-2781"><div class="para" id="p-6271">Reducible,  <span class="process-math">\(x\left(x^2+x+1\right)\)</span>
+<li id="li-2793"><div class="para" id="p-6287">Reducible,  <span class="process-math">\(x\left(x^2+x+1\right)\)</span>
 </div></li>
-<li id="li-2782"><div class="para" id="p-6272">Irreducible. If you could factor this polynomial, one factor would be either <span class="process-math">\(x\)</span> or <span class="process-math">\(x + 1\text{,}\)</span> which would give you a root of 0 or 1, respectively. By substitution of 0 and 1 into this polynomial, it clearly has no roots.</div></li>
-<li id="li-2783"><div class="para" id="p-6273">Reducible, <span class="process-math">\((x+1)^{4 }\)</span>
+<li id="li-2794"><div class="para" id="p-6288">Irreducible. If you could factor this polynomial, one factor would be either <span class="process-math">\(x\)</span> or <span class="process-math">\(x + 1\text{,}\)</span> which would give you a root of 0 or 1, respectively. By substitution of 0 and 1 into this polynomial, it clearly has no roots.</div></li>
+<li id="li-2795"><div class="para" id="p-6289">Reducible, <span class="process-math">\((x+1)^{4 }\)</span>
 </div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-701"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
-<div class="para" id="p-6274">Prove the second half of <a href="" class="xref" data-knowl="./knowl/theorem-polynomial-factor.html" title="Theorem 16.3.14: The Factor Theorem">The Factor Theorem</a>.</div></article><article class="exercise exercise-like" id="exercise-702"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
-<div class="para" id="p-6275">Give an example of the contention made in the last paragraph of this section.</div>
+</div></article><article class="exercise exercise-like" id="exercise-704"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div class="para" id="p-6290">Prove the second half of <a href="" class="xref" data-knowl="./knowl/theorem-polynomial-factor.html" title="Theorem 16.3.14: The Factor Theorem">The Factor Theorem</a>.</div></article><article class="exercise exercise-like" id="exercise-705"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="para" id="p-6291">Give an example of the contention made in the last paragraph of this section.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-321" id="answer-321"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-321"><div class="answer solution-like"><div class="para" id="p-6276">We illustrate this property of polynomials by showing that it is not true for a nonprime polynomial in <span class="process-math">\(\mathbb{Z}_2[x]\text{.}\)</span> Suppose that <span class="process-math">\(p(x)
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-323" id="answer-323"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-323"><div class="answer solution-like"><div class="para" id="p-6292">We illustrate this property of polynomials by showing that it is not true for a nonprime polynomial in <span class="process-math">\(\mathbb{Z}_2[x]\text{.}\)</span> Suppose that <span class="process-math">\(p(x)
 = x^2+ 1\text{,}\)</span> which can be reduced to <span class="process-math">\((x+1)^2\)</span> , <span class="process-math">\(a(x) = x^2 + x\text{,}\)</span> and <span class="process-math">\(b(x) = x^3 + x^2\text{.}\)</span> Since <span class="process-math">\(a(x)b(x) =x^5+x^3= x^3\left(x^2+1\right)\text{,}\)</span> <span class="process-math">\(p(x)|a(x)b(x)\text{.}\)</span> However, <span class="process-math">\(p(x)\)</span> is not a factor of either <span class="process-math">\(a(x)\)</span> or <span class="process-math">\(b(x)\text{.}\)</span>
 </div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-703"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
-<div class="para" id="p-6277">Determine all zeros of <span class="process-math">\(x^4+ 3x^3 + 2x + 4\)</span> in <span class="process-math">\(\mathbb{Z}_5[x]\text{.}\)</span>
-</div></article><article class="exercise exercise-like" id="exercise-704"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
-<div class="para" id="p-6278">Show that <span class="process-math">\(x^2 - 3\)</span> is irreducible over <span class="process-math">\(\mathbb{Q}\)</span> but reducible over the field of real numbers.</div>
+</div></article><article class="exercise exercise-like" id="exercise-706"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div class="para" id="p-6293">Determine all zeros of <span class="process-math">\(x^4+ 3x^3 + 2x + 4\)</span> in <span class="process-math">\(\mathbb{Z}_5[x]\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-707"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div class="para" id="p-6294">Show that <span class="process-math">\(x^2 - 3\)</span> is irreducible over <span class="process-math">\(\mathbb{Q}\)</span> but reducible over the field of real numbers.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-322" id="answer-322"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-322"><div class="answer solution-like"><div class="para" id="p-6279">The only possible proper factors of <span class="process-math">\(x^2- 3\)</span> are <span class="process-math">\(\left(x - \sqrt{3}\right)\)</span> and <span class="process-math">\(\left(x+\sqrt{3}\right)\text{,}\)</span> which are not in <span class="process-math">\(\mathbb{Q}[x]\)</span> but are in <span class="process-math">\(\mathbb{R}\)</span>[x].</div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-705"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
-<div class="para logical" id="p-6280">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-324" id="answer-324"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-324"><div class="answer solution-like"><div class="para" id="p-6295">The only possible proper factors of <span class="process-math">\(x^2- 3\)</span> are <span class="process-math">\(\left(x - \sqrt{3}\right)\)</span> and <span class="process-math">\(\left(x+\sqrt{3}\right)\text{,}\)</span> which are not in <span class="process-math">\(\mathbb{Q}[x]\)</span> but are in <span class="process-math">\(\mathbb{R}\)</span>[x].</div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-708"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
+<div class="para logical" id="p-6296">
 <div class="para">The definition of a vector space given in Chapter 13 holds over any field <span class="process-math">\(F\text{,}\)</span> not just over the field of real numbers, where the elements of <span class="process-math">\(F\)</span> are called scalars.</div>
 <ol class="lower-alpha">
-<li id="li-2784"><div class="para" id="p-6281">Show that <span class="process-math">\(F[x]\)</span> is a vector space over <span class="process-math">\(F\text{.}\)</span>
+<li id="li-2796"><div class="para" id="p-6297">Show that <span class="process-math">\(F[x]\)</span> is a vector space over <span class="process-math">\(F\text{.}\)</span>
 </div></li>
-<li id="li-2785"><div class="para" id="p-6282">Find a basis for <span class="process-math">\(F[x]\)</span> over <span class="process-math">\(F\text{.}\)</span>
+<li id="li-2797"><div class="para" id="p-6298">Find a basis for <span class="process-math">\(F[x]\)</span> over <span class="process-math">\(F\text{.}\)</span>
 </div></li>
-<li id="li-2786"><div class="para" id="p-6283">What is the dimension of <span class="process-math">\(F[x]\)</span> over <span class="process-math">\(F\text{?}\)</span>
+<li id="li-2798"><div class="para" id="p-6299">What is the dimension of <span class="process-math">\(F[x]\)</span> over <span class="process-math">\(F\text{?}\)</span>
 </div></li>
 </ol>
-</div></article><article class="exercise exercise-like" id="exercise-706"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
-<div class="para" id="p-6284">Prove <a href="" class="xref" data-knowl="./knowl/theorem-poly-divison-property.html" title="Theorem 16.3.13: Division Property for Polynomials">Theorem 16.3.13</a>, the Division Property for Polynomials</div>
+</div></article><article class="exercise exercise-like" id="exercise-709"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
+<div class="para" id="p-6300">Prove <a href="" class="xref" data-knowl="./knowl/theorem-poly-divison-property.html" title="Theorem 16.3.13: Division Property for Polynomials">Theorem 16.3.13</a>, the Division Property for Polynomials</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-323" id="answer-323"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-323"><div class="answer solution-like">
-<div class="para" id="p-6285">For <span class="process-math">\(n \geq  0\text{,}\)</span> let <span class="process-math">\(S(n)\)</span> be the proposition: For all <span class="process-math">\(g(x)\neq 0\)</span> and <span class="process-math">\(f(x)\)</span> with <span class="process-math">\(\deg  f(x) = n\text{,}\)</span> there exist unique polynomials <span class="process-math">\(q(x)\)</span> and <span class="process-math">\(r(x)\)</span> such that <span class="process-math">\(f(x)=g(x)q(x)+r(x)\text{,}\)</span> and either <span class="process-math">\(r(x)=0\)</span> or  <span class="process-math">\(\deg  r(x) &lt; \deg  g(x)\text{.}\)</span>
-</div> <div class="para" id="p-6286">Basis: <span class="process-math">\(S(0)\)</span> is true, for if <span class="process-math">\(f(x)\)</span>  has degree 0, it is a nonzero constant, <span class="process-math">\(f(x)=c\neq 0,\)</span> and so either <span class="process-math">\(f(x) =g(x)\cdot 0 + c\)</span>  if <span class="process-math">\(g(x)\)</span> is not a constant, or <span class="process-math">\(f(x) = g(x)g(x)^{-1}+0\)</span> if <span class="process-math">\(g(x)\)</span> is also a constant.</div> <div class="para logical" id="p-6287">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-325" id="answer-325"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-325"><div class="answer solution-like">
+<div class="para" id="p-6301">For <span class="process-math">\(n \geq  0\text{,}\)</span> let <span class="process-math">\(S(n)\)</span> be the proposition: For all <span class="process-math">\(g(x)\neq 0\)</span> and <span class="process-math">\(f(x)\)</span> with <span class="process-math">\(\deg  f(x) = n\text{,}\)</span> there exist unique polynomials <span class="process-math">\(q(x)\)</span> and <span class="process-math">\(r(x)\)</span> such that <span class="process-math">\(f(x)=g(x)q(x)+r(x)\text{,}\)</span> and either <span class="process-math">\(r(x)=0\)</span> or  <span class="process-math">\(\deg  r(x) &lt; \deg  g(x)\text{.}\)</span>
+</div> <div class="para" id="p-6302">Basis: <span class="process-math">\(S(0)\)</span> is true, for if <span class="process-math">\(f(x)\)</span>  has degree 0, it is a nonzero constant, <span class="process-math">\(f(x)=c\neq 0,\)</span> and so either <span class="process-math">\(f(x) =g(x)\cdot 0 + c\)</span>  if <span class="process-math">\(g(x)\)</span> is not a constant, or <span class="process-math">\(f(x) = g(x)g(x)^{-1}+0\)</span> if <span class="process-math">\(g(x)\)</span> is also a constant.</div> <div class="para logical" id="p-6303">
 <div class="para">Induction: Assume that for some <span class="process-math">\(n\geq 0\text{,}\)</span> <span class="process-math">\(S(k)\)</span> is true for all <span class="process-math">\(k \leq  n\text{,}\)</span> If <span class="process-math">\(f(x)\)</span> has degree <span class="process-math">\(n+1\text{,}\)</span> then there are two cases to consider. If <span class="process-math">\(\deg  g(x) &gt; n + 1\text{,}\)</span> <span class="process-math">\(f(x) = g(x)\cdot 0 + f(x)\text{,}\)</span> and we are done. Otherwise, if <span class="process-math">\(\deg  g(x) =m \leq  n + 1\text{,}\)</span> we perform long division as follows, where LDT’s stand for terms of lower degree than <span class="process-math">\(n+1\text{.}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1431,7 +1420,7 @@ g_mx^m+ \textrm{ LDT}'s &amp; \overline{\left) f_{n+1}x^{n+1}\right.+ \textrm{ L
 \end{array}
 \end{equation*}
 </div>
-</div> <div class="para logical" id="p-6288">
+</div> <div class="para logical" id="p-6304">
 <div class="para">Therefore,</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1441,7 +1430,7 @@ g(x)+h(x)
 </div>
 <div class="para">Since <span class="process-math">\(\deg  h(x)\)</span> is less than <span class="process-math">\(n+1\text{,}\)</span> we can apply the induction hypothesis: <span class="process-math">\(h(x) = g(x)q(x) + r(x)\)</span> with  <span class="process-math">\(\deg  r(x) &lt; \deg  g(x)\text{.}\)</span>
 </div>
-</div> <div class="para logical" id="p-6289">
+</div> <div class="para logical" id="p-6305">
 <div class="para">Therefore,</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1458,12 +1447,12 @@ g(x)q(x) + r(x) = g(x) \bar{q}(x) +\overline{ r}(x) \Rightarrow  g(x) \left(\bar
 </div>
 </div>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-707"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
-<div class="para logical" id="p-6290"><ol class="lower-alpha">
-<li id="li-2787"><div class="para" id="p-6291">Show that the field <span class="process-math">\(\mathbb{R}\)</span> of real numbers is a vector space over <span class="process-math">\(\mathbb{R}\text{.}\)</span> Find a basis for this vector space. What is dim <span class="process-math">\(\mathbb{R}\)</span> over <span class="process-math">\(\mathbb{R}\text{?}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-710"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
+<div class="para logical" id="p-6306"><ol class="lower-alpha">
+<li id="li-2799"><div class="para" id="p-6307">Show that the field <span class="process-math">\(\mathbb{R}\)</span> of real numbers is a vector space over <span class="process-math">\(\mathbb{R}\text{.}\)</span> Find a basis for this vector space. What is dim <span class="process-math">\(\mathbb{R}\)</span> over <span class="process-math">\(\mathbb{R}\text{?}\)</span>
 </div></li>
-<li id="li-2788"><div class="para" id="p-6292">Repeat part a for an arbitrary field F.</div></li>
-<li id="li-2789"><div class="para" id="p-6293">Show that <span class="process-math">\(\mathbb{R}\)</span> is a vector space over <span class="process-math">\(\mathbb{Q}\text{.}\)</span>
+<li id="li-2800"><div class="para" id="p-6308">Repeat part a for an arbitrary field F.</div></li>
+<li id="li-2801"><div class="para" id="p-6309">Show that <span class="process-math">\(\mathbb{R}\)</span> is a vector space over <span class="process-math">\(\mathbb{Q}\text{.}\)</span>
 </div></li>
 </ol></div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>

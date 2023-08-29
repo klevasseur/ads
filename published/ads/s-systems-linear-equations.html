@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Systems of Linear Equations</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,32 +58,47 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
 </script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
 <script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
@@ -105,59 +138,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -166,7 +156,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -321,7 +311,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1133,17 +1126,17 @@ eBookConfig.runestone_version = '7.0.7';
 <section class="subsection" id="subsection-159"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">12.1.1</span> <span class="title">Solutions</span>
 </h3>
-<div class="para" id="p-4485">The method of solving systems of equations by matrices that we will look at is based on procedures involving equations that we are familiar with from previous mathematics courses. The main idea is to reduce a given system of equations to another simpler system that has the same solutions.</div>
+<div class="para" id="p-4501">The method of solving systems of equations by matrices that we will look at is based on procedures involving equations that we are familiar with from previous mathematics courses. The main idea is to reduce a given system of equations to another simpler system that has the same solutions.</div>
 <article class="definition definition-like" id="def-solution-set"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">12.1.1</span><span class="period">.</span><span class="space"> </span><span class="title">Solution Set.</span>
-</h4>  <div class="para" id="p-4486">Given a system of equations involving real variables <span class="process-math">\(x_1\text{,}\)</span> <span class="process-math">\(x_2, \ldots \text{,}\)</span> <span class="process-math">\(x_n\text{,}\)</span> the solution set of the system is the set of <span class="process-math">\(n\)</span>-tuples in <span class="process-math">\(\mathbb{R}^n\text{,}\)</span> <span class="process-math">\(\left(a_1, a_2, \ldots ,a_n\right)\)</span> such that the substitutions <span class="process-math">\(x_1= a_1\text{,}\)</span> <span class="process-math">\(x_2=
-a_2, \ldots\text{,}\)</span> <span class="process-math">\(x_n= a_n\)</span> make all the equations true.</div></article><div class="para" id="p-4487">In terms of logic, a solution set is a truth set of a system of equations, which is a proposition over <span class="process-math">\(n\)</span>-tuples of real numbers.</div>
-<div class="para" id="p-4488">In general, if the variables are from a set <span class="process-math">\(S\text{,}\)</span> then the solution set will be a subset of <span class="process-math">\(S^n\text{.}\)</span> For example, in number theory mathematicians study Diophantine equations, where the variables can only take on integer values instead of real values.</div>
+</h4>  <div class="para" id="p-4502">Given a system of equations involving real variables <span class="process-math">\(x_1\text{,}\)</span> <span class="process-math">\(x_2, \ldots \text{,}\)</span> <span class="process-math">\(x_n\text{,}\)</span> the solution set of the system is the set of <span class="process-math">\(n\)</span>-tuples in <span class="process-math">\(\mathbb{R}^n\text{,}\)</span> <span class="process-math">\(\left(a_1, a_2, \ldots ,a_n\right)\)</span> such that the substitutions <span class="process-math">\(x_1= a_1\text{,}\)</span> <span class="process-math">\(x_2=
+a_2, \ldots\text{,}\)</span> <span class="process-math">\(x_n= a_n\)</span> make all the equations true.</div></article><div class="para" id="p-4503">In terms of logic, a solution set is a truth set of a system of equations, which is a proposition over <span class="process-math">\(n\)</span>-tuples of real numbers.</div>
+<div class="para" id="p-4504">In general, if the variables are from a set <span class="process-math">\(S\text{,}\)</span> then the solution set will be a subset of <span class="process-math">\(S^n\text{.}\)</span> For example, in number theory mathematicians study Diophantine equations, where the variables can only take on integer values instead of real values.</div>
 <article class="definition definition-like" id="def-equivalent-systems"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">12.1.2</span><span class="period">.</span><span class="space"> </span><span class="title">Equivalent Systems of Equations.</span>
-</h4> <div class="para" id="p-4489">Two systems of linear equations are called equivalent if they have the same set of solutions.</div></article><article class="example example-like" id="ex-equivalent-systems"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-equivalent-systems"><h4 class="heading">
+</h4> <div class="para" id="p-4505">Two systems of linear equations are called equivalent if they have the same set of solutions.</div></article><article class="example example-like" id="ex-equivalent-systems"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-equivalent-systems"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">12.1.3</span><span class="period">.</span><span class="space"> </span><span class="title">Two equivalent systems.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-equivalent-systems"><article class="example example-like"><div class="para logical" id="p-4490">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-equivalent-systems"><article class="example example-like"><div class="para logical" id="p-4506">
 <div class="para">The previous definition tells us that if we know that the system</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1171,15 +1164,15 @@ a_2, \ldots\text{,}\)</span> <span class="process-math">\(x_n= a_n\)</span> make
 <article class="theorem theorem-like" id="theorem-elem-equation-operations"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">12.1.4</span><span class="period">.</span><span class="space"> </span><span class="title">Elementary Operations on Equations.</span>
 </h4>
-<div class="para logical" id="p-4491">
+<div class="para logical" id="p-4507">
 <div class="para">If any sequence of the following operations is performed on a system of equations, the resulting system is equivalent to the original system:</div>
 <ol class="lower-alpha">
-<li id="li-2060"><div class="para" id="p-4492">Interchange any two equations in the system.</div></li>
-<li id="li-2061"><div class="para" id="p-4493">Multiply both sides of any equation by a nonzero constant.</div></li>
-<li id="li-2062"><div class="para" id="p-4494">Multiply both sides of any equation by a nonzero constant and add the result to a second equation in the system, with the sum replacing the latter equation.</div></li>
+<li id="li-2072"><div class="para" id="p-4508">Interchange any two equations in the system.</div></li>
+<li id="li-2073"><div class="para" id="p-4509">Multiply both sides of any equation by a nonzero constant.</div></li>
+<li id="li-2074"><div class="para" id="p-4510">Multiply both sides of any equation by a nonzero constant and add the result to a second equation in the system, with the sum replacing the latter equation.</div></li>
 </ol>
-</div></article><div class="para" id="p-4495">Let us now use the above theorem to work out the details of <a href="" class="xref" data-knowl="./knowl/ex-equivalent-systems.html" title="Example 12.1.3: Two equivalent systems">Example 12.1.3</a> and see how we can arrive at the simpler system.</div>
-<div class="para logical" id="p-4496">
+</div></article><div class="para" id="p-4511">Let us now use the above theorem to work out the details of <a href="" class="xref" data-knowl="./knowl/ex-equivalent-systems.html" title="Example 12.1.3: Two equivalent systems">Example 12.1.3</a> and see how we can arrive at the simpler system.</div>
+<div class="para logical" id="p-4512">
 <div class="para">The original system:</div>
 <div class="displaymath process-math" id="mdn-32">
 \begin{gather}
@@ -1191,10 +1184,10 @@ a_2, \ldots\text{,}\)</span> <span class="process-math">\(x_n= a_n\)</span> make
 \end{gather}
 </div>
 </div>
-<div class="para logical" id="p-4497">
+<div class="para logical" id="p-4513">
 <div class="para">Step 1. We will first change the coefficient of <span class="process-math">\(x_1\)</span> in the first equation to one and then use it as a pivot to obtain 0’s for the coefficients of <span class="process-math">\(x_1\)</span> in Equations 2 and 3.</div>
 <ul class="disc">
-<li id="li-2063"><div class="para logical" id="p-4498">
+<li id="li-2075"><div class="para logical" id="p-4514">
 <div class="para">Multiply Equation 1 by <span class="process-math">\(\frac{1}{4}\)</span> to obtain</div>
 <div class="displaymath process-math" id="mdn-33">
 \begin{gather}
@@ -1206,7 +1199,7 @@ x_1+\frac{x_2}{2}+\frac{x_3}{4}=\frac{1}{4}\\
 \end{gather}
 </div>
 </div></li>
-<li id="li-2064"><div class="para logical" id="p-4499">
+<li id="li-2076"><div class="para logical" id="p-4515">
 <div class="para">Multiply Equation 1 by <span class="process-math">\(-2\)</span> and  add the result to Equation 2 to obtain</div>
 <div class="displaymath process-math" id="mdn-34">
 \begin{gather}
@@ -1218,7 +1211,7 @@ x_1+\frac{x_2}{2}+\frac{x_3}{4}=\frac{1}{4} \\
 \end{gather}
 </div>
 </div></li>
-<li id="li-2065"><div class="para logical" id="p-4500">
+<li id="li-2077"><div class="para logical" id="p-4516">
 <div class="para">Multiply Equation 1 by <span class="process-math">\(-2\)</span> and  add the result to Equation 3 to obtain</div>
 <div class="displaymath process-math" id="mdn-35">
 \begin{gather}
@@ -1232,11 +1225,11 @@ x_1+\frac{x_2}{2}+\frac{x_3}{4}=\frac{1}{4} \\
 </div></li>
 </ul>
 </div>
-<div class="para" id="p-4501">We’ve explicitly written terms with zero coefficients such as <span class="process-math">\(0 x_1\)</span> to make a point that all variables can be thought of as being involved in all equations.  After this example is complete, we will discontinue this practice in favor of the normal practice of making these terms “disappear.”</div>
-<div class="para logical" id="p-4502">
+<div class="para" id="p-4517">We’ve explicitly written terms with zero coefficients such as <span class="process-math">\(0 x_1\)</span> to make a point that all variables can be thought of as being involved in all equations.  After this example is complete, we will discontinue this practice in favor of the normal practice of making these terms “disappear.”</div>
+<div class="para logical" id="p-4518">
 <div class="para">Step 2. We would now like to proceed in a fashion analogous to Step 1; namely, multiply the coefficient of <span class="process-math">\(x_2\)</span> in the second equation by a suitable number so that the result is 1. Then use it as a pivot to obtain 0’s as coefficients for <span class="process-math">\(x_2\)</span> in the first and third equations. This is clearly impossible (Why?), so we will first interchange Equations 2 and 3 and proceed as outlined above.</div>
 <ul class="disc">
-<li id="li-2066"><div class="para logical" id="p-4503">
+<li id="li-2078"><div class="para logical" id="p-4519">
 <div class="para">Exchange Equations 2 and 3 to obtain</div>
 <div class="displaymath process-math" id="mdn-36">
 \begin{gather}
@@ -1248,7 +1241,7 @@ x_1+\frac{x_2}{2}+\frac{x_3}{4}=\frac{1}{4} \\
 \end{gather}
 </div>
 </div></li>
-<li id="li-2067"><div class="para logical" id="p-4504">
+<li id="li-2079"><div class="para logical" id="p-4520">
 <div class="para">Multiply Equation 2 by <span class="process-math">\(\frac{1}{2}\)</span> and subtract the result from Equation 1 to obtain</div>
 <div class="displaymath process-math" id="mdn-37">
 \begin{gather}
@@ -1262,10 +1255,10 @@ x_1+ 0x_2 + 0x_3 = -1 \\
 </div></li>
 </ul>
 </div>
-<div class="para logical" id="p-4505">
+<div class="para logical" id="p-4521">
 <div class="para">Step 3. Next, we will change the coefficient of <span class="process-math">\(x_3\)</span> in the third equation to one and then use it as a pivot to obtain 0’s for the coefficients of <span class="process-math">\(x_3\)</span> in Equations 1 and 2. Notice that the coefficient of <span class="process-math">\(x_3\)</span> is already zero in Equation 1, so we have been saved some work!</div>
 <ul class="disc">
-<li id="li-2068"><div class="para logical" id="p-4506">
+<li id="li-2080"><div class="para logical" id="p-4522">
 <div class="para">Multiply Equation 3 by <span class="process-math">\(2\)</span> to obtain</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1277,7 +1270,7 @@ x_1+ 0x_2 + 0x_3 = -1 \\
 \end{equation*}
 </div>
 </div></li>
-<li id="li-2069"><div class="para logical" id="p-4507">
+<li id="li-2081"><div class="para logical" id="p-4523">
 <div class="para">Multiply Equation 3 by <span class="process-math">\(-1/2\)</span> and add the result to Equation 2 to obtain</div>
 <div class="displaymath process-math" id="mdn-38">
 \begin{gather}
@@ -1291,11 +1284,11 @@ x_1+ 0x_2 + 0x_3 = -1 \\
 </div></li>
 </ul>
 </div>
-<div class="para" id="p-4508">From the system of equations at the end of Step 3, we see that the solution to the original system is <span class="process-math">\(x_1=-1\text{,}\)</span> <span class="process-math">\(x_2= -1\text{,}\)</span> and <span class="process-math">\(x_3= 7\text{.}\)</span>
+<div class="para" id="p-4524">From the system of equations at the end of Step 3, we see that the solution to the original system is <span class="process-math">\(x_1=-1\text{,}\)</span> <span class="process-math">\(x_2= -1\text{,}\)</span> and <span class="process-math">\(x_3= 7\text{.}\)</span>
 </div></section><section class="subsection" id="subsection-161"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">12.1.3</span> <span class="title">Transition to Matrices</span>
 </h3>
-<div class="para logical" id="p-4509">
+<div class="para logical" id="p-4525">
 <div class="para">In the above sequence of steps, we note that the variables serve the sole purpose of keeping the coefficients in the appropriate location. This we can effect by using matrices. The matrix of the  original system in our example is</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/theorem-elem-equation-operations.html">
 \begin{equation*}
@@ -1315,16 +1308,16 @@ x_1+ 0x_2 + 0x_3 = -1 \\
 <article class="theorem theorem-like" id="theorem-elementary-row-operations"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">12.1.5</span><span class="period">.</span><span class="space"> </span><span class="title">Elementary Row Operations.</span>
 </h4>
-<div class="para logical" id="p-4510">
+<div class="para logical" id="p-4526">
 <div class="para">If any sequence of the following operations is performed on the augmented matrix of a system of equations, the resulting matrix is a system that is equivalent to the original system. The following operations on a matrix are called elementary row operations:</div>
 <ol class="decimal">
-<li id="li-2070"><div class="para" id="p-4511">Exchange any two rows of the matrix.</div></li>
-<li id="li-2071"><div class="para" id="p-4512">Multiply any row of the matrix by a nonzero constant.</div></li>
-<li id="li-2072"><div class="para" id="p-4513">Multiply any row of the matrix by a nonzero constant and add the result to a second row, with the sum replacing that second row.</div></li>
+<li id="li-2082"><div class="para" id="p-4527">Exchange any two rows of the matrix.</div></li>
+<li id="li-2083"><div class="para" id="p-4528">Multiply any row of the matrix by a nonzero constant.</div></li>
+<li id="li-2084"><div class="para" id="p-4529">Multiply any row of the matrix by a nonzero constant and add the result to a second row, with the sum replacing that second row.</div></li>
 </ol>
 </div></article><article class="definition definition-like" id="def-row-equivalent"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">12.1.6</span><span class="period">.</span><span class="space"> </span><span class="title">Row Equivalent Matrices.</span>
-</h4>  <div class="para" id="p-4514">Two matrices, <span class="process-math">\(A\)</span> and <span class="process-math">\(B\text{,}\)</span> are said to be row-equivalent if one can be obtained from the other by  any sequence of zero or more elementary row operations.</div></article><div class="para logical" id="p-4515">
+</h4>  <div class="para" id="p-4530">Two matrices, <span class="process-math">\(A\)</span> and <span class="process-math">\(B\text{,}\)</span> are said to be row-equivalent if one can be obtained from the other by  any sequence of zero or more elementary row operations.</div></article><div class="para logical" id="p-4531">
 <div class="para">If we use the notation <span class="process-math">\(R_i\)</span> to stand for Row <span class="process-math">\(i\)</span> of a matrix and <span class="process-math">\(\longrightarrow\)</span> to stand for row equivalence, then</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1344,7 +1337,7 @@ A \overset{R_i\leftrightarrow R_j}{\longrightarrow }B\text{.}
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-4516">
+<div class="para logical" id="p-4532">
 <div class="para">The matrix notation for the system given in our first example, with the subsequent steps, is:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1406,21 +1399,21 @@ A \overset{R_i\leftrightarrow R_j}{\longrightarrow }B\text{.}
 </div>
 <div class="para">This again gives us the solution. This procedure is called the <dfn class="terminology">Gauss-Jordan elimination method</dfn>.</div>
 </div>
-<div class="para" id="p-4517">It is important to remember when solving any system of equations via this or any similar approach that at any step in the procedure we can rewrite the matrix in “equation format” to help us to interpret the meaning of the augmented matrix.</div>
-<div class="para" id="p-4518">In our first example we found a unique solution, only one triple, namely <span class="process-math">\((-1,-1,7)\text{,}\)</span> which satisfies all three equations. For a system involving three unknowns, are there any other possible results? To answer this question, let’s review some basic facts from analytic geometry.</div>
-<div class="para" id="p-4519">The graph of a linear equation in three-dimensional space is a plane. So geometrically we can visualize the three linear equations as three planes in three-space. Certainly the three planes can intersect in a unique point, as in the first example, or two of the planes could be parallel. If two planes are parallel, there are no common points of intersection; that is, there are no triple of real numbers that will satisfy all three equations. Another possibility is that the three planes could intersect along a common axis or line. In this case, there would be an infinite number of real number triples in <span class="process-math">\(\mathbb{R}^3\text{.}\)</span> Yet another possibility would be if the first two planes intersect in a line, but the line is parallel to, but not on, the third plane, giving us no solution.  Finally if all three equations describe the same plane, the solution set would be that plane.</div>
-<div class="para logical" id="p-4520">
+<div class="para" id="p-4533">It is important to remember when solving any system of equations via this or any similar approach that at any step in the procedure we can rewrite the matrix in “equation format” to help us to interpret the meaning of the augmented matrix.</div>
+<div class="para" id="p-4534">In our first example we found a unique solution, only one triple, namely <span class="process-math">\((-1,-1,7)\text{,}\)</span> which satisfies all three equations. For a system involving three unknowns, are there any other possible results? To answer this question, let’s review some basic facts from analytic geometry.</div>
+<div class="para" id="p-4535">The graph of a linear equation in three-dimensional space is a plane. So geometrically we can visualize the three linear equations as three planes in three-space. Certainly the three planes can intersect in a unique point, as in the first example, or two of the planes could be parallel. If two planes are parallel, there are no common points of intersection; that is, there are no triple of real numbers that will satisfy all three equations. Another possibility is that the three planes could intersect along a common axis or line. In this case, there would be an infinite number of real number triples in <span class="process-math">\(\mathbb{R}^3\text{.}\)</span> Yet another possibility would be if the first two planes intersect in a line, but the line is parallel to, but not on, the third plane, giving us no solution.  Finally if all three equations describe the same plane, the solution set would be that plane.</div>
+<div class="para logical" id="p-4536">
 <div class="para">We can generalize these observations. In a system of <span class="process-math">\(n\)</span> linear equations, <span class="process-math">\(n\)</span> unknowns, there can be</div>
 <ol class="decimal">
-<li id="li-2073"><div class="para" id="p-4521">a unique solution,</div></li>
-<li id="li-2074"><div class="para" id="p-4522">no solution, or</div></li>
-<li id="li-2075"><div class="para" id="p-4523">an infinite number of solutions.</div></li>
+<li id="li-2085"><div class="para" id="p-4537">a unique solution,</div></li>
+<li id="li-2086"><div class="para" id="p-4538">no solution, or</div></li>
+<li id="li-2087"><div class="para" id="p-4539">an infinite number of solutions.</div></li>
 </ol>
 </div>
-<div class="para" id="p-4524">To illustrate these points, consider the following examples:</div>
+<div class="para" id="p-4540">To illustrate these points, consider the following examples:</div>
 <article class="example example-like" id="ex-system-no-solution"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-system-no-solution"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">12.1.7</span><span class="period">.</span><span class="space"> </span><span class="title">A system with no solutions.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-system-no-solution"><article class="example example-like"> <div class="para logical" id="p-4525">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-system-no-solution"><article class="example example-like"> <div class="para logical" id="p-4541">
 <div class="para">Find all solutions to the system</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1431,7 +1424,7 @@ A \overset{R_i\leftrightarrow R_j}{\longrightarrow }B\text{.}
 \end{array}
 \end{equation*}
 </div>
-</div> <div class="para" id="p-4526">The reader can verify that the augmented matrix of this system, <span class="process-math">\(\left(
+</div> <div class="para" id="p-4542">The reader can verify that the augmented matrix of this system, <span class="process-math">\(\left(
 \begin{array}{ccc|c}
 1 &amp; 3 &amp; 1 &amp; 2 \\
 1 &amp; 1 &amp; 5 &amp; 4 \\
@@ -1444,10 +1437,10 @@ A \overset{R_i\leftrightarrow R_j}{\longrightarrow }B\text{.}
 0 &amp; 0 &amp; 0 &amp; -2 \\
 \end{array}
 \right)\text{.}\)</span>
-</div> <div class="para" id="p-4527">We can attempt to row-reduce this matrix further if we wish. However, any further row-reduction will not substantially change the last row, which, in equation form, is <span class="process-math">\(0x_1+ 0x_2+0x_3 = -2\text{,}\)</span> or simply <span class="process-math">\(0=-2\text{.}\)</span> It is clear that we cannot find real numbers <span class="process-math">\(x_1\text{,}\)</span> <span class="process-math">\(x_2\text{,}\)</span> and <span class="process-math">\(x_3\)</span> that will satisfy this equation. Hence we cannot find real numbers that will satisfy all three original equations simultaneously. When this occurs, we say that the system has no solution, or the solution set is empty.</div></article></div>
+</div> <div class="para" id="p-4543">We can attempt to row-reduce this matrix further if we wish. However, any further row-reduction will not substantially change the last row, which, in equation form, is <span class="process-math">\(0x_1+ 0x_2+0x_3 = -2\text{,}\)</span> or simply <span class="process-math">\(0=-2\text{.}\)</span> It is clear that we cannot find real numbers <span class="process-math">\(x_1\text{,}\)</span> <span class="process-math">\(x_2\text{,}\)</span> and <span class="process-math">\(x_3\)</span> that will satisfy this equation. Hence we cannot find real numbers that will satisfy all three original equations simultaneously. When this occurs, we say that the system has no solution, or the solution set is empty.</div></article></div>
 <article class="example example-like" id="ex-system-infinite-solutions"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-system-infinite-solutions"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">12.1.8</span><span class="period">.</span><span class="space"> </span><span class="title">A system with an infinite number of solutions.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-system-infinite-solutions"><article class="example example-like"><div class="para logical" id="p-4528">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-system-infinite-solutions"><article class="example example-like"><div class="para logical" id="p-4544">
 <div class="para">Next, let’s attempt to find all of the solutions to:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1458,7 +1451,7 @@ A \overset{R_i\leftrightarrow R_j}{\longrightarrow }B\text{.}
 \end{array}
 \end{equation*}
 </div>
-</div> <div class="para logical" id="p-4529">
+</div> <div class="para logical" id="p-4545">
 <div class="para">The augmented matrix for the system is</div>
 <div class="displaymath process-math" id="mdn-39">
 \begin{align}
@@ -1483,7 +1476,7 @@ A \overset{R_i\leftrightarrow R_j}{\longrightarrow }B\text{.}
 \right)\tag{12.1.9}
 \end{align}
 </div>
-</div> <div class="para logical" id="p-4530">
+</div> <div class="para logical" id="p-4546">
 <div class="para">If we apply additional elementary row operations to this matrix, it will only become more complicated. In particular, we cannot get a one in the third row, third column. Since the matrix is in simplest form, we will express it in equation format to help us determine the solution set.</div>
 <div class="displaymath process-math" id="mdn-41">
 \begin{gather}
@@ -1500,69 +1493,69 @@ x_1 \quad+\frac{16}{11} x_3 =1 \\
 S = \left\{\left(1-\frac{16}{11}x_3, -\frac{1}{11}x_3, x_3\right) \mid x_3\in \mathbb{R}\right\}\text{.}
 \end{equation*}
 </div>
-</div> <div class="para" id="p-4531">What this means is that if we wanted to list all solutions, we would replace <span class="process-math">\(x_3\)</span> by all possible numbers. Clearly, there is an infinite number of solutions, two of which are <span class="process-math">\((1, 0, 0)\)</span> and <span class="process-math">\((-15, -1, 11)\text{,}\)</span> when <span class="process-math">\(x_3\)</span> takes on the values 0 and 11, respectively.</div> <div class="para" id="p-4532">A Word Of Caution: Frequently we may can get “different-looking” answers to the same problem when a system has an infinite number of solutions. Assume the solutions set in this example is reported to be <span class="process-math">\(A = \left\{\left(1+16x_2, x_2, -11x_3\right) \mid x_3\in \mathbb{R}\right\}\text{.}\)</span> Certainly the result described by <span class="process-math">\(S\)</span> looks different from that described by <span class="process-math">\(A\text{.}\)</span> To see whether they indeed describe the same set, we wish to determine whether every solution produced in <span class="process-math">\(S\)</span> can be generated in <span class="process-math">\(A\text{.}\)</span> For example, the solution generated by <span class="process-math">\(S\)</span> when <span class="process-math">\(x_3=11\)</span> is <span class="process-math">\((-15, -1, 11)\text{.}\)</span> The same triple can be produced by <span class="process-math">\(A\)</span> by taking <span class="process-math">\(x_2= -1\text{.}\)</span> We must prove that every solution described in <span class="process-math">\(S\)</span> is described in <span class="process-math">\(A\)</span> and, conversely, that every solution described in <span class="process-math">\(A\)</span> is described in <span class="process-math">\(S\text{.}\)</span> (See Exercise 6 of this section.)</div></article></div>
-<div class="para" id="p-4533">To summarize the procedure in the Gauss-Jordan technique for solving systems of equations, we attempt to obtain 1’s along the main diagonal of the coefficient matrix with 0’s above and below the diagonal. We may find in attempting this that this objective cannot be completed, as in the last two examples we have seen.  Depending on the way we interpret the results in equation form, we either recognize that no solution exists, or we identify “free variables” on which an infinite number of solutions are based.  The final matrix forms that we have produced in our examples are referred to as  <dfn class="terminology">echelon forms</dfn>.</div>
-<div class="para logical" id="p-4534">
+</div> <div class="para" id="p-4547">What this means is that if we wanted to list all solutions, we would replace <span class="process-math">\(x_3\)</span> by all possible numbers. Clearly, there is an infinite number of solutions, two of which are <span class="process-math">\((1, 0, 0)\)</span> and <span class="process-math">\((-15, -1, 11)\text{,}\)</span> when <span class="process-math">\(x_3\)</span> takes on the values 0 and 11, respectively.</div> <div class="para" id="p-4548">A Word Of Caution: Frequently we may can get “different-looking” answers to the same problem when a system has an infinite number of solutions. Assume the solutions set in this example is reported to be <span class="process-math">\(A = \left\{\left(1+16x_2, x_2, -11x_3\right) \mid x_3\in \mathbb{R}\right\}\text{.}\)</span> Certainly the result described by <span class="process-math">\(S\)</span> looks different from that described by <span class="process-math">\(A\text{.}\)</span> To see whether they indeed describe the same set, we wish to determine whether every solution produced in <span class="process-math">\(S\)</span> can be generated in <span class="process-math">\(A\text{.}\)</span> For example, the solution generated by <span class="process-math">\(S\)</span> when <span class="process-math">\(x_3=11\)</span> is <span class="process-math">\((-15, -1, 11)\text{.}\)</span> The same triple can be produced by <span class="process-math">\(A\)</span> by taking <span class="process-math">\(x_2= -1\text{.}\)</span> We must prove that every solution described in <span class="process-math">\(S\)</span> is described in <span class="process-math">\(A\)</span> and, conversely, that every solution described in <span class="process-math">\(A\)</span> is described in <span class="process-math">\(S\text{.}\)</span> (See Exercise 6 of this section.)</div></article></div>
+<div class="para" id="p-4549">To summarize the procedure in the Gauss-Jordan technique for solving systems of equations, we attempt to obtain 1’s along the main diagonal of the coefficient matrix with 0’s above and below the diagonal. We may find in attempting this that this objective cannot be completed, as in the last two examples we have seen.  Depending on the way we interpret the results in equation form, we either recognize that no solution exists, or we identify “free variables” on which an infinite number of solutions are based.  The final matrix forms that we have produced in our examples are referred to as  <dfn class="terminology">echelon forms</dfn>.</div>
+<div class="para logical" id="p-4550">
 <div class="para">In practice, larger systems of linear equations are solved using computers. Generally, the Gauss-Jordan algorithm is the most useful; however, slight variations of this algorithm are also used. The different approaches share many of the same advantages and disadvantages. The two major concerns of all methods are:</div>
 <ol class="decimal">
-<li id="li-2076"><div class="para" id="p-4535">minimizing inaccuracies due to round-off errors, and</div></li>
-<li id="li-2077"><div class="para" id="p-4536">minimizing computer time.</div></li>
+<li id="li-2088"><div class="para" id="p-4551">minimizing inaccuracies due to round-off errors, and</div></li>
+<li id="li-2089"><div class="para" id="p-4552">minimizing computer time.</div></li>
 </ol>
 </div></section><section class="subsection" id="subsection-163"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">12.1.5</span> <span class="title">The Gauss-Jordan Algorithm</span>
 </h3>
-<div class="para" id="p-4537">The accuracy of the Gauss-Jordan method can be improved by always choosing the element with the largest absolute value as the pivot element, as in the following algorithm.</div>
+<div class="para" id="p-4553">The accuracy of the Gauss-Jordan method can be improved by always choosing the element with the largest absolute value as the pivot element, as in the following algorithm.</div>
 <article class="algorithm theorem-like" id="algorithm-gauss-jordan"><h4 class="heading">
 <span class="type">Algorithm</span><span class="space"> </span><span class="codenumber">12.1.9</span><span class="period">.</span><span class="space"> </span><span class="title">The Gauss-Jordan Algorithm.</span>
 </h4>
-<div class="para logical" id="p-4538">
+<div class="para logical" id="p-4554">
 <div class="para">Given a matrix equation <span class="process-math">\(A x = b\text{,}\)</span> where A is <span class="process-math">\(n \times m\text{,}\)</span> let <span class="process-math">\(C\)</span> be the augmented matrix <span class="process-math">\([A | b]\text{.}\)</span> The process of row-reducing to echelon form involves performing the following algorithm where <span class="process-math">\(C[i]\)</span>  is the <span class="process-math">\(i^{\textrm{th}}\)</span>  row of <span class="process-math">\(C\text{.}\)</span>
 </div>
 <ol class="decimal">
-<li id="li-2078"><div class="para" id="p-4539"><code class="code-inline tex2jax_ignore">i = 1</code></div></li>
-<li id="li-2079"><div class="para" id="p-4540"><code class="code-inline tex2jax_ignore">j = 1</code></div></li>
-<li id="li-2080"><div class="para logical" id="p-4541">
+<li id="li-2090"><div class="para" id="p-4555"><code class="code-inline tex2jax_ignore">i = 1</code></div></li>
+<li id="li-2091"><div class="para" id="p-4556"><code class="code-inline tex2jax_ignore">j = 1</code></div></li>
+<li id="li-2092"><div class="para logical" id="p-4557">
 <div class="para">while <code class="code-inline tex2jax_ignore">i &lt;=  n  and  j &lt;=  m)</code>:</div>
 <ol class="lower-alpha">
-<li id="li-2081"><div class="para" id="p-4542"><code class="code-inline tex2jax_ignore">maxi=i</code></div></li>
-<li id="li-2082">
-<div class="para" id="p-4543">for k = i+1 to n:</div>
-<div class="para" id="p-4544">
+<li id="li-2093"><div class="para" id="p-4558"><code class="code-inline tex2jax_ignore">maxi=i</code></div></li>
+<li id="li-2094">
+<div class="para" id="p-4559">for k = i+1 to n:</div>
+<div class="para" id="p-4560">
 <span class="process-math">\(\quad\)</span>if  <code class="code-inline tex2jax_ignore">abs(C[k,j])&gt;abs(C[maxi,j])</code>: then <code class="code-inline tex2jax_ignore">maxi=k</code>
 </div>
 </li>
-<li id="li-2083"><div class="para logical" id="p-4545">
+<li id="li-2095"><div class="para logical" id="p-4561">
 <div class="para">if <code class="code-inline tex2jax_ignore">C[maxi,j] != 0</code> then:</div>
 <ol class="lower-roman">
-<li id="li-2084"><div class="para" id="p-4546">exchange rows <code class="code-inline tex2jax_ignore">i</code> and <code class="code-inline tex2jax_ignore">maxi</code>
+<li id="li-2096"><div class="para" id="p-4562">exchange rows <code class="code-inline tex2jax_ignore">i</code> and <code class="code-inline tex2jax_ignore">maxi</code>
 </div></li>
-<li id="li-2085"><div class="para" id="p-4547">divide each entry in row <code class="code-inline tex2jax_ignore">i</code> by <code class="code-inline tex2jax_ignore">C[i,j]</code>
+<li id="li-2097"><div class="para" id="p-4563">divide each entry in row <code class="code-inline tex2jax_ignore">i</code> by <code class="code-inline tex2jax_ignore">C[i,j]</code>
 </div></li>
-<li id="li-2086">
-<div class="para" id="p-4548">for <code class="code-inline tex2jax_ignore">u = i+1 to n</code>:</div>
-<div class="para" id="p-4549">
+<li id="li-2098">
+<div class="para" id="p-4564">for <code class="code-inline tex2jax_ignore">u = i+1 to n</code>:</div>
+<div class="para" id="p-4565">
 <span class="process-math">\(\quad\)</span>subtract <code class="code-inline tex2jax_ignore">C[u,j]*C[i]</code> from <code class="code-inline tex2jax_ignore">C[u]</code>
 </div>
 </li>
-<li id="li-2087"><div class="para" id="p-4550"><code class="code-inline tex2jax_ignore">i = i+1</code></div></li>
+<li id="li-2099"><div class="para" id="p-4566"><code class="code-inline tex2jax_ignore">i = i+1</code></div></li>
 </ol>
 </div></li>
-<li id="li-2088"><div class="para" id="p-4551"><code class="code-inline tex2jax_ignore">j=j+1</code></div></li>
+<li id="li-2100"><div class="para" id="p-4567"><code class="code-inline tex2jax_ignore">j=j+1</code></div></li>
 </ol>
 </div></li>
 </ol>
 </div></article><article class="note remark-like" id="note-23"><h4 class="heading">
 <span class="type">Note</span><span class="space"> </span><span class="codenumber">12.1.10</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-4552">
+<div class="para logical" id="p-4568">
 <div class="para">At the end of this algorithm, with the final form of <span class="process-math">\(C\)</span> you can revert back to the equation form of the system and a solution should be clear. In general,</div>
 <ul class="disc">
-<li id="li-2089"><div class="para" id="p-4553">If any row of <span class="process-math">\(C\)</span> is all zeros, it can be ignored.</div></li>
-<li id="li-2090"><div class="para" id="p-4554">If any row of <span class="process-math">\(C\)</span> has all zero entries except for the entry in the <span class="process-math">\((m+1)^{\textrm{st}}\)</span> position, the system has no solution.   Otherwise, if a column has no pivot, the variable corresponding to it is a free variable.  Variables corresponding to pivots are basic variables and can be expressed in terms of the free variables.</div></li>
+<li id="li-2101"><div class="para" id="p-4569">If any row of <span class="process-math">\(C\)</span> is all zeros, it can be ignored.</div></li>
+<li id="li-2102"><div class="para" id="p-4570">If any row of <span class="process-math">\(C\)</span> has all zero entries except for the entry in the <span class="process-math">\((m+1)^{\textrm{st}}\)</span> position, the system has no solution.   Otherwise, if a column has no pivot, the variable corresponding to it is a free variable.  Variables corresponding to pivots are basic variables and can be expressed in terms of the free variables.</div></li>
 </ul>
 </div></article><article class="example example-like" id="ex-12-1-system4"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-12-1-system4"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">12.1.11</span><span class="period">.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-12-1-system4"><article class="example example-like"><div class="para logical" id="p-4555">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-12-1-system4"><article class="example example-like"><div class="para logical" id="p-4571">
 <div class="para">If we apply <a href="" class="xref" data-knowl="./knowl/algorithm-gauss-jordan.html" title="Algorithm 12.1.9: The Gauss-Jordan Algorithm">The Gauss-Jordan Algorithm</a> to the system</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/algorithm-gauss-jordan.html">
 \begin{equation*}
@@ -1617,111 +1610,111 @@ x_4 \\
 \right)
 \end{equation*}
 </div>
-</div> <div class="para" id="p-4556">This conclusion is easy to see if you revert back to the equations that the final value the reduced matrix represents.</div></article></div></section><section class="subsection" id="sage-note-linear-equations"><h3 class="heading hide-type">
+</div> <div class="para" id="p-4572">This conclusion is easy to see if you revert back to the equations that the final value the reduced matrix represents.</div></article></div></section><section class="subsection" id="sage-note-linear-equations"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">12.1.6</span> <span class="title">SageMath Note - Matrix Reduction</span>
 </h3>
-<div class="para" id="p-4557">Given an augmented matrix, <span class="process-math">\(C\text{,}\)</span> there is a matrix method called <code class="code-inline tex2jax_ignore">echelon_form</code> that can be used to row reduce <span class="process-math">\(C\text{.}\)</span> Here is the result for the system in <a href="" class="xref" data-knowl="./knowl/ex-12-1-system4.html" title="Example 12.1.11">Example 12.1.11</a>.  In the assignment of a matrix value to <span class="process-math">\(C\text{,}\)</span> notice that the first argument is QQ, which indicates that the entries should be rational numbers.  As long as all the entries are rational, which is the case here since integers are rational, the row-reduced matrix will be all rational.</div>
+<div class="para" id="p-4573">Given an augmented matrix, <span class="process-math">\(C\text{,}\)</span> there is a matrix method called <code class="code-inline tex2jax_ignore">echelon_form</code> that can be used to row reduce <span class="process-math">\(C\text{.}\)</span> Here is the result for the system in <a href="" class="xref" data-knowl="./knowl/ex-12-1-system4.html" title="Example 12.1.11">Example 12.1.11</a>.  In the assignment of a matrix value to <span class="process-math">\(C\text{,}\)</span> notice that the first argument is QQ, which indicates that the entries should be rational numbers.  As long as all the entries are rational, which is the case here since integers are rational, the row-reduced matrix will be all rational.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-46"><script type="text/x-sage">C = Matrix(QQ,[[5,1,2,1,2],[3,1,-2,0,5],[1,1,3,-1,-1]])
 C.echelon_form()
 </script></pre>
-<div class="para" id="p-4558">If we don’t specify the set from which entries are taken, it would assumed to be the integers and we do not get a fully row-reduced matrix. This is because the next step in working with the next output would involve multiplying row 2 by <span class="process-math">\(\frac{1}{2}\)</span> and row 3 by <span class="process-math">\(\frac{1}{9}\text{,}\)</span> but these multipliers are not integers.</div>
+<div class="para" id="p-4574">If we don’t specify the set from which entries are taken, it would assumed to be the integers and we do not get a fully row-reduced matrix. This is because the next step in working with the next output would involve multiplying row 2 by <span class="process-math">\(\frac{1}{2}\)</span> and row 3 by <span class="process-math">\(\frac{1}{9}\text{,}\)</span> but these multipliers are not integers.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-47"><script type="text/x-sage">C2 = Matrix([[5,1,2,1,2],[3,1,-2,0,5],[1,1,3,-1,-1]])
 C2.echelon_form()
 </script></pre>
-<div class="para" id="p-4559">If we specifying real entries, the result isn’t as nice and clean as the rational output.</div>
+<div class="para" id="p-4575">If we specifying real entries, the result isn’t as nice and clean as the rational output.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-48"><script type="text/x-sage">C3 = Matrix(RR,[[5,1,2,1,2],[3,1,-2,0,5],[1,1,3,-1,-1]])
 C3.echelon_form()
 </script></pre>
-<div class="para" id="p-4560">The default number of decimal places may vary from what you see here, but it can be controlled. The single small number in row three column four isn’t exactly zero because of round-off but we could just set it to zero.</div></section><section class="exercises" id="exercises-12-1"><h3 class="heading hide-type">
+<div class="para" id="p-4576">The default number of decimal places may vary from what you see here, but it can be controlled. The single small number in row three column four isn’t exactly zero because of round-off but we could just set it to zero.</div></section><section class="exercises" id="exercises-12-1"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">12.1.7</span> <span class="title">Exercises</span>
 </h3>
 <article class="exercise exercise-like" id="exercise-12-1-1"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para logical" id="p-4561">
+<div class="para logical" id="p-4577">
 <div class="para">Solve the following systems by describing the solution sets completely:</div>
 <ol class="lower-alpha cols2">
-<li id="li-2091"><div class="para" id="p-4562"><span class="process-math">\(\displaystyle \begin{array}{l}
+<li id="li-2103"><div class="para" id="p-4578"><span class="process-math">\(\displaystyle \begin{array}{l}
 2 x_1+x_2=3 \\
 x_1-x_2=1 \\
 \end{array}\)</span></div></li>
-<li id="li-2092"><div class="para" id="p-4563"><span class="process-math">\(\displaystyle \begin{array}{l}
+<li id="li-2104"><div class="para" id="p-4579"><span class="process-math">\(\displaystyle \begin{array}{l}
 2 x_1+x_2+3 x_3=5 \\
 4 x_1+x_2+2 x_3=-1 \\
 8 x_1+2 x_2+4 x_3=-2 \\
 \end{array}\)</span></div></li>
-<li id="li-2093"><div class="para" id="p-4564"><span class="process-math">\(\displaystyle \begin{array}{l}
+<li id="li-2105"><div class="para" id="p-4580"><span class="process-math">\(\displaystyle \begin{array}{l}
 x_1+x_2+2 x_3=1 \\
 x_1+2 x_2-x_3=-1 \\
 x_1+3 x_2+x_3=5 \\
 \end{array}\)</span></div></li>
-<li id="li-2094"><div class="para" id="p-4565"><span class="process-math">\(\displaystyle \begin{array}{l}
+<li id="li-2106"><div class="para" id="p-4581"><span class="process-math">\(\displaystyle \begin{array}{l}
 x_1-x_2+3 x_3=7 \\
 x_1+3 x_2+x_3=4 \\
 \end{array}\)</span></div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-233" id="answer-233"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-233"><div class="answer solution-like"><div class="para logical" id="p-4566"><ol class="lower-alpha">
-<li id="li-2095"><div class="para" id="p-4567"><span class="process-math">\(\displaystyle \{(4/3, 1/3)\}\)</span></div></li>
-<li id="li-2096"><div class="para" id="p-4568"><span class="process-math">\(\displaystyle \{(\frac{1}{2}x_3-3, -4 x_3 +11,x_3) \mid x_3 \in \mathbb{R}\} \)</span></div></li>
-<li id="li-2097"><div class="para" id="p-4569"><span class="process-math">\(\displaystyle \{(-5, 14/5, 8/5)\}\)</span></div></li>
-<li id="li-2098"><div class="para" id="p-4570"><span class="process-math">\(\displaystyle \left\{\left(6.25 - 2.5x_3, -0.75 + 0.5x_3 , x_3\right) \mid x_3 \in  \mathbb{R}\right\}\)</span></div></li>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-235" id="answer-235"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-235"><div class="answer solution-like"><div class="para logical" id="p-4582"><ol class="lower-alpha">
+<li id="li-2107"><div class="para" id="p-4583"><span class="process-math">\(\displaystyle \{(4/3, 1/3)\}\)</span></div></li>
+<li id="li-2108"><div class="para" id="p-4584"><span class="process-math">\(\displaystyle \{(\frac{1}{2}x_3-3, -4 x_3 +11,x_3) \mid x_3 \in \mathbb{R}\} \)</span></div></li>
+<li id="li-2109"><div class="para" id="p-4585"><span class="process-math">\(\displaystyle \{(-5, 14/5, 8/5)\}\)</span></div></li>
+<li id="li-2110"><div class="para" id="p-4586"><span class="process-math">\(\displaystyle \left\{\left(6.25 - 2.5x_3, -0.75 + 0.5x_3 , x_3\right) \mid x_3 \in  \mathbb{R}\right\}\)</span></div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-509"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para logical" id="p-4571">
+</div></article><article class="exercise exercise-like" id="exercise-512"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para logical" id="p-4587">
 <div class="para">Solve the following systems by describing the solution sets completely:</div>
 <ol class="lower-alpha cols2">
-<li id="li-2099"><div class="para" id="p-4572"><span class="process-math">\(\displaystyle \begin{array}{l}
+<li id="li-2111"><div class="para" id="p-4588"><span class="process-math">\(\displaystyle \begin{array}{l}
 2 x_1+2 x_2+4 x_3=2 \\
 2 x_1+x_2+4 x_3=0 \\
 3 x_1+5 x_2+x_3=0 \\
 \end{array}\)</span></div></li>
-<li id="li-2100"><div class="para" id="p-4573"><span class="process-math">\(\displaystyle \begin{array}{l}
+<li id="li-2112"><div class="para" id="p-4589"><span class="process-math">\(\displaystyle \begin{array}{l}
 2 x_1+x_2+3 x_3=2 \\
 4 x_1+x_2+2 x_3=-1 \\
 8 x_1+2 x_2+4 x_3=4 \\
 \end{array}\)</span></div></li>
-<li id="li-2101"><div class="para" id="p-4574"><span class="process-math">\(\displaystyle \begin{array}{l}
+<li id="li-2113"><div class="para" id="p-4590"><span class="process-math">\(\displaystyle \begin{array}{l}
 x_1+x_2+2 x_3+x_4=3 \\
 x_1-x_2+3 x_3-x_4=-2 \\
 3 x_1+3 x_2+6 x_3+3 x_4=9 \\
 \end{array}\)</span></div></li>
-<li id="li-2102"><div class="para" id="p-4575"><span class="process-math">\(\displaystyle \begin{array}{l}
+<li id="li-2114"><div class="para" id="p-4591"><span class="process-math">\(\displaystyle \begin{array}{l}
 6 x_1+7 x_2+2 x_3=3 \\
 4 x_1+2 x_2+x_3=-2 \\
 6 x_1+x_2+x_3=1 \\
 \end{array}\)</span></div></li>
-<li id="li-2103"><div class="para" id="p-4576"><span class="process-math">\(\displaystyle \begin{array}{l}
+<li id="li-2115"><div class="para" id="p-4592"><span class="process-math">\(\displaystyle \begin{array}{l}
 x_1+x_2-x_3+2 x_4=1 \\
 x_1+2 x_2+3 x_3+x_4=5 \\
 x_1+3 x_2+2 x_3-x_4=-1 \\
 \end{array}\)</span></div></li>
 </ol>
-</div></article><article class="exercise exercise-like" id="exercise-510"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para logical" id="p-4577">
+</div></article><article class="exercise exercise-like" id="exercise-513"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para logical" id="p-4593">
 <div class="para">Given the final augmented matrices below from the Gauss-Jordan Algorithm, identify the solutions sets. Identify the basic and free variables, and describe the solution set of the original system.</div>
 <ol class="lower-alpha cols2">
-<li id="li-2104"><div class="para" id="p-4578"><span class="process-math">\(\displaystyle \left(
+<li id="li-2116"><div class="para" id="p-4594"><span class="process-math">\(\displaystyle \left(
 \begin{array}{cccc|c}
 1 &amp; 0 &amp; -5 &amp; 0 &amp; 1.2 \\
 0 &amp; 1 &amp; 4 &amp; 0 &amp; 2.6 \\
 0 &amp; 0 &amp; 0 &amp; 1 &amp; 4.5 \\
 \end{array}
 \right)\)</span></div></li>
-<li id="li-2105"><div class="para" id="p-4579"><span class="process-math">\(\displaystyle \left(
+<li id="li-2117"><div class="para" id="p-4595"><span class="process-math">\(\displaystyle \left(
 \begin{array}{ccc|c}
 1 &amp; 0 &amp; 9 &amp; 3 \\
 0 &amp; 1 &amp; 0 &amp; 4 \\
 0 &amp; 0 &amp; 0 &amp; 1 \\
 \end{array}
 \right)\)</span></div></li>
-<li id="li-2106"><div class="para" id="p-4580"><span class="process-math">\(\displaystyle \left(
+<li id="li-2118"><div class="para" id="p-4596"><span class="process-math">\(\displaystyle \left(
 \begin{array}{ccc|c}
 1 &amp; 0 &amp; 6 &amp; 5 \\
 0 &amp; 1 &amp; -2 &amp; 1 \\
 0 &amp; 0 &amp; 0 &amp; 0 \\
 \end{array}
 \right)\)</span></div></li>
-<li id="li-2107"><div class="para" id="p-4581"><span class="process-math">\(\displaystyle \left(
+<li id="li-2119"><div class="para" id="p-4597"><span class="process-math">\(\displaystyle \left(
 \begin{array}{cccc|c}
 1 &amp; 0 &amp; 0 &amp; -3 &amp; 1 \\
 0 &amp; 1 &amp; 0 &amp; 2 &amp; 2 \\
@@ -1731,32 +1724,32 @@ x_1+3 x_2+2 x_3-x_4=-1 \\
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-234" id="answer-234"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-234"><div class="answer solution-like"><div class="para logical" id="p-4582"><ol class="lower-alpha">
-<li id="li-2108"><div class="para" id="p-4583">Basic variables: <span class="process-math">\(x_1\text{,}\)</span> <span class="process-math">\(x_2\)</span> and <span class="process-math">\(x_4\text{.}\)</span>  Free variable: <span class="process-math">\(x_3\text{.}\)</span>  Solution set:  <span class="process-math">\(\{(1.2+5x_3, 2.6-4 x_3, 4.5) \mid x_3 \in \mathbb{R}\}\)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-236" id="answer-236"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-236"><div class="answer solution-like"><div class="para logical" id="p-4598"><ol class="lower-alpha">
+<li id="li-2120"><div class="para" id="p-4599">Basic variables: <span class="process-math">\(x_1\text{,}\)</span> <span class="process-math">\(x_2\)</span> and <span class="process-math">\(x_4\text{.}\)</span>  Free variable: <span class="process-math">\(x_3\text{.}\)</span>  Solution set:  <span class="process-math">\(\{(1.2+5x_3, 2.6-4 x_3, 4.5) \mid x_3 \in \mathbb{R}\}\)</span>
 </div></li>
-<li id="li-2109"><div class="para" id="p-4584">Basic variables: <span class="process-math">\(x_1\)</span> and <span class="process-math">\(x_2\text{.}\)</span>  Free variable: <span class="process-math">\(x_3\text{.}\)</span> The solution set is empty because the last row of the matrix converts to the inconsistent equation <span class="process-math">\(0=1\text{.}\)</span>
+<li id="li-2121"><div class="para" id="p-4600">Basic variables: <span class="process-math">\(x_1\)</span> and <span class="process-math">\(x_2\text{.}\)</span>  Free variable: <span class="process-math">\(x_3\text{.}\)</span> The solution set is empty because the last row of the matrix converts to the inconsistent equation <span class="process-math">\(0=1\text{.}\)</span>
 </div></li>
-<li id="li-2110"><div class="para" id="p-4585">Basic variables: <span class="process-math">\(x_1\)</span> and <span class="process-math">\(x_2\text{.}\)</span>  Free variable: <span class="process-math">\(x_3\text{.}\)</span>  Solution set: <span class="process-math">\(\left\{\left(-6 x_3 + 5, 2 x_3+1, x_3 \right) \mid x_3 \in  \mathbb{R}\right\}\)</span>
+<li id="li-2122"><div class="para" id="p-4601">Basic variables: <span class="process-math">\(x_1\)</span> and <span class="process-math">\(x_2\text{.}\)</span>  Free variable: <span class="process-math">\(x_3\text{.}\)</span>  Solution set: <span class="process-math">\(\left\{\left(-6 x_3 + 5, 2 x_3+1, x_3 \right) \mid x_3 \in  \mathbb{R}\right\}\)</span>
 </div></li>
-<li id="li-2111"><div class="para" id="p-4586">Basic variables: <span class="process-math">\(x_1\text{,}\)</span> <span class="process-math">\(x_2\)</span> and <span class="process-math">\(x_3\text{.}\)</span>  Free variable: <span class="process-math">\(x_4\text{.}\)</span> Solution set: <span class="process-math">\(\left\{\left(3 x_4 + 1, -2x_4 + 2, x_4 + 1, x_4\right) \mid  x_4 \in  \mathbb{R}\right\}\)</span>
+<li id="li-2123"><div class="para" id="p-4602">Basic variables: <span class="process-math">\(x_1\text{,}\)</span> <span class="process-math">\(x_2\)</span> and <span class="process-math">\(x_3\text{.}\)</span>  Free variable: <span class="process-math">\(x_4\text{.}\)</span> Solution set: <span class="process-math">\(\left\{\left(3 x_4 + 1, -2x_4 + 2, x_4 + 1, x_4\right) \mid  x_4 \in  \mathbb{R}\right\}\)</span>
 </div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-511"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para logical" id="p-4587"><ol class="lower-alpha">
-<li id="li-2112"><div class="para" id="p-4588">Write out the details of <a href="" class="xref" data-knowl="./knowl/ex-system-no-solution.html" title="Example 12.1.7: A system with no solutions">Example 12.1.7</a>.</div></li>
-<li id="li-2113"><div class="para" id="p-4589">Write out the details of <a href="" class="xref" data-knowl="./knowl/ex-system-infinite-solutions.html" title="Example 12.1.8: A system with an infinite number of solutions">Example 12.1.8</a>.</div></li>
-<li id="li-2114"><div class="para" id="p-4590">Write out the details of <a href="" class="xref" data-knowl="./knowl/ex-12-1-system4.html" title="Example 12.1.11">Example 12.1.11</a>.</div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-512"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
-<div class="para logical" id="p-4591">
+</div></article><article class="exercise exercise-like" id="exercise-514"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para logical" id="p-4603"><ol class="lower-alpha">
+<li id="li-2124"><div class="para" id="p-4604">Write out the details of <a href="" class="xref" data-knowl="./knowl/ex-system-no-solution.html" title="Example 12.1.7: A system with no solutions">Example 12.1.7</a>.</div></li>
+<li id="li-2125"><div class="para" id="p-4605">Write out the details of <a href="" class="xref" data-knowl="./knowl/ex-system-infinite-solutions.html" title="Example 12.1.8: A system with an infinite number of solutions">Example 12.1.8</a>.</div></li>
+<li id="li-2126"><div class="para" id="p-4606">Write out the details of <a href="" class="xref" data-knowl="./knowl/ex-12-1-system4.html" title="Example 12.1.11">Example 12.1.11</a>.</div></li>
+</ol></div></article><article class="exercise exercise-like" id="exercise-515"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para logical" id="p-4607">
 <div class="para">Solve the following systems using only mod 5 arithmetic. Your solutions should be <span class="process-math">\(n-\textrm{tuples}\)</span> from <span class="process-math">\(\mathbb{Z}_5\text{.}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-2115"><div class="para" id="p-4592">
+<li id="li-2127"><div class="para" id="p-4608">
 <span class="process-math">\(\begin{array}{l}
 2 x_1+ x_2=3 \\
 x_1+4 x_2=1 \\
 \end{array}\)</span> (compare your solution to the system in 5(a))</div></li>
-<li id="li-2116"><div class="para" id="p-4593"><span class="process-math">\(\displaystyle \begin{array}{l}
+<li id="li-2128"><div class="para" id="p-4609"><span class="process-math">\(\displaystyle \begin{array}{l}
 x_1+x_2+2 x_3=1 \\
 x_1+2 x_2+4 x_3=4 \\
 x_1+3 x_2+3 x_3=0 \\
@@ -1764,21 +1757,21 @@ x_1+3 x_2+3 x_3=0 \\
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-235" id="answer-235"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-235"><div class="answer solution-like"><div class="para logical" id="p-4594"><ol class="lower-alpha">
-<li id="li-2117"><div class="para" id="p-4595"><span class="process-math">\(\displaystyle \{(3,0)\}\)</span></div></li>
-<li id="li-2118"><div class="para" id="p-4596"><span class="process-math">\(\displaystyle \{(3,0,4)\}\)</span></div></li>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-237" id="answer-237"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-237"><div class="answer solution-like"><div class="para logical" id="p-4610"><ol class="lower-alpha">
+<li id="li-2129"><div class="para" id="p-4611"><span class="process-math">\(\displaystyle \{(3,0)\}\)</span></div></li>
+<li id="li-2130"><div class="para" id="p-4612"><span class="process-math">\(\displaystyle \{(3,0,4)\}\)</span></div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-513"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
-<div class="para logical" id="p-4597"><ol class="lower-alpha">
-<li id="li-2119"><div class="para" id="p-4598">Use the solution set <span class="process-math">\(S\)</span> of <a href="" class="xref" data-knowl="./knowl/ex-system-infinite-solutions.html" title="Example 12.1.8: A system with an infinite number of solutions">Example 12.1.8</a> to list three different solutions to the given system. Then show that each of these solutions can be described by the set <span class="process-math">\(A\)</span> in the same example.</div></li>
-<li id="li-2120"><div class="para" id="p-4599">Prove that <span class="process-math">\(S = A\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-516"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div class="para logical" id="p-4613"><ol class="lower-alpha">
+<li id="li-2131"><div class="para" id="p-4614">Use the solution set <span class="process-math">\(S\)</span> of <a href="" class="xref" data-knowl="./knowl/ex-system-infinite-solutions.html" title="Example 12.1.8: A system with an infinite number of solutions">Example 12.1.8</a> to list three different solutions to the given system. Then show that each of these solutions can be described by the set <span class="process-math">\(A\)</span> in the same example.</div></li>
+<li id="li-2132"><div class="para" id="p-4615">Prove that <span class="process-math">\(S = A\text{.}\)</span>
 </div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-514"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
-<div class="para" id="p-4600">Given a system of <span class="process-math">\(n\)</span> linear equations in <span class="process-math">\(n\)</span> unknowns in matrix form <span class="process-math">\(A X = b\text{,}\)</span> prove that if <span class="process-math">\(b\)</span> is a matrix of all zeros, then the solution set of <span class="process-math">\(A X = b\)</span> is a subgroup of <span class="process-math">\(\mathbb{R}^n\text{.}\)</span>
+</ol></div></article><article class="exercise exercise-like" id="exercise-517"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="para" id="p-4616">Given a system of <span class="process-math">\(n\)</span> linear equations in <span class="process-math">\(n\)</span> unknowns in matrix form <span class="process-math">\(A X = b\text{,}\)</span> prove that if <span class="process-math">\(b\)</span> is a matrix of all zeros, then the solution set of <span class="process-math">\(A X = b\)</span> is a subgroup of <span class="process-math">\(\mathbb{R}^n\text{.}\)</span>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-236" id="answer-236"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-236"><div class="answer solution-like">
-<div class="para logical" id="p-4601">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-238" id="answer-238"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-238"><div class="answer solution-like">
+<div class="para logical" id="p-4617">
 <div class="para">Proof: Since <span class="process-math">\(b\)</span> is the <span class="process-math">\(n\times 1\)</span> matrix of 0{’}s, let’s call it <span class="process-math">\(\pmb{0}\text{.}\)</span>  Let S be the set of solutions to <span class="process-math">\(A X = \pmb{0}\text{.}\)</span> If <span class="process-math">\(X_1\)</span> and <span class="process-math">\(X_2\)</span>  be in <span class="process-math">\(S\text{.}\)</span>  Then</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1787,7 +1780,7 @@ A\left(X_1 + X_2 \right) = A X_1 + A X_2 = \pmb{0} + \pmb{0} = \pmb{0}
 </div>
 <div class="para">so <span class="process-math">\(X_1+ X_2 \in  S\text{;}\)</span> or in other words, <span class="process-math">\(S\)</span> is closed under addition in <span class="process-math">\(\mathbb{R}^n\text{.}\)</span>
 </div>
-</div> <div class="para logical" id="p-4602">
+</div> <div class="para logical" id="p-4618">
 <div class="para">The identity of <span class="process-math">\(\mathbb{R}^n\)</span> is <span class="process-math">\(\pmb{0}\text{,}\)</span> which is in <span class="process-math">\(S\text{.}\)</span>  Finally, let <span class="process-math">\(X\)</span> be in<span class="process-math">\(S\text{.}\)</span> Then</div>
 <div class="displaymath process-math">
 \begin{equation*}

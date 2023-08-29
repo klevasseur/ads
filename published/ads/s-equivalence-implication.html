@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Equivalence and Implication</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,25 +58,36 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
@@ -99,59 +128,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -160,7 +146,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -315,7 +301,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1124,7 +1113,7 @@ eBookConfig.runestone_version = '7.0.7';
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="s-equivalence-implication"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">3.3</span> <span class="title">Equivalence and Implication</span>
 </h2>
-<section class="introduction" id="introduction-4"><div class="para" id="p-1042">Consider two propositions generated by <span class="process-math">\(p\)</span> and <span class="process-math">\(q\text{:}\)</span> <span class="process-math">\(\neg (p \land  q)\)</span> and <span class="process-math">\(\neg p \lor  \neg q\text{.}\)</span> At first glance, they are different propositions. In form, they are different, but they have the same meaning. One way to see this is to substitute actual propositions for <span class="process-math">\(p\)</span> and <span class="process-math">\(q\text{;}\)</span> such as <span class="process-math">\(p\text{:}\)</span> I’ve been to Toronto; and <span class="process-math">\(q\text{:}\)</span> I’ve been to Chicago.</div> <div class="para" id="p-1043">Then <span class="process-math">\(\neg (p \land  q)\)</span> translates to “I haven’t been to both Toronto and Chicago,” while <span class="process-math">\(\neg p \lor  \neg q\)</span> is “I haven’t been to Toronto or I haven’t been to Chicago.” Determine the truth values of these propositions. Naturally, they will be true for some people and false for others. What is important is that no matter what truth values they have, <span class="process-math">\(\neg (p \land  q)\)</span> and <span class="process-math">\(\neg p \lor  \neg q\)</span> will have the same truth value. The easiest way to see this is by examining the truth tables of these propositions.</div> <figure class="table table-like" id="tt33-1"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">3.3.1<span class="period">.</span></span><span class="space"> </span>Truth Tables for <span class="process-math">\(\neg (p \land  q)\)</span> and <span class="process-math">\(\neg p \lor  \neg q\)</span></figcaption><div class="tabular-box natural-width"><table class="tabular">
+<section class="introduction" id="introduction-4"><div class="para" id="p-1058">Consider two propositions generated by <span class="process-math">\(p\)</span> and <span class="process-math">\(q\text{:}\)</span> <span class="process-math">\(\neg (p \land  q)\)</span> and <span class="process-math">\(\neg p \lor  \neg q\text{.}\)</span> At first glance, they are different propositions. In form, they are different, but they have the same meaning. One way to see this is to substitute actual propositions for <span class="process-math">\(p\)</span> and <span class="process-math">\(q\text{;}\)</span> such as <span class="process-math">\(p\text{:}\)</span> I’ve been to Toronto; and <span class="process-math">\(q\text{:}\)</span> I’ve been to Chicago.</div> <div class="para" id="p-1059">Then <span class="process-math">\(\neg (p \land  q)\)</span> translates to “I haven’t been to both Toronto and Chicago,” while <span class="process-math">\(\neg p \lor  \neg q\)</span> is “I haven’t been to Toronto or I haven’t been to Chicago.” Determine the truth values of these propositions. Naturally, they will be true for some people and false for others. What is important is that no matter what truth values they have, <span class="process-math">\(\neg (p \land  q)\)</span> and <span class="process-math">\(\neg p \lor  \neg q\)</span> will have the same truth value. The easiest way to see this is by examining the truth tables of these propositions.</div> <figure class="table table-like" id="tt33-1"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">3.3.1<span class="period">.</span></span><span class="space"> </span>Truth Tables for <span class="process-math">\(\neg (p \land  q)\)</span> and <span class="process-math">\(\neg p \lor  \neg q\)</span></figcaption><div class="tabular-box natural-width"><table class="tabular">
 <tr>
 <td class="c m b0 r0 l0 t0 lines"><span class="process-math">\(p\)</span></td>
 <td class="c m b0 r0 l0 t0 lines"><span class="process-math">\(q\)</span></td>
@@ -1155,66 +1144,66 @@ eBookConfig.runestone_version = '7.0.7';
 <td class="c m b0 r0 l0 t0 lines">0</td>
 <td class="c m b0 r0 l0 t0 lines">0</td>
 </tr>
-</table></div></figure> <div class="para" id="p-1044">In all four cases, <span class="process-math">\(\neg (p \land  q)\)</span> and <span class="process-math">\(\neg p \lor  \neg q\)</span> have the same truth value. Furthermore, when the biconditional operator is applied to them, the result is a value of true in all cases.  A proposition such as this is called a tautology.</div></section><section class="subsection" id="tautology-contradiction"><h3 class="heading hide-type">
+</table></div></figure> <div class="para" id="p-1060">In all four cases, <span class="process-math">\(\neg (p \land  q)\)</span> and <span class="process-math">\(\neg p \lor  \neg q\)</span> have the same truth value. Furthermore, when the biconditional operator is applied to them, the result is a value of true in all cases.  A proposition such as this is called a tautology.</div></section><section class="subsection" id="tautology-contradiction"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">3.3.1</span> <span class="title">Tautologies and Contradictions</span>
 </h3>
 <article class="definition definition-like" id="def-tautology"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">3.3.2</span><span class="period">.</span><span class="space"> </span><span class="title">Tautology.</span>
-</h4> <div class="para" id="p-1045">An expression involving logical variables that is true in all cases is a tautology.  The number 1 is used to symbolize a tautology.</div></article><article class="example example-like" id="some-tautologies"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-some-tautologies"><h4 class="heading">
+</h4> <div class="para" id="p-1061">An expression involving logical variables that is true in all cases is a tautology.  The number 1 is used to symbolize a tautology.</div></article><article class="example example-like" id="some-tautologies"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-some-tautologies"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">3.3.3</span><span class="period">.</span><span class="space"> </span><span class="title">Some Tautologies.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-some-tautologies"><article class="example example-like"><div class="para" id="p-1046">All of the following are tautologies because their truth tables consist of a column of 1’s.</div> <div class="para logical" id="p-1047"><ol class="lower-alpha">
-<li id="li-604"><div class="para" id="p-1048"><span class="process-math">\((\neg (p \land q))\leftrightarrow ( \neg  p \lor  \neg  q)\text{.}\)</span></div></li>
-<li id="li-605"><div class="para" id="p-1049"><span class="process-math">\(\displaystyle p \lor \neg p\)</span></div></li>
-<li id="li-606"><div class="para" id="p-1050"><span class="process-math">\(\displaystyle (p \land q)\to  p\)</span></div></li>
-<li id="li-607"><div class="para" id="p-1051"><span class="process-math">\(\displaystyle q\to (p\lor q)\)</span></div></li>
-<li id="li-608"><div class="para" id="p-1052"><span class="process-math">\(\displaystyle (p \lor  q)\leftrightarrow (q \lor p)\)</span></div></li>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-some-tautologies"><article class="example example-like"><div class="para" id="p-1062">All of the following are tautologies because their truth tables consist of a column of 1’s.</div> <div class="para logical" id="p-1063"><ol class="lower-alpha">
+<li id="li-616"><div class="para" id="p-1064"><span class="process-math">\((\neg (p \land q))\leftrightarrow ( \neg  p \lor  \neg  q)\text{.}\)</span></div></li>
+<li id="li-617"><div class="para" id="p-1065"><span class="process-math">\(\displaystyle p \lor \neg p\)</span></div></li>
+<li id="li-618"><div class="para" id="p-1066"><span class="process-math">\(\displaystyle (p \land q)\to  p\)</span></div></li>
+<li id="li-619"><div class="para" id="p-1067"><span class="process-math">\(\displaystyle q\to (p\lor q)\)</span></div></li>
+<li id="li-620"><div class="para" id="p-1068"><span class="process-math">\(\displaystyle (p \lor  q)\leftrightarrow (q \lor p)\)</span></div></li>
 </ol></div></article></div>
 <article class="definition definition-like" id="def-contradiction"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">3.3.4</span><span class="period">.</span><span class="space"> </span><span class="title">Contradiction.</span>
 </h4>
-<div class="para" id="p-1053">An expression involving logical variables that is false for all cases is called a contradiction. The number 0 is used to symbolize a contradiction.</div></article><article class="example example-like" id="some-contradictions"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-some-contradictions"><h4 class="heading">
+<div class="para" id="p-1069">An expression involving logical variables that is false for all cases is called a contradiction. The number 0 is used to symbolize a contradiction.</div></article><article class="example example-like" id="some-contradictions"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-some-contradictions"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">3.3.5</span><span class="period">.</span><span class="space"> </span><span class="title">Some Contradictions.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-some-contradictions"><article class="example example-like"><div class="para" id="p-1054">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-some-contradictions"><article class="example example-like"><div class="para" id="p-1070">
 <span class="process-math">\(p \land  \neg p\)</span> and <span class="process-math">\((p\lor q)\land  (\neg p) \land  (\neg q)\)</span> are contradictions.</div></article></div></section><section class="subsection" id="subsection-26"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">3.3.2</span> <span class="title">Equivalence</span>
 </h3>
 <article class="definition definition-like" id="def-equivalence"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">3.3.6</span><span class="period">.</span><span class="space"> </span><span class="title">Equivalence.</span>
 </h4>
-<div class="para" id="p-1055">Let <span class="process-math">\(S\)</span> be a set of propositions and let <span class="process-math">\(r\)</span> and <span class="process-math">\(s\)</span> be propositions generated by <span class="process-math">\(S\text{.}\)</span> <span class="process-math">\(r\)</span> and <span class="process-math">\(s\)</span> are equivalent if and only if <span class="process-math">\(r\leftrightarrow s\)</span> is a tautology. The equivalence of <span class="process-math">\(r\)</span> and <span class="process-math">\(s\)</span> is denoted <span class="process-math">\(r \iff s\text{.}\)</span>
-</div></article><div class="para" id="p-1056">Equivalence is to logic as equality is to algebra. Just as there are many ways of writing an algebraic expression, the same logical meaning can be expressed in many different ways.</div>
+<div class="para" id="p-1071">Let <span class="process-math">\(S\)</span> be a set of propositions and let <span class="process-math">\(r\)</span> and <span class="process-math">\(s\)</span> be propositions generated by <span class="process-math">\(S\text{.}\)</span> <span class="process-math">\(r\)</span> and <span class="process-math">\(s\)</span> are equivalent if and only if <span class="process-math">\(r\leftrightarrow s\)</span> is a tautology. The equivalence of <span class="process-math">\(r\)</span> and <span class="process-math">\(s\)</span> is denoted <span class="process-math">\(r \iff s\text{.}\)</span>
+</div></article><div class="para" id="p-1072">Equivalence is to logic as equality is to algebra. Just as there are many ways of writing an algebraic expression, the same logical meaning can be expressed in many different ways.</div>
 <article class="example example-like" id="ex-some-equivalences"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-some-equivalences"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">3.3.7</span><span class="period">.</span><span class="space"> </span><span class="title">Some Equivalences.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-some-equivalences"><article class="example example-like"><div class="para" id="p-1057">The following are all equivalences:</div> <div class="para logical" id="p-1058"><ol class="lower-alpha">
-<li id="li-609"><div class="para" id="p-1059"><span class="process-math">\((p \land q)\lor  (\neg p \land q)\iff q\text{.}\)</span></div></li>
-<li id="li-610"><div class="para" id="p-1060"><span class="process-math">\(\displaystyle p \to  q \iff \neg q \rightarrow  \neg p\)</span></div></li>
-<li id="li-611"><div class="para" id="p-1061"><span class="process-math">\(p \lor  q \iff q \lor p\text{.}\)</span></div></li>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-some-equivalences"><article class="example example-like"><div class="para" id="p-1073">The following are all equivalences:</div> <div class="para logical" id="p-1074"><ol class="lower-alpha">
+<li id="li-621"><div class="para" id="p-1075"><span class="process-math">\((p \land q)\lor  (\neg p \land q)\iff q\text{.}\)</span></div></li>
+<li id="li-622"><div class="para" id="p-1076"><span class="process-math">\(\displaystyle p \to  q \iff \neg q \rightarrow  \neg p\)</span></div></li>
+<li id="li-623"><div class="para" id="p-1077"><span class="process-math">\(p \lor  q \iff q \lor p\text{.}\)</span></div></li>
 </ol></div></article></div>
-<div class="para" id="p-1062">All tautologies are equivalent to one another.</div>
+<div class="para" id="p-1078">All tautologies are equivalent to one another.</div>
 <article class="example example-like" id="equivalence_to_1"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-equivalence_to_1"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">3.3.8</span><span class="period">.</span><span class="space"> </span><span class="title">An equivalence to <span class="process-math">\(1\)</span>.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-equivalence_to_1"><article class="example example-like"><div class="para" id="p-1063"><span class="process-math">\(p\lor \neg p\iff 1\text{.}\)</span></div></article></div>
-<div class="para" id="p-1064">All contradictions are equivalent to one another.</div>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-equivalence_to_1"><article class="example example-like"><div class="para" id="p-1079"><span class="process-math">\(p\lor \neg p\iff 1\text{.}\)</span></div></article></div>
+<div class="para" id="p-1080">All contradictions are equivalent to one another.</div>
 <article class="example example-like" id="equivalence_to_0"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-equivalence_to_0"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">3.3.9</span><span class="period">.</span><span class="space"> </span><span class="title">An equivalence to <span class="process-math">\(0\)</span>.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-equivalence_to_0"><article class="example example-like"><div class="para" id="p-1065"><span class="process-math">\(p\land \neg p\iff 0\text{.}\)</span></div></article></div></section><section class="subsection" id="subsection-27"><h3 class="heading hide-type">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-equivalence_to_0"><article class="example example-like"><div class="para" id="p-1081"><span class="process-math">\(p\land \neg p\iff 0\text{.}\)</span></div></article></div></section><section class="subsection" id="subsection-27"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">3.3.3</span> <span class="title">Implication</span>
 </h3>
-<div class="para" id="p-1066">Consider the two propositions:</div>
+<div class="para" id="p-1082">Consider the two propositions:</div>
 <figure class="table table-like" id="table-4"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">3.3.10<span class="period">.</span></span><span class="space"> </span></figcaption><div class="tabular-box natural-width"><table class="tabular">
 <tr><td class="c m b0 r0 l0 t0 lines">
 <span class="process-math">\(x\text{:}\)</span> The money is behind Door A; and</td></tr>
 <tr><td class="c m b0 r0 l0 t0 lines">
 <span class="process-math">\(y\text{:}\)</span> The money is behind Door A or Door B.</td></tr>
-</table></div></figure><div class="para" id="p-1067">Imagine that you were told that there is a large sum of money behind one of two doors marked A and B, and that one of the two propositions <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> is true and the other is false. Which door would you choose? All that you need to realize is that if <span class="process-math">\(x\)</span> is true, then <span class="process-math">\(y\)</span> will also be true. Since we know that this can’t be the case, <span class="process-math">\(y\)</span> must be the true proposition and the money is behind Door B.</div>
-<div class="para" id="p-1068">This is an example of a situation in which the truth of one proposition leads to the truth of another. Certainly, <span class="process-math">\(y\)</span> can be true when <span class="process-math">\(x\)</span> is false; but <span class="process-math">\(x\)</span> can’t be true when <span class="process-math">\(y\)</span> is false. In this case, we say that <span class="process-math">\(x\)</span> implies  <span class="process-math">\(y\text{.}\)</span>
+</table></div></figure><div class="para" id="p-1083">Imagine that you were told that there is a large sum of money behind one of two doors marked A and B, and that one of the two propositions <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> is true and the other is false. Which door would you choose? All that you need to realize is that if <span class="process-math">\(x\)</span> is true, then <span class="process-math">\(y\)</span> will also be true. Since we know that this can’t be the case, <span class="process-math">\(y\)</span> must be the true proposition and the money is behind Door B.</div>
+<div class="para" id="p-1084">This is an example of a situation in which the truth of one proposition leads to the truth of another. Certainly, <span class="process-math">\(y\)</span> can be true when <span class="process-math">\(x\)</span> is false; but <span class="process-math">\(x\)</span> can’t be true when <span class="process-math">\(y\)</span> is false. In this case, we say that <span class="process-math">\(x\)</span> implies  <span class="process-math">\(y\text{.}\)</span>
 </div>
-<div class="para" id="p-1069">Consider the truth table of <span class="process-math">\(p \to  q\text{,}\)</span>  <a href="" class="xref" data-knowl="./knowl/tt-conditional.html" title="Table 3.1.7: Truth Table for p \rightarrow q">Table 3.1.7</a>. If <span class="process-math">\(p\)</span> implies <span class="process-math">\(q\text{,}\)</span> then the third case can be ruled out, since it is the case that makes a conditional proposition false.</div>
+<div class="para" id="p-1085">Consider the truth table of <span class="process-math">\(p \to  q\text{,}\)</span>  <a href="" class="xref" data-knowl="./knowl/tt-conditional.html" title="Table 3.1.7: Truth Table for p \rightarrow q">Table 3.1.7</a>. If <span class="process-math">\(p\)</span> implies <span class="process-math">\(q\text{,}\)</span> then the third case can be ruled out, since it is the case that makes a conditional proposition false.</div>
 <article class="definition definition-like" id="def-implication"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">3.3.11</span><span class="period">.</span><span class="space"> </span><span class="title">Implication.</span>
-</h4>  <div class="para" id="p-1070">Let <span class="process-math">\(S\)</span> be a set of propositions and let <span class="process-math">\(r\)</span> and <span class="process-math">\(s\)</span> be propositions generated by <span class="process-math">\(S\text{.}\)</span> We say that <span class="process-math">\(r\)</span> implies <span class="process-math">\(s\)</span> if <span class="process-math">\(r \to s\)</span> is a tautology. We write <span class="process-math">\(r \Rightarrow  s\)</span> to indicate this implication.</div></article><article class="example example-like" id="ex-disjunctive-addition"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-disjunctive-addition"><h4 class="heading">
+</h4>  <div class="para" id="p-1086">Let <span class="process-math">\(S\)</span> be a set of propositions and let <span class="process-math">\(r\)</span> and <span class="process-math">\(s\)</span> be propositions generated by <span class="process-math">\(S\text{.}\)</span> We say that <span class="process-math">\(r\)</span> implies <span class="process-math">\(s\)</span> if <span class="process-math">\(r \to s\)</span> is a tautology. We write <span class="process-math">\(r \Rightarrow  s\)</span> to indicate this implication.</div></article><article class="example example-like" id="ex-disjunctive-addition"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-disjunctive-addition"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">3.3.12</span><span class="period">.</span><span class="space"> </span><span class="title">Disjunctive Addition.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-disjunctive-addition"><article class="example example-like"><div class="para" id="p-1071">A commonly used implication called “disjunctive addition” is  <span class="process-math">\(p \Rightarrow (p \lor  q)\text{,}\)</span> which is verified by truth table <a href="" class="xref" data-knowl="./knowl/tt-disjunctive-addition.html" title="Table 3.3.13: Truth Table to verify that p \Rightarrow (p \lor  q)">Table 3.3.13</a>.</div></article></div>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-disjunctive-addition"><article class="example example-like"><div class="para" id="p-1087">A commonly used implication called “disjunctive addition” is  <span class="process-math">\(p \Rightarrow (p \lor  q)\text{,}\)</span> which is verified by truth table <a href="" class="xref" data-knowl="./knowl/tt-disjunctive-addition.html" title="Table 3.3.13: Truth Table to verify that p \Rightarrow (p \lor  q)">Table 3.3.13</a>.</div></article></div>
 <figure class="table table-like" id="tt-disjunctive-addition"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">3.3.13<span class="period">.</span></span><span class="space"> </span>Truth Table to verify that <span class="process-math">\(p \Rightarrow (p \lor  q)\)</span></figcaption><div class="tabular-box natural-width"><table class="tabular">
 <tr>
 <td class="c m b0 r0 l0 t0 lines"><span class="process-math">\(p\)</span></td>
@@ -1246,15 +1235,15 @@ eBookConfig.runestone_version = '7.0.7';
 <td class="c m b0 r0 l0 t0 lines">1</td>
 <td class="c m b0 r0 l0 t0 lines">1</td>
 </tr>
-</table></div></figure><div class="para" id="p-1072">If we let <span class="process-math">\(p\)</span> represent “The money is behind Door A” and <span class="process-math">\(q\)</span> represent “The money is behind Door B,” <span class="process-math">\(p \Rightarrow (p \lor  q)\)</span> is a formalized version of the reasoning used in <a href="" class="xref" data-knowl="./knowl/ex-disjunctive-addition.html" title="Example 3.3.12: Disjunctive Addition">Example 3.3.12</a>. A common name for this implication is disjunctive addition. In the next section we will consider some of the most commonly used implications and equivalences.</div>
-<div class="para" id="p-1073">When we defined what we mean by a <a href="" class="xref" data-knowl="./knowl/def-proposition-generated-by-set.html" title="Definition 3.2.2: Proposition Generated by a Set">Proposition Generated by a Set</a>, we didn’t include the conditional and biconditional operators. This was because of the two equivalences <span class="process-math">\(p \to  q \Leftrightarrow  \neg p \lor  q\)</span> and <span class="process-math">\(p \leftrightarrow  q \Leftrightarrow  (p \land  q) \lor  (\neg p \land  \neg q)\text{.}\)</span> Therefore, any proposition that includes the conditional or biconditional operators can be written in an equivalent way using only conjunction, disjunction, and negation. We could even dispense with disjunction since <span class="process-math">\(p \lor  q\)</span> is equivalent to a proposition that uses only conjunction and negation.</div></section><section class="subsection" id="subsection-28"><h3 class="heading hide-type">
+</table></div></figure><div class="para" id="p-1088">If we let <span class="process-math">\(p\)</span> represent “The money is behind Door A” and <span class="process-math">\(q\)</span> represent “The money is behind Door B,” <span class="process-math">\(p \Rightarrow (p \lor  q)\)</span> is a formalized version of the reasoning used in <a href="" class="xref" data-knowl="./knowl/ex-disjunctive-addition.html" title="Example 3.3.12: Disjunctive Addition">Example 3.3.12</a>. A common name for this implication is disjunctive addition. In the next section we will consider some of the most commonly used implications and equivalences.</div>
+<div class="para" id="p-1089">When we defined what we mean by a <a href="" class="xref" data-knowl="./knowl/def-proposition-generated-by-set.html" title="Definition 3.2.2: Proposition Generated by a Set">Proposition Generated by a Set</a>, we didn’t include the conditional and biconditional operators. This was because of the two equivalences <span class="process-math">\(p \to  q \Leftrightarrow  \neg p \lor  q\)</span> and <span class="process-math">\(p \leftrightarrow  q \Leftrightarrow  (p \land  q) \lor  (\neg p \land  \neg q)\text{.}\)</span> Therefore, any proposition that includes the conditional or biconditional operators can be written in an equivalent way using only conjunction, disjunction, and negation. We could even dispense with disjunction since <span class="process-math">\(p \lor  q\)</span> is equivalent to a proposition that uses only conjunction and negation.</div></section><section class="subsection" id="subsection-28"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">3.3.4</span> <span class="title">A Universal Operation</span>
 </h3>
-<div class="para" id="p-1074">We close this section with a final logical operation, the Sheffer Stroke, that has the interesting property that all other logical operations can be created from it. You can explore this operation in <a href="" class="xref" data-knowl="./knowl/ex-sheffer.html" title="Exercise 3.3.5.8">Exercise 3.3.5.8</a>
+<div class="para" id="p-1090">We close this section with a final logical operation, the Sheffer Stroke, that has the interesting property that all other logical operations can be created from it. You can explore this operation in <a href="" class="xref" data-knowl="./knowl/ex-sheffer.html" title="Exercise 3.3.5.8">Exercise 3.3.5.8</a>
 </div>
 <article class="definition definition-like" id="def-scheffer"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">3.3.14</span><span class="period">.</span><span class="space"> </span><span class="title">The Sheffer Stroke.</span>
-</h4>  <div class="para" id="p-1075">The Sheffer Stroke is the logical operator defined by the following truth table:</div> <figure class="table table-like" id="tt-scheffer"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">3.3.15<span class="period">.</span></span><span class="space"> </span>Truth Table for the Sheffer Stroke</figcaption><div class="tabular-box natural-width"><table class="tabular">
+</h4>  <div class="para" id="p-1091">The Sheffer Stroke is the logical operator defined by the following truth table:</div> <figure class="table table-like" id="tt-scheffer"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">3.3.15<span class="period">.</span></span><span class="space"> </span>Truth Table for the Sheffer Stroke</figcaption><div class="tabular-box natural-width"><table class="tabular">
 <tr>
 <td class="c m b0 r0 l0 t0 lines"><span class="process-math">\(p\)</span></td>
 <td class="c m b0 r0 l0 t0 lines"><span class="process-math">\(q\)</span></td>
@@ -1283,37 +1272,37 @@ eBookConfig.runestone_version = '7.0.7';
 </table></div></figure></article></section><section class="exercises" id="exercises-3-3"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">3.3.5</span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-114"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1076">
+<article class="exercise exercise-like" id="exercise-117"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para logical" id="p-1092">
 <div class="para">Given the following propositions generated by <span class="process-math">\(p\text{,}\)</span> <span class="process-math">\(q\text{,}\)</span> and <span class="process-math">\(r\text{,}\)</span> which are equivalent to one another?</div>
 <ol class="lower-alpha cols2">
-<li id="li-612"><div class="para" id="p-1077"><span class="process-math">\(\displaystyle (p \land  r) \lor  q\)</span></div></li>
-<li id="li-613"><div class="para" id="p-1078"><span class="process-math">\(\displaystyle p\lor (r\lor q)\)</span></div></li>
-<li id="li-614"><div class="para" id="p-1079"><span class="process-math">\(\displaystyle r \land  p\)</span></div></li>
-<li id="li-615"><div class="para" id="p-1080"><span class="process-math">\(\displaystyle \neg r \lor  p\)</span></div></li>
-<li id="li-616"><div class="para" id="p-1081"><span class="process-math">\(\displaystyle (p\lor q)\land (r\lor  q)\)</span></div></li>
-<li id="li-617"><div class="para" id="p-1082"><span class="process-math">\(\displaystyle r\to  p\)</span></div></li>
-<li id="li-618"><div class="para" id="p-1083"><span class="process-math">\(\displaystyle r \lor  \neg p\)</span></div></li>
-<li id="li-619"><div class="para" id="p-1084"><span class="process-math">\(\displaystyle p\to r\)</span></div></li>
+<li id="li-624"><div class="para" id="p-1093"><span class="process-math">\(\displaystyle (p \land  r) \lor  q\)</span></div></li>
+<li id="li-625"><div class="para" id="p-1094"><span class="process-math">\(\displaystyle p\lor (r\lor q)\)</span></div></li>
+<li id="li-626"><div class="para" id="p-1095"><span class="process-math">\(\displaystyle r \land  p\)</span></div></li>
+<li id="li-627"><div class="para" id="p-1096"><span class="process-math">\(\displaystyle \neg r \lor  p\)</span></div></li>
+<li id="li-628"><div class="para" id="p-1097"><span class="process-math">\(\displaystyle (p\lor q)\land (r\lor  q)\)</span></div></li>
+<li id="li-629"><div class="para" id="p-1098"><span class="process-math">\(\displaystyle r\to  p\)</span></div></li>
+<li id="li-630"><div class="para" id="p-1099"><span class="process-math">\(\displaystyle r \lor  \neg p\)</span></div></li>
+<li id="li-631"><div class="para" id="p-1100"><span class="process-math">\(\displaystyle p\to r\)</span></div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-58" id="answer-58"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-58"><div class="answer solution-like"><div class="para" id="p-1085"><span class="process-math">\(a\Leftrightarrow e, d\Leftrightarrow f, g\Leftrightarrow h\)</span></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-115"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1086"><ol class="lower-alpha">
-<li id="li-620"><div class="para" id="p-1087">Construct the truth table for <span class="process-math">\(x= (p \land  \neg q) \lor  (r \land  p)\text{.}\)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-60" id="answer-60"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-60"><div class="answer solution-like"><div class="para" id="p-1101"><span class="process-math">\(a\Leftrightarrow e, d\Leftrightarrow f, g\Leftrightarrow h\)</span></div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-118"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para logical" id="p-1102"><ol class="lower-alpha">
+<li id="li-632"><div class="para" id="p-1103">Construct the truth table for <span class="process-math">\(x= (p \land  \neg q) \lor  (r \land  p)\text{.}\)</span>
 </div></li>
-<li id="li-621"><div class="para" id="p-1088">Give an example other than <span class="process-math">\(x\)</span> itself of a proposition generated by <span class="process-math">\(p\text{,}\)</span> <span class="process-math">\(q\text{,}\)</span> and <span class="process-math">\(r\)</span> that is equivalent to <span class="process-math">\(x\text{.}\)</span>
+<li id="li-633"><div class="para" id="p-1104">Give an example other than <span class="process-math">\(x\)</span> itself of a proposition generated by <span class="process-math">\(p\text{,}\)</span> <span class="process-math">\(q\text{,}\)</span> and <span class="process-math">\(r\)</span> that is equivalent to <span class="process-math">\(x\text{.}\)</span>
 </div></li>
-<li id="li-622"><div class="para" id="p-1089">Give an example of a proposition other than <span class="process-math">\(x\)</span> that implies <span class="process-math">\(x\text{.}\)</span>
+<li id="li-634"><div class="para" id="p-1105">Give an example of a proposition other than <span class="process-math">\(x\)</span> that implies <span class="process-math">\(x\text{.}\)</span>
 </div></li>
-<li id="li-623"><div class="para" id="p-1090">Give an example of a proposition other than <span class="process-math">\(x\)</span> that is implied by <span class="process-math">\(x\text{.}\)</span>
+<li id="li-635"><div class="para" id="p-1106">Give an example of a proposition other than <span class="process-math">\(x\)</span> that is implied by <span class="process-math">\(x\text{.}\)</span>
 </div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-116"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para" id="p-1091">Is an implication equivalent to its converse? Verify your answer using a truth table.</div>
+</ol></div></article><article class="exercise exercise-like" id="exercise-119"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para" id="p-1107">Is an implication equivalent to its converse? Verify your answer using a truth table.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-3" id="solution-3"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-3"><div class="solution solution-like">
-<div class="para" id="p-1092">No. In symbolic form the question is: Is <span class="process-math">\((p\to q)\Leftrightarrow (q\to p)\text{?}\)</span> <span class="process-math">\(\begin{array}{ccccc}
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-4" id="solution-4"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-4"><div class="solution solution-like">
+<div class="para" id="p-1108">No. In symbolic form the question is: Is <span class="process-math">\((p\to q)\Leftrightarrow (q\to p)\text{?}\)</span> <span class="process-math">\(\begin{array}{ccccc}
 p &amp; q  &amp; p\to q  &amp; q\to p  &amp; (p\to q)\leftrightarrow (q\to p) \\
 \hline
 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1\\
@@ -1321,44 +1310,44 @@ p &amp; q  &amp; p\to q  &amp; q\to p  &amp; (p\to q)\leftrightarrow (q\to p) \\
 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
 \end{array}\)</span>
-</div> <div class="para" id="p-1093">This table indicates that an implication is not always equivalent to its converse.</div>
+</div> <div class="para" id="p-1109">This table indicates that an implication is not always equivalent to its converse.</div>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-117"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para" id="p-1094">Suppose that <span class="process-math">\(x\)</span> is a proposition generated by <span class="process-math">\(p\text{,}\)</span> <span class="process-math">\(q\text{,}\)</span> and <span class="process-math">\(r\)</span> that is equivalent to <span class="process-math">\(p \lor  \neg q\text{.}\)</span> Write out the truth table for <span class="process-math">\(x\text{.}\)</span>
-</div></article><article class="exercise exercise-like" id="exercise-118"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
-<div class="para" id="p-1095">How large is the largest set of propositions generated by <span class="process-math">\(p\)</span> and <span class="process-math">\(q\)</span> with the property that no two elements are equivalent?</div>
+</div></article><article class="exercise exercise-like" id="exercise-120"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para" id="p-1110">Suppose that <span class="process-math">\(x\)</span> is a proposition generated by <span class="process-math">\(p\text{,}\)</span> <span class="process-math">\(q\text{,}\)</span> and <span class="process-math">\(r\)</span> that is equivalent to <span class="process-math">\(p \lor  \neg q\text{.}\)</span> Write out the truth table for <span class="process-math">\(x\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-121"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para" id="p-1111">How large is the largest set of propositions generated by <span class="process-math">\(p\)</span> and <span class="process-math">\(q\)</span> with the property that no two elements are equivalent?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-4" id="solution-4"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-4"><div class="solution solution-like"><div class="para" id="p-1096">Let <span class="process-math">\(x\)</span> be any proposition generated by <span class="process-math">\(p\)</span> and <span class="process-math">\(q\text{.}\)</span> The truth table for <span class="process-math">\(x\)</span> has 4 rows and there are 2 choices for a truth value for <span class="process-math">\(x\)</span> for each row, so there are <span class="process-math">\(2\cdot 2\cdot 2\cdot 2=2^4\)</span> possible propositions.</div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-119"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
-<div class="para" id="p-1097">Find a proposition that is equivalent to <span class="process-math">\(p \lor  q\)</span> and uses only conjunction and negation.</div></article><article class="exercise exercise-like" id="exercise-120"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
-<div class="para" id="p-1098">Explain why a contradiction implies any proposition and any proposition implies a tautology.</div>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-5" id="solution-5"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-5"><div class="solution solution-like"><div class="para" id="p-1112">Let <span class="process-math">\(x\)</span> be any proposition generated by <span class="process-math">\(p\)</span> and <span class="process-math">\(q\text{.}\)</span> The truth table for <span class="process-math">\(x\)</span> has 4 rows and there are 2 choices for a truth value for <span class="process-math">\(x\)</span> for each row, so there are <span class="process-math">\(2\cdot 2\cdot 2\cdot 2=2^4\)</span> possible propositions.</div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-122"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div class="para" id="p-1113">Find a proposition that is equivalent to <span class="process-math">\(p \lor  q\)</span> and uses only conjunction and negation.</div></article><article class="exercise exercise-like" id="exercise-123"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="para" id="p-1114">Explain why a contradiction implies any proposition and any proposition implies a tautology.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-59" id="answer-59"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-59"><div class="answer solution-like"><div class="para" id="p-1099">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-61" id="answer-61"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-61"><div class="answer solution-like"><div class="para" id="p-1115">
 <span class="process-math">\(0\to p\)</span> and <span class="process-math">\(p\to 1\)</span> are tautologies.</div></div></div>
 </div></article><article class="exercise exercise-like" id="ex-sheffer"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1100">
+<div class="para logical" id="p-1116">
 <div class="para">The significance of the Sheffer Stroke is that it is a “universal” operation in that all other logical operations can be built from it.</div>
 <ol class="lower-alpha">
-<li id="li-624"><div class="para" id="p-1101">Prove that <span class="process-math">\(p | q\)</span> is equivalent to <span class="process-math">\(\neg (p \land  q)\text{.}\)</span>
+<li id="li-636"><div class="para" id="p-1117">Prove that <span class="process-math">\(p | q\)</span> is equivalent to <span class="process-math">\(\neg (p \land  q)\text{.}\)</span>
 </div></li>
-<li id="li-625"><div class="para" id="p-1102">Prove that <span class="process-math">\(\neg p \Leftrightarrow  p | p\text{.}\)</span>
+<li id="li-637"><div class="para" id="p-1118">Prove that <span class="process-math">\(\neg p \Leftrightarrow  p | p\text{.}\)</span>
 </div></li>
-<li id="li-626"><div class="para" id="p-1103">Build <span class="process-math">\(\land\)</span> using only the Sheffer Stroke.</div></li>
-<li id="li-627"><div class="para" id="p-1104">Build <span class="process-math">\(\lor\)</span> using only the Sheffer Stroke.</div></li>
+<li id="li-638"><div class="para" id="p-1119">Build <span class="process-math">\(\land\)</span> using only the Sheffer Stroke.</div></li>
+<li id="li-639"><div class="para" id="p-1120">Build <span class="process-math">\(\lor\)</span> using only the Sheffer Stroke.</div></li>
 </ol>
-</div></article><article class="exercise exercise-like" id="exercise-122"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
-<div class="para" id="p-1105">Are the converse and inverse of a conditional proposition equivalent? Verify your answer using a truth table.</div>
+</div></article><article class="exercise exercise-like" id="exercise-125"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div class="para" id="p-1121">Are the converse and inverse of a conditional proposition equivalent? Verify your answer using a truth table.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-5" id="solution-5"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-5"><div class="solution solution-like">
-<div class="para" id="p-1106">Yes. In symbolic form the question is whether, if we have a conditional proposition <span class="process-math">\(p \to q\text{,}\)</span> is <span class="process-math">\((q\to p)\Leftrightarrow (\neg p\to \neg q)\text{?}\)</span>
-</div> <div class="para" id="p-1107"><span class="process-math">\(\begin{array}{ccccc}
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-6" id="solution-6"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-6"><div class="solution solution-like">
+<div class="para" id="p-1122">Yes. In symbolic form the question is whether, if we have a conditional proposition <span class="process-math">\(p \to q\text{,}\)</span> is <span class="process-math">\((q\to p)\Leftrightarrow (\neg p\to \neg q)\text{?}\)</span>
+</div> <div class="para" id="p-1123"><span class="process-math">\(\begin{array}{ccccc}
 p &amp; q  &amp; q\to p  &amp; \neg p\to \neg q  &amp; (q \to p)\leftrightarrow (\neg p\to \neg q) \\
 \hline
 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1\\
 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1\\
 1 &amp; 0 &amp; 1 &amp; 1 &amp; 1 \\
 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
-\end{array}\)</span></div> <div class="para" id="p-1108">This table indicates that an converse is always equivalent to the inverse.</div>
+\end{array}\)</span></div> <div class="para" id="p-1124">This table indicates that an converse is always equivalent to the inverse.</div>
 </div></div>
 </div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>

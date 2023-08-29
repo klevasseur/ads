@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Data Structures for Graphs</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,32 +58,47 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
 </script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
 <script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
@@ -105,59 +138,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -166,7 +156,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -321,7 +311,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1130,20 +1123,20 @@ eBookConfig.runestone_version = '7.0.7';
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="s-data-structures-for-graphs"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">9.2</span> <span class="title">Data Structures for Graphs</span>
 </h2>
-<section class="introduction" id="introduction-26"><div class="para" id="p-3200">In this section, we will describe data structures that are commonly used to represent graphs. In addition we will introduce the basic syntax for graphs in Sage.</div></section><section class="subsection" id="ss-graph-data-structures"><h3 class="heading hide-type">
+<section class="introduction" id="introduction-26"><div class="para" id="p-3216">In this section, we will describe data structures that are commonly used to represent graphs. In addition we will introduce the basic syntax for graphs in Sage.</div></section><section class="subsection" id="ss-graph-data-structures"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">9.2.1</span> <span class="title">Basic Data Structures</span>
 </h3>
 <figure class="list table-like" id="list-2"><figcaption><span class="type">List</span><span class="space"> </span><span class="codenumber">9.2.1<span class="period">.</span></span><span class="space"> </span>Data Structures for Graphs</figcaption><div class="named-list-content">
-<div class="introduction" id="introduction-27"><div class="para" id="p-3201">Assume that we have a graph with <span class="process-math">\(n\)</span> vertices that can be indexed by the integers <span class="process-math">\(1, 2, \dots, n\text{.}\)</span>  Here are three different data structures that can be employed to represent graphs.</div></div>
+<div class="introduction" id="introduction-27"><div class="para" id="p-3217">Assume that we have a graph with <span class="process-math">\(n\)</span> vertices that can be indexed by the integers <span class="process-math">\(1, 2, \dots, n\text{.}\)</span>  Here are three different data structures that can be employed to represent graphs.</div></div>
 <ol class="lower-alpha">
-<li id="li-1566"><div class="para" id="p-3202">Adjacency Matrix:  As we saw in Chapter 6, the information about edges in a graph can be summarized with an adjacency matrix, <span class="process-math">\(G\text{,}\)</span> where <span class="process-math">\(G_{ij}=1\)</span> if and only if vertex <span class="process-math">\(i\)</span> is connected to vertex <span class="process-math">\(j\)</span> in the graph.  Note that this is the same as the adjacency matrix for a relation.</div></li>
-<li id="li-1567"><div class="para" id="p-3203">Edge Dictionary:  For each vertex in our graph, we maintain a list of edges that initiate at that vertex. If <span class="process-math">\(G\)</span> represents the graph’s edge information, then we denote by <span class="process-math">\(G_i\)</span> the list of vertices that are terminal vertices  of edges initiating at vertex <span class="process-math">\(i\text{.}\)</span> The exact syntax that would be used can vary.  We will use Sage/Python syntax in our examples.</div></li>
-<li id="li-1568"><div class="para" id="p-3204">Edge List:  Note that in creating either of the first two data structures, we would presume that a list of edges for the graph exists. A simple way to represent the edges is to maintain this list of ordered pairs, or two element sets, depending on whether the graph is intended to be directed or undirected.  We will not work with this data structure here, other than in the first example.</div></li>
+<li id="li-1578"><div class="para" id="p-3218">Adjacency Matrix:  As we saw in Chapter 6, the information about edges in a graph can be summarized with an adjacency matrix, <span class="process-math">\(G\text{,}\)</span> where <span class="process-math">\(G_{ij}=1\)</span> if and only if vertex <span class="process-math">\(i\)</span> is connected to vertex <span class="process-math">\(j\)</span> in the graph.  Note that this is the same as the adjacency matrix for a relation.</div></li>
+<li id="li-1579"><div class="para" id="p-3219">Edge Dictionary:  For each vertex in our graph, we maintain a list of edges that initiate at that vertex. If <span class="process-math">\(G\)</span> represents the graph’s edge information, then we denote by <span class="process-math">\(G_i\)</span> the list of vertices that are terminal vertices  of edges initiating at vertex <span class="process-math">\(i\text{.}\)</span> The exact syntax that would be used can vary.  We will use Sage/Python syntax in our examples.</div></li>
+<li id="li-1580"><div class="para" id="p-3220">Edge List:  Note that in creating either of the first two data structures, we would presume that a list of edges for the graph exists. A simple way to represent the edges is to maintain this list of ordered pairs, or two element sets, depending on whether the graph is intended to be directed or undirected.  We will not work with this data structure here, other than in the first example.</div></li>
 </ol>
 </div></figure><article class="example example-like" id="ex-data-structure-sample"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-data-structure-sample"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">9.2.2</span><span class="period">.</span><span class="space"> </span><span class="title">A Very Small Example.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-data-structure-sample"><article class="example example-like"> <div class="para" id="p-3205">We consider the representation of the following graph:</div> <figure class="figure figure-like" id="fig-example-9-2-1"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig-example-9-2-1.png" class="contained" alt="Example Graph to illustrate data structures"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.2.3<span class="period">.</span></span><span class="space"> </span>Graph for a Very Small Example</figcaption></figure> <div class="para logical" id="p-3206">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-data-structure-sample"><article class="example example-like"> <div class="para" id="p-3221">We consider the representation of the following graph:</div> <figure class="figure figure-like" id="fig-example-9-2-1"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig-example-9-2-1.png" class="contained" alt="Example Graph to illustrate data structures"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.2.3<span class="period">.</span></span><span class="space"> </span>Graph for a Very Small Example</figcaption></figure> <div class="para logical" id="p-3222">
 <div class="para">The adjacency matrix that represents the graph would be</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1157,62 +1150,62 @@ G=\left(
 \right)\text{.}
 \end{equation*}
 </div>
-</div> <div class="para" id="p-3207">The same graph could be represented with the edge dictionary</div> <blockquote class="blockquote" id="blockquote-4"><div class="para" id="p-3208">
-<code class="code-inline tex2jax_ignore">{1:[2,4],2:[3,4],3:[3],4:[1]}</code>.</div></blockquote> <div class="para" id="p-3209">Notice the general form of each item in the dictionary: <code class="code-inline tex2jax_ignore">vertex:[list of vertices]</code>.</div> <div class="para" id="p-3210">Finally, a list of edges <code class="code-inline tex2jax_ignore">[(1,2),(1,4),(2,3),(2,4),(3,3),(4,1)]</code> also describes the same graph.</div></article></div>
-<div class="para" id="p-3211">A natural question to ask is: Which data structure should be used in a given situation? For small graphs, it really doesn’t make much difference.  For larger matrices the edge count would be a consideration. If <span class="process-math">\(n\)</span> is large and the number of edges is relatively small, it might use less memory to maintain an edge dictionary or  list of edges instead of building an <span class="process-math">\(n \times  n\)</span> matrix. Some software for working with graphs will make the decision for you.</div>
+</div> <div class="para" id="p-3223">The same graph could be represented with the edge dictionary</div> <blockquote class="blockquote" id="blockquote-4"><div class="para" id="p-3224">
+<code class="code-inline tex2jax_ignore">{1:[2,4],2:[3,4],3:[3],4:[1]}</code>.</div></blockquote> <div class="para" id="p-3225">Notice the general form of each item in the dictionary: <code class="code-inline tex2jax_ignore">vertex:[list of vertices]</code>.</div> <div class="para" id="p-3226">Finally, a list of edges <code class="code-inline tex2jax_ignore">[(1,2),(1,4),(2,3),(2,4),(3,3),(4,1)]</code> also describes the same graph.</div></article></div>
+<div class="para" id="p-3227">A natural question to ask is: Which data structure should be used in a given situation? For small graphs, it really doesn’t make much difference.  For larger matrices the edge count would be a consideration. If <span class="process-math">\(n\)</span> is large and the number of edges is relatively small, it might use less memory to maintain an edge dictionary or  list of edges instead of building an <span class="process-math">\(n \times  n\)</span> matrix. Some software for working with graphs will make the decision for you.</div>
 <article class="example example-like" id="ex-ncaa-bb"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-ncaa-bb"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">9.2.4</span><span class="period">.</span><span class="space"> </span><span class="title">NCAA Basketball.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-ncaa-bb"><article class="example example-like"><div class="para" id="p-3212">Consider the tournament  graph representing a NCAA Division 1 men’s (or women’s) college basketball season in the United States. There are approximately 350 teams in Division 1. Suppose we constructed the graph with an edge from team A to team B if A beat B at least once in the season; and we label the edge with the number of wins.  Since the average team plays around 30 games in a season, most of which will be against other Division I teams, we could expect around <span class="process-math">\(\frac{30 \cdot 350}{2}=5,250\)</span> edges in the graph. This would be somewhat reduced by games with lower division teams and cases where two or more wins over the same team produces one edge. Since 5,250 is much smaller than <span class="process-math">\(350^2=122,500\)</span> entries in an adjacency matrix, an edge dictionary or edge list would be more compact than an adjacency matrix.  Even if we were to use software to create an adjacency matrix, many programs will identify the fact that a matrix such as the one in this example would be “sparse” and would leave data in list form and use sparse array methods to work with it.</div></article></div></section><section class="subsection" id="sss-sage-graphs"><h3 class="heading hide-type">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-ncaa-bb"><article class="example example-like"><div class="para" id="p-3228">Consider the tournament  graph representing a NCAA Division 1 men’s (or women’s) college basketball season in the United States. There are approximately 350 teams in Division 1. Suppose we constructed the graph with an edge from team A to team B if A beat B at least once in the season; and we label the edge with the number of wins.  Since the average team plays around 30 games in a season, most of which will be against other Division I teams, we could expect around <span class="process-math">\(\frac{30 \cdot 350}{2}=5,250\)</span> edges in the graph. This would be somewhat reduced by games with lower division teams and cases where two or more wins over the same team produces one edge. Since 5,250 is much smaller than <span class="process-math">\(350^2=122,500\)</span> entries in an adjacency matrix, an edge dictionary or edge list would be more compact than an adjacency matrix.  Even if we were to use software to create an adjacency matrix, many programs will identify the fact that a matrix such as the one in this example would be “sparse” and would leave data in list form and use sparse array methods to work with it.</div></article></div></section><section class="subsection" id="sss-sage-graphs"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">9.2.2</span> <span class="title">Sage Graphs</span>
 </h3>
-<div class="para" id="p-3213">The most common way to define a graph in Sage is to use an edge dictionary.  Here is how the graph in <a href="" class="xref" data-knowl="./knowl/ex-data-structure-sample.html" title="Example 9.2.2: A Very Small Example">Example 9.2.2</a> is generated and then displayed.  Notice that  we simply wrap the function <code class="code-inline tex2jax_ignore">DiGraph()</code> around the same dictionary expression we identified earlier.</div>
+<div class="para" id="p-3229">The most common way to define a graph in Sage is to use an edge dictionary.  Here is how the graph in <a href="" class="xref" data-knowl="./knowl/ex-data-structure-sample.html" title="Example 9.2.2: A Very Small Example">Example 9.2.2</a> is generated and then displayed.  Notice that  we simply wrap the function <code class="code-inline tex2jax_ignore">DiGraph()</code> around the same dictionary expression we identified earlier.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-19"><script type="text/x-sage">G1 = DiGraph( {1 : [4, 2], 2 : [3, 4], 3 : [3], 4 : [1]})
 G1.show()
 </script></pre>
-<div class="para" id="p-3214">You can get the adjacency matrix of a graph with the <code class="code-inline tex2jax_ignore">adjacency_matrix</code> method.</div>
+<div class="para" id="p-3230">You can get the adjacency matrix of a graph with the <code class="code-inline tex2jax_ignore">adjacency_matrix</code> method.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-20"><script type="text/x-sage">G1.adjacency_matrix()
 </script></pre>
-<div class="para" id="p-3215">You can also define a graph based on its adjacency matrix.</div>
+<div class="para" id="p-3231">You can also define a graph based on its adjacency matrix.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-21"><script type="text/x-sage">M = Matrix([[0,1,0,0,0],[0,0,1,0,0],[0,0,0,1,0],
               [0,0,0,0,1],[1,0,0,0,0]])
 DiGraph(M).show()
 </script></pre>
-<div class="para" id="p-3216">The edge list of any directed graph can be easily retrieved.  If you replace <code class="code-inline tex2jax_ignore">edges</code> with <code class="code-inline tex2jax_ignore">edge_iterator</code>, you can iterate through the edge list.  The third coordinate of the items in the edge is the label of the edge, which is <code class="code-inline tex2jax_ignore">None</code> in this case.</div>
+<div class="para" id="p-3232">The edge list of any directed graph can be easily retrieved.  If you replace <code class="code-inline tex2jax_ignore">edges</code> with <code class="code-inline tex2jax_ignore">edge_iterator</code>, you can iterate through the edge list.  The third coordinate of the items in the edge is the label of the edge, which is <code class="code-inline tex2jax_ignore">None</code> in this case.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-22"><script type="text/x-sage">DiGraph(M).edges()
 </script></pre>
-<div class="para" id="p-3217">Replacing the wrapper <code class="code-inline tex2jax_ignore">DiGraph()</code> with <code class="code-inline tex2jax_ignore">Graph()</code> creates an undirected graph.</div>
+<div class="para" id="p-3233">Replacing the wrapper <code class="code-inline tex2jax_ignore">DiGraph()</code> with <code class="code-inline tex2jax_ignore">Graph()</code> creates an undirected graph.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-23"><script type="text/x-sage">G2 = Graph( {1 : [4, 2], 2 : [3, 4], 3 : [3], 4 : [1]})
 G2.show()
 </script></pre>
-<div class="para" id="p-3218">There are many special graphs and graph families that are available in Sage through the <code class="code-inline tex2jax_ignore">graphs</code> module.  They are referenced with the prefix <code class="code-inline tex2jax_ignore">graphs.</code> followed by the name and zero or more parameters inside parentheses.  Here are a couple of them, first a complete graph with five vertices.</div>
+<div class="para" id="p-3234">There are many special graphs and graph families that are available in Sage through the <code class="code-inline tex2jax_ignore">graphs</code> module.  They are referenced with the prefix <code class="code-inline tex2jax_ignore">graphs.</code> followed by the name and zero or more parameters inside parentheses.  Here are a couple of them, first a complete graph with five vertices.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-24"><script type="text/x-sage">graphs.CompleteGraph(5).show()
 </script></pre>
-<div class="para" id="p-3219">Here is a wheel graph, named for an obvious pattern of vertices and edges.  We assign a name to it first and then show the graph without labeling the vertices.</div>
+<div class="para" id="p-3235">Here is a wheel graph, named for an obvious pattern of vertices and edges.  We assign a name to it first and then show the graph without labeling the vertices.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-25"><script type="text/x-sage">w=graphs.WheelGraph(20)
 w.show(vertex_labels=false)
 </script></pre>
-<div class="para" id="p-3220">There are dozens of graph methods, one of which determines the degree sequence of a graph.  In this case, it’s the wheel graph above.</div>
+<div class="para" id="p-3236">There are dozens of graph methods, one of which determines the degree sequence of a graph.  In this case, it’s the wheel graph above.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-26"><script type="text/x-sage">w.degree_sequence()
 </script></pre>
-<div class="para" id="p-3221">The degree sequence method is defined within the graphs module, but the prefix <code class="code-inline tex2jax_ignore">graphs.</code> is not needed because the value of <code class="code-inline tex2jax_ignore">w</code> inherits the graphs methods.</div></section><section class="exercises" id="exercises-9-2"><h3 class="heading hide-type">
+<div class="para" id="p-3237">The degree sequence method is defined within the graphs module, but the prefix <code class="code-inline tex2jax_ignore">graphs.</code> is not needed because the value of <code class="code-inline tex2jax_ignore">w</code> inherits the graphs methods.</div></section><section class="exercises" id="exercises-9-2"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">9.2.3</span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-371"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para" id="p-3222">Estimate the number of vertices and edges in each of the following graphs. Would the graph be considered sparse, so that an adjacency matrix would be inefficient?</div> <div class="para logical" id="p-3223"><ol class="lower-alpha">
-<li id="li-1569"><div class="para" id="p-3224">Vertices: Cities of the world that are served by at least one airline. Edges: Pairs of cities that are connected by a regular direct flight.</div></li>
-<li id="li-1570"><div class="para" id="p-3225">Vertices: ASCII characters. Edges: connect characters that differ in their binary code by exactly two bits.</div></li>
-<li id="li-1571"><div class="para" id="p-3226">Vertices: All English words. Edges: An edge connects word <span class="process-math">\(x\)</span> to word <span class="process-math">\(y\)</span> if <span class="process-math">\(x\)</span> is a prefix of <span class="process-math">\(y\text{.}\)</span>
+<article class="exercise exercise-like" id="exercise-374"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para" id="p-3238">Estimate the number of vertices and edges in each of the following graphs. Would the graph be considered sparse, so that an adjacency matrix would be inefficient?</div> <div class="para logical" id="p-3239"><ol class="lower-alpha">
+<li id="li-1581"><div class="para" id="p-3240">Vertices: Cities of the world that are served by at least one airline. Edges: Pairs of cities that are connected by a regular direct flight.</div></li>
+<li id="li-1582"><div class="para" id="p-3241">Vertices: ASCII characters. Edges: connect characters that differ in their binary code by exactly two bits.</div></li>
+<li id="li-1583"><div class="para" id="p-3242">Vertices: All English words. Edges: An edge connects word <span class="process-math">\(x\)</span> to word <span class="process-math">\(y\)</span> if <span class="process-math">\(x\)</span> is a prefix of <span class="process-math">\(y\text{.}\)</span>
 </div></li>
 </ol></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-172" id="answer-172"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-172"><div class="answer solution-like"><div class="para logical" id="p-3227"><ol class="lower-alpha">
-<li id="li-1572"><div class="para" id="p-3228">A rough estimate of the number of vertices in the “world airline graph” would be the number of cities with population greater than or equal to 100,000. This is estimated to be around 4,100. There are many smaller cities that have airports, but some of the metropolitan areas with clusters of large cities are served by only a few airports.  4,000-5,000 is probably a good guess.   As for edges, that’s a bit more difficult to estimate.  It’s certainly not  a complete graph.  Looking at some medium sized airports such as Manchester, NH, the average number of cities that you can go to directly is in the 50-100 range.   So a very rough estimate would be   <span class="process-math">\(\frac{75 \cdot  4500}{2}=168,750\text{.}\)</span> This is far less than <span class="process-math">\(4,500^2\text{,}\)</span> so an edge list or dictionary of some kind would be more efficient.</div></li>
-<li id="li-1573"><div class="para" id="p-3229">The number of ASCII characters is 128.  Each character would be connected to <span class="process-math">\(\binom{8}{2}=28\)</span> others and so there are <span class="process-math">\(\frac{128 \cdot 28}{2}=3,584\)</span>  edges.  Comparing this to the <span class="process-math">\(128^2=16,384\text{,}\)</span> an array is probably the best choice.</div></li>
-<li id="li-1574"><div class="para" id="p-3230">The Oxford English Dictionary as approximately a half-million words, although many are obsolete.   The number of edges is probably of the same order of magnitude as the number of words, so an edge list or dictionary is probably the best choice.</div></li>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-174" id="answer-174"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-174"><div class="answer solution-like"><div class="para logical" id="p-3243"><ol class="lower-alpha">
+<li id="li-1584"><div class="para" id="p-3244">A rough estimate of the number of vertices in the “world airline graph” would be the number of cities with population greater than or equal to 100,000. This is estimated to be around 4,100. There are many smaller cities that have airports, but some of the metropolitan areas with clusters of large cities are served by only a few airports.  4,000-5,000 is probably a good guess.   As for edges, that’s a bit more difficult to estimate.  It’s certainly not  a complete graph.  Looking at some medium sized airports such as Manchester, NH, the average number of cities that you can go to directly is in the 50-100 range.   So a very rough estimate would be   <span class="process-math">\(\frac{75 \cdot  4500}{2}=168,750\text{.}\)</span> This is far less than <span class="process-math">\(4,500^2\text{,}\)</span> so an edge list or dictionary of some kind would be more efficient.</div></li>
+<li id="li-1585"><div class="para" id="p-3245">The number of ASCII characters is 128.  Each character would be connected to <span class="process-math">\(\binom{8}{2}=28\)</span> others and so there are <span class="process-math">\(\frac{128 \cdot 28}{2}=3,584\)</span>  edges.  Comparing this to the <span class="process-math">\(128^2=16,384\text{,}\)</span> an array is probably the best choice.</div></li>
+<li id="li-1586"><div class="para" id="p-3246">The Oxford English Dictionary as approximately a half-million words, although many are obsolete.   The number of edges is probably of the same order of magnitude as the number of words, so an edge list or dictionary is probably the best choice.</div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-372"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para" id="p-3231">Each edge of a graph is colored with one of the four colors red, blue, yellow, or green. How could you represent the edges in this graph using a variation of the adjacency matrix structure?</div></article><article class="exercise exercise-like" id="exercise-373"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para" id="p-3232">Directed graphs <span class="process-math">\(G_1, \dots, G_6\)</span> , each with vertex set <span class="process-math">\(\{1,2,3,4,5\}\)</span> are represented by the matrices below. Which graphs are isomorphic to one another?</div> <div class="para" id="p-3233">
+</div></article><article class="exercise exercise-like" id="exercise-375"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para" id="p-3247">Each edge of a graph is colored with one of the four colors red, blue, yellow, or green. How could you represent the edges in this graph using a variation of the adjacency matrix structure?</div></article><article class="exercise exercise-like" id="exercise-376"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para" id="p-3248">Directed graphs <span class="process-math">\(G_1, \dots, G_6\)</span> , each with vertex set <span class="process-math">\(\{1,2,3,4,5\}\)</span> are represented by the matrices below. Which graphs are isomorphic to one another?</div> <div class="para" id="p-3249">
 <span class="process-math">\(G_1: \left(
 \begin{array}{ccccc}
 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
@@ -1264,10 +1257,10 @@ w.show(vertex_labels=false)
 \right)\)</span>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-173" id="answer-173"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-173"><div class="answer solution-like"><div class="para" id="p-3234">Each graph is isomorphic to itself. In addition, <span class="process-math">\(G_2 \text{ and } G_4\)</span> are isomorphic; and <span class="process-math">\(G_3, G_5, \text{ and } G_6\)</span> are isomorphic to one another.</div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-374"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para" id="p-3235">The following Sage command verifies that the wheel graph with four vertices is isomorphic to the complete graph with four vertices.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-27"><script type="text/x-sage">graphs.WheelGraph(4).is_isomorphic(graphs.CompleteGraph(4))
-</script></pre> <div class="para" id="p-3236">A list of all graphs in this the <code class="code-inline tex2jax_ignore">graphs</code> database is available via tab completion. Type "graphs." and then hit the tab key to see which graphs are available.  This can be done using the Sage application or SageMathCloud, but not sage cells.  Find some other pairs of isomorphic graphs in the database.</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-175" id="answer-175"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-175"><div class="answer solution-like"><div class="para" id="p-3250">Each graph is isomorphic to itself. In addition, <span class="process-math">\(G_2 \text{ and } G_4\)</span> are isomorphic; and <span class="process-math">\(G_3, G_5, \text{ and } G_6\)</span> are isomorphic to one another.</div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-377"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para" id="p-3251">The following Sage command verifies that the wheel graph with four vertices is isomorphic to the complete graph with four vertices.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-27"><script type="text/x-sage">graphs.WheelGraph(4).is_isomorphic(graphs.CompleteGraph(4))
+</script></pre> <div class="para" id="p-3252">A list of all graphs in this the <code class="code-inline tex2jax_ignore">graphs</code> database is available via tab completion. Type "graphs." and then hit the tab key to see which graphs are available.  This can be done using the Sage application or SageMathCloud, but not sage cells.  Find some other pairs of isomorphic graphs in the database.</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>
 <div class="ptx-content-footer">
 <a class="previous-button button" href="s-graphs-introduction.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="s-Connectivity.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>

@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Cosets and Factor Groups</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,25 +58,36 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
@@ -99,59 +128,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -160,7 +146,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -315,7 +301,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1124,14 +1113,14 @@ eBookConfig.runestone_version = '7.0.7';
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="s-cosets-and-factor-groups"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">15.2</span> <span class="title">Cosets and Factor Groups</span>
 </h2>
-<div class="para" id="p-5622">Consider the group <span class="process-math">\(\left[\mathbb{Z}_{12};+_{12}\right]\text{.}\)</span> As we saw in the previous section, we can picture its cyclic properties with the string art of <a href="" class="xref" data-knowl="./knowl/fig-string-art.html" title="Figure 15.1.3">Figure 15.1.3</a>. Here we will be interested in the non-generators, like 3. The solid lines in <a href="" class="xref" data-knowl="./knowl/fig-string-art-cosets.html" title="Figure 15.2.1">Figure 15.2.1</a> show that only one-third of the tacks have been reached by starting at zero and jumping to every third tack. The numbers of these tacks correspond to <span class="process-math">\(\langle 3 \rangle = \{0, 3, 6, 9\}\text{.}\)</span>
+<div class="para" id="p-5638">Consider the group <span class="process-math">\(\left[\mathbb{Z}_{12};+_{12}\right]\text{.}\)</span> As we saw in the previous section, we can picture its cyclic properties with the string art of <a href="" class="xref" data-knowl="./knowl/fig-string-art.html" title="Figure 15.1.3">Figure 15.1.3</a>. Here we will be interested in the non-generators, like 3. The solid lines in <a href="" class="xref" data-knowl="./knowl/fig-string-art-cosets.html" title="Figure 15.2.1">Figure 15.2.1</a> show that only one-third of the tacks have been reached by starting at zero and jumping to every third tack. The numbers of these tacks correspond to <span class="process-math">\(\langle 3 \rangle = \{0, 3, 6, 9\}\text{.}\)</span>
 </div>
 <figure class="figure figure-like" id="fig-string-art-cosets"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="external/images/fig-string-art-cosets.png" class="contained" alt="“String art” cosets"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">15.2.1<span class="period">.</span></span><span class="space"> </span>“String art” cosets</figcaption></figure><div class="para" id="p-5623">What happens if you start at one of the unused tacks and again jump to every third tack? The two broken paths on <a href="" class="xref" data-knowl="./knowl/fig-string-art-cosets.html" title="Figure 15.2.1">Figure 15.2.1</a> show that identical squares are produced. The tacks are thus partitioned into very similar subsets. The subsets of <span class="process-math">\(\mathbb{Z}_{12}\)</span> that they correspond to are <span class="process-math">\(\{0,
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">15.2.1<span class="period">.</span></span><span class="space"> </span>“String art” cosets</figcaption></figure><div class="para" id="p-5639">What happens if you start at one of the unused tacks and again jump to every third tack? The two broken paths on <a href="" class="xref" data-knowl="./knowl/fig-string-art-cosets.html" title="Figure 15.2.1">Figure 15.2.1</a> show that identical squares are produced. The tacks are thus partitioned into very similar subsets. The subsets of <span class="process-math">\(\mathbb{Z}_{12}\)</span> that they correspond to are <span class="process-math">\(\{0,
 3, 6, 9\}\text{,}\)</span> <span class="process-math">\(\{1, 4, 7, 10\}\text{,}\)</span> and <span class="process-math">\(\{2, 5, 8, 11\}\text{.}\)</span> These subsets are called cosets. In particular, they are called cosets of the subgroup <span class="process-math">\(\{0, 3, 6, 9\}\text{.}\)</span> We will see that under certain conditions, cosets of a subgroup can form a group of their own. Before pursuing this example any further we will examine the general situation.</div>
 <article class="definition definition-like" id="def-coset"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">15.2.2</span><span class="period">.</span><span class="space"> </span><span class="title">Coset.</span>
-</h3>  <div class="para logical" id="p-5624">
+</h3>  <div class="para logical" id="p-5640">
 <div class="para">If <span class="process-math">\([G;*]\)</span> is a group, <span class="process-math">\(H \leq  G\)</span> and <span class="process-math">\(a \in  G\text{,}\)</span> the left coset  of <span class="process-math">\(H\)</span> generated by <span class="process-math">\(a\)</span> is</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1147,22 +1136,22 @@ H*a = \{h*a | h\in H\}.
 </div></article><article class="note remark-like" id="note-31"><h3 class="heading">
 <span class="type">Note</span><span class="space"> </span><span class="codenumber">15.2.3</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-5625"><ol class="lower-alpha">
-<li id="li-2531"><div class="para" id="p-5626">
+<div class="para logical" id="p-5641"><ol class="lower-alpha">
+<li id="li-2543"><div class="para" id="p-5642">
 <span class="process-math">\(H\)</span> itself is both a left and right coset since <span class="process-math">\(e*H = H*e = H\text{.}\)</span>
 </div></li>
-<li id="li-2532"><div class="para" id="p-5627">If <span class="process-math">\(G\)</span> is abelian, <span class="process-math">\(a*H = H*a\)</span> and the left-right distinction for cosets can be dropped. We will normally use left coset notation in that situation.</div></li>
+<li id="li-2544"><div class="para" id="p-5643">If <span class="process-math">\(G\)</span> is abelian, <span class="process-math">\(a*H = H*a\)</span> and the left-right distinction for cosets can be dropped. We will normally use left coset notation in that situation.</div></li>
 </ol></div></article><article class="definition definition-like" id="def-coset-representative"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">15.2.4</span><span class="period">.</span><span class="space"> </span><span class="title">Coset Representative.</span>
-</h3> <div class="para" id="p-5628">Any element of a coset is called a representative of that coset.</div></article><div class="para" id="p-5629">One might wonder whether <span class="process-math">\(a\)</span> is in any way a special representative of <span class="process-math">\(a*H\)</span> since it seems to define the coset. It is not, as we shall see.</div>
+</h3> <div class="para" id="p-5644">Any element of a coset is called a representative of that coset.</div></article><div class="para" id="p-5645">One might wonder whether <span class="process-math">\(a\)</span> is in any way a special representative of <span class="process-math">\(a*H\)</span> since it seems to define the coset. It is not, as we shall see.</div>
 <article class="remark remark-like" id="remark-3"><h3 class="heading">
 <span class="type">Remark</span><span class="space"> </span><span class="codenumber">15.2.5</span><span class="period">.</span><span class="space"> </span><span class="title">A Duality Principle.</span>
 </h3>
-<div class="para" id="p-5630">A duality principle can be formulated concerning cosets because left and right cosets are defined in such similar ways. Any theorem about left and right cosets will yield a second theorem when “left” and “right” are exchanged for “right” and “left.”</div></article><article class="theorem theorem-like" id="theorem-15-2-1"><h3 class="heading">
+<div class="para" id="p-5646">A duality principle can be formulated concerning cosets because left and right cosets are defined in such similar ways. Any theorem about left and right cosets will yield a second theorem when “left” and “right” are exchanged for “right” and “left.”</div></article><article class="theorem theorem-like" id="theorem-15-2-1"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">15.2.6</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-5631">If <span class="process-math">\(b\in a*H\text{,}\)</span> then <span class="process-math">\(a*H = b*H\text{,}\)</span> and if <span class="process-math">\(b \in  H*a\text{,}\)</span> then <span class="process-math">\(H*a = H*b\text{.}\)</span>
-</div></article><article class="hiddenproof" id="proof-58"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-58"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-58"><article class="hiddenproof"><div class="para logical" id="p-5632">
+<div class="para" id="p-5647">If <span class="process-math">\(b\in a*H\text{,}\)</span> then <span class="process-math">\(a*H = b*H\text{,}\)</span> and if <span class="process-math">\(b \in  H*a\text{,}\)</span> then <span class="process-math">\(H*a = H*b\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-58"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-58"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-58"><article class="hiddenproof"><div class="para logical" id="p-5648">
 <div class="para">In light of the remark above, we need only prove the first part of this theorem. Suppose that <span class="process-math">\(x \in  a*H\text{.}\)</span>  We need only find a way of expressing <span class="process-math">\(x\)</span> as “<span class="process-math">\(b\)</span> times an element of <span class="process-math">\(H\text{.}\)</span>” Then we will have proven that <span class="process-math">\(a*H \subseteq  b*H\text{.}\)</span>  By the definition of <span class="process-math">\(a*H\text{,}\)</span> since <span class="process-math">\(b\)</span> and <span class="process-math">\(x\)</span> are in <span class="process-math">\(a*H\text{,}\)</span> there exist <span class="process-math">\(h_1\)</span> and <span class="process-math">\(h_2\)</span> in <span class="process-math">\(H\)</span> such that <span class="process-math">\(b =
 a*h_1\)</span> and <span class="process-math">\(x = a*h_2\text{.}\)</span> Given these two equations, <span class="process-math">\(a = b h_1^{-1}\)</span> and</div>
 <div class="displaymath process-math">
@@ -1174,7 +1163,7 @@ x = a*h_2 = (b *h_1^{-1})*h_2 = b*(h_1^{-1}*h_2)
 </div></article></div>
 <article class="example example-like" id="ex-15-2-1"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-15-2-1"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.2.7</span><span class="period">.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-15-2-1"><article class="example example-like"><div class="para logical" id="p-5633">
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-15-2-1"><article class="example example-like"><div class="para logical" id="p-5649">
 <div class="para">In <a href="" class="xref" data-knowl="./knowl/fig-string-art-cosets.html" title="Figure 15.2.1">Figure 15.2.1</a>, you can start at either 1 or 7 and obtain the same path by taking jumps of three tacks in each step. Thus,</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/fig-string-art-cosets.html">
 \begin{equation*}
@@ -1182,39 +1171,39 @@ x = a*h_2 = (b *h_1^{-1})*h_2 = b*(h_1^{-1}*h_2)
 \end{equation*}
 </div>
 </div></article></div>
-<div class="para" id="p-5634">The set of left (or right) cosets of a subgroup partition a group in a special way:</div>
+<div class="para" id="p-5650">The set of left (or right) cosets of a subgroup partition a group in a special way:</div>
 <article class="theorem theorem-like" id="theorem-cosets-partition"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">15.2.8</span><span class="period">.</span><span class="space"> </span><span class="title">Cosets Partition a Group.</span>
 </h3>
-<div class="para" id="p-5635">If <span class="process-math">\([G; *]\)</span> is a group and <span class="process-math">\(H\leq  G\text{,}\)</span> the set of left cosets of <span class="process-math">\(H\)</span> is a partition of <span class="process-math">\(G\text{.}\)</span> In addition, all of the left cosets of <span class="process-math">\(H\)</span> have the same cardinality. The same is true for right cosets.</div></article><article class="hiddenproof" id="proof-59"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-59"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-59"><article class="hiddenproof"><div class="para" id="p-5636">That every element of <span class="process-math">\(G\)</span> belongs to a left coset is clear because <span class="process-math">\(a \in  a*H\)</span> for all <span class="process-math">\(a \in  G\text{.}\)</span> If <span class="process-math">\(a*H\)</span> and <span class="process-math">\(b*H\)</span> are left cosets, we will prove that they are either equal or disjoint. If <span class="process-math">\(a*H\)</span> and <span class="process-math">\(b*H\)</span> are not disjoint, <span class="process-math">\(a*H\cap b*H\)</span> is nonempty and some element <span class="process-math">\(c \in G\)</span> belongs to the intersection. Then by <a href="" class="xref" data-knowl="./knowl/theorem-15-2-1.html" title="Theorem 15.2.6">Theorem 15.2.6</a>, <span class="process-math">\(c\in a*H \Rightarrow  a*H = c*H\)</span> and <span class="process-math">\(c \in b*H \Rightarrow  b*H = c*H\text{.}\)</span> Hence  <span class="process-math">\(a*H = b*H\text{.}\)</span>
-</div> <div class="para" id="p-5637">We complete the proof by showing that each left coset has the same cardinality as <span class="process-math">\(H\text{.}\)</span> To do this, we simply observe that if <span class="process-math">\(a \in  G\text{,}\)</span> <span class="process-math">\(\rho:H \to  a*H\)</span> defined by <span class="process-math">\(\rho(h)= a*h\)</span> is a bijection and hence <span class="process-math">\(\lvert H\rvert =\lvert a *H\rvert\text{.}\)</span>  We will leave the proof of this statement to the reader.</div></article></div>
-<div class="para" id="p-5638">The function <span class="process-math">\(\rho\)</span> has a nice interpretation in terms of our opening example.  If <span class="process-math">\(a \in  \mathbb{Z}_{12}\text{,}\)</span> the graph of <span class="process-math">\(\{0, 3, 6, 9\}\)</span> is rotated <span class="process-math">\((30a)^{\circ}\)</span> to coincide with one of the three cosets of <span class="process-math">\(\{0, 3, 6, 9\}\text{.}\)</span>
+<div class="para" id="p-5651">If <span class="process-math">\([G; *]\)</span> is a group and <span class="process-math">\(H\leq  G\text{,}\)</span> the set of left cosets of <span class="process-math">\(H\)</span> is a partition of <span class="process-math">\(G\text{.}\)</span> In addition, all of the left cosets of <span class="process-math">\(H\)</span> have the same cardinality. The same is true for right cosets.</div></article><article class="hiddenproof" id="proof-59"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-59"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-59"><article class="hiddenproof"><div class="para" id="p-5652">That every element of <span class="process-math">\(G\)</span> belongs to a left coset is clear because <span class="process-math">\(a \in  a*H\)</span> for all <span class="process-math">\(a \in  G\text{.}\)</span> If <span class="process-math">\(a*H\)</span> and <span class="process-math">\(b*H\)</span> are left cosets, we will prove that they are either equal or disjoint. If <span class="process-math">\(a*H\)</span> and <span class="process-math">\(b*H\)</span> are not disjoint, <span class="process-math">\(a*H\cap b*H\)</span> is nonempty and some element <span class="process-math">\(c \in G\)</span> belongs to the intersection. Then by <a href="" class="xref" data-knowl="./knowl/theorem-15-2-1.html" title="Theorem 15.2.6">Theorem 15.2.6</a>, <span class="process-math">\(c\in a*H \Rightarrow  a*H = c*H\)</span> and <span class="process-math">\(c \in b*H \Rightarrow  b*H = c*H\text{.}\)</span> Hence  <span class="process-math">\(a*H = b*H\text{.}\)</span>
+</div> <div class="para" id="p-5653">We complete the proof by showing that each left coset has the same cardinality as <span class="process-math">\(H\text{.}\)</span> To do this, we simply observe that if <span class="process-math">\(a \in  G\text{,}\)</span> <span class="process-math">\(\rho:H \to  a*H\)</span> defined by <span class="process-math">\(\rho(h)= a*h\)</span> is a bijection and hence <span class="process-math">\(\lvert H\rvert =\lvert a *H\rvert\text{.}\)</span>  We will leave the proof of this statement to the reader.</div></article></div>
+<div class="para" id="p-5654">The function <span class="process-math">\(\rho\)</span> has a nice interpretation in terms of our opening example.  If <span class="process-math">\(a \in  \mathbb{Z}_{12}\text{,}\)</span> the graph of <span class="process-math">\(\{0, 3, 6, 9\}\)</span> is rotated <span class="process-math">\((30a)^{\circ}\)</span> to coincide with one of the three cosets of <span class="process-math">\(\{0, 3, 6, 9\}\text{.}\)</span>
 </div>
 <article class="corollary theorem-like" id="corollary-counting-cosets"><h3 class="heading">
 <span class="type">Corollary</span><span class="space"> </span><span class="codenumber">15.2.9</span><span class="period">.</span><span class="space"> </span><span class="title">A Coset Counting Formula.</span>
 </h3>
-<div class="para" id="p-5639">If <span class="process-math">\(\lvert G\rvert &lt; \infty\)</span> and <span class="process-math">\(H\leq G\text{,}\)</span> the number of distinct left cosets of <span class="process-math">\(H\)</span> equals <span class="process-math">\(\frac{\lvert
+<div class="para" id="p-5655">If <span class="process-math">\(\lvert G\rvert &lt; \infty\)</span> and <span class="process-math">\(H\leq G\text{,}\)</span> the number of distinct left cosets of <span class="process-math">\(H\)</span> equals <span class="process-math">\(\frac{\lvert
 G\rvert }{\lvert H\rvert }\text{.}\)</span> For this reason we use <span class="process-math">\(G/H\)</span> to denote the set of left cosets of <span class="process-math">\(H\)</span> in <span class="process-math">\(G\)</span>
-</div></article><article class="hiddenproof" id="proof-60"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-60"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-60"><article class="hiddenproof"><div class="para" id="p-5640">This follows from the partitioning of <span class="process-math">\(G\)</span> into equal sized sets, one of which is <span class="process-math">\(H\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-60"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-60"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-60"><article class="hiddenproof"><div class="para" id="p-5656">This follows from the partitioning of <span class="process-math">\(G\)</span> into equal sized sets, one of which is <span class="process-math">\(H\text{.}\)</span>
 </div></article></div>
 <article class="example example-like" id="ex-finite-number-of-infinite-cosets"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-finite-number-of-infinite-cosets"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.2.10</span><span class="period">.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-finite-number-of-infinite-cosets"><article class="example example-like"><div class="para" id="p-5641">The set of integer multiples of four, <span class="process-math">\(4\mathbb{Z}\text{,}\)</span> is a subgroup of <span class="process-math">\([\mathbb{Z}; +]\text{.}\)</span> Four distinct cosets of <span class="process-math">\(4\mathbb{Z}\)</span> partition the integers. They are <span class="process-math">\(4\mathbb{Z}\text{,}\)</span> <span class="process-math">\(1+4\mathbb{Z}\text{,}\)</span> <span class="process-math">\(2+4\mathbb{Z}\text{,}\)</span> and <span class="process-math">\(3+4\mathbb{Z}\text{,}\)</span> where, for example, <span class="process-math">\(1+4\mathbb{Z}
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-finite-number-of-infinite-cosets"><article class="example example-like"><div class="para" id="p-5657">The set of integer multiples of four, <span class="process-math">\(4\mathbb{Z}\text{,}\)</span> is a subgroup of <span class="process-math">\([\mathbb{Z}; +]\text{.}\)</span> Four distinct cosets of <span class="process-math">\(4\mathbb{Z}\)</span> partition the integers. They are <span class="process-math">\(4\mathbb{Z}\text{,}\)</span> <span class="process-math">\(1+4\mathbb{Z}\text{,}\)</span> <span class="process-math">\(2+4\mathbb{Z}\text{,}\)</span> and <span class="process-math">\(3+4\mathbb{Z}\text{,}\)</span> where, for example, <span class="process-math">\(1+4\mathbb{Z}
 = \{1+4k | k \in  \mathbb{Z}\}\text{.}\)</span>   <span class="process-math">\(4\mathbb{Z}\)</span> can also be written <span class="process-math">\(0+4\mathbb{Z}\text{.}\)</span>
 </div></article></div>
 <article class="convention remark-like" id="conv-distinguishedi-representatives"><h3 class="heading">
 <span class="type">Convention</span><span class="space"> </span><span class="codenumber">15.2.11</span><span class="period">.</span><span class="space"> </span><span class="title">Distinguished Representatives.</span>
 </h3>
-<div class="para" id="p-5642">Although we have seen that any representative can describe a coset, it is often convenient to select a distinguished representative from each coset. The advantage to doing this is that there is a unique name for each coset in terms of its distinguished representative. In numeric examples such as the one above, the distinguished representative is usually the smallest nonnegative representative. Remember, this is purely a convenience and there is absolutely nothing wrong in writing <span class="process-math">\(-203+4\mathbb{Z}\text{,}\)</span> <span class="process-math">\(5+4\mathbb{Z}\text{,}\)</span> or <span class="process-math">\(621+4\mathbb{Z}\)</span> in place of <span class="process-math">\(1+4\mathbb{Z}\)</span>  because  <span class="process-math">\(-203, 5, 621 \in 1+4\mathbb{Z}\text{.}\)</span>
-</div></article><div class="para" id="p-5643">Before completing the main thrust of this section, we will make note of a significant implication of <a href="" class="xref" data-knowl="./knowl/theorem-cosets-partition.html" title="Theorem 15.2.8: Cosets Partition a Group">Theorem 15.2.8</a>. Since a finite group is divided into cosets of a common size by any subgroup, we can conclude:</div>
+<div class="para" id="p-5658">Although we have seen that any representative can describe a coset, it is often convenient to select a distinguished representative from each coset. The advantage to doing this is that there is a unique name for each coset in terms of its distinguished representative. In numeric examples such as the one above, the distinguished representative is usually the smallest nonnegative representative. Remember, this is purely a convenience and there is absolutely nothing wrong in writing <span class="process-math">\(-203+4\mathbb{Z}\text{,}\)</span> <span class="process-math">\(5+4\mathbb{Z}\text{,}\)</span> or <span class="process-math">\(621+4\mathbb{Z}\)</span> in place of <span class="process-math">\(1+4\mathbb{Z}\)</span>  because  <span class="process-math">\(-203, 5, 621 \in 1+4\mathbb{Z}\text{.}\)</span>
+</div></article><div class="para" id="p-5659">Before completing the main thrust of this section, we will make note of a significant implication of <a href="" class="xref" data-knowl="./knowl/theorem-cosets-partition.html" title="Theorem 15.2.8: Cosets Partition a Group">Theorem 15.2.8</a>. Since a finite group is divided into cosets of a common size by any subgroup, we can conclude:</div>
 <article class="theorem theorem-like" id="th-lagrange-theorem"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">15.2.12</span><span class="period">.</span><span class="space"> </span><span class="title">Lagrange’s Theorem.</span>
 </h3>
-<div class="para" id="p-5644">The order of a subgroup of a finite group must divide the order of the group.</div></article><div class="para" id="p-5645">One immediate implication of Lagrange’s Theorem is that if <span class="process-math">\(p\)</span> is prime, <span class="process-math">\(\mathbb{Z}_p\)</span>  has no proper subgroups.</div>
-<div class="para" id="p-5646">We will now describe the operation on cosets which will, under certain circumstances, result in a group. For most of this section, we will assume that <span class="process-math">\(G\)</span> is an abelian group. This is one sufficient (but not necessary) condition that guarantees that the set of left cosets will form a group.</div>
+<div class="para" id="p-5660">The order of a subgroup of a finite group must divide the order of the group.</div></article><div class="para" id="p-5661">One immediate implication of Lagrange’s Theorem is that if <span class="process-math">\(p\)</span> is prime, <span class="process-math">\(\mathbb{Z}_p\)</span>  has no proper subgroups.</div>
+<div class="para" id="p-5662">We will now describe the operation on cosets which will, under certain circumstances, result in a group. For most of this section, we will assume that <span class="process-math">\(G\)</span> is an abelian group. This is one sufficient (but not necessary) condition that guarantees that the set of left cosets will form a group.</div>
 <article class="definition definition-like" id="def-operation-on-cosets"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">15.2.13</span><span class="period">.</span><span class="space"> </span><span class="title">Operation on Cosets.</span>
-</h3>  <div class="para logical" id="p-5647">
+</h3>  <div class="para logical" id="p-5663">
 <div class="para">Let <span class="process-math">\(C\)</span> and <span class="process-math">\(D\)</span> be left cosets of <span class="process-math">\(H\text{,}\)</span> a subgroup of <span class="process-math">\(G\)</span> with representatives <span class="process-math">\(c\)</span> and <span class="process-math">\(d\text{,}\)</span> respectively. Then</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1223,11 +1212,11 @@ C\otimes D = (c*H) \otimes (d*H) = (c*d)*H
 </div>
 <div class="para">The operation <span class="process-math">\(\otimes\)</span> is called the operation induced on left cosets by <span class="process-math">\(*\text{.}\)</span>
 </div>
-</div></article><div class="para" id="p-5648">In <a href="" class="xref" data-knowl="./knowl/theorem-coset-operation-well-defined.html" title="Theorem 15.2.18: Coset operation is well-defined (Abelian Case)">Theorem 15.2.18</a>, later in this section, we will prove that if <span class="process-math">\(G\)</span> is an abelian group, <span class="process-math">\(\otimes\)</span> is indeed an operation. In practice, if the group <span class="process-math">\(G\)</span> is an additive group, the symbol <span class="process-math">\(\otimes\)</span> is replaced by <span class="process-math">\(+\text{,}\)</span> as in the following example.</div>
+</div></article><div class="para" id="p-5664">In <a href="" class="xref" data-knowl="./knowl/theorem-coset-operation-well-defined.html" title="Theorem 15.2.18: Coset operation is well-defined (Abelian Case)">Theorem 15.2.18</a>, later in this section, we will prove that if <span class="process-math">\(G\)</span> is an abelian group, <span class="process-math">\(\otimes\)</span> is indeed an operation. In practice, if the group <span class="process-math">\(G\)</span> is an additive group, the symbol <span class="process-math">\(\otimes\)</span> is replaced by <span class="process-math">\(+\text{,}\)</span> as in the following example.</div>
 <article class="example example-like" id="ex-cosets-of-4z"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-cosets-of-4z"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.2.14</span><span class="period">.</span><span class="space"> </span><span class="title">Computing with cosets of <span class="process-math">\(4\mathbb{Z}\)</span>.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-cosets-of-4z"><article class="example example-like"> <div class="para" id="p-5649">Consider the cosets described in <a href="" class="xref" data-knowl="./knowl/ex-finite-number-of-infinite-cosets.html" title="Example 15.2.10">Example 15.2.10</a>.  For brevity, we rename <span class="process-math">\(0+4\mathbb{Z}\text{,}\)</span> <span class="process-math">\(1+4\mathbb{Z}\text{,}\)</span> <span class="process-math">\(2+4\mathbb{Z}\text{,}\)</span> and <span class="process-math">\(3+4\mathbb{Z}\)</span> with the symbols <span class="process-math">\(\bar{0}\text{,}\)</span> <span class="process-math">\(\bar{1}\text{,}\)</span> <span class="process-math">\(\bar{2}\text{,}\)</span> and <span class="process-math">\(\bar{3}\text{.}\)</span>   Let’s do a typical calculation, <span class="process-math">\(\bar{1}+\bar{3}\text{.}\)</span>  We will see that the result is always going to be <span class="process-math">\(\bar{0}\)</span> , no matter what representatives we select.  For example, <span class="process-math">\(9 \in  \bar{1}\text{,}\)</span> <span class="process-math">\(7\in  \bar{3}\text{,}\)</span> and <span class="process-math">\(9+7=16 \in  \bar{0}\text{.}\)</span> Our choice of the representatives <span class="process-math">\(\bar{1}\)</span> and <span class="process-math">\(\bar{3}\)</span> were completely arbitrary.</div></article></div>
-<div class="para logical" id="p-5650">
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-cosets-of-4z"><article class="example example-like"> <div class="para" id="p-5665">Consider the cosets described in <a href="" class="xref" data-knowl="./knowl/ex-finite-number-of-infinite-cosets.html" title="Example 15.2.10">Example 15.2.10</a>.  For brevity, we rename <span class="process-math">\(0+4\mathbb{Z}\text{,}\)</span> <span class="process-math">\(1+4\mathbb{Z}\text{,}\)</span> <span class="process-math">\(2+4\mathbb{Z}\text{,}\)</span> and <span class="process-math">\(3+4\mathbb{Z}\)</span> with the symbols <span class="process-math">\(\bar{0}\text{,}\)</span> <span class="process-math">\(\bar{1}\text{,}\)</span> <span class="process-math">\(\bar{2}\text{,}\)</span> and <span class="process-math">\(\bar{3}\text{.}\)</span>   Let’s do a typical calculation, <span class="process-math">\(\bar{1}+\bar{3}\text{.}\)</span>  We will see that the result is always going to be <span class="process-math">\(\bar{0}\)</span> , no matter what representatives we select.  For example, <span class="process-math">\(9 \in  \bar{1}\text{,}\)</span> <span class="process-math">\(7\in  \bar{3}\text{,}\)</span> and <span class="process-math">\(9+7=16 \in  \bar{0}\text{.}\)</span> Our choice of the representatives <span class="process-math">\(\bar{1}\)</span> and <span class="process-math">\(\bar{3}\)</span> were completely arbitrary.</div></article></div>
+<div class="para logical" id="p-5666">
 <div class="para">In general,  <span class="process-math">\(C \otimes  D\)</span>  can be computed in many ways, and so it is necessary to show that the choice of representatives does not affect the result. When the result we get for <span class="process-math">\(C \otimes  D\)</span> is always independent of our choice of representatives, we say that “<span class="process-math">\(\otimes\)</span> is well defined.”  Addition of cosets is a well-defined operation on the left cosets of 4<span class="process-math">\(\mathbb{Z}\)</span> and is summarized in the following table. Do you notice anything familiar?</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1244,7 +1233,7 @@ C\otimes D = (c*H) \otimes (d*H) = (c*d)*H
 </div>
 <article class="example example-like" id="cosets-of-a-in-r"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-cosets-of-a-in-r"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.2.15</span><span class="period">.</span><span class="space"> </span><span class="title">Cosets of the integers in the group of Real numbers.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-cosets-of-a-in-r"><article class="example example-like"> <div class="para" id="p-5651">Consider the group of real numbers, <span class="process-math">\([\mathbb{R}; +]\text{,}\)</span> and its subgroup of integers, <span class="process-math">\(\mathbb{Z}\text{.}\)</span> Every element of <span class="process-math">\(\mathbb{R}/\mathbb{Z}\)</span> has the same cardinality as <span class="process-math">\(\mathbb{Z}\text{.}\)</span> Let <span class="process-math">\(s, t\in \mathbb{R}\text{.}\)</span> <span class="process-math">\(s\in t+\mathbb{Z}\)</span> if <span class="process-math">\(s\)</span> can be written <span class="process-math">\(t+n\)</span> for some <span class="process-math">\(n \in \mathbb{Z}\text{.}\)</span>  Hence <span class="process-math">\(s\)</span> and <span class="process-math">\(t\)</span> belong to the same coset if they differ by an integer. (See <a href="" class="xref" data-knowl="./knowl/exercise-15-2-6.html" title="Exercise 15.2.6">Exercise 15.2.6</a> for a generalization of this fact.)</div> <div class="para logical" id="p-5652">
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-cosets-of-a-in-r"><article class="example example-like"> <div class="para" id="p-5667">Consider the group of real numbers, <span class="process-math">\([\mathbb{R}; +]\text{,}\)</span> and its subgroup of integers, <span class="process-math">\(\mathbb{Z}\text{.}\)</span> Every element of <span class="process-math">\(\mathbb{R}/\mathbb{Z}\)</span> has the same cardinality as <span class="process-math">\(\mathbb{Z}\text{.}\)</span> Let <span class="process-math">\(s, t\in \mathbb{R}\text{.}\)</span> <span class="process-math">\(s\in t+\mathbb{Z}\)</span> if <span class="process-math">\(s\)</span> can be written <span class="process-math">\(t+n\)</span> for some <span class="process-math">\(n \in \mathbb{Z}\text{.}\)</span>  Hence <span class="process-math">\(s\)</span> and <span class="process-math">\(t\)</span> belong to the same coset if they differ by an integer. (See <a href="" class="xref" data-knowl="./knowl/exercise-15-2-6.html" title="Exercise 15.2.6">Exercise 15.2.6</a> for a generalization of this fact.)</div> <div class="para logical" id="p-5668">
 <div class="para">Now consider the coset <span class="process-math">\(0.25+\mathbb{Z}\text{.}\)</span> Real numbers that differ by an integer from 0.25 are <span class="process-math">\(1.25, 2.25, 3.25, \ldots\)</span> and <span class="process-math">\(-0.75, -1.75, -2.75, \ldots\text{.}\)</span>  If any real number is selected, there exists a representative of its coset that is greater than or equal to 0 and less than 1. We will call that representative the distinguished representative of the coset. For example, 43.125 belongs to the coset represented by 0.125; <span class="process-math">\(-6.382+\mathbb{Z}\)</span> has 0.618 as its distinguished representative. The operation on <span class="process-math">\(\mathbb{R}/\mathbb{Z}\)</span> is commonly called addition modulo 1. A few typical calculations in <span class="process-math">\(\mathbb{R}/\mathbb{Z}\)</span> are</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1259,10 +1248,10 @@ C\otimes D = (c*H) \otimes (d*H) = (c*d)*H
 </div></article></div>
 <article class="example example-like" id="ex-cosets-in-direct-product"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-cosets-in-direct-product"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.2.16</span><span class="period">.</span><span class="space"> </span><span class="title">Cosets in a Direct Product.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-cosets-in-direct-product"><article class="example example-like"> <div class="para" id="p-5653">Consider <span class="process-math">\(F = (\mathbb{Z}_4\times  \mathbb{Z}_2 )/H\text{,}\)</span> where <span class="process-math">\(H=\{(0,0),(0,1)\}\text{.}\)</span> Since <span class="process-math">\(\mathbb{Z}_4 \times \mathbb{Z}_2\)</span> is of order 8, each element of <span class="process-math">\(F\)</span> is a coset containing two ordered pairs. We will leave it to the reader to verify that the four distinct cosets are <span class="process-math">\((0, 0)+H\text{,}\)</span>  <span class="process-math">\((1,0) +H\text{,}\)</span> <span class="process-math">\((2, 0)+H\)</span> and  <span class="process-math">\((3, 0)+H\text{.}\)</span> The reader can also verify that <span class="process-math">\(F\)</span> is isomorphic to <span class="process-math">\(\mathbb{Z}_4\)</span> , since <span class="process-math">\(F\)</span> is cyclic. An educated guess should give you a generator.</div></article></div>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-cosets-in-direct-product"><article class="example example-like"> <div class="para" id="p-5669">Consider <span class="process-math">\(F = (\mathbb{Z}_4\times  \mathbb{Z}_2 )/H\text{,}\)</span> where <span class="process-math">\(H=\{(0,0),(0,1)\}\text{.}\)</span> Since <span class="process-math">\(\mathbb{Z}_4 \times \mathbb{Z}_2\)</span> is of order 8, each element of <span class="process-math">\(F\)</span> is a coset containing two ordered pairs. We will leave it to the reader to verify that the four distinct cosets are <span class="process-math">\((0, 0)+H\text{,}\)</span>  <span class="process-math">\((1,0) +H\text{,}\)</span> <span class="process-math">\((2, 0)+H\)</span> and  <span class="process-math">\((3, 0)+H\text{.}\)</span> The reader can also verify that <span class="process-math">\(F\)</span> is isomorphic to <span class="process-math">\(\mathbb{Z}_4\)</span> , since <span class="process-math">\(F\)</span> is cyclic. An educated guess should give you a generator.</div></article></div>
 <article class="example example-like" id="ex-cosets-in-z2-to-4"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-cosets-in-z2-to-4"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.2.17</span><span class="period">.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-cosets-in-z2-to-4"><article class="example example-like"><div class="para logical" id="p-5654">
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-cosets-in-z2-to-4"><article class="example example-like"><div class="para logical" id="p-5670">
 <div class="para">Consider the group <span class="process-math">\(\mathbb{Z}_2{}^4 = \mathbb{Z}_2\times \mathbb{Z}_2\times \mathbb{Z}_2\times \mathbb{Z}_2\)</span> . Let <span class="process-math">\(H\)</span> be <span class="process-math">\(\langle (1,0,1, 0)\rangle\text{,}\)</span> the cyclic subgroup of <span class="process-math">\(\mathbb{Z}_2{}^4\)</span> generate by (1,0,1,0). Since</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1282,7 +1271,7 @@ C = (0, 1, 1, 1)+H = \{(0, 1, 1, 1), (1, 1, 0, 1)\}
 <article class="theorem theorem-like" id="theorem-coset-operation-well-defined"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">15.2.18</span><span class="period">.</span><span class="space"> </span><span class="title">Coset operation is well-defined (Abelian Case).</span>
 </h3>
-<div class="para" id="p-5655">If <span class="process-math">\(G\)</span> is an abelian group, and <span class="process-math">\(H \leq  G\text{,}\)</span> the operation induced on cosets of <span class="process-math">\(H\)</span> by the operation of <span class="process-math">\(G\)</span> is well defined.</div></article><article class="hiddenproof" id="proof-61"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-61"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-61"><article class="hiddenproof"><div class="para logical" id="p-5656">
+<div class="para" id="p-5671">If <span class="process-math">\(G\)</span> is an abelian group, and <span class="process-math">\(H \leq  G\text{,}\)</span> the operation induced on cosets of <span class="process-math">\(H\)</span> by the operation of <span class="process-math">\(G\)</span> is well defined.</div></article><article class="hiddenproof" id="proof-61"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-61"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-61"><article class="hiddenproof"><div class="para logical" id="p-5672">
 <div class="para">Suppose that <span class="process-math">\(a\text{,}\)</span> <span class="process-math">\(b\text{,}\)</span> and <span class="process-math">\(a'\text{,}\)</span> <span class="process-math">\(b'\text{.}\)</span>  are two choices for representatives of cosets <span class="process-math">\(C\)</span> and <span class="process-math">\(D\text{.}\)</span> That is to say that <span class="process-math">\(a, a' \in  C\text{,}\)</span> <span class="process-math">\(b, b' \in D\text{.}\)</span> We will show that <span class="process-math">\(a*b\)</span> and <span class="process-math">\(a'*b'\)</span> are representatives of the same coset. <a href="" class="xref" data-knowl="./knowl/theorem-15-2-1.html" title="Theorem 15.2.6">Theorem 15.2.6</a>1 implies that <span class="process-math">\(C = a*H\)</span> and <span class="process-math">\(D = b*H\text{,}\)</span> thus we have <span class="process-math">\(a' \in  a*H\)</span> and <span class="process-math">\(b' \in  b*H\text{.}\)</span>  Then there exists <span class="process-math">\(h_1, h_2 \in  H\)</span> such that  <span class="process-math">\(a' = a*h_1\)</span>   and <span class="process-math">\(b' = b*h_2\)</span>  and so</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/theorem-15-2-1.html">
 \begin{equation*}
@@ -1294,7 +1283,7 @@ a'*b' = (a*h_1)*(b*h_2) = (a*b)*(h_1*h_2)
 <article class="theorem theorem-like" id="theorem-15-2-4"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">15.2.19</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-5657">Let <span class="process-math">\(G\)</span> be a group and <span class="process-math">\(H \leq  G\text{.}\)</span> If the operation induced on left cosets of <span class="process-math">\(H\)</span> by the operation of <span class="process-math">\(G\)</span> is well defined, then the set of left cosets forms a group under that operation.</div></article><article class="hiddenproof" id="proof-62"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-62"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-62"><article class="hiddenproof"><div class="para logical" id="p-5658">
+<div class="para" id="p-5673">Let <span class="process-math">\(G\)</span> be a group and <span class="process-math">\(H \leq  G\text{.}\)</span> If the operation induced on left cosets of <span class="process-math">\(H\)</span> by the operation of <span class="process-math">\(G\)</span> is well defined, then the set of left cosets forms a group under that operation.</div></article><article class="hiddenproof" id="proof-62"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-62"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-62"><article class="hiddenproof"><div class="para logical" id="p-5674">
 <div class="para">Let <span class="process-math">\(C_1\)</span><span class="process-math">\(,C_2\text{,}\)</span> and <span class="process-math">\(C_3\)</span> be the left cosets with representatives <span class="process-math">\(r_1\text{,}\)</span> <span class="process-math">\(r_2\text{,}\)</span> and <span class="process-math">\(r_3\text{,}\)</span> respectively.   The values of <span class="process-math">\(C_1 \otimes  \left(C_2 \otimes C_3\right)\)</span> and <span class="process-math">\(\left(C_1\ \otimes  C_2\right)\otimes  C_3\)</span> are determined by   <span class="process-math">\(r_1 * \left(r_2 * r_3\right)\)</span> and <span class="process-math">\(\left(r_1 * r_2\right) * r_3\text{,}\)</span> respectively. By the associativity of <span class="process-math">\(*\)</span> in <span class="process-math">\(G\text{,}\)</span> these two group elements are equal and so  the two coset expressions must be equal. Therefore, the induced operation is associative. As for the identity and inverse properties, there is no surprise. The identity coset is <span class="process-math">\(H\text{,}\)</span> or <span class="process-math">\(e*H\text{,}\)</span> the coset that contains <span class="process-math">\(G\)</span>’s identity. If <span class="process-math">\(C\)</span> is a coset with representative <span class="process-math">\(a\text{;}\)</span> that is, if  <span class="process-math">\(C = a*H\text{,}\)</span> then <span class="process-math">\(C^{-1}\)</span> is <span class="process-math">\(a^{-1}*H\text{.}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1305,63 +1294,63 @@ a'*b' = (a*h_1)*(b*h_2) = (a*b)*(h_1*h_2)
 </div></article></div>
 <article class="definition definition-like" id="def-factor-group"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">15.2.20</span><span class="period">.</span><span class="space"> </span><span class="title">Factor Group.</span>
-</h3> <div class="para" id="p-5659">Let <span class="process-math">\(G\)</span> be a group and <span class="process-math">\(H \leq  G\text{.}\)</span> If the set of left cosets of <span class="process-math">\(H\)</span> forms a group, then that group is called the factor group of “<span class="process-math">\(G\)</span> modulo <span class="process-math">\(H\text{.}\)</span>”   It is denoted <span class="process-math">\(G/H\text{.}\)</span>
+</h3> <div class="para" id="p-5675">Let <span class="process-math">\(G\)</span> be a group and <span class="process-math">\(H \leq  G\text{.}\)</span> If the set of left cosets of <span class="process-math">\(H\)</span> forms a group, then that group is called the factor group of “<span class="process-math">\(G\)</span> modulo <span class="process-math">\(H\text{.}\)</span>”   It is denoted <span class="process-math">\(G/H\text{.}\)</span>
 </div></article><article class="note remark-like" id="note-32"><h3 class="heading">
 <span class="type">Note</span><span class="space"> </span><span class="codenumber">15.2.21</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-5660">If <span class="process-math">\(G\)</span> is abelian, then every subgroup of <span class="process-math">\(G\)</span> yields a factor group. We will delay further consideration of the non-abelian case to Section 15.4.</div></article><article class="remark remark-like" id="remark-4"><h3 class="heading">
+<div class="para" id="p-5676">If <span class="process-math">\(G\)</span> is abelian, then every subgroup of <span class="process-math">\(G\)</span> yields a factor group. We will delay further consideration of the non-abelian case to Section 15.4.</div></article><article class="remark remark-like" id="remark-4"><h3 class="heading">
 <span class="type">Remark</span><span class="space"> </span><span class="codenumber">15.2.22</span><span class="period">.</span><span class="space"> </span><span class="title">On Notation.</span>
 </h3>
-<div class="para" id="p-5661">It is customary to use the same symbol for the operation of <span class="process-math">\(G/H\)</span> as for the operation on <span class="process-math">\(G\text{.}\)</span>  The reason we used distinct symbols in this section was to make the distinction clear between the two operations.</div></article><section class="exercises" id="exercises-15-2"><h3 class="heading hide-type">
+<div class="para" id="p-5677">It is customary to use the same symbol for the operation of <span class="process-math">\(G/H\)</span> as for the operation on <span class="process-math">\(G\text{.}\)</span>  The reason we used distinct symbols in this section was to make the distinction clear between the two operations.</div></article><section class="exercises" id="exercises-15-2"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber"></span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-632"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para" id="p-5662">Consider <span class="process-math">\(\mathbb{Z}_{10}\)</span> and the subsets of <span class="process-math">\(\mathbb{Z}_{10}\text{,}\)</span> <span class="process-math">\(\{0, 1, 2, 3, 4\}\)</span> and <span class="process-math">\(\{5, 6, 7, 8, 9\}\text{.}\)</span> Why is the operation induced on these subsets by modulo 10 addition not well defined?</div>
+<article class="exercise exercise-like" id="exercise-635"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para" id="p-5678">Consider <span class="process-math">\(\mathbb{Z}_{10}\)</span> and the subsets of <span class="process-math">\(\mathbb{Z}_{10}\text{,}\)</span> <span class="process-math">\(\{0, 1, 2, 3, 4\}\)</span> and <span class="process-math">\(\{5, 6, 7, 8, 9\}\text{.}\)</span> Why is the operation induced on these subsets by modulo 10 addition not well defined?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-292" id="answer-292"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-292"><div class="answer solution-like"><div class="para" id="p-5663">An example of a valid correct answer: Call the subsets <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> respectively. If we choose <span class="process-math">\(0 \in A\)</span> and <span class="process-math">\(5 \in B\)</span> we get <span class="process-math">\(0 +_{10} 5 =5 \in  B\text{.}\)</span> On the other hand, if we choose <span class="process-math">\(3 \in A\)</span> and <span class="process-math">\(8 \in  B\text{,}\)</span> we get <span class="process-math">\(3 +_{10} 8 = 1 \in  A\text{.}\)</span> Therefore, the induced operation is not well defined on <span class="process-math">\(\{A,B\}\text{.}\)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-294" id="answer-294"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-294"><div class="answer solution-like"><div class="para" id="p-5679">An example of a valid correct answer: Call the subsets <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> respectively. If we choose <span class="process-math">\(0 \in A\)</span> and <span class="process-math">\(5 \in B\)</span> we get <span class="process-math">\(0 +_{10} 5 =5 \in  B\text{.}\)</span> On the other hand, if we choose <span class="process-math">\(3 \in A\)</span> and <span class="process-math">\(8 \in  B\text{,}\)</span> we get <span class="process-math">\(3 +_{10} 8 = 1 \in  A\text{.}\)</span> Therefore, the induced operation is not well defined on <span class="process-math">\(\{A,B\}\text{.}\)</span>
 </div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-633"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para" id="p-5664">Can you think of a group <span class="process-math">\(G\text{,}\)</span> with a subgroup <span class="process-math">\(H\)</span> such that <span class="process-math">\(\lvert H\rvert  = 6\)</span> and <span class="process-math">\(\lvert G/H\rvert  = 6\text{?}\)</span> Is your answer unique?</div></article><article class="exercise exercise-like" id="exercise-634"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5665">
+</div></article><article class="exercise exercise-like" id="exercise-636"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para" id="p-5680">Can you think of a group <span class="process-math">\(G\text{,}\)</span> with a subgroup <span class="process-math">\(H\)</span> such that <span class="process-math">\(\lvert H\rvert  = 6\)</span> and <span class="process-math">\(\lvert G/H\rvert  = 6\text{?}\)</span> Is your answer unique?</div></article><article class="exercise exercise-like" id="exercise-637"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5681">
 <div class="para">For each group and subgroup, what is <span class="process-math">\(G/H\)</span> isomorphic to?</div>
 <ol class="lower-alpha">
-<li id="li-2533"><div class="para" id="p-5666">
+<li id="li-2545"><div class="para" id="p-5682">
 <span class="process-math">\(G = \mathbb{Z}_4 \times \mathbb{Z}_2\)</span>  and  <span class="process-math">\(H = \langle (2, 0)\rangle\text{.}\)</span> Compare to <a href="" class="xref" data-knowl="./knowl/ex-cosets-in-direct-product.html" title="Example 15.2.16: Cosets in a Direct Product">Example 15.2.16</a>.</div></li>
-<li id="li-2534"><div class="para" id="p-5667">
+<li id="li-2546"><div class="para" id="p-5683">
 <span class="process-math">\(G = [\mathbb{C}; +]\)</span>  and <span class="process-math">\(H = \mathbb{R}\text{.}\)</span>
 </div></li>
-<li id="li-2535"><div class="para" id="p-5668">
+<li id="li-2547"><div class="para" id="p-5684">
 <span class="process-math">\(G\)</span> = <span class="process-math">\(\mathbb{Z}_{20}\)</span>  and  <span class="process-math">\(H = \langle 8\rangle\text{.}\)</span>
 </div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-293" id="answer-293"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-293"><div class="answer solution-like"><div class="para logical" id="p-5669"><ol class="lower-alpha">
-<li id="li-2536"><div class="para" id="p-5670">The four distinct cosets in <span class="process-math">\(G/H\)</span> are <span class="process-math">\(H = \{(0, 0), (2, 0)\}\text{,}\)</span> <span class="process-math">\((1, 0) + H= \{(1,0),(3,0)\}\text{,}\)</span> <span class="process-math">\((0, 1) + H= \{(0,1),(2,1)\}\text{,}\)</span>  and <span class="process-math">\((1, 1) + H= \{(1,1),(3,1)\}\text{.}\)</span> None of these cosets generates <span class="process-math">\(G/H\text{;}\)</span> therefore <span class="process-math">\(G/H\)</span> is not cyclic. Hence <span class="process-math">\(G/H\)</span> must be isomorphic to <span class="process-math">\(\mathbb{Z}_2\times \mathbb{Z}_2\text{.}\)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-295" id="answer-295"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-295"><div class="answer solution-like"><div class="para logical" id="p-5685"><ol class="lower-alpha">
+<li id="li-2548"><div class="para" id="p-5686">The four distinct cosets in <span class="process-math">\(G/H\)</span> are <span class="process-math">\(H = \{(0, 0), (2, 0)\}\text{,}\)</span> <span class="process-math">\((1, 0) + H= \{(1,0),(3,0)\}\text{,}\)</span> <span class="process-math">\((0, 1) + H= \{(0,1),(2,1)\}\text{,}\)</span>  and <span class="process-math">\((1, 1) + H= \{(1,1),(3,1)\}\text{.}\)</span> None of these cosets generates <span class="process-math">\(G/H\text{;}\)</span> therefore <span class="process-math">\(G/H\)</span> is not cyclic. Hence <span class="process-math">\(G/H\)</span> must be isomorphic to <span class="process-math">\(\mathbb{Z}_2\times \mathbb{Z}_2\text{.}\)</span>
 </div></li>
-<li id="li-2537"><div class="para" id="p-5671">The factor group is isomorphic to <span class="process-math">\([\mathbb{R}; +]\text{.}\)</span> Each coset of <span class="process-math">\(\mathbb{R}\)</span> is a line in the complex plane that is parallel to the x-axis: <span class="process-math">\(\tau :\mathbb{C}/\mathbb{R}\to  \mathbb{R}\text{,}\)</span> where <span class="process-math">\(T(\{a + b i\mid a\in \mathbb{R}\}) = b\)</span> is an isomorphism.</div></li>
-<li id="li-2538"><div class="para" id="p-5672">
+<li id="li-2549"><div class="para" id="p-5687">The factor group is isomorphic to <span class="process-math">\([\mathbb{R}; +]\text{.}\)</span> Each coset of <span class="process-math">\(\mathbb{R}\)</span> is a line in the complex plane that is parallel to the x-axis: <span class="process-math">\(\tau :\mathbb{C}/\mathbb{R}\to  \mathbb{R}\text{,}\)</span> where <span class="process-math">\(T(\{a + b i\mid a\in \mathbb{R}\}) = b\)</span> is an isomorphism.</div></li>
+<li id="li-2550"><div class="para" id="p-5688">
 <span class="process-math">\(\langle 8\rangle  = \{0, 4, 8, 12, 16\} \)</span><span class="process-math">\(\Rightarrow\)</span>  <span class="process-math">\(\lvert \mathbb{Z}_{20}/\langle 8\rangle \rvert =4\text{.}\)</span> The four cosets are: <span class="process-math">\(\bar{0}\text{,}\)</span> <span class="process-math">\(\bar{1}\text{,}\)</span> <span class="process-math">\(\bar{2}\text{,}\)</span> and <span class="process-math">\(\bar{3}\text{.}\)</span> 1 generates all four cosets.  The factor group is isomorphic to <span class="process-math">\([\mathbb{Z}_4; +_4]\)</span>  because <span class="process-math">\(\bar{1}\)</span> is a generator.</div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-635"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5673">
+</div></article><article class="exercise exercise-like" id="exercise-638"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5689">
 <div class="para">For each group and subgroup, what is <span class="process-math">\(G/H\)</span> isomorphic to?</div>
 <ol class="lower-alpha">
-<li id="li-2539"><div class="para" id="p-5674">
+<li id="li-2551"><div class="para" id="p-5690">
 <span class="process-math">\(G = \mathbb{Z}\times \mathbb{Z}\)</span> and  <span class="process-math">\(H = \{(a, a) | a \in  \mathbb{Z}\}\text{.}\)</span>
 </div></li>
-<li id="li-2540"><div class="para" id="p-5675">
+<li id="li-2552"><div class="para" id="p-5691">
 <span class="process-math">\(G = \left[\mathbb{R}^*; \cdot \right]\)</span>  and  <span class="process-math">\(H = \{1, -1\}\text{.}\)</span>
 </div></li>
-<li id="li-2541"><div class="para" id="p-5676">
+<li id="li-2553"><div class="para" id="p-5692">
 <span class="process-math">\(G =\mathbb{Z}_2{}^5\)</span>  and <span class="process-math">\(H = \langle (1, 1, 1, 1, 1)\rangle\text{.}\)</span>
 </div></li>
 </ol>
-</div></article><article class="exercise exercise-like" id="exercise-636"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
-<div class="para" id="p-5677">Assume that <span class="process-math">\(G\)</span> is a group, <span class="process-math">\(H \leq  G\text{,}\)</span> and <span class="process-math">\(a, b \in  G\text{.}\)</span>  Prove that <span class="process-math">\(a*H= b*H\)</span>  if and only if  <span class="process-math">\(b^{-1}*a \in H\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-639"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para" id="p-5693">Assume that <span class="process-math">\(G\)</span> is a group, <span class="process-math">\(H \leq  G\text{,}\)</span> and <span class="process-math">\(a, b \in  G\text{.}\)</span>  Prove that <span class="process-math">\(a*H= b*H\)</span>  if and only if  <span class="process-math">\(b^{-1}*a \in H\text{.}\)</span>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-294" id="answer-294"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-294"><div class="answer solution-like"><div class="para logical" id="p-5678"><div class="displaymath process-math">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-296" id="answer-296"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-296"><div class="answer solution-like"><div class="para logical" id="p-5694"><div class="displaymath process-math">
 \begin{equation*}
 \begin{split}
 a*H= b*H &amp;\Leftrightarrow a \in b H\\
@@ -1372,12 +1361,12 @@ a*H= b*H &amp;\Leftrightarrow a \in b H\\
 \end{equation*}
 </div></div></div></div>
 </div></article><article class="exercise exercise-like" id="exercise-15-2-6"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5679"><ol class="lower-alpha">
-<li id="li-2542"><div class="para" id="p-5680">Real addition modulo <span class="process-math">\(r\text{,}\)</span>  <span class="process-math">\(r &gt; 0\text{,}\)</span> can be described as the operation induced on cosets of <span class="process-math">\(\langle r\rangle\)</span> by ordinary addition. Describe a system of distinguished representatives for the elements of <span class="process-math">\(\mathbb{R}/\langle r\rangle\text{.}\)</span>
+<div class="para logical" id="p-5695"><ol class="lower-alpha">
+<li id="li-2554"><div class="para" id="p-5696">Real addition modulo <span class="process-math">\(r\text{,}\)</span>  <span class="process-math">\(r &gt; 0\text{,}\)</span> can be described as the operation induced on cosets of <span class="process-math">\(\langle r\rangle\)</span> by ordinary addition. Describe a system of distinguished representatives for the elements of <span class="process-math">\(\mathbb{R}/\langle r\rangle\text{.}\)</span>
 </div></li>
-<li id="li-2543"><div class="para" id="p-5681">Consider the trigonometric function sine. Given that <span class="process-math">\(\sin (x+2\pi k) = \sin  x\)</span> for all <span class="process-math">\(x\in \mathbb{R}\)</span> and <span class="process-math">\(k\in \mathbb{Z}\text{,}\)</span> show how the distinguished representatives of <span class="process-math">\(\mathbb{R}/\langle 2\pi \rangle\)</span> can be useful in developing an algorithm for calculating the sine of a number.</div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-638"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
-<div class="para" id="p-5682">Complete the proof of <a href="" class="xref" data-knowl="./knowl/theorem-cosets-partition.html" title="Theorem 15.2.8: Cosets Partition a Group">Theorem 15.2.8</a> by proving that if <span class="process-math">\(a \in  G\text{,}\)</span> <span class="process-math">\(\rho:H \to  a*H\)</span> defined by <span class="process-math">\(\rho(h)= a*h\)</span> is a bijection.</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
+<li id="li-2555"><div class="para" id="p-5697">Consider the trigonometric function sine. Given that <span class="process-math">\(\sin (x+2\pi k) = \sin  x\)</span> for all <span class="process-math">\(x\in \mathbb{R}\)</span> and <span class="process-math">\(k\in \mathbb{Z}\text{,}\)</span> show how the distinguished representatives of <span class="process-math">\(\mathbb{R}/\langle 2\pi \rangle\)</span> can be useful in developing an algorithm for calculating the sine of a number.</div></li>
+</ol></div></article><article class="exercise exercise-like" id="exercise-641"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="para" id="p-5698">Complete the proof of <a href="" class="xref" data-knowl="./knowl/theorem-cosets-partition.html" title="Theorem 15.2.8: Cosets Partition a Group">Theorem 15.2.8</a> by proving that if <span class="process-math">\(a \in  G\text{,}\)</span> <span class="process-math">\(\rho:H \to  a*H\)</span> defined by <span class="process-math">\(\rho(h)= a*h\)</span> is a bijection.</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>
 <div class="ptx-content-footer">
 <a class="previous-button button" href="s-cyclic-groups.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="s-permutation-groups.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>

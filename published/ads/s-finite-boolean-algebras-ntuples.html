@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Finite Boolean Algebras as n-tuples of 0’s and 1’s</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,25 +58,36 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
@@ -99,59 +128,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -160,7 +146,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -315,7 +301,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1124,8 +1113,8 @@ eBookConfig.runestone_version = '7.0.7';
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="s-finite-boolean-algebras-ntuples"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">13.5</span> <span class="title">Finite Boolean Algebras as <span class="process-math">\(n\)</span>-tuples of 0’s and 1’s</span>
 </h2>
-<div class="para" id="p-5162">From the previous section we know that all finite Boolean algebras are of order <span class="process-math">\(2^n\text{,}\)</span> where <span class="process-math">\(n\)</span> is the number of atoms in the algebra. We can therefore completely describe every finite Boolean algebra by the algebra of power sets. Is there a more convenient, or at least an alternate way, of defining finite Boolean algebras? In Chapter 11 we found that we could produce new groups by taking Cartesian products of previously known groups. We imitate this process for Boolean algebras.</div>
-<div class="para logical" id="p-5163">
+<div class="para" id="p-5178">From the previous section we know that all finite Boolean algebras are of order <span class="process-math">\(2^n\text{,}\)</span> where <span class="process-math">\(n\)</span> is the number of atoms in the algebra. We can therefore completely describe every finite Boolean algebra by the algebra of power sets. Is there a more convenient, or at least an alternate way, of defining finite Boolean algebras? In Chapter 11 we found that we could produce new groups by taking Cartesian products of previously known groups. We imitate this process for Boolean algebras.</div>
+<div class="para logical" id="p-5179">
 <div class="para">The simplest nontrivial Boolean algebra is the Boolean algebra on the set <span class="process-math">\(B_2=\{0, 1\}\text{.}\)</span> The ordering on <span class="process-math">\(B_2\)</span> is the natural one, <span class="process-math">\(0 \leq
 0, 0\leq 1, 1\leq 1\text{.}\)</span> If we treat 0 and 1 as the truth values “false” and “true,” respectively, we see that the Boolean operations <span class="process-math">\(\lor (\textrm{join})\)</span> and <span class="process-math">\(\land (\textrm{meet})\)</span> are nothing more than the logical operation  with the same symbols.  The Boolean operation, <span class="process-math">\(-\text{,}\)</span> (complementation) is the logical <span class="process-math">\(\neg\)</span> (negation). In fact, this is why these symbols were chosen as the names of the Boolean operations. The operation tables for <span class="process-math">\(\left[B_2;\lor ,\land, - \right]\)</span> are simply those of “or,” “and,” and “not,” which we repeat here.</div>
 <div class="displaymath process-math">
@@ -1155,22 +1144,22 @@ u &amp; \overset{-}{u} \\
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-5164">By <a href="" class="xref" data-knowl="./knowl/theorem-boolean-set-isomorphism.html" title="Theorem 13.4.6">Theorem 13.4.6</a> and its corollaries, all Boolean algebras of order 2 are isomorphic to this one.</div>
-<div class="para" id="p-5165">We know that if we form <span class="process-math">\(B_2\times B_2=B_2^2\)</span> we obtain the set <span class="process-math">\(\{(0, 0), (0, 1), (1, 0), (1, 1)\}\text{,}\)</span> a set of order 4. We define operations on <span class="process-math">\(B_2^2\)</span> the natural way, namely componentwise, so that <span class="process-math">\((0, 1)\lor (1, 1)=(0\lor 1, 1\lor 1)=(1, 1)\text{,}\)</span> <span class="process-math">\((0, 1)\land (1, 1)=(0\land 1, 1\land 1)=(0, 1)\)</span> and <span class="process-math">\(\overline{(0, 1)} = \left(\bar{0}, \bar{1}\right)=(1, 0)\text{.}\)</span> We claim that <span class="process-math">\(B_2^2\)</span> is a Boolean algebra under the componentwise operations. Hence, <span class="process-math">\(\left[B_2^2; \lor , \land, \bar{}\hspace{3 pt}\right]\)</span> is a Boolean algebra of order 4. Since all Boolean algebras of order 4 are isomorphic to one other, we have found a simple way of describing all Boolean algebras of order 4.</div>
-<div class="para" id="p-5166">It is quite clear that we can describe any Boolean algebra of order 8 by considering <span class="process-math">\(B_2\times B_2\times B_2=B_2^3\)</span> and, more generally, any Boolean algebra of order <span class="process-math">\(2^n\)</span> with <span class="process-math">\(B_2^n=B_2\times B_2\times \cdots \times B_2\)</span>  (<span class="process-math">\(n\)</span> factors).</div>
+<div class="para" id="p-5180">By <a href="" class="xref" data-knowl="./knowl/theorem-boolean-set-isomorphism.html" title="Theorem 13.4.6">Theorem 13.4.6</a> and its corollaries, all Boolean algebras of order 2 are isomorphic to this one.</div>
+<div class="para" id="p-5181">We know that if we form <span class="process-math">\(B_2\times B_2=B_2^2\)</span> we obtain the set <span class="process-math">\(\{(0, 0), (0, 1), (1, 0), (1, 1)\}\text{,}\)</span> a set of order 4. We define operations on <span class="process-math">\(B_2^2\)</span> the natural way, namely componentwise, so that <span class="process-math">\((0, 1)\lor (1, 1)=(0\lor 1, 1\lor 1)=(1, 1)\text{,}\)</span> <span class="process-math">\((0, 1)\land (1, 1)=(0\land 1, 1\land 1)=(0, 1)\)</span> and <span class="process-math">\(\overline{(0, 1)} = \left(\bar{0}, \bar{1}\right)=(1, 0)\text{.}\)</span> We claim that <span class="process-math">\(B_2^2\)</span> is a Boolean algebra under the componentwise operations. Hence, <span class="process-math">\(\left[B_2^2; \lor , \land, \bar{}\hspace{3 pt}\right]\)</span> is a Boolean algebra of order 4. Since all Boolean algebras of order 4 are isomorphic to one other, we have found a simple way of describing all Boolean algebras of order 4.</div>
+<div class="para" id="p-5182">It is quite clear that we can describe any Boolean algebra of order 8 by considering <span class="process-math">\(B_2\times B_2\times B_2=B_2^3\)</span> and, more generally, any Boolean algebra of order <span class="process-math">\(2^n\)</span> with <span class="process-math">\(B_2^n=B_2\times B_2\times \cdots \times B_2\)</span>  (<span class="process-math">\(n\)</span> factors).</div>
 <section class="exercises" id="exercises-13-5"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber"></span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-583"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5167"><ol class="lower-alpha">
-<li id="li-2357"><div class="para" id="p-5168">Write out the operation tables for <span class="process-math">\(\left[B_2^2; \lor , \land, - \right].\)</span>
+<article class="exercise exercise-like" id="exercise-586"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5183"><ol class="lower-alpha">
+<li id="li-2369"><div class="para" id="p-5184">Write out the operation tables for <span class="process-math">\(\left[B_2^2; \lor , \land, - \right].\)</span>
 </div></li>
-<li id="li-2358"><div class="para" id="p-5169">Draw the Hasse diagram for <span class="process-math">\(\left[B_2^2; \lor , \land, - \right]\)</span> and compare your results with  <a href="" class="xref" data-knowl="./knowl/subsets_2_hasse.html" title="Figure 6.3.6">Figure 6.3.6</a>.</div></li>
-<li id="li-2359"><div class="para" id="p-5170">Find the atoms of this Boolean algebra.</div></li>
+<li id="li-2370"><div class="para" id="p-5185">Draw the Hasse diagram for <span class="process-math">\(\left[B_2^2; \lor , \land, - \right]\)</span> and compare your results with  <a href="" class="xref" data-knowl="./knowl/subsets_2_hasse.html" title="Figure 6.3.6">Figure 6.3.6</a>.</div></li>
+<li id="li-2371"><div class="para" id="p-5186">Find the atoms of this Boolean algebra.</div></li>
 </ol></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-266" id="answer-266"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-266"><div class="answer solution-like"><div class="para logical" id="p-5171"><ol class="lower-alpha">
-<li id="li-2360"><div class="para logical" id="p-5172"><div class="displaymath process-math">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-268" id="answer-268"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-268"><div class="answer solution-like"><div class="para logical" id="p-5187"><ol class="lower-alpha">
+<li id="li-2372"><div class="para logical" id="p-5188"><div class="displaymath process-math">
 \begin{equation*}
 \begin{array}{lc} 
 \begin{array}{c|cccc}
@@ -1203,30 +1192,30 @@ u &amp; \overset{\pmb{\_}}{u} \\
 \end{array}
 \end{equation*}
 </div></div></li>
-<li id="li-2361"><div class="para" id="p-5173">The graphs are isomorphic.</div></li>
-<li id="li-2362"><div class="para" id="p-5174">(0, 1) and (1,0)</div></li>
+<li id="li-2373"><div class="para" id="p-5189">The graphs are isomorphic.</div></li>
+<li id="li-2374"><div class="para" id="p-5190">(0, 1) and (1,0)</div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-584"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5175"><ol class="lower-alpha">
-<li id="li-2363"><div class="para" id="p-5176">Write out the operation tables for <span class="process-math">\(\left[B_2^3; \lor , \land, - \right].\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-587"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5191"><ol class="lower-alpha">
+<li id="li-2375"><div class="para" id="p-5192">Write out the operation tables for <span class="process-math">\(\left[B_2^3; \lor , \land, - \right].\)</span>
 </div></li>
-<li id="li-2364"><div class="para" id="p-5177">Draw the Hasse diagram for <span class="process-math">\(\left[B_2^3; \lor , \land , - \right]\)</span>
+<li id="li-2376"><div class="para" id="p-5193">Draw the Hasse diagram for <span class="process-math">\(\left[B_2^3; \lor , \land , - \right]\)</span>
 </div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-585"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5178"><ol class="lower-alpha">
-<li id="li-2365"><div class="para" id="p-5179">List all atoms of <span class="process-math">\(B_2^4\text{.}\)</span>
+</ol></div></article><article class="exercise exercise-like" id="exercise-588"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5194"><ol class="lower-alpha">
+<li id="li-2377"><div class="para" id="p-5195">List all atoms of <span class="process-math">\(B_2^4\text{.}\)</span>
 </div></li>
-<li id="li-2366"><div class="para" id="p-5180">Describe the atoms of <span class="process-math">\(B_2^n, n \geq 1\text{.}\)</span>
+<li id="li-2378"><div class="para" id="p-5196">Describe the atoms of <span class="process-math">\(B_2^n, n \geq 1\text{.}\)</span>
 </div></li>
 </ol></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-267" id="answer-267"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-267"><div class="answer solution-like"><div class="para logical" id="p-5181"><ol class="lower-alpha">
-<li id="li-2367"><div class="para" id="p-5182">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-269" id="answer-269"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-269"><div class="answer solution-like"><div class="para logical" id="p-5197"><ol class="lower-alpha">
+<li id="li-2379"><div class="para" id="p-5198">
 <span class="process-math">\((1, 0, 0, 0)\text{,}\)</span> <span class="process-math">\((0, 1, 0, 0)\text{,}\)</span> <span class="process-math">\((0, 0, 1, 0)\text{,}\)</span> and <span class="process-math">\((0, 0, 0, 1)\)</span> are the atoms.</div></li>
-<li id="li-2368"><div class="para" id="p-5183">The <span class="process-math">\(n\)</span>-tuples of bits with exactly one 1.</div></li>
+<li id="li-2380"><div class="para" id="p-5199">The <span class="process-math">\(n\)</span>-tuples of bits with exactly one 1.</div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-586"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para" id="p-5184">
+</div></article><article class="exercise exercise-like" id="exercise-589"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para" id="p-5200">
 <a href="" class="xref" data-knowl="./knowl/theorem-boolean-set-isomorphism.html" title="Theorem 13.4.6">Theorem 13.4.6</a> tells us we can think of any finite Boolean algebra in terms of sets. In Chapter 4,  we defined  <a href="" class="xref" data-knowl="./knowl/def-Minset.html" title="Definition 4.3.4: Minset">minsets 4.3.4</a> and <a href="" class="xref" data-knowl="./knowl/def-minset-normal-form.html" title="Definition 4.3.9: Minset Normal Form">minset normal form 4.3.9</a>.  Rephrase these definitions in the language of Boolean algebra. The generalization of minsets are called <dfn class="terminology">minterms</dfn>.</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>
 <div class="ptx-content-footer">

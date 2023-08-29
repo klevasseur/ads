@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Basic Set Operations</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,32 +58,47 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
 </script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
 <script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
@@ -105,59 +138,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -166,7 +156,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -321,7 +311,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1135,222 +1128,222 @@ eBookConfig.runestone_version = '7.0.7';
 </h3>
 <article class="definition definition-like" id="def-intersection"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">1.2.1</span><span class="period">.</span><span class="space"> </span><span class="title">Intersection.</span>
-</h4>  <div class="para" id="p-282">Let <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> be sets. The intersection of <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> (denoted by <span class="process-math">\(A \cap  B\)</span>) is the set of all elements that are in both <span class="process-math">\(A\)</span> and <span class="process-math">\(B\text{.}\)</span> That is, <span class="process-math">\(A \cap  B = \{x:x \in  A \textrm{ and } x \in  B\}\text{.}\)</span>
+</h4>  <div class="para" id="p-298">Let <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> be sets. The intersection of <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> (denoted by <span class="process-math">\(A \cap  B\)</span>) is the set of all elements that are in both <span class="process-math">\(A\)</span> and <span class="process-math">\(B\text{.}\)</span> That is, <span class="process-math">\(A \cap  B = \{x:x \in  A \textrm{ and } x \in  B\}\text{.}\)</span>
 </div></article><article class="example example-like" id="some_intersections"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-some_intersections"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">1.2.2</span><span class="period">.</span><span class="space"> </span><span class="title">Some Intersections.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-some_intersections"><article class="example example-like"> <div class="para logical" id="p-283"><ul class="disc">
-<li id="li-238"><div class="para" id="p-284">Let <span class="process-math">\(A = \{1, 3, 8\}\)</span> and <span class="process-math">\(B = \{-9, 22, 3\}\text{.}\)</span> Then <span class="process-math">\(A \cap  B = \{3\}\text{.}\)</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-some_intersections"><article class="example example-like"> <div class="para logical" id="p-299"><ul class="disc">
+<li id="li-250"><div class="para" id="p-300">Let <span class="process-math">\(A = \{1, 3, 8\}\)</span> and <span class="process-math">\(B = \{-9, 22, 3\}\text{.}\)</span> Then <span class="process-math">\(A \cap  B = \{3\}\text{.}\)</span>
 </div></li>
-<li id="li-239"><div class="para" id="p-derived-li-239">Solving a system of simultaneous equations such as <span class="process-math">\(x + y = 7\)</span> and <span class="process-math">\(x - y = 3\)</span> can be viewed as an intersection. Let <span class="process-math">\(A = \{(x,y): x + y = 7, x,y \in  \mathbb{R}\}\)</span> and <span class="process-math">\(B = \{(x,y): x - y = 3, x,y\in  \mathbb{R}\}\text{.}\)</span> These two sets are lines in the plane and their intersection, <span class="process-math">\(A \cap  B = \{(5, 2)\}\text{,}\)</span> is the solution to the system.</div></li>
-<li id="li-240"><div class="para" id="p-285"><span class="process-math">\(\mathbb{Z}\cap \mathbb{Q}=\mathbb{Z}\text{.}\)</span></div></li>
-<li id="li-241"><div class="para" id="p-286">If <span class="process-math">\(A = \{3, 5, 9\}\)</span> and <span class="process-math">\(B = \{-5, 8\}\text{,}\)</span> then <span class="process-math">\(A\cap  B =\emptyset\text{.}\)</span>
+<li id="li-251"><div class="para" id="p-derived-li-251">Solving a system of simultaneous equations such as <span class="process-math">\(x + y = 7\)</span> and <span class="process-math">\(x - y = 3\)</span> can be viewed as an intersection. Let <span class="process-math">\(A = \{(x,y): x + y = 7, x,y \in  \mathbb{R}\}\)</span> and <span class="process-math">\(B = \{(x,y): x - y = 3, x,y\in  \mathbb{R}\}\text{.}\)</span> These two sets are lines in the plane and their intersection, <span class="process-math">\(A \cap  B = \{(5, 2)\}\text{,}\)</span> is the solution to the system.</div></li>
+<li id="li-252"><div class="para" id="p-301"><span class="process-math">\(\mathbb{Z}\cap \mathbb{Q}=\mathbb{Z}\text{.}\)</span></div></li>
+<li id="li-253"><div class="para" id="p-302">If <span class="process-math">\(A = \{3, 5, 9\}\)</span> and <span class="process-math">\(B = \{-5, 8\}\text{,}\)</span> then <span class="process-math">\(A\cap  B =\emptyset\text{.}\)</span>
 </div></li>
 </ul></div></article></div>
 <article class="definition definition-like" id="def-disjoint-sets"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">1.2.3</span><span class="period">.</span><span class="space"> </span><span class="title">Disjoint Sets.</span>
-</h4> <div class="para" id="p-287">Two sets are disjoint if they have no elements in common. That is, <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are disjoint if <span class="process-math">\(A \cap  B = \emptyset\text{.}\)</span>
+</h4> <div class="para" id="p-303">Two sets are disjoint if they have no elements in common. That is, <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are disjoint if <span class="process-math">\(A \cap  B = \emptyset\text{.}\)</span>
 </div></article><article class="definition definition-like" id="def-union"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">1.2.4</span><span class="period">.</span><span class="space"> </span><span class="title">Union.</span>
-</h4> <div class="para" id="p-288">Let <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> be sets. The union of <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> (denoted by <span class="process-math">\(A \cup  B\)</span>) is the set of all elements that are in <span class="process-math">\(A\)</span> or in <span class="process-math">\(B\)</span> or in both A and B. That is, <span class="process-math">\(A\cup B= \{x:x \in  A\textrm{ or } x\in  B\}\text{.}\)</span>
-</div></article><div class="para" id="p-289">It is important to note in the set-builder notation for <span class="process-math">\(A\cup B\text{,}\)</span> the word “or” is used in the inclusive sense; it includes the case where <span class="process-math">\(x\)</span> is in both <span class="process-math">\(A\)</span> and <span class="process-math">\(B\text{.}\)</span>
+</h4> <div class="para" id="p-304">Let <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> be sets. The union of <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> (denoted by <span class="process-math">\(A \cup  B\)</span>) is the set of all elements that are in <span class="process-math">\(A\)</span> or in <span class="process-math">\(B\)</span> or in both A and B. That is, <span class="process-math">\(A\cup B= \{x:x \in  A\textrm{ or } x\in  B\}\text{.}\)</span>
+</div></article><div class="para" id="p-305">It is important to note in the set-builder notation for <span class="process-math">\(A\cup B\text{,}\)</span> the word “or” is used in the inclusive sense; it includes the case where <span class="process-math">\(x\)</span> is in both <span class="process-math">\(A\)</span> and <span class="process-math">\(B\text{.}\)</span>
 </div>
 <article class="example example-like" id="some_unions"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-some_unions"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">1.2.5</span><span class="period">.</span><span class="space"> </span><span class="title">Some Unions.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-some_unions"><article class="example example-like"> <div class="para logical" id="p-290"><ul class="disc">
-<li id="li-242"><div class="para" id="p-291">If <span class="process-math">\(A = \{2, 5, 8\}\)</span> and  <span class="process-math">\(B = \{7, 5, 22\}\text{,}\)</span> then <span class="process-math">\(A \cup  B = \{2, 5, 8, 7, 22\}\text{.}\)</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-some_unions"><article class="example example-like"> <div class="para logical" id="p-306"><ul class="disc">
+<li id="li-254"><div class="para" id="p-307">If <span class="process-math">\(A = \{2, 5, 8\}\)</span> and  <span class="process-math">\(B = \{7, 5, 22\}\text{,}\)</span> then <span class="process-math">\(A \cup  B = \{2, 5, 8, 7, 22\}\text{.}\)</span>
 </div></li>
-<li id="li-243"><div class="para" id="p-292"><span class="process-math">\(\displaystyle \mathbb{Z}\cup \mathbb{Q}=\mathbb{Q}.\)</span></div></li>
-<li id="li-244"><div class="para" id="p-293">
+<li id="li-255"><div class="para" id="p-308"><span class="process-math">\(\displaystyle \mathbb{Z}\cup \mathbb{Q}=\mathbb{Q}.\)</span></div></li>
+<li id="li-256"><div class="para" id="p-309">
 <span class="process-math">\(A \cup \emptyset  = A\)</span> for any set <span class="process-math">\(A\text{.}\)</span>
 </div></li>
 </ul></div></article></div>
-<div class="para" id="p-294">Frequently, when doing mathematics, we need to establish a universe or set of elements under discussion. For example, the set <span class="process-math">\(A = \{x : 81x^4 -16 = 0 \}\)</span> contains different elements depending on what kinds of numbers we allow ourselves to use in solving the equation <span class="process-math">\(81 x^4 -16 = 0\text{.}\)</span> This set of numbers would be our universe. For example, if the universe is the integers, then <span class="process-math">\(A\)</span> is empty. If our universe is the rational numbers, then <span class="process-math">\(A\)</span> is <span class="process-math">\(\{2/3, -2/3\}\)</span> and if the universe is the complex numbers, then <span class="process-math">\(A\)</span> is <span class="process-math">\(\{2/3, -2/3, 2i/3, - 2i/3\}\text{.}\)</span>
+<div class="para" id="p-310">Frequently, when doing mathematics, we need to establish a universe or set of elements under discussion. For example, the set <span class="process-math">\(A = \{x : 81x^4 -16 = 0 \}\)</span> contains different elements depending on what kinds of numbers we allow ourselves to use in solving the equation <span class="process-math">\(81 x^4 -16 = 0\text{.}\)</span> This set of numbers would be our universe. For example, if the universe is the integers, then <span class="process-math">\(A\)</span> is empty. If our universe is the rational numbers, then <span class="process-math">\(A\)</span> is <span class="process-math">\(\{2/3, -2/3\}\)</span> and if the universe is the complex numbers, then <span class="process-math">\(A\)</span> is <span class="process-math">\(\{2/3, -2/3, 2i/3, - 2i/3\}\text{.}\)</span>
 </div>
 <article class="definition definition-like" id="universe"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">1.2.6</span><span class="period">.</span><span class="space"> </span><span class="title">Universe.</span>
 </h4>
-<div class="para" id="p-295">The universe, or universal set, is the set of all elements under discussion for possible membership in a set. We normally reserve the letter <span class="process-math">\(U\)</span> for a universe in general discussions.</div></article></section><section class="subsection" id="subsection-4"><h3 class="heading hide-type">
+<div class="para" id="p-311">The universe, or universal set, is the set of all elements under discussion for possible membership in a set. We normally reserve the letter <span class="process-math">\(U\)</span> for a universe in general discussions.</div></article></section><section class="subsection" id="subsection-4"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">1.2.2</span> <span class="title">Set Operations and their Venn Diagrams</span>
 </h3>
-<div class="para" id="p-296">When working with sets, as in other branches of mathematics, it is often quite useful to be able to draw a picture or diagram of the situation under consideration. A diagram of a set is called a Venn diagram. The universal set <span class="process-math">\(U\)</span> is represented by the interior of a rectangle and the sets by disks inside the rectangle.</div>
+<div class="para" id="p-312">When working with sets, as in other branches of mathematics, it is often quite useful to be able to draw a picture or diagram of the situation under consideration. A diagram of a set is called a Venn diagram. The universal set <span class="process-math">\(U\)</span> is represented by the interior of a rectangle and the sets by disks inside the rectangle.</div>
 <article class="example example-like" id="venn_diagram_examples"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-venn_diagram_examples"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">1.2.7</span><span class="period">.</span><span class="space"> </span><span class="title">Venn Diagram Examples.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-venn_diagram_examples"><article class="example example-like"> <div class="para" id="p-297">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-venn_diagram_examples"><article class="example example-like"> <div class="para" id="p-313">
 <span class="process-math">\(A \cap  B\)</span> is illustrated in <a href="" class="xref" data-knowl="./knowl/venn_diagram_intersection.html" title="Figure 1.2.8">Figure 1.2.8</a> by shading the appropriate region.</div> <figure class="figure figure-like" id="venn_diagram_intersection"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/sageplot/sageplot-venn-intersection.svg" role="img" class="contained" alt="A two set Venn Diagram for intersection consisting of two overlapping circles with the part of the plane that is contained in both circles shaded to represent the intersection."></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">1.2.8<span class="period">.</span></span><span class="space"> </span>Venn Diagram for the Intersection of Two Sets</figcaption></figure> <div class="para" id="p-298">The union <span class="process-math">\(A \cup  B\)</span> is illustrated in <a href="" class="xref" data-knowl="./knowl/venn_diagram_union.html" title="Figure 1.2.9">Figure 1.2.9</a>.</div> <figure class="figure figure-like" id="venn_diagram_union"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/sageplot/sageplot-venn-union.svg" role="img" class="contained" alt="A two set Venn Diagram for union consisting of two overlapping circles with the part of the plane that is contained in either of the circles shaded to represent the union."></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">1.2.9<span class="period">.</span></span><span class="space"> </span>Venn Diagram for the Union <span class="process-math">\(A \cup  B\)</span></figcaption></figure> <div class="para" id="p-299">In a Venn diagram, the region representing <span class="process-math">\(A \cap  B\)</span> does not appear empty; however, in some instances it will represent the empty set. The same is true for any other region in a Venn diagram.</div></article></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">1.2.8<span class="period">.</span></span><span class="space"> </span>Venn Diagram for the Intersection of Two Sets</figcaption></figure> <div class="para" id="p-314">The union <span class="process-math">\(A \cup  B\)</span> is illustrated in <a href="" class="xref" data-knowl="./knowl/venn_diagram_union.html" title="Figure 1.2.9">Figure 1.2.9</a>.</div> <figure class="figure figure-like" id="venn_diagram_union"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/sageplot/sageplot-venn-union.svg" role="img" class="contained" alt="A two set Venn Diagram for union consisting of two overlapping circles with the part of the plane that is contained in either of the circles shaded to represent the union."></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">1.2.9<span class="period">.</span></span><span class="space"> </span>Venn Diagram for the Union <span class="process-math">\(A \cup  B\)</span></figcaption></figure> <div class="para" id="p-315">In a Venn diagram, the region representing <span class="process-math">\(A \cap  B\)</span> does not appear empty; however, in some instances it will represent the empty set. The same is true for any other region in a Venn diagram.</div></article></div>
 <article class="definition definition-like" id="set_complement"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">1.2.10</span><span class="period">.</span><span class="space"> </span><span class="title">Complement of a set.</span>
-</h4> <div class="para" id="p-300">Let <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> be sets. The complement of <span class="process-math">\(A\)</span> relative to <span class="process-math">\(B\)</span> (notation <span class="process-math">\(B - A\)</span>) is the set of elements that are in <span class="process-math">\(B\)</span> and not in <span class="process-math">\(A\text{.}\)</span> That is, <span class="process-math">\(B-A=\{x: x\in B \textrm{ and } x\notin A\}\text{.}\)</span> If <span class="process-math">\(U\)</span> is the universal set, then <span class="process-math">\(U-A\)</span> is denoted by <span class="process-math">\(A^c\)</span> and is called simply the complement of <span class="process-math">\(A\text{.}\)</span> <span class="process-math">\(A^c=\{x\in U : x\notin A\}\text{.}\)</span>
+</h4> <div class="para" id="p-316">Let <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> be sets. The complement of <span class="process-math">\(A\)</span> relative to <span class="process-math">\(B\)</span> (notation <span class="process-math">\(B - A\)</span>) is the set of elements that are in <span class="process-math">\(B\)</span> and not in <span class="process-math">\(A\text{.}\)</span> That is, <span class="process-math">\(B-A=\{x: x\in B \textrm{ and } x\notin A\}\text{.}\)</span> If <span class="process-math">\(U\)</span> is the universal set, then <span class="process-math">\(U-A\)</span> is denoted by <span class="process-math">\(A^c\)</span> and is called simply the complement of <span class="process-math">\(A\text{.}\)</span> <span class="process-math">\(A^c=\{x\in U : x\notin A\}\text{.}\)</span>
 </div></article><figure class="figure figure-like" id="venn_diagram_complement1"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/sageplot/sageplot-venn-complement1.svg" role="img" class="contained" alt="A two set Venn Diagram for intersection consisting of two overlapping circles with the part of the plane that is contained in the circle labeled A but not in the circle labeled B shaded to represent the set difference A minus B."></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">1.2.11<span class="period">.</span></span><span class="space"> </span>Venn Diagram for <span class="process-math">\(B - A\)</span></figcaption></figure><article class="example example-like" id="complements"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-complements"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">1.2.12</span><span class="period">.</span><span class="space"> </span><span class="title">Some Complements.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-complements"><article class="example example-like"> <div class="para logical" id="p-301"><ol class="lower-alpha">
-<li id="li-245"><div class="para" id="p-302">Let <span class="process-math">\(U = \{1,2, 3, \text{...} , 10\}\)</span> and <span class="process-math">\(A = \{2,4,6,8, 10\}\text{.}\)</span> Then <span class="process-math">\(U-A = \{1, 3, 5, 7, 9\}\)</span> and <span class="process-math">\(A - U= \emptyset\text{.}\)</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-complements"><article class="example example-like"> <div class="para logical" id="p-317"><ol class="lower-alpha">
+<li id="li-257"><div class="para" id="p-318">Let <span class="process-math">\(U = \{1,2, 3, \text{...} , 10\}\)</span> and <span class="process-math">\(A = \{2,4,6,8, 10\}\text{.}\)</span> Then <span class="process-math">\(U-A = \{1, 3, 5, 7, 9\}\)</span> and <span class="process-math">\(A - U= \emptyset\text{.}\)</span>
 </div></li>
-<li id="li-246"><div class="para" id="p-303">If <span class="process-math">\(U = \mathbb{R}\text{,}\)</span> then the complement of the set of rational numbers is the set of irrational numbers.</div></li>
-<li id="li-247"><div class="para" id="p-304">
+<li id="li-258"><div class="para" id="p-319">If <span class="process-math">\(U = \mathbb{R}\text{,}\)</span> then the complement of the set of rational numbers is the set of irrational numbers.</div></li>
+<li id="li-259"><div class="para" id="p-320">
 <span class="process-math">\(U^c= \emptyset\)</span> and <span class="process-math">\(\emptyset ^c= U\text{.}\)</span>
 </div></li>
-<li id="li-248"><div class="para" id="p-305">The Venn diagram of <span class="process-math">\(B - A\)</span> is represented in <a href="" class="xref" data-knowl="./knowl/venn_diagram_complement1.html" title="Figure 1.2.11">Figure 1.2.11</a>.</div></li>
-<li id="li-249"><div class="para" id="p-306">The Venn diagram of <span class="process-math">\(A^c\)</span> is represented in <a href="" class="xref" data-knowl="./knowl/venn_diagram_complement2.html" title="Figure 1.2.13">Figure 1.2.13</a>.</div></li>
-<li id="li-250"><div class="para" id="p-307">If <span class="process-math">\(B\subseteq A\text{,}\)</span> then the Venn diagram of <span class="process-math">\(A- B\)</span> is as shown in <a href="" class="xref" data-knowl="./knowl/venn_diagram_complement3.html" title="Figure 1.2.14">Figure 1.2.14</a>.</div></li>
-<li id="li-251"><div class="para" id="p-308">In the universe of integers, the set of even integers, <span class="process-math">\(\{\ldots  , - 4,-2, 0, 2, 4,\ldots \}\text{,}\)</span> has the set of odd integers as its complement.</div></li>
+<li id="li-260"><div class="para" id="p-321">The Venn diagram of <span class="process-math">\(B - A\)</span> is represented in <a href="" class="xref" data-knowl="./knowl/venn_diagram_complement1.html" title="Figure 1.2.11">Figure 1.2.11</a>.</div></li>
+<li id="li-261"><div class="para" id="p-322">The Venn diagram of <span class="process-math">\(A^c\)</span> is represented in <a href="" class="xref" data-knowl="./knowl/venn_diagram_complement2.html" title="Figure 1.2.13">Figure 1.2.13</a>.</div></li>
+<li id="li-262"><div class="para" id="p-323">If <span class="process-math">\(B\subseteq A\text{,}\)</span> then the Venn diagram of <span class="process-math">\(A- B\)</span> is as shown in <a href="" class="xref" data-knowl="./knowl/venn_diagram_complement3.html" title="Figure 1.2.14">Figure 1.2.14</a>.</div></li>
+<li id="li-263"><div class="para" id="p-324">In the universe of integers, the set of even integers, <span class="process-math">\(\{\ldots  , - 4,-2, 0, 2, 4,\ldots \}\text{,}\)</span> has the set of odd integers as its complement.</div></li>
 </ol></div> <figure class="figure figure-like" id="venn_diagram_complement2"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/sageplot/sageplot-venn-complement2.svg" role="img" class="contained" alt="A one set Venn Diagram for the complement of a set A consisting of a circle with the part of the plane that is not contained in the circle shaded to represent the set complement."></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">1.2.13<span class="period">.</span></span><span class="space"> </span>Venn Diagram for <span class="process-math">\(A^{c}\)</span></figcaption></figure> <figure class="figure figure-like" id="venn_diagram_complement3"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/sageplot/sageplot-venn-complement3.svg" role="img" class="contained" alt="A Venn Diagram for the complement relative to a superset"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">1.2.14<span class="period">.</span></span><span class="space"> </span>Venn Diagram for <span class="process-math">\(A-B\)</span> when <span class="process-math">\(B\)</span> is a subset of <span class="process-math">\(A\)</span></figcaption></figure></article></div>
 <article class="definition definition-like" id="symmetric-difference"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">1.2.15</span><span class="period">.</span><span class="space"> </span><span class="title">Symmetric Difference.</span>
-</h4> <div class="para" id="p-309">Let <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> be sets. The symmetric difference of <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> (denoted by <span class="process-math">\(A\oplus B\)</span>) is the set of all elements that are in <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> but not in both. That is, <span class="process-math">\(A \oplus  B = (A \cup  B) - (A \cap  B)\text{.}\)</span>
+</h4> <div class="para" id="p-325">Let <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> be sets. The symmetric difference of <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> (denoted by <span class="process-math">\(A\oplus B\)</span>) is the set of all elements that are in <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> but not in both. That is, <span class="process-math">\(A \oplus  B = (A \cup  B) - (A \cap  B)\text{.}\)</span>
 </div></article><article class="example example-like" id="some_symmetric_differences"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-some_symmetric_differences"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">1.2.16</span><span class="period">.</span><span class="space"> </span><span class="title">Some Symmetric Differences.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-some_symmetric_differences"><article class="example example-like"> <div class="para logical" id="p-310"><ol class="lower-alpha">
-<li id="li-252"><div class="para" id="p-derived-li-252">Let <span class="process-math">\(A = \{1, 3, 8\}\)</span> and <span class="process-math">\(B = \{2, 4, 8\}\text{.}\)</span> Then <span class="process-math">\(A \oplus  B = \{1, 2, 3, 4\}\text{.}\)</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-some_symmetric_differences"><article class="example example-like"> <div class="para logical" id="p-326"><ol class="lower-alpha">
+<li id="li-264"><div class="para" id="p-derived-li-264">Let <span class="process-math">\(A = \{1, 3, 8\}\)</span> and <span class="process-math">\(B = \{2, 4, 8\}\text{.}\)</span> Then <span class="process-math">\(A \oplus  B = \{1, 2, 3, 4\}\text{.}\)</span>
 </div></li>
-<li id="li-253"><div class="para" id="p-derived-li-253">
+<li id="li-265"><div class="para" id="p-derived-li-265">
 <span class="process-math">\(A \oplus  \emptyset = A\)</span> and <span class="process-math">\(A \oplus  A = \emptyset\)</span> for any set <span class="process-math">\(A\text{.}\)</span>
 </div></li>
-<li id="li-254"><div class="para" id="p-derived-li-254">
+<li id="li-266"><div class="para" id="p-derived-li-266">
 <span class="process-math">\(\mathbb{R} \oplus  \mathbb{Q}\)</span> is the set of irrational numbers.</div></li>
-<li id="li-255"><div class="para" id="p-311">The Venn diagram of <span class="process-math">\(A \oplus  B\)</span> is represented in <a href="" class="xref" data-knowl="./knowl/venn_diagram_symmetric.html" title="Figure 1.2.17">Figure 1.2.17</a>.</div></li>
+<li id="li-267"><div class="para" id="p-327">The Venn diagram of <span class="process-math">\(A \oplus  B\)</span> is represented in <a href="" class="xref" data-knowl="./knowl/venn_diagram_symmetric.html" title="Figure 1.2.17">Figure 1.2.17</a>.</div></li>
 </ol></div> <figure class="figure figure-like" id="venn_diagram_symmetric"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/sageplot/sageplot-venn-symmetric.svg" role="img" class="contained" alt="A two set Venn Diagram for the symmetric difference of two sets."></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">1.2.17<span class="period">.</span></span><span class="space"> </span>Venn Diagram for the symmetric difference <span class="process-math">\(A \oplus  B\)</span></figcaption></figure></article></div>
 <aside class="historical aside-like" id="historical-1"><h4 class="heading"><span class="title">Why Venn?</span></h4>
-<div class="para" id="p-312">Venn diagrams are named after the logician John Venn, who introduced them in a paper in 1880. In his paper, he acknowledged that they were not new. In fact he referred to them as Euler Circles, because the famous mathematician Leonhard Euler (pronounced Oy-ler) introduced them in the 1700’s.  Don’t feel bad for Euler though.  He has plenty of other things named after him, including some we see later in this book.</div></aside></section><section class="subsection" id="Sage_Note_Sets-1-2"><h3 class="heading hide-type">
+<div class="para" id="p-328">Venn diagrams are named after the logician John Venn, who introduced them in a paper in 1880. In his paper, he acknowledged that they were not new. In fact he referred to them as Euler Circles, because the famous mathematician Leonhard Euler (pronounced Oy-ler) introduced them in the 1700’s.  Don’t feel bad for Euler though.  He has plenty of other things named after him, including some we see later in this book.</div></aside></section><section class="subsection" id="Sage_Note_Sets-1-2"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">1.2.3</span> <span class="title">SageMath Note: Sets</span>
 </h3>
-<div class="para" id="p-313">To work with sets in Sage, a set is an expression of the form  Set(<em class="emphasis">list</em>).  By wrapping a list with <code class="code-inline tex2jax_ignore">Set( )</code>, the order of elements appearing in the list and their duplication are ignored.  For example, L1 and L2 are two different lists, but notice how as sets they are considered equal:</div>
+<div class="para" id="p-329">To work with sets in Sage, a set is an expression of the form  Set(<em class="emphasis">list</em>).  By wrapping a list with <code class="code-inline tex2jax_ignore">Set( )</code>, the order of elements appearing in the list and their duplication are ignored.  For example, L1 and L2 are two different lists, but notice how as sets they are considered equal:</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-1"><script type="text/x-sage">L1=[3,6,9,0,3]
 L2=[9,6,3,0,9]
 [L1==L2, Set(L1)==Set(L2) ]
 </script></pre>
-<div class="para" id="p-314">The standard set operations are all methods and/or functions that can act on Sage sets. <em class="emphasis">You need to evaluate the following cell to use the subsequent cell.</em>
+<div class="para" id="p-330">The standard set operations are all methods and/or functions that can act on Sage sets. <em class="emphasis">You need to evaluate the following cell to use the subsequent cell.</em>
 </div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-2"><script type="text/x-sage">A=Set(srange(5,50,5))
 B=Set(srange(6,50,6))
 [A,B]
 </script></pre>
-<div class="para" id="p-315">We can test membership, asking whether 10 is in each of the sets:</div>
+<div class="para" id="p-331">We can test membership, asking whether 10 is in each of the sets:</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-3"><script type="text/x-sage">[10 in A, 10 in B]
 </script></pre>
-<div class="para" id="p-316">The ampersand is used for the intersection of sets.  Change it to the vertical bar, |, for union.</div>
+<div class="para" id="p-332">The ampersand is used for the intersection of sets.  Change it to the vertical bar, |, for union.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-4"><script type="text/x-sage">A & B
 </script></pre>
-<div class="para" id="p-317">Symmetric difference and set complement are defined as “methods” in Sage. Here is how to compute the symmetric difference of <span class="process-math">\(A\)</span>  with  <span class="process-math">\(B\text{,}\)</span> followed by their differences.</div>
+<div class="para" id="p-333">Symmetric difference and set complement are defined as “methods” in Sage. Here is how to compute the symmetric difference of <span class="process-math">\(A\)</span>  with  <span class="process-math">\(B\text{,}\)</span> followed by their differences.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-5"><script type="text/x-sage">[A.symmetric_difference(B),A.difference(B),B.difference(A)]
 </script></pre></section><section class="exercises" id="exercises-1-2"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">1.2.4</span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-8"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para logical" id="p-318">
+<article class="exercise exercise-like" id="exercise-11"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para logical" id="p-334">
 <div class="para">Let <span class="process-math">\(A = \{0, 2, 3\}\text{,}\)</span> <span class="process-math">\(B = \{2, 3\}\text{,}\)</span> <span class="process-math">\(C = \{1, 5, 9\}\text{,}\)</span> and let the universal set be <span class="process-math">\(U = \{0, 1, 2, . . . , 9\}\text{.}\)</span> Determine:</div>
 <ol class="lower-alpha cols3">
-<li id="li-256"><div class="para" id="p-319"><span class="process-math">\(\displaystyle A \cap  B\)</span></div></li>
-<li id="li-257"><div class="para" id="p-320"><span class="process-math">\(\displaystyle A \cup  B\)</span></div></li>
-<li id="li-258"><div class="para" id="p-321"><span class="process-math">\(\displaystyle B \cup  A\)</span></div></li>
-<li id="li-259"><div class="para" id="p-322"><span class="process-math">\(\displaystyle A \cup  C\)</span></div></li>
-<li id="li-260"><div class="para" id="p-323"><span class="process-math">\(\displaystyle A - B\)</span></div></li>
-<li id="li-261"><div class="para" id="p-324"><span class="process-math">\(\displaystyle B - A\)</span></div></li>
-<li id="li-262"><div class="para" id="p-325"><span class="process-math">\(\displaystyle A^c\)</span></div></li>
-<li id="li-263"><div class="para" id="p-326"><span class="process-math">\(\displaystyle C^c\)</span></div></li>
-<li id="li-264"><div class="para" id="p-327"><span class="process-math">\(\displaystyle A\cap C\)</span></div></li>
-<li id="li-265"><div class="para" id="p-328"><span class="process-math">\(\displaystyle A\oplus B\)</span></div></li>
+<li id="li-268"><div class="para" id="p-335"><span class="process-math">\(\displaystyle A \cap  B\)</span></div></li>
+<li id="li-269"><div class="para" id="p-336"><span class="process-math">\(\displaystyle A \cup  B\)</span></div></li>
+<li id="li-270"><div class="para" id="p-337"><span class="process-math">\(\displaystyle B \cup  A\)</span></div></li>
+<li id="li-271"><div class="para" id="p-338"><span class="process-math">\(\displaystyle A \cup  C\)</span></div></li>
+<li id="li-272"><div class="para" id="p-339"><span class="process-math">\(\displaystyle A - B\)</span></div></li>
+<li id="li-273"><div class="para" id="p-340"><span class="process-math">\(\displaystyle B - A\)</span></div></li>
+<li id="li-274"><div class="para" id="p-341"><span class="process-math">\(\displaystyle A^c\)</span></div></li>
+<li id="li-275"><div class="para" id="p-342"><span class="process-math">\(\displaystyle C^c\)</span></div></li>
+<li id="li-276"><div class="para" id="p-343"><span class="process-math">\(\displaystyle A\cap C\)</span></div></li>
+<li id="li-277"><div class="para" id="p-344"><span class="process-math">\(\displaystyle A\oplus B\)</span></div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-4" id="answer-4"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-4"><div class="answer solution-like"><div class="para logical" id="p-329"><ol class="lower-alpha cols3">
-<li id="li-266"><div class="para" id="p-330"><span class="process-math">\(\displaystyle \{2,3\}\)</span></div></li>
-<li id="li-267"><div class="para" id="p-331"><span class="process-math">\(\displaystyle \{0,2,3\}\)</span></div></li>
-<li id="li-268"><div class="para" id="p-332"><span class="process-math">\(\displaystyle \{0,2,3\}\)</span></div></li>
-<li id="li-269"><div class="para" id="p-333"><span class="process-math">\(\displaystyle \{0,1,2,3,5,9\}\)</span></div></li>
-<li id="li-270"><div class="para" id="p-334"><span class="process-math">\(\displaystyle \{0\}\)</span></div></li>
-<li id="li-271"><div class="para" id="p-335"><span class="process-math">\(\displaystyle \emptyset\)</span></div></li>
-<li id="li-272"><div class="para" id="p-336"><span class="process-math">\(\displaystyle \{ 1,4,5,6,7,8,9\}\)</span></div></li>
-<li id="li-273"><div class="para" id="p-337"><span class="process-math">\(\displaystyle \{0,2,3,4,6,7,8\}\)</span></div></li>
-<li id="li-274"><div class="para" id="p-338"><span class="process-math">\(\displaystyle \emptyset\)</span></div></li>
-<li id="li-275"><div class="para" id="p-339"><span class="process-math">\(\displaystyle \{0\}\)</span></div></li>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-6" id="answer-6"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-6"><div class="answer solution-like"><div class="para logical" id="p-345"><ol class="lower-alpha cols3">
+<li id="li-278"><div class="para" id="p-346"><span class="process-math">\(\displaystyle \{2,3\}\)</span></div></li>
+<li id="li-279"><div class="para" id="p-347"><span class="process-math">\(\displaystyle \{0,2,3\}\)</span></div></li>
+<li id="li-280"><div class="para" id="p-348"><span class="process-math">\(\displaystyle \{0,2,3\}\)</span></div></li>
+<li id="li-281"><div class="para" id="p-349"><span class="process-math">\(\displaystyle \{0,1,2,3,5,9\}\)</span></div></li>
+<li id="li-282"><div class="para" id="p-350"><span class="process-math">\(\displaystyle \{0\}\)</span></div></li>
+<li id="li-283"><div class="para" id="p-351"><span class="process-math">\(\displaystyle \emptyset\)</span></div></li>
+<li id="li-284"><div class="para" id="p-352"><span class="process-math">\(\displaystyle \{ 1,4,5,6,7,8,9\}\)</span></div></li>
+<li id="li-285"><div class="para" id="p-353"><span class="process-math">\(\displaystyle \{0,2,3,4,6,7,8\}\)</span></div></li>
+<li id="li-286"><div class="para" id="p-354"><span class="process-math">\(\displaystyle \emptyset\)</span></div></li>
+<li id="li-287"><div class="para" id="p-355"><span class="process-math">\(\displaystyle \{0\}\)</span></div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-9"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para logical" id="p-340">
+</div></article><article class="exercise exercise-like" id="exercise-12"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para logical" id="p-356">
 <div class="para">Let <span class="process-math">\(A\text{,}\)</span> <span class="process-math">\(B\text{,}\)</span> and <span class="process-math">\(C\)</span> be as in Exercise 1, let <span class="process-math">\(D = \{3, 2\}\text{,}\)</span> and let <span class="process-math">\(E = \{2, 3, 2\}\text{.}\)</span> Determine which of the following are true. Give reasons for your decisions.</div>
 <ol class="lower-alpha cols2">
-<li id="li-276"><div class="para" id="p-341"><span class="process-math">\(\displaystyle A = B\)</span></div></li>
-<li id="li-277"><div class="para" id="p-342"><span class="process-math">\(\displaystyle B = C\)</span></div></li>
-<li id="li-278"><div class="para" id="p-343"><span class="process-math">\(\displaystyle B = D\)</span></div></li>
-<li id="li-279"><div class="para" id="p-344"><span class="process-math">\(\displaystyle E=D\)</span></div></li>
-<li id="li-280"><div class="para" id="p-345"><span class="process-math">\(\displaystyle A\cap B = B\cap A\)</span></div></li>
-<li id="li-281"><div class="para" id="p-346"><span class="process-math">\(\displaystyle A \cup  B = B \cup  A\)</span></div></li>
-<li id="li-282"><div class="para" id="p-347"><span class="process-math">\(\displaystyle A-B = B-A\)</span></div></li>
-<li id="li-283"><div class="para" id="p-348"><span class="process-math">\(\displaystyle A \oplus  B = B \oplus  A\)</span></div></li>
+<li id="li-288"><div class="para" id="p-357"><span class="process-math">\(\displaystyle A = B\)</span></div></li>
+<li id="li-289"><div class="para" id="p-358"><span class="process-math">\(\displaystyle B = C\)</span></div></li>
+<li id="li-290"><div class="para" id="p-359"><span class="process-math">\(\displaystyle B = D\)</span></div></li>
+<li id="li-291"><div class="para" id="p-360"><span class="process-math">\(\displaystyle E=D\)</span></div></li>
+<li id="li-292"><div class="para" id="p-361"><span class="process-math">\(\displaystyle A\cap B = B\cap A\)</span></div></li>
+<li id="li-293"><div class="para" id="p-362"><span class="process-math">\(\displaystyle A \cup  B = B \cup  A\)</span></div></li>
+<li id="li-294"><div class="para" id="p-363"><span class="process-math">\(\displaystyle A-B = B-A\)</span></div></li>
+<li id="li-295"><div class="para" id="p-364"><span class="process-math">\(\displaystyle A \oplus  B = B \oplus  A\)</span></div></li>
 </ol>
-</div></article><article class="exercise exercise-like" id="exercise-10"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para logical" id="p-349">
+</div></article><article class="exercise exercise-like" id="exercise-13"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para logical" id="p-365">
 <div class="para">Let <span class="process-math">\(U= \{1, 2, 3, . . . , 9\}\text{.}\)</span> Give examples of sets <span class="process-math">\(A\text{,}\)</span> <span class="process-math">\(B\text{,}\)</span> and <span class="process-math">\(C\)</span> for which:</div>
 <ol class="lower-alpha cols2">
-<li id="li-284"><div class="para" id="p-350"><span class="process-math">\(\displaystyle A\cap (B\cap C)=(A\cap B)\cap C\)</span></div></li>
-<li id="li-285"><div class="para" id="p-351"><span class="process-math">\(\displaystyle A\cap (B\cup C)=(A\cap B)\cup (A\cap C)\)</span></div></li>
-<li id="li-286"><div class="para" id="p-352"><span class="process-math">\(\displaystyle (A \cup  B)^c= A^c\cap B^c\)</span></div></li>
-<li id="li-287"><div class="para" id="p-353"><span class="process-math">\(\displaystyle A \cup  A^c = U\)</span></div></li>
-<li id="li-288"><div class="para" id="p-354"><span class="process-math">\(\displaystyle A \subseteq A\cup B\)</span></div></li>
-<li id="li-289"><div class="para" id="p-355"><span class="process-math">\(\displaystyle A\cap B \subseteq A\)</span></div></li>
+<li id="li-296"><div class="para" id="p-366"><span class="process-math">\(\displaystyle A\cap (B\cap C)=(A\cap B)\cap C\)</span></div></li>
+<li id="li-297"><div class="para" id="p-367"><span class="process-math">\(\displaystyle A\cap (B\cup C)=(A\cap B)\cup (A\cap C)\)</span></div></li>
+<li id="li-298"><div class="para" id="p-368"><span class="process-math">\(\displaystyle (A \cup  B)^c= A^c\cap B^c\)</span></div></li>
+<li id="li-299"><div class="para" id="p-369"><span class="process-math">\(\displaystyle A \cup  A^c = U\)</span></div></li>
+<li id="li-300"><div class="para" id="p-370"><span class="process-math">\(\displaystyle A \subseteq A\cup B\)</span></div></li>
+<li id="li-301"><div class="para" id="p-371"><span class="process-math">\(\displaystyle A\cap B \subseteq A\)</span></div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-5" id="answer-5"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-5"><div class="answer solution-like"><div class="para" id="p-356">These are all true for any sets <span class="process-math">\(A\text{,}\)</span> <span class="process-math">\(B\text{,}\)</span> and <span class="process-math">\(C\text{.}\)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-7" id="answer-7"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-7"><div class="answer solution-like"><div class="para" id="p-372">These are all true for any sets <span class="process-math">\(A\text{,}\)</span> <span class="process-math">\(B\text{,}\)</span> and <span class="process-math">\(C\text{.}\)</span>
 </div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-11"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para logical" id="p-357">
+</div></article><article class="exercise exercise-like" id="exercise-14"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para logical" id="p-373">
 <div class="para">Let <span class="process-math">\(U= \{1, 2, 3, . . . , 9\}\text{.}\)</span> Give examples to illustrate the following facts:</div>
 <ol class="lower-alpha">
-<li id="li-290"><div class="para" id="p-358">If <span class="process-math">\(A \subseteq  B\)</span> and <span class="process-math">\(B \subseteq C\text{,}\)</span> then <span class="process-math">\(A\subseteq C\text{.}\)</span>
+<li id="li-302"><div class="para" id="p-374">If <span class="process-math">\(A \subseteq  B\)</span> and <span class="process-math">\(B \subseteq C\text{,}\)</span> then <span class="process-math">\(A\subseteq C\text{.}\)</span>
 </div></li>
-<li id="li-291"><div class="para" id="p-359">There are sets <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> such that <span class="process-math">\(A - B \neq  B - A\)</span>
+<li id="li-303"><div class="para" id="p-375">There are sets <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> such that <span class="process-math">\(A - B \neq  B - A\)</span>
 </div></li>
-<li id="li-292"><div class="para" id="p-360">If <span class="process-math">\(U = A\cup  B\)</span> and <span class="process-math">\(A \cap  B = \emptyset\text{,}\)</span> it always follows that <span class="process-math">\(A = U - B\text{.}\)</span>
+<li id="li-304"><div class="para" id="p-376">If <span class="process-math">\(U = A\cup  B\)</span> and <span class="process-math">\(A \cap  B = \emptyset\text{,}\)</span> it always follows that <span class="process-math">\(A = U - B\text{.}\)</span>
 </div></li>
 </ol>
-</div></article><article class="exercise exercise-like" id="exercise-12"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
-<div class="para logical" id="p-361">
+</div></article><article class="exercise exercise-like" id="exercise-15"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para logical" id="p-377">
 <div class="para">What can you say about <span class="process-math">\(A\)</span> if <span class="process-math">\(U = \{1, 2, 3, 4, 5\}\text{,}\)</span> <span class="process-math">\(B = \{2, 3\}\text{,}\)</span> and (separately)</div>
 <ol class="lower-alpha">
-<li id="li-293"><div class="para" id="p-362"><span class="process-math">\(\displaystyle A \cup B = \{1, 2, 3,4\}\)</span></div></li>
-<li id="li-294"><div class="para" id="p-363"><span class="process-math">\(\displaystyle A \cap  B = \{2\}\)</span></div></li>
-<li id="li-295"><div class="para" id="p-364"><span class="process-math">\(\displaystyle A \oplus  B = \{3, 4, 5\}\)</span></div></li>
+<li id="li-305"><div class="para" id="p-378"><span class="process-math">\(\displaystyle A \cup B = \{1, 2, 3,4\}\)</span></div></li>
+<li id="li-306"><div class="para" id="p-379"><span class="process-math">\(\displaystyle A \cap  B = \{2\}\)</span></div></li>
+<li id="li-307"><div class="para" id="p-380"><span class="process-math">\(\displaystyle A \oplus  B = \{3, 4, 5\}\)</span></div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-6" id="answer-6"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-6"><div class="answer solution-like"><div class="para logical" id="p-365"><ol class="lower-alpha">
-<li id="li-296"><div class="para" id="p-366"><span class="process-math">\(\displaystyle \{1, 4\} \subseteq  A \subseteq  \{1, 2, 3, 4\}\)</span></div></li>
-<li id="li-297"><div class="para" id="p-367"><span class="process-math">\(\displaystyle \{2\} \subseteq  A \subseteq  \{1, 2, 4, 5\}\)</span></div></li>
-<li id="li-298"><div class="para" id="p-368"><span class="process-math">\(\displaystyle A = \{2, 4, 5\}\)</span></div></li>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-8" id="answer-8"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-8"><div class="answer solution-like"><div class="para logical" id="p-381"><ol class="lower-alpha">
+<li id="li-308"><div class="para" id="p-382"><span class="process-math">\(\displaystyle \{1, 4\} \subseteq  A \subseteq  \{1, 2, 3, 4\}\)</span></div></li>
+<li id="li-309"><div class="para" id="p-383"><span class="process-math">\(\displaystyle \{2\} \subseteq  A \subseteq  \{1, 2, 4, 5\}\)</span></div></li>
+<li id="li-310"><div class="para" id="p-384"><span class="process-math">\(\displaystyle A = \{2, 4, 5\}\)</span></div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-13"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
-<div class="para" id="p-369">Suppose that <span class="process-math">\(U\)</span> is an infinite universal set, and <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are infinite subsets of <span class="process-math">\(U\text{.}\)</span> Answer the following questions with a brief explanation.</div> <div class="para logical" id="p-370"><ol class="lower-alpha">
-<li id="li-299"><div class="para" id="p-371">Must <span class="process-math">\(A^c\)</span> be finite?</div></li>
-<li id="li-300"><div class="para" id="p-372">Must <span class="process-math">\(A\cup B\)</span> be infinite?</div></li>
-<li id="li-301"><div class="para" id="p-373">Must <span class="process-math">\(A\cap B\)</span> be infinite?</div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-14"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
-<div class="para" id="p-374">Given that <span class="process-math">\(U\)</span> = all students at a university, <span class="process-math">\(D\)</span> = day students, <span class="process-math">\(M\)</span> = mathematics majors, and <span class="process-math">\(G\)</span> = graduate students. Draw Venn diagrams illustrating this situation and shade in the following sets:</div> <div class="para logical" id="p-375"><ol class="lower-alpha cols2">
-<li id="li-302"><div class="para" id="p-376">evening students</div></li>
-<li id="li-303"><div class="para" id="p-377">undergraduate mathematics majors</div></li>
-<li id="li-304"><div class="para" id="p-378">non-math graduate students</div></li>
-<li id="li-305"><div class="para" id="p-379">non-math undergraduate students</div></li>
+</div></article><article class="exercise exercise-like" id="exercise-16"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div class="para" id="p-385">Suppose that <span class="process-math">\(U\)</span> is an infinite universal set, and <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are infinite subsets of <span class="process-math">\(U\text{.}\)</span> Answer the following questions with a brief explanation.</div> <div class="para logical" id="p-386"><ol class="lower-alpha">
+<li id="li-311"><div class="para" id="p-387">Must <span class="process-math">\(A^c\)</span> be finite?</div></li>
+<li id="li-312"><div class="para" id="p-388">Must <span class="process-math">\(A\cup B\)</span> be infinite?</div></li>
+<li id="li-313"><div class="para" id="p-389">Must <span class="process-math">\(A\cap B\)</span> be infinite?</div></li>
+</ol></div></article><article class="exercise exercise-like" id="exercise-17"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="para" id="p-390">Given that <span class="process-math">\(U\)</span> = all students at a university, <span class="process-math">\(D\)</span> = day students, <span class="process-math">\(M\)</span> = mathematics majors, and <span class="process-math">\(G\)</span> = graduate students. Draw Venn diagrams illustrating this situation and shade in the following sets:</div> <div class="para logical" id="p-391"><ol class="lower-alpha cols2">
+<li id="li-314"><div class="para" id="p-392">evening students</div></li>
+<li id="li-315"><div class="para" id="p-393">undergraduate mathematics majors</div></li>
+<li id="li-316"><div class="para" id="p-394">non-math graduate students</div></li>
+<li id="li-317"><div class="para" id="p-395">non-math undergraduate students</div></li>
 </ol></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original has-image" data-refid="hk-answer-7" id="answer-7"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-7"><div class="answer solution-like"><figure class="figure figure-like" id="fig-sol-1-2-7"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig-sol-1-2-7.png" class="contained" alt="Solution to #7 of section 1.2"></div>
+<a href="" data-knowl="" class="id-ref answer-knowl original has-image" data-refid="hk-answer-9" id="answer-9"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-9"><div class="answer solution-like"><figure class="figure figure-like" id="fig-sol-1-2-7"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig-sol-1-2-7.png" class="contained" alt="Solution to #7 of section 1.2"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">1.2.18<span class="period">.</span></span><span class="space"> </span></figcaption></figure></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-15"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
-<div class="para logical" id="p-380">
+</div></article><article class="exercise exercise-like" id="exercise-18"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div class="para logical" id="p-396">
 <div class="para">Let the sets <span class="process-math">\(D\text{,}\)</span> <span class="process-math">\(M\text{,}\)</span> <span class="process-math">\(G\text{,}\)</span> and <span class="process-math">\(U\)</span> be as in exercise 7.  Let <span class="process-math">\(\lvert U \rvert  = 16,000\text{,}\)</span> <span class="process-math">\(\lvert D \rvert = 9,000\text{,}\)</span> <span class="process-math">\(|M|=
 300\text{,}\)</span> and <span class="process-math">\(\lvert G \rvert = 1,000\text{.}\)</span> Also assume that the number of day students who are mathematics majors is 250, 50 of whom are graduate students, that there are 95 graduate mathematics majors, and that the total number of day graduate students is 700. Determine the number of students who are:</div>
 <ol class="lower-alpha cols2">
-<li id="li-306"><div class="para" id="p-381">evening students</div></li>
-<li id="li-307"><div class="para" id="p-382">nonmathematics majors</div></li>
-<li id="li-308"><div class="para" id="p-383">undergraduates (day or evening)</div></li>
-<li id="li-309"><div class="para" id="p-384">day graduate nonmathematics majors</div></li>
-<li id="li-310"><div class="para" id="p-385">evening graduate students</div></li>
-<li id="li-311"><div class="para" id="p-386">evening graduate mathematics majors</div></li>
-<li id="li-312"><div class="para" id="p-387">evening undergraduate nonmathematics majors</div></li>
+<li id="li-318"><div class="para" id="p-397">evening students</div></li>
+<li id="li-319"><div class="para" id="p-398">nonmathematics majors</div></li>
+<li id="li-320"><div class="para" id="p-399">undergraduates (day or evening)</div></li>
+<li id="li-321"><div class="para" id="p-400">day graduate nonmathematics majors</div></li>
+<li id="li-322"><div class="para" id="p-401">evening graduate students</div></li>
+<li id="li-323"><div class="para" id="p-402">evening graduate mathematics majors</div></li>
+<li id="li-324"><div class="para" id="p-403">evening undergraduate nonmathematics majors</div></li>
 </ol>
 </div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>

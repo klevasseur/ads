@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads The Invariant Relation Theorem</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,32 +58,47 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
 </script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
 <script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
@@ -105,59 +138,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -166,7 +156,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -321,7 +311,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1133,7 +1126,7 @@ eBookConfig.runestone_version = '7.0.7';
 <section class="subsection" id="subsection-196"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">A.2.1</span> <span class="title">Two Exponentiation Algorithms</span>
 </h3>
-<div class="para" id="p-6427">Consider the following algorithm implemented in Sage to compute <span class="process-math">\(a^m mod \, n\text{,}\)</span> given an arbitrary integer <span class="process-math">\(a\text{,}\)</span> non-negative exponent <span class="process-math">\(m\text{,}\)</span> and a modulus <span class="process-math">\(n\text{,}\)</span> <span class="process-math">\(n \ge 0\text{.}\)</span>  The default sample evaluation computes <span class="process-math">\(2^5\, mod\,7 = 32\,mod\,7 = 4\text{,}\)</span> but you can edit the final line for other inputs.</div>
+<div class="para" id="p-6443">Consider the following algorithm implemented in Sage to compute <span class="process-math">\(a^m mod \, n\text{,}\)</span> given an arbitrary integer <span class="process-math">\(a\text{,}\)</span> non-negative exponent <span class="process-math">\(m\text{,}\)</span> and a modulus <span class="process-math">\(n\text{,}\)</span> <span class="process-math">\(n \ge 0\text{.}\)</span>  The default sample evaluation computes <span class="process-math">\(2^5\, mod\,7 = 32\,mod\,7 = 4\text{,}\)</span> but you can edit the final line for other inputs.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-66"><script type="text/x-sage">def slow_exp(a,m,n):
     b=1
     k=m
@@ -1143,7 +1136,7 @@ eBookConfig.runestone_version = '7.0.7';
     return b
 slow_exp(2,5,7)
 </script></pre>
-<div class="para" id="p-6428">It should be fairly clear that this algorithm will successfully compute <span class="process-math">\(a^m (mod\, n)\)</span> since it mimics the basic definition of exponentiation.  However, this algorithm is highly inefficient.  The algorithm that is most commonly used for the task of exponentiation is the following one, also implemented in Sage.</div>
+<div class="para" id="p-6444">It should be fairly clear that this algorithm will successfully compute <span class="process-math">\(a^m (mod\, n)\)</span> since it mimics the basic definition of exponentiation.  However, this algorithm is highly inefficient.  The algorithm that is most commonly used for the task of exponentiation is the following one, also implemented in Sage.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-67"><script type="text/x-sage">def fast_exp(a,m,n):
     t=a
     b=1
@@ -1155,15 +1148,15 @@ slow_exp(2,5,7)
     return b    
 fast_exp(2,5,7)
 </script></pre>
-<div class="para" id="p-6429">The only difficulty with the "fast algorithm" is that it might not be so obvious that it always works.  When implemented, it can be verified by example, but an even more rigorous verification can be done using the Invariant Relation Theorem. Before stating the theorem, we define some terminology.</div></section><section class="subsection" id="subsection-197"><h3 class="heading hide-type">
+<div class="para" id="p-6445">The only difficulty with the "fast algorithm" is that it might not be so obvious that it always works.  When implemented, it can be verified by example, but an even more rigorous verification can be done using the Invariant Relation Theorem. Before stating the theorem, we define some terminology.</div></section><section class="subsection" id="subsection-197"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">A.2.2</span> <span class="title">Proving the correctness of the fast algorithm</span>
 </h3>
 <article class="definition definition-like" id="def-pre-post-values"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">A.2.1</span><span class="period">.</span><span class="space"> </span><span class="title">Pre and Post Values.</span>
 </h4>
-<div class="para" id="p-6430">Given a variable <span class="process-math">\(x\text{,}\)</span> the pre value of <span class="process-math">\(x\text{,}\)</span> denoted <span class="process-math">\(\grave x\text{,}\)</span> is the value before an iteration of a loop.  The post value, denoted <span class="process-math">\(\acute x\text{,}\)</span> is the value after the iteration.</div></article><article class="example example-like" id="ex-pre-post-fast"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-pre-post-fast"><h4 class="heading">
+<div class="para" id="p-6446">Given a variable <span class="process-math">\(x\text{,}\)</span> the pre value of <span class="process-math">\(x\text{,}\)</span> denoted <span class="process-math">\(\grave x\text{,}\)</span> is the value before an iteration of a loop.  The post value, denoted <span class="process-math">\(\acute x\text{,}\)</span> is the value after the iteration.</div></article><article class="example example-like" id="ex-pre-post-fast"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-pre-post-fast"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">A.2.2</span><span class="period">.</span><span class="space"> </span><span class="title">Pre and post values in the fast exponentiation algorithm.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-pre-post-fast"><article class="example example-like"><div class="para logical" id="p-6431">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-pre-post-fast"><article class="example example-like"><div class="para logical" id="p-6447">
 <div class="para">In the fast exponentiation algorithm, the relationships between the pre and post values of the three variables are as follows.</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1184,18 +1177,18 @@ fast_exp(2,5,7)
 <article class="definition definition-like" id="def-invariant-relation"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">A.2.3</span><span class="period">.</span><span class="space"> </span><span class="title">Invariant Relation.</span>
 </h4>
-<div class="para" id="p-6432">Given an algorithm’s inputs and a set of variables that are used in the algorithm, an <em class="emphasis">invariant relation</em> is a set of one or more equations that are true prior to entering a loop and remain true in every iteration of the loop.</div></article><article class="example example-like" id="ex-invariant-fast-expo"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-invariant-fast-expo"><h4 class="heading">
+<div class="para" id="p-6448">Given an algorithm’s inputs and a set of variables that are used in the algorithm, an <em class="emphasis">invariant relation</em> is a set of one or more equations that are true prior to entering a loop and remain true in every iteration of the loop.</div></article><article class="example example-like" id="ex-invariant-fast-expo"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-invariant-fast-expo"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">A.2.4</span><span class="period">.</span><span class="space"> </span><span class="title">Invariant Relation for Fast Exponentiation.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-invariant-fast-expo"><article class="example example-like"><div class="para" id="p-6433">We claim that the invariant relation in the fast algorithm is <span class="process-math">\(b t^k = a^m (mod\,n)\text{.}\)</span>  We will prove that this is indeed true below.</div></article></div>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-invariant-fast-expo"><article class="example example-like"><div class="para" id="p-6449">We claim that the invariant relation in the fast algorithm is <span class="process-math">\(b t^k = a^m (mod\,n)\text{.}\)</span>  We will prove that this is indeed true below.</div></article></div>
 <article class="theorem theorem-like" id="th-invariant-relation-theorem"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">A.2.5</span><span class="period">.</span><span class="space"> </span><span class="title">The Invariant Relation Theorem.</span>
 </h4>
-<div class="para" id="p-6434">Given a loop within an algorithm, if <span class="process-math">\(R\)</span> is a relation with the properties</div> <div class="para logical" id="p-6435"><ol class="lower-alpha">
-<li id="li-2843"><div class="para" id="p-6436">R is true before entering the loop</div></li>
-<li id="li-2844"><div class="para" id="p-6437">the truth of R is maintained in any iteration of the loop</div></li>
-<li id="li-2845"><div class="para" id="p-6438">the condition for exiting the loop will always be reached in a finite number of iterations.</div></li>
-</ol></div> <div class="para" id="p-6439">then R will be true upon exiting the loop.</div></article><article class="hiddenproof" id="proof-79"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-79"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-79"><article class="hiddenproof"><div class="para" id="p-6440">The condition that the loop ends in a finite number of iterations lets us apply mathematical induction with the induction variable being the number of iterations.  We leave the details to the reader.</div></article></div>
-<div class="para logical" id="p-6441">
+<div class="para" id="p-6450">Given a loop within an algorithm, if <span class="process-math">\(R\)</span> is a relation with the properties</div> <div class="para logical" id="p-6451"><ol class="lower-alpha">
+<li id="li-2855"><div class="para" id="p-6452">R is true before entering the loop</div></li>
+<li id="li-2856"><div class="para" id="p-6453">the truth of R is maintained in any iteration of the loop</div></li>
+<li id="li-2857"><div class="para" id="p-6454">the condition for exiting the loop will always be reached in a finite number of iterations.</div></li>
+</ol></div> <div class="para" id="p-6455">then R will be true upon exiting the loop.</div></article><article class="hiddenproof" id="proof-79"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-79"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-79"><article class="hiddenproof"><div class="para" id="p-6456">The condition that the loop ends in a finite number of iterations lets us apply mathematical induction with the induction variable being the number of iterations.  We leave the details to the reader.</div></article></div>
+<div class="para logical" id="p-6457">
 <div class="para">We can verify the correctness of the fast exponentiation algorithm using the Invariant Relation Theorem.  First we note that prior to entering the loop,  <span class="process-math">\(b t^k = 1 a^m = a^m (mod\,n)\text{.}\)</span>  Assuming the relation is true at the start of any iteration, that is <span class="process-math">\(\grave{b} \grave{t}^{\grave k} = a^m (mod\,n)\text{,}\)</span> then</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1217,9 +1210,9 @@ b = b t^0 = b t^k \equiv a^m(mod\,n)
 </div></section><section class="exercises" id="exercises-app-alg1"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">A.2.3</span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-729"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para" id="p-6442">How are the pre and post values in the slow exponentiation algorithm related? What is the invariant relation between the variables in the slow algorithm?</div></article><article class="exercise exercise-like" id="exercise-730"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para" id="p-6443">Verify the correctness of the following algorithm to compute the greatest common divisor of two integers that are not both zero.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-68"><script type="text/x-sage">def gcd(a,b):
+<article class="exercise exercise-like" id="exercise-732"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para" id="p-6458">How are the pre and post values in the slow exponentiation algorithm related? What is the invariant relation between the variables in the slow algorithm?</div></article><article class="exercise exercise-like" id="exercise-733"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para" id="p-6459">Verify the correctness of the following algorithm to compute the greatest common divisor of two integers that are not both zero.</div> <pre class="ptx-sagecell sagecell-sage" id="sage-68"><script type="text/x-sage">def gcd(a,b):
     r0=a
     r1=b
     while r1 !=0:
@@ -1230,11 +1223,11 @@ b = b t^0 = b t^k \equiv a^m(mod\,n)
 gcd(1001,154)  #test
 </script></pre>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-23" id="hint-23"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-23"><div class="hint solution-like"><div class="para" id="p-6444">The invariant of this algorithm is <span class="process-math">\(gcd(r0,r1)=gcd(a,b)\text{.}\)</span>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-23" id="hint-23"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-23"><div class="hint solution-like"><div class="para" id="p-6460">The invariant of this algorithm is <span class="process-math">\(gcd(r0,r1)=gcd(a,b)\text{.}\)</span>
 </div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-731"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para" id="p-6445">Verify the correctness of the <a href="" class="xref" data-knowl="./knowl/binary-conversion-algorithm.html" title="Algorithm 1.4.2: Binary Conversion Algorithm">Binary Conversion Algorithm</a> in Chapter 1.</div></article><article class="exercise exercise-like" id="exercise-732"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para" id="p-6446">A dragon has 100 heads. A knight can cut off 15, 17, 20, or 5 heads, respectively, with one blow of his sword. In each of these cases 24, 2, 14, or 17 new heads grow on its shoulders, respectively. If all heads are blown off, the dragon dies. Can the dragon ever die? (problem attributed to Biswaroop Roy)</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
+</div></article><article class="exercise exercise-like" id="exercise-734"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para" id="p-6461">Verify the correctness of the <a href="" class="xref" data-knowl="./knowl/binary-conversion-algorithm.html" title="Algorithm 1.4.2: Binary Conversion Algorithm">Binary Conversion Algorithm</a> in Chapter 1.</div></article><article class="exercise exercise-like" id="exercise-735"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para" id="p-6462">A dragon has 100 heads. A knight can cut off 15, 17, 20, or 5 heads, respectively, with one blow of his sword. In each of these cases 24, 2, 14, or 17 new heads grow on its shoulders, respectively. If all heads are blown off, the dragon dies. Can the dragon ever die? (problem attributed to Biswaroop Roy)</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>
 <div class="ptx-content-footer">
 <a class="previous-button button" href="app-alg1.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="app-pythonsage.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>

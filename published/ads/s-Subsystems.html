@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Subsystems</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,32 +58,47 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
 </script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
 <script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
@@ -105,59 +138,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -166,7 +156,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -321,7 +311,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1133,61 +1126,61 @@ eBookConfig.runestone_version = '7.0.7';
 <section class="subsection" id="subsection-150"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">11.5.1</span> <span class="title">Definition</span>
 </h3>
-<div class="para" id="p-4235">The subsystem is a fundamental concept of algebra at the universal level.</div>
+<div class="para" id="p-4251">The subsystem is a fundamental concept of algebra at the universal level.</div>
 <article class="definition definition-like" id="def-subsystem"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">11.5.1</span><span class="period">.</span><span class="space"> </span><span class="title">Subsystem.</span>
-</h4>  <div class="para" id="p-4236">If <span class="process-math">\(\left[V; *_1, \ldots ,*_n\right]\)</span> is an algebraic system of a certain kind and <span class="process-math">\(W\)</span> is a subset of <span class="process-math">\(V\text{,}\)</span> then <span class="process-math">\(W\)</span> is a subsystem of <span class="process-math">\(V\)</span> if <span class="process-math">\(\left[W; *_1, \ldots ,*_n\right]\)</span> is an algebraic system of the same kind as <span class="process-math">\(V\text{.}\)</span> The usual notation for “<span class="process-math">\(W\)</span> is a subsystem of <span class="process-math">\(V\)</span>” is <span class="process-math">\(W \leq V\text{.}\)</span>
-</div></article><div class="para" id="p-4237">Since the definition of a subsystem is at the universal level, we can cite examples of the concept of subsystems at both the axiomatic and concrete level.</div>
+</h4>  <div class="para" id="p-4252">If <span class="process-math">\(\left[V; *_1, \ldots ,*_n\right]\)</span> is an algebraic system of a certain kind and <span class="process-math">\(W\)</span> is a subset of <span class="process-math">\(V\text{,}\)</span> then <span class="process-math">\(W\)</span> is a subsystem of <span class="process-math">\(V\)</span> if <span class="process-math">\(\left[W; *_1, \ldots ,*_n\right]\)</span> is an algebraic system of the same kind as <span class="process-math">\(V\text{.}\)</span> The usual notation for “<span class="process-math">\(W\)</span> is a subsystem of <span class="process-math">\(V\)</span>” is <span class="process-math">\(W \leq V\text{.}\)</span>
+</div></article><div class="para" id="p-4253">Since the definition of a subsystem is at the universal level, we can cite examples of the concept of subsystems at both the axiomatic and concrete level.</div>
 <article class="example example-like" id="ex-subsystems"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-subsystems"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">11.5.2</span><span class="period">.</span><span class="space"> </span><span class="title">Examples of Subsystems.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-subsystems"><article class="example example-like"> <div class="para logical" id="p-4238"><ol class="lower-alpha">
-<li id="li-1940"><div class="para" id="p-4239">  (Axiomatic) If <span class="process-math">\([G; *]\)</span> is a group, and <span class="process-math">\(H\)</span> is a subset of <span class="process-math">\(G\text{,}\)</span> then <span class="process-math">\(H\)</span> is a subgroup of <span class="process-math">\(G\)</span> if <span class="process-math">\([H; *]\)</span> is a group.</div></li>
-<li id="li-1941"><div class="para" id="p-4240">(Concrete) <span class="process-math">\(U = \{-1,1\}\)</span> is a subgroup of <span class="process-math">\(\left[\mathbb{R}^*;\cdot \right]\text{.}\)</span> Take the time now to write out the multiplication table of <span class="process-math">\(U\)</span> and convince yourself that <span class="process-math">\([U;\cdot ]\)</span> is a group.</div></li>
-<li id="li-1942"><div class="para" id="p-4241">(Concrete) The even integers, <span class="process-math">\(2\mathbb{Z} = \{2k : k \textrm{ is} \textrm{ an} \textrm{ integer}\}\)</span> is a subgroup of <span class="process-math">\([\mathbb{Z}; +]\text{.}\)</span> Convince yourself of this fact.</div></li>
-<li id="li-1943"><div class="para" id="p-4242">(Concrete) The set of nonnegative integers is not a subgroup of <span class="process-math">\([\mathbb{Z}; +]\text{.}\)</span> All of the group axioms are true for this subset except one: no positive integer has a positive additive inverse. Therefore, the inverse property is not true. Note that every group axiom must be true for a subset to be a subgroup.</div></li>
-<li id="li-1944"><div class="para" id="p-4243">(Axiomatic) If <span class="process-math">\(M\)</span> is a monoid and <span class="process-math">\(P\)</span> is a subset of <span class="process-math">\(M\text{,}\)</span> then <span class="process-math">\(P\)</span> is a submonoid of <span class="process-math">\(M\)</span> if <span class="process-math">\(P\)</span> is a monoid.</div></li>
-<li id="li-1945"><div class="para" id="p-4244">(Concrete) If <span class="process-math">\(B^*\)</span> is the set of strings of 0’s and 1’s of length zero or more with the operation of concatenation, then two examples of submonoids of <span class="process-math">\(B^*\)</span> are: (i) the set of strings of even length, and (ii) the set of strings that contain no 0’s. The set of strings of length less than 50 is not a submonoid because it isn’t closed under concatenation. Why isn’t the set of strings of length 50 or more a submonoid of <span class="process-math">\(B^*\text{?}\)</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-subsystems"><article class="example example-like"> <div class="para logical" id="p-4254"><ol class="lower-alpha">
+<li id="li-1952"><div class="para" id="p-4255">  (Axiomatic) If <span class="process-math">\([G; *]\)</span> is a group, and <span class="process-math">\(H\)</span> is a subset of <span class="process-math">\(G\text{,}\)</span> then <span class="process-math">\(H\)</span> is a subgroup of <span class="process-math">\(G\)</span> if <span class="process-math">\([H; *]\)</span> is a group.</div></li>
+<li id="li-1953"><div class="para" id="p-4256">(Concrete) <span class="process-math">\(U = \{-1,1\}\)</span> is a subgroup of <span class="process-math">\(\left[\mathbb{R}^*;\cdot \right]\text{.}\)</span> Take the time now to write out the multiplication table of <span class="process-math">\(U\)</span> and convince yourself that <span class="process-math">\([U;\cdot ]\)</span> is a group.</div></li>
+<li id="li-1954"><div class="para" id="p-4257">(Concrete) The even integers, <span class="process-math">\(2\mathbb{Z} = \{2k : k \textrm{ is} \textrm{ an} \textrm{ integer}\}\)</span> is a subgroup of <span class="process-math">\([\mathbb{Z}; +]\text{.}\)</span> Convince yourself of this fact.</div></li>
+<li id="li-1955"><div class="para" id="p-4258">(Concrete) The set of nonnegative integers is not a subgroup of <span class="process-math">\([\mathbb{Z}; +]\text{.}\)</span> All of the group axioms are true for this subset except one: no positive integer has a positive additive inverse. Therefore, the inverse property is not true. Note that every group axiom must be true for a subset to be a subgroup.</div></li>
+<li id="li-1956"><div class="para" id="p-4259">(Axiomatic) If <span class="process-math">\(M\)</span> is a monoid and <span class="process-math">\(P\)</span> is a subset of <span class="process-math">\(M\text{,}\)</span> then <span class="process-math">\(P\)</span> is a submonoid of <span class="process-math">\(M\)</span> if <span class="process-math">\(P\)</span> is a monoid.</div></li>
+<li id="li-1957"><div class="para" id="p-4260">(Concrete) If <span class="process-math">\(B^*\)</span> is the set of strings of 0’s and 1’s of length zero or more with the operation of concatenation, then two examples of submonoids of <span class="process-math">\(B^*\)</span> are: (i) the set of strings of even length, and (ii) the set of strings that contain no 0’s. The set of strings of length less than 50 is not a submonoid because it isn’t closed under concatenation. Why isn’t the set of strings of length 50 or more a submonoid of <span class="process-math">\(B^*\text{?}\)</span>
 </div></li>
 </ol></div></article></div></section><section class="subsection" id="subsection-151"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">11.5.2</span> <span class="title">Subgroups</span>
 </h3>
-<div class="para" id="p-4245">For the remainder of this section, we will concentrate on the properties of subgroups. The first order of business is to establish a systematic way of determining whether a subset of a group is a subgroup.</div>
+<div class="para" id="p-4261">For the remainder of this section, we will concentrate on the properties of subgroups. The first order of business is to establish a systematic way of determining whether a subset of a group is a subgroup.</div>
 <article class="theorem theorem-like" id="th-subgroup-conditions"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">11.5.3</span><span class="period">.</span><span class="space"> </span><span class="title">Subgroup Conditions.</span>
 </h4>
-<div class="para logical" id="p-4246">
+<div class="para logical" id="p-4262">
 <div class="para">To determine whether H, a subset of group <span class="process-math">\([G;*]\text{,}\)</span> is a subgroup, it is sufficient to prove:</div>
 <ol class="lower-alpha">
-<li id="li-1946"><div class="para" id="p-4247">H is closed under <span class="process-math">\(*\text{;}\)</span> that is, <span class="process-math">\(a, b \in  H \Rightarrow a * b \in  H\text{;}\)</span>
+<li id="li-1958"><div class="para" id="p-4263">H is closed under <span class="process-math">\(*\text{;}\)</span> that is, <span class="process-math">\(a, b \in  H \Rightarrow a * b \in  H\text{;}\)</span>
 </div></li>
-<li id="li-1947"><div class="para" id="p-4248">H contains the identity element for <span class="process-math">\(*\text{;}\)</span> and</div></li>
-<li id="li-1948"><div class="para" id="p-4249">H contains the inverse of each of its elements; that is,  <span class="process-math">\(a\in  H \Rightarrow a^{-1}\in  H\text{.}\)</span>
+<li id="li-1959"><div class="para" id="p-4264">H contains the identity element for <span class="process-math">\(*\text{;}\)</span> and</div></li>
+<li id="li-1960"><div class="para" id="p-4265">H contains the inverse of each of its elements; that is,  <span class="process-math">\(a\in  H \Rightarrow a^{-1}\in  H\text{.}\)</span>
 </div></li>
 </ol>
-</div></article><article class="hiddenproof" id="proof-42"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-42"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-42"><article class="hiddenproof"><div class="para" id="p-4250">Our proof consists of verifying that if the three properties above are true, then all the axioms of a group are true for <span class="process-math">\([H ; *]\text{.}\)</span> By Condition (a), <span class="process-math">\(*\)</span> can be considered an operation on <span class="process-math">\(H\text{.}\)</span> The associative, identity, and inverse properties are the axioms that are needed. The identity and inverse properties are true by conditions (b) and (c), respectively, leaving only the associative property. Since, <span class="process-math">\([G; *]\)</span> is a group, <span class="process-math">\(a * (b * c) = (a * b) * c\)</span> for all <span class="process-math">\(a, b, c \in  G\text{.}\)</span> Certainly, if this equation is true for all choices of three elements from <span class="process-math">\(G\text{,}\)</span> it will be true for all choices of three elements from <span class="process-math">\(H\text{,}\)</span> since <span class="process-math">\(H\)</span> is a subset of <span class="process-math">\(G\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-42"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-42"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-42"><article class="hiddenproof"><div class="para" id="p-4266">Our proof consists of verifying that if the three properties above are true, then all the axioms of a group are true for <span class="process-math">\([H ; *]\text{.}\)</span> By Condition (a), <span class="process-math">\(*\)</span> can be considered an operation on <span class="process-math">\(H\text{.}\)</span> The associative, identity, and inverse properties are the axioms that are needed. The identity and inverse properties are true by conditions (b) and (c), respectively, leaving only the associative property. Since, <span class="process-math">\([G; *]\)</span> is a group, <span class="process-math">\(a * (b * c) = (a * b) * c\)</span> for all <span class="process-math">\(a, b, c \in  G\text{.}\)</span> Certainly, if this equation is true for all choices of three elements from <span class="process-math">\(G\text{,}\)</span> it will be true for all choices of three elements from <span class="process-math">\(H\text{,}\)</span> since <span class="process-math">\(H\)</span> is a subset of <span class="process-math">\(G\text{.}\)</span>
 </div></article></div>
-<div class="para" id="p-4251">For every group with at least two elements, there are at least two subgroups: they are the whole group and <span class="process-math">\(\{e\}\text{.}\)</span> Since these two are automatic, they are not considered very interesting and are called the improper subgroups of the group; <span class="process-math">\(\{e\}\)</span> is sometimes referred to as the trivial subgroup. All other subgroups, if there are any, are called proper subgroups.</div>
-<div class="para" id="p-4252">We can apply <a href="" class="xref" data-knowl="./knowl/th-subgroup-conditions.html" title="Theorem 11.5.3: Subgroup Conditions">Theorem 11.5.3</a> at both the concrete and axiomatic levels.</div>
+<div class="para" id="p-4267">For every group with at least two elements, there are at least two subgroups: they are the whole group and <span class="process-math">\(\{e\}\text{.}\)</span> Since these two are automatic, they are not considered very interesting and are called the improper subgroups of the group; <span class="process-math">\(\{e\}\)</span> is sometimes referred to as the trivial subgroup. All other subgroups, if there are any, are called proper subgroups.</div>
+<div class="para" id="p-4268">We can apply <a href="" class="xref" data-knowl="./knowl/th-subgroup-conditions.html" title="Theorem 11.5.3: Subgroup Conditions">Theorem 11.5.3</a> at both the concrete and axiomatic levels.</div>
 <article class="example example-like" id="ex-subgroup-proofs"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-subgroup-proofs"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">11.5.4</span><span class="period">.</span><span class="space"> </span><span class="title">Applying Conditions for a Subgroup.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-subgroup-proofs"><article class="example example-like"> <div class="para logical" id="p-4253"><ol class="lower-alpha">
-<li id="li-1949"><div class="para" id="p-4254">(Concrete) We can verify that <span class="process-math">\(2\mathbb{Z} \leq  \mathbb{Z}\text{,}\)</span> as stated in <a href="" class="xref" data-knowl="./knowl/ex-subsystems.html" title="Example 11.5.2: Examples of Subsystems">Example 11.5.2</a>. Whenever you want to discuss a subset, you must find some convenient way of describing its elements. An element of <span class="process-math">\(2\mathbb{Z}\)</span> can be described as 2 times an integer; that is, <span class="process-math">\(a \in  2\mathbb{Z}\)</span> is equivalent to <span class="process-math">\((\exists k)_{\mathbb{Z}}(a = 2k)\text{.}\)</span> Now we can verify that the three conditions of <a href="" class="xref" data-knowl="./knowl/th-subgroup-conditions.html" title="Theorem 11.5.3: Subgroup Conditions">Theorem 11.5.3</a> are true for 2<span class="process-math">\(\mathbb{Z}\text{.}\)</span> First, if <span class="process-math">\(a, b \in  2\mathbb{Z}\text{,}\)</span> then there exist <span class="process-math">\(j, k \in  \mathbb{Z}\)</span> such that <span class="process-math">\(a = 2j\)</span> and <span class="process-math">\(b = 2k\text{.}\)</span>   A common error is to write something like  <span class="process-math">\(a=2j\)</span>  and <span class="process-math">\(b=2j\text{.}\)</span>  This would mean that <span class="process-math">\(a=b\text{,}\)</span> which is not necessarily true.   That is why two different variables are needed to describe <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span>  Returning to our proof, we can add <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{:}\)</span> <span class="process-math">\(a + b = 2j + 2k = 2(j + k)\text{.}\)</span> Since <span class="process-math">\(j + k\)</span> is an integer, <span class="process-math">\(a + b\)</span> is an element of <span class="process-math">\(2\mathbb{Z}\text{.}\)</span>   Second, the identity, <span class="process-math">\(0\text{,}\)</span> belongs to 2<span class="process-math">\(\mathbb{Z}\)</span> (<span class="process-math">\(0 = 2(0)\)</span>).  Finally, if <span class="process-math">\(a \in  2\mathbb{Z}\)</span> and <span class="process-math">\(a = 2k, -a = -(2k) = 2(-k)\text{,}\)</span> and  <span class="process-math">\(-k\in \mathbb{Z}\text{,}\)</span>  therefore, <span class="process-math">\(-a \in  2\mathbb{Z}\text{.}\)</span> By <a href="" class="xref" data-knowl="./knowl/th-subgroup-conditions.html" title="Theorem 11.5.3: Subgroup Conditions">Theorem 11.5.3</a>, <span class="process-math">\(2\mathbb{Z} \leq  \mathbb{Z}\text{.}\)</span> How would this argument change if you were asked to prove that <span class="process-math">\(3\mathbb{Z} \leq  \mathbb{Z}\text{?}\)</span> or <span class="process-math">\(n \mathbb{Z} \leq  \mathbb{Z}, n \geq  2\text{?}\)</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-subgroup-proofs"><article class="example example-like"> <div class="para logical" id="p-4269"><ol class="lower-alpha">
+<li id="li-1961"><div class="para" id="p-4270">(Concrete) We can verify that <span class="process-math">\(2\mathbb{Z} \leq  \mathbb{Z}\text{,}\)</span> as stated in <a href="" class="xref" data-knowl="./knowl/ex-subsystems.html" title="Example 11.5.2: Examples of Subsystems">Example 11.5.2</a>. Whenever you want to discuss a subset, you must find some convenient way of describing its elements. An element of <span class="process-math">\(2\mathbb{Z}\)</span> can be described as 2 times an integer; that is, <span class="process-math">\(a \in  2\mathbb{Z}\)</span> is equivalent to <span class="process-math">\((\exists k)_{\mathbb{Z}}(a = 2k)\text{.}\)</span> Now we can verify that the three conditions of <a href="" class="xref" data-knowl="./knowl/th-subgroup-conditions.html" title="Theorem 11.5.3: Subgroup Conditions">Theorem 11.5.3</a> are true for 2<span class="process-math">\(\mathbb{Z}\text{.}\)</span> First, if <span class="process-math">\(a, b \in  2\mathbb{Z}\text{,}\)</span> then there exist <span class="process-math">\(j, k \in  \mathbb{Z}\)</span> such that <span class="process-math">\(a = 2j\)</span> and <span class="process-math">\(b = 2k\text{.}\)</span>   A common error is to write something like  <span class="process-math">\(a=2j\)</span>  and <span class="process-math">\(b=2j\text{.}\)</span>  This would mean that <span class="process-math">\(a=b\text{,}\)</span> which is not necessarily true.   That is why two different variables are needed to describe <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span>  Returning to our proof, we can add <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{:}\)</span> <span class="process-math">\(a + b = 2j + 2k = 2(j + k)\text{.}\)</span> Since <span class="process-math">\(j + k\)</span> is an integer, <span class="process-math">\(a + b\)</span> is an element of <span class="process-math">\(2\mathbb{Z}\text{.}\)</span>   Second, the identity, <span class="process-math">\(0\text{,}\)</span> belongs to 2<span class="process-math">\(\mathbb{Z}\)</span> (<span class="process-math">\(0 = 2(0)\)</span>).  Finally, if <span class="process-math">\(a \in  2\mathbb{Z}\)</span> and <span class="process-math">\(a = 2k, -a = -(2k) = 2(-k)\text{,}\)</span> and  <span class="process-math">\(-k\in \mathbb{Z}\text{,}\)</span>  therefore, <span class="process-math">\(-a \in  2\mathbb{Z}\text{.}\)</span> By <a href="" class="xref" data-knowl="./knowl/th-subgroup-conditions.html" title="Theorem 11.5.3: Subgroup Conditions">Theorem 11.5.3</a>, <span class="process-math">\(2\mathbb{Z} \leq  \mathbb{Z}\text{.}\)</span> How would this argument change if you were asked to prove that <span class="process-math">\(3\mathbb{Z} \leq  \mathbb{Z}\text{?}\)</span> or <span class="process-math">\(n \mathbb{Z} \leq  \mathbb{Z}, n \geq  2\text{?}\)</span>
 </div></li>
-<li id="li-1950"><div class="para" id="p-4255">(Concrete) We can prove that <span class="process-math">\(H = \{0, 3, 6, 9\}\)</span> is a subgroup of <span class="process-math">\(\mathbb{Z}_{12}\text{.}\)</span> First, for each ordered pair <span class="process-math">\((a, b) \in  H \times
+<li id="li-1962"><div class="para" id="p-4271">(Concrete) We can prove that <span class="process-math">\(H = \{0, 3, 6, 9\}\)</span> is a subgroup of <span class="process-math">\(\mathbb{Z}_{12}\text{.}\)</span> First, for each ordered pair <span class="process-math">\((a, b) \in  H \times
 H\text{,}\)</span> <span class="process-math">\(a +_{12} b\)</span> is in <span class="process-math">\(H\text{.}\)</span> This can be checked without too much trouble since <span class="process-math">\(\left| H \times H\right| = 16\text{.}\)</span> Thus we can conclude that <span class="process-math">\(H\)</span> is closed under <span class="process-math">\(+_{12}\text{.}\)</span> Second, <span class="process-math">\(0\in H\text{.}\)</span> Third, <span class="process-math">\(-0 = 0\text{,}\)</span> <span class="process-math">\(-3 = 9\text{,}\)</span> <span class="process-math">\(-6 = 6\text{,}\)</span> and <span class="process-math">\(-9 = 3\text{.}\)</span> Therefore, the inverse of each element of <span class="process-math">\(H\)</span> is in <span class="process-math">\(H\text{.}\)</span>
 </div></li>
-<li id="li-1951"><div class="para" id="p-4256">(Axiomatic) If <span class="process-math">\(H\)</span> and <span class="process-math">\(K\)</span> are both subgroups of a group <span class="process-math">\(G\text{,}\)</span> then <span class="process-math">\(H \cap  K\)</span> is a subgroup of <span class="process-math">\(G\text{.}\)</span> To justify this statement, we have no concrete information to work with, only the facts that <span class="process-math">\(H \leq  G\)</span> and <span class="process-math">\(K \leq G\text{.}\)</span> Our proof that <span class="process-math">\(H \cap  K \leq  G\)</span> reflects this and is an exercise in applying the definitions of intersection and subgroup, (i) If <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> are elements of <span class="process-math">\(H \cap K\text{,}\)</span> then <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> both belong to <span class="process-math">\(H\text{,}\)</span> and since <span class="process-math">\(H \leq  G\text{,}\)</span> <span class="process-math">\(a * b\)</span> must be an element of <span class="process-math">\(H\text{.}\)</span> Similarly, <span class="process-math">\(a * b \in  K\text{;}\)</span> therefore, <span class="process-math">\(a * b \in  H \cap  K\text{.}\)</span> (ii) The identity of <span class="process-math">\(G\)</span> must belong to both <span class="process-math">\(H\)</span> and <span class="process-math">\(K\text{;}\)</span> hence it belongs to <span class="process-math">\(H \cap  K\text{.}\)</span> (iii) If <span class="process-math">\(a \in H \cap K\text{,}\)</span> then <span class="process-math">\(a \in 
+<li id="li-1963"><div class="para" id="p-4272">(Axiomatic) If <span class="process-math">\(H\)</span> and <span class="process-math">\(K\)</span> are both subgroups of a group <span class="process-math">\(G\text{,}\)</span> then <span class="process-math">\(H \cap  K\)</span> is a subgroup of <span class="process-math">\(G\text{.}\)</span> To justify this statement, we have no concrete information to work with, only the facts that <span class="process-math">\(H \leq  G\)</span> and <span class="process-math">\(K \leq G\text{.}\)</span> Our proof that <span class="process-math">\(H \cap  K \leq  G\)</span> reflects this and is an exercise in applying the definitions of intersection and subgroup, (i) If <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> are elements of <span class="process-math">\(H \cap K\text{,}\)</span> then <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> both belong to <span class="process-math">\(H\text{,}\)</span> and since <span class="process-math">\(H \leq  G\text{,}\)</span> <span class="process-math">\(a * b\)</span> must be an element of <span class="process-math">\(H\text{.}\)</span> Similarly, <span class="process-math">\(a * b \in  K\text{;}\)</span> therefore, <span class="process-math">\(a * b \in  H \cap  K\text{.}\)</span> (ii) The identity of <span class="process-math">\(G\)</span> must belong to both <span class="process-math">\(H\)</span> and <span class="process-math">\(K\text{;}\)</span> hence it belongs to <span class="process-math">\(H \cap  K\text{.}\)</span> (iii) If <span class="process-math">\(a \in H \cap K\text{,}\)</span> then <span class="process-math">\(a \in 
 H\text{,}\)</span> and since <span class="process-math">\(H \leq  G\text{,}\)</span> <span class="process-math">\(a^{-1}\in  H\text{.}\)</span>  Similarly, <span class="process-math">\(a^{-1}\in K\text{.}\)</span> Hence, by the theorem,  <span class="process-math">\(H \cap  K \leq  G\text{.}\)</span> Now that this fact has been established, we can apply it to any pair of subgroups of any group. For example, since <span class="process-math">\(2\mathbb{Z}\)</span> and <span class="process-math">\(3\mathbb{Z}\)</span> are both subgroups of <span class="process-math">\([\mathbb{Z};+]\text{,}\)</span> <span class="process-math">\(2\mathbb{Z} \cap  3\mathbb{Z}\)</span> is also a subgroup of <span class="process-math">\(\mathbb{Z}\text{.}\)</span> Note that if <span class="process-math">\(a \in 2\mathbb{Z}
 \cap  3\mathbb{Z}\text{,}\)</span>  <span class="process-math">\(a\)</span> must have a factor of 3; that is, there exists <span class="process-math">\(k\in \mathbb{Z}\)</span> such that <span class="process-math">\(a = 3k\text{.}\)</span> In addition, <span class="process-math">\(a\)</span> must be even, therefore <span class="process-math">\(k\)</span> must be even. There exists <span class="process-math">\(j \in  \mathbb{Z}\)</span> such that <span class="process-math">\(k = 2j\text{,}\)</span> therefore <span class="process-math">\(a = 3(2j)= 6j\text{.}\)</span>  This shows that <span class="process-math">\(2\mathbb{Z}\cap  3\mathbb{Z}\subseteq  6\mathbb{Z}\text{.}\)</span> The opposite containment can easily be established; therefore, <span class="process-math">\(2\mathbb{Z} \cap  3\mathbb{Z}
 = 6\mathbb{Z}\text{.}\)</span>
 </div></li>
 </ol></div></article></div>
-<div class="para" id="p-4257">Given a finite group, we can apply <a href="" class="xref" data-knowl="./knowl/theorem-11-3-finite.html" title="Theorem 11.3.15">Theorem 11.3.15</a> to obtain a simpler condition for a subset to be a subgroup.</div>
+<div class="para" id="p-4273">Given a finite group, we can apply <a href="" class="xref" data-knowl="./knowl/theorem-11-3-finite.html" title="Theorem 11.3.15">Theorem 11.3.15</a> to obtain a simpler condition for a subset to be a subgroup.</div>
 <article class="theorem theorem-like" id="th-subgroup-of-finite-group"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">11.5.5</span><span class="period">.</span><span class="space"> </span><span class="title">Condition for a Subgroup of Finite Group.</span>
 </h4>
-<div class="para" id="p-4258">Given that <span class="process-math">\([G; * ]\)</span> is a finite group and <span class="process-math">\(H\)</span> is a nonempty subset of <span class="process-math">\(G\text{,}\)</span> if <span class="process-math">\(H\)</span> is closed under <span class="process-math">\(*\)</span> , then <span class="process-math">\(H\)</span> is a subgroup of <span class="process-math">\(G\text{.}\)</span>
-</div></article><article class="hiddenproof" id="proof-43"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-43"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-43"><article class="hiddenproof"><div class="para logical" id="p-4259">
+<div class="para" id="p-4274">Given that <span class="process-math">\([G; * ]\)</span> is a finite group and <span class="process-math">\(H\)</span> is a nonempty subset of <span class="process-math">\(G\text{,}\)</span> if <span class="process-math">\(H\)</span> is closed under <span class="process-math">\(*\)</span> , then <span class="process-math">\(H\)</span> is a subgroup of <span class="process-math">\(G\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-43"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-43"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-43"><article class="hiddenproof"><div class="para logical" id="p-4275">
 <div class="para">In this proof, we demonstrate that Conditions (b) and (c) of <a href="" class="xref" data-knowl="./knowl/th-subgroup-conditions.html" title="Theorem 11.5.3: Subgroup Conditions">Theorem 11.5.3</a> follow from the closure of <span class="process-math">\(H\)</span> under <span class="process-math">\(*\text{,}\)</span> which is condition (a) of the theorem.  First, select any element of <span class="process-math">\(H\text{;}\)</span> call it <span class="process-math">\(\beta\text{.}\)</span> The powers of <span class="process-math">\(\beta\)</span> : <span class="process-math">\(\beta ^1\text{,}\)</span> <span class="process-math">\(\beta ^2\text{,}\)</span> <span class="process-math">\(\beta^3,\ldots\)</span> are all in <span class="process-math">\(H\)</span> by the closure property. By <a href="" class="xref" data-knowl="./knowl/theorem-11-3-finite.html" title="Theorem 11.3.15">Theorem 11.3.15</a>, there exists <span class="process-math">\(m\text{,}\)</span> <span class="process-math">\(m\leq \left| G\right|\text{,}\)</span> such that <span class="process-math">\(\beta ^m = e\text{;}\)</span> hence <span class="process-math">\(e \in  H\text{.}\)</span> To prove that (c) is true, we let <span class="process-math">\(a\)</span> be any element of <span class="process-math">\(H\text{.}\)</span> If <span class="process-math">\(a = e\text{,}\)</span> then <span class="process-math">\(a^{-1}\)</span> is in <span class="process-math">\(H\)</span> since <span class="process-math">\(e^{-1} = e\text{.}\)</span> If <span class="process-math">\(a\neq e\text{,}\)</span> <span class="process-math">\(a^q=e\)</span> for some <span class="process-math">\(q\)</span> between 2 and <span class="process-math">\(\left| G\right|\)</span> and</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/th-subgroup-conditions.html ./knowl/theorem-11-3-finite.html">
 \begin{equation*}
@@ -1199,7 +1192,7 @@ e = a^q = a ^{q-1} * a
 </div></article></div></section><section class="subsection" id="sage-note-subgroup-finite"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">11.5.3</span> <span class="title">Sage Note - Applying the condition for a subgroup of a finite group</span>
 </h3>
-<div class="para" id="p-4260">To determine whether <span class="process-math">\(H_1= \{0, 5, 10\}\)</span> and <span class="process-math">\(H_2 = \{0, 4, 8, 12\}\)</span> are subgroups of <span class="process-math">\(\mathbb{Z}_{15}\text{,}\)</span> we need only write out the addition tables (modulo 15) for these sets.  This is easy to do with a bit of Sage code that we include below and then for any modulus and subset, we can generate the body of an addition table.   The code is set up for <span class="process-math">\(H_1\)</span> but can be easily adjusted for <span class="process-math">\(H_2\text{.}\)</span>
+<div class="para" id="p-4276">To determine whether <span class="process-math">\(H_1= \{0, 5, 10\}\)</span> and <span class="process-math">\(H_2 = \{0, 4, 8, 12\}\)</span> are subgroups of <span class="process-math">\(\mathbb{Z}_{15}\text{,}\)</span> we need only write out the addition tables (modulo 15) for these sets.  This is easy to do with a bit of Sage code that we include below and then for any modulus and subset, we can generate the body of an addition table.   The code is set up for <span class="process-math">\(H_1\)</span> but can be easily adjusted for <span class="process-math">\(H_2\text{.}\)</span>
 </div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-44"><script type="text/x-sage">def addition_table(n,H):
     for a in H:
@@ -1209,14 +1202,14 @@ e = a^q = a ^{q-1} * a
         print(line)
 addition_table(15,Set([0,5,10]))
 </script></pre>
-<div class="para" id="p-4261">Note that <span class="process-math">\(H_1\)</span> is a subgroup of <span class="process-math">\(\mathbb{Z}_{15}\text{.}\)</span> Since the interior of the addition table for <span class="process-math">\(H_2\)</span> contains elements that are outside of <span class="process-math">\(H_2\text{,}\)</span> <span class="process-math">\(H_2\)</span> is not a subgroup of <span class="process-math">\(\mathbb{Z}_{15}\text{.}\)</span>
+<div class="para" id="p-4277">Note that <span class="process-math">\(H_1\)</span> is a subgroup of <span class="process-math">\(\mathbb{Z}_{15}\text{.}\)</span> Since the interior of the addition table for <span class="process-math">\(H_2\)</span> contains elements that are outside of <span class="process-math">\(H_2\text{,}\)</span> <span class="process-math">\(H_2\)</span> is not a subgroup of <span class="process-math">\(\mathbb{Z}_{15}\text{.}\)</span>
 </div></section><section class="subsection" id="subsection-153"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">11.5.4</span> <span class="title">Cyclic Subgroups</span>
 </h3>
-<div class="para" id="p-4262">One kind of subgroup that merits special mention due to its simplicity is the cyclic subgroup.</div>
+<div class="para" id="p-4278">One kind of subgroup that merits special mention due to its simplicity is the cyclic subgroup.</div>
 <article class="definition definition-like" id="def-cyclic-subgroup"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">11.5.6</span><span class="period">.</span><span class="space"> </span><span class="title">Cyclic Subgroup.</span>
-</h4>  <div class="para logical" id="p-4263">
+</h4>  <div class="para logical" id="p-4279">
 <div class="para">If <span class="process-math">\(G\)</span> is a group and <span class="process-math">\(a \in  G\text{,}\)</span> the cyclic subgroup generated by <span class="process-math">\(a\text{,}\)</span> <span class="process-math">\(\langle a \rangle\text{,}\)</span> is the set of all powers of <span class="process-math">\(a\text{:}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1226,135 +1219,135 @@ addition_table(15,Set([0,5,10]))
 </div>
 <div class="para">We refer to <span class="process-math">\(a\)</span> as a generator of subgroup <span class="process-math">\(\langle a \rangle\text{.}\)</span>
 </div>
-</div> <div class="para" id="p-4264">A subgroup <span class="process-math">\(H\)</span> of a group <span class="process-math">\(G\)</span> is cyclic if there exists <span class="process-math">\(a \in  H\)</span> such that <span class="process-math">\(H = \langle a \rangle\text{.}\)</span>
+</div> <div class="para" id="p-4280">A subgroup <span class="process-math">\(H\)</span> of a group <span class="process-math">\(G\)</span> is cyclic if there exists <span class="process-math">\(a \in  H\)</span> such that <span class="process-math">\(H = \langle a \rangle\text{.}\)</span>
 </div></article><article class="definition definition-like" id="def-cyclic-group"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">11.5.7</span><span class="period">.</span><span class="space"> </span><span class="title">Cyclic Group.</span>
-</h4>  <div class="para" id="p-4265">A group <span class="process-math">\(G\)</span>  is cyclic if there exists <span class="process-math">\(\beta \in G\)</span> such that <span class="process-math">\(\langle \beta \rangle=G\text{.}\)</span>
+</h4>  <div class="para" id="p-4281">A group <span class="process-math">\(G\)</span>  is cyclic if there exists <span class="process-math">\(\beta \in G\)</span> such that <span class="process-math">\(\langle \beta \rangle=G\text{.}\)</span>
 </div></article><article class="note remark-like" id="note-20"><h4 class="heading">
 <span class="type">Note</span><span class="space"> </span><span class="codenumber">11.5.8</span><span class="period">.</span>
 </h4>
-<div class="para" id="p-4266">If the operation on <span class="process-math">\(G\)</span> is additive, then <span class="process-math">\(\langle a \rangle = \{(n)a : n \in  \mathbb{Z}\}\text{.}\)</span>
+<div class="para" id="p-4282">If the operation on <span class="process-math">\(G\)</span> is additive, then <span class="process-math">\(\langle a \rangle = \{(n)a : n \in  \mathbb{Z}\}\text{.}\)</span>
 </div></article><article class="definition definition-like" id="def-order-of-element"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">11.5.9</span><span class="period">.</span><span class="space"> </span><span class="title">Order of a Group Element.</span>
-</h4>  <div class="para" id="p-4267">The order of an element <span class="process-math">\(a\)</span> of group <span class="process-math">\(G\)</span> is the number of elements in the cyclic subgroup of <span class="process-math">\(G\)</span> generated by <span class="process-math">\(a\text{.}\)</span> The order of <span class="process-math">\(a\)</span> is denoted <span class="process-math">\(ord(a)\text{.}\)</span>
+</h4>  <div class="para" id="p-4283">The order of an element <span class="process-math">\(a\)</span> of group <span class="process-math">\(G\)</span> is the number of elements in the cyclic subgroup of <span class="process-math">\(G\)</span> generated by <span class="process-math">\(a\text{.}\)</span> The order of <span class="process-math">\(a\)</span> is denoted <span class="process-math">\(ord(a)\text{.}\)</span>
 </div></article><article class="example example-like" id="ex-11-5-4"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-11-5-4"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">11.5.10</span><span class="period">.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-11-5-4"><article class="example example-like"><div class="para logical" id="p-4268"><ol class="lower-alpha">
-<li id="li-1952"><div class="para" id="p-4269">In <span class="process-math">\([\mathbb{R}^* ; \cdot ]\text{,}\)</span>  <span class="process-math">\(\langle 2 \rangle = \left\{2^n : n \in  \mathbb{Z}\right\} = \left\{\ldots ,\frac{1}{16}, \frac{1}{8} ,\frac{1}{4}, \frac{1}{2},
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-11-5-4"><article class="example example-like"><div class="para logical" id="p-4284"><ol class="lower-alpha">
+<li id="li-1964"><div class="para" id="p-4285">In <span class="process-math">\([\mathbb{R}^* ; \cdot ]\text{,}\)</span>  <span class="process-math">\(\langle 2 \rangle = \left\{2^n : n \in  \mathbb{Z}\right\} = \left\{\ldots ,\frac{1}{16}, \frac{1}{8} ,\frac{1}{4}, \frac{1}{2},
 1, 2, 4, 8, 16,\ldots \right\}\text{.}\)</span>
 </div></li>
-<li id="li-1953"><div class="para" id="p-4270">In <span class="process-math">\(\mathbb{Z}_{15}\text{,}\)</span> <span class="process-math">\(\langle 6 \rangle = \{0, 3, 6, 9, 12\}\text{.}\)</span>  Here is why: If <span class="process-math">\(G\)</span> is finite, you need list only the positive powers (or multiples) of <span class="process-math">\(a\)</span> up to the first occurrence of the identity to obtain all of <span class="process-math">\(\langle a \rangle\text{.}\)</span> In <span class="process-math">\(\mathbb{Z}_{15}\)</span> , the multiples of 6 are 6, <span class="process-math">\((2)6 = 12\text{,}\)</span> <span class="process-math">\((3)6=3\text{,}\)</span> <span class="process-math">\((4)6=9\text{,}\)</span> and <span class="process-math">\((5)6 = 0\text{.}\)</span> Note that <span class="process-math">\(\{0, 3, 6, 9, 12\}\)</span> is also <span class="process-math">\(\langle 3 \rangle\text{,}\)</span><span class="process-math">\(\langle 9 \rangle\text{,}\)</span> and <span class="process-math">\(\langle 12 \rangle\text{.}\)</span> This shows that a cyclic subgroup can have different generators.</div></li>
+<li id="li-1965"><div class="para" id="p-4286">In <span class="process-math">\(\mathbb{Z}_{15}\text{,}\)</span> <span class="process-math">\(\langle 6 \rangle = \{0, 3, 6, 9, 12\}\text{.}\)</span>  Here is why: If <span class="process-math">\(G\)</span> is finite, you need list only the positive powers (or multiples) of <span class="process-math">\(a\)</span> up to the first occurrence of the identity to obtain all of <span class="process-math">\(\langle a \rangle\text{.}\)</span> In <span class="process-math">\(\mathbb{Z}_{15}\)</span> , the multiples of 6 are 6, <span class="process-math">\((2)6 = 12\text{,}\)</span> <span class="process-math">\((3)6=3\text{,}\)</span> <span class="process-math">\((4)6=9\text{,}\)</span> and <span class="process-math">\((5)6 = 0\text{.}\)</span> Note that <span class="process-math">\(\{0, 3, 6, 9, 12\}\)</span> is also <span class="process-math">\(\langle 3 \rangle\text{,}\)</span><span class="process-math">\(\langle 9 \rangle\text{,}\)</span> and <span class="process-math">\(\langle 12 \rangle\text{.}\)</span> This shows that a cyclic subgroup can have different generators.</div></li>
 </ol></div></article></div>
-<div class="para" id="p-4271">If you want to list the cyclic subgroups of a group, the following theorem can save you some time.</div>
+<div class="para" id="p-4287">If you want to list the cyclic subgroups of a group, the following theorem can save you some time.</div>
 <article class="theorem theorem-like" id="th-cyclic-pairs"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">11.5.11</span><span class="period">.</span>
 </h4>
-<div class="para" id="p-4272">If <span class="process-math">\(a\)</span> is an element of group <span class="process-math">\(G\text{,}\)</span> then <span class="process-math">\(\langle a \rangle = \langle a^{-1}\rangle\text{.}\)</span>
-</div></article><div class="para" id="p-4273">This is an easy way of seeing, for example, that <span class="process-math">\(\langle 9 \rangle\)</span> in <span class="process-math">\(\mathbb{Z}_{15}\)</span> equals <span class="process-math">\(\langle 6 \rangle\text{,}\)</span> since <span class="process-math">\(-6 = 9\text{.}\)</span>
+<div class="para" id="p-4288">If <span class="process-math">\(a\)</span> is an element of group <span class="process-math">\(G\text{,}\)</span> then <span class="process-math">\(\langle a \rangle = \langle a^{-1}\rangle\text{.}\)</span>
+</div></article><div class="para" id="p-4289">This is an easy way of seeing, for example, that <span class="process-math">\(\langle 9 \rangle\)</span> in <span class="process-math">\(\mathbb{Z}_{15}\)</span> equals <span class="process-math">\(\langle 6 \rangle\text{,}\)</span> since <span class="process-math">\(-6 = 9\text{.}\)</span>
 </div></section><section class="exercises" id="exercises-11-5"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">11.5.5</span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-480"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para logical" id="p-4274">
+<article class="exercise exercise-like" id="exercise-483"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para logical" id="p-4290">
 <div class="para">Which of the following subsets of the real numbers is a subgroup of <span class="process-math">\([\mathbb{R}; +]\text{?}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-1954"><div class="para" id="p-4275">the rational numbers</div></li>
-<li id="li-1955"><div class="para" id="p-4276">the positive real numbers</div></li>
-<li id="li-1956"><div class="para" id="p-4277"><span class="process-math">\(\displaystyle \{k/2 \mid k \textrm{ is} \textrm{ an} \textrm{ integer}\}\)</span></div></li>
-<li id="li-1957"><div class="para" id="p-4278"><span class="process-math">\(\displaystyle \{2^k  \mid k \textrm{ is an  integer}\}\)</span></div></li>
-<li id="li-1958"><div class="para" id="p-4279"><span class="process-math">\(\displaystyle \{x \mid -100 \leq x \leq  100\}\)</span></div></li>
+<li id="li-1966"><div class="para" id="p-4291">the rational numbers</div></li>
+<li id="li-1967"><div class="para" id="p-4292">the positive real numbers</div></li>
+<li id="li-1968"><div class="para" id="p-4293"><span class="process-math">\(\displaystyle \{k/2 \mid k \textrm{ is} \textrm{ an} \textrm{ integer}\}\)</span></div></li>
+<li id="li-1969"><div class="para" id="p-4294"><span class="process-math">\(\displaystyle \{2^k  \mid k \textrm{ is an  integer}\}\)</span></div></li>
+<li id="li-1970"><div class="para" id="p-4295"><span class="process-math">\(\displaystyle \{x \mid -100 \leq x \leq  100\}\)</span></div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-220" id="answer-220"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-220"><div class="answer solution-like"><div class="para" id="p-4280">Only  a and c are subgroups.</div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-481"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para logical" id="p-4281">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-222" id="answer-222"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-222"><div class="answer solution-like"><div class="para" id="p-4296">Only  a and c are subgroups.</div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-484"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para logical" id="p-4297">
 <div class="para">Describe in simpler terms the following subgroups of <span class="process-math">\(\mathbb{Z}\text{:}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-1959"><div class="para" id="p-4282"><span class="process-math">\(\displaystyle 5\mathbb{Z} \cap  4\mathbb{Z}\)</span></div></li>
-<li id="li-1960"><div class="para" id="p-4283">
+<li id="li-1971"><div class="para" id="p-4298"><span class="process-math">\(\displaystyle 5\mathbb{Z} \cap  4\mathbb{Z}\)</span></div></li>
+<li id="li-1972"><div class="para" id="p-4299">
 <span class="process-math">\(4\mathbb{Z} \cap  6\mathbb{Z}\)</span> (be careful)</div></li>
-<li id="li-1961"><div class="para" id="p-4284">the only finite subgroup of <span class="process-math">\(\mathbb{Z}\)</span>
+<li id="li-1973"><div class="para" id="p-4300">the only finite subgroup of <span class="process-math">\(\mathbb{Z}\)</span>
 </div></li>
 </ol>
-</div></article><article class="exercise exercise-like" id="exercise-482"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para" id="p-4285">Find at least two proper subgroups of <span class="process-math">\(R_3\)</span> , the set of <span class="process-math">\(3\times 3\)</span> rook matrices (see <a href="" class="xref" data-knowl="./knowl/ex-rook-matrices.html" title="Exercise 11.2.4.5">Exercise 11.2.4.5</a>).</div>
+</div></article><article class="exercise exercise-like" id="exercise-485"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para" id="p-4301">Find at least two proper subgroups of <span class="process-math">\(R_3\)</span> , the set of <span class="process-math">\(3\times 3\)</span> rook matrices (see <a href="" class="xref" data-knowl="./knowl/ex-rook-matrices.html" title="Exercise 11.2.4.5">Exercise 11.2.4.5</a>).</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-221" id="answer-221"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-221"><div class="answer solution-like"><div class="para" id="p-4286">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-223" id="answer-223"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-223"><div class="answer solution-like"><div class="para" id="p-4302">
 <span class="process-math">\(\left\{I,R_1,R_2\right\}\text{,}\)</span> <span class="process-math">\(\left\{I,F_1\right\}\text{,}\)</span> <span class="process-math">\(\left\{I,F_2\right\}\text{,}\)</span> and <span class="process-math">\(\left\{I,F_3\right\}\)</span> are all the proper subgroups of <span class="process-math">\(R_3\text{.}\)</span>
 </div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-483"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para logical" id="p-4287">
+</div></article><article class="exercise exercise-like" id="exercise-486"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para logical" id="p-4303">
 <div class="para">Let <span class="process-math">\(H\)</span> and <span class="process-math">\(K\)</span> be subgroups of <span class="process-math">\(G\)</span> with elements <span class="process-math">\(a, x, y \in G\)</span> located in the following Venn diagram.  Where should you place the following elements in <a href="" class="xref" data-knowl="./knowl/fig-venn-subgroups.html" title="Figure 11.5.12">Figure 11.5.12</a>?</div>
 <ol class="lower-alpha">
-<li id="li-1962"><div class="para" id="p-4288"><span class="process-math">\(\displaystyle e\)</span></div></li>
-<li id="li-1963"><div class="para" id="p-4289"><span class="process-math">\(\displaystyle a^{-1}\)</span></div></li>
-<li id="li-1964"><div class="para" id="p-4290"><span class="process-math">\(\displaystyle x * y\)</span></div></li>
+<li id="li-1974"><div class="para" id="p-4304"><span class="process-math">\(\displaystyle e\)</span></div></li>
+<li id="li-1975"><div class="para" id="p-4305"><span class="process-math">\(\displaystyle a^{-1}\)</span></div></li>
+<li id="li-1976"><div class="para" id="p-4306"><span class="process-math">\(\displaystyle x * y\)</span></div></li>
 </ol>
 </div> <figure class="figure figure-like" id="fig-venn-subgroups"><div class="image-box" style="width: 67%; margin-left: 16.5%; margin-right: 16.5%;"><img src="external/images/fig-venn-subgroups.png" class="contained" alt="Figure for exercise 4 of Section 11.5 consisting of a Venn diagram with element \(a\) and \(x\) 	in \(H-K\text{,}\) and \(y\) in \(K-H\text{.}\)"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.5.12<span class="period">.</span></span><span class="space"> </span>Figure for exercise 4</figcaption></figure></article><article class="exercise exercise-like" id="exercise-484"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
-<div class="para logical" id="p-4291"><ol class="lower-alpha">
-<li id="li-1965"><div class="para" id="p-4292">List the cyclic subgroups of <span class="process-math">\(\mathbb{Z}_6\)</span> and draw an ordering diagram for the relation “is a subset of” on these subgroups.</div></li>
-<li id="li-1966"><div class="para" id="p-4293">Do the same for <span class="process-math">\(\mathbb{Z}_{12}\text{.}\)</span>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.5.12<span class="period">.</span></span><span class="space"> </span>Figure for exercise 4</figcaption></figure></article><article class="exercise exercise-like" id="exercise-487"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para logical" id="p-4307"><ol class="lower-alpha">
+<li id="li-1977"><div class="para" id="p-4308">List the cyclic subgroups of <span class="process-math">\(\mathbb{Z}_6\)</span> and draw an ordering diagram for the relation “is a subset of” on these subgroups.</div></li>
+<li id="li-1978"><div class="para" id="p-4309">Do the same for <span class="process-math">\(\mathbb{Z}_{12}\text{.}\)</span>
 </div></li>
-<li id="li-1967"><div class="para" id="p-4294">Do the same for <span class="process-math">\(\mathbb{Z}_8\text{.}\)</span>
+<li id="li-1979"><div class="para" id="p-4310">Do the same for <span class="process-math">\(\mathbb{Z}_8\text{.}\)</span>
 </div></li>
-<li id="li-1968"><div class="para" id="p-4295">On the basis of your results in parts a, b, and c, what would you expect if you did the same with <span class="process-math">\(\mathbb{Z}_{24}\text{?}\)</span>
+<li id="li-1980"><div class="para" id="p-4311">On the basis of your results in parts a, b, and c, what would you expect if you did the same with <span class="process-math">\(\mathbb{Z}_{24}\text{?}\)</span>
 </div></li>
 </ol></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original has-image" data-refid="hk-answer-222" id="answer-222"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-222"><div class="answer solution-like">
-<div class="para logical" id="p-4296"><ol class="lower-alpha">
-<li id="li-1969"><div class="para" id="p-4297">
+<a href="" data-knowl="" class="id-ref answer-knowl original has-image" data-refid="hk-answer-224" id="answer-224"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-224"><div class="answer solution-like">
+<div class="para logical" id="p-4312"><ol class="lower-alpha">
+<li id="li-1981"><div class="para" id="p-4313">
 <span class="process-math">\(\langle 1\rangle  = \langle 5\rangle  = \mathbb{Z}_6\text{,}\)</span> <span class="process-math">\(\quad\)</span><span class="process-math">\(\langle 2\rangle = \langle 4\rangle  = \{2, 4, 0\}\text{,}\)</span> <span class="process-math">\(\langle 3\rangle = \{3, 0\}\text{,}\)</span> <span class="process-math">\(\langle 0\rangle  = \{0\}\)</span>
 </div></li>
-<li id="li-1970"><div class="para" id="p-4298">
+<li id="li-1982"><div class="para" id="p-4314">
 <span class="process-math">\(\langle 1\rangle  = \langle 5\rangle  = \langle 7\rangle  = \langle 11\rangle  =\mathbb{Z}_{12}\text{,}\)</span> <span class="process-math">\(\langle 2\rangle = \langle 10\rangle  = \{2, 4, 6, 8, 10, 0\}\text{,}\)</span> <span class="process-math">\(\langle 3\rangle = \langle 9\rangle  = \{3, 6, 9, 0\}\text{,}\)</span> <span class="process-math">\(\langle 4\rangle = \langle  8 \rangle  = \{ 4 , 8, 0\}\text{,}\)</span> <span class="process-math">\(\langle 6\rangle  = \{6, 0\}\text{,}\)</span> <span class="process-math">\(\langle 0\rangle  = \{0\}\)</span>
 </div></li>
-<li id="li-1971"><div class="para" id="p-4299">
+<li id="li-1983"><div class="para" id="p-4315">
 <span class="process-math">\(\langle 1\rangle  = \langle  3\rangle  = \langle  5 \rangle  = \langle 7\rangle  = \mathbb{Z}_8\text{,}\)</span> <span class="process-math">\(\langle 2\rangle  = \langle 6\rangle  = \{2, 4, 6, 0\}\text{,}\)</span> <span class="process-math">\(\langle 4\rangle  = \{4, 0\}\text{,}\)</span> <span class="process-math">\(\langle 0\rangle  = \{0\}\)</span>
 </div></li>
-<li id="li-1972"><div class="para" id="p-4300">Based on the ordering diagrams for parts a through c in <a href="" class="xref" data-knowl="./knowl/fig-sol-11-5-5.html" title="Figure 11.5.13">Figure 11.5.13</a>, we would expect to see an ordering diagram similar to the one for divides on <span class="process-math">\(\{1, 2, 3,
+<li id="li-1984"><div class="para" id="p-4316">Based on the ordering diagrams for parts a through c in <a href="" class="xref" data-knowl="./knowl/fig-sol-11-5-5.html" title="Figure 11.5.13">Figure 11.5.13</a>, we would expect to see an ordering diagram similar to the one for divides on <span class="process-math">\(\{1, 2, 3,
 4, 6, 8, 12, 24\}\)</span> (the divisors of 24) if we were to examine the subgroups of <span class="process-math">\(\mathbb{Z}_{24}\text{.}\)</span> This is indeed the case.</div></li>
 </ol></div> <figure class="figure figure-like" id="fig-sol-11-5-5"><div class="image-box" style="width: 75%; margin-left: 12.5%; margin-right: 12.5%;"><img src="external/images/fig-sol-11-5-5.png" class="contained" alt="Figure for exercise 5 of Section 11.5"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.5.13<span class="period">.</span></span><span class="space"> </span>Figure for exercise 5</figcaption></figure>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-485"><h4 class="heading">
+</div></article><article class="exercise exercise-like" id="exercise-488"><h4 class="heading">
 <span class="codenumber">6<span class="period">.</span></span><span class="space"> </span><span class="title">Subgroups generated by subsets of a group.</span>
 </h4>
-<div class="para logical" id="p-4301">
+<div class="para logical" id="p-4317">
 <div class="para">The concept of a cyclic subgroup is a special case of the concept that we will discuss here. Let <span class="process-math">\([G; * ]\)</span> be a group and <span class="process-math">\(S\)</span> a nonempty subset of <span class="process-math">\(G\text{.}\)</span> Define the set <span class="process-math">\(\langle S \rangle\)</span> recursively by:</div>
 <ul class="disc">
-<li id="li-1973"><div class="para" id="p-4302">If <span class="process-math">\(a\in S\text{,}\)</span> then <span class="process-math">\(a\in  \langle S \rangle\text{.}\)</span>
+<li id="li-1985"><div class="para" id="p-4318">If <span class="process-math">\(a\in S\text{,}\)</span> then <span class="process-math">\(a\in  \langle S \rangle\text{.}\)</span>
 </div></li>
-<li id="li-1974"><div class="para" id="p-4303">If <span class="process-math">\(a, b \in \langle S \rangle\text{,}\)</span> then <span class="process-math">\(a * b \in \langle S \rangle\text{,}\)</span> and</div></li>
-<li id="li-1975"><div class="para" id="p-4304">If <span class="process-math">\(a \in \langle S \rangle\text{,}\)</span> then <span class="process-math">\(a^{-1}\in \langle S \rangle\text{.}\)</span>
+<li id="li-1986"><div class="para" id="p-4319">If <span class="process-math">\(a, b \in \langle S \rangle\text{,}\)</span> then <span class="process-math">\(a * b \in \langle S \rangle\text{,}\)</span> and</div></li>
+<li id="li-1987"><div class="para" id="p-4320">If <span class="process-math">\(a \in \langle S \rangle\text{,}\)</span> then <span class="process-math">\(a^{-1}\in \langle S \rangle\text{.}\)</span>
 </div></li>
 </ul>
-</div> <div class="para logical" id="p-4305"><ol class="lower-alpha">
-<li id="li-1976"><div class="para" id="p-4306">By its definition, <span class="process-math">\(\langle S \rangle\)</span>  has all of the properties needed to be a subgroup of <span class="process-math">\(G\text{.}\)</span> The only thing that isn’t obvious is that the identity of <span class="process-math">\(G\)</span> is in <span class="process-math">\(\langle S \rangle\text{.}\)</span>  Prove that the identity of <span class="process-math">\(G\)</span> is in <span class="process-math">\(\langle S \rangle\text{.}\)</span>
+</div> <div class="para logical" id="p-4321"><ol class="lower-alpha">
+<li id="li-1988"><div class="para" id="p-4322">By its definition, <span class="process-math">\(\langle S \rangle\)</span>  has all of the properties needed to be a subgroup of <span class="process-math">\(G\text{.}\)</span> The only thing that isn’t obvious is that the identity of <span class="process-math">\(G\)</span> is in <span class="process-math">\(\langle S \rangle\text{.}\)</span>  Prove that the identity of <span class="process-math">\(G\)</span> is in <span class="process-math">\(\langle S \rangle\text{.}\)</span>
 </div></li>
-<li id="li-1977"><div class="para" id="p-4307">What is <span class="process-math">\(\langle\{9, 15\}\rangle\)</span> in<span class="process-math">\([\mathbb{Z}; +]\text{?}\)</span>
+<li id="li-1989"><div class="para" id="p-4323">What is <span class="process-math">\(\langle\{9, 15\}\rangle\)</span> in<span class="process-math">\([\mathbb{Z}; +]\text{?}\)</span>
 </div></li>
-<li id="li-1978"><div class="para" id="p-4308">Prove that if <span class="process-math">\(H \leq  G\)</span> and <span class="process-math">\(S \subseteq  H\text{,}\)</span> then <span class="process-math">\(\langle S \rangle\leq H\text{.}\)</span> This proves that <span class="process-math">\(\langle S \rangle\)</span> is contained in every subgroup of <span class="process-math">\(G\)</span> that contains <span class="process-math">\(S\text{;}\)</span> that is, <span class="process-math">\(\langle S \rangle =\underset{S\subseteq H, H\leq G}{\cap }H\text{.}\)</span>
+<li id="li-1990"><div class="para" id="p-4324">Prove that if <span class="process-math">\(H \leq  G\)</span> and <span class="process-math">\(S \subseteq  H\text{,}\)</span> then <span class="process-math">\(\langle S \rangle\leq H\text{.}\)</span> This proves that <span class="process-math">\(\langle S \rangle\)</span> is contained in every subgroup of <span class="process-math">\(G\)</span> that contains <span class="process-math">\(S\text{;}\)</span> that is, <span class="process-math">\(\langle S \rangle =\underset{S\subseteq H, H\leq G}{\cap }H\text{.}\)</span>
 </div></li>
-<li id="li-1979"><div class="para" id="p-4309">Describe <span class="process-math">\(\langle \{0.5, 3\}\rangle \)</span> in <span class="process-math">\(\left[ \mathbb{R}^+;\cdot \right]\)</span> and in <span class="process-math">\([\mathbb{R}; +]\text{.}\)</span>
+<li id="li-1991"><div class="para" id="p-4325">Describe <span class="process-math">\(\langle \{0.5, 3\}\rangle \)</span> in <span class="process-math">\(\left[ \mathbb{R}^+;\cdot \right]\)</span> and in <span class="process-math">\([\mathbb{R}; +]\text{.}\)</span>
 </div></li>
-<li id="li-1980"><div class="para" id="p-4310">If <span class="process-math">\(j, k \in  \mathbb{Z}\text{,}\)</span> <span class="process-math">\(\langle\{j,k\}\rangle\)</span> is a cyclic subgroup of <span class="process-math">\(\mathbb{Z}\text{.}\)</span> In terms of <span class="process-math">\(j\)</span> and <span class="process-math">\(k\text{,}\)</span> what is a generator of <span class="process-math">\(\langle \{j, k\}\rangle \text{?}\)</span>
+<li id="li-1992"><div class="para" id="p-4326">If <span class="process-math">\(j, k \in  \mathbb{Z}\text{,}\)</span> <span class="process-math">\(\langle\{j,k\}\rangle\)</span> is a cyclic subgroup of <span class="process-math">\(\mathbb{Z}\text{.}\)</span> In terms of <span class="process-math">\(j\)</span> and <span class="process-math">\(k\text{,}\)</span> what is a generator of <span class="process-math">\(\langle \{j, k\}\rangle \text{?}\)</span>
 </div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-486"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
-<div class="para" id="p-4311">Prove that if <span class="process-math">\(H,K \leq  G\text{,}\)</span> and <span class="process-math">\(H\cup K=G\text{,}\)</span> then <span class="process-math">\(H = G\)</span> or <span class="process-math">\(K = G\text{.}\)</span>
+</ol></div></article><article class="exercise exercise-like" id="exercise-489"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="para" id="p-4327">Prove that if <span class="process-math">\(H,K \leq  G\text{,}\)</span> and <span class="process-math">\(H\cup K=G\text{,}\)</span> then <span class="process-math">\(H = G\)</span> or <span class="process-math">\(K = G\text{.}\)</span>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-17" id="hint-17"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-17"><div class="hint solution-like"><div class="para" id="p-4312">Use an indirect argument.</div></div></div>
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-223" id="answer-223"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-223"><div class="answer solution-like">
-<div class="para" id="p-4313">Assume that <span class="process-math">\(H\)</span> and <span class="process-math">\(K\)</span> are subgroups of group <span class="process-math">\(G\text{,}\)</span> and that, as in <a href="" class="xref" data-knowl="./knowl/fig-venn-subgroups.html" title="Figure 11.5.12">Figure 11.5.12</a>, there are elements <span class="process-math">\(x \in  H - K\)</span> and <span class="process-math">\(y \in  K - H\text{.}\)</span> Consider the product <span class="process-math">\(x * y\text{.}\)</span> Where could it be placed in the Venn diagram? If we can prove that it must lie in the outer region, <span class="process-math">\(H^c \cap K^c=(H \cup K)^c\text{,}\)</span> then we have proven that <span class="process-math">\(H \cup  K\)</span> is not closed under <span class="process-math">\(*\)</span> and cannot be a subgroup of <span class="process-math">\(G\text{,}\)</span> Assume that  <span class="process-math">\(x*y\in H\text{.}\)</span>  Since <span class="process-math">\(x\)</span> is in  <span class="process-math">\(H\text{,}\)</span>  <span class="process-math">\(x^{-1}\)</span> is in <span class="process-math">\(H\)</span> and so by closure <span class="process-math">\(x^{-1}*(x * y )= y \in H\)</span> which is a contradiction.   Similarly, <span class="process-math">\(x*y \notin K\text{.}\)</span>
-</div> <div class="para" id="p-4314">One way to interpret this theorem is that no group is the union of two groups.</div>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-17" id="hint-17"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-17"><div class="hint solution-like"><div class="para" id="p-4328">Use an indirect argument.</div></div></div>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-225" id="answer-225"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-225"><div class="answer solution-like">
+<div class="para" id="p-4329">Assume that <span class="process-math">\(H\)</span> and <span class="process-math">\(K\)</span> are subgroups of group <span class="process-math">\(G\text{,}\)</span> and that, as in <a href="" class="xref" data-knowl="./knowl/fig-venn-subgroups.html" title="Figure 11.5.12">Figure 11.5.12</a>, there are elements <span class="process-math">\(x \in  H - K\)</span> and <span class="process-math">\(y \in  K - H\text{.}\)</span> Consider the product <span class="process-math">\(x * y\text{.}\)</span> Where could it be placed in the Venn diagram? If we can prove that it must lie in the outer region, <span class="process-math">\(H^c \cap K^c=(H \cup K)^c\text{,}\)</span> then we have proven that <span class="process-math">\(H \cup  K\)</span> is not closed under <span class="process-math">\(*\)</span> and cannot be a subgroup of <span class="process-math">\(G\text{,}\)</span> Assume that  <span class="process-math">\(x*y\in H\text{.}\)</span>  Since <span class="process-math">\(x\)</span> is in  <span class="process-math">\(H\text{,}\)</span>  <span class="process-math">\(x^{-1}\)</span> is in <span class="process-math">\(H\)</span> and so by closure <span class="process-math">\(x^{-1}*(x * y )= y \in H\)</span> which is a contradiction.   Similarly, <span class="process-math">\(x*y \notin K\text{.}\)</span>
+</div> <div class="para" id="p-4330">One way to interpret this theorem is that no group is the union of two groups.</div>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-487"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
-<div class="para" id="p-4315">Prove that the order of an element, <span class="process-math">\(a\)</span> of a group is the least positive integer, <span class="process-math">\(k\text{,}\)</span> such that <span class="process-math">\(a^k\)</span> is the identity of the group.</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
+</div></article><article class="exercise exercise-like" id="exercise-490"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div class="para" id="p-4331">Prove that the order of an element, <span class="process-math">\(a\)</span> of a group is the least positive integer, <span class="process-math">\(k\text{,}\)</span> such that <span class="process-math">\(a^k\)</span> is the identity of the group.</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>
 <div class="ptx-content-footer">
 <a class="previous-button button" href="s-gcds-and-zsubn.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="s-direct-products.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>

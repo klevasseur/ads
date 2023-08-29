@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Permutations</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,25 +58,36 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
@@ -99,59 +128,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -160,7 +146,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -315,7 +301,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1127,27 +1116,27 @@ eBookConfig.runestone_version = '7.0.7';
 <section class="subsection" id="subsection-15"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">2.2.1</span> <span class="title">Ordering Things</span>
 </h3>
-<div class="para" id="p-680">A number of applications of the rule of products are of a specific type, and because of their frequent appearance they are given their own designation, permutations. Consider the following examples.</div>
+<div class="para" id="p-696">A number of applications of the rule of products are of a specific type, and because of their frequent appearance they are given their own designation, permutations. Consider the following examples.</div>
 <article class="example example-like" id="ordering_a_set"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ordering_a_set"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.2.1</span><span class="period">.</span><span class="space"> </span><span class="title">Ordering the elements of a set.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ordering_a_set"><article class="example example-like"><div class="para" id="p-681">How many different ways can we order the three different elements of the set <span class="process-math">\(A = \{a, b, c\}\text{?}\)</span> Since we have three choices for position one, two choices for position two, and one choice for the third position, we have, by the rule of products, <span class="process-math">\(3 \cdot 2 \cdot 1 = 6\)</span> different ways of ordering the three letters. We illustrate through a tree diagram.</div> <figure class="figure figure-like" id="tree-of-permutations"><div class="image-box" style="width: 87%; margin-left: 6.5%; margin-right: 6.5%;"><img src="external/images/tree-of-permutations.png" class="contained" alt="A tree to enumerate permutations of a three element set."></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">2.2.2<span class="period">.</span></span><span class="space"> </span>A tree to enumerate permutations of a three element set.</figcaption></figure> <div class="para" id="p-682">Each of the six orderings is called a permutation of the set <span class="process-math">\(A\text{.}\)</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ordering_a_set"><article class="example example-like"><div class="para" id="p-697">How many different ways can we order the three different elements of the set <span class="process-math">\(A = \{a, b, c\}\text{?}\)</span> Since we have three choices for position one, two choices for position two, and one choice for the third position, we have, by the rule of products, <span class="process-math">\(3 \cdot 2 \cdot 1 = 6\)</span> different ways of ordering the three letters. We illustrate through a tree diagram.</div> <figure class="figure figure-like" id="tree-of-permutations"><div class="image-box" style="width: 87%; margin-left: 6.5%; margin-right: 6.5%;"><img src="external/images/tree-of-permutations.png" class="contained" alt="A tree to enumerate permutations of a three element set."></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">2.2.2<span class="period">.</span></span><span class="space"> </span>A tree to enumerate permutations of a three element set.</figcaption></figure> <div class="para" id="p-698">Each of the six orderings is called a permutation of the set <span class="process-math">\(A\text{.}\)</span>
 </div></article></div>
 <article class="example example-like" id="ordering_a_schedule"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ordering_a_schedule"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.2.3</span><span class="period">.</span><span class="space"> </span><span class="title">Ordering a schedule.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ordering_a_schedule"><article class="example example-like"><div class="para" id="p-683">A student is taking five courses in the fall semester. How many different ways can the five courses be listed? There are <span class="process-math">\(5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 = 120\)</span> different permutations of the set of courses.</div></article></div>
-<div class="para" id="p-684">In each of the above examples of the rule of products we observe that:</div>
-<div class="para logical" id="p-685"><ol class="lower-alpha">
-<li id="li-461"><div class="para" id="p-686">We are asked to order or arrange elements from a single set.</div></li>
-<li id="li-462"><div class="para" id="p-687">Each element is listed exactly once in each list (permutation). So if there are <span class="process-math">\(n\)</span> choices for position one in a list, there are <span class="process-math">\(n - 1\)</span> choices for position two, <span class="process-math">\(n - 2\)</span> choices for position three, etc.</div></li>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ordering_a_schedule"><article class="example example-like"><div class="para" id="p-699">A student is taking five courses in the fall semester. How many different ways can the five courses be listed? There are <span class="process-math">\(5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 = 120\)</span> different permutations of the set of courses.</div></article></div>
+<div class="para" id="p-700">In each of the above examples of the rule of products we observe that:</div>
+<div class="para logical" id="p-701"><ol class="lower-alpha">
+<li id="li-473"><div class="para" id="p-702">We are asked to order or arrange elements from a single set.</div></li>
+<li id="li-474"><div class="para" id="p-703">Each element is listed exactly once in each list (permutation). So if there are <span class="process-math">\(n\)</span> choices for position one in a list, there are <span class="process-math">\(n - 1\)</span> choices for position two, <span class="process-math">\(n - 2\)</span> choices for position three, etc.</div></li>
 </ol></div>
 <article class="example example-like" id="some_orderings_of_a_baseball_team"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-some_orderings_of_a_baseball_team"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.2.4</span><span class="period">.</span><span class="space"> </span><span class="title">Some orderings of a baseball team.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-some_orderings_of_a_baseball_team"><article class="example example-like"><div class="para" id="p-688">The alphabetical ordering of the players of a baseball team is one permutation of the set of players. Other orderings of the players’ names might be done by batting average, age, or height. The information that determines the ordering is called the key. We would expect that each key would give a different permutation of the names. If there are twenty-five players on the team, there are <span class="process-math">\(25 \cdot 24 \cdot 23 \cdot \cdots  \cdot 3 \cdot 2 \cdot 1\)</span> different permutations of the players.</div> <div class="para" id="p-689">This number of permutations is huge. In fact it is 15511210043330985984000000, but writing it like this isn’t all that instructive, while leaving it as a product as we originally had makes it easier to see where the number comes from.  We just need to find a more compact way of writing these products.</div></article></div>
-<div class="para" id="p-690">We now develop notation that will be useful for permutation problems.</div>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-some_orderings_of_a_baseball_team"><article class="example example-like"><div class="para" id="p-704">The alphabetical ordering of the players of a baseball team is one permutation of the set of players. Other orderings of the players’ names might be done by batting average, age, or height. The information that determines the ordering is called the key. We would expect that each key would give a different permutation of the names. If there are twenty-five players on the team, there are <span class="process-math">\(25 \cdot 24 \cdot 23 \cdot \cdots  \cdot 3 \cdot 2 \cdot 1\)</span> different permutations of the players.</div> <div class="para" id="p-705">This number of permutations is huge. In fact it is 15511210043330985984000000, but writing it like this isn’t all that instructive, while leaving it as a product as we originally had makes it easier to see where the number comes from.  We just need to find a more compact way of writing these products.</div></article></div>
+<div class="para" id="p-706">We now develop notation that will be useful for permutation problems.</div>
 <article class="definition definition-like" id="Definition-Factorial"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">2.2.5</span><span class="period">.</span><span class="space"> </span><span class="title">Factorial.</span>
-</h4>  <div class="para" id="p-691">If <span class="process-math">\(n\)</span> is a positive integer then <span class="process-math">\(n\)</span> factorial is the product of the first <span class="process-math">\(n\)</span> positive integers and is denoted <span class="process-math">\(n!\text{.}\)</span> Additionally, we define zero factorial, <span class="process-math">\(0!\text{,}\)</span> to be 1.</div></article><div class="para logical" id="p-692">
+</h4>  <div class="para" id="p-707">If <span class="process-math">\(n\)</span> is a positive integer then <span class="process-math">\(n\)</span> factorial is the product of the first <span class="process-math">\(n\)</span> positive integers and is denoted <span class="process-math">\(n!\text{.}\)</span> Additionally, we define zero factorial, <span class="process-math">\(0!\text{,}\)</span> to be 1.</div></article><div class="para logical" id="p-708">
 <div class="para">The first few factorials are</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1160,33 +1149,33 @@ n! &amp; 1 &amp; 1 &amp; 2 &amp; 6 &amp; 24 &amp; 120 &amp;
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-693">Note that <span class="process-math">\(4!\)</span> is 4 times <span class="process-math">\(3!\text{,}\)</span> or 24, and <span class="process-math">\(5!\)</span> is 5 times <span class="process-math">\(4!\text{,}\)</span> or 120. In addition, note that as <span class="process-math">\(n\)</span> grows in size, <span class="process-math">\(n!\)</span> grows extremely quickly. For example, <span class="process-math">\(11! = 39916800\text{.}\)</span> If the answer to a problem happens to be <span class="process-math">\(25!\text{,}\)</span> as in the previous example, you would never be expected to write that number out completely. However, a problem with an answer of <span class="process-math">\(\frac{25!}{23!}\)</span> can be reduced to <span class="process-math">\(25 \cdot 24\text{,}\)</span> or 600.</div>
-<div class="para" id="p-694">If <span class="process-math">\(\lvert A \rvert = n \text{,}\)</span> there are <span class="process-math">\(n!\)</span> ways of permuting all <span class="process-math">\(n\)</span>  elements of <span class="process-math">\(A\)</span> . We next consider the more general situation where we would like to permute <span class="process-math">\(k\)</span> elements  out of a set of <span class="process-math">\(n\)</span>  objects, where <span class="process-math">\(k \leq n\text{.}\)</span>
+<div class="para" id="p-709">Note that <span class="process-math">\(4!\)</span> is 4 times <span class="process-math">\(3!\text{,}\)</span> or 24, and <span class="process-math">\(5!\)</span> is 5 times <span class="process-math">\(4!\text{,}\)</span> or 120. In addition, note that as <span class="process-math">\(n\)</span> grows in size, <span class="process-math">\(n!\)</span> grows extremely quickly. For example, <span class="process-math">\(11! = 39916800\text{.}\)</span> If the answer to a problem happens to be <span class="process-math">\(25!\text{,}\)</span> as in the previous example, you would never be expected to write that number out completely. However, a problem with an answer of <span class="process-math">\(\frac{25!}{23!}\)</span> can be reduced to <span class="process-math">\(25 \cdot 24\text{,}\)</span> or 600.</div>
+<div class="para" id="p-710">If <span class="process-math">\(\lvert A \rvert = n \text{,}\)</span> there are <span class="process-math">\(n!\)</span> ways of permuting all <span class="process-math">\(n\)</span>  elements of <span class="process-math">\(A\)</span> . We next consider the more general situation where we would like to permute <span class="process-math">\(k\)</span> elements  out of a set of <span class="process-math">\(n\)</span>  objects, where <span class="process-math">\(k \leq n\text{.}\)</span>
 </div>
 <article class="example example-like" id="choosing-club-officers"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-choosing-club-officers"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.2.6</span><span class="period">.</span><span class="space"> </span><span class="title">Choosing Club Officers.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-choosing-club-officers"><article class="example example-like"><div class="para" id="p-695">A club of twenty-five members will hold an election for president, secretary, and treasurer in that order. Assume a person can hold only one position. How many ways are there of choosing these three officers? By the rule of products there are <span class="process-math">\(25 \cdot 24 \cdot 23\)</span> ways of making a selection.</div></article></div>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-choosing-club-officers"><article class="example example-like"><div class="para" id="p-711">A club of twenty-five members will hold an election for president, secretary, and treasurer in that order. Assume a person can hold only one position. How many ways are there of choosing these three officers? By the rule of products there are <span class="process-math">\(25 \cdot 24 \cdot 23\)</span> ways of making a selection.</div></article></div>
 <article class="definition definition-like" id="permutation"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">2.2.7</span><span class="period">.</span><span class="space"> </span><span class="title">Permutation.</span>
 </h4>
-<div class="para" id="p-696">An ordered arrangement of <span class="process-math">\(k\)</span> elements selected from a set of <span class="process-math">\(n\)</span> elements, <span class="process-math">\(0 \leq k \leq  n\text{,}\)</span> where no two elements of the arrangement are the same, is called a permutation of <span class="process-math">\(n\)</span> objects taken <span class="process-math">\(k\)</span> at a time. The total number of such permutations is denoted by <span class="process-math">\(P(n, k)\text{.}\)</span>
+<div class="para" id="p-712">An ordered arrangement of <span class="process-math">\(k\)</span> elements selected from a set of <span class="process-math">\(n\)</span> elements, <span class="process-math">\(0 \leq k \leq  n\text{,}\)</span> where no two elements of the arrangement are the same, is called a permutation of <span class="process-math">\(n\)</span> objects taken <span class="process-math">\(k\)</span> at a time. The total number of such permutations is denoted by <span class="process-math">\(P(n, k)\text{.}\)</span>
 </div></article><article class="theorem theorem-like" id="permutations-counting-formula"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">2.2.8</span><span class="period">.</span><span class="space"> </span><span class="title">Permutation Counting Formula.</span>
 </h4>
-<div class="para logical" id="p-697">
+<div class="para logical" id="p-713">
 <div class="para">The number of possible permutations of <span class="process-math">\(k\)</span>  elements taken from a set of <span class="process-math">\(n\)</span>  elements is</div>
 <div class="displaymath process-math">
 \begin{equation*}
 P(n,k)=n \cdot (n-1) \cdot (n-2) \cdot  \cdots  \cdot (n-k+1) = \prod_{j=0}^{k-1} (n-j) = \frac{n!}{(n-k)!} \text{.}
 \end{equation*}
 </div>
-</div></article><article class="hiddenproof" id="proof-2"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-2"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-2"><article class="hiddenproof"><div class="para" id="p-698">Case I: If <span class="process-math">\(k = n\)</span> we have <span class="process-math">\(P(n,n)=n!=\frac{n!}{(n-n)!}\text{.}\)</span>
-</div> <div class="para" id="p-699">Case II: If <span class="process-math">\(0 \leq  k &lt; n\text{,}\)</span>then we have <span class="process-math">\(k\)</span>  positions to fill using <span class="process-math">\(n\)</span> elements and</div> <div class="para logical" id="p-700"><ol class="lower-alpha">
-<li id="li-463"><div class="para" id="p-derived-li-463">Position 1 can be filled by any one of <span class="process-math">\(n-0=n\)</span>  elements</div></li>
-<li id="li-464"><div class="para" id="p-derived-li-464">Position 2 can be filled by any one of <span class="process-math">\(n-1\)</span>  elements</div></li>
-<li id="li-465"><div class="para" id="p-derived-li-465"><span class="process-math">\(\displaystyle \cdots \)</span></div></li>
-<li id="li-466"><div class="para" id="p-derived-li-466">Position k can be filled by any one of <span class="process-math">\(n-(k-1)=n-k+1\)</span>  elements</div></li>
-</ol></div> <div class="para logical" id="p-701">
+</div></article><article class="hiddenproof" id="proof-2"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-2"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-2"><article class="hiddenproof"><div class="para" id="p-714">Case I: If <span class="process-math">\(k = n\)</span> we have <span class="process-math">\(P(n,n)=n!=\frac{n!}{(n-n)!}\text{.}\)</span>
+</div> <div class="para" id="p-715">Case II: If <span class="process-math">\(0 \leq  k &lt; n\text{,}\)</span>then we have <span class="process-math">\(k\)</span>  positions to fill using <span class="process-math">\(n\)</span> elements and</div> <div class="para logical" id="p-716"><ol class="lower-alpha">
+<li id="li-475"><div class="para" id="p-derived-li-475">Position 1 can be filled by any one of <span class="process-math">\(n-0=n\)</span>  elements</div></li>
+<li id="li-476"><div class="para" id="p-derived-li-476">Position 2 can be filled by any one of <span class="process-math">\(n-1\)</span>  elements</div></li>
+<li id="li-477"><div class="para" id="p-derived-li-477"><span class="process-math">\(\displaystyle \cdots \)</span></div></li>
+<li id="li-478"><div class="para" id="p-derived-li-478">Position k can be filled by any one of <span class="process-math">\(n-(k-1)=n-k+1\)</span>  elements</div></li>
+</ol></div> <div class="para logical" id="p-717">
 <div class="para">Hence, by the rule of products,</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1194,10 +1183,10 @@ P(n,k) = n \cdot(n - 1) \cdot (n - 2) \cdot \cdots \cdot (n - k + 1) = \frac{n!}
 \end{equation*}
 </div>
 </div></article></div>
-<div class="para" id="p-702">It is important to note that the derivation of the permutation formula given above was done solely through the rule of products. This serves to reiterate our introductory remarks in this section that permutation problems are really rule-of-products problems.  We close this section with several examples.</div>
+<div class="para" id="p-718">It is important to note that the derivation of the permutation formula given above was done solely through the rule of products. This serves to reiterate our introductory remarks in this section that permutation problems are really rule-of-products problems.  We close this section with several examples.</div>
 <article class="example example-like" id="more_club_officers"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-more_club_officers"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.2.9</span><span class="period">.</span><span class="space"> </span><span class="title">Another example of choosing officers.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-more_club_officers"><article class="example example-like"><div class="para" id="p-703">A club has eight members eligible to serve as president, vice-president, and treasurer. How many ways are there of choosing these officers?</div> <div class="para" id="p-704">Solution 1: Using the rule of products. There are eight possible choices for the presidency, seven for the vice-presidency, and six for the office of treasurer. By the rule of products there are <span class="process-math">\(8 \cdot 7\cdot 6 = 336\)</span> ways of choosing these officers.</div> <div class="para logical" id="p-705">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-more_club_officers"><article class="example example-like"><div class="para" id="p-719">A club has eight members eligible to serve as president, vice-president, and treasurer. How many ways are there of choosing these officers?</div> <div class="para" id="p-720">Solution 1: Using the rule of products. There are eight possible choices for the presidency, seven for the vice-presidency, and six for the office of treasurer. By the rule of products there are <span class="process-math">\(8 \cdot 7\cdot 6 = 336\)</span> ways of choosing these officers.</div> <div class="para logical" id="p-721">
 <div class="para">Solution 2: Using the permutation formula. We want the total number of permutations of eight objects taken three at a time:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1207,7 +1196,7 @@ P(8,3)=\frac{8!}{(8-3)!}=8 \cdot 7 \cdot 6 = 336
 </div></article></div>
 <article class="example example-like" id="course-ordering-revisited"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-course-ordering-revisited"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.2.10</span><span class="period">.</span><span class="space"> </span><span class="title">Course ordering, revisited.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-course-ordering-revisited"><article class="example example-like"><div class="para logical" id="p-706">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-course-ordering-revisited"><article class="example example-like"><div class="para logical" id="p-722">
 <div class="para">To count the number of ways to order five courses, we can use the permutation formula. We want the number of permutations of five courses taken five at a time:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1217,83 +1206,83 @@ P(5,5)= \frac{5!}{(5-5)!}= 5!= 120\text{.}
 </div></article></div>
 <article class="example example-like" id="ordering-digits"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ordering-digits"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">2.2.11</span><span class="period">.</span><span class="space"> </span><span class="title">Ordering of digits under different conditions.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ordering-digits"><article class="example example-like"><div class="para" id="p-707">Consider only the digits 1, 2, 3, 4, and 5.</div> <div class="para logical" id="p-708"><ol class="lower-alpha">
-<li id="li-467"><div class="para" id="p-709">How many three-digit numbers can be formed if no repetition of digits can occur?</div></li>
-<li id="li-468"><div class="para" id="p-710">How many three-digit numbers can be formed if repetition of digits is allowed?</div></li>
-<li id="li-469"><div class="para" id="p-711">How many three-digit numbers can be formed if only non-consecutive repetition of digits are allowed?</div></li>
-</ol></div> <div class="para" id="p-712">Solutions to (a): Solution 1: Using the rule of products. We have any one of five choices for digit one, any one of four choices for digit two, and three choices for digit three. Hence, <span class="process-math">\(5 \cdot 4 \cdot 3 = 60\)</span> different three-digit numbers can be formed.</div> <div class="para logical" id="p-713">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ordering-digits"><article class="example example-like"><div class="para" id="p-723">Consider only the digits 1, 2, 3, 4, and 5.</div> <div class="para logical" id="p-724"><ol class="lower-alpha">
+<li id="li-479"><div class="para" id="p-725">How many three-digit numbers can be formed if no repetition of digits can occur?</div></li>
+<li id="li-480"><div class="para" id="p-726">How many three-digit numbers can be formed if repetition of digits is allowed?</div></li>
+<li id="li-481"><div class="para" id="p-727">How many three-digit numbers can be formed if only non-consecutive repetition of digits are allowed?</div></li>
+</ol></div> <div class="para" id="p-728">Solutions to (a): Solution 1: Using the rule of products. We have any one of five choices for digit one, any one of four choices for digit two, and three choices for digit three. Hence, <span class="process-math">\(5 \cdot 4 \cdot 3 = 60\)</span> different three-digit numbers can be formed.</div> <div class="para logical" id="p-729">
 <div class="para">Solution 2; Using the permutation formula. We want the total number of permutations of five digits taken three at a time:</div>
 <div class="displaymath process-math">
 \begin{equation*}
 P(5,3)=\frac{5!}{(5-3)!}=5 \cdot 4 \cdot 3 = 60\text{.}
 \end{equation*}
 </div>
-</div> <div class="para" id="p-714">Solution to (b): The definition of permutation indicates “...no two elements in each list are the same.” Hence the permutation formula cannot be used. However, the rule of products still applies. We have any one of five choices for the first digit, five choices for the second, and five for the third. So there are <span class="process-math">\(5 \cdot 5\cdot 5 = 125\)</span> possible different three-digit numbers if repetition is allowed.</div> <div class="para" id="p-715">Solution to (c): Again, the rule of products applies here. We have any one of five choices for the first digit, but then for the next two digits we have four choices since we are not allowed to repeat the previous digit  So there are <span class="process-math">\(5 \cdot 4\cdot 4 = 80\)</span> possible different three-digit numbers if only non-consecutive repetitions are allowed.</div></article></div></section><section class="exercises" id="exercises-7"><h3 class="heading hide-type">
+</div> <div class="para" id="p-730">Solution to (b): The definition of permutation indicates “...no two elements in each list are the same.” Hence the permutation formula cannot be used. However, the rule of products still applies. We have any one of five choices for the first digit, five choices for the second, and five for the third. So there are <span class="process-math">\(5 \cdot 5\cdot 5 = 125\)</span> possible different three-digit numbers if repetition is allowed.</div> <div class="para" id="p-731">Solution to (c): Again, the rule of products applies here. We have any one of five choices for the first digit, but then for the next two digits we have four choices since we are not allowed to repeat the previous digit  So there are <span class="process-math">\(5 \cdot 4\cdot 4 = 80\)</span> possible different three-digit numbers if only non-consecutive repetitions are allowed.</div></article></div></section><section class="exercises" id="exercises-7"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">2.2.2</span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-63"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para" id="p-716">If a raffle has three different prizes and there are 1,000 raffle tickets sold, how many different ways can the prizes be distributed?</div>
+<article class="exercise exercise-like" id="exercise-66"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para" id="p-732">If a raffle has three different prizes and there are 1,000 raffle tickets sold, how many different ways can the prizes be distributed?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-32" id="answer-32"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-32"><div class="answer solution-like"><div class="para" id="p-717"><span class="process-math">\(P(1000,3)\)</span></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-64"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para logical" id="p-718"><ol class="lower-alpha">
-<li id="li-470"><div class="para" id="p-derived-li-470">How many three-digit numbers can be formed from the digits 1, 2, 3 if no repetition of digits is allowed? List the three-digit numbers.</div></li>
-<li id="li-471"><div class="para" id="p-derived-li-471">How many two-digit numbers can be formed if no repetition of digits is allowed? List them.</div></li>
-<li id="li-472"><div class="para" id="p-derived-li-472">How many two-digit numbers can be obtained if repetition is allowed?</div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-65"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para" id="p-719">How many eight-letter words can be formed from the 26 letters in the alphabet? Even without concerning ourselves about whether the words make sense, there are two interpretations of this problem. Answer both.</div>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-34" id="answer-34"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-34"><div class="answer solution-like"><div class="para" id="p-733"><span class="process-math">\(P(1000,3)\)</span></div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-67"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para logical" id="p-734"><ol class="lower-alpha">
+<li id="li-482"><div class="para" id="p-derived-li-482">How many three-digit numbers can be formed from the digits 1, 2, 3 if no repetition of digits is allowed? List the three-digit numbers.</div></li>
+<li id="li-483"><div class="para" id="p-derived-li-483">How many two-digit numbers can be formed if no repetition of digits is allowed? List them.</div></li>
+<li id="li-484"><div class="para" id="p-derived-li-484">How many two-digit numbers can be obtained if repetition is allowed?</div></li>
+</ol></div></article><article class="exercise exercise-like" id="exercise-68"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para" id="p-735">How many eight-letter words can be formed from the 26 letters in the alphabet? Even without concerning ourselves about whether the words make sense, there are two interpretations of this problem. Answer both.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-33" id="answer-33"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-33"><div class="answer solution-like">
-<div class="para" id="p-720">With repetition: <span class="process-math">\(26^8\approx  2.0883\times 10^{11}\)</span>
-</div> <div class="para" id="p-721">Without repetition: <span class="process-math">\(P(26,8) \approx 6.2991\ 10^{10}\)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-35" id="answer-35"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-35"><div class="answer solution-like">
+<div class="para" id="p-736">With repetition: <span class="process-math">\(26^8\approx  2.0883\times 10^{11}\)</span>
+</div> <div class="para" id="p-737">Without repetition: <span class="process-math">\(P(26,8) \approx 6.2991\ 10^{10}\)</span>
 </div>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-66"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para" id="p-722">Let <span class="process-math">\(A\)</span> be a set with <span class="process-math">\(\lvert A \rvert = n \text{.}\)</span> Determine</div> <div class="para logical" id="p-723"><ol class="lower-alpha">
-<li id="li-473"><div class="para" id="p-724"><span class="process-math">\(\displaystyle \lvert A^3 \rvert \)</span></div></li>
-<li id="li-474"><div class="para" id="p-725"><span class="process-math">\(\displaystyle \lvert \{ (a, b, c) \mid a, b, c \in A \textrm{ and each coordinate is different}\} \rvert \)</span></div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-67"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
-<div class="para" id="p-726">The state finals of a high school track meet involves fifteen schools. How many ways can these schools be listed in the program?</div>
+</div></article><article class="exercise exercise-like" id="exercise-69"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para" id="p-738">Let <span class="process-math">\(A\)</span> be a set with <span class="process-math">\(\lvert A \rvert = n \text{.}\)</span> Determine</div> <div class="para logical" id="p-739"><ol class="lower-alpha">
+<li id="li-485"><div class="para" id="p-740"><span class="process-math">\(\displaystyle \lvert A^3 \rvert \)</span></div></li>
+<li id="li-486"><div class="para" id="p-741"><span class="process-math">\(\displaystyle \lvert \{ (a, b, c) \mid a, b, c \in A \textrm{ and each coordinate is different}\} \rvert \)</span></div></li>
+</ol></div></article><article class="exercise exercise-like" id="exercise-70"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para" id="p-742">The state finals of a high school track meet involves fifteen schools. How many ways can these schools be listed in the program?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-34" id="answer-34"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-34"><div class="answer solution-like"><div class="para" id="p-727"><span class="process-math">\(15!\)</span></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-68"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
-<div class="para" id="p-728">Consider the three-digit numbers that can be formed from the digits 1, 2, 3, 4, and 5 with no repetition of digits allowed.</div> <div class="para" id="p-729">a. How many of these are even numbers?</div> <div class="para" id="p-730">b. How many are greater than 250?</div></article><article class="exercise exercise-like" id="exercise-69"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
-<div class="para logical" id="p-731">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-36" id="answer-36"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-36"><div class="answer solution-like"><div class="para" id="p-743"><span class="process-math">\(15!\)</span></div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-71"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div class="para" id="p-744">Consider the three-digit numbers that can be formed from the digits 1, 2, 3, 4, and 5 with no repetition of digits allowed.</div> <div class="para" id="p-745">a. How many of these are even numbers?</div> <div class="para" id="p-746">b. How many are greater than 250?</div></article><article class="exercise exercise-like" id="exercise-72"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="para logical" id="p-747">
 <div class="para">All 15 players on the Tall U. basketball team are capable of playing any position.</div>
 <ol class="lower-alpha">
-<li id="li-475"><div class="para" id="p-732">How many ways can the coach at Tall U. fill the five starting positions in a game?</div></li>
-<li id="li-476"><div class="para" id="p-733">What is the answer if the center must be one of two players?</div></li>
+<li id="li-487"><div class="para" id="p-748">How many ways can the coach at Tall U. fill the five starting positions in a game?</div></li>
+<li id="li-488"><div class="para" id="p-749">What is the answer if the center must be one of two players?</div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-35" id="answer-35"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-35"><div class="answer solution-like"><div class="para logical" id="p-734"><ol class="lower-alpha">
-<li id="li-477"><div class="para" id="p-derived-li-477"><span class="process-math">\(\displaystyle P(15,5)=360360\)</span></div></li>
-<li id="li-478"><div class="para" id="p-derived-li-478"><span class="process-math">\(\displaystyle 2\cdot 14\cdot 13\cdot 12\cdot 11=48048\)</span></div></li>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-37" id="answer-37"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-37"><div class="answer solution-like"><div class="para logical" id="p-750"><ol class="lower-alpha">
+<li id="li-489"><div class="para" id="p-derived-li-489"><span class="process-math">\(\displaystyle P(15,5)=360360\)</span></div></li>
+<li id="li-490"><div class="para" id="p-derived-li-490"><span class="process-math">\(\displaystyle 2\cdot 14\cdot 13\cdot 12\cdot 11=48048\)</span></div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-70"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
-<div class="para logical" id="p-735"><ol class="lower-alpha">
-<li id="li-479"><div class="para" id="p-736">How many ways can a gardener plant five different species of shrubs in a circle?</div></li>
-<li id="li-480"><div class="para" id="p-737">What is the answer if two of the shrubs are the same?</div></li>
-<li id="li-481"><div class="para" id="p-738">What is the answer if all the shrubs are identical?</div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-71"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
-<div class="para" id="p-739">The president of the Math and Computer Club would like to arrange a meeting with six attendees, the president included. There will be three computer science majors and three math majors at the meeting. How many ways can the six people be seated at a circular table if the president does not want people with the same majors to sit next to one other?</div>
+</div></article><article class="exercise exercise-like" id="exercise-73"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div class="para logical" id="p-751"><ol class="lower-alpha">
+<li id="li-491"><div class="para" id="p-752">How many ways can a gardener plant five different species of shrubs in a circle?</div></li>
+<li id="li-492"><div class="para" id="p-753">What is the answer if two of the shrubs are the same?</div></li>
+<li id="li-493"><div class="para" id="p-754">What is the answer if all the shrubs are identical?</div></li>
+</ol></div></article><article class="exercise exercise-like" id="exercise-74"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div class="para" id="p-755">The president of the Math and Computer Club would like to arrange a meeting with six attendees, the president included. There will be three computer science majors and three math majors at the meeting. How many ways can the six people be seated at a circular table if the president does not want people with the same majors to sit next to one other?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-36" id="answer-36"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-36"><div class="answer solution-like"><div class="para" id="p-740"><span class="process-math">\(2\cdot P(3,3)=12\)</span></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-72"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
-<div class="para" id="p-741">Six people apply for three identical jobs and all are qualified for the positions. Two will work in New York and the other one will work in San Diego. How many ways can the positions be filled?</div></article><article class="exercise exercise-like" id="exercise-73"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
-<div class="para" id="p-742">Let <span class="process-math">\(A = \{1, 2, 3, 4\} \text{.}\)</span> Determine the cardinality of</div> <div class="para logical" id="p-743"><ol class="lower-alpha">
-<li id="li-482"><div class="para" id="p-744"><span class="process-math">\(\displaystyle \{ (a_1,a_2) \mid a_1 \neq a_2 \}\)</span></div></li>
-<li id="li-483"><div class="para" id="p-745">What is the answer to the previous part if <span class="process-math">\(\lvert A \rvert = n\)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-38" id="answer-38"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-38"><div class="answer solution-like"><div class="para" id="p-756"><span class="process-math">\(2\cdot P(3,3)=12\)</span></div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-75"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
+<div class="para" id="p-757">Six people apply for three identical jobs and all are qualified for the positions. Two will work in New York and the other one will work in San Diego. How many ways can the positions be filled?</div></article><article class="exercise exercise-like" id="exercise-76"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
+<div class="para" id="p-758">Let <span class="process-math">\(A = \{1, 2, 3, 4\} \text{.}\)</span> Determine the cardinality of</div> <div class="para logical" id="p-759"><ol class="lower-alpha">
+<li id="li-494"><div class="para" id="p-760"><span class="process-math">\(\displaystyle \{ (a_1,a_2) \mid a_1 \neq a_2 \}\)</span></div></li>
+<li id="li-495"><div class="para" id="p-761">What is the answer to the previous part if <span class="process-math">\(\lvert A \rvert = n\)</span>
 </div></li>
-<li id="li-484"><div class="para" id="p-746">If <span class="process-math">\(\lvert A \rvert =n\text{,}\)</span> determine the number of <span class="process-math">\(m\)</span>-tuples in <span class="process-math">\(A\text{,}\)</span> <span class="process-math">\(m \leq n\text{,}\)</span> where each coordinate is different from the other coordinates.</div></li>
+<li id="li-496"><div class="para" id="p-762">If <span class="process-math">\(\lvert A \rvert =n\text{,}\)</span> determine the number of <span class="process-math">\(m\)</span>-tuples in <span class="process-math">\(A\text{,}\)</span> <span class="process-math">\(m \leq n\text{,}\)</span> where each coordinate is different from the other coordinates.</div></li>
 </ol></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-37" id="answer-37"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-37"><div class="answer solution-like"><div class="para logical" id="p-747"><ol class="lower-alpha">
-<li id="li-485"><div class="para" id="p-derived-li-485"><span class="process-math">\(\displaystyle P(4,2)=12\)</span></div></li>
-<li id="li-486"><div class="para" id="p-748"><span class="process-math">\(\displaystyle P(n;2)=n(n-1)\)</span></div></li>
-<li id="li-487">
-<div class="para" id="p-749">Case 1: <span class="process-math">\(m&gt;n\text{.}\)</span> Since the coordinates must be different, this case is impossible.</div>
-<div class="para" id="p-750">Case 2: <span class="process-math">\(m\leqslant n. P(n;m)\text{.}\)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-39" id="answer-39"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-39"><div class="answer solution-like"><div class="para logical" id="p-763"><ol class="lower-alpha">
+<li id="li-497"><div class="para" id="p-derived-li-497"><span class="process-math">\(\displaystyle P(4,2)=12\)</span></div></li>
+<li id="li-498"><div class="para" id="p-764"><span class="process-math">\(\displaystyle P(n;2)=n(n-1)\)</span></div></li>
+<li id="li-499">
+<div class="para" id="p-765">Case 1: <span class="process-math">\(m&gt;n\text{.}\)</span> Since the coordinates must be different, this case is impossible.</div>
+<div class="para" id="p-766">Case 2: <span class="process-math">\(m\leqslant n. P(n;m)\text{.}\)</span>
 </div>
 </li>
 </ol></div></div></div>

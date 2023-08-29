@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Cartesian Products and Power Sets</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,32 +58,47 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
 </script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
 <script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
@@ -105,59 +138,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -166,7 +156,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -321,7 +311,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1135,21 +1128,21 @@ eBookConfig.runestone_version = '7.0.7';
 </h3>
 <article class="definition definition-like" id="cartesian-product"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">1.3.1</span><span class="period">.</span><span class="space"> </span><span class="title">Cartesian Product.</span>
-</h4> <div class="para" id="p-388">Let <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> be sets. The Cartesian product of <span class="process-math">\(A\)</span> and <span class="process-math">\(B\text{,}\)</span> denoted by <span class="process-math">\(A\times B\text{,}\)</span> is defined as follows: <span class="process-math">\(A\times B = \{(a, b) \mid a \in  A \quad\textrm{and}\quad b \in  B\}\text{,}\)</span> that is, <span class="process-math">\(A\times B\)</span> is the set of all possible ordered pairs whose first component comes from <span class="process-math">\(A\)</span> and whose second component comes from <span class="process-math">\(B\text{.}\)</span>
+</h4> <div class="para" id="p-404">Let <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> be sets. The Cartesian product of <span class="process-math">\(A\)</span> and <span class="process-math">\(B\text{,}\)</span> denoted by <span class="process-math">\(A\times B\text{,}\)</span> is defined as follows: <span class="process-math">\(A\times B = \{(a, b) \mid a \in  A \quad\textrm{and}\quad b \in  B\}\text{,}\)</span> that is, <span class="process-math">\(A\times B\)</span> is the set of all possible ordered pairs whose first component comes from <span class="process-math">\(A\)</span> and whose second component comes from <span class="process-math">\(B\text{.}\)</span>
 </div></article><article class="example example-like" id="example-8"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-8"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">1.3.2</span><span class="period">.</span><span class="space"> </span><span class="title">Some Cartesian Products.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-8"><article class="example example-like"> <div class="para" id="p-389">Notation in mathematics is often developed for good reason. In this case, a few examples will make clear why the symbol <span class="process-math">\(\times\)</span> is used for Cartesian products.</div> <div class="para logical" id="p-390"><ul class="disc">
-<li id="li-313"><div class="para" id="p-391">Let <span class="process-math">\(A = \{1, 2, 3\}\)</span> and <span class="process-math">\(B = \{4, 5\}\text{.}\)</span> Then <span class="process-math">\(A \times  B = \{(1, 4), (1, 5), (2, 4), (2, 5), (3, 4), (3, 5)\}\text{.}\)</span> Note that <span class="process-math">\(|A \times B| = 6 = \lvert A \rvert  \times  \lvert B \rvert \text{.}\)</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-8"><article class="example example-like"> <div class="para" id="p-405">Notation in mathematics is often developed for good reason. In this case, a few examples will make clear why the symbol <span class="process-math">\(\times\)</span> is used for Cartesian products.</div> <div class="para logical" id="p-406"><ul class="disc">
+<li id="li-325"><div class="para" id="p-407">Let <span class="process-math">\(A = \{1, 2, 3\}\)</span> and <span class="process-math">\(B = \{4, 5\}\text{.}\)</span> Then <span class="process-math">\(A \times  B = \{(1, 4), (1, 5), (2, 4), (2, 5), (3, 4), (3, 5)\}\text{.}\)</span> Note that <span class="process-math">\(|A \times B| = 6 = \lvert A \rvert  \times  \lvert B \rvert \text{.}\)</span>
 </div></li>
-<li id="li-314"><div class="para" id="p-392">
+<li id="li-326"><div class="para" id="p-408">
 <span class="process-math">\(A \times  A = \{(1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3), (3, 1), (3, 2), (3, 3)\}\text{.}\)</span> Note that <span class="process-math">\(|A \times  A| = 9 = {\lvert A \rvert}^2\text{.}\)</span>
 </div></li>
 </ul></div></article></div>
-<div class="para" id="p-393">These two examples illustrate the general rule that if <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are finite sets, then <span class="process-math">\(\lvert A \times B \rvert = \lvert A \rvert  \times  \lvert B \rvert \text{.}\)</span>
+<div class="para" id="p-409">These two examples illustrate the general rule that if <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are finite sets, then <span class="process-math">\(\lvert A \times B \rvert = \lvert A \rvert  \times  \lvert B \rvert \text{.}\)</span>
 </div>
-<div class="para" id="p-394">We can define the Cartesian product of three (or more) sets similarly. For example, <span class="process-math">\(A \times  B \times  C = \{(a, b, c):a \in  A, b \in  B, c \in C\}\text{.}\)</span>
+<div class="para" id="p-410">We can define the Cartesian product of three (or more) sets similarly. For example, <span class="process-math">\(A \times  B \times  C = \{(a, b, c):a \in  A, b \in  B, c \in C\}\text{.}\)</span>
 </div>
-<div class="para logical" id="p-395">
+<div class="para logical" id="p-411">
 <div class="para">It is common to use exponents if the sets in a Cartesian product are the same:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1172,97 +1165,97 @@ A^n =  \underset{n \textrm{ factors}}{\underline{A \times A \times \ldots \times
 </h3>
 <article class="definition definition-like" id="power-set"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">1.3.3</span><span class="period">.</span><span class="space"> </span><span class="title">Power Set.</span>
-</h4> <div class="para" id="p-396">If <span class="process-math">\(A\)</span> is any set, the power set of <span class="process-math">\(A\)</span> is the set of all subsets of <span class="process-math">\(A\text{,}\)</span> denoted <span class="process-math">\(\mathcal{P}(A)\text{.}\)</span>
-</div></article><div class="para" id="p-397">The two extreme cases, the empty set and all of <span class="process-math">\(A\text{,}\)</span> are both included in <span class="process-math">\(\mathcal{P}(A)\text{.}\)</span>
+</h4> <div class="para" id="p-412">If <span class="process-math">\(A\)</span> is any set, the power set of <span class="process-math">\(A\)</span> is the set of all subsets of <span class="process-math">\(A\text{,}\)</span> denoted <span class="process-math">\(\mathcal{P}(A)\text{.}\)</span>
+</div></article><div class="para" id="p-413">The two extreme cases, the empty set and all of <span class="process-math">\(A\text{,}\)</span> are both included in <span class="process-math">\(\mathcal{P}(A)\text{.}\)</span>
 </div>
 <article class="example example-like" id="Some_Power_Sets"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-Some_Power_Sets"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">1.3.4</span><span class="period">.</span><span class="space"> </span><span class="title">Some Power Sets.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-Some_Power_Sets"><article class="example example-like"> <div class="para logical" id="p-398"><ul class="disc">
-<li id="li-315"><div class="para" id="p-399"><span class="process-math">\(\displaystyle \mathcal{P}(\emptyset )=\{\emptyset \}\)</span></div></li>
-<li id="li-316"><div class="para" id="p-400"><span class="process-math">\(\displaystyle \mathcal{P}(\{1\}) = \{\emptyset , \{1\}\}\)</span></div></li>
-<li id="li-317"><div class="para" id="p-401"><span class="process-math">\(\mathcal{P}(\{1,2\}) = \{\emptyset , \{1\}, \{2\}, \{1, 2\}\}\text{.}\)</span></div></li>
-</ul></div> <div class="para" id="p-402">We will leave it to you to guess at a general formula for the number of elements in the power set of a finite set. In Chapter 2, we will discuss counting rules that will help us derive this formula.</div></article></div></section><section class="subsection" id="Sage_Note_Sets-1-3"><h3 class="heading hide-type">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-Some_Power_Sets"><article class="example example-like"> <div class="para logical" id="p-414"><ul class="disc">
+<li id="li-327"><div class="para" id="p-415"><span class="process-math">\(\displaystyle \mathcal{P}(\emptyset )=\{\emptyset \}\)</span></div></li>
+<li id="li-328"><div class="para" id="p-416"><span class="process-math">\(\displaystyle \mathcal{P}(\{1\}) = \{\emptyset , \{1\}\}\)</span></div></li>
+<li id="li-329"><div class="para" id="p-417"><span class="process-math">\(\mathcal{P}(\{1,2\}) = \{\emptyset , \{1\}, \{2\}, \{1, 2\}\}\text{.}\)</span></div></li>
+</ul></div> <div class="para" id="p-418">We will leave it to you to guess at a general formula for the number of elements in the power set of a finite set. In Chapter 2, we will discuss counting rules that will help us derive this formula.</div></article></div></section><section class="subsection" id="Sage_Note_Sets-1-3"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">1.3.3</span> <span class="title">SageMath Note: Cartesian Products and Power Sets</span>
 </h3>
-<div class="para" id="p-403">Here is a simple example of a cartesian product of two sets:</div>
+<div class="para" id="p-419">Here is a simple example of a cartesian product of two sets:</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-6"><script type="text/x-sage">A=Set([0,1,2])
 B=Set(['a','b'])
 P=cartesian_product([A,B]);P
 </script></pre>
-<div class="para" id="p-404">Here is the cardinality of the cartesian product.</div>
+<div class="para" id="p-420">Here is the cardinality of the cartesian product.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-7"><script type="text/x-sage">P.cardinality()
 </script></pre>
-<div class="para" id="p-405">The power set of a set is an iterable, as you can see from the output of this next cell</div>
+<div class="para" id="p-421">The power set of a set is an iterable, as you can see from the output of this next cell</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-8"><script type="text/x-sage">U=Set([0,1,2,3])
 subsets(U)
 </script></pre>
-<div class="para" id="p-406">You can iterate over a powerset. Here is a trivial example.</div>
+<div class="para" id="p-422">You can iterate over a powerset. Here is a trivial example.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-9"><script type="text/x-sage">for a in subsets(U):
     print(str(a)+ " has " +str(len(a))+" elements.")
 </script></pre></section><section class="exercises" id="exercises-1-3"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">1.3.4</span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-16"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para" id="p-407">Let <span class="process-math">\(A = \{0, 2, 3\}\text{,}\)</span> <span class="process-math">\(B = \{2, 3\}\text{,}\)</span> <span class="process-math">\(C = \{1, 4\}\text{,}\)</span> and let the universal set be <span class="process-math">\(U = \{0, 1, 2, 3, 4\}\text{.}\)</span> List the elements of</div> <div class="para logical" id="p-408"><ol class="lower-alpha cols2">
-<li id="li-318"><div class="para" id="p-409"><span class="process-math">\(\displaystyle A \times B\)</span></div></li>
-<li id="li-319"><div class="para" id="p-410"><span class="process-math">\(\displaystyle B \times  A\)</span></div></li>
-<li id="li-320"><div class="para" id="p-411"><span class="process-math">\(\displaystyle A \times B\times C\)</span></div></li>
-<li id="li-321"><div class="para" id="p-412"><span class="process-math">\(\displaystyle U \times \emptyset\)</span></div></li>
-<li id="li-322"><div class="para" id="p-413"><span class="process-math">\(\displaystyle A \times  A^c\)</span></div></li>
-<li id="li-323"><div class="para" id="p-414"><span class="process-math">\(\displaystyle B^2\)</span></div></li>
-<li id="li-324"><div class="para" id="p-415"><span class="process-math">\(\displaystyle B^3\)</span></div></li>
-<li id="li-325"><div class="para" id="p-416"><span class="process-math">\(\displaystyle B\times \mathcal{P}(B)\)</span></div></li>
+<article class="exercise exercise-like" id="exercise-19"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para" id="p-423">Let <span class="process-math">\(A = \{0, 2, 3\}\text{,}\)</span> <span class="process-math">\(B = \{2, 3\}\text{,}\)</span> <span class="process-math">\(C = \{1, 4\}\text{,}\)</span> and let the universal set be <span class="process-math">\(U = \{0, 1, 2, 3, 4\}\text{.}\)</span> List the elements of</div> <div class="para logical" id="p-424"><ol class="lower-alpha cols2">
+<li id="li-330"><div class="para" id="p-425"><span class="process-math">\(\displaystyle A \times B\)</span></div></li>
+<li id="li-331"><div class="para" id="p-426"><span class="process-math">\(\displaystyle B \times  A\)</span></div></li>
+<li id="li-332"><div class="para" id="p-427"><span class="process-math">\(\displaystyle A \times B\times C\)</span></div></li>
+<li id="li-333"><div class="para" id="p-428"><span class="process-math">\(\displaystyle U \times \emptyset\)</span></div></li>
+<li id="li-334"><div class="para" id="p-429"><span class="process-math">\(\displaystyle A \times  A^c\)</span></div></li>
+<li id="li-335"><div class="para" id="p-430"><span class="process-math">\(\displaystyle B^2\)</span></div></li>
+<li id="li-336"><div class="para" id="p-431"><span class="process-math">\(\displaystyle B^3\)</span></div></li>
+<li id="li-337"><div class="para" id="p-432"><span class="process-math">\(\displaystyle B\times \mathcal{P}(B)\)</span></div></li>
 </ol></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-8" id="answer-8"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-8"><div class="answer solution-like"><div class="para logical" id="p-417"><ol class="lower-alpha">
-<li id="li-326"><div class="para" id="p-derived-li-326"><span class="process-math">\(\displaystyle \{(0, 2), (0, 3), (2, 2), (2, 3), (3, 2), (3, 3)\}\)</span></div></li>
-<li id="li-327"><div class="para" id="p-derived-li-327"><span class="process-math">\(\displaystyle \{(2, 0), (2, 2), (2, 3), (3, 0), (3, 2), (3, 3)\}\)</span></div></li>
-<li id="li-328"><div class="para" id="p-derived-li-328"><span class="process-math">\(\displaystyle \{(0, 2, 1), (0, 2, 4), (0, 3, 1), (0, 3, 4), (2, 2, 1), (2, 2, 4),\\ (2, 3, 1), (2, 3, 4), (3, 2, 1), (3, 2, 4), (3, 3, 1), (3, 3, 4)\}\)</span></div></li>
-<li id="li-329"><div class="para" id="p-derived-li-329"><span class="process-math">\(\displaystyle \emptyset\)</span></div></li>
-<li id="li-330"><div class="para" id="p-derived-li-330"><span class="process-math">\(\displaystyle \{(0, 1), (0, 4), (2, 1), (2, 4), (3, 1), (3, 4)\}\)</span></div></li>
-<li id="li-331"><div class="para" id="p-derived-li-331"><span class="process-math">\(\displaystyle \{(2, 2), (2, 3), (3, 2), (3, 3)\}\)</span></div></li>
-<li id="li-332"><div class="para" id="p-derived-li-332"><span class="process-math">\(\displaystyle \{(2, 2, 2), (2, 2, 3), (2, 3, 2), (2, 3, 3), (3, 2, 2), (3, 2, 3), (3, 3, 2), (3, 3, 3)\}\)</span></div></li>
-<li id="li-333"><div class="para" id="p-derived-li-333"><span class="process-math">\(\displaystyle \{(2, \emptyset ), (2, \{2\}), (2, \{3\}), (2, \{2, 3\}), (3, \emptyset ), (3, \{2\}), (3, \{3\}), (3, \{2, 3\})\}\)</span></div></li>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-10" id="answer-10"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-10"><div class="answer solution-like"><div class="para logical" id="p-433"><ol class="lower-alpha">
+<li id="li-338"><div class="para" id="p-derived-li-338"><span class="process-math">\(\displaystyle \{(0, 2), (0, 3), (2, 2), (2, 3), (3, 2), (3, 3)\}\)</span></div></li>
+<li id="li-339"><div class="para" id="p-derived-li-339"><span class="process-math">\(\displaystyle \{(2, 0), (2, 2), (2, 3), (3, 0), (3, 2), (3, 3)\}\)</span></div></li>
+<li id="li-340"><div class="para" id="p-derived-li-340"><span class="process-math">\(\displaystyle \{(0, 2, 1), (0, 2, 4), (0, 3, 1), (0, 3, 4), (2, 2, 1), (2, 2, 4),\\ (2, 3, 1), (2, 3, 4), (3, 2, 1), (3, 2, 4), (3, 3, 1), (3, 3, 4)\}\)</span></div></li>
+<li id="li-341"><div class="para" id="p-derived-li-341"><span class="process-math">\(\displaystyle \emptyset\)</span></div></li>
+<li id="li-342"><div class="para" id="p-derived-li-342"><span class="process-math">\(\displaystyle \{(0, 1), (0, 4), (2, 1), (2, 4), (3, 1), (3, 4)\}\)</span></div></li>
+<li id="li-343"><div class="para" id="p-derived-li-343"><span class="process-math">\(\displaystyle \{(2, 2), (2, 3), (3, 2), (3, 3)\}\)</span></div></li>
+<li id="li-344"><div class="para" id="p-derived-li-344"><span class="process-math">\(\displaystyle \{(2, 2, 2), (2, 2, 3), (2, 3, 2), (2, 3, 3), (3, 2, 2), (3, 2, 3), (3, 3, 2), (3, 3, 3)\}\)</span></div></li>
+<li id="li-345"><div class="para" id="p-derived-li-345"><span class="process-math">\(\displaystyle \{(2, \emptyset ), (2, \{2\}), (2, \{3\}), (2, \{2, 3\}), (3, \emptyset ), (3, \{2\}), (3, \{3\}), (3, \{2, 3\})\}\)</span></div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-17"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para" id="p-418">Suppose that you are about to flip a coin and then roll a die. Let <span class="process-math">\(A = \{HEADS, TAILS\}\)</span> and  <span class="process-math">\(B = \{1, 2, 3, 4, 5, 6\}\text{.}\)</span>
-</div> <div class="para logical" id="p-419"><ol class="lower-alpha">
-<li id="li-334"><div class="para" id="p-420">What is <span class="process-math">\(|A \times  B|\text{?}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-20"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para" id="p-434">Suppose that you are about to flip a coin and then roll a die. Let <span class="process-math">\(A = \{HEADS, TAILS\}\)</span> and  <span class="process-math">\(B = \{1, 2, 3, 4, 5, 6\}\text{.}\)</span>
+</div> <div class="para logical" id="p-435"><ol class="lower-alpha">
+<li id="li-346"><div class="para" id="p-436">What is <span class="process-math">\(|A \times  B|\text{?}\)</span>
 </div></li>
-<li id="li-335"><div class="para" id="p-421">How could you interpret the set <span class="process-math">\(A \times  B\)</span> ?</div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-18"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para" id="p-422">List all two-element sets in <span class="process-math">\(\mathcal{P}(\{a,b,c,d\})\)</span>
+<li id="li-347"><div class="para" id="p-437">How could you interpret the set <span class="process-math">\(A \times  B\)</span> ?</div></li>
+</ol></div></article><article class="exercise exercise-like" id="exercise-21"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para" id="p-438">List all two-element sets in <span class="process-math">\(\mathcal{P}(\{a,b,c,d\})\)</span>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-9" id="answer-9"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-9"><div class="answer solution-like"><div class="para" id="p-423"><span class="process-math">\(\{a, b\}, \{a, c\}, \{a, d\}, \{b, c\}, \{b, d\} \textrm{ and } \{c, d\}\)</span></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-19"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para" id="p-424">List all three-element sets in <span class="process-math">\(\mathcal{P}(\{a, b, c,d\})\text{.}\)</span>
-</div></article><article class="exercise exercise-like" id="exercise-20"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
-<div class="para" id="p-425">How many singleton (one-element) sets are there in <span class="process-math">\(\mathcal{P}(A)\)</span> if <span class="process-math">\(\lvert A \rvert =n\)</span> ?</div>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-11" id="answer-11"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-11"><div class="answer solution-like"><div class="para" id="p-439"><span class="process-math">\(\{a, b\}, \{a, c\}, \{a, d\}, \{b, c\}, \{b, d\} \textrm{ and } \{c, d\}\)</span></div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-22"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para" id="p-440">List all three-element sets in <span class="process-math">\(\mathcal{P}(\{a, b, c,d\})\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-23"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para" id="p-441">How many singleton (one-element) sets are there in <span class="process-math">\(\mathcal{P}(A)\)</span> if <span class="process-math">\(\lvert A \rvert =n\)</span> ?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-10" id="answer-10"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-10"><div class="answer solution-like"><div class="para" id="p-426">There are <span class="process-math">\(n\)</span> singleton subsets, one for each element.</div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-21"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
-<div class="para" id="p-427">A person has four coins in his pocket: a penny, a nickel, a dime, and a quarter. How many different sums of money can he take out if he removes 3 coins at a time?</div></article><article class="exercise exercise-like" id="exercise-22"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
-<div class="para" id="p-428">Let <span class="process-math">\(A = \{+,-\}\)</span> and <span class="process-math">\(B = \{00, 01, 10, 11\}\text{.}\)</span>
-</div> <div class="para logical" id="p-429"><ol class="lower-alpha">
-<li id="li-336"><div class="para" id="p-430">List the elements of <span class="process-math">\(A \times  B\)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-12" id="answer-12"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-12"><div class="answer solution-like"><div class="para" id="p-442">There are <span class="process-math">\(n\)</span> singleton subsets, one for each element.</div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-24"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div class="para" id="p-443">A person has four coins in his pocket: a penny, a nickel, a dime, and a quarter. How many different sums of money can he take out if he removes 3 coins at a time?</div></article><article class="exercise exercise-like" id="exercise-25"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="para" id="p-444">Let <span class="process-math">\(A = \{+,-\}\)</span> and <span class="process-math">\(B = \{00, 01, 10, 11\}\text{.}\)</span>
+</div> <div class="para logical" id="p-445"><ol class="lower-alpha">
+<li id="li-348"><div class="para" id="p-446">List the elements of <span class="process-math">\(A \times  B\)</span>
 </div></li>
-<li id="li-337"><div class="para" id="p-431">How many elements do <span class="process-math">\(A ^4\)</span> and <span class="process-math">\((A \times B)^3\)</span> have?</div></li>
+<li id="li-349"><div class="para" id="p-447">How many elements do <span class="process-math">\(A ^4\)</span> and <span class="process-math">\((A \times B)^3\)</span> have?</div></li>
 </ol></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-11" id="answer-11"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-11"><div class="answer solution-like"><div class="para logical" id="p-432"><ol class="lower-alpha">
-<li id="li-338"><div class="para" id="p-433"><span class="process-math">\(\displaystyle \{+00, +01, +10, +11, -00, -01, -10, -11\}\)</span></div></li>
-<li id="li-339"><div class="para" id="p-434"><span class="process-math">\(\displaystyle 16 \textrm{ and } 512\)</span></div></li>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-13" id="answer-13"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-13"><div class="answer solution-like"><div class="para logical" id="p-448"><ol class="lower-alpha">
+<li id="li-350"><div class="para" id="p-449"><span class="process-math">\(\displaystyle \{+00, +01, +10, +11, -00, -01, -10, -11\}\)</span></div></li>
+<li id="li-351"><div class="para" id="p-450"><span class="process-math">\(\displaystyle 16 \textrm{ and } 512\)</span></div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-23"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
-<div class="para" id="p-435">Let <span class="process-math">\(A = \{\bullet,\square ,\otimes \}\)</span> and <span class="process-math">\(B = \{\square ,\ominus ,\bullet\}\text{.}\)</span>
-</div> <div class="para logical" id="p-436"><ol class="lower-alpha">
-<li id="li-340"><div class="para" id="p-437">List the elements of <span class="process-math">\(A \times  B\)</span> and <span class="process-math">\(B \times  A\text{.}\)</span> The parentheses and comma in an ordered pair are not necessary in cases such as this where the elements of each set are individual symbols.</div></li>
-<li id="li-341"><div class="para" id="p-438">Identify the intersection of <span class="process-math">\(A \times  B\)</span> and <span class="process-math">\(B \times  A\)</span> for the case above, and then guess at a general rule for the intersection of <span class="process-math">\(A \times  B\)</span> and <span class="process-math">\(B \times  A\text{,}\)</span> where <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are any two sets.</div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-24"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
-<div class="para" id="p-439">Let <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> be nonempty sets. When are <span class="process-math">\(A \times  B\)</span> and <span class="process-math">\(B \times  A\)</span> equal?</div>
+</div></article><article class="exercise exercise-like" id="exercise-26"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div class="para" id="p-451">Let <span class="process-math">\(A = \{\bullet,\square ,\otimes \}\)</span> and <span class="process-math">\(B = \{\square ,\ominus ,\bullet\}\text{.}\)</span>
+</div> <div class="para logical" id="p-452"><ol class="lower-alpha">
+<li id="li-352"><div class="para" id="p-453">List the elements of <span class="process-math">\(A \times  B\)</span> and <span class="process-math">\(B \times  A\text{.}\)</span> The parentheses and comma in an ordered pair are not necessary in cases such as this where the elements of each set are individual symbols.</div></li>
+<li id="li-353"><div class="para" id="p-454">Identify the intersection of <span class="process-math">\(A \times  B\)</span> and <span class="process-math">\(B \times  A\)</span> for the case above, and then guess at a general rule for the intersection of <span class="process-math">\(A \times  B\)</span> and <span class="process-math">\(B \times  A\text{,}\)</span> where <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are any two sets.</div></li>
+</ol></div></article><article class="exercise exercise-like" id="exercise-27"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div class="para" id="p-455">Let <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> be nonempty sets. When are <span class="process-math">\(A \times  B\)</span> and <span class="process-math">\(B \times  A\)</span> equal?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-12" id="answer-12"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-12"><div class="answer solution-like"><div class="para" id="p-440">They are equal when <span class="process-math">\(A=B\text{.}\)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-14" id="answer-14"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-14"><div class="answer solution-like"><div class="para" id="p-456">They are equal when <span class="process-math">\(A=B\text{.}\)</span>
 </div></div></div>
 </div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>

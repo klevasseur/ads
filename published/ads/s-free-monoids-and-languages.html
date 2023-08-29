@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Free Monoids and Languages</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,32 +58,47 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
 </script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
 <script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
@@ -105,59 +138,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -166,7 +156,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -321,7 +311,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1130,62 +1123,62 @@ eBookConfig.runestone_version = '7.0.7';
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="s-free-monoids-and-languages"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">14.2</span> <span class="title">Free Monoids and Languages</span>
 </h2>
-<div class="para" id="p-5347">In this section, we will introduce the concept of a language. Languages are subsets of a certain type of monoid, the free monoid over an alphabet. After defining a free monoid, we will discuss languages and some of the basic problems relating to them. We will also discuss the common ways in which languages are defined.</div>
-<div class="para" id="p-5348">Let <span class="process-math">\(A\)</span> be a nonempty set, which we will call an alphabet. Our primary interest will be in the case where <span class="process-math">\(A\)</span> is finite; however, <span class="process-math">\(A\)</span> could be infinite for most of the situations that we will describe. The elements of <span class="process-math">\(A\)</span> are called letters or symbols. Among the alphabets that we will use are <span class="process-math">\(B=\{0,1\}\text{,}\)</span> and the set of ASCII (American Standard Code for Information Interchange) characters, which we symbolize as <span class="process-math">\(ASCII\text{.}\)</span>
+<div class="para" id="p-5363">In this section, we will introduce the concept of a language. Languages are subsets of a certain type of monoid, the free monoid over an alphabet. After defining a free monoid, we will discuss languages and some of the basic problems relating to them. We will also discuss the common ways in which languages are defined.</div>
+<div class="para" id="p-5364">Let <span class="process-math">\(A\)</span> be a nonempty set, which we will call an alphabet. Our primary interest will be in the case where <span class="process-math">\(A\)</span> is finite; however, <span class="process-math">\(A\)</span> could be infinite for most of the situations that we will describe. The elements of <span class="process-math">\(A\)</span> are called letters or symbols. Among the alphabets that we will use are <span class="process-math">\(B=\{0,1\}\text{,}\)</span> and the set of ASCII (American Standard Code for Information Interchange) characters, which we symbolize as <span class="process-math">\(ASCII\text{.}\)</span>
 </div>
 <article class="definition definition-like" id="def-strings-over-alphabet"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">14.2.1</span><span class="period">.</span><span class="space"> </span><span class="title">Strings over an Alphabet.</span>
-</h3>  <div class="para" id="p-5349">A string of length <span class="process-math">\(n\text{,}\)</span> <span class="process-math">\(n \geqslant 1\)</span> over alphabet <span class="process-math">\(A\)</span> is a sequence of <span class="process-math">\(n\)</span> letters from <span class="process-math">\(A\text{:}\)</span> <span class="process-math">\(a_1a_2\ldots a_n\text{.}\)</span> The null string, <span class="process-math">\(\lambda\text{,}\)</span>  is defined as the string of length zero containing no letters. The set of strings of length <span class="process-math">\(n\)</span> over <span class="process-math">\(A\)</span> is denoted by <span class="process-math">\(A^n\text{.}\)</span> The set of all strings over <span class="process-math">\(A\)</span> is denoted <span class="process-math">\(A^*\text{.}\)</span>
+</h3>  <div class="para" id="p-5365">A string of length <span class="process-math">\(n\text{,}\)</span> <span class="process-math">\(n \geqslant 1\)</span> over alphabet <span class="process-math">\(A\)</span> is a sequence of <span class="process-math">\(n\)</span> letters from <span class="process-math">\(A\text{:}\)</span> <span class="process-math">\(a_1a_2\ldots a_n\text{.}\)</span> The null string, <span class="process-math">\(\lambda\text{,}\)</span>  is defined as the string of length zero containing no letters. The set of strings of length <span class="process-math">\(n\)</span> over <span class="process-math">\(A\)</span> is denoted by <span class="process-math">\(A^n\text{.}\)</span> The set of all strings over <span class="process-math">\(A\)</span> is denoted <span class="process-math">\(A^*\text{.}\)</span>
 </div></article><article class="note remark-like" id="note-29"><h3 class="heading">
 <span class="type">Note</span><span class="space"> </span><span class="codenumber">14.2.2</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-5350"><ol class="lower-alpha">
-<li id="li-2437"><div class="para" id="p-5351">If the length of string <span class="process-math">\(s\)</span> is <span class="process-math">\(n\text{,}\)</span> we write <span class="process-math">\(\lvert s \rvert =n\text{.}\)</span>
+<div class="para logical" id="p-5366"><ol class="lower-alpha">
+<li id="li-2449"><div class="para" id="p-5367">If the length of string <span class="process-math">\(s\)</span> is <span class="process-math">\(n\text{,}\)</span> we write <span class="process-math">\(\lvert s \rvert =n\text{.}\)</span>
 </div></li>
-<li id="li-2438"><div class="para" id="p-5352">The null string is not the same as the empty set, although they are similar in many ways.  <span class="process-math">\(A^0 = \{\lambda\}\text{.}\)</span>
+<li id="li-2450"><div class="para" id="p-5368">The null string is not the same as the empty set, although they are similar in many ways.  <span class="process-math">\(A^0 = \{\lambda\}\text{.}\)</span>
 </div></li>
-<li id="li-2439"><div class="para" id="p-5353">
+<li id="li-2451"><div class="para" id="p-5369">
 <span class="process-math">\(A^*=A^0\cup A^1\cup A^2\cup A^3\cup \cdots \textrm{ and if } i\neq j,A^i\cap A^j=\emptyset\text{;}\)</span> that is, <span class="process-math">\(\{A^0,A^1,A^2,A^3,\ldots \}\)</span> is a partition of <span class="process-math">\(A^*\text{.}\)</span>
 </div></li>
-<li id="li-2440"><div class="para" id="p-5354">An element of <span class="process-math">\(A\)</span> can appear any number of times in a string.</div></li>
+<li id="li-2452"><div class="para" id="p-5370">An element of <span class="process-math">\(A\)</span> can appear any number of times in a string.</div></li>
 </ol></div></article><article class="theorem theorem-like" id="theorem-14-2-1"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">14.2.3</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-5355">If <span class="process-math">\(A\)</span> is countable, then <span class="process-math">\(A^*\)</span> is countable.</div></article><article class="hiddenproof" id="proof-52"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-52"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-52"><article class="hiddenproof"><div class="para" id="p-5356">Case 1. Given the alphabet <span class="process-math">\(B=\{0,1\}\text{,}\)</span> we can define a bijection from the positive integers into <span class="process-math">\(B^*\text{.}\)</span> Each positive integer has a binary expansion <span class="process-math">\(d_kd_{k-1}\cdots d_1d_0\text{,}\)</span> where each <span class="process-math">\(d_j\)</span> is 0 or 1 and <span class="process-math">\(d_k=1\text{.}\)</span> If <span class="process-math">\(n\)</span> has such a binary expansion, then <span class="process-math">\(2^k \leq n\leq 2^{k+1}\text{.}\)</span> We define <span class="process-math">\(f:\mathbb{P}\to B^*\)</span> by <span class="process-math">\(f(n)=f\left(d_kd_{k-1}\cdots  d_1d_0\right)=d_{k-1}\cdots d_1d_0,\)</span>  where  <span class="process-math">\(f(1)=\lambda\text{.}\)</span> Every one of the <span class="process-math">\(2^k\)</span> strings of length <span class="process-math">\(k\)</span> are the images of exactly one of the integers between <span class="process-math">\(2^k\textrm{ and } 2^{k+1}-1.\)</span> From its definition, <span class="process-math">\(f\)</span> is clearly a bijection; therefore, <span class="process-math">\(B^*\)</span> is countable.</div> <div class="para" id="p-5357">Case 2: <span class="process-math">\(A\)</span> is Finite. We will describe how this case is handled with an example first and then give the general proof. If <span class="process-math">\(A=\{a,b,c,d,e\}\text{,}\)</span> then we can code the letters in <span class="process-math">\(A\)</span> into strings from <span class="process-math">\(B^3\text{.}\)</span> One of the coding schemes (there are many) is <span class="process-math">\(a\leftrightarrow 000, b\leftrightarrow
-001, c\leftrightarrow 010, d\leftrightarrow 011, \textrm{ and } e\leftrightarrow 100\text{.}\)</span> Now every string in <span class="process-math">\(A^*\)</span> corresponds to a different string in <span class="process-math">\(B^*\text{;}\)</span> for example, <span class="process-math">\(ace\text{.}\)</span>  would correspond with <span class="process-math">\(000010100\text{.}\)</span> The cardinality of <span class="process-math">\(A^*\)</span> is equal to the cardinality of the set of strings that can be obtained from this encoding system. The possible coded strings must be countable, since they are a subset of a countable set, <span class="process-math">\(B^*\text{.}\)</span> Therefore, <span class="process-math">\(A^*\)</span> is countable.</div> <div class="para" id="p-5358">If <span class="process-math">\(\lvert A\rvert =m\text{,}\)</span> then the letters in <span class="process-math">\(A\)</span> can be coded using a set of fixed-length strings from <span class="process-math">\(B^*\text{.}\)</span> If <span class="process-math">\(2^{k-1} &lt; m \leq 2^k\text{,}\)</span> then there are at least as many strings of length <span class="process-math">\(k\)</span> in <span class="process-math">\(B^k\)</span> as there are letters in <span class="process-math">\(A\text{.}\)</span> Now we can associate each letter in <span class="process-math">\(A\)</span> with with a different element of <span class="process-math">\(B^k\text{.}\)</span> Then any string in <span class="process-math">\(A^*\text{.}\)</span>  corresponds to a string in <span class="process-math">\(B^*\text{.}\)</span>  By the same reasoning as in the example above, <span class="process-math">\(A^*\)</span> is countable.</div> <div class="para" id="p-5359">Case 3: <span class="process-math">\(A\)</span> is Countably Infinite. We will leave this case as an exercise.</div></article></div>
+<div class="para" id="p-5371">If <span class="process-math">\(A\)</span> is countable, then <span class="process-math">\(A^*\)</span> is countable.</div></article><article class="hiddenproof" id="proof-52"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-52"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-52"><article class="hiddenproof"><div class="para" id="p-5372">Case 1. Given the alphabet <span class="process-math">\(B=\{0,1\}\text{,}\)</span> we can define a bijection from the positive integers into <span class="process-math">\(B^*\text{.}\)</span> Each positive integer has a binary expansion <span class="process-math">\(d_kd_{k-1}\cdots d_1d_0\text{,}\)</span> where each <span class="process-math">\(d_j\)</span> is 0 or 1 and <span class="process-math">\(d_k=1\text{.}\)</span> If <span class="process-math">\(n\)</span> has such a binary expansion, then <span class="process-math">\(2^k \leq n\leq 2^{k+1}\text{.}\)</span> We define <span class="process-math">\(f:\mathbb{P}\to B^*\)</span> by <span class="process-math">\(f(n)=f\left(d_kd_{k-1}\cdots  d_1d_0\right)=d_{k-1}\cdots d_1d_0,\)</span>  where  <span class="process-math">\(f(1)=\lambda\text{.}\)</span> Every one of the <span class="process-math">\(2^k\)</span> strings of length <span class="process-math">\(k\)</span> are the images of exactly one of the integers between <span class="process-math">\(2^k\textrm{ and } 2^{k+1}-1.\)</span> From its definition, <span class="process-math">\(f\)</span> is clearly a bijection; therefore, <span class="process-math">\(B^*\)</span> is countable.</div> <div class="para" id="p-5373">Case 2: <span class="process-math">\(A\)</span> is Finite. We will describe how this case is handled with an example first and then give the general proof. If <span class="process-math">\(A=\{a,b,c,d,e\}\text{,}\)</span> then we can code the letters in <span class="process-math">\(A\)</span> into strings from <span class="process-math">\(B^3\text{.}\)</span> One of the coding schemes (there are many) is <span class="process-math">\(a\leftrightarrow 000, b\leftrightarrow
+001, c\leftrightarrow 010, d\leftrightarrow 011, \textrm{ and } e\leftrightarrow 100\text{.}\)</span> Now every string in <span class="process-math">\(A^*\)</span> corresponds to a different string in <span class="process-math">\(B^*\text{;}\)</span> for example, <span class="process-math">\(ace\text{.}\)</span>  would correspond with <span class="process-math">\(000010100\text{.}\)</span> The cardinality of <span class="process-math">\(A^*\)</span> is equal to the cardinality of the set of strings that can be obtained from this encoding system. The possible coded strings must be countable, since they are a subset of a countable set, <span class="process-math">\(B^*\text{.}\)</span> Therefore, <span class="process-math">\(A^*\)</span> is countable.</div> <div class="para" id="p-5374">If <span class="process-math">\(\lvert A\rvert =m\text{,}\)</span> then the letters in <span class="process-math">\(A\)</span> can be coded using a set of fixed-length strings from <span class="process-math">\(B^*\text{.}\)</span> If <span class="process-math">\(2^{k-1} &lt; m \leq 2^k\text{,}\)</span> then there are at least as many strings of length <span class="process-math">\(k\)</span> in <span class="process-math">\(B^k\)</span> as there are letters in <span class="process-math">\(A\text{.}\)</span> Now we can associate each letter in <span class="process-math">\(A\)</span> with with a different element of <span class="process-math">\(B^k\text{.}\)</span> Then any string in <span class="process-math">\(A^*\text{.}\)</span>  corresponds to a string in <span class="process-math">\(B^*\text{.}\)</span>  By the same reasoning as in the example above, <span class="process-math">\(A^*\)</span> is countable.</div> <div class="para" id="p-5375">Case 3: <span class="process-math">\(A\)</span> is Countably Infinite. We will leave this case as an exercise.</div></article></div>
 <article class="definition definition-like" id="def-concatenation"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">14.2.4</span><span class="period">.</span><span class="space"> </span><span class="title">Concatenation.</span>
-</h3>  <div class="para" id="p-5360">Let  <span class="process-math">\(a=a_1a_2\cdots  a_m\)</span> and <span class="process-math">\(b=b_1b_2\cdots  b_n\)</span> be strings of length <span class="process-math">\(m\)</span> and <span class="process-math">\(n\text{,}\)</span> respectively. The concatenation of <span class="process-math">\(a\)</span> with <span class="process-math">\(b\text{,}\)</span> <span class="process-math">\(a+b\text{,}\)</span> is the string <span class="process-math">\(a_1a_2\cdots  a_mb_1b_2\cdots  b_n\)</span> of length  <span class="process-math">\(m+n\text{.}\)</span>
-</div></article><div class="para" id="p-5361">There are several symbols that are used for concatenation.  We chose to use the one that is also used in Python and SageMath.</div>
+</h3>  <div class="para" id="p-5376">Let  <span class="process-math">\(a=a_1a_2\cdots  a_m\)</span> and <span class="process-math">\(b=b_1b_2\cdots  b_n\)</span> be strings of length <span class="process-math">\(m\)</span> and <span class="process-math">\(n\text{,}\)</span> respectively. The concatenation of <span class="process-math">\(a\)</span> with <span class="process-math">\(b\text{,}\)</span> <span class="process-math">\(a+b\text{,}\)</span> is the string <span class="process-math">\(a_1a_2\cdots  a_mb_1b_2\cdots  b_n\)</span> of length  <span class="process-math">\(m+n\text{.}\)</span>
+</div></article><div class="para" id="p-5377">There are several symbols that are used for concatenation.  We chose to use the one that is also used in Python and SageMath.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-58"><script type="text/x-sage">'good'+'bye'
 </script></pre>
-<div class="para" id="p-5362">The set of strings over any alphabet is a monoid under concatenation.</div>
+<div class="para" id="p-5378">The set of strings over any alphabet is a monoid under concatenation.</div>
 <article class="note remark-like" id="note-30"><h3 class="heading">
 <span class="type">Note</span><span class="space"> </span><span class="codenumber">14.2.5</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-5363"><ol class="lower-alpha">
-<li id="li-2441"><div class="para" id="p-5364">The null string is the identity element of <span class="process-math">\([A^*; +]\text{.}\)</span> Henceforth, we will denote the monoid of strings over <span class="process-math">\(A\)</span> by <span class="process-math">\(A^*\text{.}\)</span>
+<div class="para logical" id="p-5379"><ol class="lower-alpha">
+<li id="li-2453"><div class="para" id="p-5380">The null string is the identity element of <span class="process-math">\([A^*; +]\text{.}\)</span> Henceforth, we will denote the monoid of strings over <span class="process-math">\(A\)</span> by <span class="process-math">\(A^*\text{.}\)</span>
 </div></li>
-<li id="li-2442"><div class="para" id="p-5365">Concatenation is noncommutative, provided <span class="process-math">\(\lvert A\rvert  &gt; 1\text{.}\)</span>
+<li id="li-2454"><div class="para" id="p-5381">Concatenation is noncommutative, provided <span class="process-math">\(\lvert A\rvert  &gt; 1\text{.}\)</span>
 </div></li>
-<li id="li-2443"><div class="para" id="p-5366">If <span class="process-math">\(\lvert A_1 \rvert  = \lvert A_2 \rvert\text{,}\)</span> then the monoids <span class="process-math">\(A_1^*\)</span> and <span class="process-math">\(A_2^*\)</span> are isomorphic. An isomorphism can be defined using any bijection <span class="process-math">\(f:A_1\to A_2\text{.}\)</span> If <span class="process-math">\(a=a_1a_2\cdots  a_n \in  A_1^*\text{,}\)</span> <span class="process-math">\(f^*(a)=(f(a_1)f(a_2)\cdots  f(a_n))\)</span> defines a bijection from <span class="process-math">\(A_1^*\)</span> into <span class="process-math">\(A_2^*\text{.}\)</span> We will leave it to the reader to prove that for all <span class="process-math">\(a,b,\in A_1^*,f^*(a+b)=f^*(a)+f^*(b)\text{.}\)</span>
+<li id="li-2455"><div class="para" id="p-5382">If <span class="process-math">\(\lvert A_1 \rvert  = \lvert A_2 \rvert\text{,}\)</span> then the monoids <span class="process-math">\(A_1^*\)</span> and <span class="process-math">\(A_2^*\)</span> are isomorphic. An isomorphism can be defined using any bijection <span class="process-math">\(f:A_1\to A_2\text{.}\)</span> If <span class="process-math">\(a=a_1a_2\cdots  a_n \in  A_1^*\text{,}\)</span> <span class="process-math">\(f^*(a)=(f(a_1)f(a_2)\cdots  f(a_n))\)</span> defines a bijection from <span class="process-math">\(A_1^*\)</span> into <span class="process-math">\(A_2^*\text{.}\)</span> We will leave it to the reader to prove that for all <span class="process-math">\(a,b,\in A_1^*,f^*(a+b)=f^*(a)+f^*(b)\text{.}\)</span>
 </div></li>
-</ol></div></article><div class="para" id="p-5367">The languages of the world, English, German, Russian, Chinese, and so forth, are called natural languages. In order to communicate in writing in any one of them, you must first know the letters of the alphabet and then know how to combine the letters in meaningful ways. A  formal language is an abstraction of this situation.</div>
+</ol></div></article><div class="para" id="p-5383">The languages of the world, English, German, Russian, Chinese, and so forth, are called natural languages. In order to communicate in writing in any one of them, you must first know the letters of the alphabet and then know how to combine the letters in meaningful ways. A  formal language is an abstraction of this situation.</div>
 <article class="definition definition-like" id="def-formal-language"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">14.2.6</span><span class="period">.</span><span class="space"> </span><span class="title">Formal Language.</span>
-</h3>  <div class="para" id="p-5368">If <span class="process-math">\(A\)</span> is an alphabet, a formal language over <span class="process-math">\(A\)</span> is a subset of <span class="process-math">\(A^*\text{.}\)</span>
+</h3>  <div class="para" id="p-5384">If <span class="process-math">\(A\)</span> is an alphabet, a formal language over <span class="process-math">\(A\)</span> is a subset of <span class="process-math">\(A^*\text{.}\)</span>
 </div></article><article class="example example-like" id="ex-some-formal-languages"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-some-formal-languages"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">14.2.7</span><span class="period">.</span><span class="space"> </span><span class="title">Some Formal Languages.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-some-formal-languages"><article class="example example-like"> <div class="para logical" id="p-5369"><ol class="lower-alpha">
-<li id="li-2444"><div class="para" id="p-5370">English can be thought of as a language over of letters <span class="process-math">\(A,B,\cdots Z\text{,}\)</span> both upper and lower case,	and other special symbols, such as punctuation marks and the blank. Exactly what subset of the strings over this alphabet defines the English language is difficult to pin down exactly. This is a characteristic of natural languages that we try to avoid with formal languages.</div></li>
-<li id="li-2445"><div class="para" id="p-5371">The set of all ASCII stream files can be defined in terms of a language over ASCII. An ASCII stream file is a sequence of zero or more lines followed by an end-of-file symbol. A line is defined as a sequence of ASCII characters that ends with the a “new line” character. The end-of-file symbol is system-dependent.</div></li>
-<li id="li-2446"><div class="para" id="p-5372">The set of all syntactically correct expressions in any computer language is a language over the set of ASCII strings.</div></li>
-<li id="li-2447"><div class="para logical" id="p-5373">
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-some-formal-languages"><article class="example example-like"> <div class="para logical" id="p-5385"><ol class="lower-alpha">
+<li id="li-2456"><div class="para" id="p-5386">English can be thought of as a language over of letters <span class="process-math">\(A,B,\cdots Z\text{,}\)</span> both upper and lower case,	and other special symbols, such as punctuation marks and the blank. Exactly what subset of the strings over this alphabet defines the English language is difficult to pin down exactly. This is a characteristic of natural languages that we try to avoid with formal languages.</div></li>
+<li id="li-2457"><div class="para" id="p-5387">The set of all ASCII stream files can be defined in terms of a language over ASCII. An ASCII stream file is a sequence of zero or more lines followed by an end-of-file symbol. A line is defined as a sequence of ASCII characters that ends with the a “new line” character. The end-of-file symbol is system-dependent.</div></li>
+<li id="li-2458"><div class="para" id="p-5388">The set of all syntactically correct expressions in any computer language is a language over the set of ASCII strings.</div></li>
+<li id="li-2459"><div class="para logical" id="p-5389">
 <div class="para">A few languages over <span class="process-math">\(B\)</span> are</div>
 <ul class="disc">
-<li id="li-2448"><div class="para" id="p-5374"><span class="process-math">\(\displaystyle L_1=\{s\in B^* \mid s \textrm{  has  exactly  as many 1's as it  has 0's}\}\)</span></div></li>
-<li id="li-2449"><div class="para" id="p-5375"><span class="process-math">\(\displaystyle L_2=\{1+s+0 \mid s\in B^*\}\)</span></div></li>
-<li id="li-2450"><div class="para" id="p-5376">
+<li id="li-2460"><div class="para" id="p-5390"><span class="process-math">\(\displaystyle L_1=\{s\in B^* \mid s \textrm{  has  exactly  as many 1's as it  has 0's}\}\)</span></div></li>
+<li id="li-2461"><div class="para" id="p-5391"><span class="process-math">\(\displaystyle L_2=\{1+s+0 \mid s\in B^*\}\)</span></div></li>
+<li id="li-2462"><div class="para" id="p-5392">
 <span class="process-math">\(L_3=\langle 0,01\rangle\)</span> = the submonoid of <span class="process-math">\(B^*\)</span> generated by <span class="process-math">\(\{0,01\}\text{.}\)</span>
 </div></li>
 </ul>
@@ -1194,16 +1187,16 @@ eBookConfig.runestone_version = '7.0.7';
 <article class="investigation project-like" id="invest-language-problems"><h3 class="heading">
 <span class="type">Investigation</span><span class="space"> </span><span class="codenumber">14.2.1</span><span class="period">.</span><span class="space"> </span><span class="title">Two Fundamental Problems: Recognition and Generation.</span>
 </h3>
-<div class="para" id="p-5377">The generation and recognition problems are basic to computer programming. Given a language, <span class="process-math">\(L\text{,}\)</span> the programmer must know how to write (or generate) a syntactically correct program that solves a problem. On the other hand, the compiler must be written to recognize whether a program contains any syntax errors.</div></article><article class="problem example-like" id="prob-recognition"><a href="" data-knowl="" class="id-ref problem-knowl original" data-refid="hk-prob-recognition"><h3 class="heading">
+<div class="para" id="p-5393">The generation and recognition problems are basic to computer programming. Given a language, <span class="process-math">\(L\text{,}\)</span> the programmer must know how to write (or generate) a syntactically correct program that solves a problem. On the other hand, the compiler must be written to recognize whether a program contains any syntax errors.</div></article><article class="problem example-like" id="prob-recognition"><a href="" data-knowl="" class="id-ref problem-knowl original" data-refid="hk-prob-recognition"><h3 class="heading">
 <span class="type">Problem</span><span class="space"> </span><span class="codenumber">14.2.8</span><span class="period">.</span><span class="space"> </span><span class="title">The Recognition Problem.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-prob-recognition"><article class="problem example-like"><div class="para" id="p-5378">Given a formal language over alphabet <span class="process-math">\(A\text{,}\)</span> the Recognition Problem is to design an algorithm that determines the truth of <span class="process-math">\(s\in L\)</span> in a finite number of steps for all <span class="process-math">\(s\in A^*\text{.}\)</span> Any such algorithm is called a recognition algorithm.</div></article></div>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-prob-recognition"><article class="problem example-like"><div class="para" id="p-5394">Given a formal language over alphabet <span class="process-math">\(A\text{,}\)</span> the Recognition Problem is to design an algorithm that determines the truth of <span class="process-math">\(s\in L\)</span> in a finite number of steps for all <span class="process-math">\(s\in A^*\text{.}\)</span> Any such algorithm is called a recognition algorithm.</div></article></div>
 <article class="definition definition-like" id="def-recursive-language"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">14.2.9</span><span class="period">.</span><span class="space"> </span><span class="title">Recursive Language.</span>
-</h3>  <div class="para" id="p-5379">A language is recursive if there exists a recognition algorithm for it.</div></article><article class="example example-like" id="ex-some-recursive-languages"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-some-recursive-languages"><h3 class="heading">
+</h3>  <div class="para" id="p-5395">A language is recursive if there exists a recognition algorithm for it.</div></article><article class="example example-like" id="ex-some-recursive-languages"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-some-recursive-languages"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">14.2.10</span><span class="period">.</span><span class="space"> </span><span class="title">Some Recursive Languages.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-some-recursive-languages"><article class="example example-like"> <div class="para logical" id="p-5380"><ol class="lower-alpha">
-<li id="li-2451"><div class="para" id="p-5381">The language of syntactically correct propositions over set of propositional variables expressions is recursive.</div></li>
-<li id="li-2452"><div class="para logical" id="p-5382">
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-some-recursive-languages"><article class="example example-like"> <div class="para logical" id="p-5396"><ol class="lower-alpha">
+<li id="li-2463"><div class="para" id="p-5397">The language of syntactically correct propositions over set of propositional variables expressions is recursive.</div></li>
+<li id="li-2464"><div class="para logical" id="p-5398">
 <div class="para">The three languages in <a href="" class="xref" data-knowl="./knowl/ex-some-formal-languages.html" title="Example 14.2.7: Some Formal Languages">7</a>(d)  are all recursive. Recognition algorithms for <span class="process-math">\(L_1\)</span> and <span class="process-math">\(L_2\)</span> should be easy for you to imagine.  The reason a recognition algorithm for <span class="process-math">\(L_3\)</span> might not be obvious is that the definition of <span class="process-math">\(L_3\)</span>  is more cryptic. It doesn’t tell us what belongs to <span class="process-math">\(L_3\text{,}\)</span> just what can be used to create strings in <span class="process-math">\(L_3\text{.}\)</span> This is how many languages are defined. With a second description of <span class="process-math">\(L_3\text{,}\)</span> we can easily design a recognition algorithm. You can prove that</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-some-formal-languages.html">
 \begin{equation*}
@@ -1214,51 +1207,51 @@ L_3=\{s\in B^* \mid s=\lambda  \textrm{ or }  s \textrm{ starts with a 0 and has
 </ol></div></article></div>
 <article class="problem example-like" id="prob-generation"><a href="" data-knowl="" class="id-ref problem-knowl original" data-refid="hk-prob-generation"><h3 class="heading">
 <span class="type">Problem</span><span class="space"> </span><span class="codenumber">14.2.11</span><span class="period">.</span><span class="space"> </span><span class="title">The Generation Problem.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-prob-generation"><article class="problem example-like"><div class="para" id="p-5383">Design an algorithm that generates or produces any string in <span class="process-math">\(L\text{.}\)</span> Here we presume that <span class="process-math">\(A\)</span> is either finite or countably infinite; hence, <span class="process-math">\(A^*\)</span>  is countable by <a href="" class="xref" data-knowl="./knowl/theorem-14-2-1.html" title="Theorem 14.2.3">Theorem 14.2.3</a>, and <span class="process-math">\(L \subseteq A^*\)</span> must be countable. Therefore, the generation of <span class="process-math">\(L\)</span> amounts to creating a list of strings in <span class="process-math">\(L\text{.}\)</span> The list may be either finite or infinite, and you must be able to show that every string in <span class="process-math">\(L\)</span> appears somewhere in the list.</div></article></div>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-prob-generation"><article class="problem example-like"><div class="para" id="p-5399">Design an algorithm that generates or produces any string in <span class="process-math">\(L\text{.}\)</span> Here we presume that <span class="process-math">\(A\)</span> is either finite or countably infinite; hence, <span class="process-math">\(A^*\)</span>  is countable by <a href="" class="xref" data-knowl="./knowl/theorem-14-2-1.html" title="Theorem 14.2.3">Theorem 14.2.3</a>, and <span class="process-math">\(L \subseteq A^*\)</span> must be countable. Therefore, the generation of <span class="process-math">\(L\)</span> amounts to creating a list of strings in <span class="process-math">\(L\text{.}\)</span> The list may be either finite or infinite, and you must be able to show that every string in <span class="process-math">\(L\)</span> appears somewhere in the list.</div></article></div>
 <article class="theorem theorem-like" id="theorem-14-2-2"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">14.2.12</span><span class="period">.</span><span class="space"> </span><span class="title">Recursive implies Generating.</span>
 </h3>
-<div class="para logical" id="p-5384"><ol class="lower-alpha">
-<li id="li-2453"><div class="para" id="p-5385">If <span class="process-math">\(A\)</span> is countable, then there exists a generating algorithm for <span class="process-math">\(A^*\text{.}\)</span>
+<div class="para logical" id="p-5400"><ol class="lower-alpha">
+<li id="li-2465"><div class="para" id="p-5401">If <span class="process-math">\(A\)</span> is countable, then there exists a generating algorithm for <span class="process-math">\(A^*\text{.}\)</span>
 </div></li>
-<li id="li-2454"><div class="para" id="p-5386">If <span class="process-math">\(L\)</span> is a recursive language over a countable alphabet, then there exists a generating algorithm for <span class="process-math">\(L\text{.}\)</span>
+<li id="li-2466"><div class="para" id="p-5402">If <span class="process-math">\(L\)</span> is a recursive language over a countable alphabet, then there exists a generating algorithm for <span class="process-math">\(L\text{.}\)</span>
 </div></li>
-</ol></div></article><article class="hiddenproof" id="proof-53"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-53"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-53"><article class="hiddenproof"><div class="para" id="p-5387">Part (a) follows from the fact that <span class="process-math">\(A^*\)</span> is countable; therefore, there exists a complete list of strings in <span class="process-math">\(A^*\text{.}\)</span>
-</div> <div class="para" id="p-5388">To generate all strings of <span class="process-math">\(L\text{,}\)</span> start with a list of all strings in <span class="process-math">\(A^*\)</span> and an empty list, <span class="process-math">\(W\text{,}\)</span> of strings in <span class="process-math">\(L\text{.}\)</span> For each string <span class="process-math">\(s\text{,}\)</span> use a recognition algorithm (one exists since <span class="process-math">\(L\)</span> is recursive) to determine whether <span class="process-math">\(s\in L\text{.}\)</span> If <span class="process-math">\(s \in L\text{,}\)</span> add it to <span class="process-math">\(W\text{;}\)</span> otherwise “throw it out.” Then go to the next string in the list of <span class="process-math">\(A^*\text{.}\)</span>
+</ol></div></article><article class="hiddenproof" id="proof-53"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-53"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-53"><article class="hiddenproof"><div class="para" id="p-5403">Part (a) follows from the fact that <span class="process-math">\(A^*\)</span> is countable; therefore, there exists a complete list of strings in <span class="process-math">\(A^*\text{.}\)</span>
+</div> <div class="para" id="p-5404">To generate all strings of <span class="process-math">\(L\text{,}\)</span> start with a list of all strings in <span class="process-math">\(A^*\)</span> and an empty list, <span class="process-math">\(W\text{,}\)</span> of strings in <span class="process-math">\(L\text{.}\)</span> For each string <span class="process-math">\(s\text{,}\)</span> use a recognition algorithm (one exists since <span class="process-math">\(L\)</span> is recursive) to determine whether <span class="process-math">\(s\in L\text{.}\)</span> If <span class="process-math">\(s \in L\text{,}\)</span> add it to <span class="process-math">\(W\text{;}\)</span> otherwise “throw it out.” Then go to the next string in the list of <span class="process-math">\(A^*\text{.}\)</span>
 </div></article></div>
 <article class="example example-like" id="ex-examples-better-algorithms-q"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-examples-better-algorithms-q"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">14.2.13</span><span class="period">.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-examples-better-algorithms-q"><article class="example example-like"><div class="para" id="p-5389">Since all of the languages in <a href="" class="xref" data-knowl="./knowl/ex-some-formal-languages.html" title="Example 14.2.7: Some Formal Languages">7</a>(d) are recursive, they must have generating algorithms. The one given in the proof of <a href="" class="xref" data-knowl="./knowl/theorem-14-2-2.html" title="Theorem 14.2.12: Recursive implies Generating">Theorem 14.2.12</a> is not usually the most efficient. You could probably design more efficient generating algorithms for <span class="process-math">\(L_2\)</span> and <span class="process-math">\(L_3\text{;}\)</span> however, a better generating algorithm for <span class="process-math">\(L_1\)</span> is not quite so obvious.</div></article></div>
-<div class="para" id="p-5390">The recognition and generation problems can vary in difficulty depending on how a language is defined and what sort of algorithms we allow ourselves to use. This is not to say that the means by which a language is defined determines whether it is recursive. It just means that the truth of the statement “<span class="process-math">\(L\)</span> is recursive” may be more difficult to determine with one definition than with another. We will close this section with a discussion of grammars, which are standard forms of definition for a language. When we restrict ourselves to only certain types of algorithms, we can affect our ability to determine whether <span class="process-math">\(s\in L\)</span> is true. In defining a recursive language, we do not restrict ourselves in any way in regard to the type of algorithm that will be used. In the next section, we will consider machines called finite automata, which can only perform simple algorithms.</div>
-<div class="para" id="p-5391">One common way of defining a language is by means of a <dfn class="terminology">phrase structure grammar</dfn>  (or grammar, for short). The set of strings that can be produced using set of grammar rules is called a phrase structure language.</div>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-examples-better-algorithms-q"><article class="example example-like"><div class="para" id="p-5405">Since all of the languages in <a href="" class="xref" data-knowl="./knowl/ex-some-formal-languages.html" title="Example 14.2.7: Some Formal Languages">7</a>(d) are recursive, they must have generating algorithms. The one given in the proof of <a href="" class="xref" data-knowl="./knowl/theorem-14-2-2.html" title="Theorem 14.2.12: Recursive implies Generating">Theorem 14.2.12</a> is not usually the most efficient. You could probably design more efficient generating algorithms for <span class="process-math">\(L_2\)</span> and <span class="process-math">\(L_3\text{;}\)</span> however, a better generating algorithm for <span class="process-math">\(L_1\)</span> is not quite so obvious.</div></article></div>
+<div class="para" id="p-5406">The recognition and generation problems can vary in difficulty depending on how a language is defined and what sort of algorithms we allow ourselves to use. This is not to say that the means by which a language is defined determines whether it is recursive. It just means that the truth of the statement “<span class="process-math">\(L\)</span> is recursive” may be more difficult to determine with one definition than with another. We will close this section with a discussion of grammars, which are standard forms of definition for a language. When we restrict ourselves to only certain types of algorithms, we can affect our ability to determine whether <span class="process-math">\(s\in L\)</span> is true. In defining a recursive language, we do not restrict ourselves in any way in regard to the type of algorithm that will be used. In the next section, we will consider machines called finite automata, which can only perform simple algorithms.</div>
+<div class="para" id="p-5407">One common way of defining a language is by means of a <dfn class="terminology">phrase structure grammar</dfn>  (or grammar, for short). The set of strings that can be produced using set of grammar rules is called a phrase structure language.</div>
 <article class="example example-like" id="ex-psl-0s-before-1s"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-psl-0s-before-1s"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">14.2.14</span><span class="period">.</span><span class="space"> </span><span class="title">Zeros before Ones.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-psl-0s-before-1s"><article class="example example-like"><div class="para" id="p-5392">We can define the set of all strings over <span class="process-math">\(B\)</span> for which all 0’s precede all 1’s as follows. Define the starting symbol <span class="process-math">\(S\)</span> and establish rules that <span class="process-math">\(S\)</span> can be replaced with any of the following: <span class="process-math">\(\lambda\text{,}\)</span> <span class="process-math">\(0S\text{,}\)</span> or <span class="process-math">\(S1\text{.}\)</span> These replacement rules are usually called production rules.  They are usually written in the format <span class="process-math">\(S\to \lambda\text{,}\)</span> <span class="process-math">\(S\to 0S\text{,}\)</span> and <span class="process-math">\(S\to S1\text{.}\)</span> Now define <span class="process-math">\(L\)</span> to be the set of all strings that can be produced by starting with <span class="process-math">\(S\)</span> and applying the production rules until <span class="process-math">\(S\)</span> no longer appears. The strings in <span class="process-math">\(L\)</span> are exactly the ones that are described above.</div></article></div>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-psl-0s-before-1s"><article class="example example-like"><div class="para" id="p-5408">We can define the set of all strings over <span class="process-math">\(B\)</span> for which all 0’s precede all 1’s as follows. Define the starting symbol <span class="process-math">\(S\)</span> and establish rules that <span class="process-math">\(S\)</span> can be replaced with any of the following: <span class="process-math">\(\lambda\text{,}\)</span> <span class="process-math">\(0S\text{,}\)</span> or <span class="process-math">\(S1\text{.}\)</span> These replacement rules are usually called production rules.  They are usually written in the format <span class="process-math">\(S\to \lambda\text{,}\)</span> <span class="process-math">\(S\to 0S\text{,}\)</span> and <span class="process-math">\(S\to S1\text{.}\)</span> Now define <span class="process-math">\(L\)</span> to be the set of all strings that can be produced by starting with <span class="process-math">\(S\)</span> and applying the production rules until <span class="process-math">\(S\)</span> no longer appears. The strings in <span class="process-math">\(L\)</span> are exactly the ones that are described above.</div></article></div>
 <article class="definition definition-like" id="def-phrase-structure-language"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">14.2.15</span><span class="period">.</span><span class="space"> </span><span class="title">Phrase Structure Grammar.</span>
-</h3>  <div class="para logical" id="p-5393">
+</h3>  <div class="para logical" id="p-5409">
 <div class="para">A phrase structure grammar consists of four components:</div>
 <ol class="decimal">
-<li id="li-2455"><div class="para" id="p-5394">A nonempty finite set of terminal characters, <span class="process-math">\(T\text{.}\)</span> If the grammar is defining a language over <span class="process-math">\(A\text{,}\)</span> <span class="process-math">\(T\)</span> is a subset of <span class="process-math">\(A^*\text{.}\)</span>
+<li id="li-2467"><div class="para" id="p-5410">A nonempty finite set of terminal characters, <span class="process-math">\(T\text{.}\)</span> If the grammar is defining a language over <span class="process-math">\(A\text{,}\)</span> <span class="process-math">\(T\)</span> is a subset of <span class="process-math">\(A^*\text{.}\)</span>
 </div></li>
-<li id="li-2456"><div class="para" id="p-5395">A finite set of nonterminal characters, <span class="process-math">\(N\text{.}\)</span>
+<li id="li-2468"><div class="para" id="p-5411">A finite set of nonterminal characters, <span class="process-math">\(N\text{.}\)</span>
 </div></li>
-<li id="li-2457"><div class="para" id="p-5396">A starting symbol,  <span class="process-math">\(S\in N\text{.}\)</span>
+<li id="li-2469"><div class="para" id="p-5412">A starting symbol,  <span class="process-math">\(S\in N\text{.}\)</span>
 </div></li>
-<li id="li-2458"><div class="para" id="p-5397">A finite set of production rules, each of the form <span class="process-math">\(X\to Y\text{,}\)</span> where <span class="process-math">\(X\)</span> and <span class="process-math">\(Y\)</span> are strings over <span class="process-math">\(A\cup N\)</span> such that <span class="process-math">\(X\neq Y\)</span> and <span class="process-math">\(X\)</span> contains at least one nonterminal symbol.</div></li>
+<li id="li-2470"><div class="para" id="p-5413">A finite set of production rules, each of the form <span class="process-math">\(X\to Y\text{,}\)</span> where <span class="process-math">\(X\)</span> and <span class="process-math">\(Y\)</span> are strings over <span class="process-math">\(A\cup N\)</span> such that <span class="process-math">\(X\neq Y\)</span> and <span class="process-math">\(X\)</span> contains at least one nonterminal symbol.</div></li>
 </ol>
-</div> <div class="para" id="p-5398">If <span class="process-math">\(G\)</span> is a phrase structure grammar, <span class="process-math">\(L(G)\)</span>  is the set of strings that can be produced by starting with <span class="process-math">\(S\)</span> and applying the production rules a finite number of times until no nonterminal characters remain. If a language can be defined by a phrase structure grammar, then it is called a phrase structure language.</div></article><article class="example example-like" id="ex-alternating-bits"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-alternating-bits"><h3 class="heading">
+</div> <div class="para" id="p-5414">If <span class="process-math">\(G\)</span> is a phrase structure grammar, <span class="process-math">\(L(G)\)</span>  is the set of strings that can be produced by starting with <span class="process-math">\(S\)</span> and applying the production rules a finite number of times until no nonterminal characters remain. If a language can be defined by a phrase structure grammar, then it is called a phrase structure language.</div></article><article class="example example-like" id="ex-alternating-bits"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-alternating-bits"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">14.2.16</span><span class="period">.</span><span class="space"> </span><span class="title">Alternating bits language.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-alternating-bits"><article class="example example-like"><div class="para logical" id="p-5399">
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-alternating-bits"><article class="example example-like"><div class="para logical" id="p-5415">
 <div class="para">The language over <span class="process-math">\(B\)</span> consisting of strings of alternating 0’s and 1’s is a phrase structure language. It can be defined by the following grammar:</div>
 <ol class="decimal">
-<li id="li-2459"><div class="para" id="p-5400">Terminal characters: <span class="process-math">\(\lambda\text{,}\)</span> <span class="process-math">\(0\text{,}\)</span> and <span class="process-math">\(1\)</span>
+<li id="li-2471"><div class="para" id="p-5416">Terminal characters: <span class="process-math">\(\lambda\text{,}\)</span> <span class="process-math">\(0\text{,}\)</span> and <span class="process-math">\(1\)</span>
 </div></li>
-<li id="li-2460"><div class="para" id="p-5401">Nonterminal characters: <span class="process-math">\(S\text{,}\)</span> <span class="process-math">\(T\text{,}\)</span> and <span class="process-math">\(U\)</span>
+<li id="li-2472"><div class="para" id="p-5417">Nonterminal characters: <span class="process-math">\(S\text{,}\)</span> <span class="process-math">\(T\text{,}\)</span> and <span class="process-math">\(U\)</span>
 </div></li>
-<li id="li-2461"><div class="para" id="p-5402">Starting symbol: <span class="process-math">\(S\)</span>
+<li id="li-2473"><div class="para" id="p-5418">Starting symbol: <span class="process-math">\(S\)</span>
 </div></li>
-<li id="li-2462"><div class="para logical" id="p-5403">
+<li id="li-2474"><div class="para logical" id="p-5419">
 <div class="para">Production rules:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1273,25 +1266,25 @@ U\to 01U&amp; &amp; U\to 01\\
 </div>
 </div></li>
 </ol>
-</div> <div class="para" id="p-5404">These rules can be visualized with a graph:</div> <figure class="figure figure-like" id="fig-production-rules-alternating-bits"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="external/images/fig-production-rules-alternating-bits.png" class="contained" alt="Production rules for the language of alternating 0’s and 1’s"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">14.2.17<span class="period">.</span></span><span class="space"> </span>Production rules for the language of alternating 0’s and 1’s</figcaption></figure> <div class="para" id="p-5405">We can verify that a string such as 10101 belongs to the language by starting with <span class="process-math">\(S\)</span> and producing 10101 using the production rules a finite number of times: <span class="process-math">\(S\to 1U\to 101U\to 10101\text{.}\)</span>
+</div> <div class="para" id="p-5420">These rules can be visualized with a graph:</div> <figure class="figure figure-like" id="fig-production-rules-alternating-bits"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="external/images/fig-production-rules-alternating-bits.png" class="contained" alt="Production rules for the language of alternating 0’s and 1’s"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">14.2.17<span class="period">.</span></span><span class="space"> </span>Production rules for the language of alternating 0’s and 1’s</figcaption></figure> <div class="para" id="p-5421">We can verify that a string such as 10101 belongs to the language by starting with <span class="process-math">\(S\)</span> and producing 10101 using the production rules a finite number of times: <span class="process-math">\(S\to 1U\to 101U\to 10101\text{.}\)</span>
 </div></article></div>
 <article class="example example-like" id="ex-valid-names-names"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-valid-names-names"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">14.2.18</span><span class="period">.</span><span class="space"> </span><span class="title">Valid SageMath Variables.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-valid-names-names"><article class="example example-like"><div class="para logical" id="p-5406">
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-valid-names-names"><article class="example example-like"><div class="para logical" id="p-5422">
 <div class="para">Let <span class="process-math">\(G\)</span> be the grammar with components:</div>
 <ol class="decimal">
-<li id="li-2463"><div class="para" id="p-5407">Terminal symbols = all letters of the alphabet (both upper and lower case), digits 0 through 9, and underscore</div></li>
-<li id="li-2464"><div class="para" id="p-5408">Nonterminal symbols: <span class="process-math">\(\{I, X\}\text{,}\)</span>
+<li id="li-2475"><div class="para" id="p-5423">Terminal symbols = all letters of the alphabet (both upper and lower case), digits 0 through 9, and underscore</div></li>
+<li id="li-2476"><div class="para" id="p-5424">Nonterminal symbols: <span class="process-math">\(\{I, X\}\text{,}\)</span>
 </div></li>
-<li id="li-2465"><div class="para" id="p-5409">Starting symbol: <span class="process-math">\(I\)</span>
+<li id="li-2477"><div class="para" id="p-5425">Starting symbol: <span class="process-math">\(I\)</span>
 </div></li>
-<li id="li-2466"><div class="para" id="p-5410">Production rules: <span class="process-math">\(I \to \alpha\text{,}\)</span> where <span class="process-math">\(\alpha\)</span> is any letter, <span class="process-math">\(I \to \alpha+X\)</span> for any letter <span class="process-math">\(\alpha\text{,}\)</span> <span class="process-math">\(X\to X+\beta\)</span> for any letter, digit or underscore, <span class="process-math">\(\beta\text{,}\)</span> and <span class="process-math">\(X \to \beta\)</span> for any letter, digit or underscore, <span class="process-math">\(\beta\text{.}\)</span> There are a total of <span class="process-math">\(52+52+63+63=230\)</span> production rules for this grammar. The language <span class="process-math">\(L(G)\)</span> consists of all valid SageMath variable names.</div></li>
+<li id="li-2478"><div class="para" id="p-5426">Production rules: <span class="process-math">\(I \to \alpha\text{,}\)</span> where <span class="process-math">\(\alpha\)</span> is any letter, <span class="process-math">\(I \to \alpha+X\)</span> for any letter <span class="process-math">\(\alpha\text{,}\)</span> <span class="process-math">\(X\to X+\beta\)</span> for any letter, digit or underscore, <span class="process-math">\(\beta\text{,}\)</span> and <span class="process-math">\(X \to \beta\)</span> for any letter, digit or underscore, <span class="process-math">\(\beta\text{.}\)</span> There are a total of <span class="process-math">\(52+52+63+63=230\)</span> production rules for this grammar. The language <span class="process-math">\(L(G)\)</span> consists of all valid SageMath variable names.</div></li>
 </ol>
 </div></article></div>
 <article class="example example-like" id="ex-bnf"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-bnf"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">14.2.19</span><span class="period">.</span><span class="space"> </span><span class="title">Backus-Naur Form.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-bnf"><article class="example example-like"> <div class="para" id="p-5411">Backus-Naur form (BNF) is a popular alternate form of defining the production rules in a grammar. If the production rules <span class="process-math">\(A\to B_1, A\to B_2,\ldots  A\to B_n\)</span> are part of a grammar, they would be written in BNF as <span class="process-math">\(A ::=B_1 \mid B_2\mid  \cdots \mid  B_n\text{.}\)</span> The symbol <span class="process-math">\(\mid\)</span> in BNF is read as “or” while the <span class="process-math">\(::=\)</span> is read as “is defined as.” Additional notations of BNF are that <span class="process-math">\(\{x\}\text{,}\)</span> represents zero or more repetitions of <span class="process-math">\(x\)</span> and <span class="process-math">\([y]\)</span> means that <span class="process-math">\(y\)</span> is optional.</div> <div class="para logical" id="p-5412">
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-bnf"><article class="example example-like"> <div class="para" id="p-5427">Backus-Naur form (BNF) is a popular alternate form of defining the production rules in a grammar. If the production rules <span class="process-math">\(A\to B_1, A\to B_2,\ldots  A\to B_n\)</span> are part of a grammar, they would be written in BNF as <span class="process-math">\(A ::=B_1 \mid B_2\mid  \cdots \mid  B_n\text{.}\)</span> The symbol <span class="process-math">\(\mid\)</span> in BNF is read as “or” while the <span class="process-math">\(::=\)</span> is read as “is defined as.” Additional notations of BNF are that <span class="process-math">\(\{x\}\text{,}\)</span> represents zero or more repetitions of <span class="process-math">\(x\)</span> and <span class="process-math">\([y]\)</span> means that <span class="process-math">\(y\)</span> is optional.</div> <div class="para logical" id="p-5428">
 <div class="para">A BNF version of the production rules for a SageMath variable, <span class="process-math">\(I\text{,}\)</span> is</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1306,7 +1299,7 @@ I::= letter\{letter  \mid  digit  \mid  \_\}\\
 </div></article></div>
 <article class="example example-like" id="ex-arithmetic-expressions"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-arithmetic-expressions"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">14.2.20</span><span class="period">.</span><span class="space"> </span><span class="title">The language of simple arithmetic expressions.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-arithmetic-expressions"><article class="example example-like"><div class="para logical" id="p-5413">
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-arithmetic-expressions"><article class="example example-like"><div class="para logical" id="p-5429">
 <div class="para">An arithmetic expression can be defined in BNF. For simplicity, we will consider only expressions obtained using addition and multiplication of integers. The terminal symbols are <code class="code-inline tex2jax_ignore">(</code>,<code class="code-inline tex2jax_ignore">)</code>,<code class="code-inline tex2jax_ignore">+</code>,<code class="code-inline tex2jax_ignore">*</code>, <code class="code-inline tex2jax_ignore">-</code>, and the digits 0 through 9. The nonterminal symbols are <span class="process-math">\(E\)</span> (for expression), <span class="process-math">\(T\)</span> (term), <span class="process-math">\(F\)</span> (factor), and <span class="process-math">\(N\)</span> (number). The starting symbol is <span class="process-math">\(E\text{.}\)</span> Production rules are</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1320,57 +1313,57 @@ N ::=[-]\textrm{digit} \{\textrm{digit}\}\\
 \end{equation*}
 </div>
 </div></article></div>
-<div class="para" id="p-5414">One particularly simple type of phrase structure grammar is the regular grammar.</div>
+<div class="para" id="p-5430">One particularly simple type of phrase structure grammar is the regular grammar.</div>
 <article class="definition definition-like" id="def-regular-grammar"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">14.2.21</span><span class="period">.</span><span class="space"> </span><span class="title">Regular Grammar.</span>
-</h3>  <div class="para" id="p-5415">A regular (right-hand form) grammar is a grammar whose production rules are all of the form <span class="process-math">\(A\to t\)</span> and  <span class="process-math">\(A\to tB\text{,}\)</span> where <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are nonterminal and <span class="process-math">\(t\)</span> is terminal. A left-hand form grammar allows only <span class="process-math">\(A \to t\)</span> and  <span class="process-math">\(A\to Bt\text{.}\)</span> A language that has a regular phrase structure language is called a regular language.</div></article><article class="example example-like" id="ex-some-regular-grammars"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-some-regular-grammars"><h3 class="heading">
+</h3>  <div class="para" id="p-5431">A regular (right-hand form) grammar is a grammar whose production rules are all of the form <span class="process-math">\(A\to t\)</span> and  <span class="process-math">\(A\to tB\text{,}\)</span> where <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are nonterminal and <span class="process-math">\(t\)</span> is terminal. A left-hand form grammar allows only <span class="process-math">\(A \to t\)</span> and  <span class="process-math">\(A\to Bt\text{.}\)</span> A language that has a regular phrase structure language is called a regular language.</div></article><article class="example example-like" id="ex-some-regular-grammars"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-some-regular-grammars"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">14.2.22</span><span class="period">.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-some-regular-grammars"><article class="example example-like"><div class="para logical" id="p-5416"><ol class="lower-alpha">
-<li id="li-2467"><div class="para" id="p-5417">The set of Sage variable names is a regular language since the grammar by which we defined the set is a regular grammar.</div></li>
-<li id="li-2468"><div class="para" id="p-5418">The language of all strings for which all 0’s precede all 1’s (<a href="" class="xref" data-knowl="./knowl/ex-psl-0s-before-1s.html" title="Example 14.2.14: Zeros before Ones">Example 14.2.14</a>) is regular; however, the grammar by which we defined this set is not regular. Can you define these strings with a regular grammar?</div></li>
-<li id="li-2469"><div class="para" id="p-5419">The language of arithmetic expressions is not regular.</div></li>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-some-regular-grammars"><article class="example example-like"><div class="para logical" id="p-5432"><ol class="lower-alpha">
+<li id="li-2479"><div class="para" id="p-5433">The set of Sage variable names is a regular language since the grammar by which we defined the set is a regular grammar.</div></li>
+<li id="li-2480"><div class="para" id="p-5434">The language of all strings for which all 0’s precede all 1’s (<a href="" class="xref" data-knowl="./knowl/ex-psl-0s-before-1s.html" title="Example 14.2.14: Zeros before Ones">Example 14.2.14</a>) is regular; however, the grammar by which we defined this set is not regular. Can you define these strings with a regular grammar?</div></li>
+<li id="li-2481"><div class="para" id="p-5435">The language of arithmetic expressions is not regular.</div></li>
 </ol></div></article></div>
 <section class="exercises" id="exercises-14-2"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber"></span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-603"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5420"><ol class="lower-alpha">
-<li id="li-2470"><div class="para" id="p-5421">If a computer is being designed to operate with a character set of 350 symbols, how many bits must be reserved for each character? Assume each character will use the same number of bits.</div></li>
-<li id="li-2471"><div class="para" id="p-5422">Do the same for 3,500 symbols.</div></li>
+<article class="exercise exercise-like" id="exercise-606"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5436"><ol class="lower-alpha">
+<li id="li-2482"><div class="para" id="p-5437">If a computer is being designed to operate with a character set of 350 symbols, how many bits must be reserved for each character? Assume each character will use the same number of bits.</div></li>
+<li id="li-2483"><div class="para" id="p-5438">Do the same for 3,500 symbols.</div></li>
 </ol></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-276" id="answer-276"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-276"><div class="answer solution-like"><div class="para logical" id="p-5423"><ol class="lower-alpha">
-<li id="li-2472"><div class="para" id="p-5424">For a character set of 350 symbols, the number of bits needed for each character is the smallest <span class="process-math">\(n\)</span> such that <span class="process-math">\(2^n\)</span> is greater than or equal to 350.  Since   <span class="process-math">\(2^9= 512 &gt; 350 &gt; 2^8\text{,}\)</span>  9 bits are needed,</div></li>
-<li id="li-2473"><div class="para" id="p-5425">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-278" id="answer-278"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-278"><div class="answer solution-like"><div class="para logical" id="p-5439"><ol class="lower-alpha">
+<li id="li-2484"><div class="para" id="p-5440">For a character set of 350 symbols, the number of bits needed for each character is the smallest <span class="process-math">\(n\)</span> such that <span class="process-math">\(2^n\)</span> is greater than or equal to 350.  Since   <span class="process-math">\(2^9= 512 &gt; 350 &gt; 2^8\text{,}\)</span>  9 bits are needed,</div></li>
+<li id="li-2485"><div class="para" id="p-5441">
 <span class="process-math">\(2^{12}=4096 &gt;3500&gt; 2^{11}\text{;}\)</span> therefore, 12 bits are needed.</div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-604"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para" id="p-5426">It was pointed out in the text that the null string and the null set are different. The former is a string and the latter is a set, two different kinds of objects. Discuss how the two are similar.</div></article><article class="exercise exercise-like" id="exercise-605"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5427">
+</div></article><article class="exercise exercise-like" id="exercise-607"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para" id="p-5442">It was pointed out in the text that the null string and the null set are different. The former is a string and the latter is a set, two different kinds of objects. Discuss how the two are similar.</div></article><article class="exercise exercise-like" id="exercise-608"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5443">
 <div class="para">What sets of strings are defined by the following grammar?</div>
 <ol class="lower-alpha">
-<li id="li-2474"><div class="para" id="p-5428">Terminal symbols: <span class="process-math">\(\lambda\)</span> , 0 and 1</div></li>
-<li id="li-2475"><div class="para" id="p-5429">Nonterminal symbols: <span class="process-math">\(S\)</span> and <span class="process-math">\(E\)</span>
+<li id="li-2486"><div class="para" id="p-5444">Terminal symbols: <span class="process-math">\(\lambda\)</span> , 0 and 1</div></li>
+<li id="li-2487"><div class="para" id="p-5445">Nonterminal symbols: <span class="process-math">\(S\)</span> and <span class="process-math">\(E\)</span>
 </div></li>
-<li id="li-2476"><div class="para" id="p-5430">Starting symbol: <span class="process-math">\(S\)</span>
+<li id="li-2488"><div class="para" id="p-5446">Starting symbol: <span class="process-math">\(S\)</span>
 </div></li>
-<li id="li-2477"><div class="para" id="p-5431">Production rules: <span class="process-math">\(S\to 0S0, S \to 1S1, S\to E, E \to \lambda, E\to 0, E\to 1\)</span>
+<li id="li-2489"><div class="para" id="p-5447">Production rules: <span class="process-math">\(S\to 0S0, S \to 1S1, S\to E, E \to \lambda, E\to 0, E\to 1\)</span>
 </div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-277" id="answer-277"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-277"><div class="answer solution-like"><div class="para" id="p-5432">This grammar defines the set of all strings over <span class="process-math">\(B\)</span> for which each string is a palindrome (same string if read forward or backward).</div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-606"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5433">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-279" id="answer-279"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-279"><div class="answer solution-like"><div class="para" id="p-5448">This grammar defines the set of all strings over <span class="process-math">\(B\)</span> for which each string is a palindrome (same string if read forward or backward).</div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-609"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5449">
 <div class="para">What sets of strings are defined by the following grammar?</div>
 <ol class="lower-alpha">
-<li id="li-2478"><div class="para" id="p-5434">Terminal symbols: <span class="process-math">\(\lambda\text{,}\)</span> <span class="process-math">\(a\text{,}\)</span> <span class="process-math">\(b\text{,}\)</span> and <span class="process-math">\(c\)</span>
+<li id="li-2490"><div class="para" id="p-5450">Terminal symbols: <span class="process-math">\(\lambda\text{,}\)</span> <span class="process-math">\(a\text{,}\)</span> <span class="process-math">\(b\text{,}\)</span> and <span class="process-math">\(c\)</span>
 </div></li>
-<li id="li-2479"><div class="para" id="p-5435">Nonterminal symbols: <span class="process-math">\(S, T, U \textrm{ and } E\)</span>
+<li id="li-2491"><div class="para" id="p-5451">Nonterminal symbols: <span class="process-math">\(S, T, U \textrm{ and } E\)</span>
 </div></li>
-<li id="li-2480"><div class="para" id="p-5436">Starting symbol: <span class="process-math">\(S\)</span>
+<li id="li-2492"><div class="para" id="p-5452">Starting symbol: <span class="process-math">\(S\)</span>
 </div></li>
-<li id="li-2481"><div class="para logical" id="p-5437">
+<li id="li-2493"><div class="para logical" id="p-5453">
 <div class="para">Production rules:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1383,45 +1376,45 @@ T\to U  &amp; U \to cU &amp; U \to E\\
 </div>
 </div></li>
 </ol>
-</div></article><article class="exercise exercise-like" id="exercise-607"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5438">
+</div></article><article class="exercise exercise-like" id="exercise-610"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5454">
 <div class="para">Define the following languages over <span class="process-math">\(B\)</span> with phrase structure grammars. Which of these languages are regular?</div>
 <ol class="lower-alpha">
-<li id="li-2482"><div class="para" id="p-5439">The strings with an odd number of characters.</div></li>
-<li id="li-2483"><div class="para" id="p-5440">The strings of length 4 or less.</div></li>
-<li id="li-2484"><div class="para" id="p-5441">The palindromes, strings that are the same backwards as forwards.</div></li>
+<li id="li-2494"><div class="para" id="p-5455">The strings with an odd number of characters.</div></li>
+<li id="li-2495"><div class="para" id="p-5456">The strings of length 4 or less.</div></li>
+<li id="li-2496"><div class="para" id="p-5457">The palindromes, strings that are the same backwards as forwards.</div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-278" id="answer-278"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-278"><div class="answer solution-like"><div class="para logical" id="p-5442"><ol class="lower-alpha">
-<li id="li-2485"><div class="para" id="p-5443">Terminal symbols: The null string, 0, and 1. Nonterminal symbols: <span class="process-math">\(S\text{,}\)</span> <span class="process-math">\(E\text{.}\)</span> Starting symbol: <span class="process-math">\(S\text{.}\)</span> Production rules: <span class="process-math">\(S\to 00S\text{,}\)</span> <span class="process-math">\(S\to 01S\text{,}\)</span>  <span class="process-math">\(S\to 10S\text{,}\)</span>  <span class="process-math">\(S\to 11S\text{,}\)</span>  <span class="process-math">\(S\to E\text{,}\)</span>  <span class="process-math">\(E\to 0\text{,}\)</span>  <span class="process-math">\(E\to 1\)</span> This is a regular grammar.</div></li>
-<li id="li-2486"><div class="para" id="p-5444">Terminal symbols: The null string,  0,  and 1. Nonterminal symbols: <span class="process-math">\(S\text{,}\)</span> <span class="process-math">\(A\text{,}\)</span> <span class="process-math">\(B\text{,}\)</span> <span class="process-math">\(C\)</span> Starting symbol: <span class="process-math">\(S\)</span> Production rules: <span class="process-math">\(S \to  0A\text{,}\)</span> <span class="process-math">\(S \to  1A\text{,}\)</span> <span class="process-math">\(S \to  \lambda\)</span> , <span class="process-math">\(A \to  0B\text{,}\)</span> <span class="process-math">\(A \to  1B\text{,}\)</span> <span class="process-math">\(A \to  \lambda\text{,}\)</span> <span class="process-math">\(B \to  0C\text{,}\)</span> <span class="process-math">\(B \to  1C\text{,}\)</span> <span class="process-math">\(B \to  A\text{,}\)</span> <span class="process-math">\(C \to  0\text{,}\)</span> <span class="process-math">\(C \to  1\text{,}\)</span> <span class="process-math">\(C \to  \lambda\)</span> This is a regular grammar.</div></li>
-<li id="li-2487"><div class="para" id="p-5445">See Exercise 3. This language is not regular.</div></li>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-280" id="answer-280"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-280"><div class="answer solution-like"><div class="para logical" id="p-5458"><ol class="lower-alpha">
+<li id="li-2497"><div class="para" id="p-5459">Terminal symbols: The null string, 0, and 1. Nonterminal symbols: <span class="process-math">\(S\text{,}\)</span> <span class="process-math">\(E\text{.}\)</span> Starting symbol: <span class="process-math">\(S\text{.}\)</span> Production rules: <span class="process-math">\(S\to 00S\text{,}\)</span> <span class="process-math">\(S\to 01S\text{,}\)</span>  <span class="process-math">\(S\to 10S\text{,}\)</span>  <span class="process-math">\(S\to 11S\text{,}\)</span>  <span class="process-math">\(S\to E\text{,}\)</span>  <span class="process-math">\(E\to 0\text{,}\)</span>  <span class="process-math">\(E\to 1\)</span> This is a regular grammar.</div></li>
+<li id="li-2498"><div class="para" id="p-5460">Terminal symbols: The null string,  0,  and 1. Nonterminal symbols: <span class="process-math">\(S\text{,}\)</span> <span class="process-math">\(A\text{,}\)</span> <span class="process-math">\(B\text{,}\)</span> <span class="process-math">\(C\)</span> Starting symbol: <span class="process-math">\(S\)</span> Production rules: <span class="process-math">\(S \to  0A\text{,}\)</span> <span class="process-math">\(S \to  1A\text{,}\)</span> <span class="process-math">\(S \to  \lambda\)</span> , <span class="process-math">\(A \to  0B\text{,}\)</span> <span class="process-math">\(A \to  1B\text{,}\)</span> <span class="process-math">\(A \to  \lambda\text{,}\)</span> <span class="process-math">\(B \to  0C\text{,}\)</span> <span class="process-math">\(B \to  1C\text{,}\)</span> <span class="process-math">\(B \to  A\text{,}\)</span> <span class="process-math">\(C \to  0\text{,}\)</span> <span class="process-math">\(C \to  1\text{,}\)</span> <span class="process-math">\(C \to  \lambda\)</span> This is a regular grammar.</div></li>
+<li id="li-2499"><div class="para" id="p-5461">See Exercise 3. This language is not regular.</div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-608"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5446">
+</div></article><article class="exercise exercise-like" id="exercise-611"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5462">
 <div class="para">Define the following languages over <span class="process-math">\(B\)</span> with phrase structure grammars. Which of these languages are regular?</div>
 <ol class="lower-alpha">
-<li id="li-2488"><div class="para" id="p-5447">The strings with more 0’s than 1’s.</div></li>
-<li id="li-2489"><div class="para" id="p-5448">The strings with an even number of 1’s.</div></li>
-<li id="li-2490"><div class="para" id="p-5449">The strings for which all 0’s precede all 1’s.</div></li>
+<li id="li-2500"><div class="para" id="p-5463">The strings with more 0’s than 1’s.</div></li>
+<li id="li-2501"><div class="para" id="p-5464">The strings with an even number of 1’s.</div></li>
+<li id="li-2502"><div class="para" id="p-5465">The strings for which all 0’s precede all 1’s.</div></li>
 </ol>
-</div></article><article class="exercise exercise-like" id="exercise-609"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
-<div class="para" id="p-5450">Prove that if a language over <span class="process-math">\(A\)</span> is recursive, then its complement is also recursive.</div>
+</div></article><article class="exercise exercise-like" id="exercise-612"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="para" id="p-5466">Prove that if a language over <span class="process-math">\(A\)</span> is recursive, then its complement is also recursive.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-279" id="answer-279"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-279"><div class="answer solution-like"><div class="para" id="p-5451">If <span class="process-math">\(s\)</span> is in <span class="process-math">\(A^*\)</span> and <span class="process-math">\(L\)</span> is recursive, we can answer the question “Is s in <span class="process-math">\(L^c\text{?}\)</span>”  by negating the answer to “Is <span class="process-math">\(s\)</span> in <span class="process-math">\(L\text{?}\)</span>”</div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-610"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
-<div class="para" id="p-5452">Use BNF to define the grammars in Exercises 3 and 4.</div></article><article class="exercise exercise-like" id="exercise-611"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5453"><ol class="lower-alpha">
-<li id="li-2491"><div class="para" id="p-5454">Prove that if <span class="process-math">\(X_1, X_2, \ldots\)</span>is a countable sequence of countable sets, the union of these sets, <span class="process-math">\(\underset{i=1}{\overset{\infty }{\cup}}X_i\)</span> is countable.</div></li>
-<li id="li-2492"><div class="para" id="p-5455">Using the fact that the countable union of countable sets is countable, prove that if <span class="process-math">\(A\)</span> is countable, then <span class="process-math">\(A^*\)</span> is countable.</div></li>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-281" id="answer-281"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-281"><div class="answer solution-like"><div class="para" id="p-5467">If <span class="process-math">\(s\)</span> is in <span class="process-math">\(A^*\)</span> and <span class="process-math">\(L\)</span> is recursive, we can answer the question “Is s in <span class="process-math">\(L^c\text{?}\)</span>”  by negating the answer to “Is <span class="process-math">\(s\)</span> in <span class="process-math">\(L\text{?}\)</span>”</div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-613"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div class="para" id="p-5468">Use BNF to define the grammars in Exercises 3 and 4.</div></article><article class="exercise exercise-like" id="exercise-614"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5469"><ol class="lower-alpha">
+<li id="li-2503"><div class="para" id="p-5470">Prove that if <span class="process-math">\(X_1, X_2, \ldots\)</span>is a countable sequence of countable sets, the union of these sets, <span class="process-math">\(\underset{i=1}{\overset{\infty }{\cup}}X_i\)</span> is countable.</div></li>
+<li id="li-2504"><div class="para" id="p-5471">Using the fact that the countable union of countable sets is countable, prove that if <span class="process-math">\(A\)</span> is countable, then <span class="process-math">\(A^*\)</span> is countable.</div></li>
 </ol></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original has-image" data-refid="hk-answer-280" id="answer-280"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-280"><div class="answer solution-like">
-<div class="para logical" id="p-5456"><ol class="lower-alpha">
-<li id="li-2493"><div class="para" id="p-5457">List the elements of each set <span class="process-math">\(X_i\)</span>  in a sequence <span class="process-math">\(x_{i 1}\text{,}\)</span> <span class="process-math">\(x_{i 2}\text{,}\)</span> <span class="process-math">\(x_{i 3}\ldots\)</span> . Then draw arrows as shown below and list the elements of the union in order established by this pattern:  <span class="process-math">\(x_{11}\text{,}\)</span> <span class="process-math">\(x_{21}\text{,}\)</span> <span class="process-math">\(x_{12}\text{,}\)</span> <span class="process-math">\(x_{13}\text{,}\)</span> <span class="process-math">\(x_{22}\text{,}\)</span> <span class="process-math">\(x_{31}\text{,}\)</span> <span class="process-math">\(x_{41}\text{,}\)</span> <span class="process-math">\(x_{32}\text{,}\)</span> <span class="process-math">\(x_{23}\text{,}\)</span> <span class="process-math">\(x_{14}\text{,}\)</span> <span class="process-math">\(x_{15}\ldots \text{,}\)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original has-image" data-refid="hk-answer-282" id="answer-282"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-282"><div class="answer solution-like">
+<div class="para logical" id="p-5472"><ol class="lower-alpha">
+<li id="li-2505"><div class="para" id="p-5473">List the elements of each set <span class="process-math">\(X_i\)</span>  in a sequence <span class="process-math">\(x_{i 1}\text{,}\)</span> <span class="process-math">\(x_{i 2}\text{,}\)</span> <span class="process-math">\(x_{i 3}\ldots\)</span> . Then draw arrows as shown below and list the elements of the union in order established by this pattern:  <span class="process-math">\(x_{11}\text{,}\)</span> <span class="process-math">\(x_{21}\text{,}\)</span> <span class="process-math">\(x_{12}\text{,}\)</span> <span class="process-math">\(x_{13}\text{,}\)</span> <span class="process-math">\(x_{22}\text{,}\)</span> <span class="process-math">\(x_{31}\text{,}\)</span> <span class="process-math">\(x_{41}\text{,}\)</span> <span class="process-math">\(x_{32}\text{,}\)</span> <span class="process-math">\(x_{23}\text{,}\)</span> <span class="process-math">\(x_{14}\text{,}\)</span> <span class="process-math">\(x_{15}\ldots \text{,}\)</span>
 </div></li>
-<li id="li-2494"><div class="para" id="p-5458">Each of the sets <span class="process-math">\(A^1\)</span> , <span class="process-math">\(A^2\)</span> , <span class="process-math">\(A^3, \ldots\text{,}\)</span> are countable and <span class="process-math">\(A^*\)</span> is the union of these sets; hence <span class="process-math">\(A^*\)</span> is countable.</div></li>
+<li id="li-2506"><div class="para" id="p-5474">Each of the sets <span class="process-math">\(A^1\)</span> , <span class="process-math">\(A^2\)</span> , <span class="process-math">\(A^3, \ldots\text{,}\)</span> are countable and <span class="process-math">\(A^*\)</span> is the union of these sets; hence <span class="process-math">\(A^*\)</span> is countable.</div></li>
 </ol></div> <figure class="figure figure-like" id="fig-zig-zag-countable"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="external/images/fig-zig-zag-countable.png" class="contained" alt="Exercise 9"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">14.2.23<span class="period">.</span></span><span class="space"> </span>Exercise 9</figcaption></figure>
 </div></div>

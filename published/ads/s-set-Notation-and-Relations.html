@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Set Notation and Relations</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,25 +58,36 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
@@ -99,59 +128,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -160,7 +146,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -315,7 +301,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1212,87 +1201,129 @@ eBookConfig.runestone_version = '7.0.7';
 <article class="note remark-like" id="note-1"><h4 class="heading">
 <span class="type">Note</span><span class="space"> </span><span class="codenumber">1.1.7</span><span class="period">.</span>
 </h4>
-<div class="para" id="p-224">Not everyone is in agreement on whether the empty set is a proper subset of any set.  In fact earlier editions of this book sided with those who considered the empty set an improper subset.  However, we bow to the emerging consensus at this time.</div></article></section><section class="exercises" id="exercises-1"><h3 class="heading hide-type">
-<span class="type">Exercises</span> <span class="codenumber">1.1.3</span> <span class="title">Exercises</span>
-</h3>
-<article class="exercise exercise-like" id="exercise-1"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para" id="p-225">List four elements of each of the following sets:</div> <div class="para logical" id="p-226"><ol class="lower-alpha">
-<li id="li-195"><div class="para" id="p-227"><span class="process-math">\(\displaystyle \{k \in  \mathbb{P} \mid {k - 1} \textrm{ is a multiple of 7}\}\)</span></div></li>
-<li id="li-196"><div class="para" id="p-228"><span class="process-math">\(\displaystyle \{x \mid x \textrm{ is a fruit and its skin is normally eaten}\}\)</span></div></li>
-<li id="li-197"><div class="para" id="p-229"><span class="process-math">\(\displaystyle \{x \in \mathbb{Q}\mid \frac{1}{x} \in \mathbb{Z}\}\)</span></div></li>
-<li id="li-198"><div class="para" id="p-230"><span class="process-math">\(\displaystyle \{2n \mid n \in \mathbb{Z}, n &lt; 0 \}\)</span></div></li>
-<li id="li-199"><div class="para" id="p-231"><span class="process-math">\(\displaystyle \{s \mid s = 1 + 2 + \cdots  + n \textrm{ for some } n \in \mathbb{P}\}\)</span></div></li>
-</ol></div>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-1" id="answer-1"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-1"><div class="answer solution-like">
-<div class="para" id="p-232">These answers are not unique.</div> <div class="para logical" id="p-233"><ol class="lower-alpha cols2">
-<li id="li-200"><div class="para" id="p-234"><span class="process-math">\(\displaystyle 8, 15, 22, 29\)</span></div></li>
-<li id="li-201"><div class="para" id="p-235"><span class="process-math">\(\displaystyle \textrm{apple, pear, peach, plum}\)</span></div></li>
-<li id="li-202"><div class="para" id="p-236"><span class="process-math">\(\displaystyle 1/2, 1/3, 1/4, 1/5\)</span></div></li>
-<li id="li-203"><div class="para" id="p-237"><span class="process-math">\(\displaystyle -8, -6, -4, -2\)</span></div></li>
-<li id="li-204"><div class="para" id="p-238"><span class="process-math">\(\displaystyle 6, 10, 15, 21\)</span></div></li>
-</ol></div>
-</div></div>
-</div></article><article class="exercise exercise-like" id="exercise-2"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para" id="p-239">List all elements of the following sets:</div> <div class="para logical" id="p-240"><ol class="lower-alpha">
-<li id="li-205"><div class="para" id="p-241"><span class="process-math">\(\displaystyle \{\frac{1}{n} \mid n \in \{3,4,5,6\}\}\)</span></div></li>
-<li id="li-206"><div class="para" id="p-242"><span class="process-math">\(\displaystyle \{\alpha \in  \textrm{ the alphabet } \mid  \alpha \textrm{ precedes F}\}\)</span></div></li>
-<li id="li-207"><div class="para" id="p-243"><span class="process-math">\(\displaystyle \{x \in \mathbb{Z} \mid x = x+1 \}\)</span></div></li>
-<li id="li-208"><div class="para" id="p-244"><span class="process-math">\(\displaystyle \{n^2 \mid  n = -2, -1, 0, 1, 2\}\)</span></div></li>
-<li id="li-209"><div class="para" id="p-245"><span class="process-math">\(\displaystyle \{n \in  \mathbb{P} \mid n \textrm{ is a  factor of  24 }\}\)</span></div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-3"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para logical" id="p-246">
-<div class="para">Describe the following sets using set-builder notation.</div>
+<div class="para" id="p-224">Not everyone is in agreement on whether the empty set is a proper subset of any set.  In fact earlier editions of this book sided with those who considered the empty set an improper subset.  However, we bow to the emerging consensus at this time.</div></article><section class="reading-questions" id="S11-reading-questions"><h4 class="heading hide-type">
+<span class="type">Reading Questions</span> <span class="codenumber"></span> <span class="title">Check your understanding!</span>
+</h4>
+<article class="exercise exercise-like" id="exercise-1"><h5 class="heading"><span class="codenumber">1<span class="period">.</span></span></h5>The set of integers is denoted by a captial Z. Why do you suppose that thisis the letter that is used for the integers?<div class="solutions">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-1" id="solution-1"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-1"><div class="solution solution-like">The notation <span class="process-math">\(\mathbb{Z}\)</span> for the set of integers comes from the German word Zahlen, which means “numbers.”</div></div>
+</div></article><article class="exercise exercise-like" id="exercise-2"><h5 class="heading"><span class="codenumber">2<span class="period">.</span></span></h5>
+<div class="para logical" id="p-225">
+<div class="para">List all elements of the following sets:</div>
 <ol class="lower-alpha">
-<li id="li-210"><div class="para" id="p-247"><span class="process-math">\(\displaystyle \{ 5, 7, 9, \dots , 77, 79\}\)</span></div></li>
-<li id="li-211"><div class="para" id="p-248">the rational numbers that are strictly between <span class="process-math">\(-1\)</span> and <span class="process-math">\(1\)</span>
-</div></li>
-<li id="li-212"><div class="para" id="p-249">the even integers</div></li>
-<li id="li-213"><div class="para" id="p-250"><span class="process-math">\(\displaystyle \{-18, -9,0,9, 18,27, \dots \}\)</span></div></li>
+<li id="li-195"><div class="para" id="p-226"><span class="process-math">\(\displaystyle \{\frac{1}{n} \mid n \in \{3,4,5,6\}\}\)</span></div></li>
+<li id="li-196"><div class="para" id="p-227"><span class="process-math">\(\displaystyle \{x \in \mathbb{Z} \mid x = x+1 \}\)</span></div></li>
+<li id="li-197"><div class="para" id="p-228"><span class="process-math">\(\displaystyle \{n^2 \mid  n = -2, -1, 0, 1, 2\}\)</span></div></li>
+<li id="li-198"><div class="para" id="p-229"><span class="process-math">\(\displaystyle \{n \in  \mathbb{P} \mid n \textrm{ is a  factor of  24 }\}\)</span></div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-2" id="answer-2"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-2"><div class="answer solution-like"><div class="para logical" id="p-251"><ol class="lower-alpha">
-<li id="li-214"><div class="para" id="p-252"><span class="process-math">\(\displaystyle \{2k + 1 \mid k \in  \mathbb{Z}, 2 \leqslant  k \leqslant  39\}\)</span></div></li>
-<li id="li-215"><div class="para" id="p-253"><span class="process-math">\(\displaystyle \{x \in \mathbb{Q}\mid  -1 &lt; x &lt; 1\}\)</span></div></li>
-<li id="li-216"><div class="para" id="p-254"><span class="process-math">\(\displaystyle \{2n\mid n \in  \mathbb{Z}\}\)</span></div></li>
-<li id="li-217"><div class="para" id="p-255"><span class="process-math">\(\displaystyle \{9n\mid n \in \mathbb{Z}, -2 \leq  n\}\)</span></div></li>
-</ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-4"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para logical" id="p-256">
-<div class="para">Use set-builder notation to describe the following sets:</div>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-1" id="answer-1"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-1"><div class="answer solution-like"><div class="para logical" id="p-230">
+<div class="para">List all elements of the following sets:</div>
 <ol class="lower-alpha">
-<li id="li-218"><div class="para" id="p-257"><span class="process-math">\(\displaystyle \{1, 2, 3, 4, 5, 6, 7\}\)</span></div></li>
-<li id="li-219"><div class="para" id="p-258"><span class="process-math">\(\displaystyle \{1, 10, 100, 1000, 10000\}\)</span></div></li>
-<li id="li-220"><div class="para" id="p-259"><span class="process-math">\(\displaystyle \{1, 1/2, 1/3, 1/4, 1/5, . . .\}\)</span></div></li>
-<li id="li-221"><div class="para" id="p-260"><span class="process-math">\(\displaystyle \{0\}\)</span></div></li>
+<li id="li-199"><div class="para" id="p-231"><span class="process-math">\(\displaystyle \{ 1/3, 1/4, 1/5, 1/6 \}\)</span></div></li>
+<li id="li-200"><div class="para" id="p-232"><span class="process-math">\(\displaystyle \{  \}\)</span></div></li>
+<li id="li-201"><div class="para" id="p-233"><span class="process-math">\(\displaystyle \{0,1,4\}\)</span></div></li>
+<li id="li-202"><div class="para" id="p-234"><span class="process-math">\(\displaystyle \{ 1,2,3,4,6,12,24\}\)</span></div></li>
 </ol>
-</div></article><article class="exercise exercise-like" id="exercise-5"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
-<div class="para" id="p-261">Let <span class="process-math">\(A = \{0, 2, 3\}\text{,}\)</span> <span class="process-math">\(B = \{2, 3\}\text{,}\)</span> and <span class="process-math">\(C = \{1, 5, 9\}\text{.}\)</span> Determine which of the following statements are true. Give reasons for your answers.</div> <div class="para logical" id="p-262"><ol class="lower-alpha cols2">
-<li id="li-222"><div class="para" id="p-263"><span class="process-math">\(\displaystyle 3 \in  A\)</span></div></li>
-<li id="li-223"><div class="para" id="p-264"><span class="process-math">\(\displaystyle \{3\} \in  A\)</span></div></li>
-<li id="li-224"><div class="para" id="p-265"><span class="process-math">\(\displaystyle \{3\} \subseteq A\)</span></div></li>
-<li id="li-225"><div class="para" id="p-266"><span class="process-math">\(\displaystyle B\subseteq A\)</span></div></li>
-<li id="li-226"><div class="para" id="p-267"><span class="process-math">\(\displaystyle A\subseteq B\)</span></div></li>
-<li id="li-227"><div class="para" id="p-268"><span class="process-math">\(\displaystyle \emptyset \subseteq C\)</span></div></li>
-<li id="li-228"><div class="para" id="p-269"><span class="process-math">\(\displaystyle \emptyset \in A\)</span></div></li>
-<li id="li-229"><div class="para" id="p-270"><span class="process-math">\(\displaystyle A\subseteq A\)</span></div></li>
+</div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-3"><h5 class="heading"><span class="codenumber">3<span class="period">.</span></span></h5>
+<div class="para logical" id="p-235">
+<div class="para">Use set-builder notation to describe the following sets of positive integers:</div>
+<ol class="lower-alpha">
+<li id="li-203"><div class="para" id="p-236"><span class="process-math">\(\displaystyle \{1, 2, 3, 4, 5, 6, 7\}\)</span></div></li>
+<li id="li-204"><div class="para" id="p-237"><span class="process-math">\(\displaystyle \{1, 10, 100, 1000, 10000, 100000\}\)</span></div></li>
+</ol>
+</div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-2" id="answer-2"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-2"><div class="answer solution-like"><div class="para logical" id="p-238">
+<div class="para">There are many possible correct answers.  Here is one for each part:</div>
+<ol class="lower-alpha">
+<li id="li-205"><div class="para" id="p-239"><span class="process-math">\(\displaystyle \{k \el mathbb{P} \mid k\leq 7\}\)</span></div></li>
+<li id="li-206"><div class="para" id="p-240"><span class="process-math">\(\displaystyle \{ 10^k \mid 0 \leq k \leq  5\}\)</span></div></li>
+</ol>
+<div class="para">Note:  Even though we are describing positive integers, it’s fine use a number like zero, which isnt’ positive, in the description.</div>
+</div></div></div>
+</div></article></section></section><section class="exercises" id="exercises-1"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber">1.1.3</span> <span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="exercise-4"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para" id="p-241">List four elements of each of the following sets:</div> <div class="para logical" id="p-242"><ol class="lower-alpha">
+<li id="li-207"><div class="para" id="p-243"><span class="process-math">\(\displaystyle \{k \in  \mathbb{P} \mid {k - 1} \textrm{ is a multiple of 7}\}\)</span></div></li>
+<li id="li-208"><div class="para" id="p-244"><span class="process-math">\(\displaystyle \{x \mid x \textrm{ is a fruit and its skin is normally eaten}\}\)</span></div></li>
+<li id="li-209"><div class="para" id="p-245"><span class="process-math">\(\displaystyle \{x \in \mathbb{Q}\mid \frac{1}{x} \in \mathbb{Z}\}\)</span></div></li>
+<li id="li-210"><div class="para" id="p-246"><span class="process-math">\(\displaystyle \{2n \mid n \in \mathbb{Z}, n &lt; 0 \}\)</span></div></li>
+<li id="li-211"><div class="para" id="p-247"><span class="process-math">\(\displaystyle \{s \mid s = 1 + 2 + \cdots  + n \textrm{ for some } n \in \mathbb{P}\}\)</span></div></li>
 </ol></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-3" id="answer-3"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-3"><div class="answer solution-like"><div class="para logical" id="p-271"><ol class="lower-alpha cols3">
-<li id="li-230"><div class="para" id="p-272">True</div></li>
-<li id="li-231"><div class="para" id="p-273">False</div></li>
-<li id="li-232"><div class="para" id="p-274">True</div></li>
-<li id="li-233"><div class="para" id="p-275">True</div></li>
-<li id="li-234"><div class="para" id="p-276">False</div></li>
-<li id="li-235"><div class="para" id="p-277">True</div></li>
-<li id="li-236"><div class="para" id="p-278">False</div></li>
-<li id="li-237"><div class="para" id="p-279">True</div></li>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-3" id="answer-3"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-3"><div class="answer solution-like">
+<div class="para" id="p-248">These answers are not unique.</div> <div class="para logical" id="p-249"><ol class="lower-alpha cols2">
+<li id="li-212"><div class="para" id="p-250"><span class="process-math">\(\displaystyle 8, 15, 22, 29\)</span></div></li>
+<li id="li-213"><div class="para" id="p-251"><span class="process-math">\(\displaystyle \textrm{apple, pear, peach, plum}\)</span></div></li>
+<li id="li-214"><div class="para" id="p-252"><span class="process-math">\(\displaystyle 1/2, 1/3, 1/4, 1/5\)</span></div></li>
+<li id="li-215"><div class="para" id="p-253"><span class="process-math">\(\displaystyle -8, -6, -4, -2\)</span></div></li>
+<li id="li-216"><div class="para" id="p-254"><span class="process-math">\(\displaystyle 6, 10, 15, 21\)</span></div></li>
+</ol></div>
+</div></div>
+</div></article><article class="exercise exercise-like" id="exercise-5"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para" id="p-255">List all elements of the following sets:</div> <div class="para logical" id="p-256"><ol class="lower-alpha">
+<li id="li-217"><div class="para" id="p-257"><span class="process-math">\(\displaystyle \{\frac{1}{n} \mid n \in \{3,4,5,6\}\}\)</span></div></li>
+<li id="li-218"><div class="para" id="p-258"><span class="process-math">\(\displaystyle \{\alpha \in  \textrm{ the alphabet } \mid  \alpha \textrm{ precedes F}\}\)</span></div></li>
+<li id="li-219"><div class="para" id="p-259"><span class="process-math">\(\displaystyle \{x \in \mathbb{Z} \mid x = x+1 \}\)</span></div></li>
+<li id="li-220"><div class="para" id="p-260"><span class="process-math">\(\displaystyle \{n^2 \mid  n = -2, -1, 0, 1, 2\}\)</span></div></li>
+<li id="li-221"><div class="para" id="p-261"><span class="process-math">\(\displaystyle \{n \in  \mathbb{P} \mid n \textrm{ is a  factor of  24 }\}\)</span></div></li>
+</ol></div></article><article class="exercise exercise-like" id="exercise-6"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para logical" id="p-262">
+<div class="para">Describe the following sets using set-builder notation.</div>
+<ol class="lower-alpha">
+<li id="li-222"><div class="para" id="p-263"><span class="process-math">\(\displaystyle \{ 5, 7, 9, \dots , 77, 79\}\)</span></div></li>
+<li id="li-223"><div class="para" id="p-264">the rational numbers that are strictly between <span class="process-math">\(-1\)</span> and <span class="process-math">\(1\)</span>
+</div></li>
+<li id="li-224"><div class="para" id="p-265">the even integers</div></li>
+<li id="li-225"><div class="para" id="p-266"><span class="process-math">\(\displaystyle \{-18, -9,0,9, 18,27, \dots \}\)</span></div></li>
+</ol>
+</div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-4" id="answer-4"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-4"><div class="answer solution-like"><div class="para logical" id="p-267"><ol class="lower-alpha">
+<li id="li-226"><div class="para" id="p-268"><span class="process-math">\(\displaystyle \{2k + 1 \mid k \in  \mathbb{Z}, 2 \leqslant  k \leqslant  39\}\)</span></div></li>
+<li id="li-227"><div class="para" id="p-269"><span class="process-math">\(\displaystyle \{x \in \mathbb{Q}\mid  -1 &lt; x &lt; 1\}\)</span></div></li>
+<li id="li-228"><div class="para" id="p-270"><span class="process-math">\(\displaystyle \{2n\mid n \in  \mathbb{Z}\}\)</span></div></li>
+<li id="li-229"><div class="para" id="p-271"><span class="process-math">\(\displaystyle \{9n\mid n \in \mathbb{Z}, -2 \leq  n\}\)</span></div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-6"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
-<div class="para" id="p-280">(From <a href="" class="xref" data-knowl="./knowl/biblio-levin-2020.html" title="Bibliographic Entry 28: Discrete Mathematics: An Open Introduction">[28]</a>) Explain why there is no set <span class="process-math">\(A\)</span> which satisfies <span class="process-math">\(A = \{2, |A| \}\text{.}\)</span>
-</div></article><article class="exercise exercise-like" id="exercise-7"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
-<div class="para" id="p-281">One reason that we left the definition of a set vague is Russell’s Paradox. Many mathematics and logic books contain an account of this paradox. Two references are <a href="" class="xref" data-knowl="./knowl/biblio-stoll-1961.html" title="Bibliographic Entry 42: Logic and Axiomatic Theories">[42]</a> and <a href="" class="xref" data-knowl="./knowl/biblio-quine-1966.html" title="Bibliographic Entry 37: The Ways of Paradox and Other Essays">[37]</a>. Find one such reference and read it.</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
+</div></article><article class="exercise exercise-like" id="exercise-7"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para logical" id="p-272">
+<div class="para">Use set-builder notation to describe the following sets:</div>
+<ol class="lower-alpha">
+<li id="li-230"><div class="para" id="p-273"><span class="process-math">\(\displaystyle \{1, 2, 3, 4, 5, 6, 7\}\)</span></div></li>
+<li id="li-231"><div class="para" id="p-274"><span class="process-math">\(\displaystyle \{1, 10, 100, 1000, 10000\}\)</span></div></li>
+<li id="li-232"><div class="para" id="p-275"><span class="process-math">\(\displaystyle \{1, 1/2, 1/3, 1/4, 1/5, . . .\}\)</span></div></li>
+<li id="li-233"><div class="para" id="p-276"><span class="process-math">\(\displaystyle \{0\}\)</span></div></li>
+</ol>
+</div></article><article class="exercise exercise-like" id="exercise-8"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para" id="p-277">Let <span class="process-math">\(A = \{0, 2, 3\}\text{,}\)</span> <span class="process-math">\(B = \{2, 3\}\text{,}\)</span> and <span class="process-math">\(C = \{1, 5, 9\}\text{.}\)</span> Determine which of the following statements are true. Give reasons for your answers.</div> <div class="para logical" id="p-278"><ol class="lower-alpha cols2">
+<li id="li-234"><div class="para" id="p-279"><span class="process-math">\(\displaystyle 3 \in  A\)</span></div></li>
+<li id="li-235"><div class="para" id="p-280"><span class="process-math">\(\displaystyle \{3\} \in  A\)</span></div></li>
+<li id="li-236"><div class="para" id="p-281"><span class="process-math">\(\displaystyle \{3\} \subseteq A\)</span></div></li>
+<li id="li-237"><div class="para" id="p-282"><span class="process-math">\(\displaystyle B\subseteq A\)</span></div></li>
+<li id="li-238"><div class="para" id="p-283"><span class="process-math">\(\displaystyle A\subseteq B\)</span></div></li>
+<li id="li-239"><div class="para" id="p-284"><span class="process-math">\(\displaystyle \emptyset \subseteq C\)</span></div></li>
+<li id="li-240"><div class="para" id="p-285"><span class="process-math">\(\displaystyle \emptyset \in A\)</span></div></li>
+<li id="li-241"><div class="para" id="p-286"><span class="process-math">\(\displaystyle A\subseteq A\)</span></div></li>
+</ol></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-5" id="answer-5"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-5"><div class="answer solution-like"><div class="para logical" id="p-287"><ol class="lower-alpha cols3">
+<li id="li-242"><div class="para" id="p-288">True</div></li>
+<li id="li-243"><div class="para" id="p-289">False</div></li>
+<li id="li-244"><div class="para" id="p-290">True</div></li>
+<li id="li-245"><div class="para" id="p-291">True</div></li>
+<li id="li-246"><div class="para" id="p-292">False</div></li>
+<li id="li-247"><div class="para" id="p-293">True</div></li>
+<li id="li-248"><div class="para" id="p-294">False</div></li>
+<li id="li-249"><div class="para" id="p-295">True</div></li>
+</ol></div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-9"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div class="para" id="p-296">(From <a href="" class="xref" data-knowl="./knowl/biblio-levin-2020.html" title="Bibliographic Entry 28: Discrete Mathematics: An Open Introduction">[28]</a>) Explain why there is no set <span class="process-math">\(A\)</span> which satisfies <span class="process-math">\(A = \{2, |A| \}\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-10"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="para" id="p-297">One reason that we left the definition of a set vague is Russell’s Paradox. Many mathematics and logic books contain an account of this paradox. Two references are <a href="" class="xref" data-knowl="./knowl/biblio-stoll-1961.html" title="Bibliographic Entry 42: Logic and Axiomatic Theories">[42]</a> and <a href="" class="xref" data-knowl="./knowl/biblio-quine-1966.html" title="Bibliographic Entry 37: The Ways of Paradox and Other Essays">[37]</a>. Find one such reference and read it.</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>
 <div class="ptx-content-footer">
 <a class="previous-button button" href="chapter_1.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="s-basic_Set_Operations.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>

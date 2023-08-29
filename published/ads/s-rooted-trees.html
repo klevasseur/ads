@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Rooted Trees</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,32 +58,47 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
 </script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
 <script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
@@ -105,59 +138,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -166,7 +156,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -321,7 +311,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1130,44 +1123,44 @@ eBookConfig.runestone_version = '7.0.7';
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="s-rooted-trees"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">10.3</span> <span class="title">Rooted Trees</span>
 </h2>
-<section class="introduction" id="introduction-36"><div class="para" id="p-3735">In the next two sections, we will discuss rooted trees. Our primary foci will be on general rooted trees and on a special case, ordered binary trees.</div></section><section class="subsection" id="ss-rooted-trees"><h3 class="heading hide-type">
+<section class="introduction" id="introduction-36"><div class="para" id="p-3751">In the next two sections, we will discuss rooted trees. Our primary foci will be on general rooted trees and on a special case, ordered binary trees.</div></section><section class="subsection" id="ss-rooted-trees"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">10.3.1</span> <span class="title">Definition and Terminology</span>
 </h3>
 <figure class="figure figure-like" id="fig-rooted-tree-10-3"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="external/images/fig-rooted-tree-10-3.png" class="contained" alt="A Rooted Tree"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.1<span class="period">.</span></span><span class="space"> </span>A Rooted Tree</figcaption></figure><figure class="list table-like" id="list-rooted-tree-terms"><figcaption><span class="type">List</span><span class="space"> </span><span class="codenumber">10.3.2<span class="period">.</span></span><span class="space"> </span>Informal Definition and Terminology</figcaption><div class="named-list-content">
-<div class="introduction" id="introduction-37"><div class="para" id="p-3736">What differentiates rooted trees from undirected trees is that a rooted tree contains a distinguished vertex, called the root. Consider the tree in <a href="" class="xref" data-knowl="./knowl/fig-rooted-tree-10-3.html" title="Figure 10.3.1">Figure 10.3.1</a>. Vertex <span class="process-math">\(A\)</span> has been designated the root of the tree. If we choose any other vertex in the tree, such as <span class="process-math">\(M\text{,}\)</span> we know that there is a unique path from <span class="process-math">\(A\)</span> to <span class="process-math">\(M\text{.}\)</span> The vertices on this path, <span class="process-math">\((A, D, K, M)\text{,}\)</span> are described in genealogical terms:</div></div>
+<div class="introduction" id="introduction-37"><div class="para" id="p-3752">What differentiates rooted trees from undirected trees is that a rooted tree contains a distinguished vertex, called the root. Consider the tree in <a href="" class="xref" data-knowl="./knowl/fig-rooted-tree-10-3.html" title="Figure 10.3.1">Figure 10.3.1</a>. Vertex <span class="process-math">\(A\)</span> has been designated the root of the tree. If we choose any other vertex in the tree, such as <span class="process-math">\(M\text{,}\)</span> we know that there is a unique path from <span class="process-math">\(A\)</span> to <span class="process-math">\(M\text{.}\)</span> The vertices on this path, <span class="process-math">\((A, D, K, M)\text{,}\)</span> are described in genealogical terms:</div></div>
 <ul class="disc">
-<li id="li-1740"><div class="para" id="p-3737">
+<li id="li-1752"><div class="para" id="p-3753">
 <span class="process-math">\(M\)</span> is a child of <span class="process-math">\(K\)</span> (so is <span class="process-math">\(L\)</span>)</div></li>
-<li id="li-1741"><div class="para" id="p-3738">
+<li id="li-1753"><div class="para" id="p-3754">
 <span class="process-math">\(K\)</span> is <span class="process-math">\(M\)</span>’s parent.</div></li>
-<li id="li-1742"><div class="para" id="p-3739">
+<li id="li-1754"><div class="para" id="p-3755">
 <span class="process-math">\(A\text{,}\)</span> <span class="process-math">\(D\text{,}\)</span> and <span class="process-math">\(K\)</span> are <span class="process-math">\(M\)</span>’s ancestors.</div></li>
-<li id="li-1743"><div class="para" id="p-3740">
+<li id="li-1755"><div class="para" id="p-3756">
 <span class="process-math">\(D\text{,}\)</span> <span class="process-math">\(K\text{,}\)</span> and <span class="process-math">\(M\)</span> are descendants of <span class="process-math">\(A\text{.}\)</span>
 </div></li>
 </ul>
 <div class="conclusion" id="conclusion-3">
-<div class="para" id="p-3741">These genealogical relationships are often easier to visualize if the tree is rewritten so that children are positioned below their parents, as in <a href="" class="xref" data-knowl="./knowl/fig-rooted-tree-10-3-redrawn.html" title="Figure 10.3.3">Figure 10.3.3</a>.</div> <div class="para" id="p-3742">With this format, it is easy to see that each vertex in the tree can be thought of as the root of a tree that contains, in addition to itself, all of its descendants. For example, <span class="process-math">\(D\)</span> is the root of a tree that contains <span class="process-math">\(D\text{,}\)</span> <span class="process-math">\(K\text{,}\)</span> <span class="process-math">\(L\text{,}\)</span> and <span class="process-math">\(M\text{.}\)</span> Furthermore, <span class="process-math">\(K\)</span> is the root of a tree that contains <span class="process-math">\(K\text{,}\)</span> <span class="process-math">\(L\text{,}\)</span> and <span class="process-math">\(M\text{.}\)</span> Finally, <span class="process-math">\(L\)</span> and <span class="process-math">\(M\)</span> are roots of trees that contain only themselves. From this observation, we can give a formal definition of a rooted tree.</div>
+<div class="para" id="p-3757">These genealogical relationships are often easier to visualize if the tree is rewritten so that children are positioned below their parents, as in <a href="" class="xref" data-knowl="./knowl/fig-rooted-tree-10-3-redrawn.html" title="Figure 10.3.3">Figure 10.3.3</a>.</div> <div class="para" id="p-3758">With this format, it is easy to see that each vertex in the tree can be thought of as the root of a tree that contains, in addition to itself, all of its descendants. For example, <span class="process-math">\(D\)</span> is the root of a tree that contains <span class="process-math">\(D\text{,}\)</span> <span class="process-math">\(K\text{,}\)</span> <span class="process-math">\(L\text{,}\)</span> and <span class="process-math">\(M\text{.}\)</span> Furthermore, <span class="process-math">\(K\)</span> is the root of a tree that contains <span class="process-math">\(K\text{,}\)</span> <span class="process-math">\(L\text{,}\)</span> and <span class="process-math">\(M\text{.}\)</span> Finally, <span class="process-math">\(L\)</span> and <span class="process-math">\(M\)</span> are roots of trees that contain only themselves. From this observation, we can give a formal definition of a rooted tree.</div>
 </div>
 </div></figure><figure class="figure figure-like" id="fig-rooted-tree-10-3-redrawn"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="external/images/fig-rooted-tree-10-3-redrawn.png" class="contained" alt="A Rooted Tree, redrawn"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.3<span class="period">.</span></span><span class="space"> </span>A Rooted Tree, redrawn</figcaption></figure><div class="para" id="p-3743">One can formally define the genealogical terms above. We define <em class="emphasis">child</em> here since it’s used in our formal definition of a rooted tree and leave the rest of the definitions as an exercise.</div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.3<span class="period">.</span></span><span class="space"> </span>A Rooted Tree, redrawn</figcaption></figure><div class="para" id="p-3759">One can formally define the genealogical terms above. We define <em class="emphasis">child</em> here since it’s used in our formal definition of a rooted tree and leave the rest of the definitions as an exercise.</div>
 <article class="definition definition-like" id="def-child-of-root"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">10.3.4</span><span class="period">.</span><span class="space"> </span><span class="title">Child of a Root.</span>
-</h4>  <div class="para" id="p-3744">Given a rooted tree with root <span class="process-math">\(v\text{,}\)</span> a child of <span class="process-math">\(v\)</span> is a vertex that is connected to <span class="process-math">\(v\)</span> by an edge of the tree. We refer to the root as the parent of each of its children.</div></article><article class="definition definition-like" id="def-rooted-tree"><h4 class="heading">
+</h4>  <div class="para" id="p-3760">Given a rooted tree with root <span class="process-math">\(v\text{,}\)</span> a child of <span class="process-math">\(v\)</span> is a vertex that is connected to <span class="process-math">\(v\)</span> by an edge of the tree. We refer to the root as the parent of each of its children.</div></article><article class="definition definition-like" id="def-rooted-tree"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">10.3.5</span><span class="period">.</span><span class="space"> </span><span class="title">Rooted Tree.</span>
-</h4>  <div class="para logical" id="p-3745"><ol class="lower-alpha">
-<li id="li-1744"><div class="para" id="p-3746">A single vertex <span class="process-math">\(v\)</span> with no children is a rooted tree with root <span class="process-math">\(v\text{.}\)</span>
+</h4>  <div class="para logical" id="p-3761"><ol class="lower-alpha">
+<li id="li-1756"><div class="para" id="p-3762">A single vertex <span class="process-math">\(v\)</span> with no children is a rooted tree with root <span class="process-math">\(v\text{.}\)</span>
 </div></li>
-<li id="li-1745"><div class="para" id="p-3747">Recursion: Let <span class="process-math">\(T_1, T_2,\ldots,T_r\text{,}\)</span> <span class="process-math">\(r\geq 1\text{,}\)</span> be disjoint rooted trees with roots <span class="process-math">\(v_1\text{,}\)</span> <span class="process-math">\(v_2, \ldots \text{,}\)</span> <span class="process-math">\(v_r\text{,}\)</span> respectively, and let <span class="process-math">\(v_0\)</span> be a vertex that does not belong to any of these trees. Then a rooted tree, rooted at <span class="process-math">\(v_0\text{,}\)</span> is obtained by making <span class="process-math">\(v_0\)</span> the parent of the vertices <span class="process-math">\(v_1\text{,}\)</span> <span class="process-math">\(v_2, \ldots\text{,}\)</span> and <span class="process-math">\(v_r\text{.}\)</span> We call <span class="process-math">\(T_1, T_2, \ldots, T_r\)</span> subtrees of the larger tree.</div></li>
-</ol></div></article><div class="para" id="p-3748">The <dfn class="terminology">level of a vertex</dfn> of a rooted tree is the number of edges that separate the vertex from the root. The level of the root is zero. The depth of a tree is the maximum level of the vertices in the tree. The depth of a tree in <a href="" class="xref" data-knowl="./knowl/fig-rooted-tree-10-3-redrawn.html" title="Figure 10.3.3">Figure 10.3.3</a> is three, which is the level of the vertices <span class="process-math">\(L\)</span> and <span class="process-math">\(M\text{.}\)</span> The vertices <span class="process-math">\(E\text{,}\)</span> <span class="process-math">\(F\text{,}\)</span> <span class="process-math">\(G\text{,}\)</span> <span class="process-math">\(H\text{,}\)</span> <span class="process-math">\(I\text{,}\)</span> <span class="process-math">\(J\text{,}\)</span> and <span class="process-math">\(K\)</span> have level two. <span class="process-math">\(B\text{,}\)</span> <span class="process-math">\(C\text{,}\)</span> and <span class="process-math">\(D\)</span> are at level one and <span class="process-math">\(A\)</span> has level zero.</div>
+<li id="li-1757"><div class="para" id="p-3763">Recursion: Let <span class="process-math">\(T_1, T_2,\ldots,T_r\text{,}\)</span> <span class="process-math">\(r\geq 1\text{,}\)</span> be disjoint rooted trees with roots <span class="process-math">\(v_1\text{,}\)</span> <span class="process-math">\(v_2, \ldots \text{,}\)</span> <span class="process-math">\(v_r\text{,}\)</span> respectively, and let <span class="process-math">\(v_0\)</span> be a vertex that does not belong to any of these trees. Then a rooted tree, rooted at <span class="process-math">\(v_0\text{,}\)</span> is obtained by making <span class="process-math">\(v_0\)</span> the parent of the vertices <span class="process-math">\(v_1\text{,}\)</span> <span class="process-math">\(v_2, \ldots\text{,}\)</span> and <span class="process-math">\(v_r\text{.}\)</span> We call <span class="process-math">\(T_1, T_2, \ldots, T_r\)</span> subtrees of the larger tree.</div></li>
+</ol></div></article><div class="para" id="p-3764">The <dfn class="terminology">level of a vertex</dfn> of a rooted tree is the number of edges that separate the vertex from the root. The level of the root is zero. The depth of a tree is the maximum level of the vertices in the tree. The depth of a tree in <a href="" class="xref" data-knowl="./knowl/fig-rooted-tree-10-3-redrawn.html" title="Figure 10.3.3">Figure 10.3.3</a> is three, which is the level of the vertices <span class="process-math">\(L\)</span> and <span class="process-math">\(M\text{.}\)</span> The vertices <span class="process-math">\(E\text{,}\)</span> <span class="process-math">\(F\text{,}\)</span> <span class="process-math">\(G\text{,}\)</span> <span class="process-math">\(H\text{,}\)</span> <span class="process-math">\(I\text{,}\)</span> <span class="process-math">\(J\text{,}\)</span> and <span class="process-math">\(K\)</span> have level two. <span class="process-math">\(B\text{,}\)</span> <span class="process-math">\(C\text{,}\)</span> and <span class="process-math">\(D\)</span> are at level one and <span class="process-math">\(A\)</span> has level zero.</div>
 <article class="example example-like" id="ex-decision-tree"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-decision-tree"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">10.3.6</span><span class="period">.</span><span class="space"> </span><span class="title">A Decision Tree.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-decision-tree"><article class="example example-like"><div class="para" id="p-3749">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-decision-tree"><article class="example example-like"><div class="para" id="p-3765">
 <a href="" class="xref" data-knowl="./knowl/lunch.html" title="Figure 2.1.2">Figure 2.1.2</a> is a rooted tree with <code class="code-inline tex2jax_ignore">Start</code> as the root. It is an example of what is called a decision tree.</div></article></div>
 <article class="example example-like" id="ex-data-structures"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-data-structures"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">10.3.7</span><span class="period">.</span><span class="space"> </span><span class="title">Tree Structure of Data.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-data-structures"><article class="example example-like"><div class="para logical" id="p-3750">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-data-structures"><article class="example example-like"><div class="para logical" id="p-3766">
 <div class="para">One of the keys to working with large amounts of information is to organize it in a consistent, logical way. A <dfn class="terminology">data structure</dfn> is a scheme for organizing data.  A simple example of a data structure might be the information a college admissions department might keep on their applicants.  Items might look something like this:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1180,7 +1173,7 @@ ApplicantItem &amp; = (FirstName,MiddleInitial,LastName,StreetAddress,\\
 \end{equation*}
 </div>
 <div class="para">This structure is called a “flat file”.</div>
-</div> <div class="para logical" id="p-3751">
+</div> <div class="para logical" id="p-3767">
 <div class="para">A spreadsheet can be used to arrange  data in this way. Although a “flat file” structure is often adequate, there are advantages to clustering some the information.  For example the applicant information might be broken into four parts: name, contact information, high school, and application data:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1195,17 +1188,17 @@ ApplicantItem &amp; = ((FirstName,MiddleInitial, LastName),\\
 \end{equation*}
 </div>
 <div class="para">The first item in each ApplicantItem is a list <span class="process-math">\((FirstName, MiddleInitial, LastName)\text{,}\)</span> with each item in that list being a single field of the original flat file. The third item is simply the single high school item from the flat file. The application data is a list and one of its items, is itself a list with the recommendation data for each recommendation the applicant has.</div>
-</div> <div class="para" id="p-3752">The organization of this data can be visualized with a rooted tree such as the one in <a href="" class="xref" data-knowl="./knowl/fig-applicant-tree.html" title="Figure 10.3.8">Figure 10.3.8</a>.</div> <figure class="figure figure-like" id="fig-applicant-tree"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig-applicant-tree.png" class="contained" alt="Applicant Data in a Rooted Tree"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.8<span class="period">.</span></span><span class="space"> </span>Applicant Data in a Rooted Tree</figcaption></figure> <div class="para" id="p-3753">In general, you can represent a data item, <span class="process-math">\(T\text{,}\)</span> as a rooted tree with <span class="process-math">\(T\)</span> as the root and a subtree for each field. Those fields that are more than just one item are roots of further subtrees, while individual items have no further children in the tree.</div></article></div></section><section class="subsection" id="ss-kruskal-algorithm"><h3 class="heading hide-type">
+</div> <div class="para" id="p-3768">The organization of this data can be visualized with a rooted tree such as the one in <a href="" class="xref" data-knowl="./knowl/fig-applicant-tree.html" title="Figure 10.3.8">Figure 10.3.8</a>.</div> <figure class="figure figure-like" id="fig-applicant-tree"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig-applicant-tree.png" class="contained" alt="Applicant Data in a Rooted Tree"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.8<span class="period">.</span></span><span class="space"> </span>Applicant Data in a Rooted Tree</figcaption></figure> <div class="para" id="p-3769">In general, you can represent a data item, <span class="process-math">\(T\text{,}\)</span> as a rooted tree with <span class="process-math">\(T\)</span> as the root and a subtree for each field. Those fields that are more than just one item are roots of further subtrees, while individual items have no further children in the tree.</div></article></div></section><section class="subsection" id="ss-kruskal-algorithm"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">10.3.2</span> <span class="title">Kruskal’s Algorithm</span>
 </h3>
-<div class="para" id="p-3754">An alternate algorithm for constructing a minimal spanning tree uses a forest of rooted trees. First we will describe the algorithm in its simplest terms. Afterward, we will describe how rooted trees are used to implement the algorithm. Finally, we will demonstrate the SageMath implementation of the algorithm. In all versions of this algorithm, assume that <span class="process-math">\(G = (V, E, w)\)</span> is a weighted undirected graph with <span class="process-math">\(\lvert V\rvert = m\)</span> and <span class="process-math">\(\lvert E\rvert = n\text{.}\)</span>
+<div class="para" id="p-3770">An alternate algorithm for constructing a minimal spanning tree uses a forest of rooted trees. First we will describe the algorithm in its simplest terms. Afterward, we will describe how rooted trees are used to implement the algorithm. Finally, we will demonstrate the SageMath implementation of the algorithm. In all versions of this algorithm, assume that <span class="process-math">\(G = (V, E, w)\)</span> is a weighted undirected graph with <span class="process-math">\(\lvert V\rvert = m\)</span> and <span class="process-math">\(\lvert E\rvert = n\text{.}\)</span>
 </div>
 <article class="algorithm theorem-like" id="algorithm-12"><h4 class="heading">
 <span class="type">Algorithm</span><span class="space"> </span><span class="codenumber">10.3.9</span><span class="period">.</span><span class="space"> </span><span class="title">Kruskal’s Algorithm - Informal Version.</span>
 </h4>
-<div class="para logical" id="p-3755"><ol class="decimal">
-<li id="li-1746"><div class="para logical" id="p-3756">
+<div class="para logical" id="p-3771"><ol class="decimal">
+<li id="li-1758"><div class="para logical" id="p-3772">
 <div class="para">Sort the edges of <span class="process-math">\(G\)</span> in ascending order according to weight. That is,</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1213,13 +1206,13 @@ i \leq  j \Leftrightarrow w\left(e_j\right) \leq  w\left(e_j\right)\text{.}
 \end{equation*}
 </div>
 </div></li>
-<li id="li-1747"><div class="para" id="p-3757">Go down the list from Step 1 and add edges to a set (initially empty) of edges so that the set does not form a cycle. When an edge that would create a cycle is encountered, ignore it. Continue examining edges until either <span class="process-math">\(m - 1\)</span> edges have been selected or you have come to the end of the edge list.  If <span class="process-math">\(m - 1\)</span> edges are selected, these edges make up a minimal spanning tree for <span class="process-math">\(G\text{.}\)</span> If fewer than <span class="process-math">\(m - 1\)</span> edges are selected, <span class="process-math">\(G\)</span> is not connected.</div></li>
-</ol></div></article><div class="para" id="p-3758">Step 1 can be accomplished using one of any number of standard sorting routines. Using the most efficient sorting routine, the time required to perform this step is proportional to <span class="process-math">\(n \log  n\text{.}\)</span> The second step of the algorithm, also of <span class="process-math">\(n \log  n\)</span> time complexity, is the one that uses a forest of rooted trees to test for whether an edge should be added to the spanning set.</div>
+<li id="li-1759"><div class="para" id="p-3773">Go down the list from Step 1 and add edges to a set (initially empty) of edges so that the set does not form a cycle. When an edge that would create a cycle is encountered, ignore it. Continue examining edges until either <span class="process-math">\(m - 1\)</span> edges have been selected or you have come to the end of the edge list.  If <span class="process-math">\(m - 1\)</span> edges are selected, these edges make up a minimal spanning tree for <span class="process-math">\(G\text{.}\)</span> If fewer than <span class="process-math">\(m - 1\)</span> edges are selected, <span class="process-math">\(G\)</span> is not connected.</div></li>
+</ol></div></article><div class="para" id="p-3774">Step 1 can be accomplished using one of any number of standard sorting routines. Using the most efficient sorting routine, the time required to perform this step is proportional to <span class="process-math">\(n \log  n\text{.}\)</span> The second step of the algorithm, also of <span class="process-math">\(n \log  n\)</span> time complexity, is the one that uses a forest of rooted trees to test for whether an edge should be added to the spanning set.</div>
 <article class="algorithm theorem-like" id="algorithm-13"><h4 class="heading">
 <span class="type">Algorithm</span><span class="space"> </span><span class="codenumber">10.3.10</span><span class="period">.</span><span class="space"> </span><span class="title">Kruskal’s Algorithm.</span>
 </h4>
-<div class="para logical" id="p-3759"><ol class="decimal">
-<li id="li-1748"><div class="para logical" id="p-3760">
+<div class="para logical" id="p-3775"><ol class="decimal">
+<li id="li-1760"><div class="para logical" id="p-3776">
 <div class="para">Sort the edges of <span class="process-math">\(G\)</span> in ascending order according to weight. That is,</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1227,33 +1220,33 @@ i \leq  j \Leftrightarrow w\left(e_i \right) \leq  w\left(e_j\right)\text{.}
 \end{equation*}
 </div>
 </div></li>
-<li id="li-1749"><div class="para logical" id="p-3761"><ol class="decimal">
-<li id="li-1750"><div class="para" id="p-3762">Initialize each vertex in V to be the root of its own rooted tree.</div></li>
-<li id="li-1751"><div class="para" id="p-3763">Go down the list of edges until either a spanning tree is completed or the edge list has been exhausted. For each edge <span class="process-math">\(e =\left\{v_1,v_2\right\}\text{,}\)</span> we can determine whether e can be added to the spanning set without forming a cycle by determining whether the root of <span class="process-math">\({v_1}'s\)</span> tree is equal to the root of <span class="process-math">\({v_2}'s\)</span> tree. If the two roots are equal, then ignore e. If the roots are different, then we can add e to the spanning set. In addition, we merge the trees that <span class="process-math">\(v_1\)</span> and <span class="process-math">\(v_2\)</span> belong to.  This is accomplished by either making <span class="process-math">\({v_1}'s\)</span> root the parent of <span class="process-math">\({v_2}'s\)</span> root or vice versa.</div></li>
+<li id="li-1761"><div class="para logical" id="p-3777"><ol class="decimal">
+<li id="li-1762"><div class="para" id="p-3778">Initialize each vertex in V to be the root of its own rooted tree.</div></li>
+<li id="li-1763"><div class="para" id="p-3779">Go down the list of edges until either a spanning tree is completed or the edge list has been exhausted. For each edge <span class="process-math">\(e =\left\{v_1,v_2\right\}\text{,}\)</span> we can determine whether e can be added to the spanning set without forming a cycle by determining whether the root of <span class="process-math">\({v_1}'s\)</span> tree is equal to the root of <span class="process-math">\({v_2}'s\)</span> tree. If the two roots are equal, then ignore e. If the roots are different, then we can add e to the spanning set. In addition, we merge the trees that <span class="process-math">\(v_1\)</span> and <span class="process-math">\(v_2\)</span> belong to.  This is accomplished by either making <span class="process-math">\({v_1}'s\)</span> root the parent of <span class="process-math">\({v_2}'s\)</span> root or vice versa.</div></li>
 </ol></div></li>
 </ol></div></article><article class="note remark-like" id="note-14"><h4 class="heading">
 <span class="type">Note</span><span class="space"> </span><span class="codenumber">10.3.11</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-3764"><ol class="lower-alpha">
-<li id="li-1752"><div class="para" id="p-3765">Since we start the Kruskal’s algorithm with <span class="process-math">\(m\)</span> trees and each addition of an edge decreases the number of trees by one, we end the algorithm with one rooted tree, provided a spanning tree exists.</div></li>
-<li id="li-1753"><div class="para" id="p-3766">The rooted tree that we develop in the algorithm is not the spanning tree itself.</div></li>
+<div class="para logical" id="p-3780"><ol class="lower-alpha">
+<li id="li-1764"><div class="para" id="p-3781">Since we start the Kruskal’s algorithm with <span class="process-math">\(m\)</span> trees and each addition of an edge decreases the number of trees by one, we end the algorithm with one rooted tree, provided a spanning tree exists.</div></li>
+<li id="li-1765"><div class="para" id="p-3782">The rooted tree that we develop in the algorithm is not the spanning tree itself.</div></li>
 </ol></div></article></section><section class="subsection" id="ss-sage-note-kruskal"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">10.3.3</span> <span class="title">SageMath Note - Implementation of Kruskal’s Algorithm</span>
 </h3>
-<div class="para" id="p-3767">Kruskal’s algorithm has been implemented in Sage. We illustrate how the spanning tree for a weighted graph in can be generated.  First, we create such a graph</div>
-<div class="para" id="p-3768">We will create a graph using  a list of triples of the form <span class="process-math">\((\text{vertex},\text{vertex}, \text{label})\text{.}\)</span> The <span class="process-math">\(weighted\)</span> method tells Sage to consider the labels as weights.</div>
+<div class="para" id="p-3783">Kruskal’s algorithm has been implemented in Sage. We illustrate how the spanning tree for a weighted graph in can be generated.  First, we create such a graph</div>
+<div class="para" id="p-3784">We will create a graph using  a list of triples of the form <span class="process-math">\((\text{vertex},\text{vertex}, \text{label})\text{.}\)</span> The <span class="process-math">\(weighted\)</span> method tells Sage to consider the labels as weights.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-33"><script type="text/x-sage">edges=[(1, 2, 4), (2, 8, 4), (3, 8, 4), (4, 7, 5), (6, 8, 5), (1, 3, 6), (1, 7, 6), (4, 5, 6), (5, 10, 9), (2, 10, 7), (4, 6, 7), (2, 4, 8), (1,8, 9), (1, 9, 9), (5, 6, 9), (1, 10, 10), (2, 9, 10), (4, 9, 10), (5, 9, 10), (6, 9, 10)]
 G=Graph(edges)
 G.weighted(True)
 G.graphplot(edge_labels=True,save_pos=True).show()
 </script></pre>
 <figure class="figure figure-like" id="sage_graph"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/sage_graph.png" class="contained" alt="SageMath Output - Weighted Graph"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.12<span class="period">.</span></span><span class="space"> </span>Weighed graph, SageMath output</figcaption></figure><div class="para" id="p-3769">Next, we load the kruskal function and use it to generate the list of edges in a spanning tree of <span class="process-math">\(G\text{.}\)</span>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.12<span class="period">.</span></span><span class="space"> </span>Weighed graph, SageMath output</figcaption></figure><div class="para" id="p-3785">Next, we load the kruskal function and use it to generate the list of edges in a spanning tree of <span class="process-math">\(G\text{.}\)</span>
 </div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-34"><script type="text/x-sage">from sage.graphs.spanning_tree import kruskal
 E = kruskal(G, check=True);E
 </script></pre>
-<div class="para" id="p-3770">To see the resulting tree with the same embedding as <span class="process-math">\(G\text{,}\)</span> we generate a graph from the spanning tree edges. Next, we set the positions of the vertices to be the same as in the graph. Finally, we plot the tree.</div>
+<div class="para" id="p-3786">To see the resulting tree with the same embedding as <span class="process-math">\(G\text{,}\)</span> we generate a graph from the spanning tree edges. Next, we set the positions of the vertices to be the same as in the graph. Finally, we plot the tree.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-35"><script type="text/x-sage">T=Graph(E)
 T.set_pos(G.get_pos())
 T.graphplot(edge_labels=True).show()
@@ -1262,20 +1255,20 @@ T.graphplot(edge_labels=True).show()
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.13<span class="period">.</span></span><span class="space"> </span>Spanning tree, SageMath output</figcaption></figure></section><section class="exercises" id="exercises-10-3"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">10.3.4</span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-432"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para" id="p-3771">Suppose that an undirected tree has diameter <span class="process-math">\(d\)</span> and that you would like to select a vertex of the tree as a root so that the resulting rooted tree has the smallest depth possible. How would such a root be selected and what would be the depth of the tree (in terms of <span class="process-math">\(d\)</span>)?</div>
+<article class="exercise exercise-like" id="exercise-435"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para" id="p-3787">Suppose that an undirected tree has diameter <span class="process-math">\(d\)</span> and that you would like to select a vertex of the tree as a root so that the resulting rooted tree has the smallest depth possible. How would such a root be selected and what would be the depth of the tree (in terms of <span class="process-math">\(d\)</span>)?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-200" id="answer-200"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-200"><div class="answer solution-like"><div class="para" id="p-3772">Locate any simple path of length <span class="process-math">\(d\)</span> and locate the vertex in position <span class="process-math">\(\lceil d/2\rceil\)</span> on the path. The tree rooted at that vertex will have a depth of <span class="process-math">\(\lceil d/2\rceil\text{,}\)</span> which is minimal.</div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-433"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para" id="p-3773">Use Kruskal’s algorithm to find a minimal spanning tree for the following graphs. In addition to the spanning tree, find the final rooted tree in the algorithm.  When you merge two trees in the algorithm, make the root with the lower number the root of the new tree.</div> <figure class="figure figure-like" id="fig-exercise-10-3-2a"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig-exercise-10-3-2a.png" class="contained" alt="Figure for exercise 10-3-2a"></div>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-202" id="answer-202"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-202"><div class="answer solution-like"><div class="para" id="p-3788">Locate any simple path of length <span class="process-math">\(d\)</span> and locate the vertex in position <span class="process-math">\(\lceil d/2\rceil\)</span> on the path. The tree rooted at that vertex will have a depth of <span class="process-math">\(\lceil d/2\rceil\text{,}\)</span> which is minimal.</div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-436"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para" id="p-3789">Use Kruskal’s algorithm to find a minimal spanning tree for the following graphs. In addition to the spanning tree, find the final rooted tree in the algorithm.  When you merge two trees in the algorithm, make the root with the lower number the root of the new tree.</div> <figure class="figure figure-like" id="fig-exercise-10-3-2a"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig-exercise-10-3-2a.png" class="contained" alt="Figure for exercise 10-3-2a"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.14<span class="period">.</span></span><span class="space"> </span></figcaption></figure> <figure class="figure figure-like" id="fig-exercise-10-3-2b"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig-exercise-10-3-2b.png" class="contained" alt="Figure for exercise 10-3-2b"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.15<span class="period">.</span></span><span class="space"> </span></figcaption></figure></article><article class="exercise exercise-like" id="exercise-434"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para" id="p-3774">Suppose that information on buildings is arranged in records with five fields: the name of the building, its location, its owner, its height, and its floor space. The location and owner fields are records that include all of the information that you would expect, such as street, city, and state, together with the owner’s name (first, middle, last) in the owner field. Draw a rooted tree to describe this type of record</div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.15<span class="period">.</span></span><span class="space"> </span></figcaption></figure></article><article class="exercise exercise-like" id="exercise-437"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para" id="p-3790">Suppose that information on buildings is arranged in records with five fields: the name of the building, its location, its owner, its height, and its floor space. The location and owner fields are records that include all of the information that you would expect, such as street, city, and state, together with the owner’s name (first, middle, last) in the owner field. Draw a rooted tree to describe this type of record</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original has-image" data-refid="hk-answer-201" id="answer-201"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-201"><div class="answer solution-like"><figure class="figure figure-like" id="fig-solution-10-3-3"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig-solution-10-3-3.png" class="contained" alt="Solution to exercise 10-3-3"></div>
+<a href="" data-knowl="" class="id-ref answer-knowl original has-image" data-refid="hk-answer-203" id="answer-203"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-203"><div class="answer solution-like"><figure class="figure figure-like" id="fig-solution-10-3-3"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig-solution-10-3-3.png" class="contained" alt="Solution to exercise 10-3-3"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.16<span class="period">.</span></span><span class="space"> </span></figcaption></figure></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-435"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para" id="p-3775">Step through Kruskal’s Algorithm by hand to verify that the example of a minimal spanning tree using Sage in <a href="s-rooted-trees.html#ss-sage-note-kruskal" class="internal" title="Subsection 10.3.3: SageMath Note - Implementation of Kruskal’s Algorithm">Subsection 10.3.3</a> is correct.</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
+</div></article><article class="exercise exercise-like" id="exercise-438"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para" id="p-3791">Step through Kruskal’s Algorithm by hand to verify that the example of a minimal spanning tree using Sage in <a href="s-rooted-trees.html#ss-sage-note-kruskal" class="internal" title="Subsection 10.3.3: SageMath Note - Implementation of Kruskal’s Algorithm">Subsection 10.3.3</a> is correct.</div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>
 <div class="ptx-content-footer">
 <a class="previous-button button" href="s-spanning-trees.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="s-binary-trees.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>

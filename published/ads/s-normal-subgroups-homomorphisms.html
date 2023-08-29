@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Normal Subgroups and Group Homomorphisms</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,25 +58,36 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
@@ -99,59 +128,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -160,7 +146,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -315,7 +301,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1124,13 +1113,13 @@ eBookConfig.runestone_version = '7.0.7';
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="s-normal-subgroups-homomorphisms"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">15.4</span> <span class="title">Normal Subgroups and Group Homomorphisms</span>
 </h2>
-<section class="introduction" id="introduction-53"><div class="para" id="p-5783">Our goal in this section is to answer an open question from earlier in this chapter and introduce a related concept. The question is: When are left cosets of a subgroup a group under the induced operation? This question is open for non-abelian groups. Now that we have some examples to work with, we can try a few experiments.</div></section><section class="subsection" id="ss-normal-subgroups"><h3 class="heading hide-type">
+<section class="introduction" id="introduction-53"><div class="para" id="p-5799">Our goal in this section is to answer an open question from earlier in this chapter and introduce a related concept. The question is: When are left cosets of a subgroup a group under the induced operation? This question is open for non-abelian groups. Now that we have some examples to work with, we can try a few experiments.</div></section><section class="subsection" id="ss-normal-subgroups"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">15.4.1</span> <span class="title">Normal Subgroups</span>
 </h3>
 <article class="example example-like" id="ex-alternating-cosets"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-alternating-cosets"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.4.1</span><span class="period">.</span><span class="space"> </span><span class="title">Cosets of <span class="process-math">\(A_3\)</span>.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-alternating-cosets"><article class="example example-like"><div class="para" id="p-5784">We have seen that <span class="process-math">\(A_3= \left\{i,r_1,r_2\right\}\)</span> is a subgroup of <span class="process-math">\(S_3\text{,}\)</span> and its left cosets are <span class="process-math">\(A_3\)</span> itself and <span class="process-math">\(B_3=\left\{f_1,f_2,f_3\right\}\text{.}\)</span> Whether <span class="process-math">\(\left\{A_3 , B_3 \right\}\)</span> is a group boils down to determining whether the induced operation is well defined.   Consider the operation  table for <span class="process-math">\(S_3\)</span> in <a href="" class="xref" data-knowl="./knowl/fig-s3-15-4.html" title="Figure 15.4.2">Figure 15.4.2</a>.</div> <figure class="figure figure-like" id="fig-s3-15-4"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/images/fig-s3-15-4.png" class="contained" alt="Operation table for \(S_3\)"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">15.4.2<span class="period">.</span></span><span class="space"> </span>Operation table for <span class="process-math">\(S_3\)</span></figcaption></figure> <div class="para" id="p-5785">We have shaded in all occurrences of the elements of <span class="process-math">\(B_3\)</span> in gray. We will call these elements the gray elements and the elements of <span class="process-math">\(A_3\)</span> the white ones.</div> <div class="para logical" id="p-5786">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-alternating-cosets"><article class="example example-like"><div class="para" id="p-5800">We have seen that <span class="process-math">\(A_3= \left\{i,r_1,r_2\right\}\)</span> is a subgroup of <span class="process-math">\(S_3\text{,}\)</span> and its left cosets are <span class="process-math">\(A_3\)</span> itself and <span class="process-math">\(B_3=\left\{f_1,f_2,f_3\right\}\text{.}\)</span> Whether <span class="process-math">\(\left\{A_3 , B_3 \right\}\)</span> is a group boils down to determining whether the induced operation is well defined.   Consider the operation  table for <span class="process-math">\(S_3\)</span> in <a href="" class="xref" data-knowl="./knowl/fig-s3-15-4.html" title="Figure 15.4.2">Figure 15.4.2</a>.</div> <figure class="figure figure-like" id="fig-s3-15-4"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/images/fig-s3-15-4.png" class="contained" alt="Operation table for \(S_3\)"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">15.4.2<span class="period">.</span></span><span class="space"> </span>Operation table for <span class="process-math">\(S_3\)</span></figcaption></figure> <div class="para" id="p-5801">We have shaded in all occurrences of the elements of <span class="process-math">\(B_3\)</span> in gray. We will call these elements the gray elements and the elements of <span class="process-math">\(A_3\)</span> the white ones.</div> <div class="para logical" id="p-5802">
 <div class="para">Now consider the process of computing the coset product <span class="process-math">\(A_3\circ B_3\text{.}\)</span> The  “product” is obtained by selecting one white element and one gray element. Note that white “times” gray is always gray. Thus, <span class="process-math">\(A_3\circ B_3\)</span> is well defined. Similarly, the other three possible products are well defined. The table for the factor group <span class="process-math">\(S_3/A_3\)</span> is</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1154,12 +1143,12 @@ B_3 &amp; A_3 \\
 \end{array}
 \end{equation*}
 </div>
-</div> <div class="para" id="p-5787">Clearly, <span class="process-math">\(S_3/A_3\)</span> is isomorphic to <span class="process-math">\(\mathbb{Z}_2\text{.}\)</span>   Notice that <span class="process-math">\(A_3\)</span> and <span class="process-math">\(B_3\)</span> are also the right cosets of <span class="process-math">\(A_3\text{.}\)</span>  This is significant.</div></article></div>
+</div> <div class="para" id="p-5803">Clearly, <span class="process-math">\(S_3/A_3\)</span> is isomorphic to <span class="process-math">\(\mathbb{Z}_2\text{.}\)</span>   Notice that <span class="process-math">\(A_3\)</span> and <span class="process-math">\(B_3\)</span> are also the right cosets of <span class="process-math">\(A_3\text{.}\)</span>  This is significant.</div></article></div>
 <article class="example example-like" id="ex-3-cosets-S3"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-3-cosets-S3"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.4.3</span><span class="period">.</span><span class="space"> </span><span class="title">Cosets of another subgroup of <span class="process-math">\(S_3\)</span>.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-3-cosets-S3"><article class="example example-like"><div class="para" id="p-5788">Now let’s try the left cosets of <span class="process-math">\(\langle f_1 \rangle\)</span> in <span class="process-math">\(S_3\text{.}\)</span> There are three of them. Will we get a complicated version of <span class="process-math">\(\mathbb{Z}_3\text{?}\)</span> The left cosets are <span class="process-math">\(C_0=\left\langle f_1\right\rangle\text{,}\)</span> <span class="process-math">\(C_1= r_1\left\langle f_1\right\rangle = \left\{r_1,f_3\right\}\text{,}\)</span>  and <span class="process-math">\(C_2= r_2\left\langle
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-3-cosets-S3"><article class="example example-like"><div class="para" id="p-5804">Now let’s try the left cosets of <span class="process-math">\(\langle f_1 \rangle\)</span> in <span class="process-math">\(S_3\text{.}\)</span> There are three of them. Will we get a complicated version of <span class="process-math">\(\mathbb{Z}_3\text{?}\)</span> The left cosets are <span class="process-math">\(C_0=\left\langle f_1\right\rangle\text{,}\)</span> <span class="process-math">\(C_1= r_1\left\langle f_1\right\rangle = \left\{r_1,f_3\right\}\text{,}\)</span>  and <span class="process-math">\(C_2= r_2\left\langle
 f_1\right\rangle = \left\{r_2,f_2\right\}\text{.}\)</span>
-</div> <div class="para logical" id="p-5789">
+</div> <div class="para logical" id="p-5805">
 <div class="para">The reader might be expecting something to go wrong eventually, and here it is. To determine <span class="process-math">\(C_1\circ C_2\)</span> we can choose from four pairs of representatives:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1176,7 +1165,7 @@ f_3\in C_1, f_2\in C_2    \longrightarrow  f_3\circ f_2=r_2\in C_2\\
 <article class="observation remark-like" id="observation-8"><h4 class="heading">
 <span class="type">Observation</span><span class="space"> </span><span class="codenumber">15.4.4</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-5790">
+<div class="para logical" id="p-5806">
 <div class="para">This last example changes our course of action. If we had gotten a factor group from <span class="process-math">\(\left\{C_0,C_1,C_2\right\}\text{,}\)</span> we might have hoped to prove that every collection of left cosets forms a group. Now our question is: How can we determine whether we will get a factor group? Of course, this question is equivalent to: When is the induced operation well defined? There was only one step in the proof of <a href="" class="xref" data-knowl="./knowl/theorem-coset-operation-well-defined.html" title="Theorem 15.2.18: Coset operation is well-defined (Abelian Case)">Theorem 15.2.18</a>, where we used the fact that <span class="process-math">\(G\)</span> was abelian. We repeat the equations here:</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/theorem-coset-operation-well-defined.html">
 \begin{equation*}
@@ -1184,47 +1173,47 @@ a'*b' = \left(a*h_1\right)*\left(b*h_2 \right) = (a*b)*\left(h_1*h_2\right)
 \end{equation*}
 </div>
 <div class="para">since <span class="process-math">\(G\)</span> was abelian.</div>
-</div> <div class="para" id="p-5791">The last step was made possible by the fact that <span class="process-math">\(h_1*b=b*h_1\text{.}\)</span> As the proof continued, we used the fact that <span class="process-math">\(h_1*h_2\)</span> was in <span class="process-math">\(H\)</span> and so <span class="process-math">\(a'*b'\)</span> is <span class="process-math">\((a*b)*h\)</span> for some <span class="process-math">\(h\)</span> in <span class="process-math">\(H\text{.}\)</span> All that we really needed in the “abelian step” was that <span class="process-math">\(h_1*b = b*(\textrm{something in } H) = b*h_3\text{.}\)</span>  Then, since <span class="process-math">\(H\)</span> is closed under <span class="process-math">\(G\)</span>’s operation, <span class="process-math">\(h_3*h_2\)</span> is an element of <span class="process-math">\(H\text{.}\)</span> The consequence of this observation is that we define a certain kind of subgroup that guarantees that the inducted operation is well-defined.</div></article><article class="definition definition-like" id="def-normal-subgroup"><h4 class="heading">
+</div> <div class="para" id="p-5807">The last step was made possible by the fact that <span class="process-math">\(h_1*b=b*h_1\text{.}\)</span> As the proof continued, we used the fact that <span class="process-math">\(h_1*h_2\)</span> was in <span class="process-math">\(H\)</span> and so <span class="process-math">\(a'*b'\)</span> is <span class="process-math">\((a*b)*h\)</span> for some <span class="process-math">\(h\)</span> in <span class="process-math">\(H\text{.}\)</span> All that we really needed in the “abelian step” was that <span class="process-math">\(h_1*b = b*(\textrm{something in } H) = b*h_3\text{.}\)</span>  Then, since <span class="process-math">\(H\)</span> is closed under <span class="process-math">\(G\)</span>’s operation, <span class="process-math">\(h_3*h_2\)</span> is an element of <span class="process-math">\(H\text{.}\)</span> The consequence of this observation is that we define a certain kind of subgroup that guarantees that the inducted operation is well-defined.</div></article><article class="definition definition-like" id="def-normal-subgroup"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">15.4.5</span><span class="period">.</span><span class="space"> </span><span class="title">Normal Subgroup.</span>
-</h4>  <div class="para" id="p-5792">If <span class="process-math">\(G\)</span> is a group, <span class="process-math">\(H \leq  G\text{,}\)</span> then <span class="process-math">\(H\)</span> is  a normal subgroup of  <span class="process-math">\(G\text{,}\)</span> denoted <span class="process-math">\(H \triangleleft  G\text{,}\)</span> if and only if every left coset  of <span class="process-math">\(H\)</span> is a right coset of <span class="process-math">\(H\text{;}\)</span> i. e. <span class="process-math">\(a*H = H*a \quad \forall a \in G\)</span>
+</h4>  <div class="para" id="p-5808">If <span class="process-math">\(G\)</span> is a group, <span class="process-math">\(H \leq  G\text{,}\)</span> then <span class="process-math">\(H\)</span> is  a normal subgroup of  <span class="process-math">\(G\text{,}\)</span> denoted <span class="process-math">\(H \triangleleft  G\text{,}\)</span> if and only if every left coset  of <span class="process-math">\(H\)</span> is a right coset of <span class="process-math">\(H\text{;}\)</span> i. e. <span class="process-math">\(a*H = H*a \quad \forall a \in G\)</span>
 </div></article><article class="theorem theorem-like" id="theorem-normality-conditions"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">15.4.6</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-5793">
+<div class="para logical" id="p-5809">
 <div class="para">If <span class="process-math">\(H \leq G\text{,}\)</span> then the operation induced on left cosets of <span class="process-math">\(H\)</span> by the operation of <span class="process-math">\(G\)</span> is well defined if and only if  any one of the following conditions is true:</div>
 <ol class="lower-alpha">
-<li id="li-2571"><div class="para" id="p-5794">
+<li id="li-2583"><div class="para" id="p-5810">
 <span class="process-math">\(H\)</span> is a normal subgroup of <span class="process-math">\(G\text{.}\)</span>
 </div></li>
-<li id="li-2572"><div class="para" id="p-5795">If <span class="process-math">\(h \in  H\text{,}\)</span> <span class="process-math">\(a \in  G\text{,}\)</span> then there exists <span class="process-math">\(h' \in  H\)</span> such that <span class="process-math">\(h*a = a*h'\text{.}\)</span>
+<li id="li-2584"><div class="para" id="p-5811">If <span class="process-math">\(h \in  H\text{,}\)</span> <span class="process-math">\(a \in  G\text{,}\)</span> then there exists <span class="process-math">\(h' \in  H\)</span> such that <span class="process-math">\(h*a = a*h'\text{.}\)</span>
 </div></li>
-<li id="li-2573"><div class="para" id="p-5796">If <span class="process-math">\(h \in H\text{,}\)</span> <span class="process-math">\(a \in G\text{,}\)</span> then <span class="process-math">\(a^{-1}*h*a \in  H\text{.}\)</span>
+<li id="li-2585"><div class="para" id="p-5812">If <span class="process-math">\(h \in H\text{,}\)</span> <span class="process-math">\(a \in G\text{,}\)</span> then <span class="process-math">\(a^{-1}*h*a \in  H\text{.}\)</span>
 </div></li>
 </ol>
-</div></article><article class="hiddenproof" id="proof-66"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-66"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-66"><article class="hiddenproof"><div class="para" id="p-5797">We leave the proof of this theorem to the reader.</div></article></div>
-<div class="para" id="p-5798">Be careful, the following corollary is not an “...if and only if...” statement.</div>
+</div></article><article class="hiddenproof" id="proof-66"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-66"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-66"><article class="hiddenproof"><div class="para" id="p-5813">We leave the proof of this theorem to the reader.</div></article></div>
+<div class="para" id="p-5814">Be careful, the following corollary is not an “...if and only if...” statement.</div>
 <article class="corollary theorem-like" id="corollary-normality"><h4 class="heading">
 <span class="type">Corollary</span><span class="space"> </span><span class="codenumber">15.4.7</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-5799">
+<div class="para logical" id="p-5815">
 <div class="para">If <span class="process-math">\(H \leq G\text{,}\)</span> then the operation induced on left cosets of <span class="process-math">\(H\)</span> by the operation of <span class="process-math">\(G\)</span> is well defined if either of the following two conditions is true.</div>
 <ol class="lower-alpha">
-<li id="li-2574"><div class="para" id="p-5800">
+<li id="li-2586"><div class="para" id="p-5816">
 <span class="process-math">\(G\)</span> is abelian.</div></li>
-<li id="li-2575"><div class="para" id="p-5801"><span class="process-math">\(\left| H\right|  = \frac{\left| G\right| }{2}\text{.}\)</span></div></li>
+<li id="li-2587"><div class="para" id="p-5817"><span class="process-math">\(\left| H\right|  = \frac{\left| G\right| }{2}\text{.}\)</span></div></li>
 </ol>
 </div></article><article class="example example-like" id="ex-not-normal"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-not-normal"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.4.8</span><span class="period">.</span><span class="space"> </span><span class="title">A non-normal subgroup.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-not-normal"><article class="example example-like"><div class="para" id="p-5802">The right cosets of <span class="process-math">\(\left\langle f_1\right\rangle \leq  S_3\)</span> are <span class="process-math">\(\left\{i, f_1\right\}\text{,}\)</span> <span class="process-math">\(\left\{r_1 f_2 \right\}\text{,}\)</span> and <span class="process-math">\(\left\{r_2 ,f_3\right\}\text{.}\)</span> These are not the same as the left cosets of <span class="process-math">\(\left\langle f_1\right\rangle\text{.}\)</span> In addition, <span class="process-math">\(f_2{}^{-1}f_1f_2=f_2f_1f_2=f_3\notin
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-not-normal"><article class="example example-like"><div class="para" id="p-5818">The right cosets of <span class="process-math">\(\left\langle f_1\right\rangle \leq  S_3\)</span> are <span class="process-math">\(\left\{i, f_1\right\}\text{,}\)</span> <span class="process-math">\(\left\{r_1 f_2 \right\}\text{,}\)</span> and <span class="process-math">\(\left\{r_2 ,f_3\right\}\text{.}\)</span> These are not the same as the left cosets of <span class="process-math">\(\left\langle f_1\right\rangle\text{.}\)</span> In addition, <span class="process-math">\(f_2{}^{-1}f_1f_2=f_2f_1f_2=f_3\notin
 \left\langle f_1\right\rangle\text{.}\)</span> Thus, <span class="process-math">\(\left\langle f_1\right\rangle\)</span> is not normal.</div></article></div>
-<div class="para" id="p-5803">The improper subgroups <span class="process-math">\(\{e\}\)</span> and <span class="process-math">\(G\)</span> of any group <span class="process-math">\(G\)</span> are normal subgroups.  <span class="process-math">\(G/\{e\}\)</span> is isomorphic to <span class="process-math">\(G\text{.}\)</span>  All other normal subgroups of a group, if they exist, are called <dfn class="terminology">proper normal subgroups</dfn>.</div>
+<div class="para" id="p-5819">The improper subgroups <span class="process-math">\(\{e\}\)</span> and <span class="process-math">\(G\)</span> of any group <span class="process-math">\(G\)</span> are normal subgroups.  <span class="process-math">\(G/\{e\}\)</span> is isomorphic to <span class="process-math">\(G\text{.}\)</span>  All other normal subgroups of a group, if they exist, are called <dfn class="terminology">proper normal subgroups</dfn>.</div>
 <article class="example example-like" id="an-is-normal"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-an-is-normal"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.4.9</span><span class="period">.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-an-is-normal"><article class="example example-like"><div class="para" id="p-5804">By Condition b of <a href="" class="xref" data-knowl="./knowl/corollary-normality.html" title="Corollary 15.4.7">Corollary 15.4.7</a>, <span class="process-math">\(A_n\)</span> is a normal subgroup of <span class="process-math">\(S_n\)</span> and <span class="process-math">\(S_n/A_n\)</span>  is isomorphic to <span class="process-math">\(\mathbb{Z}_2\text{.}\)</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-an-is-normal"><article class="example example-like"><div class="para" id="p-5820">By Condition b of <a href="" class="xref" data-knowl="./knowl/corollary-normality.html" title="Corollary 15.4.7">Corollary 15.4.7</a>, <span class="process-math">\(A_n\)</span> is a normal subgroup of <span class="process-math">\(S_n\)</span> and <span class="process-math">\(S_n/A_n\)</span>  is isomorphic to <span class="process-math">\(\mathbb{Z}_2\text{.}\)</span>
 </div></article></div>
 <article class="example example-like" id="a5-is-simple"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-a5-is-simple"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.4.10</span><span class="period">.</span><span class="space"> </span><span class="title">Subgroups of <span class="process-math">\(A_5\)</span>.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-a5-is-simple"><article class="example example-like"><div class="para logical" id="p-5805">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-a5-is-simple"><article class="example example-like"><div class="para logical" id="p-5821">
 <div class="para">
 <span class="process-math">\(A_5\text{,}\)</span> a group in its own right with 60 elements, has many proper subgroups, but none are normal. Although this could be done by brute force, the number of elements in the group would make the process tedious.  A far more elegant way to approach the verification of this statement is to use the following fact about the cycle structure of permutations.    If <span class="process-math">\(f\in S_n\)</span> is a permutation with a certain cycle structure,  <span class="process-math">\(\sigma _1\sigma _2\cdots \sigma _k\text{,}\)</span> where the length of <span class="process-math">\(\sigma _i\)</span> is <span class="process-math">\(\ell_i\text{,}\)</span> then for any <span class="process-math">\(g\in S_n\text{,}\)</span>   <span class="process-math">\(g^{-1}\circ
 f\circ g\text{,}\)</span> which is the conjugate of <span class="process-math">\(f\)</span> by <span class="process-math">\(g\text{,}\)</span>  will have a cycle structure with exactly the same cycle lengths.   For example if we take <span class="process-math">\(f=(1,2,3,4)(5,6)(7,8,9)\in S_9\)</span> and conjugate by <span class="process-math">\(g=(1,3,5,7,9)\text{,}\)</span>
@@ -1237,11 +1226,11 @@ g^{-1}\circ f\circ g &amp; =(1,9,7,5,3)\circ (1,2,3,4)(5,6)(7,8,9)\circ (1,3,5,7
 \end{split}
 \end{equation*}
 </div>
-</div> <div class="para" id="p-5806">Notice that the condition for normality of a subgroup <span class="process-math">\(H\)</span> of <span class="process-math">\(G\)</span> is that the conjugate of any element of <span class="process-math">\(H\)</span> by an element of <span class="process-math">\(G\)</span> must be remain in <span class="process-math">\(H\text{.}\)</span>
-</div> <div class="para" id="p-5807">To verify that <span class="process-math">\(A_5\)</span> has no proper normal subgroups, you can start by cataloging the different cycle structures that occur in <span class="process-math">\(A_5\)</span> and how many elements have those structures.   Then consider what happens when you conjugate these different cycle structures with elements of <span class="process-math">\(A_5\text{.}\)</span> An outline of the process is in the exercises.</div></article></div>
+</div> <div class="para" id="p-5822">Notice that the condition for normality of a subgroup <span class="process-math">\(H\)</span> of <span class="process-math">\(G\)</span> is that the conjugate of any element of <span class="process-math">\(H\)</span> by an element of <span class="process-math">\(G\)</span> must be remain in <span class="process-math">\(H\text{.}\)</span>
+</div> <div class="para" id="p-5823">To verify that <span class="process-math">\(A_5\)</span> has no proper normal subgroups, you can start by cataloging the different cycle structures that occur in <span class="process-math">\(A_5\)</span> and how many elements have those structures.   Then consider what happens when you conjugate these different cycle structures with elements of <span class="process-math">\(A_5\text{.}\)</span> An outline of the process is in the exercises.</div></article></div>
 <article class="example example-like" id="ex-matrix-subgroups-15"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-matrix-subgroups-15"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.4.11</span><span class="period">.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-matrix-subgroups-15"><article class="example example-like"><div class="para logical" id="p-5808">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-matrix-subgroups-15"><article class="example example-like"><div class="para logical" id="p-5824">
 <div class="para">Let <span class="process-math">\(G\)</span> be the set of two by two invertible matrices of real numbers.  That is,</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1254,7 +1243,7 @@ c &amp; d \\
 \end{equation*}
 </div>
 <div class="para">We saw in Chapter 11 that <span class="process-math">\(G\)</span> is a group with matrix multiplication.</div>
-</div> <div class="para" id="p-5809">This group has many subgroups, but consider just two: <span class="process-math">\(H_1=\left\{\left.\left(
+</div> <div class="para" id="p-5825">This group has many subgroups, but consider just two: <span class="process-math">\(H_1=\left\{\left.\left(
 \begin{array}{cc}
 a &amp; 0 \\
 0 &amp; a \\
@@ -1268,7 +1257,7 @@ a &amp; 0 \\
 </div></article></div></section><section class="subsection" id="ss-homomorphism"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">15.4.2</span> <span class="title">Homomorphisms</span>
 </h3>
-<div class="para logical" id="p-5810">
+<div class="para logical" id="p-5826">
 <div class="para">Think of the word isomorphism. Chances are, one of the first images that comes to mind is an equation something like</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1279,11 +1268,11 @@ a &amp; 0 \\
 </div>
 <article class="definition definition-like" id="def-homomorphism"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">15.4.12</span><span class="period">.</span><span class="space"> </span><span class="title">Homomorphism.</span>
-</h4> <div class="para" id="p-5811">Let <span class="process-math">\([G; *]\)</span> and <span class="process-math">\([G';\diamond ]\)</span> be groups. <span class="process-math">\(\theta:G \to G'\)</span> is a homomorphism if <span class="process-math">\(\theta(x * y) = \theta(x) \diamond  \theta(y)\)</span> for all <span class="process-math">\(x, y \in G\text{.}\)</span>
-</div></article><div class="para" id="p-5812">Many homomorphisms are useful since they point out similarities between the two groups (or, on the universal level, two algebraic systems) involved.</div>
+</h4> <div class="para" id="p-5827">Let <span class="process-math">\([G; *]\)</span> and <span class="process-math">\([G';\diamond ]\)</span> be groups. <span class="process-math">\(\theta:G \to G'\)</span> is a homomorphism if <span class="process-math">\(\theta(x * y) = \theta(x) \diamond  \theta(y)\)</span> for all <span class="process-math">\(x, y \in G\text{.}\)</span>
+</div></article><div class="para" id="p-5828">Many homomorphisms are useful since they point out similarities between the two groups (or, on the universal level, two algebraic systems) involved.</div>
 <article class="example example-like" id="ex-15-4-h1"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-15-4-h1"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.4.13</span><span class="period">.</span><span class="space"> </span><span class="title">Decreasing modularity.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-15-4-h1"><article class="example example-like"><div class="para logical" id="p-5813">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-15-4-h1"><article class="example example-like"><div class="para logical" id="p-5829">
 <div class="para">Define <span class="process-math">\(\alpha:\mathbb{Z}_6\to \mathbb{Z}_3\)</span> by <span class="process-math">\(\alpha(n)=n \textrm{ mod } 3\text{.}\)</span> Therefore, <span class="process-math">\(\alpha(0) = 0\text{,}\)</span> <span class="process-math">\(\alpha(1) = 1\text{,}\)</span> <span class="process-math">\(\alpha(2) = 2\text{,}\)</span> <span class="process-math">\(\alpha(3) =1 + 1 + 1=0\text{,}\)</span> <span class="process-math">\(\alpha(4) = 1\text{,}\)</span> and <span class="process-math">\(\alpha(5) = 2\text{.}\)</span> If <span class="process-math">\(n, m \in \mathbb{Z}_6\text{.}\)</span>  We could actually show that <span class="process-math">\(\alpha\)</span> is a homomorphism by checking all <span class="process-math">\(6^2=36\)</span> different cases for the formula</div>
 <div class="displaymath process-math" id="mdn-50">
 \begin{gather}
@@ -1301,18 +1290,18 @@ a &amp; 0 \\
 <article class="theorem theorem-like" id="theorem-homomorphism-properties"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">15.4.14</span><span class="period">.</span><span class="space"> </span><span class="title">Group Homomorphism Properties.</span>
 </h4>
-<div class="para logical" id="p-5814">
+<div class="para logical" id="p-5830">
 <div class="para">If <span class="process-math">\(\theta: G \rightarrow  G'\)</span> is a homomorphism, then:</div>
 <ol class="lower-alpha">
-<li id="li-2576"><div class="para" id="p-5815"><span class="process-math">\(\theta(e) =\theta(\textrm{the identity of } G) = \textrm{the identity of } G' = e'\text{.}\)</span></div></li>
-<li id="li-2577"><div class="para" id="p-5816">
+<li id="li-2588"><div class="para" id="p-5831"><span class="process-math">\(\theta(e) =\theta(\textrm{the identity of } G) = \textrm{the identity of } G' = e'\text{.}\)</span></div></li>
+<li id="li-2589"><div class="para" id="p-5832">
 <span class="process-math">\(\theta\left(a ^{-1}\right) = \theta(a)^{-1}\)</span> for all <span class="process-math">\(a \in  G\text{.}\)</span>
 </div></li>
-<li id="li-2578"><div class="para" id="p-5817">If <span class="process-math">\(H \leq  G\text{,}\)</span> then <span class="process-math">\(\theta(H) = \{\theta(h) | h\in H\}\leq G'\text{.}\)</span>
+<li id="li-2590"><div class="para" id="p-5833">If <span class="process-math">\(H \leq  G\text{,}\)</span> then <span class="process-math">\(\theta(H) = \{\theta(h) | h\in H\}\leq G'\text{.}\)</span>
 </div></li>
 </ol>
-</div></article><article class="hiddenproof" id="proof-67"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-67"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-67"><article class="hiddenproof"><div class="para logical" id="p-5818"><ol class="lower-alpha">
-<li id="li-2579"><div class="para logical" id="p-5819">
+</div></article><article class="hiddenproof" id="proof-67"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-67"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-67"><article class="hiddenproof"><div class="para logical" id="p-5834"><ol class="lower-alpha">
+<li id="li-2591"><div class="para logical" id="p-5835">
 <div class="para">Let <span class="process-math">\(a\)</span> be any element of <span class="process-math">\(G\text{.}\)</span> Then <span class="process-math">\(\theta(a) \in  G'\text{.}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1327,9 +1316,9 @@ a &amp; 0 \\
 <div class="para">By cancellation, <span class="process-math">\(e' = \theta(e)\text{.}\)</span>
 </div>
 </div></li>
-<li id="li-2580"><div class="para" id="p-5820">Again, let <span class="process-math">\(a \in G\text{.}\)</span> <span class="process-math">\(e' = \theta(e) = \theta\left(a*a^{-1} \right) = \theta(a)\diamond \theta\left(a^{-1}\right)\text{.}\)</span> Hence, by the uniqueness of inverses,  <span class="process-math">\(\theta(a) ^{-1}= \theta\left(a^{-1}\right)\text{.}\)</span>
+<li id="li-2592"><div class="para" id="p-5836">Again, let <span class="process-math">\(a \in G\text{.}\)</span> <span class="process-math">\(e' = \theta(e) = \theta\left(a*a^{-1} \right) = \theta(a)\diamond \theta\left(a^{-1}\right)\text{.}\)</span> Hence, by the uniqueness of inverses,  <span class="process-math">\(\theta(a) ^{-1}= \theta\left(a^{-1}\right)\text{.}\)</span>
 </div></li>
-<li id="li-2581"><div class="para logical" id="p-5821">
+<li id="li-2593"><div class="para logical" id="p-5837">
 <div class="para">Let <span class="process-math">\(b_1, b_2 \in  \theta(H)\text{.}\)</span> Then there exists <span class="process-math">\(a_1, a_2\in H\)</span> such that <span class="process-math">\(\theta\left(a_1\right) = b_1\text{,}\)</span> <span class="process-math">\(\theta\left(a_2\right) =
 b_2\text{.}\)</span> Recall that a compact necessary and sufficient condition for <span class="process-math">\(H \leq  G\)</span> is that <span class="process-math">\(x*y^{-1}\in H\)</span>  for all <span class="process-math">\(x, y \in H\text{.}\)</span>  Now we apply the same condition in <span class="process-math">\(G'\text{:}\)</span>
 </div>
@@ -1349,26 +1338,26 @@ b_1\diamond b_2{}^{-1} &amp;= \theta\left(a_1\right)\diamond \theta\left(a_2\rig
 <article class="corollary theorem-like" id="corollary-15-4-1"><h4 class="heading">
 <span class="type">Corollary</span><span class="space"> </span><span class="codenumber">15.4.15</span><span class="period">.</span>
 </h4>
-<div class="para" id="p-5822">Since a homomorphism need not be a surjection and part (c) of <a href="" class="xref" data-knowl="./knowl/theorem-homomorphism-properties.html" title="Theorem 15.4.14: Group Homomorphism Properties">Theorem 15.4.14</a> is true for the case of <span class="process-math">\(H = G\text{,}\)</span> the range of <span class="process-math">\(\theta\text{,}\)</span> <span class="process-math">\(\theta(G)\text{,}\)</span> is a subgroup of <span class="process-math">\(G'\)</span>
+<div class="para" id="p-5838">Since a homomorphism need not be a surjection and part (c) of <a href="" class="xref" data-knowl="./knowl/theorem-homomorphism-properties.html" title="Theorem 15.4.14: Group Homomorphism Properties">Theorem 15.4.14</a> is true for the case of <span class="process-math">\(H = G\text{,}\)</span> the range of <span class="process-math">\(\theta\text{,}\)</span> <span class="process-math">\(\theta(G)\text{,}\)</span> is a subgroup of <span class="process-math">\(G'\)</span>
 </div></article><article class="example example-like" id="ex-natural-homomorphism"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-natural-homomorphism"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.4.16</span><span class="period">.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-natural-homomorphism"><article class="example example-like"><div class="para" id="p-5823">If we define <span class="process-math">\(\pi: \mathbb{Z} \rightarrow  \mathbb{Z}/4\mathbb{Z}\)</span> by <span class="process-math">\(\pi(n) = n + 4\mathbb{Z}\text{,}\)</span> then <span class="process-math">\(\pi\)</span> is a homomorphism. The image of the subgroup <span class="process-math">\(4\mathbb{Z}\)</span> is the single coset <span class="process-math">\(0 + 4\mathbb{Z}\text{,}\)</span> the identity of the factor group. Homomorphisms of this type are called natural homomorphisms.  The following theorems will verify that <span class="process-math">\(\pi\)</span> is a homomorphism and also show the connection between homomorphisms and normal subgroups. The reader can find more detail and proofs in most abstract algebra texts.</div></article></div>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-natural-homomorphism"><article class="example example-like"><div class="para" id="p-5839">If we define <span class="process-math">\(\pi: \mathbb{Z} \rightarrow  \mathbb{Z}/4\mathbb{Z}\)</span> by <span class="process-math">\(\pi(n) = n + 4\mathbb{Z}\text{,}\)</span> then <span class="process-math">\(\pi\)</span> is a homomorphism. The image of the subgroup <span class="process-math">\(4\mathbb{Z}\)</span> is the single coset <span class="process-math">\(0 + 4\mathbb{Z}\text{,}\)</span> the identity of the factor group. Homomorphisms of this type are called natural homomorphisms.  The following theorems will verify that <span class="process-math">\(\pi\)</span> is a homomorphism and also show the connection between homomorphisms and normal subgroups. The reader can find more detail and proofs in most abstract algebra texts.</div></article></div>
 <article class="theorem theorem-like" id="theorem-natural-homomorphism"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">15.4.17</span><span class="period">.</span>
 </h4>
-<div class="para" id="p-5824">If <span class="process-math">\(H \triangleleft  G\text{,}\)</span> then the function <span class="process-math">\(\pi:G\to  G/H\)</span> defined by <span class="process-math">\(\pi(a) = a H\)</span> is a homomorphism.</div></article><article class="hiddenproof" id="proof-68"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-68"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-68"><article class="hiddenproof"><div class="para" id="p-5825">We leave the proof of this theorem to the reader.</div></article></div>
+<div class="para" id="p-5840">If <span class="process-math">\(H \triangleleft  G\text{,}\)</span> then the function <span class="process-math">\(\pi:G\to  G/H\)</span> defined by <span class="process-math">\(\pi(a) = a H\)</span> is a homomorphism.</div></article><article class="hiddenproof" id="proof-68"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-68"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-68"><article class="hiddenproof"><div class="para" id="p-5841">We leave the proof of this theorem to the reader.</div></article></div>
 <article class="definition definition-like" id="def-natural-homomorphism"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">15.4.18</span><span class="period">.</span><span class="space"> </span><span class="title">Natural Homomorphism.</span>
-</h4> <div class="para" id="p-5826">If <span class="process-math">\(H \triangleleft  G\text{,}\)</span> then the function <span class="process-math">\(\pi:G\to  G/H\)</span> defined by <span class="process-math">\(\pi(a) = a H\)</span> is called the natural homomorphism.</div></article><div class="para" id="p-5827">Based on <a href="" class="xref" data-knowl="./knowl/theorem-natural-homomorphism.html" title="Theorem 15.4.17">Theorem 15.4.17</a>, every normal subgroup gives us a homomorphism.  Next, we see that the converse is true.</div>
+</h4> <div class="para" id="p-5842">If <span class="process-math">\(H \triangleleft  G\text{,}\)</span> then the function <span class="process-math">\(\pi:G\to  G/H\)</span> defined by <span class="process-math">\(\pi(a) = a H\)</span> is called the natural homomorphism.</div></article><div class="para" id="p-5843">Based on <a href="" class="xref" data-knowl="./knowl/theorem-natural-homomorphism.html" title="Theorem 15.4.17">Theorem 15.4.17</a>, every normal subgroup gives us a homomorphism.  Next, we see that the converse is true.</div>
 <article class="definition definition-like" id="def-group-kernel"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">15.4.19</span><span class="period">.</span><span class="space"> </span><span class="title">Kernel of a homomorphism.</span>
 </h4>
-<div class="para" id="p-5828">Let  <span class="process-math">\(\theta: G \to  G'\)</span> be a homomorphism, and let <span class="process-math">\(e\)</span> and <span class="process-math">\(e'\)</span> be the identities of <span class="process-math">\(G\)</span> and <span class="process-math">\(G'\text{,}\)</span> respectively. The kernel of <span class="process-math">\(\theta\)</span> is the set <span class="process-math">\(\ker \theta=\{a\in G \mid \theta(a)=e'\}\)</span>
+<div class="para" id="p-5844">Let  <span class="process-math">\(\theta: G \to  G'\)</span> be a homomorphism, and let <span class="process-math">\(e\)</span> and <span class="process-math">\(e'\)</span> be the identities of <span class="process-math">\(G\)</span> and <span class="process-math">\(G'\text{,}\)</span> respectively. The kernel of <span class="process-math">\(\theta\)</span> is the set <span class="process-math">\(\ker \theta=\{a\in G \mid \theta(a)=e'\}\)</span>
 </div></article><article class="theorem theorem-like" id="theorem-kernel-normal"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">15.4.20</span><span class="period">.</span>
 </h4>
-<div class="para" id="p-5829">Let <span class="process-math">\(\theta: G \to  G'\)</span> be a homomorphism from  <span class="process-math">\(G\)</span>  into  <span class="process-math">\(G'\)</span> . The kernel of <span class="process-math">\(\theta\)</span> is a normal subgroup of <span class="process-math">\(G\text{.}\)</span>
-</div></article><article class="hiddenproof" id="proof-69"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-69"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-69"><article class="hiddenproof"><div class="para logical" id="p-5830">
+<div class="para" id="p-5845">Let <span class="process-math">\(\theta: G \to  G'\)</span> be a homomorphism from  <span class="process-math">\(G\)</span>  into  <span class="process-math">\(G'\)</span> . The kernel of <span class="process-math">\(\theta\)</span> is a normal subgroup of <span class="process-math">\(G\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-69"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-69"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-69"><article class="hiddenproof"><div class="para logical" id="p-5846">
 <div class="para">Let <span class="process-math">\(K=\textrm{ker }\theta\text{.}\)</span> We can see that <span class="process-math">\(K\)</span> is a subgroup of <span class="process-math">\(G\)</span> by letting <span class="process-math">\(a,b \in K\)</span> and verify that <span class="process-math">\(a*b^{-1} \in K\)</span> by computing <span class="process-math">\(\theta(a*b^{-1})= \theta(a)*\theta(b)^{-1} = e'*e'^{-1}=e'\text{.}\)</span>  To prove normality, we let <span class="process-math">\(g\)</span> be any element of <span class="process-math">\(G\)</span> and <span class="process-math">\(k \in K\text{.}\)</span>  We compute <span class="process-math">\(\theta(g*k*g^{-1})\)</span> to verify that <span class="process-math">\(g*k*g^{-1}\in K\text{.}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1383,30 +1372,30 @@ b_1\diamond b_2{}^{-1} &amp;= \theta\left(a_1\right)\diamond \theta\left(a_2\rig
 \end{equation*}
 </div>
 </div></article></div>
-<div class="para" id="p-5831">Based on this most recent theorem, every homomorphism gives us a normal subgroup.</div>
+<div class="para" id="p-5847">Based on this most recent theorem, every homomorphism gives us a normal subgroup.</div>
 <article class="theorem theorem-like" id="theorem-fund-group-homomorphism"><h4 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">15.4.21</span><span class="period">.</span><span class="space"> </span><span class="title">Fundamental Theorem of Group Homomorphisms.</span>
 </h4>
-<div class="para" id="p-5832">Let <span class="process-math">\(\theta: G \to  G'\)</span> be a homomorphism.  Then <span class="process-math">\(\theta(G)\)</span> is isomorphic to <span class="process-math">\(G/\ker \theta\text{.}\)</span>
+<div class="para" id="p-5848">Let <span class="process-math">\(\theta: G \to  G'\)</span> be a homomorphism.  Then <span class="process-math">\(\theta(G)\)</span> is isomorphic to <span class="process-math">\(G/\ker \theta\text{.}\)</span>
 </div></article><article class="example example-like" id="ex-apply-fundamental-theorem"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-apply-fundamental-theorem"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.4.22</span><span class="period">.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-apply-fundamental-theorem"><article class="example example-like"><div class="para logical" id="p-5833">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-apply-fundamental-theorem"><article class="example example-like"><div class="para logical" id="p-5849">
 <div class="para">Define  <span class="process-math">\(\theta: \mathbb{Z} \rightarrow  \mathbb{Z}_{10}\)</span> by <span class="process-math">\(\theta(n) = n \textrm{ mod }10\text{.}\)</span> The three previous theorems imply the following:</div>
 <ul class="disc">
-<li id="li-2582"><div class="para" id="p-5834">
+<li id="li-2594"><div class="para" id="p-5850">
 <span class="process-math">\(\pi: \mathbb{Z} \rightarrow  \mathbb{Z}/10\mathbb{Z}\)</span> defined by <span class="process-math">\(\pi(n) = n + 10\mathbb{Z}\)</span> is a homomorphism.</div></li>
-<li id="li-2583"><div class="para" id="p-5835"><span class="process-math">\(\{n\in \mathbb{Z}|\theta(n) = 0\} = \{10n \mid n \in \mathbb{Z}\}= 10\mathbb{Z} \triangleleft  \mathbb{Z}\text{.}\)</span></div></li>
-<li id="li-2584"><div class="para" id="p-5836">
+<li id="li-2595"><div class="para" id="p-5851"><span class="process-math">\(\{n\in \mathbb{Z}|\theta(n) = 0\} = \{10n \mid n \in \mathbb{Z}\}= 10\mathbb{Z} \triangleleft  \mathbb{Z}\text{.}\)</span></div></li>
+<li id="li-2596"><div class="para" id="p-5852">
 <span class="process-math">\(\mathbb{Z}/10\mathbb{Z}\)</span> is isomorphic to <span class="process-math">\(\mathbb{Z}_{10}\text{.}\)</span>
 </div></li>
 </ul>
 </div></article></div>
 <article class="example example-like" id="ex-matrix-homomorphism"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-matrix-homomorphism"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.4.23</span><span class="period">.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-matrix-homomorphism"><article class="example example-like"><div class="para logical" id="p-5837">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-matrix-homomorphism"><article class="example example-like"><div class="para logical" id="p-5853">
 <div class="para">Let <span class="process-math">\(G\)</span> be the same group of two by two invertible real matrices as in <a href="" class="xref" data-knowl="./knowl/ex-matrix-subgroups-15.html" title="Example 15.4.11">Example 15.4.11</a>.  Define <span class="process-math">\(\Phi: G \rightarrow G\)</span> by <span class="process-math">\(\Phi(A) = \frac{A}{\sqrt{\lvert \det  A \rvert }}\text{.}\)</span> We will let the reader verify that <span class="process-math">\(\Phi\)</span> is a homomorphism. The theorems above imply the following.</div>
 <ul class="disc">
-<li id="li-2585"><div class="para" id="p-5838">
+<li id="li-2597"><div class="para" id="p-5854">
 <span class="process-math">\(\ker  \Phi  = \{A\in G |\Phi (A) =I\} = \left\{\left(
 \begin{array}{cc}
 a &amp; 0 \\
@@ -1415,17 +1404,17 @@ a &amp; 0 \\
 \right) \mid a\in \mathbb{R},a\neq 0\right\}\triangleleft G\text{.}\)</span>  This verifies our statement in <a href="" class="xref" data-knowl="./knowl/ex-matrix-subgroups-15.html" title="Example 15.4.11">Example 15.4.11</a>. As in that example, let <span class="process-math">\(\ker
 \Phi  = H_1\text{.}\)</span>
 </div></li>
-<li id="li-2586"><div class="para" id="p-5839">
+<li id="li-2598"><div class="para" id="p-5855">
 <span class="process-math">\(G\left/H_1\right.\)</span> is isomorphic to <span class="process-math">\(\{A \in G \mid \det A= 1\}\text{.}\)</span>
 </div></li>
-<li id="li-2587"><div class="para" id="p-5840">
+<li id="li-2599"><div class="para" id="p-5856">
 <span class="process-math">\(\pi: G \rightarrow G\left/H_1\right.\)</span> defined, naturally, by <span class="process-math">\(\pi(A) =A H_1\)</span> is a homomorphism.</div></li>
 </ul>
 </div></article></div>
-<div class="para" id="p-5841">For the remainder of this section, we will be examining certain kinds of homomorphisms that will play a part in our major application to homomorphisms, coding theory.</div>
+<div class="para" id="p-5857">For the remainder of this section, we will be examining certain kinds of homomorphisms that will play a part in our major application to homomorphisms, coding theory.</div>
 <article class="example example-like" id="ex-bit-matrix-homomorphism"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-bit-matrix-homomorphism"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.4.24</span><span class="period">.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-bit-matrix-homomorphism"><article class="example example-like"><div class="para logical" id="p-5842">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-bit-matrix-homomorphism"><article class="example example-like"><div class="para logical" id="p-5858">
 <div class="para">Consider  <span class="process-math">\(\Phi :\mathbb{Z}_2{}^2\to \mathbb{Z}_2{}^3\)</span> defined by <span class="process-math">\(\Phi (a, b) = \left(a, b, a +_2 b\right)\text{.}\)</span>   If <span class="process-math">\(\left(a_1,b_1\right), \left(a _2 , b_2 \right) \in  \mathbb{Z}_2{}^2\text{,}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1438,10 +1427,10 @@ a &amp; 0 \\
 \end{split}
 \end{equation*}
 </div>
-</div> <div class="para" id="p-5843">Since <span class="process-math">\(\Phi (a, b)\text = (0, 0, 0)\)</span> implies that <span class="process-math">\(a = 0\)</span> and <span class="process-math">\(b = 0\text{,}\)</span> the kernel of <span class="process-math">\(\Phi\)</span> is <span class="process-math">\(\{(0, 0)\}\text{.}\)</span> By previous theorems, <span class="process-math">\(\Phi
+</div> <div class="para" id="p-5859">Since <span class="process-math">\(\Phi (a, b)\text = (0, 0, 0)\)</span> implies that <span class="process-math">\(a = 0\)</span> and <span class="process-math">\(b = 0\text{,}\)</span> the kernel of <span class="process-math">\(\Phi\)</span> is <span class="process-math">\(\{(0, 0)\}\text{.}\)</span> By previous theorems, <span class="process-math">\(\Phi
 \left(\mathbb{Z}_2{}^2\right)= \{(0, 0, 0), (1, 0, 1), (0, 1, 1), (1, 1, 0)\}\)</span> is isomorphic to <span class="process-math">\(\mathbb{Z}_2{}^2\text{.}\)</span>
 </div></article></div>
-<div class="para logical" id="p-5844">
+<div class="para logical" id="p-5860">
 <div class="para">We can generalize the previous example as follows: If <span class="process-math">\(n, m \geq  1\)</span> and <span class="process-math">\(A\)</span> is an <span class="process-math">\(m\times  n\)</span> matrix of 0’s and 1’s (elements of <span class="process-math">\(\mathbb{Z}_2\)</span>), then <span class="process-math">\(\Phi :\mathbb{Z}_2{}^m\to \mathbb{Z}_2{}^n\)</span> defined by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1453,14 +1442,14 @@ a &amp; 0 \\
 </div></section><section class="exercises" id="exercises-15-4"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">15.4.3</span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-652"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5845">
+<article class="exercise exercise-like" id="exercise-655"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5861">
 <div class="para">Which of the following functions are homomorphisms? What are the kernels of those functions that are homomorphisms?</div>
 <ol class="lower-alpha">
-<li id="li-2588"><div class="para" id="p-5846">
+<li id="li-2600"><div class="para" id="p-5862">
 <span class="process-math">\(\theta_1: \mathbb{R}^* \to  \mathbb{R}^+\)</span> defined by <span class="process-math">\(\theta_1(a) =\left| a\right|\text{.}\)</span>
 </div></li>
-<li id="li-2589"><div class="para" id="p-5847">
+<li id="li-2601"><div class="para" id="p-5863">
 <span class="process-math">\(\theta_2 : \mathbb{Z}_5 \rightarrow  \mathbb{Z}_2\)</span> where <span class="process-math">\(\theta_2(n) =\left\{
 \begin{array}{cc}
 0 &amp; \textrm{ if } n \textrm{ is even} \\
@@ -1468,63 +1457,63 @@ a &amp; 0 \\
 \end{array}
 \right.\text{.}\)</span>
 </div></li>
-<li id="li-2590"><div class="para" id="p-5848">
+<li id="li-2602"><div class="para" id="p-5864">
 <span class="process-math">\(\theta_3 : \mathbb{R} \times  \mathbb{R} \rightarrow  \mathbb{R}\text{,}\)</span> where <span class="process-math">\(\theta_3(a, b) = a + b\text{.}\)</span>
 </div></li>
-<li id="li-2591"><div class="para" id="p-5849">
+<li id="li-2603"><div class="para" id="p-5865">
 <span class="process-math">\(\theta_4 : S_4 \to S_4\)</span> defined by <span class="process-math">\(\theta_4(f) = f\circ f=f^2\text{.}\)</span>
 </div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-301" id="answer-301"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-301"><div class="answer solution-like"><div class="para logical" id="p-5850"><ol class="lower-alpha">
-<li id="li-2592"><div class="para" id="p-5851">Yes, the kernel is <span class="process-math">\(\{1, -1\}\)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-303" id="answer-303"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-303"><div class="answer solution-like"><div class="para logical" id="p-5866"><ol class="lower-alpha">
+<li id="li-2604"><div class="para" id="p-5867">Yes, the kernel is <span class="process-math">\(\{1, -1\}\)</span>
 </div></li>
-<li id="li-2593">
-<div class="para" id="p-5852">No, since <span class="process-math">\(\theta _2\left(2 +_{5} 4\right)= \theta_2(1)=1\text{,}\)</span> but  <span class="process-math">\(\theta _2(2)+_2\theta_{2} (4)=0+_{2}0 =0\)</span>
+<li id="li-2605">
+<div class="para" id="p-5868">No, since <span class="process-math">\(\theta _2\left(2 +_{5} 4\right)= \theta_2(1)=1\text{,}\)</span> but  <span class="process-math">\(\theta _2(2)+_2\theta_{2} (4)=0+_{2}0 =0\)</span>
 </div>
-<div class="para" id="p-5853">A follow-up might be to ask what happens if 5 is replaced with some other positive integer in this part.</div>
+<div class="para" id="p-5869">A follow-up might be to ask what happens if 5 is replaced with some other positive integer in this part.</div>
 </li>
-<li id="li-2594"><div class="para" id="p-5854">Yes, the kernel is <span class="process-math">\(\{(a, -a)| a \in \mathbb{R}\}\)</span>
+<li id="li-2606"><div class="para" id="p-5870">Yes, the kernel is <span class="process-math">\(\{(a, -a)| a \in \mathbb{R}\}\)</span>
 </div></li>
-<li id="li-2595"><div class="para" id="p-5855">No.  A counterexample, among many, would be to consider the two transpositions <span class="process-math">\(t_1=(1,3)\)</span> and <span class="process-math">\(t_2=(1,2)\text{.}\)</span>  Compare <span class="process-math">\(\theta_4(t_1 \circ t_2)\)</span> and <span class="process-math">\(\theta_4(t_1) \circ \theta_4(t_2)\text{.}\)</span>
+<li id="li-2607"><div class="para" id="p-5871">No.  A counterexample, among many, would be to consider the two transpositions <span class="process-math">\(t_1=(1,3)\)</span> and <span class="process-math">\(t_2=(1,2)\text{.}\)</span>  Compare <span class="process-math">\(\theta_4(t_1 \circ t_2)\)</span> and <span class="process-math">\(\theta_4(t_1) \circ \theta_4(t_2)\text{.}\)</span>
 </div></li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-653"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5856">
+</div></article><article class="exercise exercise-like" id="exercise-656"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5872">
 <div class="para">Which of the following functions are homomorphisms? What are the kernels of those functions that are homomorphisms?</div>
 <ol class="lower-alpha">
-<li id="li-2596"><div class="para" id="p-5857">
+<li id="li-2608"><div class="para" id="p-5873">
 <span class="process-math">\(\alpha_1: M_{2\times 2}(\mathbb{R}) \rightarrow  \mathbb{R}\text{,}\)</span> defined by <span class="process-math">\(\alpha_1(A) = A_{11} A_{22} + A_{12} A_{21}\text{.}\)</span>
 </div></li>
-<li id="li-2597"><div class="para" id="p-5858">
+<li id="li-2609"><div class="para" id="p-5874">
 <span class="process-math">\(\alpha_2 : \left(\mathbb{R}^*\right)^2 \rightarrow \mathbb{R}^*\)</span> defined by <span class="process-math">\(\alpha_2 (a, b) = a b\text{.}\)</span>
 </div></li>
-<li id="li-2598"><div class="para" id="p-5859">
+<li id="li-2610"><div class="para" id="p-5875">
 <span class="process-math">\(\alpha_3 : \left\{\left.A \in  M_{2\times 2}(\mathbb{R}) \right| \det  A \neq  0\right\} \to  \mathbb{R}^*\text{,}\)</span> where <span class="process-math">\(\alpha_3(A) = \det
 A\text{.}\)</span>
 </div></li>
-<li id="li-2599"><div class="para" id="p-5860">
+<li id="li-2611"><div class="para" id="p-5876">
 <span class="process-math">\(\alpha_4 : S_4\rightarrow  S_4\)</span>  defined by <span class="process-math">\(\alpha_4(f)=f^{-1}\text{.}\)</span>
 </div></li>
 </ol>
-</div></article><article class="exercise exercise-like" id="exercise-654"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para" id="p-5861">Show that <span class="process-math">\(D_4\)</span> has one proper normal subgroup, but that <span class="process-math">\(\langle (1,4)(2,3)\rangle\)</span> is not normal.</div>
+</div></article><article class="exercise exercise-like" id="exercise-657"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para" id="p-5877">Show that <span class="process-math">\(D_4\)</span> has one proper normal subgroup, but that <span class="process-math">\(\langle (1,4)(2,3)\rangle\)</span> is not normal.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-302" id="answer-302"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-302"><div class="answer solution-like"><div class="para" id="p-5862">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-304" id="answer-304"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-304"><div class="answer solution-like"><div class="para" id="p-5878">
 <span class="process-math">\(\langle r\rangle =\left\{i,r,r^2,r^3\right\}\)</span> is a normal subgroup of <span class="process-math">\(D_4\text{.}\)</span> To see you could use the table given in the solution of <a href="" class="xref" data-knowl="./knowl/exercise-d4-details.html" title="Exercise 15.3.5.5">Exercise 15.3.5.5</a> of Section 15.3 and verify that  <span class="process-math">\(a^{-1}h a \in \langle r\rangle\)</span> for all <span class="process-math">\(a\in D_4\)</span> and <span class="process-math">\(h\in \langle r\rangle\text{.}\)</span>   A more efficient approach is to prove the general theorem that if <span class="process-math">\(H\)</span> is a subgroup <span class="process-math">\(G\)</span> with exactly two distinct left cosets, than <span class="process-math">\(H\)</span> is normal. <span class="process-math">\(\left\langle f_1\right\rangle\)</span> is not a normal subgroup of <span class="process-math">\(D_4\text{.}\)</span>  <span class="process-math">\(\left\langle f_1\right\rangle =\left\{i,f_1\right\}\)</span> and if we choose <span class="process-math">\(a = r\)</span> and <span class="process-math">\(h=f_1\)</span> then <span class="process-math">\(a^{-1}h a= r^3f_1r=f_2\notin \left\langle f_1\right\rangle\)</span>
 </div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-655"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para" id="p-5863">Prove that the function <span class="process-math">\(\Phi\)</span> in <a href="" class="xref" data-knowl="./knowl/ex-matrix-homomorphism.html" title="Example 15.4.23">Example 15.4.23</a> is a homomorphism.</div></article><article class="exercise exercise-like" id="exercise-656"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
-<div class="para" id="p-5864">Define the two functions  <span class="process-math">\(\alpha: \mathbb{Z}_2{}^3\rightarrow  \mathbb{Z}_2{}^4\)</span>  and <span class="process-math">\(\beta :\mathbb{Z}_2{}^4\to \mathbb{Z}_2\)</span> by <span class="process-math">\(\alpha\left(a_1,a_2,a_3 \right) = \left(a_1,a_2,a_3 ,a_1+_2 a_2+_2a_3\right)\text{,}\)</span> and <span class="process-math">\(\beta \left(b_1,b_2,b_3,b_4\right)=b_1+b_2+b_3+b_4\)</span> Describe the function <span class="process-math">\(\beta \circ \alpha\text{.}\)</span> Is it a homomorphism?</div>
+</div></article><article class="exercise exercise-like" id="exercise-658"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para" id="p-5879">Prove that the function <span class="process-math">\(\Phi\)</span> in <a href="" class="xref" data-knowl="./knowl/ex-matrix-homomorphism.html" title="Example 15.4.23">Example 15.4.23</a> is a homomorphism.</div></article><article class="exercise exercise-like" id="exercise-659"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para" id="p-5880">Define the two functions  <span class="process-math">\(\alpha: \mathbb{Z}_2{}^3\rightarrow  \mathbb{Z}_2{}^4\)</span>  and <span class="process-math">\(\beta :\mathbb{Z}_2{}^4\to \mathbb{Z}_2\)</span> by <span class="process-math">\(\alpha\left(a_1,a_2,a_3 \right) = \left(a_1,a_2,a_3 ,a_1+_2 a_2+_2a_3\right)\text{,}\)</span> and <span class="process-math">\(\beta \left(b_1,b_2,b_3,b_4\right)=b_1+b_2+b_3+b_4\)</span> Describe the function <span class="process-math">\(\beta \circ \alpha\text{.}\)</span> Is it a homomorphism?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-303" id="answer-303"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-303"><div class="answer solution-like"><div class="para" id="p-5865">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-305" id="answer-305"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-305"><div class="answer solution-like"><div class="para" id="p-5881">
 <span class="process-math">\((\beta \circ  \alpha )\left(a_1,a_2,a_3\right) = 0\)</span>  and so <span class="process-math">\(\beta \circ \alpha\)</span>  is the trivial homomorphism, but a homomorphism nevertheless.</div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-657"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
-<div class="para" id="p-5866">Express <span class="process-math">\(\Phi\)</span> in <a href="" class="xref" data-knowl="./knowl/ex-matrix-homomorphism.html" title="Example 15.4.23">Example 15.4.23</a> in matrix form.</div></article><article class="exercise exercise-like" id="exercise-658"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
-<div class="para" id="p-5867">Prove that if <span class="process-math">\(G\)</span> is an abelian group, then <span class="process-math">\(q(x) = x^2\)</span> defines a homomorphism from <span class="process-math">\(G\)</span> into <span class="process-math">\(G\text{.}\)</span>  Is <span class="process-math">\(q\)</span> ever an isomorphism?</div>
+</div></article><article class="exercise exercise-like" id="exercise-660"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div class="para" id="p-5882">Express <span class="process-math">\(\Phi\)</span> in <a href="" class="xref" data-knowl="./knowl/ex-matrix-homomorphism.html" title="Example 15.4.23">Example 15.4.23</a> in matrix form.</div></article><article class="exercise exercise-like" id="exercise-661"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="para" id="p-5883">Prove that if <span class="process-math">\(G\)</span> is an abelian group, then <span class="process-math">\(q(x) = x^2\)</span> defines a homomorphism from <span class="process-math">\(G\)</span> into <span class="process-math">\(G\text{.}\)</span>  Is <span class="process-math">\(q\)</span> ever an isomorphism?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-304" id="answer-304"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-304"><div class="answer solution-like"><div class="para logical" id="p-5868">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-306" id="answer-306"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-306"><div class="answer solution-like"><div class="para logical" id="p-5884">
 <div class="para">Let <span class="process-math">\(x, y \in G\text{.}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1549,16 +1538,16 @@ x \in \textrm{Ker}(q) &amp; \Leftrightarrow  q (x) = e \\
 \end{equation*}
 </div>
 </div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-659"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
-<div class="para" id="p-5869">Prove that if <span class="process-math">\(\theta : G\rightarrow G'\)</span> is a homomorphism, and <span class="process-math">\(H\triangleleft G\text{,}\)</span> then <span class="process-math">\(\theta(H) \triangleleft  \theta(G)\text{.}\)</span> Is it also true that <span class="process-math">\(\theta(H) \triangleleft  G'\text{?}\)</span>
-</div></article><article class="exercise exercise-like" id="exercise-660"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
-<div class="para" id="p-5870">Prove that if <span class="process-math">\(\theta : G \rightarrow  G'\)</span> is a homomorphism, and <span class="process-math">\(H' \leq  \theta(G)\text{,}\)</span> then <span class="process-math">\(\theta^{-1}(H') =\{a\in G| \theta
+</div></article><article class="exercise exercise-like" id="exercise-662"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div class="para" id="p-5885">Prove that if <span class="process-math">\(\theta : G\rightarrow G'\)</span> is a homomorphism, and <span class="process-math">\(H\triangleleft G\text{,}\)</span> then <span class="process-math">\(\theta(H) \triangleleft  \theta(G)\text{.}\)</span> Is it also true that <span class="process-math">\(\theta(H) \triangleleft  G'\text{?}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-663"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div class="para" id="p-5886">Prove that if <span class="process-math">\(\theta : G \rightarrow  G'\)</span> is a homomorphism, and <span class="process-math">\(H' \leq  \theta(G)\text{,}\)</span> then <span class="process-math">\(\theta^{-1}(H') =\{a\in G| \theta
 (a)\in H'\}\leq  G\text{.}\)</span>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-305" id="answer-305"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-305"><div class="answer solution-like">
-<div class="para" id="p-5871">Proof: Recall that the inverse image of <span class="process-math">\(H'\)</span> under <span class="process-math">\(\theta\)</span> is <span class="process-math">\(\theta ^{-1}(H')=\{g\in G | \theta (g)\in H'\}\text{.}\)</span>
-</div> <div class="para logical" id="p-5872">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-307" id="answer-307"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-307"><div class="answer solution-like">
+<div class="para" id="p-5887">Proof: Recall that the inverse image of <span class="process-math">\(H'\)</span> under <span class="process-math">\(\theta\)</span> is <span class="process-math">\(\theta ^{-1}(H')=\{g\in G | \theta (g)\in H'\}\text{.}\)</span>
+</div> <div class="para logical" id="p-5888">
 <div class="para">Closure:   Let <span class="process-math">\(g_1, g_2\in \theta ^{-1}(H')\text{,}\)</span> then <span class="process-math">\(\theta \left(g_1\right),\theta \left(g_2\right)\in H'\text{.}\)</span>  Since <span class="process-math">\(H'\)</span> is a subgroup of <span class="process-math">\(G'\text{,}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1566,18 +1555,18 @@ x \in \textrm{Ker}(q) &amp; \Leftrightarrow  q (x) = e \\
 \theta\left(g_1\right)\diamond \theta\left(g_2\right)=\theta\left(g_1*g_2\right)\in H' \Rightarrow  g_1*g_2\in \theta^{-1}(H')
 \end{equation*}
 </div>
-</div> <div class="para" id="p-5873">Identity: By <a href="" class="xref" data-knowl="./knowl/theorem-homomorphism-properties.html" title="Theorem 15.4.14: Group Homomorphism Properties">Theorem 15.4.14</a>(a), <span class="process-math">\(e \in \theta ^{-1}(H')\text{.}\)</span>
-</div> <div class="para" id="p-5874">Inverse: Let <span class="process-math">\(a\in \theta ^{-1}(H')\)</span> . Then <span class="process-math">\(\theta (a)\in H'\)</span> and by <a href="" class="xref" data-knowl="./knowl/theorem-homomorphism-properties.html" title="Theorem 15.4.14: Group Homomorphism Properties">Theorem 15.4.14</a>(b), <span class="process-math">\(\theta (a)^{-1}= \theta \left(a^{-1}\right)\in H'\)</span> and so <span class="process-math">\(a^{-1}\in \theta ^{-1}(H')\text{.}\)</span>
+</div> <div class="para" id="p-5889">Identity: By <a href="" class="xref" data-knowl="./knowl/theorem-homomorphism-properties.html" title="Theorem 15.4.14: Group Homomorphism Properties">Theorem 15.4.14</a>(a), <span class="process-math">\(e \in \theta ^{-1}(H')\text{.}\)</span>
+</div> <div class="para" id="p-5890">Inverse: Let <span class="process-math">\(a\in \theta ^{-1}(H')\)</span> . Then <span class="process-math">\(\theta (a)\in H'\)</span> and by <a href="" class="xref" data-knowl="./knowl/theorem-homomorphism-properties.html" title="Theorem 15.4.14: Group Homomorphism Properties">Theorem 15.4.14</a>(b), <span class="process-math">\(\theta (a)^{-1}= \theta \left(a^{-1}\right)\in H'\)</span> and so <span class="process-math">\(a^{-1}\in \theta ^{-1}(H')\text{.}\)</span>
 </div>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-661"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5875">
+</div></article><article class="exercise exercise-like" id="exercise-664"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5891">
 <div class="para">Following up on <a href="" class="xref" data-knowl="./knowl/a5-is-simple.html" title="Example 15.4.10: Subgroups of A_5">Example 15.4.10</a>,  prove that <span class="process-math">\(A_5\)</span> is a simple group; i. e., it has no proper normal subgroups.</div>
 <ol class="lower-alpha">
-<li id="li-2600"><div class="para" id="p-5876">Make a list of  the different cycle structures that occur in <span class="process-math">\(A_5\)</span> and how many elements have those structures.</div></li>
-<li id="li-2601"><div class="para" id="p-5877">Within each set of permutations with different cycle structures, identify which subsets are closed with respect to the conjugation operation. With this you will have a partition of <span class="process-math">\(A_5\)</span> into conjugate classes where for each class, <span class="process-math">\(C\text{,}\)</span> <span class="process-math">\(f, g\in  C\)</span>   if and only if   <span class="process-math">\(\exists  \phi  \in A_5\)</span>  such that  <span class="process-math">\(\phi ^{-1}\circ f\circ  \phi  = g\text{.}\)</span>
+<li id="li-2612"><div class="para" id="p-5892">Make a list of  the different cycle structures that occur in <span class="process-math">\(A_5\)</span> and how many elements have those structures.</div></li>
+<li id="li-2613"><div class="para" id="p-5893">Within each set of permutations with different cycle structures, identify which subsets are closed with respect to the conjugation operation. With this you will have a partition of <span class="process-math">\(A_5\)</span> into conjugate classes where for each class, <span class="process-math">\(C\text{,}\)</span> <span class="process-math">\(f, g\in  C\)</span>   if and only if   <span class="process-math">\(\exists  \phi  \in A_5\)</span>  such that  <span class="process-math">\(\phi ^{-1}\circ f\circ  \phi  = g\text{.}\)</span>
 </div></li>
-<li id="li-2602"><div class="para" id="p-5878">Use the fact that a normal subgroup of <span class="process-math">\(A_5\)</span> needs to be a union of conjugate classes and verify that no such union exists.</div></li>
+<li id="li-2614"><div class="para" id="p-5894">Use the fact that a normal subgroup of <span class="process-math">\(A_5\)</span> needs to be a union of conjugate classes and verify that no such union exists.</div></li>
 </ol>
 </div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>

@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Cyclic Groups</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,32 +58,47 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
 </script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
 <script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
@@ -105,59 +138,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -166,7 +156,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -321,7 +311,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1130,20 +1123,20 @@ eBookConfig.runestone_version = '7.0.7';
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="s-cyclic-groups"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">15.1</span> <span class="title">Cyclic Groups</span>
 </h2>
-<div class="para" id="p-5544">Groups are classified according to their size and structure. A group’s structure is revealed by a study of its subgroups and other properties (e.g., whether it is abelian) that might give an overview of it. Cyclic groups have the simplest structure of all groups.</div>
+<div class="para" id="p-5560">Groups are classified according to their size and structure. A group’s structure is revealed by a study of its subgroups and other properties (e.g., whether it is abelian) that might give an overview of it. Cyclic groups have the simplest structure of all groups.</div>
 <article class="definition definition-like" id="def-cyclic-group-15"><h3 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">15.1.1</span><span class="period">.</span><span class="space"> </span><span class="title">Cyclic Group.</span>
-</h3>  <div class="para" id="p-5545">Group <span class="process-math">\(G\)</span> is cyclic if there exists <span class="process-math">\(a \in  G\)</span> such that the cyclic subgroup generated by <span class="process-math">\(a\text{,}\)</span> <span class="process-math">\(\langle a \rangle\text{,}\)</span> equals all of <span class="process-math">\(G\text{.}\)</span> That is, <span class="process-math">\(G = \{n a |n \in  \mathbb{Z}\}\text{,}\)</span> in which case <span class="process-math">\(a\)</span> is called a generator of <span class="process-math">\(G\text{.}\)</span> The reader should note that additive notation is used for <span class="process-math">\(G\text{.}\)</span>
+</h3>  <div class="para" id="p-5561">Group <span class="process-math">\(G\)</span> is cyclic if there exists <span class="process-math">\(a \in  G\)</span> such that the cyclic subgroup generated by <span class="process-math">\(a\text{,}\)</span> <span class="process-math">\(\langle a \rangle\text{,}\)</span> equals all of <span class="process-math">\(G\text{.}\)</span> That is, <span class="process-math">\(G = \{n a |n \in  \mathbb{Z}\}\text{,}\)</span> in which case <span class="process-math">\(a\)</span> is called a generator of <span class="process-math">\(G\text{.}\)</span> The reader should note that additive notation is used for <span class="process-math">\(G\text{.}\)</span>
 </div></article><article class="example example-like" id="ex-a-finite-cyclic-group"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-a-finite-cyclic-group"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.1.2</span><span class="period">.</span><span class="space"> </span><span class="title">A Finite Cyclic Group.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-a-finite-cyclic-group"><article class="example example-like"><div class="para" id="p-5546">
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-a-finite-cyclic-group"><article class="example example-like"><div class="para" id="p-5562">
 <span class="process-math">\(\mathbb{Z}_{12} = [\mathbb{Z}_{12}; +_{12} ]\text{,}\)</span>  where <span class="process-math">\(+_{12}\)</span> is addition modulo 12, is a cyclic group. To verify this statement, all we need to do is demonstrate that some element of <span class="process-math">\(\mathbb{Z}_{12}\)</span>  is a generator. One such element is 5; that is, <span class="process-math">\(\langle 5 \rangle = \mathbb{Z}_{12}\text{.}\)</span> One more obvious generator is 1. In fact, 1 is a generator of every <span class="process-math">\([\mathbb{Z}_n; +_n]\text{.}\)</span> The reader is asked to prove that if an element is a generator, then its inverse is also a generator. Thus, <span class="process-math">\(-5 = 7\)</span> and <span class="process-math">\(-1 = 11\)</span> are the other generators of <span class="process-math">\(\mathbb{Z}_{12}\text{.}\)</span> The remaining eight elements of the group are not generators.</div> <figure class="figure figure-like" id="fig-string-art"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="external/images/fig-string-art.png" class="contained" alt="Examples of “string art”"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">15.1.3<span class="period">.</span></span><span class="space"> </span>Examples of “string art”</figcaption></figure> <div class="para" id="p-5547">
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">15.1.3<span class="period">.</span></span><span class="space"> </span>Examples of “string art”</figcaption></figure> <div class="para" id="p-5563">
 <a href="" class="xref" data-knowl="./knowl/fig-string-art.html" title="Figure 15.1.3">Figure 15.1.3</a>(a)  is an example of “string art” that illustrates how 5 generates <span class="process-math">\(\mathbb{Z}_{12}\text{.}\)</span> Twelve tacks are placed evenly around a circle and numbered 0 through 11. A string is tied to tack 0, and is then looped around every fifth tack. As a result, the numbers of the tacks that are reached are exactly the ordered multiples of 5 modulo 12: 5, 10, 3, ... , 7, 0.  Note that if every seventh tack were used, the same artwork would be produced. If every third tack were connected, as in <a href="" class="xref" data-knowl="./knowl/fig-string-art.html" title="Figure 15.1.3">Figure 15.1.3</a>(b), the resulting loop would only use four tacks; thus 3 does not generate <span class="process-math">\(\mathbb{Z}_{12}\text{.}\)</span>
 </div></article></div>
 <article class="example example-like" id="ex-integers-are-cyclic"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-integers-are-cyclic"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.1.4</span><span class="period">.</span><span class="space"> </span><span class="title">The Group of Integers is Cyclic.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-integers-are-cyclic"><article class="example example-like"><div class="para logical" id="p-5548">
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-integers-are-cyclic"><article class="example example-like"><div class="para logical" id="p-5564">
 <div class="para">The additive group of integers, <span class="process-math">\([\mathbb{Z}; +]\text{,}\)</span> is cyclic:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1162,7 +1155,7 @@ eBookConfig.runestone_version = '7.0.7';
 <article class="theorem theorem-like" id="cyclic-implies-abelian"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">15.1.5</span><span class="period">.</span><span class="space"> </span><span class="title">Cyclic Implies Abelian.</span>
 </h3>
-<div class="para" id="p-5549">If <span class="process-math">\([G;*]\)</span> is cyclic, then it is abelian.</div></article><article class="hiddenproof" id="proof-54"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-54"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-54"><article class="hiddenproof"><div class="para logical" id="p-5550">
+<div class="para" id="p-5565">If <span class="process-math">\([G;*]\)</span> is cyclic, then it is abelian.</div></article><article class="hiddenproof" id="proof-54"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-54"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-54"><article class="hiddenproof"><div class="para logical" id="p-5566">
 <div class="para">Let <span class="process-math">\(a\)</span> be any generator of <span class="process-math">\(G\)</span> and let <span class="process-math">\(b, c \in  G\text{.}\)</span> By the definition of the generator of a group, there exist integers <span class="process-math">\(m\)</span> and <span class="process-math">\(n\)</span> such that <span class="process-math">\(b = m a\)</span> and <span class="process-math">\(c = n a\text{.}\)</span> Thus, using  <a href="" class="xref" data-knowl="./knowl/theorem-11-3-expo-properties.html" title="Theorem 11.3.14: Properties of Exponentiation">Theorem 11.3.14</a>,</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/theorem-11-3-expo-properties.html">
 \begin{equation*}
@@ -1176,9 +1169,9 @@ b*c &amp;= (m a)*(n a)\\
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-5551"></div></article></div>
-<div class="para" id="p-5552">One of the first steps in proving a property of cyclic groups is to use the fact that there exists a generator. Then every element of the group can be expressed as some multiple of the generator. Take special note of how this is used in theorems of this section.</div>
-<div class="para logical" id="p-5553">
+<div class="para" id="p-5567"></div></article></div>
+<div class="para" id="p-5568">One of the first steps in proving a property of cyclic groups is to use the fact that there exists a generator. Then every element of the group can be expressed as some multiple of the generator. Take special note of how this is used in theorems of this section.</div>
+<div class="para logical" id="p-5569">
 <div class="para">Up to now we have used only additive notation to discuss cyclic groups. <a href="" class="xref" data-knowl="./knowl/cyclic-implies-abelian.html" title="Theorem 15.1.5: Cyclic Implies Abelian">Theorem 15.1.5</a> actually justifies this practice since it is customary to use additive notation when discussing abelian groups. Of course, some concrete groups for which we employ multiplicative notation are cyclic. If one of its elements, <span class="process-math">\(a\text{,}\)</span> is a generator,</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/cyclic-implies-abelian.html">
 \begin{equation*}
@@ -1188,20 +1181,20 @@ b*c &amp;= (m a)*(n a)\\
 </div>
 <article class="example example-like" id="ex-cyclic-multiplicative"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-cyclic-multiplicative"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.1.6</span><span class="period">.</span><span class="space"> </span><span class="title">A Cyclic Multiplicative Group.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-cyclic-multiplicative"><article class="example example-like"><div class="para" id="p-5554">The group of positive integers modulo 11 with modulo 11 multiplication, <span class="process-math">\([\mathbb{U}_{11} ;\times_{11}]\text{,}\)</span> is cyclic. One of its generators is 6:  <span class="process-math">\(6^1 = 6\text{,}\)</span> <span class="process-math">\(6^2 = 3\text{,}\)</span> <span class="process-math">\(6^3= 7\text{,}\)</span><span class="process-math">\(\ldots\)</span> , <span class="process-math">\(6^9=2\text{,}\)</span> and <span class="process-math">\(6^{10}=1\text{,}\)</span> the identity of the group.</div></article></div>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-cyclic-multiplicative"><article class="example example-like"><div class="para" id="p-5570">The group of positive integers modulo 11 with modulo 11 multiplication, <span class="process-math">\([\mathbb{U}_{11} ;\times_{11}]\text{,}\)</span> is cyclic. One of its generators is 6:  <span class="process-math">\(6^1 = 6\text{,}\)</span> <span class="process-math">\(6^2 = 3\text{,}\)</span> <span class="process-math">\(6^3= 7\text{,}\)</span><span class="process-math">\(\ldots\)</span> , <span class="process-math">\(6^9=2\text{,}\)</span> and <span class="process-math">\(6^{10}=1\text{,}\)</span> the identity of the group.</div></article></div>
 <article class="example example-like" id="ex-non-cyclic-group"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-non-cyclic-group"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.1.7</span><span class="period">.</span><span class="space"> </span><span class="title">A Non-cyclic Group.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-non-cyclic-group"><article class="example example-like"><div class="para" id="p-5555">The real numbers with addition, <span class="process-math">\([\mathbb{R};+]\)</span> is a noncyclic group. The proof of this statement requires a bit more generality since we are saying that for all  <span class="process-math">\(r \in  \mathbb{R}\text{,}\)</span> <span class="process-math">\(\langle r \rangle\)</span> is a proper subset of <span class="process-math">\(\mathbb{R}\text{.}\)</span> If <span class="process-math">\(r\)</span> is nonzero, the multiples of <span class="process-math">\(r\)</span> are distributed over the real line, as in <a href="" class="xref" data-knowl="./knowl/fig-real-line.html" title="Figure 15.1.8">Figure 15.1.8</a>. It is clear then that there are many real numbers, like <span class="process-math">\(r/2\text{,}\)</span> that are not in <span class="process-math">\(\langle r \rangle\text{.}\)</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-non-cyclic-group"><article class="example example-like"><div class="para" id="p-5571">The real numbers with addition, <span class="process-math">\([\mathbb{R};+]\)</span> is a noncyclic group. The proof of this statement requires a bit more generality since we are saying that for all  <span class="process-math">\(r \in  \mathbb{R}\text{,}\)</span> <span class="process-math">\(\langle r \rangle\)</span> is a proper subset of <span class="process-math">\(\mathbb{R}\text{.}\)</span> If <span class="process-math">\(r\)</span> is nonzero, the multiples of <span class="process-math">\(r\)</span> are distributed over the real line, as in <a href="" class="xref" data-knowl="./knowl/fig-real-line.html" title="Figure 15.1.8">Figure 15.1.8</a>. It is clear then that there are many real numbers, like <span class="process-math">\(r/2\text{,}\)</span> that are not in <span class="process-math">\(\langle r \rangle\text{.}\)</span>
 </div> <figure class="figure figure-like" id="fig-real-line"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="external/images/fig-real-line.png" class="contained" alt="Elements of the cylic subgroup generated by a real number"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">15.1.8<span class="period">.</span></span><span class="space"> </span>Elements of <span class="process-math">\(\langle r \rangle, r &gt; 0\)</span></figcaption></figure></article></div>
-<div class="para" id="p-5556">The next two proofs  make use of the <a href="" class="xref" data-knowl="./knowl/th-division-property.html" title="Theorem 11.4.1: The Division Property for Integers">Theorem 11.4.1</a>.</div>
-<div class="para" id="p-5557">The following theorem shows that a cyclic group can never be very complicated.</div>
+<div class="para" id="p-5572">The next two proofs  make use of the <a href="" class="xref" data-knowl="./knowl/th-division-property.html" title="Theorem 11.4.1: The Division Property for Integers">Theorem 11.4.1</a>.</div>
+<div class="para" id="p-5573">The following theorem shows that a cyclic group can never be very complicated.</div>
 <article class="theorem theorem-like" id="theorem-cyclic-groups"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">15.1.9</span><span class="period">.</span><span class="space"> </span><span class="title">Possible Cyclic Group Structures.</span>
 </h3>
-<div class="para" id="p-5558">If <span class="process-math">\(G\)</span> is a cyclic group, then <span class="process-math">\(G\)</span> is either finite or countably infinite. If <span class="process-math">\(G\)</span> is finite and <span class="process-math">\(\lvert G\rvert=n\text{,}\)</span> it is isomorphic to <span class="process-math">\([\mathbb{Z}_n; +_n]\text{.}\)</span> If <span class="process-math">\(G\)</span> is infinite, it is isomorphic to <span class="process-math">\([\mathbb{Z};+]\text{.}\)</span>
-</div></article><article class="hiddenproof" id="proof-55"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-55"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-55"><article class="hiddenproof"><div class="para" id="p-5559">Case 1: <span class="process-math">\(\lvert G\rvert &lt; \infty\text{.}\)</span> If <span class="process-math">\(a\)</span> is a generator of <span class="process-math">\(G\)</span> and <span class="process-math">\(\lvert G\rvert =n\text{,}\)</span> define <span class="process-math">\(\phi:\mathbb{Z}_n \to  G\)</span> by <span class="process-math">\(\phi(k) = k a\)</span> for all <span class="process-math">\(k \in \mathbb{Z}_n\text{.}\)</span>
-</div> <div class="para logical" id="p-5560">
+<div class="para" id="p-5574">If <span class="process-math">\(G\)</span> is a cyclic group, then <span class="process-math">\(G\)</span> is either finite or countably infinite. If <span class="process-math">\(G\)</span> is finite and <span class="process-math">\(\lvert G\rvert=n\text{,}\)</span> it is isomorphic to <span class="process-math">\([\mathbb{Z}_n; +_n]\text{.}\)</span> If <span class="process-math">\(G\)</span> is infinite, it is isomorphic to <span class="process-math">\([\mathbb{Z};+]\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-55"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-55"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-55"><article class="hiddenproof"><div class="para" id="p-5575">Case 1: <span class="process-math">\(\lvert G\rvert &lt; \infty\text{.}\)</span> If <span class="process-math">\(a\)</span> is a generator of <span class="process-math">\(G\)</span> and <span class="process-math">\(\lvert G\rvert =n\text{,}\)</span> define <span class="process-math">\(\phi:\mathbb{Z}_n \to  G\)</span> by <span class="process-math">\(\phi(k) = k a\)</span> for all <span class="process-math">\(k \in \mathbb{Z}_n\text{.}\)</span>
+</div> <div class="para logical" id="p-5576">
 <div class="para">Since <span class="process-math">\(\langle a \rangle\)</span> is finite, we can use the fact that the elements of <span class="process-math">\(\langle a \rangle\)</span> are the first <span class="process-math">\(n\)</span> nonnegative multiples of <span class="process-math">\(a\text{.}\)</span> From this observation, we see that <span class="process-math">\(\phi\)</span> is a surjection. A surjection between finite sets of the same cardinality must be a bijection. Finally, if <span class="process-math">\(p,q \in  \mathbb{Z}_n\text{,}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1215,38 +1208,38 @@ b*c &amp;= (m a)*(n a)\\
 \end{equation*}
 </div>
 <div class="para">Therefore <span class="process-math">\(\phi\)</span> is an isomorphism.</div>
-</div> <div class="para" id="p-5561">Case 2: <span class="process-math">\(\lvert G\rvert =\infty\text{.}\)</span> We will leave this case as an exercise.</div></article></div>
+</div> <div class="para" id="p-5577">Case 2: <span class="process-math">\(\lvert G\rvert =\infty\text{.}\)</span> We will leave this case as an exercise.</div></article></div>
 <article class="theorem theorem-like" id="theorem-subgroups-of-cyclic-groups"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">15.1.10</span><span class="period">.</span><span class="space"> </span><span class="title">Subgroups of Cyclic Groups.</span>
 </h3>
-<div class="para" id="p-5562">Every subgroup of a cyclic group is cyclic.</div></article><article class="hiddenproof" id="proof-56"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-56"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-56"><article class="hiddenproof"><div class="para" id="p-5563">Let <span class="process-math">\(G\)</span> be cyclic with generator <span class="process-math">\(a\)</span> and let <span class="process-math">\(H \leq  G\text{.}\)</span> If <span class="process-math">\(H = \{e\}\text{,}\)</span> <span class="process-math">\(H\)</span> has <span class="process-math">\(e\)</span> as a generator.  We may now assume that <span class="process-math">\(\lvert H\rvert \geq 2\)</span> and <span class="process-math">\(a \neq  e\text{.}\)</span> Let <span class="process-math">\(m\)</span> be the least positive integer such that <span class="process-math">\(m a\)</span> belongs to <span class="process-math">\(H\text{.}\)</span> This is the key step. It lets us get our hands on a generator of <span class="process-math">\(H\text{.}\)</span> We will now show that <span class="process-math">\(c= m a\)</span> generates <span class="process-math">\(H\text{.}\)</span>  Certainly, <span class="process-math">\(\langle c \rangle \subseteq  H\text{,}\)</span> but suppose that <span class="process-math">\(\langle c \rangle \neq  H\text{.}\)</span> Then there exists <span class="process-math">\(b \in  H\)</span> such that <span class="process-math">\(b \notin  \langle c \rangle\text{.}\)</span> Now, since <span class="process-math">\(b\)</span> is in <span class="process-math">\(G\text{,}\)</span> there exists <span class="process-math">\(n \in
+<div class="para" id="p-5578">Every subgroup of a cyclic group is cyclic.</div></article><article class="hiddenproof" id="proof-56"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-56"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-56"><article class="hiddenproof"><div class="para" id="p-5579">Let <span class="process-math">\(G\)</span> be cyclic with generator <span class="process-math">\(a\)</span> and let <span class="process-math">\(H \leq  G\text{.}\)</span> If <span class="process-math">\(H = \{e\}\text{,}\)</span> <span class="process-math">\(H\)</span> has <span class="process-math">\(e\)</span> as a generator.  We may now assume that <span class="process-math">\(\lvert H\rvert \geq 2\)</span> and <span class="process-math">\(a \neq  e\text{.}\)</span> Let <span class="process-math">\(m\)</span> be the least positive integer such that <span class="process-math">\(m a\)</span> belongs to <span class="process-math">\(H\text{.}\)</span> This is the key step. It lets us get our hands on a generator of <span class="process-math">\(H\text{.}\)</span> We will now show that <span class="process-math">\(c= m a\)</span> generates <span class="process-math">\(H\text{.}\)</span>  Certainly, <span class="process-math">\(\langle c \rangle \subseteq  H\text{,}\)</span> but suppose that <span class="process-math">\(\langle c \rangle \neq  H\text{.}\)</span> Then there exists <span class="process-math">\(b \in  H\)</span> such that <span class="process-math">\(b \notin  \langle c \rangle\text{.}\)</span> Now, since <span class="process-math">\(b\)</span> is in <span class="process-math">\(G\text{,}\)</span> there exists <span class="process-math">\(n \in
 \mathbb{Z}\)</span> such that <span class="process-math">\(b = n a\text{.}\)</span> We now apply the division property and divide <span class="process-math">\(n\)</span> by <span class="process-math">\(m\text{.}\)</span> <span class="process-math">\(b = n a = (q m+r)a = (q m)a+r a\text{,}\)</span> where <span class="process-math">\(0 \leq r &lt; m\text{.}\)</span>  We note that <span class="process-math">\(r\)</span> cannot be zero for otherwise we would have  <span class="process-math">\(b = n a = q(m a) = q c \in  \langle c \rangle\text{.}\)</span>   Therefore, <span class="process-math">\(r a = n a - (q m) a \in  H\text{.}\)</span>  This contradicts our choice of <span class="process-math">\(m\)</span> because <span class="process-math">\(0 &lt; r &lt; m\text{.}\)</span>
 </div></article></div>
 <article class="example example-like" id="ex-subgroups-of-z10"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-subgroups-of-z10"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.1.11</span><span class="period">.</span><span class="space"> </span><span class="title">All subgroups of <span class="process-math">\(\mathbb{Z}_{10}\)</span>.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-subgroups-of-z10"><article class="example example-like"><div class="para" id="p-5564">The only proper subgroups of <span class="process-math">\(\mathbb{Z}_{10}\)</span> are <span class="process-math">\(H_1 = \{0, 5\}\)</span> and <span class="process-math">\(H_2 = \{0, 2, 4, 6, 8\}\text{.}\)</span>  They are both cyclic: <span class="process-math">\(H_1= \langle 5 \rangle\text{,}\)</span> while <span class="process-math">\(H_2 = \langle 2 \rangle = \langle 4 \rangle = \langle 6 \rangle = \langle 8 \rangle\text{.}\)</span> The generators of <span class="process-math">\(\mathbb{Z}_{10}\)</span> are 1, 3, 7, and 9.</div></article></div>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-subgroups-of-z10"><article class="example example-like"><div class="para" id="p-5580">The only proper subgroups of <span class="process-math">\(\mathbb{Z}_{10}\)</span> are <span class="process-math">\(H_1 = \{0, 5\}\)</span> and <span class="process-math">\(H_2 = \{0, 2, 4, 6, 8\}\text{.}\)</span>  They are both cyclic: <span class="process-math">\(H_1= \langle 5 \rangle\text{,}\)</span> while <span class="process-math">\(H_2 = \langle 2 \rangle = \langle 4 \rangle = \langle 6 \rangle = \langle 8 \rangle\text{.}\)</span> The generators of <span class="process-math">\(\mathbb{Z}_{10}\)</span> are 1, 3, 7, and 9.</div></article></div>
 <article class="example example-like" id="ex-subgroups-of-z"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-subgroups-of-z"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.1.12</span><span class="period">.</span><span class="space"> </span><span class="title">All subgroups of <span class="process-math">\(\mathbb{Z}\)</span>.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-subgroups-of-z"><article class="example example-like"><div class="para" id="p-5565">With the exception of <span class="process-math">\(\{0\}\text{,}\)</span> all subgroups of <span class="process-math">\(\mathbb{Z}\)</span> are isomorphic to <span class="process-math">\(\mathbb{Z}\text{.}\)</span>  If <span class="process-math">\(H \leq  \mathbb{Z}\text{,}\)</span> then <span class="process-math">\(H\)</span> is the cyclic subgroup generated by the least positive element of <span class="process-math">\(H\text{.}\)</span>  It is infinite and so by <a href="" class="xref" data-knowl="./knowl/theorem-subgroups-of-cyclic-groups.html" title="Theorem 15.1.10: Subgroups of Cyclic Groups">Theorem 15.1.10</a> it is isomorphic to <span class="process-math">\(\mathbb{Z}\text{.}\)</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-subgroups-of-z"><article class="example example-like"><div class="para" id="p-5581">With the exception of <span class="process-math">\(\{0\}\text{,}\)</span> all subgroups of <span class="process-math">\(\mathbb{Z}\)</span> are isomorphic to <span class="process-math">\(\mathbb{Z}\text{.}\)</span>  If <span class="process-math">\(H \leq  \mathbb{Z}\text{,}\)</span> then <span class="process-math">\(H\)</span> is the cyclic subgroup generated by the least positive element of <span class="process-math">\(H\text{.}\)</span>  It is infinite and so by <a href="" class="xref" data-knowl="./knowl/theorem-subgroups-of-cyclic-groups.html" title="Theorem 15.1.10: Subgroups of Cyclic Groups">Theorem 15.1.10</a> it is isomorphic to <span class="process-math">\(\mathbb{Z}\text{.}\)</span>
 </div></article></div>
-<div class="para" id="p-5566">We now cite a useful theorem for computing the order of cyclic subgroups of a cyclic group:</div>
+<div class="para" id="p-5582">We now cite a useful theorem for computing the order of cyclic subgroups of a cyclic group:</div>
 <article class="theorem theorem-like" id="theorem-order-in-cyclic"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">15.1.13</span><span class="period">.</span><span class="space"> </span><span class="title">The order of elements of a finite cyclic group.</span>
 </h3>
-<div class="para" id="p-5567">If <span class="process-math">\(G\)</span> is a cyclic group of order <span class="process-math">\(n\)</span> and <span class="process-math">\(a\)</span> is a generator of <span class="process-math">\(G\text{,}\)</span> the order of <span class="process-math">\(k a\)</span> is <span class="process-math">\(n/d\text{,}\)</span> where <span class="process-math">\(d\)</span> is the greatest common divisor of <span class="process-math">\(n\)</span> and <span class="process-math">\(k\text{.}\)</span>
-</div></article><article class="hiddenproof" id="proof-57"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-57"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-57"><article class="hiddenproof"><div class="para" id="p-5568">The proof of this theorem is left to the reader.</div></article></div>
+<div class="para" id="p-5583">If <span class="process-math">\(G\)</span> is a cyclic group of order <span class="process-math">\(n\)</span> and <span class="process-math">\(a\)</span> is a generator of <span class="process-math">\(G\text{,}\)</span> the order of <span class="process-math">\(k a\)</span> is <span class="process-math">\(n/d\text{,}\)</span> where <span class="process-math">\(d\)</span> is the greatest common divisor of <span class="process-math">\(n\)</span> and <span class="process-math">\(k\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-57"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-57"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-57"><article class="hiddenproof"><div class="para" id="p-5584">The proof of this theorem is left to the reader.</div></article></div>
 <article class="example example-like" id="ex-order-of-element-cyclic"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-order-of-element-cyclic"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">15.1.14</span><span class="period">.</span><span class="space"> </span><span class="title">Computation of an order in a cyclic group.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-order-of-element-cyclic"><article class="example example-like"><div class="para" id="p-5569">To compute the order of <span class="process-math">\(\langle 18 \rangle\)</span> in <span class="process-math">\(\mathbb{Z}_{30}\text{,}\)</span> we first observe that 1 is a generator of <span class="process-math">\(\mathbb{Z}_{30}\)</span>  and <span class="process-math">\(18= 18(1)\text{.}\)</span> The greatest common divisor of 18 and 30 is 6. Hence, the order of <span class="process-math">\(\langle 18 \rangle\)</span> is 30/6, or 5.</div></article></div>
-<div class="para" id="p-5570">At this point, we will introduce the idea of a fast adder, a relatively modern application (Winograd, 1965) of an ancient theorem, Sun Tzu’s Theorem. We will present only an overview of the theory and rely primarily on examples.</div>
-<div class="para" id="p-5571">Out of necessity, integer addition with a computer is addition modulo <span class="process-math">\(n\text{,}\)</span> for <span class="process-math">\(n\)</span> some larger number. Consider the case where <span class="process-math">\(n\)</span> is small, like 64. Then addition involves the addition of six-digit binary numbers. Consider the process of adding 31 and 1. Assume the computer’s adder takes as input two bit strings  <span class="process-math">\(a = \left\{a_0,a_1,a_2,a_3,a_4,a_5\right\}\)</span> and <span class="process-math">\(b=\left\{b_0,b_1,b_2,b_3,b_4,b_5\right\}\)</span> and outputs <span class="process-math">\(s = \left\{s_0,s_1,s_2,s_3,s_4,s_5\right\}\text{,}\)</span> the sum of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span> Then, if <span class="process-math">\(a = 31 = (1, 1, 1, 1, 1, 0)\)</span> and <span class="process-math">\(b = 1 = (1, 0, 0, 0, 0, 0)\text{,}\)</span> <span class="process-math">\(s\)</span> will be (0, 0, 0, 0, 0, 1), or 32. The output <span class="process-math">\(s_{ }=1\)</span> cannot be determined until all other outputs have been determined. If addition is done with a finite-state machine, as in <a href="" class="xref" data-knowl="./knowl/ex-binary-adder.html" title="Example 14.3.9: A Binary Adder">Example 14.3.9</a>, the time required to get <span class="process-math">\(s\)</span> will be six time units, where one time unit is the time it takes to get one output from the machine.  In general, the time required to obtain <span class="process-math">\(s\)</span> will be proportional to the number of bits.   Theoretically, this time can be decreased, but the explanation would require a long digression and our relative results would not change that much. We will use the rule that the number of time units needed to perform addition modulo <span class="process-math">\(n\)</span> is proportional to  <span class="process-math">\(\left\lceil \log_2n\right\rceil\text{.}\)</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-order-of-element-cyclic"><article class="example example-like"><div class="para" id="p-5585">To compute the order of <span class="process-math">\(\langle 18 \rangle\)</span> in <span class="process-math">\(\mathbb{Z}_{30}\text{,}\)</span> we first observe that 1 is a generator of <span class="process-math">\(\mathbb{Z}_{30}\)</span>  and <span class="process-math">\(18= 18(1)\text{.}\)</span> The greatest common divisor of 18 and 30 is 6. Hence, the order of <span class="process-math">\(\langle 18 \rangle\)</span> is 30/6, or 5.</div></article></div>
+<div class="para" id="p-5586">At this point, we will introduce the idea of a fast adder, a relatively modern application (Winograd, 1965) of an ancient theorem, Sun Tzu’s Theorem. We will present only an overview of the theory and rely primarily on examples.</div>
+<div class="para" id="p-5587">Out of necessity, integer addition with a computer is addition modulo <span class="process-math">\(n\text{,}\)</span> for <span class="process-math">\(n\)</span> some larger number. Consider the case where <span class="process-math">\(n\)</span> is small, like 64. Then addition involves the addition of six-digit binary numbers. Consider the process of adding 31 and 1. Assume the computer’s adder takes as input two bit strings  <span class="process-math">\(a = \left\{a_0,a_1,a_2,a_3,a_4,a_5\right\}\)</span> and <span class="process-math">\(b=\left\{b_0,b_1,b_2,b_3,b_4,b_5\right\}\)</span> and outputs <span class="process-math">\(s = \left\{s_0,s_1,s_2,s_3,s_4,s_5\right\}\text{,}\)</span> the sum of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span> Then, if <span class="process-math">\(a = 31 = (1, 1, 1, 1, 1, 0)\)</span> and <span class="process-math">\(b = 1 = (1, 0, 0, 0, 0, 0)\text{,}\)</span> <span class="process-math">\(s\)</span> will be (0, 0, 0, 0, 0, 1), or 32. The output <span class="process-math">\(s_{ }=1\)</span> cannot be determined until all other outputs have been determined. If addition is done with a finite-state machine, as in <a href="" class="xref" data-knowl="./knowl/ex-binary-adder.html" title="Example 14.3.9: A Binary Adder">Example 14.3.9</a>, the time required to get <span class="process-math">\(s\)</span> will be six time units, where one time unit is the time it takes to get one output from the machine.  In general, the time required to obtain <span class="process-math">\(s\)</span> will be proportional to the number of bits.   Theoretically, this time can be decreased, but the explanation would require a long digression and our relative results would not change that much. We will use the rule that the number of time units needed to perform addition modulo <span class="process-math">\(n\)</span> is proportional to  <span class="process-math">\(\left\lceil \log_2n\right\rceil\text{.}\)</span>
 </div>
-<div class="para" id="p-5572">Now we will introduce a hypothetical problem that we will use to illustrate the idea of a fast adder. Suppose that we had to add 1,000 numbers modulo <span class="process-math">\(27720 = 8 \cdot  9 \cdot  5 \cdot 7\cdot 11\text{.}\)</span> By the rule above, since <span class="process-math">\(2^{14} &lt; 27720 &lt; 2^{15}\text{,}\)</span> each addition would take 15 time units. If the sum is initialized to zero, 1,000 additions would be needed; thus, 15,000 time units would be needed to do the additions. We can improve this time dramatically by applying Sun Tzu’s Theorem.  Recall that <span class="process-math">\(k\%n\)</span> is the remainder upon division of <span class="process-math">\(k\)</span> by <span class="process-math">\(n\text{.}\)</span>
+<div class="para" id="p-5588">Now we will introduce a hypothetical problem that we will use to illustrate the idea of a fast adder. Suppose that we had to add 1,000 numbers modulo <span class="process-math">\(27720 = 8 \cdot  9 \cdot  5 \cdot 7\cdot 11\text{.}\)</span> By the rule above, since <span class="process-math">\(2^{14} &lt; 27720 &lt; 2^{15}\text{,}\)</span> each addition would take 15 time units. If the sum is initialized to zero, 1,000 additions would be needed; thus, 15,000 time units would be needed to do the additions. We can improve this time dramatically by applying Sun Tzu’s Theorem.  Recall that <span class="process-math">\(k\%n\)</span> is the remainder upon division of <span class="process-math">\(k\)</span> by <span class="process-math">\(n\text{.}\)</span>
 </div>
 <article class="theorem theorem-like" id="th-crt"><h3 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">15.1.15</span><span class="period">.</span><span class="space"> </span><span class="title">Sun Tzu’s Theorem.</span>
 </h3>
-<div class="para logical" id="p-5573">
+<div class="para logical" id="p-5589">
 <div class="para">Let <span class="process-math">\(n_1\text{,}\)</span> <span class="process-math">\(n_2\text{,}\)</span> <span class="process-math">\(\ldots\text{,}\)</span> <span class="process-math">\(n_p\)</span> be integers that have no common factor greater than one between any pair of them; i. e., they are relatively prime.  Let <span class="process-math">\(n = n_1 n_2 \cdots  n_p\text{.}\)</span> Define</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1261,8 +1254,8 @@ b*c &amp;= (m a)*(n a)\\
 </div>
 <div class="para">where for <span class="process-math">\(1\leq i\leq p\text{,}\)</span>   <span class="process-math">\(0\leq k_i &lt; n_i\)</span>   and  <span class="process-math">\(k\equiv k_i\left(\textrm{mod } n_i\right)\text{.}\)</span>  Then <span class="process-math">\(\theta\)</span> is an isomorphism from <span class="process-math">\(\mathbb{Z}_n\)</span> into <span class="process-math">\(\mathbb{Z}_{n_1}\times \mathbb{Z}_{n_2}\times  \cdots \times \mathbb{Z}_{n_p}\text{.}\)</span>
 </div>
-</div></article><div class="para" id="p-5574">Sun Tzu’s Theorem can be stated in several different forms, and its proof can be found in many abstract algebra texts.  Older texts most likely will refer to the theorem as the Chinese Remainder Theorem.</div>
-<div class="para logical" id="p-5575">
+</div></article><div class="para" id="p-5590">Sun Tzu’s Theorem can be stated in several different forms, and its proof can be found in many abstract algebra texts.  Older texts most likely will refer to the theorem as the Chinese Remainder Theorem.</div>
+<div class="para logical" id="p-5591">
 <div class="para">As we saw in Chapter 11, <span class="process-math">\(\mathbb{Z}_6\)</span> is isomorphic to <span class="process-math">\(\mathbb{Z}_2 \times  \mathbb{Z}_3\)</span> . This is the smallest case to which Sun Tzu’s Theorem can be applied. An isomorphism between <span class="process-math">\(\mathbb{Z}_6\)</span> and <span class="process-math">\(\mathbb{Z}_2 \times  \mathbb{Z}_3\)</span> is</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1274,9 +1267,9 @@ b*c &amp;= (m a)*(n a)\\
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-5576">Let’s consider a somewhat larger case.  We start by selecting a modulus that can be factored into a product of relatively prime integers: <span class="process-math">\(n=21,600=2^5 3^3 5^2\text{.}\)</span>  In this case the factors are <span class="process-math">\(2^5=32\text{,}\)</span> <span class="process-math">\(3^3=27\text{,}\)</span> and <span class="process-math">\(5^2=25\text{.}\)</span>  They need not be powers of primes, but it is easy to break the factors into this form to assure relatively prime numbers.  To add in <span class="process-math">\(\mathbb{Z}_n\text{,}\)</span> we need <span class="process-math">\(\left\lceil \log _2n\right\rceil =15\)</span> time units.  Let <span class="process-math">\(G=\mathbb{Z}_{32}\times \mathbb{Z}_{27}\times \mathbb{Z}_{25}\text{.}\)</span>   Sun Tzu’s Theorem gives us an isomorphism between <span class="process-math">\(\mathbb{Z}_{21600}\)</span> and <span class="process-math">\(G\text{.}\)</span> The basic idea behind the fast adder, illustrated in <a href="" class="xref" data-knowl="./knowl/fig-parallel-sum.html" title="Figure 15.1.16">Figure 15.1.16</a>, is to make use of this isomorphism. The notation <code class="code-inline tex2jax_ignore">x += a</code> is interpreted as the instruction to add the value of <code class="code-inline tex2jax_ignore">a</code> to the variable <code class="code-inline tex2jax_ignore">x</code>.</div>
+<div class="para" id="p-5592">Let’s consider a somewhat larger case.  We start by selecting a modulus that can be factored into a product of relatively prime integers: <span class="process-math">\(n=21,600=2^5 3^3 5^2\text{.}\)</span>  In this case the factors are <span class="process-math">\(2^5=32\text{,}\)</span> <span class="process-math">\(3^3=27\text{,}\)</span> and <span class="process-math">\(5^2=25\text{.}\)</span>  They need not be powers of primes, but it is easy to break the factors into this form to assure relatively prime numbers.  To add in <span class="process-math">\(\mathbb{Z}_n\text{,}\)</span> we need <span class="process-math">\(\left\lceil \log _2n\right\rceil =15\)</span> time units.  Let <span class="process-math">\(G=\mathbb{Z}_{32}\times \mathbb{Z}_{27}\times \mathbb{Z}_{25}\text{.}\)</span>   Sun Tzu’s Theorem gives us an isomorphism between <span class="process-math">\(\mathbb{Z}_{21600}\)</span> and <span class="process-math">\(G\text{.}\)</span> The basic idea behind the fast adder, illustrated in <a href="" class="xref" data-knowl="./knowl/fig-parallel-sum.html" title="Figure 15.1.16">Figure 15.1.16</a>, is to make use of this isomorphism. The notation <code class="code-inline tex2jax_ignore">x += a</code> is interpreted as the instruction to add the value of <code class="code-inline tex2jax_ignore">a</code> to the variable <code class="code-inline tex2jax_ignore">x</code>.</div>
 <figure class="figure figure-like" id="fig-parallel-sum"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="external/images/fig-parallel-sum.png" class="contained" alt="Fast Adder Scheme"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">15.1.16<span class="period">.</span></span><span class="space"> </span>Fast Adder Scheme</figcaption></figure><div class="para" id="p-5577">Assume we have several integers <span class="process-math">\(a_1, \ldots , a_m\)</span> to be added.  Here, we assume <span class="process-math">\(m= 20\text{.}\)</span> We compute the sum <code class="code-inline tex2jax_ignore">s</code> to compare our result with this true sum.</div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">15.1.16<span class="period">.</span></span><span class="space"> </span>Fast Adder Scheme</figcaption></figure><div class="para" id="p-5593">Assume we have several integers <span class="process-math">\(a_1, \ldots , a_m\)</span> to be added.  Here, we assume <span class="process-math">\(m= 20\text{.}\)</span> We compute the sum <code class="code-inline tex2jax_ignore">s</code> to compare our result with this true sum.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-59"><script type="text/x-sage">a=[1878,1384,84,2021,784,1509,1740,1201,2363,1774,
    1865,33,1477,894,690,520,198,1349,1278,650]
 s =0
@@ -1284,48 +1277,48 @@ for t in a:
     s+=t
 s
 </script></pre>
-<div class="para" id="p-5578">Although our sum is an integer calculation, we will put our calculation in the context of the integers modulo 21600.  The isomophism from <span class="process-math">\(\mathbb{Z}_{21600}\)</span> into <span class="process-math">\(G=\mathbb{Z}_{32}\times \mathbb{Z}_{27}\times \mathbb{Z}_{25}\)</span> is defined in Sage as <code class="code-inline tex2jax_ignore">theta</code>.   In addition we demonstrate that the operations in these groups are preserved by <code class="code-inline tex2jax_ignore">theta</code>.</div>
+<div class="para" id="p-5594">Although our sum is an integer calculation, we will put our calculation in the context of the integers modulo 21600.  The isomophism from <span class="process-math">\(\mathbb{Z}_{21600}\)</span> into <span class="process-math">\(G=\mathbb{Z}_{32}\times \mathbb{Z}_{27}\times \mathbb{Z}_{25}\)</span> is defined in Sage as <code class="code-inline tex2jax_ignore">theta</code>.   In addition we demonstrate that the operations in these groups are preserved by <code class="code-inline tex2jax_ignore">theta</code>.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-60"><script type="text/x-sage">G=cartesian_product([Integers(32),Integers(27),Integers(25)])
 def theta(x):
     return G((x%32,x%27,x%25))
 [theta(1878)+theta(1384),theta(1878+1384)]
 </script></pre>
-<div class="para" id="p-5579">We initialize the sums in each factor of the range of <code class="code-inline tex2jax_ignore">theta</code> to zero and decompose each summand <span class="process-math">\(t\)</span> into a triple <span class="process-math">\(\theta(t)=\left(t_1,t_2,t_3\right)\in G\text{.}\)</span>
+<div class="para" id="p-5595">We initialize the sums in each factor of the range of <code class="code-inline tex2jax_ignore">theta</code> to zero and decompose each summand <span class="process-math">\(t\)</span> into a triple <span class="process-math">\(\theta(t)=\left(t_1,t_2,t_3\right)\in G\text{.}\)</span>
 </div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-61"><script type="text/x-sage">sum=G((0,0,0))
 for t in a:
     sum+=theta(t)
 sum
 </script></pre>
-<div class="para" id="p-5580">Addition in <span class="process-math">\(G\)</span> can be done in parallel so that each new subtotal in the form of the triple <span class="process-math">\((s_1,s_2, s_3)\)</span>  takes only as long to compute as it takes to add in the largest modulus, <span class="process-math">\(\log _232=5\)</span> time units, if calculations are done in parallel. By the time rule that we have established, the addition of 20 numbers can be done in <span class="process-math">\(20\cdot 5= 100\)</span> time units, as opposed to <span class="process-math">\(20\cdot 15 =300\)</span> time units if we do the calculations in <span class="process-math">\(\mathbb{Z}_{21600}\text{.}\)</span>  However the result is a triple in <span class="process-math">\(G\text{.}\)</span>  The function that performs the inverse of <code class="code-inline tex2jax_ignore">theta</code> is built into most mathematics programs, including Sage.  In Sage the function is <code class="code-inline tex2jax_ignore">crt</code>, short for Chinese Remainder Theorem, the other common name of Sun Tzu’s Theorem.  We use this function to compute the inverse of our triple, which is an element of <span class="process-math">\(\mathbb{Z}_{21600}\text{.}\)</span>   The result isn’t the true sum because the modulus 21600 is not large enough.  However, we verify that our result is congruent to the true sum modulo 21600.</div>
+<div class="para" id="p-5596">Addition in <span class="process-math">\(G\)</span> can be done in parallel so that each new subtotal in the form of the triple <span class="process-math">\((s_1,s_2, s_3)\)</span>  takes only as long to compute as it takes to add in the largest modulus, <span class="process-math">\(\log _232=5\)</span> time units, if calculations are done in parallel. By the time rule that we have established, the addition of 20 numbers can be done in <span class="process-math">\(20\cdot 5= 100\)</span> time units, as opposed to <span class="process-math">\(20\cdot 15 =300\)</span> time units if we do the calculations in <span class="process-math">\(\mathbb{Z}_{21600}\text{.}\)</span>  However the result is a triple in <span class="process-math">\(G\text{.}\)</span>  The function that performs the inverse of <code class="code-inline tex2jax_ignore">theta</code> is built into most mathematics programs, including Sage.  In Sage the function is <code class="code-inline tex2jax_ignore">crt</code>, short for Chinese Remainder Theorem, the other common name of Sun Tzu’s Theorem.  We use this function to compute the inverse of our triple, which is an element of <span class="process-math">\(\mathbb{Z}_{21600}\text{.}\)</span>   The result isn’t the true sum because the modulus 21600 is not large enough.  However, we verify that our result is congruent to the true sum modulo 21600.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-62"><script type="text/x-sage">isum=crt([12,13,17],[32,27,25])
 [isum,(s-isum)%(21600)]
 </script></pre>
-<div class="para" id="p-5581">In order to get the true sum from our scheme, the modulus would need to be increased by moving from 21600 to, for example,  <span class="process-math">\(21600*23=496800\text{.}\)</span>  Mapping into the new group, <span class="process-math">\(G=\mathbb{Z}_{32}\times \mathbb{Z}_{27}\times \mathbb{Z}_{25}\times \mathbb{Z}_{23}\)</span> will take slightly longer, as will the inversion process with <code class="code-inline tex2jax_ignore">crt</code>, but adding the summands that are in the form of quadruples can be done with no additional time.</div>
-<div class="para" id="p-5582">The computation of <span class="process-math">\(\theta^{-1}\left(s_1,s_2,s_3\right)\)</span> that is done by the Sage function <code class="code-inline tex2jax_ignore">crt</code> can be accomplished in a variety of ways. All of them ultimately are simplified by the fact that <span class="process-math">\(\theta^{-1}\)</span> is also an isomorphism. One approach is to use the isomorphism property to realize that the value of <span class="process-math">\(\theta^{-1}\left(s_1,s_2,s_3\right)\)</span> is <span class="process-math">\(s_1\theta^{-1}(1,0,0)+s_2\theta^{-1}(0,1,0)+s_3\theta^{-1}(0,0,1)\text{.}\)</span> The arithmetic in this expression is in the domain of <span class="process-math">\(\theta\)</span> and is more time consuming, but it need only be done once. This is why the fast adder is only practical in situations where many additions must be performed to get a single sum.</div>
-<div class="para" id="p-5583">The inverse images of the “unit vectors” can be computed ahead of time.</div>
+<div class="para" id="p-5597">In order to get the true sum from our scheme, the modulus would need to be increased by moving from 21600 to, for example,  <span class="process-math">\(21600*23=496800\text{.}\)</span>  Mapping into the new group, <span class="process-math">\(G=\mathbb{Z}_{32}\times \mathbb{Z}_{27}\times \mathbb{Z}_{25}\times \mathbb{Z}_{23}\)</span> will take slightly longer, as will the inversion process with <code class="code-inline tex2jax_ignore">crt</code>, but adding the summands that are in the form of quadruples can be done with no additional time.</div>
+<div class="para" id="p-5598">The computation of <span class="process-math">\(\theta^{-1}\left(s_1,s_2,s_3\right)\)</span> that is done by the Sage function <code class="code-inline tex2jax_ignore">crt</code> can be accomplished in a variety of ways. All of them ultimately are simplified by the fact that <span class="process-math">\(\theta^{-1}\)</span> is also an isomorphism. One approach is to use the isomorphism property to realize that the value of <span class="process-math">\(\theta^{-1}\left(s_1,s_2,s_3\right)\)</span> is <span class="process-math">\(s_1\theta^{-1}(1,0,0)+s_2\theta^{-1}(0,1,0)+s_3\theta^{-1}(0,0,1)\text{.}\)</span> The arithmetic in this expression is in the domain of <span class="process-math">\(\theta\)</span> and is more time consuming, but it need only be done once. This is why the fast adder is only practical in situations where many additions must be performed to get a single sum.</div>
+<div class="para" id="p-5599">The inverse images of the “unit vectors” can be computed ahead of time.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-63"><script type="text/x-sage">u=[crt([1,0,0],[32,27,25]),
    crt([0,1,0],[32,27,25]),crt([0,0,1],[32,27,25])]
 u
 </script></pre>
-<div class="para" id="p-5584">The result we computed earlier  can be computed  directly by in the larger modulus.</div>
+<div class="para" id="p-5600">The result we computed earlier  can be computed  directly by in the larger modulus.</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-64"><script type="text/x-sage">(7425*12 + 6400*13+ 7776* 17)%21600
 </script></pre>
-<div class="para" id="p-5585">To further illustrate the potential of fast adders, consider increasing the modulus to <span class="process-math">\(n=2^53^35^27^211\cdot 13\cdot 17\cdot 19\cdot 23\cdot 29\cdot 31\cdot 37\cdot 41\cdot 43\cdot 47\approx 3.1\times 10^{21}\text{.}\)</span> Each addition using the usual modulo <span class="process-math">\(n\)</span> addition with full adders would take 72 time units. By decomposing each summand into 15-tuples according to Sun Tzu’s Theorem, the time is reduced to <span class="process-math">\(\left\lceil \log _249\right\rceil =6\)</span> time units per addition.</div>
+<div class="para" id="p-5601">To further illustrate the potential of fast adders, consider increasing the modulus to <span class="process-math">\(n=2^53^35^27^211\cdot 13\cdot 17\cdot 19\cdot 23\cdot 29\cdot 31\cdot 37\cdot 41\cdot 43\cdot 47\approx 3.1\times 10^{21}\text{.}\)</span> Each addition using the usual modulo <span class="process-math">\(n\)</span> addition with full adders would take 72 time units. By decomposing each summand into 15-tuples according to Sun Tzu’s Theorem, the time is reduced to <span class="process-math">\(\left\lceil \log _249\right\rceil =6\)</span> time units per addition.</div>
 <section class="exercises" id="exercises-15-1"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber"></span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-622"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para" id="p-5586">What generators besides 1 does <span class="process-math">\([\mathbb{Z}; +]\)</span> have?</div>
+<article class="exercise exercise-like" id="exercise-625"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para" id="p-5602">What generators besides 1 does <span class="process-math">\([\mathbb{Z}; +]\)</span> have?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-287" id="answer-287"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-287"><div class="answer solution-like"><div class="para" id="p-5587">The only other generator is <span class="process-math">\(-1\text{.}\)</span>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-289" id="answer-289"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-289"><div class="answer solution-like"><div class="para" id="p-5603">The only other generator is <span class="process-math">\(-1\text{.}\)</span>
 </div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-623"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para" id="p-5588">Suppose <span class="process-math">\([G;*]\)</span> is a cyclic group with generator <span class="process-math">\(g\text{.}\)</span> If you build a graph of with vertices from the elements of <span class="process-math">\(G\)</span> and edge set <span class="process-math">\(E= \{(a, g*a) \mid a\in G\}\text{,}\)</span> what would the graph look like?  If <span class="process-math">\(G\)</span> is a group of even order, what would a graph with edge set <span class="process-math">\(E'= \{(a, g^2*a) \mid a\in G\}\)</span> look like?</div></article><article class="exercise exercise-like" id="exercise-624"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para" id="p-5589">Prove that if <span class="process-math">\(\lvert G \rvert &gt;2\)</span> and <span class="process-math">\(G\)</span> is cyclic, <span class="process-math">\(G\)</span> has at least two generators.</div>
+</div></article><article class="exercise exercise-like" id="exercise-626"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para" id="p-5604">Suppose <span class="process-math">\([G;*]\)</span> is a cyclic group with generator <span class="process-math">\(g\text{.}\)</span> If you build a graph of with vertices from the elements of <span class="process-math">\(G\)</span> and edge set <span class="process-math">\(E= \{(a, g*a) \mid a\in G\}\text{,}\)</span> what would the graph look like?  If <span class="process-math">\(G\)</span> is a group of even order, what would a graph with edge set <span class="process-math">\(E'= \{(a, g^2*a) \mid a\in G\}\)</span> look like?</div></article><article class="exercise exercise-like" id="exercise-627"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para" id="p-5605">Prove that if <span class="process-math">\(\lvert G \rvert &gt;2\)</span> and <span class="process-math">\(G\)</span> is cyclic, <span class="process-math">\(G\)</span> has at least two generators.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-288" id="answer-288"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-288"><div class="answer solution-like">
-<div class="para logical" id="p-5590">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-290" id="answer-290"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-290"><div class="answer solution-like">
+<div class="para logical" id="p-5606">
 <div class="para">If  <span class="process-math">\(\lvert G \rvert = m\text{,}\)</span> <span class="process-math">\(m&gt;2\text{,}\)</span> and <span class="process-math">\(G = \langle a \rangle\text{,}\)</span> then <span class="process-math">\(a\text{,}\)</span> <span class="process-math">\(a^2,\ldots\text{,}\)</span> <span class="process-math">\(a^{m-1}\)</span> , <span class="process-math">\(a^m=e\)</span> are distinct elements of <span class="process-math">\(G\text{.}\)</span> Furthermore, <span class="process-math">\(a^{-1}= a^{m-1}\neq a\text{,}\)</span>  If <span class="process-math">\(1 \leq k \leq m\text{,}\)</span> <span class="process-math">\(a^{-1}\)</span> generates <span class="process-math">\(a^k\text{:}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1338,63 +1331,63 @@ u
 \end{split}
 \end{equation*}
 </div>
-</div> <div class="para" id="p-5591">Similarly, if <span class="process-math">\(G\)</span> is infinite and <span class="process-math">\(G = \langle a\rangle\text{,}\)</span> then <span class="process-math">\(a^{-1}\)</span> generates <span class="process-math">\(G\text{.}\)</span>
+</div> <div class="para" id="p-5607">Similarly, if <span class="process-math">\(G\)</span> is infinite and <span class="process-math">\(G = \langle a\rangle\text{,}\)</span> then <span class="process-math">\(a^{-1}\)</span> generates <span class="process-math">\(G\text{.}\)</span>
 </div>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-625"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para" id="p-5592">If you wanted to list the generators of <span class="process-math">\(\mathbb{Z}_n\)</span> you would only have to test the first <span class="process-math">\(n/2\)</span> positive integers. Why?</div></article><article class="exercise exercise-like" id="exercise-626"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5593">
+</div></article><article class="exercise exercise-like" id="exercise-628"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para" id="p-5608">If you wanted to list the generators of <span class="process-math">\(\mathbb{Z}_n\)</span> you would only have to test the first <span class="process-math">\(n/2\)</span> positive integers. Why?</div></article><article class="exercise exercise-like" id="exercise-629"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5609">
 <div class="para">Which of the following groups are cyclic? Explain.</div>
 <ol class="lower-alpha">
-<li id="li-2514"><div class="para" id="p-5594"><span class="process-math">\(\displaystyle [\mathbb{Q}; +]\)</span></div></li>
-<li id="li-2515"><div class="para" id="p-5595"><span class="process-math">\(\displaystyle [\mathbb{R}^+;\cdot ]\)</span></div></li>
-<li id="li-2516"><div class="para" id="p-5596">
+<li id="li-2526"><div class="para" id="p-5610"><span class="process-math">\(\displaystyle [\mathbb{Q}; +]\)</span></div></li>
+<li id="li-2527"><div class="para" id="p-5611"><span class="process-math">\(\displaystyle [\mathbb{R}^+;\cdot ]\)</span></div></li>
+<li id="li-2528"><div class="para" id="p-5612">
 <span class="process-math">\([6\mathbb{Z}; +]\)</span> where <span class="process-math">\(6\mathbb{Z} = \{6n |n \in  \mathbb{Z}\}\)</span>
 </div></li>
-<li id="li-2517"><div class="para" id="p-5597"><span class="process-math">\(\displaystyle \mathbb{Z} \times  \mathbb{Z}\)</span></div></li>
-<li id="li-2518"><div class="para" id="p-5598"><span class="process-math">\(\displaystyle \mathbb{Z}_2\times  \mathbb{Z}_3 \times  \mathbb{Z}_{25}\)</span></div></li>
+<li id="li-2529"><div class="para" id="p-5613"><span class="process-math">\(\displaystyle \mathbb{Z} \times  \mathbb{Z}\)</span></div></li>
+<li id="li-2530"><div class="para" id="p-5614"><span class="process-math">\(\displaystyle \mathbb{Z}_2\times  \mathbb{Z}_3 \times  \mathbb{Z}_{25}\)</span></div></li>
 </ol>
 </div>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-289" id="answer-289"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-289"><div class="answer solution-like"><div class="para logical" id="p-5599"><ol class="lower-alpha">
-<li id="li-2519"><div class="para" id="p-5600">No. Assume that <span class="process-math">\(q \in \mathbb{Q}\)</span> generates <span class="process-math">\(\mathbb{Q}\text{.}\)</span> Then <span class="process-math">\(\langle q\rangle  = \{n q : n \in \mathbb{Z}\}\text{.}\)</span> But this gives us at most integer multiples of <span class="process-math">\(q\text{,}\)</span> not every element in <span class="process-math">\(\mathbb{Q}\text{.}\)</span>
-</div></li>
-<li id="li-2520"><div class="para" id="p-5601">No. Similar reasoning to part a.</div></li>
-<li id="li-2521"><div class="para" id="p-5602">Yes. 6 is a generator of <span class="process-math">\(6\mathbb{Z}\text{.}\)</span>
-</div></li>
-<li id="li-2522"><div class="para" id="p-5603">No.</div></li>
-<li id="li-2523"><div class="para" id="p-5604">Yes, <span class="process-math">\((1,1, 1)\)</span> is a generator of the group.</div></li>
-</ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-627"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5605">
-<div class="para">For each group and element, determine the order of the cyclic subgroup generated by the element:</div>
-<ol class="lower-alpha">
-<li id="li-2524"><div class="para" id="p-5606">
-<span class="process-math">\(\mathbb{Z}_{25}\)</span> , 15</div></li>
-<li id="li-2525"><div class="para" id="p-5607">
-<span class="process-math">\(\mathbb{Z}_4\times \mathbb{Z}_9\)</span> , <span class="process-math">\((2, 6)\)</span> (apply Exercise 8)</div></li>
-<li id="li-2526"><div class="para" id="p-5608">
-<span class="process-math">\(\mathbb{Z}_{64}\)</span> , 2</div></li>
-</ol>
-</div></article><article class="exercise exercise-like" id="exercise-628"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
-<div class="para" id="p-5609">How can <a href="" class="xref" data-knowl="./knowl/theorem-order-in-cyclic.html" title="Theorem 15.1.13: The order of elements of a finite cyclic group">Theorem 15.1.13</a> be applied to list the generators of <span class="process-math">\(\mathbb{Z}_n\text{?}\)</span> What are the generators of <span class="process-math">\(\mathbb{Z}_{25}\text{?}\)</span> Of <span class="process-math">\(\mathbb{Z}_{256}\text{?}\)</span>
-</div>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-290" id="answer-290"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-290"><div class="answer solution-like"><div class="para" id="p-5610">
-<a href="" class="xref" data-knowl="./knowl/theorem-order-in-cyclic.html" title="Theorem 15.1.13: The order of elements of a finite cyclic group">Theorem 15.1.13</a> implies that <span class="process-math">\(a\)</span> generates <span class="process-math">\(\mathbb{Z}_n\)</span> if and only if the greatest common divisor of <span class="process-math">\(n\)</span> and <span class="process-math">\(a\)</span> is 1. Therefore the list of generators of <span class="process-math">\(\mathbb{Z}_n\)</span> are the integers in <span class="process-math">\(\mathbb{Z}_n\)</span> that are relatively prime to <span class="process-math">\(n\text{.}\)</span> The generators of <span class="process-math">\(\mathbb{Z}_{25}\)</span> are all of the nonzero elements except 5, 10, 15, and 20. The generators of <span class="process-math">\(\mathbb{Z}_{256}\)</span> are the odd integers in <span class="process-math">\(\mathbb{Z}_{256}\)</span>  since 256 is <span class="process-math">\(2^8\text{.}\)</span>
-</div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-629"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
-<div class="para" id="p-5611">Prove that if the greatest common divisor of <span class="process-math">\(n\)</span> and <span class="process-math">\(m\)</span> is 1, then (1, 1) is a generator of <span class="process-math">\(\mathbb{Z}_n\times \mathbb{Z}_m\text{,}\)</span> and hence, <span class="process-math">\(\mathbb{Z}_n\times \mathbb{Z}_m\)</span> is isomorphic to  <span class="process-math">\(\mathbb{Z}_{n m}\text{.}\)</span>
-</div></article><article class="exercise exercise-like" id="exercise-630"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
-<div class="para logical" id="p-5612"><ol class="lower-alpha">
-<li id="li-2527"><div class="para" id="p-5613">Illustrate how the fast adder can be used to add the numbers 21, 5, 7, and 15 using the isomorphism between <span class="process-math">\(\mathbb{Z}_{77}\)</span> and <span class="process-math">\(\mathbb{Z}_7\times \mathbb{Z}_{11}\text{.}\)</span>
-</div></li>
-<li id="li-2528"><div class="para" id="p-5614">If the same isomorphism is used to add the numbers 25, 26, and 40, what would the result be, why would it be incorrect, and how would the answer differ from the answer in part a?</div></li>
-</ol></div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-291" id="answer-291"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-291"><div class="answer solution-like"><div class="para logical" id="p-5615"><ol class="lower-alpha">
-<li id="li-2529">
-<div class="para logical" id="p-5616">
+<li id="li-2531"><div class="para" id="p-5616">No. Assume that <span class="process-math">\(q \in \mathbb{Q}\)</span> generates <span class="process-math">\(\mathbb{Q}\text{.}\)</span> Then <span class="process-math">\(\langle q\rangle  = \{n q : n \in \mathbb{Z}\}\text{.}\)</span> But this gives us at most integer multiples of <span class="process-math">\(q\text{,}\)</span> not every element in <span class="process-math">\(\mathbb{Q}\text{.}\)</span>
+</div></li>
+<li id="li-2532"><div class="para" id="p-5617">No. Similar reasoning to part a.</div></li>
+<li id="li-2533"><div class="para" id="p-5618">Yes. 6 is a generator of <span class="process-math">\(6\mathbb{Z}\text{.}\)</span>
+</div></li>
+<li id="li-2534"><div class="para" id="p-5619">No.</div></li>
+<li id="li-2535"><div class="para" id="p-5620">Yes, <span class="process-math">\((1,1, 1)\)</span> is a generator of the group.</div></li>
+</ol></div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-630"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5621">
+<div class="para">For each group and element, determine the order of the cyclic subgroup generated by the element:</div>
+<ol class="lower-alpha">
+<li id="li-2536"><div class="para" id="p-5622">
+<span class="process-math">\(\mathbb{Z}_{25}\)</span> , 15</div></li>
+<li id="li-2537"><div class="para" id="p-5623">
+<span class="process-math">\(\mathbb{Z}_4\times \mathbb{Z}_9\)</span> , <span class="process-math">\((2, 6)\)</span> (apply Exercise 8)</div></li>
+<li id="li-2538"><div class="para" id="p-5624">
+<span class="process-math">\(\mathbb{Z}_{64}\)</span> , 2</div></li>
+</ol>
+</div></article><article class="exercise exercise-like" id="exercise-631"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="para" id="p-5625">How can <a href="" class="xref" data-knowl="./knowl/theorem-order-in-cyclic.html" title="Theorem 15.1.13: The order of elements of a finite cyclic group">Theorem 15.1.13</a> be applied to list the generators of <span class="process-math">\(\mathbb{Z}_n\text{?}\)</span> What are the generators of <span class="process-math">\(\mathbb{Z}_{25}\text{?}\)</span> Of <span class="process-math">\(\mathbb{Z}_{256}\text{?}\)</span>
+</div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-292" id="answer-292"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-292"><div class="answer solution-like"><div class="para" id="p-5626">
+<a href="" class="xref" data-knowl="./knowl/theorem-order-in-cyclic.html" title="Theorem 15.1.13: The order of elements of a finite cyclic group">Theorem 15.1.13</a> implies that <span class="process-math">\(a\)</span> generates <span class="process-math">\(\mathbb{Z}_n\)</span> if and only if the greatest common divisor of <span class="process-math">\(n\)</span> and <span class="process-math">\(a\)</span> is 1. Therefore the list of generators of <span class="process-math">\(\mathbb{Z}_n\)</span> are the integers in <span class="process-math">\(\mathbb{Z}_n\)</span> that are relatively prime to <span class="process-math">\(n\text{.}\)</span> The generators of <span class="process-math">\(\mathbb{Z}_{25}\)</span> are all of the nonzero elements except 5, 10, 15, and 20. The generators of <span class="process-math">\(\mathbb{Z}_{256}\)</span> are the odd integers in <span class="process-math">\(\mathbb{Z}_{256}\)</span>  since 256 is <span class="process-math">\(2^8\text{.}\)</span>
+</div></div></div>
+</div></article><article class="exercise exercise-like" id="exercise-632"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div class="para" id="p-5627">Prove that if the greatest common divisor of <span class="process-math">\(n\)</span> and <span class="process-math">\(m\)</span> is 1, then (1, 1) is a generator of <span class="process-math">\(\mathbb{Z}_n\times \mathbb{Z}_m\text{,}\)</span> and hence, <span class="process-math">\(\mathbb{Z}_n\times \mathbb{Z}_m\)</span> is isomorphic to  <span class="process-math">\(\mathbb{Z}_{n m}\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-633"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div class="para logical" id="p-5628"><ol class="lower-alpha">
+<li id="li-2539"><div class="para" id="p-5629">Illustrate how the fast adder can be used to add the numbers 21, 5, 7, and 15 using the isomorphism between <span class="process-math">\(\mathbb{Z}_{77}\)</span> and <span class="process-math">\(\mathbb{Z}_7\times \mathbb{Z}_{11}\text{.}\)</span>
+</div></li>
+<li id="li-2540"><div class="para" id="p-5630">If the same isomorphism is used to add the numbers 25, 26, and 40, what would the result be, why would it be incorrect, and how would the answer differ from the answer in part a?</div></li>
+</ol></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-293" id="answer-293"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-293"><div class="answer solution-like"><div class="para logical" id="p-5631"><ol class="lower-alpha">
+<li id="li-2541">
+<div class="para logical" id="p-5632">
 <div class="para">
 <span class="process-math">\(\theta :\mathbb{Z}_{77} \to  \mathbb{Z}_7 \times  \mathbb{Z}_{11}\)</span> maps the given integers as follows:</div>
 <div class="displaymath process-math">
@@ -1411,7 +1404,7 @@ u
 <div class="para">The final sum, 48, is obtained by using the facts that <span class="process-math">\(\theta ^{-1}(1,0) =22\)</span> and <span class="process-math">\(\theta ^{-1}(0,1)=56\)</span>
 </div>
 </div>
-<div class="para logical" id="p-5617"><div class="displaymath process-math">
+<div class="para logical" id="p-5633"><div class="displaymath process-math">
 \begin{equation*}
 \begin{split}
 \theta^{-1}(6,4)= 6 \times_{77}\theta ^{-1}(1,0) + 4 \times_{77}\theta^{-1}(0,1)\\
@@ -1422,8 +1415,8 @@ u
 \end{equation*}
 </div></div>
 </li>
-<li id="li-2530">
-<div class="para logical" id="p-5618">
+<li id="li-2542">
+<div class="para logical" id="p-5634">
 <div class="para">Using the same isomorphism:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1436,7 +1429,7 @@ u
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-5619"><div class="displaymath process-math">
+<div class="para logical" id="p-5635"><div class="displaymath process-math">
 \begin{equation*}
 \begin{split}
 theta ^{-1}(0,3) &amp;= 3 \times_{77}\theta ^{-1}(0,1)\\
@@ -1445,11 +1438,11 @@ theta ^{-1}(0,3) &amp;= 3 \times_{77}\theta ^{-1}(0,1)\\
 \end{split}\text{.}
 \end{equation*}
 </div></div>
-<div class="para" id="p-5620">The actual sum is 91. Our result is incorrect, since 91 is not in <span class="process-math">\(\mathbb{Z}_{77}\text{.}\)</span>  Notice that 91 and 14 differ by 77. Any error that we get using this technique will be a multiple of 77.</div>
+<div class="para" id="p-5636">The actual sum is 91. Our result is incorrect, since 91 is not in <span class="process-math">\(\mathbb{Z}_{77}\text{.}\)</span>  Notice that 91 and 14 differ by 77. Any error that we get using this technique will be a multiple of 77.</div>
 </li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-631"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
-<div class="para" id="p-5621">Prove that if <span class="process-math">\(G\)</span> is a cyclic group of order <span class="process-math">\(n\)</span> with generator <span class="process-math">\(a\text{,}\)</span> and <span class="process-math">\(p, q \in  \{0, 1, \ldots , n - 1\}\text{,}\)</span> then <span class="process-math">\((p+q)a = \left(p+_nq\right)a\text{.}\)</span>
+</div></article><article class="exercise exercise-like" id="exercise-634"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
+<div class="para" id="p-5637">Prove that if <span class="process-math">\(G\)</span> is a cyclic group of order <span class="process-math">\(n\)</span> with generator <span class="process-math">\(a\text{,}\)</span> and <span class="process-math">\(p, q \in  \{0, 1, \ldots , n - 1\}\text{,}\)</span> then <span class="process-math">\((p+q)a = \left(p+_nq\right)a\text{.}\)</span>
 </div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>
 <div class="ptx-content-footer">

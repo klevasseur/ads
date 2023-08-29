@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads The Monoid of a Finite-State Machine</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,25 +58,36 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
@@ -99,59 +128,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -160,7 +146,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -315,7 +301,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1124,8 +1113,8 @@ eBookConfig.runestone_version = '7.0.7';
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="s-monoid-of-fsm"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">14.4</span> <span class="title">The Monoid of a Finite-State Machine</span>
 </h2>
-<div class="para" id="p-5498">In this section, we will see how every finite-state machine has a monoid associated with it. For any finite-state machine, the elements of its associated monoid correspond to certain input sequences. Because only a finite number of combinations of states and inputs is possible for a finite-state machine there is only a finite number of input sequences that summarize the machine. This idea is illustrated best with a few examples.</div>
-<div class="para logical" id="p-5499">
+<div class="para" id="p-5514">In this section, we will see how every finite-state machine has a monoid associated with it. For any finite-state machine, the elements of its associated monoid correspond to certain input sequences. Because only a finite number of combinations of states and inputs is possible for a finite-state machine there is only a finite number of input sequences that summarize the machine. This idea is illustrated best with a few examples.</div>
+<div class="para logical" id="p-5515">
 <div class="para">Consider the parity checker. The following table summarizes the effect on the parity checker of strings in <span class="process-math">\(B^1\)</span> and <span class="process-math">\(B^2\text{.}\)</span> The row labeled “Even” contains the final state and final output as a result of each input string in <span class="process-math">\(B^1\)</span> and <span class="process-math">\(B^2\)</span> when the machine starts in the even state. Similarly, the row labeled “Odd” contains the same information for input sequences when the machine starts in the odd state.</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1139,8 +1128,8 @@ eBookConfig.runestone_version = '7.0.7';
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-5500">Note how, as indicated in the last row, the strings in <span class="process-math">\(B^2\)</span> have the same effect as certain strings in <span class="process-math">\(B^1\text{.}\)</span> For this reason, we can summarize the machine in terms of how it is affected by strings of length 1. The actual monoid that we will now describe consists of a set of functions, and the operation on the functions will be based on the concatenation operation.</div>
-<div class="para logical" id="p-5501">
+<div class="para" id="p-5516">Note how, as indicated in the last row, the strings in <span class="process-math">\(B^2\)</span> have the same effect as certain strings in <span class="process-math">\(B^1\text{.}\)</span> For this reason, we can summarize the machine in terms of how it is affected by strings of length 1. The actual monoid that we will now describe consists of a set of functions, and the operation on the functions will be based on the concatenation operation.</div>
+<div class="para logical" id="p-5517">
 <div class="para">Let <span class="process-math">\(T_0\)</span> be the final effect (state and output) on the parity checker of the input 0. Similarly, <span class="process-math">\(T_1\)</span> is defined as the final effect on the parity checker of the input 1.  More precisely,</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1154,7 +1143,7 @@ T_1(\textrm{ even})=(\textrm{ odd},1)  \quad \textrm{and} \quad T_1(\textrm{ odd
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-5502">In general, we define the operation on a set of such functions as follows: if <span class="process-math">\(s\text{,}\)</span> <span class="process-math">\(t\)</span> are input sequences and <span class="process-math">\(T_s\)</span> and <span class="process-math">\(T_t\text{,}\)</span> are functions as above, then <span class="process-math">\(T_s*T_t=T_{st}\text{,}\)</span> that is, the result of the function that summarizes the effect on the machine by the concatenation of <span class="process-math">\(s\)</span> with <span class="process-math">\(t\text{.}\)</span> Since, for example, 01 has the same effect on the parity checker as 1, <span class="process-math">\(T_0*T_1=T_{01}=T_1\text{.}\)</span> We don’t stop our calculation at <span class="process-math">\(T_{01}\)</span> because we want to use the shortest string of inputs to describe the final result. A complete table for the monoid of the parity checker is <span class="process-math">\(\begin{array}{c|c}
+<div class="para" id="p-5518">In general, we define the operation on a set of such functions as follows: if <span class="process-math">\(s\text{,}\)</span> <span class="process-math">\(t\)</span> are input sequences and <span class="process-math">\(T_s\)</span> and <span class="process-math">\(T_t\text{,}\)</span> are functions as above, then <span class="process-math">\(T_s*T_t=T_{st}\text{,}\)</span> that is, the result of the function that summarizes the effect on the machine by the concatenation of <span class="process-math">\(s\)</span> with <span class="process-math">\(t\text{.}\)</span> Since, for example, 01 has the same effect on the parity checker as 1, <span class="process-math">\(T_0*T_1=T_{01}=T_1\text{.}\)</span> We don’t stop our calculation at <span class="process-math">\(T_{01}\)</span> because we want to use the shortest string of inputs to describe the final result. A complete table for the monoid of the parity checker is <span class="process-math">\(\begin{array}{c|c}
 * &amp; 
 \begin{array}{cc}
 T_0 &amp; T_1 \\
@@ -1173,21 +1162,21 @@ T_1 &amp; T_0 \\
 \\
 \end{array}\)</span>
 </div>
-<div class="para" id="p-5503">What is the identity of this monoid? The monoid of the parity checker is isomorphic to the monoid <span class="process-math">\(\left[\mathbb{Z}_2; +_2\right]\text{.}\)</span>
+<div class="para" id="p-5519">What is the identity of this monoid? The monoid of the parity checker is isomorphic to the monoid <span class="process-math">\(\left[\mathbb{Z}_2; +_2\right]\text{.}\)</span>
 </div>
-<div class="para" id="p-5504">This operation may remind you of the composition operation on functions, but there are two principal differences. The domain of <span class="process-math">\(T_s\)</span> is not the codomain of <span class="process-math">\(T_t\)</span> and the functions are read from left to right unlike in composition, where they are normally read from right to left.</div>
-<div class="para" id="p-5505">You may have noticed that the output of the parity checker echoes the state of the machine and that we could have looked only at the effect on the machine as the final state. The following example has the same property, hence we will only consider the final state.</div>
+<div class="para" id="p-5520">This operation may remind you of the composition operation on functions, but there are two principal differences. The domain of <span class="process-math">\(T_s\)</span> is not the codomain of <span class="process-math">\(T_t\)</span> and the functions are read from left to right unlike in composition, where they are normally read from right to left.</div>
+<div class="para" id="p-5521">You may have noticed that the output of the parity checker echoes the state of the machine and that we could have looked only at the effect on the machine as the final state. The following example has the same property, hence we will only consider the final state.</div>
 <article class="example example-like" id="ex-no-consecutive-ones-monoid"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-no-consecutive-ones-monoid"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">14.4.1</span><span class="period">.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-no-consecutive-ones-monoid"><article class="example example-like"><div class="para" id="p-5506">The transition diagram for the machine that recognizes strings in <span class="process-math">\(B*\)</span>  that have no consecutive 1’s appears in <a href="" class="xref" data-knowl="./knowl/fig-no-11s-machine.html" title="Figure 14.4.2">Figure 14.4.2</a>. Note how it is similar to the graph in <a href="" class="xref" data-knowl="./knowl/fig-directed-graph-ex1.html" title="Figure 9.1.4">Figure 9.1.4</a>. Only a “reject state” has been added, for the case when an input of 1 occurs while in State <span class="process-math">\(a\text{.}\)</span> We construct a similar table to the one in the previous example to study the effect of certain strings on this machine. This time, we must include strings of length 3 before we recognize that no “new effects” can be found.</div> <figure class="figure figure-like" id="fig-no-11s-machine"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="external/images/fig-no-11s-machine.png" class="contained" alt="No Consecutive Ones Monoid"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">14.4.2<span class="period">.</span></span><span class="space"> </span>No Consecutive Ones Monoid</figcaption></figure> <div class="para" id="p-5507"><span class="process-math">\(\begin{array}{ccccccccccccccc}
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-no-consecutive-ones-monoid"><article class="example example-like"><div class="para" id="p-5522">The transition diagram for the machine that recognizes strings in <span class="process-math">\(B*\)</span>  that have no consecutive 1’s appears in <a href="" class="xref" data-knowl="./knowl/fig-no-11s-machine.html" title="Figure 14.4.2">Figure 14.4.2</a>. Note how it is similar to the graph in <a href="" class="xref" data-knowl="./knowl/fig-directed-graph-ex1.html" title="Figure 9.1.4">Figure 9.1.4</a>. Only a “reject state” has been added, for the case when an input of 1 occurs while in State <span class="process-math">\(a\text{.}\)</span> We construct a similar table to the one in the previous example to study the effect of certain strings on this machine. This time, we must include strings of length 3 before we recognize that no “new effects” can be found.</div> <figure class="figure figure-like" id="fig-no-11s-machine"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="external/images/fig-no-11s-machine.png" class="contained" alt="No Consecutive Ones Monoid"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">14.4.2<span class="period">.</span></span><span class="space"> </span>No Consecutive Ones Monoid</figcaption></figure> <div class="para" id="p-5523"><span class="process-math">\(\begin{array}{ccccccccccccccc}
 \textrm{ Inputs} &amp; 0 &amp; 1 &amp; 00 &amp; 01 &amp; 10 &amp; 11 &amp; 000 &amp; 001 &amp; 010 &amp; 011 &amp; 100 &amp; 101 &amp; 110 &amp; 111 \\
 s &amp; b &amp; a &amp; b &amp; a &amp; b &amp; r &amp; b &amp; a &amp; b &amp; r &amp; b &amp; a &amp; r &amp; r \\
 a &amp; b &amp; r &amp; b &amp; a &amp; r &amp; r &amp; b &amp; a &amp; b &amp; r &amp; r &amp; r &amp; r &amp; r \\
 b &amp; b &amp; a &amp; b &amp; a &amp; b &amp; r &amp; b &amp; a &amp; b &amp; r &amp; b &amp; a &amp; r &amp; r \\
 r &amp; r &amp; r &amp; r &amp; r &amp; r &amp; r &amp; r &amp; r &amp; r &amp; r &amp; r &amp; r &amp; r &amp; r \\
 \textrm{ Same} \textrm{ as} &amp;   &amp;   &amp; 0 &amp;   &amp;   &amp;   &amp; 0 &amp; 01 &amp; 0 &amp; 11 &amp; 10 &amp; 1 &amp; 11 &amp; 11 \\
-\end{array}\)</span></div> <div class="para logical" id="p-5508">
+\end{array}\)</span></div> <div class="para logical" id="p-5524">
 <div class="para">The following table summarizes how combinations of the strings <span class="process-math">\(0,1,01,10, \textrm{ and } 11\)</span> affect this machine.</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1217,7 +1206,7 @@ T_{11} &amp; T_{11} &amp; T_{11} &amp; T_{11} &amp; T_{11} \\
 \end{array}
 \end{equation*}
 </div>
-</div> <div class="para logical" id="p-5509">
+</div> <div class="para logical" id="p-5525">
 <div class="para">All the results in this table can be obtained using the previous table. For example,</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1228,12 +1217,12 @@ T_{01}*T_{01}=T_{0101}=T_{010}T_1=T_0T_1=T_{01}\\
 \end{array}
 \end{equation*}
 </div>
-</div> <div class="para" id="p-5510">Note that none of the elements that we have listed in this table serves as the identity for our operation. This problem can always be remedied by including the function that corresponds to the input of the null string, <span class="process-math">\(T_{\lambda }\text{.}\)</span> Since the null string is the identity for concatenation of strings, <span class="process-math">\(T_sT_{\lambda }=T_{\lambda }T_s=T_s\)</span> for all input strings <span class="process-math">\(s\text{.}\)</span>
+</div> <div class="para" id="p-5526">Note that none of the elements that we have listed in this table serves as the identity for our operation. This problem can always be remedied by including the function that corresponds to the input of the null string, <span class="process-math">\(T_{\lambda }\text{.}\)</span> Since the null string is the identity for concatenation of strings, <span class="process-math">\(T_sT_{\lambda }=T_{\lambda }T_s=T_s\)</span> for all input strings <span class="process-math">\(s\text{.}\)</span>
 </div></article></div>
 <article class="example example-like" id="ex-unit-time-delay"><a href="" data-knowl="" class="id-ref example-knowl original has-image" data-refid="hk-ex-unit-time-delay"><h3 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">14.4.3</span><span class="period">.</span><span class="space"> </span><span class="title">The Unit-time Delay Machine.</span>
-</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-unit-time-delay"><article class="example example-like"><div class="para" id="p-5511">A finite-state machine called the unit-time delay machine does not echo its current state, but prints its previous state. For this reason, when we find the monoid of the unit-time delay machine, we must consider both state and output. The transition diagram of this machine appears in <a href="" class="xref" data-knowl="./knowl/fig-unit-time-delay.html" title="Figure 14.4.4">Figure 14.4.4</a>.</div> <figure class="figure figure-like" id="fig-unit-time-delay"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="external/images/fig-unit-time-delay.png" class="contained" alt="Unit time delay graph"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">14.4.4<span class="period">.</span></span><span class="space"> </span></figcaption></figure> <div class="para" id="p-5512"><span class="process-math">\(\begin{array}{c|c}
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-unit-time-delay"><article class="example example-like"><div class="para" id="p-5527">A finite-state machine called the unit-time delay machine does not echo its current state, but prints its previous state. For this reason, when we find the monoid of the unit-time delay machine, we must consider both state and output. The transition diagram of this machine appears in <a href="" class="xref" data-knowl="./knowl/fig-unit-time-delay.html" title="Figure 14.4.4">Figure 14.4.4</a>.</div> <figure class="figure figure-like" id="fig-unit-time-delay"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="external/images/fig-unit-time-delay.png" class="contained" alt="Unit time delay graph"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">14.4.4<span class="period">.</span></span><span class="space"> </span></figcaption></figure> <div class="para" id="p-5528"><span class="process-math">\(\begin{array}{c|c}
 \textrm{ Input} &amp; 
 \begin{array}{cccccccccc}
 &amp; 
@@ -1257,7 +1246,7 @@ T_{01}*T_{01}=T_{0101}=T_{010}T_1=T_0T_1=T_{01}\\
 &amp;   &amp;   &amp;   &amp;   &amp;   &amp; 00 &amp; 01 &amp; 10 &amp; 11 \\
 \end{array}
 \\
-\end{array}\)</span></div> <div class="para" id="p-5513">Again, since no new outcomes were obtained from strings of length 3, only strings of length 2 or less contribute to the monoid of the machine. The table for the strings of positive length shows that we must add <span class="process-math">\(T_{\lambda }\)</span> to obtain a monoid.</div> <div class="para logical" id="p-5514"><div class="displaymath process-math">
+\end{array}\)</span></div> <div class="para" id="p-5529">Again, since no new outcomes were obtained from strings of length 3, only strings of length 2 or less contribute to the monoid of the machine. The table for the strings of positive length shows that we must add <span class="process-math">\(T_{\lambda }\)</span> to obtain a monoid.</div> <div class="para logical" id="p-5530"><div class="displaymath process-math">
 \begin{equation*}
 \begin{array}{c|c}
 * &amp; 
@@ -1290,13 +1279,13 @@ T_{10} &amp; T_{11} &amp; T_{00} &amp; T_{01} &amp; T_{10} &amp; T_{11} \\
 <section class="exercises" id="exercises-14-4"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber"></span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-617"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para" id="p-5515">For each of the transition diagrams in <a href="" class="xref" data-knowl="./knowl/fig-exercise-14-4-1.html" title="Figure 14.4.5">Figure 5</a>, write out tables for their associated monoids. Identify the identity in terms of a string of positive length, if possible.</div> <figure class="figure figure-like" id="fig-exercise-14-4-1"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="external/images/fig-exercise-14-4-1.png" class="contained" alt="Exercise 1 of section 14.4"></div>
+<article class="exercise exercise-like" id="exercise-620"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para" id="p-5531">For each of the transition diagrams in <a href="" class="xref" data-knowl="./knowl/fig-exercise-14-4-1.html" title="Figure 14.4.5">Figure 5</a>, write out tables for their associated monoids. Identify the identity in terms of a string of positive length, if possible.</div> <figure class="figure figure-like" id="fig-exercise-14-4-1"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="external/images/fig-exercise-14-4-1.png" class="contained" alt="Exercise 1 of section 14.4"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">14.4.5<span class="period">.</span></span><span class="space"> </span>Exercise 1</figcaption></figure><div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-21" id="hint-21"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-21"><div class="hint solution-like"><div class="para" id="p-5516">Where the output echoes the current state, the output can be ignored.</div></div></div>
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-284" id="answer-284"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-284"><div class="answer solution-like"><div class="para logical" id="p-5517"><ol class="lower-alpha">
-<li id="li-2507">
-<div class="para" id="p-5518">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-21" id="hint-21"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-21"><div class="hint solution-like"><div class="para" id="p-5532">Where the output echoes the current state, the output can be ignored.</div></div></div>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-286" id="answer-286"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-286"><div class="answer solution-like"><div class="para logical" id="p-5533"><ol class="lower-alpha">
+<li id="li-2519">
+<div class="para" id="p-5534">
 <span class="process-math">\(\begin{array}{c|cccccc}
 \textrm{ Input String} &amp; a &amp; b &amp; c &amp; aa &amp; ab &amp; ac \\
 \hline
@@ -1311,7 +1300,7 @@ T_{10} &amp; T_{11} &amp; T_{00} &amp; T_{01} &amp; T_{10} &amp; T_{11} \\
 3 &amp; (c,3) &amp; (c,3) &amp; (c,3) &amp; (c,3) &amp; (c,3) &amp; (c,3) \\
 \end{array}\)</span>
 </div>
-<div class="para logical" id="p-5519">
+<div class="para logical" id="p-5535">
 <div class="para">We can see that <span class="process-math">\(T_aT_a= T_{\textrm{ \textit{aa}}}=T_a\text{,}\)</span>  <span class="process-math">\(T_aT_b= T_{\textrm{ \textit{ab}}}= T_b\text{,}\)</span> etc. Therefore, we have the following monoid:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1338,10 +1327,10 @@ T_c &amp; T_c &amp; T_c \\
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-5520">Notice that <span class="process-math">\(T_a\)</span> is the identity of this monoid.</div>
+<div class="para" id="p-5536">Notice that <span class="process-math">\(T_a\)</span> is the identity of this monoid.</div>
 </li>
-<li id="li-2508">
-<div class="para" id="p-5521"><span class="process-math">\(\begin{array}{c|cccccc}
+<li id="li-2520">
+<div class="para" id="p-5537"><span class="process-math">\(\begin{array}{c|cccccc}
 \textrm{Input String} &amp; 1 &amp; 2  &amp;  11 &amp; 12 &amp; 21 &amp; 22 \\
 \hline
 A &amp; C &amp; B &amp; A &amp; D &amp; D &amp; A \\
@@ -1349,7 +1338,7 @@ B &amp;  D &amp; A &amp; B &amp; C &amp; C &amp; B \\
 C &amp; A &amp; D &amp; C &amp; B &amp; B &amp; C \\
 D &amp;  B &amp; C &amp; D &amp; A &amp; A &amp; D \\
 \end{array}\)</span></div>
-<div class="para" id="p-5522"><span class="process-math">\(\begin{array}{c|cccccccc}
+<div class="para" id="p-5538"><span class="process-math">\(\begin{array}{c|cccccccc}
 \textrm{Input String} &amp;111 &amp; 112 &amp; 121 &amp; 122 &amp; 211 &amp; 212 &amp; 221 &amp; 222 \\
 \hline
 A &amp; C &amp; B &amp; B &amp; C &amp; B &amp; C &amp; C &amp; B \\
@@ -1357,7 +1346,7 @@ B  &amp; D &amp; A &amp; A &amp;  D &amp; A &amp; D &amp; D &amp; A \\
 C  &amp; B &amp; C &amp; C &amp; B &amp; C &amp; B &amp; B &amp; C \\
 D  &amp; B &amp; C &amp; C &amp; B &amp; C &amp; B &amp; B &amp; C \\
 \end{array}\)</span></div>
-<div class="para logical" id="p-5523">
+<div class="para logical" id="p-5539">
 <div class="para">We have the following monoid:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1386,15 +1375,15 @@ T_2 &amp; T_1 &amp; T_{12} &amp; T_{11} \\
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-5524">Notice that <span class="process-math">\(T_{11}\)</span> is the identity of this monoid.</div>
+<div class="para" id="p-5540">Notice that <span class="process-math">\(T_{11}\)</span> is the identity of this monoid.</div>
 </li>
 </ol></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-618"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para" id="p-5525">What common monoids are isomorphic to the monoids obtained in the previous exercise?</div></article><article class="exercise exercise-like" id="exercise-619"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para" id="p-5526">Can two finite-state machines with nonisomorphic transition diagrams have isomorphic monoids?</div>
+</div></article><article class="exercise exercise-like" id="exercise-621"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para" id="p-5541">What common monoids are isomorphic to the monoids obtained in the previous exercise?</div></article><article class="exercise exercise-like" id="exercise-622"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para" id="p-5542">Can two finite-state machines with nonisomorphic transition diagrams have isomorphic monoids?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-285" id="answer-285"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-285"><div class="answer solution-like">
-<div class="para logical" id="p-5527">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-287" id="answer-287"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-287"><div class="answer solution-like">
+<div class="para logical" id="p-5543">
 <div class="para">Yes, just consider the unit time delay machine of <a href="" class="xref" data-knowl="./knowl/fig-unit-time-delay.html" title="Figure 14.4.4">Figure 14.4.4</a>. Its monoid is described by the table at the end of Section 14.4 where the <span class="process-math">\(T_{\lambda
 }\)</span> row and <span class="process-math">\(T_{\lambda }\)</span> column are omitted. Next consider the machine in <a href="" class="xref" data-knowl="./knowl/fig-14-5-3.html" title="Figure 14.5.7">Figure 14.5.7</a>. The monoid of this machine is:</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/fig-unit-time-delay.html ./knowl/fig-14-5-3.html">
@@ -1413,7 +1402,7 @@ T_{11} &amp; T_{11} &amp; T_{10} &amp; T_{11} &amp; T_{00} &amp; T_{01} &amp; T_
 \end{array}
 \end{equation*}
 </div>
-</div> <div class="para" id="p-5528">Hence both of these machines have the same monoid, however, their transition diagrams are nonisomorphic since the first has two vertices and the second has seven.</div>
+</div> <div class="para" id="p-5544">Hence both of these machines have the same monoid, however, their transition diagrams are nonisomorphic since the first has two vertices and the second has seven.</div>
 </div></div>
 </div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>

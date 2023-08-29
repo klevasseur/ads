@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Linear Equations over the Integers Mod 2</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,32 +58,47 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
 // Their results will be linked, only within language type
-sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
-                       linked: true,
-                       languages: ['sage'],
-                       evalButtonText: 'Evaluate (Sage)'});
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
 </script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
 <script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
@@ -105,59 +138,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -166,7 +156,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -321,7 +311,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1133,9 +1126,9 @@ eBookConfig.runestone_version = '7.0.7';
 <section class="subsection" id="subsection-176"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">12.6.1</span> <span class="title">Row reduction mod 2</span>
 </h3>
-<div class="para" id="p-4910">The methods we have studied for solving systems of equations up to this point can be applied to systems in which all arithmetic is done over other algebraic systems, including the integers modulo 2.    The mod 2 case will become particularly useful in our later study of coding theory.</div>
-<div class="para" id="p-4911">When solving systems of equations with mod 2 arithmetic, the elementary row operations are still fundamental.  However, since there is only one nonzero element, 1, you never need to multiply a row by a nonzero constant.   One other big difference is that the number of possible solutions is always finite.  If you have <span class="process-math">\(m\)</span> linear equations in <span class="process-math">\(n\)</span> unknowns, each unknown can only take on one of two values, 0 or 1.   Therefore there are only <span class="process-math">\(2^n\)</span> possible <span class="process-math">\(n\)</span>-tuples to from which to draw a solution set.   Assuming <span class="process-math">\(m \leq n\text{,}\)</span> you typically (but not always) will have <span class="process-math">\(m\)</span> basic variables after row-reduction and <span class="process-math">\(n-m\)</span> free variable.  If this is the case, and any solution exists, there will be <span class="process-math">\(2^{n-m}\)</span> different solutions.</div>
-<div class="para logical" id="p-4912">
+<div class="para" id="p-4926">The methods we have studied for solving systems of equations up to this point can be applied to systems in which all arithmetic is done over other algebraic systems, including the integers modulo 2.    The mod 2 case will become particularly useful in our later study of coding theory.</div>
+<div class="para" id="p-4927">When solving systems of equations with mod 2 arithmetic, the elementary row operations are still fundamental.  However, since there is only one nonzero element, 1, you never need to multiply a row by a nonzero constant.   One other big difference is that the number of possible solutions is always finite.  If you have <span class="process-math">\(m\)</span> linear equations in <span class="process-math">\(n\)</span> unknowns, each unknown can only take on one of two values, 0 or 1.   Therefore there are only <span class="process-math">\(2^n\)</span> possible <span class="process-math">\(n\)</span>-tuples to from which to draw a solution set.   Assuming <span class="process-math">\(m \leq n\text{,}\)</span> you typically (but not always) will have <span class="process-math">\(m\)</span> basic variables after row-reduction and <span class="process-math">\(n-m\)</span> free variable.  If this is the case, and any solution exists, there will be <span class="process-math">\(2^{n-m}\)</span> different solutions.</div>
+<div class="para logical" id="p-4928">
 <div class="para">Let’s look at an example, which is coverted to matrix form immediately.</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1147,7 +1140,7 @@ x_1 &amp;      &amp;    &amp; {}+{}&amp;x_3 &amp;      &amp;      &amp;{}+{} &am
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-4913">
+<div class="para logical" id="p-4929">
 <div class="para">The augmented  matrix of the  system is</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1197,7 +1190,7 @@ x_1 &amp;      &amp;    &amp; {}+{}&amp;x_3 &amp;      &amp;      &amp;{}+{} &am
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-4914">
+<div class="para logical" id="p-4930">
 <div class="para">Notice that at this point, we cannot pivot on the third row, third column since that entry is zero.  Therefore we move over to the next column, making the <span class="process-math">\(x_4\)</span> basic.</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1214,7 +1207,7 @@ x_1 &amp;      &amp;    &amp; {}+{}&amp;x_3 &amp;      &amp;      &amp;{}+{} &am
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-4915">
+<div class="para logical" id="p-4931">
 <div class="para">This completes the row reduction and we can now identify the solution set. Keep in mind that since addition is subtraction, terms can be moved to either side of an equals sign without any change in sign. The basic variables are  <span class="process-math">\(x_1\text{,}\)</span>  <span class="process-math">\(x_2\text{,}\)</span> and  <span class="process-math">\(x_4\text{,}\)</span> while the other three variables are  free.  The general solution of the system is</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1229,24 +1222,24 @@ x_6 = x_6 \\
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-4916">With three free variables, there are <span class="process-math">\(2^3=8\)</span> solutions to this system.  For example, one of them is obtained by setting <span class="process-math">\(x_3=1\text{,}\)</span> <span class="process-math">\(x_5=1\text{,}\)</span> and <span class="process-math">\(x_6=0\text{,}\)</span> which produces <span class="process-math">\((x_1, x_2, x_3, x_4, x_5, x_6) = (0,1,1,0,1,0)\text{.}\)</span>
+<div class="para" id="p-4932">With three free variables, there are <span class="process-math">\(2^3=8\)</span> solutions to this system.  For example, one of them is obtained by setting <span class="process-math">\(x_3=1\text{,}\)</span> <span class="process-math">\(x_5=1\text{,}\)</span> and <span class="process-math">\(x_6=0\text{,}\)</span> which produces <span class="process-math">\((x_1, x_2, x_3, x_4, x_5, x_6) = (0,1,1,0,1,0)\text{.}\)</span>
 </div>
-<div class="para" id="p-4917">We can check our row reduction with SageMath:</div>
+<div class="para" id="p-4933">We can check our row reduction with SageMath:</div>
 <pre class="ptx-sagecell sagecell-sage" id="sage-56"><script type="text/x-sage">H=Matrix(Integers(2),[[1,1,0,1,0,0,1],
    [1,0,1,0,1,0,0],[0,1,1,0,0,1,0]])
 H.echelon_form()
 </script></pre></section><section class="exercises" id="exercises-12-6"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">12.6.2</span> <span class="title">Exercises</span>
 </h3>
-<section class="introduction" id="introduction-48"><div class="para" id="p-4918">In all of the exercises that follow, the systems of equations are over <span class="process-math">\(\mathbb{Z}_2\text{,}\)</span> and so mod 2 arithmetic should be used in solving them.</div></section><article class="exercise exercise-like" id="exercise-12-6-1"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para logical" id="p-4919">
+<section class="introduction" id="introduction-48"><div class="para" id="p-4934">In all of the exercises that follow, the systems of equations are over <span class="process-math">\(\mathbb{Z}_2\text{,}\)</span> and so mod 2 arithmetic should be used in solving them.</div></section><article class="exercise exercise-like" id="exercise-12-6-1"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para logical" id="p-4935">
 <div class="para">Solve the following systems, describing the solution sets completely:</div>
 <ol class="lower-alpha">
-<li id="li-2246"><div class="para" id="p-4920"><span class="process-math">\(\displaystyle \begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}}
+<li id="li-2258"><div class="para" id="p-4936"><span class="process-math">\(\displaystyle \begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}}
 x_1  &amp; {}+{} &amp; x_2 &amp;       &amp;     &amp; = 0 \\
 x_1  &amp;       &amp;     &amp; {}+{} &amp; x_3 &amp; = 0 \\
 \end{array} \)</span></div></li>
-<li id="li-2247"><div class="para" id="p-4921"><span class="process-math">\(\displaystyle \begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}}
+<li id="li-2259"><div class="para" id="p-4937"><span class="process-math">\(\displaystyle \begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}}
 x_1  &amp; {}+{} &amp; x_2 &amp;       &amp;    &amp;       &amp;        &amp; = 0 \\
 &amp;       &amp; x_2 &amp; {}+{} &amp; x_3&amp;       &amp;       &amp;   = 0\\
 &amp;       &amp;     &amp;       &amp; x_3&amp; {}+{} &amp; x_4   &amp; = 1 \\
@@ -1255,20 +1248,20 @@ x_1  &amp; {}+{} &amp; x_2 &amp; {}+{} &amp; x_3&amp;       &amp;        &amp;  
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-250" id="answer-250"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-250"><div class="answer solution-like"><div class="para logical" id="p-4922"><ol class="lower-alpha">
-<li id="li-2248"><div class="para" id="p-4923"><span class="process-math">\(\displaystyle \{(0,0,0),(1,1,1)\}\)</span></div></li>
-<li id="li-2249"><div class="para" id="p-4924"><span class="process-math">\(\displaystyle \{(1,1,1,0)\}\)</span></div></li>
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-252" id="answer-252"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-252"><div class="answer solution-like"><div class="para logical" id="p-4938"><ol class="lower-alpha">
+<li id="li-2260"><div class="para" id="p-4939"><span class="process-math">\(\displaystyle \{(0,0,0),(1,1,1)\}\)</span></div></li>
+<li id="li-2261"><div class="para" id="p-4940"><span class="process-math">\(\displaystyle \{(1,1,1,0)\}\)</span></div></li>
 </ol></div></div></div>
 </div></article><article class="exercise exercise-like" id="exercise-12-6-3"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para logical" id="p-4925">
+<div class="para logical" id="p-4941">
 <div class="para">This exercise provides an example in which the number of basic variables is less than the number of equations. The only difference between the two systems below is the right hand sides.  You can start with an augmented matrix having two right side columns and do row reduction for both systems at the same time.</div>
 <ol class="lower-alpha">
-<li id="li-2250"><div class="para" id="p-4926"><span class="process-math">\(\displaystyle \begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}}
+<li id="li-2262"><div class="para" id="p-4942"><span class="process-math">\(\displaystyle \begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}}
 x_1 &amp; {}+{} &amp;x_2 &amp;       &amp;    &amp;{}+{} &amp; x_4   &amp;= 1 \\
 x_1 &amp;       &amp;    &amp; {}+{} &amp;x_3 &amp; {}+{} &amp; x_4  &amp;= 0 \\
 &amp;       &amp; x_2 &amp; {}+{} &amp;x_3 &amp;      &amp;      &amp;= 1 \\
 \end{array}\)</span></div></li>
-<li id="li-2251"><div class="para" id="p-4927"><span class="process-math">\(\displaystyle \begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}}
+<li id="li-2263"><div class="para" id="p-4943"><span class="process-math">\(\displaystyle \begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}}
 x_1 &amp; {}+{} &amp;x_2 &amp;       &amp;    &amp;{}+{} &amp; x_4   &amp;= 1 \\
 x_1 &amp;       &amp;    &amp; {}+{} &amp;x_3 &amp; {}+{} &amp; x_4  &amp;= 0 \\
 &amp;       &amp; x_2 &amp; {}+{} &amp;x_3 &amp;      &amp;      &amp;= 0 \\
@@ -1276,7 +1269,7 @@ x_1 &amp;       &amp;    &amp; {}+{} &amp;x_3 &amp; {}+{} &amp; x_4  &amp;= 0 \\
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-251" id="answer-251"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-251"><div class="answer solution-like"><div class="para logical" id="p-4928">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-253" id="answer-253"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-253"><div class="answer solution-like"><div class="para logical" id="p-4944">
 <div class="para">As suggested here is the augmented matrix with both right sides, and its row reduction:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1300,15 +1293,15 @@ x_1 &amp;       &amp;    &amp; {}+{} &amp;x_3 &amp; {}+{} &amp; x_4  &amp;= 0 \\
 </div>
 <div class="para">There are only two basic variables here because the left side of the last equation is the sum of the  left sides of the first two equations.</div>
 <ol class="lower-alpha">
-<li id="li-2252"><div class="para" id="p-4929">Ignoring the last column of both matrices, we see that the last equation of the first system reduces to <span class="process-math">\(0=0\text{,}\)</span> which is always true, and the first two equations yield two free variables, <span class="process-math">\(x_3\)</span> and <span class="process-math">\(x_4\text{.}\)</span>  The general solution is the set of quadruples <span class="process-math">\(\{(x_3 +_2 x_4,x_3 +_2 1, x_3, x_4) \mid x_3, x_4 \in \mathbb{Z}_2 \}\text{.}\)</span>  The cardinality of the solution set is 4.</div></li>
-<li id="li-2253"><div class="para" id="p-4930">If we replace the fifth column with the sixth one, the last row indicates that <span class="process-math">\(0=1\text{,}\)</span> which means that the solution set is empty.</div></li>
+<li id="li-2264"><div class="para" id="p-4945">Ignoring the last column of both matrices, we see that the last equation of the first system reduces to <span class="process-math">\(0=0\text{,}\)</span> which is always true, and the first two equations yield two free variables, <span class="process-math">\(x_3\)</span> and <span class="process-math">\(x_4\text{.}\)</span>  The general solution is the set of quadruples <span class="process-math">\(\{(x_3 +_2 x_4,x_3 +_2 1, x_3, x_4) \mid x_3, x_4 \in \mathbb{Z}_2 \}\text{.}\)</span>  The cardinality of the solution set is 4.</div></li>
+<li id="li-2265"><div class="para" id="p-4946">If we replace the fifth column with the sixth one, the last row indicates that <span class="process-math">\(0=1\text{,}\)</span> which means that the solution set is empty.</div></li>
 </ol>
 </div></div></div>
 </div></article><article class="exercise exercise-like" id="exercise-12-6-2"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para logical" id="p-4931">
+<div class="para logical" id="p-4947">
 <div class="para">This exercise motivates the concept of a coset in Chapter 15.</div>
 <ol class="lower-alpha">
-<li id="li-2254"><div class="para logical" id="p-4932">
+<li id="li-2266"><div class="para logical" id="p-4948">
 <div class="para">Solve the following system and prove that the solution set is a linear combination of vectors in <span class="process-math">\(\mathbb{Z}_{2}^{5}\)</span>  and also a subgroup of the group <span class="process-math">\(\mathbb{Z}_{2}^{5}\)</span> under coordinatewise mod 2 addition.</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1321,7 +1314,7 @@ x_1 &amp;       &amp;    &amp; {}+{} &amp;x_3 &amp;{}+{} &amp; x_4 &amp;      &a
 \end{equation*}
 </div>
 </div></li>
-<li id="li-2255"><div class="para logical" id="p-4933">
+<li id="li-2267"><div class="para logical" id="p-4949">
 <div class="para">Describe the solution set to the following system as it relates to the solution set to the system in the previous part of this exercise.</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1337,9 +1330,9 @@ x_1 &amp;       &amp;    &amp; {}+{} &amp;x_3 &amp;{}+{} &amp; x_4 &amp;      &a
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-252" id="answer-252"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-252"><div class="answer solution-like"><div class="para logical" id="p-4934"><ol class="lower-alpha">
-<li id="li-2256">
-<div class="para logical" id="p-4935">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-254" id="answer-254"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-254"><div class="answer solution-like"><div class="para logical" id="p-4950"><ol class="lower-alpha">
+<li id="li-2268">
+<div class="para logical" id="p-4951">
 <div class="para">Row reduction produces a solution with one free variable, <span class="process-math">\(x_3\text{.}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1351,10 +1344,10 @@ x_1 &amp;       &amp;    &amp; {}+{} &amp;x_3 &amp;{}+{} &amp; x_4 &amp;      &a
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-4936">The solution set has only two elements. It is <span class="process-math">\(\{(0,0,0,0,0), (1,1,1,0,0)\}\text{.}\)</span>  Since <span class="process-math">\(\mathbb{Z}_{2}^{5}\)</span> is a finite group,  the solution set is a subgroup because it is closed with respect to coordinatewise mod 2 addition.</div>
+<div class="para" id="p-4952">The solution set has only two elements. It is <span class="process-math">\(\{(0,0,0,0,0), (1,1,1,0,0)\}\text{.}\)</span>  Since <span class="process-math">\(\mathbb{Z}_{2}^{5}\)</span> is a finite group,  the solution set is a subgroup because it is closed with respect to coordinatewise mod 2 addition.</div>
 </li>
-<li id="li-2257">
-<div class="para logical" id="p-4937">
+<li id="li-2269">
+<div class="para logical" id="p-4953">
 <div class="para">The row-reduced augmented matrix of coefficients provides the solution</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1365,7 +1358,7 @@ x_1 &amp;       &amp;    &amp; {}+{} &amp;x_3 &amp;{}+{} &amp; x_4 &amp;      &a
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-4938">Therefore, the solution to this system is a shift of the solution set to the homogeneous system by the vector <span class="process-math">\((0,1,0,1,0)\text{,}\)</span> which is <span class="process-math">\(\{(0,1,0,1,0), (1,0,1,1,0)\}\)</span>
+<div class="para" id="p-4954">Therefore, the solution to this system is a shift of the solution set to the homogeneous system by the vector <span class="process-math">\((0,1,0,1,0)\text{,}\)</span> which is <span class="process-math">\(\{(0,1,0,1,0), (1,0,1,1,0)\}\)</span>
 </div>
 </li>
 </ol></div></div></div>

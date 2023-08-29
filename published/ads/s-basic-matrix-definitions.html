@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ads Basic Definitions and Operations</title>
@@ -17,20 +17,38 @@
 <meta property="book:title" content="Applied Discrete Structures">
 <meta property="book:author" content="Al Doerr">
 <meta property="book:author" content="Ken Levasseur">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -40,25 +58,36 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="_static/lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
@@ -99,59 +128,16 @@ eBookConfig.allow_pairs = ~._ allow_pairs _.~;
 eBookConfig.enableScratchAC = true;
 eBookConfig.acDefaultLanguage = 'python';
 eBookConfig.new_server_prefix = "/ns";
-eBookConfig.runestone_version = '7.0.7';
+eBookConfig.runestone_version = '7.1.1';
 </script>
-<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><style>.dropdown {
-    position: relative;
-    display: inline-block;
-    height: 39px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 7px;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: #aaaaaa;
- }
- .dropdown-content {
-    position: absolute;
-    display: none;
-    left: 300px;
-    text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica';
-}
-.dropdown:hover {
-    background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: fixed;
-}
-.dropdown-content {
-    background-color: white;
-    z-index: 1800;
-    min-width: 100px;
-    padding: 5px;
-}
-.dropdown-content a {
-    display: block;
-    text-decoration: none;
-    color: #662211;
-}
-.dropdown-content a:hover {
-    background-color: #671d12;
-    color: #ffffff;
-}
-</style>
-<!--*** Runestone Services ***-->
-<script type="text/javascript" src="_static/prefix-runtime.fd9ce61c3c71cb22.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.193e36c07abd0197.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.89acb6c6122954e4.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8d2f742bc74f4a41.css">
+<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script><!--*** Runestone Services ***-->
+<script type="text/javascript" src="_static/prefix-runtime.6f0528865cd47dcd.bundle.js"></script><script type="text/javascript" src="_static/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="_static/prefix-runestone.3a5641c4e1fe869e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.cec40a61180efd41.css">
 </head>
 <body id="ads" class="pretext book ignore-math">
 <a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
 <a id="logo-link" class="logo-link" href="http://discretemath.org" target="_blank"><img src="external/http://discretemath.org/images/ads_v3_cover.jpg" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="index.html"><span class="title">Applied Discrete Structures</span></a></h1>
+<h1 class="heading"><a href="adsindex.html"><span class="title">Applied Discrete Structures</span></a></h1>
 <p class="byline">Al Doerr, Ken Levasseur</p>
 </div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
@@ -160,7 +146,7 @@ eBookConfig.runestone_version = '7.0.7';
 <div id="searchempty" class="searchempty"><span>No results.</span></div>
 <ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar ptx-runestone-container"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><div class="dropdown">👤<div class="dropdown-content">
 {% if settings.academy_mode: %}
 <a href="/runestone/assignments/chooseAssignment">Assignments</a><a href="/runestone/assignments/practice">Practice</a><hr>
 <a id="inst_peer_link" href="/%7Bappname%7D/peer/instructor.html">Peer Instruction (Instructor)</a><a href="/%7Bappname%7D/peer/student.html">Peer Instruction (Student)</a><hr>
@@ -315,7 +301,10 @@ eBookConfig.runestone_version = '7.0.7';
 <div class="toc-item"><a href="s-set-Notation-and-Relations.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation and Relations</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">The notion of a set</span></a></div></li>
-<li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div></li>
+<li>
+<div class="toc-item"><a href="s-set-Notation-and-Relations.html#ss-subsets" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Subsets</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#S11-reading-questions" class="internal"><span class="codenumber">1.1.2</span> <span class="title">Check your understanding!</span></a></div></li></ul>
+</li>
 <li><div class="toc-item"><a href="s-set-Notation-and-Relations.html#exercises-1" class="internal"><span class="codenumber">1.1.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -1129,7 +1118,7 @@ eBookConfig.runestone_version = '7.0.7';
 </h3>
 <article class="definition definition-like" id="def-matrix"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">5.1.1</span><span class="period">.</span><span class="space"> </span><span class="title">matrix.</span>
-</h4> <div class="para logical" id="p-1766">
+</h4> <div class="para logical" id="p-1782">
 <div class="para">A matrix is a rectangular array of elements of the form</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1143,16 +1132,16 @@ a_{m1} &amp; a_{m2} &amp; a_{m3} &amp; \cdots  &amp; a_{mn} \\
 \end{array} \right)
 \end{equation*}
 </div>
-</div></article><div class="para" id="p-1767">A convenient way of describing a matrix in general is to designate each entry via its position in the array. That is, the entry <span class="process-math">\(a_{34}\)</span> is the entry in the third row and fourth column of the matrix <span class="process-math">\(A\text{.}\)</span> Depending on the situation, we will decide in advance to which set the entries in a matrix will belong. For example, we might assume that each entry <span class="process-math">\(a_{ij}\)</span> (<span class="process-math">\(1 \leq i\leq  m\text{,}\)</span> <span class="process-math">\(1 \leq  j \leq  n\)</span>) is a real number. In that case we would use <span class="process-math">\(M_{m\times n}(\mathbb{R})\)</span> to stand for the set of all <span class="process-math">\(m\)</span> by <span class="process-math">\(n\)</span> matrices whose entries are real numbers. If we decide that the entries in a matrix must come from a set <span class="process-math">\(S\text{,}\)</span> we use <span class="process-math">\(M_{m\times n}(S)\)</span> to denote all such matrices.</div>
+</div></article><div class="para" id="p-1783">A convenient way of describing a matrix in general is to designate each entry via its position in the array. That is, the entry <span class="process-math">\(a_{34}\)</span> is the entry in the third row and fourth column of the matrix <span class="process-math">\(A\text{.}\)</span> Depending on the situation, we will decide in advance to which set the entries in a matrix will belong. For example, we might assume that each entry <span class="process-math">\(a_{ij}\)</span> (<span class="process-math">\(1 \leq i\leq  m\text{,}\)</span> <span class="process-math">\(1 \leq  j \leq  n\)</span>) is a real number. In that case we would use <span class="process-math">\(M_{m\times n}(\mathbb{R})\)</span> to stand for the set of all <span class="process-math">\(m\)</span> by <span class="process-math">\(n\)</span> matrices whose entries are real numbers. If we decide that the entries in a matrix must come from a set <span class="process-math">\(S\text{,}\)</span> we use <span class="process-math">\(M_{m\times n}(S)\)</span> to denote all such matrices.</div>
 <article class="definition definition-like" id="def-matrix-order"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">5.1.2</span><span class="period">.</span><span class="space"> </span><span class="title">The Order of a Matrix.</span>
 </h4>
-<div class="para" id="p-1768">A matrix <span class="process-math">\(A\)</span> that has <span class="process-math">\(m\)</span> rows and <span class="process-math">\(n\)</span> columns is called an <span class="process-math">\(m\times n\)</span> (read “<span class="process-math">\(m\)</span> by <span class="process-math">\(n\)</span>”) matrix, and is said to have order <span class="process-math">\(m \times  n\text{.}\)</span>
-</div></article><div class="para" id="p-1769">Since it is rather cumbersome to write out the large rectangular array above each time we wish to discuss the generalized form of a matrix, it is common practice to replace the above by <span class="process-math">\(A = \left(a_{ij}\right)\text{.}\)</span> In general, matrices are often given names that are capital letters and the corresponding lower case letter is used for individual entries. For example the entry in the third row, second column of a matrix called <span class="process-math">\(C\)</span> would be <span class="process-math">\(c_{32}\text{.}\)</span>
+<div class="para" id="p-1784">A matrix <span class="process-math">\(A\)</span> that has <span class="process-math">\(m\)</span> rows and <span class="process-math">\(n\)</span> columns is called an <span class="process-math">\(m\times n\)</span> (read “<span class="process-math">\(m\)</span> by <span class="process-math">\(n\)</span>”) matrix, and is said to have order <span class="process-math">\(m \times  n\text{.}\)</span>
+</div></article><div class="para" id="p-1785">Since it is rather cumbersome to write out the large rectangular array above each time we wish to discuss the generalized form of a matrix, it is common practice to replace the above by <span class="process-math">\(A = \left(a_{ij}\right)\text{.}\)</span> In general, matrices are often given names that are capital letters and the corresponding lower case letter is used for individual entries. For example the entry in the third row, second column of a matrix called <span class="process-math">\(C\)</span> would be <span class="process-math">\(c_{32}\text{.}\)</span>
 </div>
 <article class="example example-like" id="example-orders-of-matrices"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-orders-of-matrices"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">5.1.3</span><span class="period">.</span><span class="space"> </span><span class="title">Orders of Some Matrices.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-orders-of-matrices"><article class="example example-like"><div class="para" id="p-1770">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-orders-of-matrices"><article class="example example-like"><div class="para" id="p-1786">
 <span class="process-math">\(A =\left(
 \begin{array}{cc}
 2 &amp; 3 \\
@@ -1171,8 +1160,8 @@ a_{m1} &amp; a_{m2} &amp; a_{m3} &amp; \cdots  &amp; a_{mn} \\
 4 &amp; 2 &amp; 8 \\
 \end{array}
 \right)\)</span> are <span class="process-math">\(2\times 2\text{,}\)</span> <span class="process-math">\(3\times 1\text{,}\)</span> and <span class="process-math">\(3\times 3\)</span> matrices, respectively.</div></article></div>
-<div class="para" id="p-1771">Since we now understand what a matrix looks like, we are in a position to investigate the operations of matrix algebra for which users have found the most applications.</div>
-<div class="para" id="p-1772">First we ask ourselves: Is the matrix <span class="process-math">\(A =\left(
+<div class="para" id="p-1787">Since we now understand what a matrix looks like, we are in a position to investigate the operations of matrix algebra for which users have found the most applications.</div>
+<div class="para" id="p-1788">First we ask ourselves: Is the matrix <span class="process-math">\(A =\left(
 \begin{array}{cc}
 1 &amp; 2 \\
 3 &amp; 4 \\
@@ -1183,7 +1172,7 @@ a_{m1} &amp; a_{m2} &amp; a_{m3} &amp; \cdots  &amp; a_{mn} \\
 3 &amp; 5 \\
 \end{array}
 \right)\text{?}\)</span> No, they are not because the corresponding entries in the second row, second column of the two matrices are not equal.</div>
-<div class="para" id="p-1773">Next, is <span class="process-math">\(A =\left(
+<div class="para" id="p-1789">Next, is <span class="process-math">\(A =\left(
 \begin{array}{ccc}
 1 &amp; 2 &amp; 3 \\
 4 &amp; 5 &amp; 6 \\
@@ -1197,15 +1186,15 @@ a_{m1} &amp; a_{m2} &amp; a_{m3} &amp; \cdots  &amp; a_{mn} \\
 <article class="definition definition-like" id="def-matrix-equality"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">5.1.4</span><span class="period">.</span><span class="space"> </span><span class="title">Equality of Matrices.</span>
 </h4>
-<div class="para" id="p-1774">A matrix <span class="process-math">\(A\)</span> is said to be equal to matrix <span class="process-math">\(B\)</span> (written <span class="process-math">\(A = B\)</span>) if and only if:</div> <div class="para logical" id="p-1775"><ol class="decimal">
-<li id="li-950"><div class="para" id="p-1776">
+<div class="para" id="p-1790">A matrix <span class="process-math">\(A\)</span> is said to be equal to matrix <span class="process-math">\(B\)</span> (written <span class="process-math">\(A = B\)</span>) if and only if:</div> <div class="para logical" id="p-1791"><ol class="decimal">
+<li id="li-962"><div class="para" id="p-1792">
 <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> have the same order, and</div></li>
-<li id="li-951"><div class="para" id="p-1777">all corresponding entries are equal: that is, <span class="process-math">\(a_{ij}\)</span> = <span class="process-math">\(b_{ij}\)</span> for all appropriate <span class="process-math">\(i\)</span> and <span class="process-math">\(j\text{.}\)</span>
+<li id="li-963"><div class="para" id="p-1793">all corresponding entries are equal: that is, <span class="process-math">\(a_{ij}\)</span> = <span class="process-math">\(b_{ij}\)</span> for all appropriate <span class="process-math">\(i\)</span> and <span class="process-math">\(j\text{.}\)</span>
 </div></li>
 </ol></div></article></section><section class="subsection" id="ss-matrix-addition-scalarmult"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">5.1.2</span> <span class="title">Matrix Addition and Scalar Multiplication</span>
 </h3>
-<div class="para logical" id="p-1778">
+<div class="para logical" id="p-1794">
 <div class="para">The first two operations we introduce are very natural and are not likely cause much confusion. The first is matrix addition. It seems natural that if <span class="process-math">\(A =\left(
 \begin{array}{cc}
 1 &amp; 0 \\
@@ -1233,7 +1222,7 @@ A + B =\left(
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-1779">However, if <span class="process-math">\(A=\left(
+<div class="para" id="p-1795">However, if <span class="process-math">\(A=\left(
 \begin{array}{ccc}
 1 &amp; 2 &amp; 3 \\
 0 &amp; 1 &amp; 2 \\
@@ -1246,12 +1235,12 @@ A + B =\left(
 \right)\text{,}\)</span> is there a natural way to add them to give us <span class="process-math">\(A+B\text{?}\)</span> No, the orders of the two matrices must be identical.</div>
 <article class="definition definition-like" id="def-matrix-addition"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">5.1.5</span><span class="period">.</span><span class="space"> </span><span class="title">Matrix Addition.</span>
-</h4> <div class="para" id="p-1780">Let <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> be <span class="process-math">\(m\times n\)</span> matrices. Then <span class="process-math">\(A+B\)</span> is an <span class="process-math">\(m\times n\)</span> matrix where <span class="process-math">\((A
-+ B)_{ij} = a_{ij} + b_{ij}\)</span> (read “The <span class="process-math">\(i\)</span>th <span class="process-math">\(j\)</span>th entry of the matrix <span class="process-math">\(A + B\)</span> is obtained by adding the <span class="process-math">\(i\)</span>th <span class="process-math">\(j\)</span>th entry of <span class="process-math">\(A\)</span> to the <span class="process-math">\(i\)</span>th <span class="process-math">\(j\)</span>th entry of <span class="process-math">\(B\)</span>”). If the orders of <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are not identical, <span class="process-math">\(A+B\)</span> is not defined.</div></article><div class="para" id="p-1781">In short,  <span class="process-math">\(A + B\)</span> is defined if and only if <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are of the same order.</div>
-<div class="para" id="p-1782">Another frequently used operation is that of multiplying a matrix by a number, commonly called a scalar in this context. Scalars normally come from the same set as the entries in a matrix. For example, if <span class="process-math">\(A\in M_{m\times n}(\mathbb{R})\text{,}\)</span> a scalar can be any real number.</div>
+</h4> <div class="para" id="p-1796">Let <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> be <span class="process-math">\(m\times n\)</span> matrices. Then <span class="process-math">\(A+B\)</span> is an <span class="process-math">\(m\times n\)</span> matrix where <span class="process-math">\((A
++ B)_{ij} = a_{ij} + b_{ij}\)</span> (read “The <span class="process-math">\(i\)</span>th <span class="process-math">\(j\)</span>th entry of the matrix <span class="process-math">\(A + B\)</span> is obtained by adding the <span class="process-math">\(i\)</span>th <span class="process-math">\(j\)</span>th entry of <span class="process-math">\(A\)</span> to the <span class="process-math">\(i\)</span>th <span class="process-math">\(j\)</span>th entry of <span class="process-math">\(B\)</span>”). If the orders of <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are not identical, <span class="process-math">\(A+B\)</span> is not defined.</div></article><div class="para" id="p-1797">In short,  <span class="process-math">\(A + B\)</span> is defined if and only if <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are of the same order.</div>
+<div class="para" id="p-1798">Another frequently used operation is that of multiplying a matrix by a number, commonly called a scalar in this context. Scalars normally come from the same set as the entries in a matrix. For example, if <span class="process-math">\(A\in M_{m\times n}(\mathbb{R})\text{,}\)</span> a scalar can be any real number.</div>
 <article class="example example-like" id="ex-scalar-mult"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-scalar-mult"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">5.1.6</span><span class="period">.</span><span class="space"> </span><span class="title">A Scalar Product.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-scalar-mult"><article class="example example-like"><div class="para" id="p-1783">If <span class="process-math">\(c = 3\)</span> and if <span class="process-math">\(A =\left(
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-scalar-mult"><article class="example example-like"><div class="para" id="p-1799">If <span class="process-math">\(c = 3\)</span> and if <span class="process-math">\(A =\left(
 \begin{array}{cc}
 1 &amp; -2 \\
 3 &amp; 5 \\
@@ -1265,15 +1254,15 @@ A + B =\left(
 <article class="definition definition-like" id="def-scalar-multiplication"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">5.1.7</span><span class="period">.</span><span class="space"> </span><span class="title">Scalar Multiplication.</span>
 </h4>
-<div class="para" id="p-1784">Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(m \times  n\)</span> matrix and <span class="process-math">\(c\)</span> a scalar. Then <span class="process-math">\(c A\)</span> is the <span class="process-math">\(m\times n\)</span> matrix obtained by multiplying <span class="process-math">\(c\)</span> times each entry of <span class="process-math">\(A\text{;}\)</span> that is <span class="process-math">\((c A)_{ij} = c a_{ij}\text{.}\)</span>
+<div class="para" id="p-1800">Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(m \times  n\)</span> matrix and <span class="process-math">\(c\)</span> a scalar. Then <span class="process-math">\(c A\)</span> is the <span class="process-math">\(m\times n\)</span> matrix obtained by multiplying <span class="process-math">\(c\)</span> times each entry of <span class="process-math">\(A\text{;}\)</span> that is <span class="process-math">\((c A)_{ij} = c a_{ij}\text{.}\)</span>
 </div></article></section><section class="subsection" id="ss-matrix-multiplication"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">5.1.3</span> <span class="title">Matrix Multiplication</span>
 </h3>
-<div class="para" id="p-1785">A definition that is more awkward to motivate is the product of two matrices. See <a href="" class="xref" data-knowl="./knowl/exercise-bakery.html" title="Exercise 5.1.4.8">Exercise 5.1.4.8</a> for an attempt to do so.  In time, the reader will see that the following definition of the product of matrices will be very useful, and will provide an algebraic system that is quite similar to elementary algebra.</div>
+<div class="para" id="p-1801">A definition that is more awkward to motivate is the product of two matrices. See <a href="" class="xref" data-knowl="./knowl/exercise-bakery.html" title="Exercise 5.1.4.8">Exercise 5.1.4.8</a> for an attempt to do so.  In time, the reader will see that the following definition of the product of matrices will be very useful, and will provide an algebraic system that is quite similar to elementary algebra.</div>
 <article class="definition definition-like" id="def-matrix-multiplication"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">5.1.8</span><span class="period">.</span><span class="space"> </span><span class="title">Matrix Multiplication.</span>
 </h4>
-<div class="para logical" id="p-1786">
+<div class="para logical" id="p-1802">
 <div class="para">Let <span class="process-math">\(A\)</span> be an <span class="process-math">\(m\times n\)</span> matrix and let <span class="process-math">\(B\)</span> be an <span class="process-math">\(n\times p\)</span> matrix. The product of <span class="process-math">\(A\)</span> and <span class="process-math">\(B\text{,}\)</span> denoted by <span class="process-math">\(AB\text{,}\)</span> is an <span class="process-math">\(m\times p\)</span> matrix whose <span class="process-math">\(i\)</span>th row <span class="process-math">\(j\)</span>th column entry is</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1285,12 +1274,12 @@ A + B =\left(
 </div>
 <div class="para">for <span class="process-math">\(1\leq i\leq m\)</span> and <span class="process-math">\(1\leq j\leq p\text{.}\)</span>
 </div>
-</div></article><div class="para" id="p-1787">The mechanics of computing one entry in the product of two matrices is illustrated in <a href="" class="xref" data-knowl="./knowl/fig-one-matrix-product-entry.html" title="Figure 5.1.9">Figure 5.1.9</a>.</div>
+</div></article><div class="para" id="p-1803">The mechanics of computing one entry in the product of two matrices is illustrated in <a href="" class="xref" data-knowl="./knowl/fig-one-matrix-product-entry.html" title="Figure 5.1.9">Figure 5.1.9</a>.</div>
 <figure class="figure figure-like" id="fig-one-matrix-product-entry"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig-one-matrix-product-entry.png" class="contained" alt="Computation of one entry in the product of two 3 by 3 matrices. Two three by three matrices are shown with row 1 of the first matrix and column 2 of the second highlighted.  Row 1 of the first matrix has entries 1, -1 and 0.  Column 2 of the second matrix has 2, 3 and 4.  The corresponding entries are multiplied and the products are added to produce the entry in row 1, column 2 of the product matrix.  That number is 1 time 2 plus -1 times 3 plus 0 times 4, which is -1."></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">5.1.9<span class="period">.</span></span><span class="space"> </span>Computation of one entry in the product of two 3 by 3 matrices</figcaption></figure><div class="para" id="p-1788">The computation of a product can take a considerable amount of time in comparison to the time required to add two matrices. Suppose that <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are <span class="process-math">\(n\times n\)</span> matrices; then <span class="process-math">\((A B)_{ij}\)</span> is determined performing <span class="process-math">\(n\)</span> multiplications and <span class="process-math">\(n-1\)</span> additions. The full product takes <span class="process-math">\(n^3\)</span> multiplications and <span class="process-math">\(n^3 - n^2\)</span> additions. This compares with <span class="process-math">\(n^2\)</span> additions for the sum of two <span class="process-math">\(n\times n\)</span> matrices. The product of two 10 by 10 matrices will require 1,000 multiplications and 900 additions, clearly a job that you would assign to a computer. The sum of two matrices requires a more modest 100 additions. This analysis is based on the assumption that matrix multiplication will be done using the formula that is given in the definition. There are more advanced methods that, in theory, reduce operation counts. For example, Strassen’s algorithm (<a class="external" href="https://en.wikipedia.org/wiki/Strassen_algorithm" target="_blank"><code class="code-inline tex2jax_ignore">en.wikipedia.org/wiki/Strassen_algorithm</code></a>) computes the product of two <span class="process-math">\(n\)</span> by <span class="process-math">\(n\)</span> matrices in <span class="process-math">\(7\cdot 7^{\log _2n}-6\cdot  4^{\log _2n}\approx  7 n^{2.808}\)</span> operations. There are practical issues involved in actually using the algorithm in many situations.  For example, round-off error can be more of a problem than with the standard formula.</div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">5.1.9<span class="period">.</span></span><span class="space"> </span>Computation of one entry in the product of two 3 by 3 matrices</figcaption></figure><div class="para" id="p-1804">The computation of a product can take a considerable amount of time in comparison to the time required to add two matrices. Suppose that <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> are <span class="process-math">\(n\times n\)</span> matrices; then <span class="process-math">\((A B)_{ij}\)</span> is determined performing <span class="process-math">\(n\)</span> multiplications and <span class="process-math">\(n-1\)</span> additions. The full product takes <span class="process-math">\(n^3\)</span> multiplications and <span class="process-math">\(n^3 - n^2\)</span> additions. This compares with <span class="process-math">\(n^2\)</span> additions for the sum of two <span class="process-math">\(n\times n\)</span> matrices. The product of two 10 by 10 matrices will require 1,000 multiplications and 900 additions, clearly a job that you would assign to a computer. The sum of two matrices requires a more modest 100 additions. This analysis is based on the assumption that matrix multiplication will be done using the formula that is given in the definition. There are more advanced methods that, in theory, reduce operation counts. For example, Strassen’s algorithm (<a class="external" href="https://en.wikipedia.org/wiki/Strassen_algorithm" target="_blank"><code class="code-inline tex2jax_ignore">en.wikipedia.org/wiki/Strassen_algorithm</code></a>) computes the product of two <span class="process-math">\(n\)</span> by <span class="process-math">\(n\)</span> matrices in <span class="process-math">\(7\cdot 7^{\log _2n}-6\cdot  4^{\log _2n}\approx  7 n^{2.808}\)</span> operations. There are practical issues involved in actually using the algorithm in many situations.  For example, round-off error can be more of a problem than with the standard formula.</div>
 <article class="example example-like" id="ex-matrix-product"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-matrix-product"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">5.1.10</span><span class="period">.</span><span class="space"> </span><span class="title">A Matrix Product.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-matrix-product"><article class="example example-like"><div class="para logical" id="p-1789">
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-matrix-product"><article class="example example-like"><div class="para logical" id="p-1805">
 <div class="para">Let <span class="process-math">\(A =\left(
 \begin{array}{cc}
 1 &amp; 0 \\
@@ -1332,11 +1321,11 @@ A B = \left(
 \end{equation*}
 </div>
 </div></article></div>
-<div class="para" id="p-1790">Remarks:</div>
-<div class="para logical" id="p-1791"><ol class="decimal">
-<li id="li-952"><div class="para" id="p-derived-li-952">The product <span class="process-math">\(A B\)</span> is defined only if <span class="process-math">\(A\)</span> is an <span class="process-math">\(m\times n\)</span> matrix and <span class="process-math">\(B\)</span> is an <span class="process-math">\(n\times p\)</span> matrix; that is, the two “inner” numbers must be equal. Furthermore, the order of the product matrix <span class="process-math">\(A B\)</span> is the “outer” numbers, in this case <span class="process-math">\(m\times p\text{.}\)</span>
+<div class="para" id="p-1806">Remarks:</div>
+<div class="para logical" id="p-1807"><ol class="decimal">
+<li id="li-964"><div class="para" id="p-derived-li-964">The product <span class="process-math">\(A B\)</span> is defined only if <span class="process-math">\(A\)</span> is an <span class="process-math">\(m\times n\)</span> matrix and <span class="process-math">\(B\)</span> is an <span class="process-math">\(n\times p\)</span> matrix; that is, the two “inner” numbers must be equal. Furthermore, the order of the product matrix <span class="process-math">\(A B\)</span> is the “outer” numbers, in this case <span class="process-math">\(m\times p\text{.}\)</span>
 </div></li>
-<li id="li-953"><div class="para logical" id="p-1792">
+<li id="li-965"><div class="para logical" id="p-1808">
 <div class="para">It is wise to first determine the order of a product matrix. For example, if <span class="process-math">\(A\)</span> is a <span class="process-math">\(3\times 2\)</span> matrix and <span class="process-math">\(B\)</span> is a <span class="process-math">\(2\times 2\)</span> matrix, then <span class="process-math">\(A B\)</span> is a <span class="process-math">\(3\times 2\)</span> matrix of the form</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1354,7 +1343,7 @@ c_{31} &amp; c_{32} \\
 </ol></div>
 <article class="example example-like" id="ex-diagonal-product"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-ex-diagonal-product"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">5.1.11</span><span class="period">.</span><span class="space"> </span><span class="title">Multiplication with a diagonal matrix.</span>
-</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-diagonal-product"><article class="example example-like"><div class="para" id="p-1793">Let <span class="process-math">\(A =\left(
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-ex-diagonal-product"><article class="example example-like"><div class="para" id="p-1809">Let <span class="process-math">\(A =\left(
 \begin{array}{cc}
 -1 &amp; 0 \\
 0 &amp; 3 \\
@@ -1375,22 +1364,22 @@ c_{31} &amp; c_{32} \\
 6 &amp; 3 \\
 \end{array}
 \right)\)</span>
-</div> <div class="para" id="p-1794">The net effect is to multiply the first row of <span class="process-math">\(B\)</span> by <span class="process-math">\(-1\)</span> and the second row of <span class="process-math">\(B\)</span> by 3.</div> <div class="para" id="p-1795">Note: <span class="process-math">\(B A =\left(
+</div> <div class="para" id="p-1810">The net effect is to multiply the first row of <span class="process-math">\(B\)</span> by <span class="process-math">\(-1\)</span> and the second row of <span class="process-math">\(B\)</span> by 3.</div> <div class="para" id="p-1811">Note: <span class="process-math">\(B A =\left(
 \begin{array}{cc}
 -3 &amp; 30 \\
 -	2 &amp; 3 \\
 \end{array}
 \right) \neq A B\text{.}\)</span>   The columns of <span class="process-math">\(B\)</span> are multiplied by <span class="process-math">\(-1\)</span> and 3 when the order is switched.</div></article></div>
-<div class="para" id="p-1796">Remarks:</div>
-<div class="para logical" id="p-1797"><ul class="disc">
-<li id="li-954"><div class="para" id="p-1798">An <span class="process-math">\(n\times n\)</span> matrix is called a <em class="emphasis">square matrix</em>.</div></li>
-<li id="li-955"><div class="para" id="p-1799">If <span class="process-math">\(A\)</span> is a square matrix, <span class="process-math">\(A A\)</span> is defined and is denoted by <span class="process-math">\(A^2\)</span> , and <span class="process-math">\(A A A = A^3\text{,}\)</span> etc.</div></li>
-<li id="li-956"><div class="para" id="p-1800">The <span class="process-math">\(m\times n\)</span> matrices whose entries are all 0 are denoted by <span class="process-math">\(\pmb{0}_{m\times n}\text{,}\)</span> or simply <span class="process-math">\(\pmb{ 0}\text{,}\)</span> when no confusion arises regarding the order.</div></li>
+<div class="para" id="p-1812">Remarks:</div>
+<div class="para logical" id="p-1813"><ul class="disc">
+<li id="li-966"><div class="para" id="p-1814">An <span class="process-math">\(n\times n\)</span> matrix is called a <em class="emphasis">square matrix</em>.</div></li>
+<li id="li-967"><div class="para" id="p-1815">If <span class="process-math">\(A\)</span> is a square matrix, <span class="process-math">\(A A\)</span> is defined and is denoted by <span class="process-math">\(A^2\)</span> , and <span class="process-math">\(A A A = A^3\text{,}\)</span> etc.</div></li>
+<li id="li-968"><div class="para" id="p-1816">The <span class="process-math">\(m\times n\)</span> matrices whose entries are all 0 are denoted by <span class="process-math">\(\pmb{0}_{m\times n}\text{,}\)</span> or simply <span class="process-math">\(\pmb{ 0}\text{,}\)</span> when no confusion arises regarding the order.</div></li>
 </ul></div></section><section class="exercises" id="exercises-5-1"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">5.1.4</span> <span class="title">Exercises</span>
 </h3>
-<article class="exercise exercise-like" id="exercise-199"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div class="para" id="p-1801">Let <span class="process-math">\(A=\left(
+<article class="exercise exercise-like" id="exercise-202"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="para" id="p-1817">Let <span class="process-math">\(A=\left(
 \begin{array}{cc}
 1 &amp; -1 \\
 2 &amp; 3 \\
@@ -1406,28 +1395,28 @@ c_{31} &amp; c_{32} \\
 3 &amp; -2 &amp; 2 \\
 \end{array}
 \right)\)</span>
-</div> <div class="para logical" id="p-1802"><ol class="lower-alpha">
-<li id="li-957"><div class="para" id="p-1803">Compute <span class="process-math">\(A B\)</span> and <span class="process-math">\(B A\text{.}\)</span>
+</div> <div class="para logical" id="p-1818"><ol class="lower-alpha">
+<li id="li-969"><div class="para" id="p-1819">Compute <span class="process-math">\(A B\)</span> and <span class="process-math">\(B A\text{.}\)</span>
 </div></li>
-<li id="li-958"><div class="para" id="p-1804">Compute <span class="process-math">\(A + B\)</span> and <span class="process-math">\(B + A\text{.}\)</span>
+<li id="li-970"><div class="para" id="p-1820">Compute <span class="process-math">\(A + B\)</span> and <span class="process-math">\(B + A\text{.}\)</span>
 </div></li>
-<li id="li-959"><div class="para" id="p-1805">If <span class="process-math">\(c = 3\text{,}\)</span> show that <span class="process-math">\(c(A + B) = c A + c B\text{.}\)</span>
+<li id="li-971"><div class="para" id="p-1821">If <span class="process-math">\(c = 3\text{,}\)</span> show that <span class="process-math">\(c(A + B) = c A + c B\text{.}\)</span>
 </div></li>
-<li id="li-960"><div class="para" id="p-1806">Show that <span class="process-math">\((A B)C = A(B C)\text{.}\)</span>
+<li id="li-972"><div class="para" id="p-1822">Show that <span class="process-math">\((A B)C = A(B C)\text{.}\)</span>
 </div></li>
-<li id="li-961"><div class="para" id="p-1807">Compute <span class="process-math">\(A^2 C\text{.}\)</span>
+<li id="li-973"><div class="para" id="p-1823">Compute <span class="process-math">\(A^2 C\text{.}\)</span>
 </div></li>
-<li id="li-962"><div class="para" id="p-1808">Compute <span class="process-math">\(B + \pmb{0}\text{.}\)</span>
+<li id="li-974"><div class="para" id="p-1824">Compute <span class="process-math">\(B + \pmb{0}\text{.}\)</span>
 </div></li>
-<li id="li-963"><div class="para" id="p-1809">Compute <span class="process-math">\(A \pmb{0}_{2\times 2}\)</span> and <span class="process-math">\(\pmb{0}_{2\times 2} A\text{,}\)</span> where <span class="process-math">\(\pmb{0}_{2\times 2}\)</span> is the <span class="process-math">\(2\times 2\)</span> zero matrix.</div></li>
-<li id="li-964"><div class="para" id="p-1810">Compute <span class="process-math">\(0A\text{,}\)</span> where 0 is the real number (scalar) zero.</div></li>
-<li id="li-965"><div class="para" id="p-1811">Let <span class="process-math">\(c = 2\)</span> and <span class="process-math">\(d = 3\text{.}\)</span> Show that <span class="process-math">\((c + d)A = c A + d A\text{.}\)</span>
+<li id="li-975"><div class="para" id="p-1825">Compute <span class="process-math">\(A \pmb{0}_{2\times 2}\)</span> and <span class="process-math">\(\pmb{0}_{2\times 2} A\text{,}\)</span> where <span class="process-math">\(\pmb{0}_{2\times 2}\)</span> is the <span class="process-math">\(2\times 2\)</span> zero matrix.</div></li>
+<li id="li-976"><div class="para" id="p-1826">Compute <span class="process-math">\(0A\text{,}\)</span> where 0 is the real number (scalar) zero.</div></li>
+<li id="li-977"><div class="para" id="p-1827">Let <span class="process-math">\(c = 2\)</span> and <span class="process-math">\(d = 3\text{.}\)</span> Show that <span class="process-math">\((c + d)A = c A + d A\text{.}\)</span>
 </div></li>
 </ol></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-94" id="answer-94"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-94"><div class="answer solution-like">
-<div class="para" id="p-1812">For parts c, d and i of this exercise, only a verification is needed. Here, we supply the result that will appear on both sides of the equality.</div> <div class="para logical" id="p-1813"><ol class="lower-alpha">
-<li id="li-966"><div class="para" id="p-1814"><span class="process-math">\(\displaystyle AB=\left(
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-96" id="answer-96"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-96"><div class="answer solution-like">
+<div class="para" id="p-1828">For parts c, d and i of this exercise, only a verification is needed. Here, we supply the result that will appear on both sides of the equality.</div> <div class="para logical" id="p-1829"><ol class="lower-alpha">
+<li id="li-978"><div class="para" id="p-1830"><span class="process-math">\(\displaystyle AB=\left(
 \begin{array}{cc}
 -3 &amp;6 \\
 9 &amp; -13 \\
@@ -1438,44 +1427,44 @@ c_{31} &amp; c_{32} \\
 -7 &amp; -18 \\
 \end{array}
 \right)\)</span></div></li>
-<li id="li-967"><div class="para" id="p-1815"><span class="process-math">\(\displaystyle \left(
+<li id="li-979"><div class="para" id="p-1831"><span class="process-math">\(\displaystyle \left(
 \begin{array}{cc}
 1 &amp; 0 \\
 5 &amp; -2 \\
 \end{array}
 \right)\)</span></div></li>
-<li id="li-968"><div class="para" id="p-1816"><span class="process-math">\(\displaystyle \left(
+<li id="li-980"><div class="para" id="p-1832"><span class="process-math">\(\displaystyle \left(
 \begin{array}{cc}
 3 &amp; 0 \\
 15 &amp; -6 \\
 \end{array}
 \right)\)</span></div></li>
-<li id="li-969"><div class="para" id="p-1817"><span class="process-math">\(\displaystyle \left(
+<li id="li-981"><div class="para" id="p-1833"><span class="process-math">\(\displaystyle \left(
 \begin{array}{ccc}
 18 &amp; -15 &amp; 15 \\
 -39 &amp; 35 &amp; -35 \\
 \end{array}
 \right)\)</span></div></li>
-<li id="li-970"><div class="para" id="p-1818"><span class="process-math">\(\displaystyle \left(
+<li id="li-982"><div class="para" id="p-1834"><span class="process-math">\(\displaystyle \left(
 \begin{array}{ccc}
 -12 &amp; 7 &amp; -7 \\
 21 &amp; -6 &amp; 6 \\
 \end{array}
 \right)\)</span></div></li>
-<li id="li-971"><div class="para" id="p-1819"><span class="process-math">\(\displaystyle B+0=B\)</span></div></li>
-<li id="li-972"><div class="para" id="p-1820"><span class="process-math">\(\displaystyle \left(
+<li id="li-983"><div class="para" id="p-1835"><span class="process-math">\(\displaystyle B+0=B\)</span></div></li>
+<li id="li-984"><div class="para" id="p-1836"><span class="process-math">\(\displaystyle \left(
 \begin{array}{cc}
 0 &amp; 0 \\
 0 &amp; 0 \\
 \end{array}
 \right)\)</span></div></li>
-<li id="li-973"><div class="para" id="p-1821"><span class="process-math">\(\displaystyle \left(
+<li id="li-985"><div class="para" id="p-1837"><span class="process-math">\(\displaystyle \left(
 \begin{array}{cc}
 0 &amp; 0 \\
 0 &amp; 0 \\
 \end{array}
 \right)\)</span></div></li>
-<li id="li-974"><div class="para" id="p-1822"><span class="process-math">\(\displaystyle \left(
+<li id="li-986"><div class="para" id="p-1838"><span class="process-math">\(\displaystyle \left(
 \begin{array}{cc}
 5 &amp; -5 \\
 10 &amp; 15 \\
@@ -1483,8 +1472,8 @@ c_{31} &amp; c_{32} \\
 \right)\)</span></div></li>
 </ol></div>
 </div></div>
-</div></article><article class="exercise exercise-like" id="exercise-200"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div class="para" id="p-1823">Let <span class="process-math">\(A = \left(
+</div></article><article class="exercise exercise-like" id="exercise-203"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div class="para" id="p-1839">Let <span class="process-math">\(A = \left(
 \begin{array}{ccc}
 1 &amp; 0 &amp; 2 \\
 2 &amp; -1 &amp; 5 \\
@@ -1502,13 +1491,13 @@ c_{31} &amp; c_{32} \\
 4 &amp; 0 &amp; 1 &amp; 1 \\
 3 &amp; -1 &amp; 4 &amp; 1 \\
 \end{array}
-\right)\)</span> Compute, if possible;</div> <div class="para logical" id="p-1824"><ol class="lower-alpha cols2">
-<li id="li-975"><div class="para" id="p-1825"><span class="process-math">\(\displaystyle A - B\)</span></div></li>
-<li id="li-976"><div class="para" id="p-1826"><span class="process-math">\(\displaystyle A B\)</span></div></li>
-<li id="li-977"><div class="para" id="p-1827"><span class="process-math">\(\displaystyle A C - B C\)</span></div></li>
-<li id="li-978"><div class="para" id="p-1828"><span class="process-math">\(\displaystyle A(B C)\)</span></div></li>
-<li id="li-979"><div class="para" id="p-1829"><span class="process-math">\(\displaystyle C A - C B\)</span></div></li>
-<li id="li-980"><div class="para" id="p-1830"><span class="process-math">\(\displaystyle C \left(
+\right)\)</span> Compute, if possible;</div> <div class="para logical" id="p-1840"><ol class="lower-alpha cols2">
+<li id="li-987"><div class="para" id="p-1841"><span class="process-math">\(\displaystyle A - B\)</span></div></li>
+<li id="li-988"><div class="para" id="p-1842"><span class="process-math">\(\displaystyle A B\)</span></div></li>
+<li id="li-989"><div class="para" id="p-1843"><span class="process-math">\(\displaystyle A C - B C\)</span></div></li>
+<li id="li-990"><div class="para" id="p-1844"><span class="process-math">\(\displaystyle A(B C)\)</span></div></li>
+<li id="li-991"><div class="para" id="p-1845"><span class="process-math">\(\displaystyle C A - C B\)</span></div></li>
+<li id="li-992"><div class="para" id="p-1846"><span class="process-math">\(\displaystyle C \left(
 \begin{array}{c}
 x \\
 y \\
@@ -1516,8 +1505,8 @@ z \\
 w \\
 \end{array}
 \right)\)</span></div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-201"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div class="para" id="p-1831">Let <span class="process-math">\(A =\left(
+</ol></div></article><article class="exercise exercise-like" id="exercise-204"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="para" id="p-1847">Let <span class="process-math">\(A =\left(
 \begin{array}{cc}
 2 &amp; 0 \\
 0 &amp; 3 \\
@@ -1530,14 +1519,14 @@ w \\
 \right)\text{.}\)</span>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-95" id="answer-95"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-95"><div class="answer solution-like"><div class="para" id="p-1832"><span class="process-math">\(\left(
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-97" id="answer-97"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-97"><div class="answer solution-like"><div class="para" id="p-1848"><span class="process-math">\(\left(
 \begin{array}{cc}
 1/2 &amp; 0 \\
 0 &amp; 1/3 \\
 \end{array}
 \right)\)</span></div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-202"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="para" id="p-1833">Find <span class="process-math">\(A I\)</span> and <span class="process-math">\(B I\)</span> where <span class="process-math">\(I\)</span> is as in Exercise 3, where <span class="process-math">\(A = \left(
+</div></article><article class="exercise exercise-like" id="exercise-205"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="para" id="p-1849">Find <span class="process-math">\(A I\)</span> and <span class="process-math">\(B I\)</span> where <span class="process-math">\(I\)</span> is as in Exercise 3, where <span class="process-math">\(A = \left(
 \begin{array}{cc}
 1 &amp; 8 \\
 9 &amp; 5 \\
@@ -1547,8 +1536,8 @@ w \\
 -2 &amp; 3 \\
 5 &amp; -7 \\
 \end{array}
-\right)\text{.}\)</span> What do you notice?</div></article><article class="exercise exercise-like" id="exercise-203"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
-<div class="para" id="p-1834">Find <span class="process-math">\(A^3\)</span> if <span class="process-math">\(A=\left(
+\right)\text{.}\)</span> What do you notice?</div></article><article class="exercise exercise-like" id="exercise-206"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para" id="p-1850">Find <span class="process-math">\(A^3\)</span> if <span class="process-math">\(A=\left(
 \begin{array}{ccc}
 1 &amp; 0 &amp; 0 \\
 0 &amp; 2 &amp; 0 \\
@@ -1556,7 +1545,7 @@ w \\
 \end{array}
 \right)\)</span> . What is <span class="process-math">\(A^{15}\)</span> equal to?</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-96" id="answer-96"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-96"><div class="answer solution-like"><div class="para" id="p-1835">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-98" id="answer-98"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-98"><div class="answer solution-like"><div class="para" id="p-1851">
 <span class="process-math">\(A^3=\left(
 \begin{array}{ccc}
 1 &amp; 0 &amp; 0 \\
@@ -1571,9 +1560,9 @@ w \\
 \end{array}
 \right)\)</span>
 </div></div></div>
-</div></article><article class="exercise exercise-like" id="exercise-204"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1836"><ol class="lower-alpha">
-<li id="li-981"><div class="para" id="p-1837">Determine <span class="process-math">\(I^2\)</span> and <span class="process-math">\(I^3 \text{ if }\)</span> <span class="process-math">\(I = \left(
+</div></article><article class="exercise exercise-like" id="exercise-207"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div class="para logical" id="p-1852"><ol class="lower-alpha">
+<li id="li-993"><div class="para" id="p-1853">Determine <span class="process-math">\(I^2\)</span> and <span class="process-math">\(I^3 \text{ if }\)</span> <span class="process-math">\(I = \left(
 \begin{array}{ccc}
 1 &amp; 0 &amp; 0 \\
 0 &amp; 1 &amp; 0 \\
@@ -1581,12 +1570,12 @@ w \\
 \end{array}
 \right)\text{.}\)</span>
 </div></li>
-<li id="li-982"><div class="para" id="p-1838">What is <span class="process-math">\(I^n\)</span> equal to for any <span class="process-math">\(n\geq 1\text{?}\)</span>
+<li id="li-994"><div class="para" id="p-1854">What is <span class="process-math">\(I^n\)</span> equal to for any <span class="process-math">\(n\geq 1\text{?}\)</span>
 </div></li>
-<li id="li-983"><div class="para" id="p-1839">Prove your answer to part (b) by induction.</div></li>
-</ol></div></article><article class="exercise exercise-like" id="exercise-205"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1840"><ol class="lower-alpha">
-<li id="li-984"><div class="para logical" id="p-1841">
+<li id="li-995"><div class="para" id="p-1855">Prove your answer to part (b) by induction.</div></li>
+</ol></div></article><article class="exercise exercise-like" id="exercise-208"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="para logical" id="p-1856"><ol class="lower-alpha">
+<li id="li-996"><div class="para logical" id="p-1857">
 <div class="para">If</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1611,19 +1600,19 @@ x_2 \\
 <div class="para">show that <span class="process-math">\(A X =B\)</span> is a way of expressing the system <span class="process-math">\(\begin{array}{c}2x_1 + x_2 = 3\\ x_1 - x_2= 1\\
 \end{array}\)</span>  using matrices.</div>
 </div></li>
-<li id="li-985">
-<div class="para" id="p-1842">Express the following systems of equations using matrices:</div>
-<div class="para logical" id="p-1843"><ol class="lower-roman cols2">
-<li id="li-986"><div class="para" id="p-1844"><span class="process-math">\(\displaystyle \begin{array}{c}
+<li id="li-997">
+<div class="para" id="p-1858">Express the following systems of equations using matrices:</div>
+<div class="para logical" id="p-1859"><ol class="lower-roman cols2">
+<li id="li-998"><div class="para" id="p-1860"><span class="process-math">\(\displaystyle \begin{array}{c}
 2 x_1- x_2= 4\\
 x_1+ x_2= 0\\
 \end{array}\)</span></div></li>
-<li id="li-987"><div class="para" id="p-1845"><span class="process-math">\(\displaystyle \begin{array}{c}
+<li id="li-999"><div class="para" id="p-1861"><span class="process-math">\(\displaystyle \begin{array}{c}
 x_1+ x_2+ 2 x_3= 1\\
 x_1+ 2 x_2-x_3= -1\\
 x_1+ 3 x_2+x_3= 5\\
 \end{array}\)</span></div></li>
-<li id="li-988"><div class="para" id="p-1846"><span class="process-math">\(\displaystyle \begin{array}{c}
+<li id="li-1000"><div class="para" id="p-1862"><span class="process-math">\(\displaystyle \begin{array}{c}
 x_1+x_2\quad\quad= 3\\
 \quad \quad x_2\quad\quad= 5\\
 x_1 \quad \quad+ 3x_3= 6\\
@@ -1632,8 +1621,8 @@ x_1 \quad \quad+ 3x_3= 6\\
 </li>
 </ol></div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-97" id="answer-97"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-97"><div class="answer solution-like"><div class="para logical" id="p-1847"><ol class="lower-alpha">
-<li id="li-989"><div class="para" id="p-1848">
+<a href="" data-knowl="" class="id-ref answer-knowl original" data-refid="hk-answer-99" id="answer-99"><span class="type">Answer</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-answer-99"><div class="answer solution-like"><div class="para logical" id="p-1863"><ol class="lower-alpha">
+<li id="li-1001"><div class="para" id="p-1864">
 <span class="process-math">\(Ax=\left(
 \begin{array}{c}
 2x_1+1x_2 \\
@@ -1645,7 +1634,7 @@ x_1 \quad \quad+ 3x_3= 6\\
 1 \\
 \end{array}
 \right)\)</span> if and only if both of the equalities <span class="process-math">\(2x_1+x_2=3 \textrm{ and } x_1-x_2=1\)</span> are true.</div></li>
-<li id="li-990"><div class="para" id="p-derived-li-990">(i)  <span class="process-math">\(A=\left(
+<li id="li-1002"><div class="para" id="p-derived-li-1002">(i)  <span class="process-math">\(A=\left(
 \begin{array}{cc}
 2 &amp; -1 \\
 1 &amp; 1 \\
@@ -1662,7 +1651,7 @@ x_2 \\
 \end{array}
 \right)\)</span>
 </div></li>
-<li id="li-991"><div class="para" id="p-derived-li-991">
+<li id="li-1003"><div class="para" id="p-derived-li-1003">
 <span class="process-math">\(A=\left(
 \begin{array}{ccc}
 1 &amp; 1 &amp; 2 \\
@@ -1683,7 +1672,7 @@ x_3 \\
 \end{array}
 \right)\)</span>
 </div></li>
-<li id="li-992"><div class="para" id="p-derived-li-992">
+<li id="li-1004"><div class="para" id="p-derived-li-1004">
 <span class="process-math">\(A=\left(
 \begin{array}{ccc}
 1 &amp; 1 &amp; 0 \\
@@ -1706,7 +1695,7 @@ x_3 \\
 </div></li>
 </ol></div></div></div>
 </div></article><article class="exercise exercise-like" id="exercise-bakery"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1849">
+<div class="para logical" id="p-1865">
 <div class="para">In this exercise, we propose to show how matrix multiplication is a natural operation.  Suppose a bakery produces bread, cakes and pies every weekday, Monday through Friday. Based on past sales history, the bakery produces various numbers of each product each day, summarized in the <span class="process-math">\(5 \times 3\)</span> matrix <span class="process-math">\(D\text{.}\)</span>  It should be noted that the order could be described as “number of days by number of products.”   For example, on Wednesday (the third day) the number of cakes (second product in our list) that are produced  is  <span class="process-math">\(d_{3,2} = 4\text{.}\)</span>
 </div>
 <div class="displaymath process-math">
@@ -1722,7 +1711,7 @@ D =\left(
 \right)
 \end{equation*}
 </div>
-</div> <div class="para logical" id="p-1850">
+</div> <div class="para logical" id="p-1866">
 <div class="para">The main ingredients of these products are flour, sugar and eggs. We assume that other ingredients are always in ample supply, but we need to be sure to have the three main ones available.   For each of the three products, The amount of each ingredient that is needed is summarized in the <span class="process-math">\(3 \times 3\text{,}\)</span> or “number of products by number of ingredients” matrix <span class="process-math">\(P\text{.}\)</span>  For example, to bake a cake (second product) we need <span class="process-math">\(P_{2,1}=1.5\)</span> cups of flour (first ingredient).  Regarding units: flour and sugar are given in cups per unit of each product, while eggs are given in individual eggs per unit of each product.</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1736,11 +1725,11 @@ P =\left(
 \end{equation*}
 </div>
 <div class="para">These amounts are “made up”, so don’t used them to do your own baking!</div>
-</div> <div class="para logical" id="p-1851"><ol class="lower-alpha">
-<li id="li-993"><div class="para" id="p-1852">How many cups of flour will the bakery need every Monday?  Pay close attention to how you compute your answer and the units of each number.</div></li>
-<li id="li-994"><div class="para" id="p-1853">How many eggs will the bakery need every Wednesday?</div></li>
-<li id="li-995"><div class="para" id="p-1854">Compute the matrix product <span class="process-math">\(D P\text{.}\)</span>   What do you notice?</div></li>
-<li id="li-996"><div class="para" id="p-1855">Suppose the costs of ingredients are <span class="process-math">\(\$0.12\)</span> for a cup of flour, <span class="process-math">\(\$0.15\)</span> for a cup of sugar and <span class="process-math">\(\$0.19\)</span> for one egg. How can this information be put into a matrix that can meaningfully be multiplied by one of the other matrices in this problem?</div></li>
+</div> <div class="para logical" id="p-1867"><ol class="lower-alpha">
+<li id="li-1005"><div class="para" id="p-1868">How many cups of flour will the bakery need every Monday?  Pay close attention to how you compute your answer and the units of each number.</div></li>
+<li id="li-1006"><div class="para" id="p-1869">How many eggs will the bakery need every Wednesday?</div></li>
+<li id="li-1007"><div class="para" id="p-1870">Compute the matrix product <span class="process-math">\(D P\text{.}\)</span>   What do you notice?</div></li>
+<li id="li-1008"><div class="para" id="p-1871">Suppose the costs of ingredients are <span class="process-math">\(\$0.12\)</span> for a cup of flour, <span class="process-math">\(\$0.15\)</span> for a cup of sugar and <span class="process-math">\(\$0.19\)</span> for one egg. How can this information be put into a matrix that can meaningfully be multiplied by one of the other matrices in this problem?</div></li>
 </ol></div></article></section><div id="scprogresscontainer">You have attempted <span id="scprogresstotal"></span> of <span id="scprogressposs"></span> activities on this page.<div id="subchapterprogress" aria-label="Page progress"></div>
 </div></section></div>
 <div class="ptx-content-footer">

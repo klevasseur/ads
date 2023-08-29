@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
 <!--*                                          *-->
@@ -13,10 +13,71 @@
 <body class="ignore-math">
 <h5 class="heading"><span class="type">Paragraph</span></h5>
 <div class="para logical">
-<div class="para">The infinite sum in the middle of this final expression can be easily evaluated if <span class="process-math">\(D\)</span> is diagonal.  All entries of powers off the diagonal are zero and the <span class="process-math">\(i^{\textrm{ th}}\)</span> entry of the diagonal is</div>
+<div class="para">In order to formulate the calculation in matrix form, we introduced the “dummy equation” <span class="process-math">\(F_{k-1}= F_{k-1}\)</span> so that now we have two equations</div>
 <div class="displaymath process-math">
 \begin{equation*}
-\left(\sum _{k=0}^{\infty } \frac{ D^k}{k!}\right){}_{i i}=\sum _{k=0}^{\infty } \frac{ D_{i i}{}^k}{k!}= e^{D_{ii}}
+\begin{array}{c}
+F_k= F_{k-1}+F_{k-2}\\
+F_{k-1}= F_{k-1}\\
+\end{array}
+\end{equation*}
+</div>
+<div class="para">If <span class="process-math">\(A = \left(
+\begin{array}{cc}
+1 &amp; 1 \\
+1 &amp; 0 \\
+\end{array}
+\right)\text{,}\)</span> these two equations can be expressed in matrix form as</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{split}
+\left(
+\begin{array}{c}
+F_k \\
+F_{k-1} \\
+\end{array}
+\right) &amp;=\left(
+\begin{array}{cc}
+1 &amp; 1 \\
+1 &amp; 0 \\
+\end{array}
+\right)\left(
+\begin{array}{c}
+F_{k-1} \\
+F_{k-2} \\
+\end{array}
+\right) \quad\textrm{ if } k\geq 2\\
+&amp;= A \left(
+\begin{array}{c}
+F_{k-1} \\
+F_{k-2} \\
+\end{array}
+\right)\\
+&amp;= A^2\left(
+\begin{array}{c}
+F_{k-2} \\
+F_{k-3} \\
+\end{array}
+\right) \quad\textrm{ if } k\geq 3\\
+&amp; etc.\\
+\end{split}
+\end{equation*}
+</div>
+<div class="para">We can use induction to prove that if <span class="process-math">\(k\geq 2\text{,}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\left(
+\begin{array}{c}
+F_k \\
+F_{k-1} \\
+\end{array}
+\right)=A^{k-1} \left(
+\begin{array}{c}
+1 \\
+1 \\
+\end{array}
+\right)
 \end{equation*}
 </div>
 </div>
