@@ -10,23 +10,26 @@ same color. How many colors are needed? This question is motivated by the proble
 the same. A similar question can be asked for coloring edges.</p>
 </introduction>
 <subsection xml:id="ss-planarity"><title>Planar Graphs</title>
-<definition xml:id="def-planar-graph"><title>Planar Graph/Plane Graph</title><idx>Planar Graph</idx><idx>Plane Graph</idx><notation><usage><m></m></usage><description></description></notation><statement><p>A graph is planar if it can be drawn in a plane so that no edges cross. If a
-graph is drawn so that no edges intersect, it is a plane graph, and such a drawing is a planar embedding of the graph.</p></statement></definition>
+<definition xml:id="def-planar-graph"><title>Planar Graph/Plane Graph</title>
+<idx>Planar Graph</idx>
+<idx>Plane Graph</idx>
+<idx>Planar Embedding of a Graph</idx>
+<statement><p>A graph is planar if it <em>can</em> be drawn in a plane so that no edges cross. A drawing of a graph on the plane such that there are no edge crossings is called a planar embedding of the graph, or a plane graph for short.</p></statement></definition>
 
 
-<example xml:id="ex-planar-graph"><title>A Planar Graph</title><p>The graph in <xref ref="fig-planar-plane" text="type-global"/>(a) is planar but not a plane graph. The same graph is drawn as a plane graph in <xref ref="fig-planar-plane" text="type-global"/>(b).</p>
+<example xml:id="ex-planar-graph"><title>A Planar Graph</title><p>The graph in <xref ref="fig-planar-plane" text="type-global"/>(a) is planar but the drawing of it is not a plane graph. The drawing of the same graph in  <xref ref="fig-planar-plane" text="type-global"/>(b) is a planar graph.</p>
          <figure xml:id="fig-planar-plane">
-                <caption>A Planar Graph
+                <caption>A planar graph and a planar embedding that graph.
                 </caption>
                 <image width="100%" source="images/fig-planar-plane.png">
-                    <description>A Planar Graph</description>
+                    <description>On the left of the figure is a graph labeled (a) that has two edges crossing and so it is not a plane graph.  That graph is planar and to the right a graph labeled (b) is redrawn and is planar embedding, having no edge crossings.  The graph is defined in SageMath as Graph({1:[2,3],2:[3,4]}).</description>
                 </image>
             </figure>
 </example>
 
 <p><ol marker="(a)">
 <li><p> In discussing planarity, we need only consider simple undirected graphs with no self-loops. All other graphs can be treated as such since
-all of the edges that relate any two vertices can be considered as one <q>package</q> that clearly can be drawn in a plane.</p></li>
+all of the edges that relate any two vertices can be considered as one <q>bundle</q> that clearly can be drawn in a plane.</p></li>
 <li><p> Can you think of a graph that is not planar? How would you prove that it isn't planar? Proving the nonexistence of something is usually more
 difficult than proving its existence. This case is no exception. Intuitively, we would expect that sparse graphs would be planar and dense graphs
 would be nonplanar. <xref ref="theorem-edge-bound"  text="type-global"/> will verify that dense graphs are indeed nonplanar.</p></li>
@@ -59,8 +62,7 @@ edge deletions and contractions (shrinking an edge so that the two vertices conn
                 </image>
             </figure>
 
-<p>A planar graph divides the plane into one or more regions. Two points on the plane lie in the same region if you can draw a curve connecting the
-two points that does not pass through an edge. One of these regions will be of infinite area. Each point on the plane is either a vertex, a point on an edge, or a point in a region. A remarkable fact about the geography of planar graphs is the following theorem that is attributed to Euler.</p>
+<p><idx>Regions of a Planar Graph</idx>A planar graph divides the plane into one or more regions. Two points on the plane lie in the same region if you can draw a curve connecting the two points that does not pass through an edge. One of these regions will be of infinite area. Each point on the plane is either a vertex, a point on an edge, or a point in a region. A remarkable fact about the geography of planar graphs is the following theorem that is attributed to Euler.</p>
 
 <activity><task><p>Experiment: Jot down a graph right now and count the number of vertices, regions, and edges that you have. If <m>v + r - e</m> is not 2, then your graph
 is either nonplanar or not connected.</p></task></activity>
@@ -150,7 +152,15 @@ of two vertices, <m>e\geq \frac{6v}{2}=3v</m>. However, <xref ref="theorem-edge-
 
 <p>The map of Euler Island in <xref ref="fig-euler-island" text="type-global" /> shows that there are seven towns on the island. Suppose that a cartographer must produce a colored map in
 which no two towns that share a boundary have the same color. To keep costs down, she wants to minimize the number of different colors that appear
-on the map. How many colors are sufficient? For Euler Island, the answer is three.  Although it might not be obvious, this is a graph problem. We can represent the map with a graph, where the vertices are countries and an edge between two vertices indicates that the two corresponding countries share a boundary of positive length. This problem motivates a more general problem.</p>
+on the map. How many colors are sufficient? For Euler Island, the answer is three.  Although it might not be obvious, this is a graph problem. We can represent the map with a graph, where the vertices are countries and an edge between two vertices indicates that the two corresponding countries share a boundary of positive length. The graph corresponding to the map of Euler Island is <xref ref="fig-eulerislandgraph" text="type-global" />. </p>
+          <figure xml:id="fig-eulerislandgraph">
+                <caption>The graph of Euler Island
+                </caption>
+                <image width="100%" source="images/fig-eulerislandgraph.png"             <description>Graph({1:[2,5],2:[3,5,6,4,7], 3:[4],4:[7],7:[6],5:[6]})</description>
+                </image>
+            </figure>
+
+<p>The problem of coloring Euler Island motivates a more general problem.</p>
 
 <definition xml:id="def-graph-coloring"><title>Graph Coloring</title>
 <idx>Graph Coloring</idx><idx>Chromatic Number</idx>
@@ -206,7 +216,7 @@ can color the central vertex, <m>v</m>, red.</p>
 <p>Finally, suppose that <m>v_1</m> is connected to <m>v_3</m> using only red and blue vertices. Then a path from <m>v_{1 }</m> to <m>v_3</m> by using red and blue
 vertices followed by the edges <m>\left(v_3,v\right)</m> and <m>\left(v,v_1\right)</m> completes a circuit that either encloses <m>v_2</m> or encloses <m>v_4</m>
 and <m>v_5</m>. Therefore, no path from <m>v_2</m> to <m>v_4</m> exists using only white and yellow vertices. We can then repeat the same process as in the
-previous paragraph with <m>v_2</m> and <m>v_4</m>, which will allow us to color v white.</p>
+previous paragraph with <m>v_2</m> and <m>v_4</m>, which will allow us to color <m>v_4</m> white.</p>
 </proof></theorem>
  
 <definition xml:id="def-bipartite-graph"><title>Bipartite Graph</title><idx>Bipartite Graph.</idx>
@@ -217,8 +227,7 @@ can be partitioned into two nonempty subsets so that no edge connects  vertices 
 
 <example xml:id="ex-bipartite"><title>A Few Examples</title>
 <p><ol marker="(a)">
-<li><p> The graph of the Three Utilities Puzzle is bipartite. The vertices are partitioned into the utilities and the homes. Of course a 2-coloring of
-the graph is to color the utilities red and the homes blue.</p></li>
+<li><p> The graph of the Three Utilities Puzzle is bipartite. The vertices are partitioned into the utilities and the homes. A 2-coloring of the graph is to color the utilities red and the homes blue.</p></li>
 <li><p>For <m>n\geq 1</m>, the <m>n</m>-cube is bipartite. A coloring would be to color all strings with an even number of 1's red and the strings with
 an odd number of 1's blue. By the definition of the <m>n</m>-cube, two strings that have the same color couldn't be connected since they would
 need to differ in at least two positions.</p></li>
@@ -238,7 +247,7 @@ Connect vertices in <m>V</m> according to whether or not you can move a knight f
 </ol></p>
 </example>
 
-<p>How can you recognize whether a graph is bipartite? Unlike planarity, there is a nice equivalent condition for a graph to be bipartite.</p>
+<p>How can you recognize whether a graph is bipartite? There is a nice equivalent condition for a graph to be bipartite.</p>
 
 <theorem xml:id="theorem-no-odd"><title>No Odd Circuits in a Bipartite Graph</title><statement><p>An undirected graph is bipartite if and only if it has no circuit of odd length.</p></statement>
 
@@ -262,11 +271,11 @@ shows us that this circuit has an odd length. This contradicts our premise.</p><
 <exercises xml:id="exercises-9-6">
 <title>Exercises</title>
 <exercise number="1">
-<statement><p> Apply <xref ref="theorem-degree-5" text="type-global" /> to prove that once <m>n</m> gets to a certain size, a <m>K_n</m> is nonplanar. What is the largest complete planar graph?</p></statement>
-<answer><p><xref ref="theorem-degree-5" text="type-global" /> can be applied to infer that if <m>n\geqslant 5</m>, then <m>K_n</m> is nonplanar. A <m>K_4</m> is the largest complete planar graph.
-</p></answer></exercise>
+<statement><p>Use Euler's formula to prove by contradiction that a <m>K_5</m> is nonplanar. This shows that a <m>K_4</m> is the largest complete graph that is planar.</p></statement>
+<answer><p>A <m>K_5</m> has 10 edges.  If a <m>K_5</m> is planar, the number of regions into which the plane is divided must be 7, by Euler's formala (<m>5+7-10=2</m>).  If we re-count the edges of the graph by counting the number edges bordering the regions we get a count of at least <m>7 \times 3=21</m>.  But we've counted each edge twice this way and the count must be even.  This implies that the number of edges is at least 11, which a contradiction.</p></answer>
+</exercise>
 <exercise number="2">
-<statement><p> Can you apply <xref ref="theorem-degree-5" text="type-global" /> to prove that the Three Utilities Puzzle can't be solved?</p></statement></exercise>
+<statement><p>Use Euler's formula to prove by contradiction that a <m>K_{3,3}</m> is nonplanar. </p></statement><hint><p>Don't forget <xref ref="theorem-no-odd"/>!</p></hint></exercise>
 <exercise number="3">
 <statement><p> What are the chromatic numbers of the following graphs?</p>
 
