@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="s-some-common-rrs">
+<title>Some Common Recurrence Relations</title>
+
+<introduction><p>In this section we intend to examine a variety of recurrence relations that are not finite-order linear with constant coefficients. For each part of this section, we will consider a concrete example, present a solution, and, if possible, examine a more general form of the original relation.</p></introduction>
+
+<subsection xml:id="rr-basic-example"><title>A  First Basic Example</title>
+<p> Consider the homogeneous first-order linear relation without constant coefficients,  <m>S(n) - n S(n - 1) = 0</m>, <m>n \geq  1</m>, with initial condition <m>S(0)
+= 1</m>. Upon close examination of this relation, we see that the <m>n</m>th term is <m>n</m> times the <m>(n - 1)^{st}</m> term, which is a property of <m>n</m> factorial. <m>S(n) = n!</m> is a solution of this relation, for if <m>n \geq  1</m>,
+
+<me>S(n) = n! = n \cdot (n -1)! = n\cdot  S(n - 1)</me>
+
+In addition, since <m>0! = 1</m>, the initial condition is satisfied. It should be pointed out that from a computational point of view, our <q>solution</q>
+really isn't much of an improvement since the exact calculation of <m>n!</m> takes <m>n-1</m> multiplications.</p>
+
+<p>If we examine a similar relation, <m>G(k) - 2 ^k G(k - 1) = 0,</m> <m>k\geq 1</m> with <m>G(0) = 1</m>, a table of values for <m>G</m> suggests a possible solution:
+
+ <me>\begin{array}{ccccccc}
+ k &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 \\
+\hline
+ G(k) &amp; 1 &amp; 2 &amp; 2^3 &amp; 2^6 &amp; 2^{10} &amp; 2^{15} \\
+\end{array}</me>
+
+The exponent of 2 in <m>G(k)</m> is growing according to the relation <m>E(k) = E(k - 1) + k,</m> with <m>E(0) = 0</m>. Thus <m>E(k)=\frac{k(k+1)}{2}</m>
+and <m>G(k) = 2^{k(k+1)/2}</m>. Note that <m>G(k)</m> could also be written as <m>2^0 2^1 2^2 \cdots 2^k</m>, for <m>k \geq  0</m>, but this is not a closed form expression.</p>
+
+<p>In general, the relation <m>P(n) = f(n)P(n - 1)</m> for <m>n \geq 1</m> with <m>P(0) =f(0)</m>, where <m>f</m> is a function that is defined for all <m>n\geq
+0</m>, has the <q>solution</q>
+
+
+<me>P(n)=\prod _{k=0}^n f(k)</me>
+
+
+This product form of <m>P(n)</m> is not a closed form expression because as <m>n</m> grows, the number of multiplications grow. Thus, it is really not a true solution.  Often, as for <m>G(k)</m> above, a closed form expression can be derived from the product form.</p>
+</subsection>
+
+<subsection xml:id="analysis-of-binary-search"><title>An Analysis of the Binary Search Algorithm</title>
+<subsubsection><title></title>
+<p> Suppose you intend to use a binary search algorithm (see <xref ref="ss-recursive-searching"/>) on lists of zero or more sorted items, and that the items are stored in an array, so that you have easy access to each item. A natural question to ask is <q>How much time will it take to complete the search?</q> When a question like this is asked, the time we refer to is often the so-called worst-case time. That is, if we were to search through <m>n</m> items, what is the longest amount of time that we will need to complete the search? In order to make an analysis such as this independent of the computer to be used, time is measured by counting the number of steps that are executed. Each
+step (or sequence of steps) is assigned an absolute time, or weight; therefore, our answer will not be in seconds, but in absolute time units. If
+the steps in two different algorithms are assigned weights that are consistent, then analyses of the algorithms can be used to compare their relative
+efficiencies. There are two major steps that must be executed in a call of the binary search algorithm:</p>
+<p><ol marker="(1)">
+<li><p> If the lower index is less than or equal to the upper index, then the middle of the list is located and its key is compared to the value that
+you are searching for.</p></li>
+<li><p>In the worst case, the algorithm must be executed with a list that is roughly half as large as in the previous execution. If we assume that
+Step 1 takes one time unit and <m>T(n)</m> is the worst-case time for a list of <m>n</m> items, then
+
+<mdn><mrow xml:id="eq-bin-search-recursion">T(n)= 1 + T (\lfloor n/2 \rfloor ),  \quad n>0</mrow></mdn>
+
+For simplicity, we will assume that
+
+<mdn><mrow xml:id="eq-bin-search-basis">T(0) = 0</mrow></mdn>
+
+
+even though the conditions of Step 1 must be evaluated as false if <m>n = 0</m>. You might wonder why <m>n/2</m> is truncated in <xref ref="eq-bin-search-recursion"/>. If <m>n</m> is
+odd, then <m>n = 2 k + 1</m> for some <m>k\geq  0</m>, the middle of the list will be the <m>(k + 1)^{st}</m>  item, and no matter what half of the list the search is directed to, the reduced list will have <m>k = \lfloor n/2\rfloor</m> items. On the other hand, if <m>n</m> is even, then <m>n
+= 2 k</m> for <m>k>0</m>. The middle of the list will be the <m>k^{th}</m> item, and the worst case will occur if we are directed to the <m>k</m> items
+that come after the middle (the <m>(k + 1)^{st}</m> through <m>(2k)^{th}</m> items). Again the reduced list has <m>\lfloor n/2 \rfloor</m> items.</p></li>
+</ol></p>
+
+<p><em>Solution to <xref ref="eq-bin-search-recursion"/>  and <xref ref="eq-bin-search-basis"/>.</em>  To determine <m>T(n)</m>, the easiest case is when <m>n</m> is a power of two. If we compute <m>T \left(2^m\right)</m>,
+<m>m\geq 0</m> , by iteration, our results are
+
+<me>\begin{array}{c}
+T(1) = 1 + T(0) = 1\\
+T(2) = 1 + T(1) = 2\\
+T(4) = 1 + T(2) = 3\\
+T(8) = 1 + T(4) = 4\\
+\end{array}</me>
+
+The pattern that is established makes it clear that <m>T\left(2^m\right) = m + 1</m>. This result would seem to indicate that every time you double the size of your list, the search time increases by only one unit.</p>
+
+<p>A more complete solution can be obtained if we represent <m>n</m> in binary form. For each <m>n\geq 1</m>, there exists a non-negative integer <m>r</m> such that
+
+<mdn><mrow xml:id="eq-inequality-84">\quad \quad 2^{r-1}\leq n &lt; 2^r</mrow></mdn> 
+
+For example, if <m>n = 21</m>, <m>2^4 \leq  21 &lt; 2^5</m>; therefore, <m>r = 5</m>. If <m>n</m> satisfies (8.4.3), its binary representation requires <m>r</m> digits. For example, <m>21_{\text{ten}}</m> = <m>10101_{\textrm{two}}</m>.</p>
+
+<p>In general, <m>n = \left(a_1a_2\ldots  a_r\right)_{\textrm{two}}</m>. where <m>a_1=1</m>. Note that in this form, <m>\lfloor n/2\rfloor</m> is easy to describe:
+it is the <m>r-1</m> digit binary number <m>\left(a_1a_2\ldots  a_{r-1}\right)_{\textrm{two}}</m></p>
+
+<p>Therefore,
+
+<me>
+\begin{split}
+T(n) &amp;= T\left(a_1a_2\ldots  a_r\right)\\
+    &amp; =1+ T\left(a_1a_2\ldots  a_{r-1}\right)\quad \\
+    &amp; =1+\left(1+ T\left(a_1a_2\ldots  a_{r-2}\right)\right)\\
+    &amp; =2+ T\left(a_1a_2\ldots  a_{r-2}\right)\\
+    &amp;\quad  \vdots \\
+    &amp; = (r-1) + T\left(a_1\right)\\
+    &amp; = (r-1)+1\quad \textrm{ since } T(1)=1\\
+    &amp; = r
+\end{split}
+</me>.</p>
+
+<p>From the pattern that we've just established, <m>T(n)</m> reduces to <m>r</m>. A formal inductive proof of this statement is possible. However, we
+expect that most readers would be satisfied with the argument above. Any skeptics are invited to provide the inductive proof. </p>
+<p>For those who prefer to see a numeric example, suppose <m>n = 21</m>.
+
+<me>
+\begin{split}
+T(21) &amp;= T(10101) \\
+        &amp; = 1 + T(1010) \\
+        &amp;  = 1 + (1 + T(101)) \\
+        &amp;  = 1 + (1 + (1 + T(10))) \\
+        &amp;  = 1 + (1 + (1 + (1 + T(1))))\\
+        &amp;  = 1 + (1 + (1 + (1 + (1 +T(0)))))\\
+        &amp;  = 5
+\end{split}
+</me>
+</p>
+
+<p>Our general conclusion is that the solution to <xref ref="eq-bin-search-recursion"/>  and <xref ref="eq-bin-search-basis"/> is that for <m>n\geq 1</m>, <m>T(n) = r</m>, where <m>2^{r-1}\leq n &lt; 2^r</m>.</p>
+
+<p>A less cumbersome statement of this fact is that <m>T(n)=\left\lfloor \log_{2}n\right\rfloor +1</m>. For example, <m>T(21) = \left\lfloor \log_2 21\right\rfloor + 1 = 4 + 1 = 5</m>. </p>
+</subsubsection>
+<subsubsection xml:id="sss-review-of-logarithms"><title>Review of Logarithms</title><idx>Logarithms</idx>
+<p>Any discussion of logarithms must start by establishing a base, which can be any positive number other than 1. With the exception of <xref ref="theorem-logs-related" text="type-local" />,
+our base will be 2. We will see that the use of a different base (10 and <m>e\approx  2.171828</m> are the other common ones) only has the effect of
+multiplying each logarithm by a constant. Therefore, the base that you use really isn't very important. Our choice of base 2 logarithms is convenient
+for the problems that we are considering.</p>
+
+
+
+<definition xml:id="def-log-base-2"><title>Base 2 logarithm</title><idx>Logarithm, base 2</idx><statement><p>The base 2 logarithm of a positive number represents an exponent and is defined by the following equivalence for any positive real numbers <m>a</m>.
+<me>\log_2 a = x \quad \Leftrightarrow \quad 2^x= a</me>. </p></statement></definition>
+
+<figure xml:id="fig-log-2-plot">
+		 <caption>Plot of the logarithm, bases 2, function</caption>
+		 <image width="100%" source="images/fig-log-2-plot.png">
+		 <description>Plot of the logarithm, bases 2, function</description>
+		 </image>
+</figure>
+
+
+<p>For example, <m>\log_2 8 = 3</m> because <m>2^3 = 8</m> and <m>\log_21.414\approx 0.5</m> because <m>2^{0.5}\approx 1.414</m>. A graph of the function <m>f(x)
+= \log_2 x</m> in <xref ref="fig-log-2-plot" text="type-global"/> shows that if <m>a &lt; b</m>, the <m>\log_2a &lt; \log_2 b</m>; that is, when <m>x</m> increases, <m>\log_2 x</m> also increases.
+However, if we move <m>x</m> from <m>2^{10} = 1024</m> to <m>2^{11} = 2048</m>, <m>\log_2 x</m> only increases from 10 to 11. This slow rate of increase
+of the logarithm function is an important point to remember. An algorithm acting on <m>n</m> pieces of data that can be executed in <m>\log_2{n}</m>
+time units can handle significantly larger sets of data than an algorithm that can be executed in <m>n/100</m> or  <m>\sqrt{n}</m> time units. The graph of <m>T(n)=\left\lfloor \log_2n\right\rfloor +1</m> would show the same behavior.</p>
+
+<p>A few more properties that we will use in subsequent discussions involving logarithms are summarized in the following theorem.</p>
+
+<theorem xml:id="theorem-log-properties"><title>Fundamental Properties of Logarithms</title><idx><h>Logarithms</h><h>Properties</h></idx><statement><p>Let <m>a</m> and <m>b</m> be positive real numbers, and <m>r</m> a real number.
+
+<mdn>
+<mrow xml:id="eq-log-prop-1">\log_2 1 = 0</mrow>
+<mrow xml:id="eq-log-prop-2">\log_2 a b = \log_2a + \log_2b</mrow>
+<mrow xml:id="eq-log-prop-3">\log_2 \frac{a}{b}= \log_2a - \log_2b</mrow>
+<mrow xml:id="eq-log-prop-4">\log_2a^r = r \log_2a</mrow>
+<mrow xml:id="eq-log-prop-5">2^{\log_2a}= a</mrow>
+</mdn>
+</p>
+</statement></theorem>
+<definition xml:id="def-logarithm-general-base"><title>Logarithms base <m>b</m></title><idx><h>Logarithm</h><h>General Base</h></idx>
+<notation><usage><m>log_b a</m></usage><description>Logarithm, base <m>b</m> of <m>a</m></description></notation>
+<statement><p>If <m>b > 0</m>, <m>b \neq 1</m>, then for <m>a>0</m>, 
+ <me>\log_b a = x\Leftrightarrow b^x= a</me></p></statement>
+</definition>
+
+<theorem xml:id="theorem-logs-related">
+<title>How logarithms with different bases are related</title><statement><p>Let <m>b>0</m>, <m>b \neq 1</m>. Then for all <m>a >0</m>, <m>\log_b a = \frac{\log_2a}{\log_2b}</m>. Therefore, if <m>b > 1</m>, base b logarithms can be computed from base 2 logarithms by dividing by the positive scaling factor <m>\log_2b</m>. If <m>b &lt; 1</m>, this scaling factor is negative.</p>
+</statement><proof><p>By an analogue of <xref ref="eq-log-prop-5"/>, <m>a=b^{\log_b a}</m>. Therefore, if we take the base 2 logarithm of both sides of this equality we get:
+<me>\log_2 a = \log_2 \left(b^{\log_b a}\right)  \Rightarrow \log_2 a =\log_b a \cdot \log_2 b</me>
+Finally, divide both sides of the last equation by <m>\log_2b</m>.</p></proof></theorem>
+ 
+<note><p> <m>\log_{2}10 \approx  3.32192</m> and <m>\log_{2}e \approx 1.4427</m>.</p></note>
+
+
+</subsubsection>
+<subsubsection><title></title>
+
+<p>Returning to the binary search algorithm, we can derive the final expression for <m>T(n)</m> using the properties of logarithms, including that the
+logarithm function is increasing so that inequalities are maintained when taking logarithms of numbers.</p>
+
+<p>
+<me>
+\begin{split}
+T(n)= r &amp; \Leftrightarrow 2^{r-1}\leq n &lt; 2^r\\
+	&amp; \Leftrightarrow  \log_2 2^{r-1} \leq \log_2 n &lt; \log_2 2^r\\
+	&amp; \Leftrightarrow  r-1 \leq \log_2 n &lt; r\\
+	&amp; \Leftrightarrow  r-1 = \lfloor \log_2 n\rfloor \\
+	&amp; \Leftrightarrow  T(n) = r= \left\lfloor \log_2 n\right\rfloor +1
+\end{split}
+</me>
+</p>
+
+<p>We can apply several of these properties of logarithms to get an alternate expression for <m>T(n)</m>:
+<me>
+\begin{split}
+\left\lfloor \log_2n\right\rfloor +1 &amp;= \left\lfloor \log_2n+1\right\rfloor \\
+		&amp; = \left\lfloor \log_2n + \log_22\right\rfloor \\
+		&amp;  =\text{  }\left\lfloor \log_22n \right\rfloor 
+\end{split}
+</me>
+</p>
+
+
+
+
+<p>If the time that was assigned to Step 1 of the binary search algorithm is changed, we wouldn't expect the form of the solution to be very different. If <m>T(n)= a + T (\lfloor n/2 \rfloor )</m> with <m>T(0) = c</m>, then <m>T(n) = c + a \left\lfloor \log_2{2n}\right\rfloor</m>.</p>
+
+
+
+<p>A further generalization would be to add a coefficient to <m>T(\lfloor n/2 \rfloor )</m>: <m>T(n)= a + b T (\lfloor n/2 \rfloor )</m> with <m>T(0) = c</m>,
+where <m>a, b, c\in \mathbb{R}</m>, and <m>b\neq 0</m> is not quite as simple to derive. First, if we consider values of <m>n</m> that are powers of 2:
+
+
+
+<me>
+\begin{array}{c}
+T(1) = a + b T(0) = a + b c\\
+T(2)=a + b(a+b c) = a + a b +c b^2\\
+T(4)=a+b\left(a + a b +c b^2\right) = a + a b + a b^2+ c b^3\\
+\vdots \\
+T\left(2^r\right) = a + a b + a b^2+\cdots  + a b^r + c b^{r+1}
+\end{array}</me>
+
+
+
+If <m>n</m> is not a power of 2, by reasoning that is identical to what we used to <xref ref="eq-bin-search-recursion"/>  and <xref ref="eq-bin-search-basis"/>,
+ <me>T(n) =\sum_{k=0}^r a b^k+ c b^{r+1}</me>
+where <m>r = \left\lfloor \log_2n\right\rfloor</m>.</p>
+<p> The first term of this expression is a geometric sum, which can be written in closed form. Let <m>x</m> be that sum:
+
+<me>
+\begin{array}{c}
+  x =a + a b + a b^2+\cdots  + a b^r \\
+  b x= \textrm{   }a b + a b^2+\cdots  + a b^r + a b^{r+1}
+\end{array}
+</me>
+
+We've multiplied each term of <m>x</m> by <m>b</m> and aligned the identical terms in <m>x</m> and <m> bx</m>. Now if we subtract the two equations,
+<me>x - b x = a - a b ^{r+1} \Rightarrow x(1-b) = a\left(1-b^{r+1}\right)</me> 
+Therefore, <m>x = a\frac{b^{r+1}-1}{b-1}</m>.</p>
+
+<p>A closed form expression for <m>T(n)</m> is
+<me>T(n) = a\frac{b^{r+1}-1}{b-1} +\text{  }c b^{r+1}\text{  }\text{where}\text{  }r = \left\lfloor \log_2n\right\rfloor \text{  }</me>
+</p>
+</subsubsection>
+</subsection>
+
+
+<subsection xml:id="ss-bubblesort-analysis"><title>Analysis of Bubble Sort and Merge Sort</title><idx>Bubble Sort</idx><idx>Merge Sort</idx><p>
+ The efficiency of any search algorithm such as the binary search relies on fact that the search list is sorted according to a key value and that the search is based on the key value. There are several methods for sorting a list. One example is the bubble sort. You might
+be familiar with this one since it is a popular <q>first sorting algorithm.</q> A time analysis of the algorithm shows that if <m>B(n)</m> is the worst-case
+time needed to complete the bubble sort on <m>n</m> items, then <m>B(n) =(n-1) + B(n-1)</m> and <m>B(1) = 0</m>. The solution of this relation is a
+quadratic function <m>B(n) =\frac{1}{2}\left(n^2-n\right)</m>. The growth rate of a quadratic function such as this one is controlled by its squared
+term. Any other terms are dwarfed by it as <m>n</m> gets large. For the bubble sort, this means that if we double the size of the list that we
+are to sort, <m>n</m> changes to <m>2n</m> and so <m>n^2</m> becomes <m>4n^2</m> . Therefore, the time needed to do a bubble sort is quadrupled. One alternative
+to bubble sort is the merge sort. Here is a simple version of this algorithm for sorting <m>F=\{r(1), r(2), \ldots , r(n)\}</m>, <m>n \geq  1</m>. If <m>n
+= 1</m>, the list is sorted trivially. If <m>n\geq  2</m> then:</p>
+
+<p><ol marker="(1)">
+<li><p> Divide <m>F</m> into <m>F_1= \{r(1), \ldots , r(\lfloor n/2\rfloor )\}</m> and <m>F_2= \{r(\lfloor n/2\rfloor +1), \ldots ,r(n)\}</m>.</p></li>
+<li><p>Sort <m>F_1</m> and <m>F_2</m> using a merge sort.</p></li>
+<li><p>Merge the sorted lists <m>F_1</m> and <m>F_2</m> into one sorted list. If the sort is to be done in descending order of key values, you continue to choose the higher key value from the fronts of <m>F_1</m> and <m>F_2</m> and place them in the back of <m>F</m>.</p></li>
+</ol></p>
+
+<p>Note that <m>F_1</m> will always have <m>\lfloor n/2\rfloor</m> items and <m>F_2</m> will have <m>\lceil n/2\rceil</m> items; thus, if <m>n</m> is odd, <m>F_2</m>
+gets one more item than <m>F_1</m>. We will assume that the time required to perform Step 1 of the algorithm is insignificant compared to the other
+steps; therefore, we will assign a time value of zero to this step. Step 3 requires roughly <m>n</m> comparisons and <m>n</m> movements of
+items from <m>F_1</m> and <m>F_2</m> to <m>F</m>; thus, its time is proportional to <m>n</m>. For this reason, we will assume that Step 3 takes
+<m>n</m> time units. Since Step 2 requires <m>T(\lfloor n/2\rfloor ) + T(\lceil n/2\rceil )</m> time units,
+<mdn><mrow xml:id="eq-bubble-r">T(n) = n + T(\lfloor n/2\rfloor ) + T(\lceil n/2\rceil )</mrow></mdn>
+with the initial condition
+<mdn><mrow xml:id="eq-bubble-b">T(1) = 0</mrow></mdn>
+</p>
+
+<p>Instead of an exact solution of these equations, we will be content with an estimate for <m>T(n)</m>.  First, consider the case of <m>n=2^r</m>, <m>r \geq 1</m>:
+
+
+
+<me>
+\begin{array}{c}
+T\left(2^1\right)= T(2) = 2 +T(1)+T(1)= 2 = 1\cdot  2\\
+T\left(2^2\right) = T(4)=4+\text{  }T(2)+T(2)=8 = 2\cdot 4\\
+T\left(2^3\right) =T(8)=8 + T(4)+T(4) =24=3\cdot 8\\
+\vdots \\
+T\left(2^r\right)=r 2^r= 2^r \log_2 2^r
+\end{array}
+</me>
+</p>
+<p>Thus, if <m>n</m> is a power of 2, <m>T(n) = n \log_2 n</m>. Now if, for some <m>r \geq  2</m>, <m>2^{r-1}\leq n\leq 2^r</m>, then <m>(r-1)2^{r-1}\leq
+T(n) &lt; r 2^r</m>. This can be proved by induction on <m>r</m>. As <m>n</m> increases from <m>2^{r-1}</m> to <m>2^r</m>, <m>T(n)</m> increases from <m>(r-1)2^{r-1}</m>to
+<m>r 2^r</m> and is slightly larger than <m>\left\lfloor n \log_2n\right\rfloor</m>. The discrepancy is small enough so that <m>T_e(n)=\left\lfloor n \log
+_2n\right\rfloor</m> can be considered a solution of <xref ref="eq-bubble-r" /> and <xref ref="eq-bubble-b"/> for the purposes of comparing the merge sort with other algorithms. <xref ref="table-sort-analysis" text="type-global" />
+compares <m>B(n)</m> with <m>T_e(n)</m> for selected values of <m>n</m>.</p>
+
+<table   xml:id="table-sort-analysis">
+<title>Comparison of Times for Bubble Sort and Merge Sort</title>
+<tabular top="major" halign="center">
+<row><cell>n</cell><cell><m>B(n)</m></cell><cell><m>T_e(n)</m></cell></row>
+<row><cell>10</cell><cell>45</cell><cell>34</cell></row>
+<row><cell>50</cell><cell>1225</cell><cell>283</cell></row>
+<row><cell>100</cell><cell>4950</cell><cell>665</cell></row>
+<row><cell>500</cell><cell>124750</cell><cell>4483</cell></row>
+<row><cell>1000</cell><cell>499500</cell><cell>9966</cell></row>
+</tabular>
+</table>
+</subsection>
+<subsection xml:id="ss-derangements"><title>Derangements</title> <idx>Derangement</idx>
+<p>A derangement is a permutation on a set that has no <q>fixed points</q>.  Here is a formal definition:</p>
+<definition xml:id="def-derangement"><title>Derangement</title><statement><p>A derangement of a nonempty set <m>A</m> is a permutation of <m>A</m> (i.e., a bijection from <m>A</m> into <m>A</m>) such that <m>f(a)\neq a</m> for all <m>a \in  A</m>.</p></statement></definition>
+
+
+
+
+<p> If <m>A = \{1, 2, . . . , n\}</m>, an interesting question might be <q>How many derangements are there of <m>A</m>?</q>  We know that our answer is bounded above by <m>n!</m>. We can also expect our answer to be quite a bit smaller than <m>n!</m> since <m>n</m> is the image of itself for <m>(n-1)!</m> of the permutations of <m>A</m>.</p>
+
+
+
+<p>Let <m>D(n)</m> be the number of derangements of <m>\{1, 2, . . . , n\}</m>. Our answer will come from discovering a recurrence relation on <m>D</m>. Suppose that <m>n \geq  3</m>. If we are to construct a derangement of <m>\{1, 2, \dots , n\}</m>, <m>f</m>, then <m>f(n) = k \neq n</m>. Thus, the
+image of <m>n</m> can be selected in <m>n-1</m> different ways. No matter which of the <m>n -1</m> choices we make, we can complete the definition of
+<m>f</m> in one of two ways. First, we can decide to make <m>f(k) = n</m>, leaving <m>D(n -2)</m> ways of completing the definition of <m>f</m>, since <m>f</m> will be a derangement of <m>\{1, 2, \dots ,n\} - \{n, k\}</m>. Second, if we decide to select <m>f(k)\neq  n</m>, each of the
+<m>D(n - 1)</m> derangements of <m>\{1, 2,\dots ,n-1\}</m> can be used to define <m>f</m>. If <m>g</m> is a derangement of <m>\{1, 2, \dots , n-1\}</m> such that <m>g(p) = k</m>, then define f by
+<me>f(j)=\left\{
+\begin{array}{cc}
+ n &amp; \textrm{ if } j = p \\
+ k &amp; \textrm{ if } j = n \\
+ g(j) &amp; \textrm{ otherwise } \\
+\end{array}
+\right.</me>
+</p>
+
+<p>Note that with our second construction of <m>f</m>, <m>f(f(n)) = f(k) \neq  n</m>, while in the first construction, <m>f(f(n)) = f(k) = n</m>. Therefore,
+no derangement of <m>\{1, 2, . . . , n\}</m> with <m>f(n) = k</m> can be constructed by both methods.</p>
+
+<p>To recap our result, we see that <m>f</m> is determined by first choosing one of <m>n - 1</m> images of <m>n</m> and then constructing the
+remainder of <m>f</m> in one of <m>D(n - 2) + D(n -1)</m> ways. Therefore,
+
+<mdn><mrow>D(n) = (n - 1) (D(n - 2) + D(n - 1))</mrow></mdn>
+</p>
+
+
+<p>This homogeneous second-order linear relation with variable coefficients, together with the initial conditions <m>D(1) = 0</m> and <m>D(2) = 1</m>, completely
+defines <m>D</m>. Instead of deriving a solution of this relation by analytical methods, we will give an empirical derivation of an approximation of <m>D(n)</m>. Since the derangements of <m>\{1,2 . . . , n\}</m> are drawn from a pool of <m>n!</m> permutations, we will see what percentage of these permutations
+are derangements by listing the values of <m>n!</m>, <m>D(n)</m>, and <m>\frac{D(n)}{n!}</m>.  The results we observe will indicate that
+as <m>n</m> grows, <m>\frac{D(n)}{n!}</m> hardly changes at all. If this quotient is computed to eight decimal places, for <m>n \geq  12</m>, <m>D(n)/n!
+= 0.36787944</m>. The reciprocal of this number, which <m>D(n)/n!</m> seems to be tending toward, is, to eight places, 2.7182818. This number appears
+in so many places in mathematics that it has its own name, <m>e</m>. An approximate solution of our recurrence relation on <m>D</m> is then <m>D(n)\approx \frac{n!}{e}</m>.</p>
+<sage>
+<input>
+def D(n):
+    if n&lt;=2:
+        return n-1
+    else:
+        return (n-1)*(D(n-2)+D(n-1))
+
+list(map(lambda k:[k,D(k),(D(k)/factorial(k)).n(digits=8)],range(1,16)))
+</input>
+<output>
+[[1, 0, 0.00000000],
+ [2, 1, 0.50000000],
+ [3, 2, 0.33333333],
+ [4, 9, 0.37500000],
+ [5, 44, 0.36666667],
+ [6, 265, 0.36805556],
+ [7, 1854, 0.36785714],
+ [8, 14833, 0.36788194],
+ [9, 133496, 0.36787919],
+ [10, 1334961, 0.36787946],
+ [11, 14684570, 0.36787944],
+ [12, 176214841, 0.36787944],
+ [13, 2290792932, 0.36787944],
+ [14, 32071101049, 0.36787944],
+ [15, 481066515734, 0.36787944]]
+</output>
+</sage>
+</subsection>
+
+
+<exercises xml:id="exercises-8-4">
+<title>Exercises</title>
+
+
+
+
+<exercise number="1"><statement> <p>Solve the following recurrence relations. Indicate whether your solution is an improvement over iteration.</p>
+<p><ol marker="(a)">
+<li><p> <m>n S(n) - S(n - 1) = 0</m>, <m>S(0) = 1</m>.</p></li>
+<li><p> <m>T(k) + 3k T(k - 1) = 0</m>, <m>T(0) = 1</m>.</p></li>
+<li><p> <m>U(k) -\frac{k-1}{k}U(k - 1) = 0</m>, <m>k \geq  2</m>, <m>U(1) = 1</m>.</p></li>
+</ol></p>
+</statement><answer><p><ol marker="(a)"><li><p>  <m>S(n)=1/n</m>!  </p></li>
+<li><p><m>U(k)=1/k</m>, an improvement. </p></li>
+<li><p>  <m>T(k)=(-3)^kk</m>!, no improvement.</p></li>
+</ol></p></answer></exercise>
+
+<exercise number="2"><statement> <p>Prove that if <m>n \geq 0</m>, <m>\lfloor n/2\rfloor +\lceil n/2\rceil = n</m>. (Hint: Consider the cases of <m>n</m> odd and <m>n</m> even separately.)
+</p>
+</statement></exercise>
+
+
+
+<exercise number="3"><statement><p>Solve as completely as possible:</p>
+ <p><ol marker="(a)">
+<li><p><m>T(n) = 3 + T(\lfloor n/2\rfloor )</m>, <m>T(0) = 0</m>.</p></li>
+<li><p><m>T(n) = 1 + \frac{1}{2}T(\lfloor n/2\rfloor )</m>, <m>T(0) = 2</m>.</p></li>
+<li><p> <m>V(n) = 1 + V\lfloor n/8\rfloor )</m>, <m>V(0) = 0</m>. (Hint: Write <m>n</m> in octal form.)</p></li>
+</ol></p>
+</statement><answer><p><ol marker="(a)"><li><p>  <m>T(n)=3\left(\left\lfloor \log_2n\right\rfloor +1\right)</m> </p></li>
+<li><p><m>T(n)=2</m></p></li>
+<li><p> <m>V(n)=\left\lfloor \log_8n\right\rfloor +1</m></p></li>
+</ol></p></answer></exercise>
+
+<exercise number="4"><statement><p> Prove by induction that if <m>T(n)= 1 + T (\lfloor n/2 \rfloor )</m>, <m>T(0) = 0</m>, and <m>2^{r-1}\leq n &lt; 2^r</m> , <m>r \geq  1</m>, then <m>T(n) = r</m>.
+</p>
+</statement><hint><p>Prove by induction on <m>r</m>.</p></hint></exercise>
+
+<exercise number="5"><statement><p> Use the substitution <m>S(n) = T(n+1)/T(n)</m>  to solve <m>T(n)T(n-2)=T(n-1)^2</m> for <m>n \geq  2</m>, with <m>T(0) = 1</m>, <m>T(1) = 6</m>, and <m>T(n) \geq  0</m>.</p>
+</statement>
+<answer><p> The indicated substitution yields <m>S(n)=S(n+1)</m>. Since <m>S(0)=T(1)/T(0)=6</m>, <m>S(n)=6</m> for all <m>n</m>. Therefore <m>T(n+1)=6T(n)\Rightarrow T(n)=6^n</m>.</p></answer>
+</exercise>
+
+<exercise number="6"><statement><p> Use the substitution <m>G(n) =T(n)^2</m> to solve
+<m>T(n)^2-T(n-1)^2=1</m> for <m>n \geq  1</m>, with <m>T(0) = 10</m>.</p>
+</statement></exercise>
+
+<exercise number="7"><statement><p>Solve as completely as possible:</p>
+ <p><ol marker="(a)">
+<li><p> <m>Q(n)=1+Q\left(\left\lfloor \sqrt{n}\right\rfloor \right)</m>, <m>n \geq  2</m>, <m>Q(1) = 0</m>.</p></li>
+<li><p> <m>R(n)=n +R(\lfloor n/2\rfloor )</m>, <m>n \geq  1</m>, <m>R(0) = 0</m>.</p></li>
+</ol></p>
+</statement><answer><p><ol marker="(a)"><li><p> A good approximation to the solution of this recurrence relation
+ is based on the following observation: <m>n</m> is a power of a power of two; that is,
+  <m>n</m> is <m>2^m</m>, where <m>m=2^k</m> , then <m>Q(n)=1+Q\left(2^{m/2}\right)</m>.
+   By applying this recurrence relation <m>k</m> times we obtain <m>Q(n)=k</m>.
+    Going back to the original form of <m>n</m>,
+     <m>\log _2n=2^k</m> or <m>\log _2\left(\log _2n\right)=k</m>.
+      We would expect that in general, <m>Q(n)</m> is <m>\left\lfloor \log _2\left(\log _2n\right)\right\rfloor</m>.
+       We do not see any elementary method for arriving at an exact solution. </p></li>
+<li><p> Suppose that <m>n</m> is a positive integer with <m>2^{k-1} \leq n &lt; 2^k</m>.
+ Then <m>n</m> can be written in binary form, <m>\left(a_{k-1}a_{k-2}\cdots  a_2a_1a_0\right)_{\textrm{two}}</m>
+  with <m>a_{k-1}=1</m> and <m>R(n)</m> is equal to the sum <m>\underset{i=0}{\overset{k-1}{\Sigma }}</m>
+  <m>\left(a_{k-1}a_{k-2}\cdots  a_i\right)_{\textrm{two}}</m>. If <m>2^{k-1}\leq n &lt; 2^k</m>,
+   then we can estimate this sum to be between <m>2n-1</m> and <m>2n+1</m>.
+    Therefore, <m>R(n)\approx 2n</m>.</p></li></ol></p>
+</answer></exercise>
+
+<exercise number="8"><statement><p>Suppose Step 1 of the merge sort algorithm did take a significant amount of time. Assume it takes 0.1 time unit, independent of the value of
+<m>n</m>.</p>
+ <p><ol marker="(a)">
+<li><p>Write out a new recurrence relation for <m>T(n)</m> that takes this factor into account.</p></li>
+<li><p> Solve for <m>T\left(2^r\right)</m>, <m>r \geq  0</m>.</p></li>
+<li><p>Assuming the solution for powers of 2 is a good estimate for all <m>n</m>, compare your result to the solution in the text. As gets large, is there
+really much difference?</p></li>
+</ol></p>
+</statement></exercise>
+
+</exercises>
+</section>

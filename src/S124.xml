@@ -1,0 +1,1130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="s-the-diagonalization-process">
+<title>The Diagonalization Process</title>
+<idx>Diagonalization Process, The</idx>
+<subsection><title>Eigenvalues and Eigenvectors</title>
+
+<p>We now have the background to understand the main ideas behind the diagonalization process.</p>
+
+<definition xml:id="def-eigenvalue-eigenvector"><title>Eigenvalue, Eigenvector</title>
+<idx>Eigenvalue</idx>
+<idx>Eigenvector</idx>
+<statement><p>
+ Let <m>A</m> be an <m>n\times n</m> matrix over <m>\mathbb{R}</m>.  <m>\lambda</m>  is an eigenvalue of <m>A</m> if for some nonzero column vector  <m>\vec{x}\in \mathbb{R}^n</m> we have <m>A \vec{x} = \lambda  \vec{x}</m>.  <m>\vec{x}</m> is called an <term>eigenvector</term>
+corresponding to the <term>eigenvalue</term> <m>\lambda</m>.</p></statement></definition>
+<example xml:id="ex-some-evalues"><title>Examples of eigenvalues and eigenvectors</title><p>Find the eigenvalues and corresponding eigenvectors of the matrix <m>A=\left(
+\begin{array}{cc}
+ 2 &amp; 1 \\
+ 2 &amp; 3 \\
+\end{array}
+\right)</m>.</p>
+<p>We want to find nonzero vectors  <m>X = \left(
+\begin{array}{c}
+ x_1 \\
+ x_2 \\
+\end{array}
+\right)</m> and real numbers <m>\lambda</m>  such that
+<mdn>
+<mrow xml:id="equation-evalue-logic">\begin{split}
+A X = \lambda  X \quad &amp;\Leftrightarrow \left(
+			\begin{array}{cc}
+			 2 &amp; 1 \\
+			 2 &amp; 3 \\
+			\end{array}
+			\right)\left(
+			\begin{array}{c}
+			 x_1 \\
+			 x_2 \\
+			\end{array}
+			\right) = \lambda  \left(
+			\begin{array}{c}
+			 x_1 \\
+			 x_2 \\
+			\end{array}
+			\right)\\
+ 	&amp; \Leftrightarrow \left(
+			\begin{array}{cc}
+			 2 &amp; 1 \\
+			 2 &amp; 3 \\
+			\end{array}
+			\right)\left(
+			\begin{array}{c}
+			 x_1 \\
+			 x_2 \\
+			\end{array}
+			\right) - \lambda  \left(
+			\begin{array}{c}
+			 x_1 \\
+			 x_2 \\
+			\end{array}
+			\right)=\left(
+			\begin{array}{c}
+			 0 \\
+			 0 \\
+			\end{array}
+			\right)\\
+	&amp; \Leftrightarrow  \left(
+			\begin{array}{cc}
+			 2 &amp; 1 \\
+			 2 &amp; 3 \\
+			\end{array}
+			\right)\left(
+			\begin{array}{c}
+			 x_1 \\
+			 x_2 \\
+			\end{array}
+			\right) - \lambda  \left(
+			\begin{array}{cc}
+			 1 &amp; 0 \\
+			 0 &amp; 1 \\
+			\end{array}
+			\right) \left(
+			\begin{array}{c}
+			 x_1 \\
+			 x_2 \\
+			\end{array}
+			\right)=\left(
+			\begin{array}{c}
+			 0 \\
+			 0 \\
+			\end{array}
+			\right)\\
+	&amp; \Leftrightarrow  \left( \left(
+			\begin{array}{cc}
+			 2 &amp; 1 \\
+			 2 &amp; 3 \\
+			\end{array}
+			\right) - \lambda  \left(
+			\begin{array}{cc}
+			 1 &amp; 0 \\
+			 0 &amp; 1 \\
+			\end{array}
+			\right) \right)\left(
+			\begin{array}{c}
+			 x_1 \\
+			 x_2 \\
+			\end{array}
+			\right)=\left(
+			\begin{array}{c}
+			 0 \\
+			 0 \\
+			\end{array}
+			\right)\\
+	&amp; \Leftrightarrow \left(
+			\begin{array}{cc}
+			 2-\lambda  &amp; 1 \\
+			 2 &amp; 3-\lambda  \\
+			\end{array}
+			\right) \left(
+			\begin{array}{c}
+			 x_1 \\
+			 x_2 \\
+			\end{array}
+			\right)=\left(
+			\begin{array}{c}
+			 0 \\
+			 0 \\
+			\end{array}
+			\right)\\
+\end{split}</mrow>
+</mdn>
+</p>
+
+<p>The last matrix equation will have nonzero solutions if and only if
+
+
+
+<me>\det  \left(
+\begin{array}{cc}
+ 2-\lambda  &amp; 1 \\
+ 2 &amp; 3-\lambda  \\
+\end{array}
+\right) =0</me>
+
+
+
+or  <m>(2 - \lambda )(3 -\lambda ) - 2 = 0</m>, which simplifies to <m>\lambda^2 - 5\lambda  + 4 = 0</m>.   Therefore, the solutions to this quadratic equation, <m>\lambda_1 = 1</m> and <m>\lambda_2 = 4</m>, are the eigenvalues of <m>A</m>. We now have to find eigenvectors associated with each eigenvalue.</p>
+
+<p>Case 1. For <m>\lambda_1= 1</m>,  <xref ref="equation-evalue-logic" text="type-global" />  becomes:
+
+<me>\left(
+\begin{array}{cc}
+ 2-1 &amp; 1 \\
+ 2 &amp; 3-1 \\
+\end{array}
+\right) \left(
+\begin{array}{c}
+ x_1 \\
+ x_2 \\
+\end{array}
+\right)=\left(
+\begin{array}{c}
+ 0 \\
+ 0 \\
+\end{array}
+\right) \\
+\\
+\left(
+\begin{array}{cc}
+ 1 &amp; 1 \\
+ 2 &amp; 2 \\
+\end{array}
+\right) \left(
+\begin{array}{c}
+ x_1 \\
+ x_2 \\
+\end{array}
+\right)=\left(
+\begin{array}{c}
+ 0 \\
+ 0 \\
+\end{array}
+\right)\textrm{    } </me>
+which reduces to the single equation, <m>x_1+ x_2= 0</m>.  From this, <m>x_1= -x_2</m>. This means the solution set of this equation is (in column notation)
+<me>E_1 = \left\{ \left.\left(
+\begin{array}{c}
+ -c \\
+ c \\
+\end{array}
+\right) \right| c\in  \mathbb{R}\right\}</me>
+
+
+
+So any column vector of the form <m>\left(
+\begin{array}{c}
+ -c \\
+ c \\
+\end{array}
+\right)</m> where <m>c</m> is any nonzero real number is an eigenvector associated with  <m>\lambda_1=1</m>.   The reader should verify that,
+for example, 
+
+<me>\left(
+\begin{array}{cc}
+ 2 &amp; 1 \\
+ 2 &amp; 3 \\
+\end{array}
+\right)\left(
+\begin{array}{c}
+ 1 \\
+ -1 \\
+\end{array}
+\right) = 1 \left(
+\begin{array}{c}
+ 1 \\
+ -1 \\
+\end{array}
+\right)</me>
+so that <m>\left(
+\begin{array}{c}
+ 1 \\
+ -1 \\
+\end{array}
+\right)</m> is an eigenvector associated with eigenvalue 1.</p>
+
+<p>Case 2.  For <m>\lambda_2=4</m> <xref ref="equation-evalue-logic" text="type-global" /> becomes:
+<me>\left(
+\begin{array}{cc}
+ 2-4 &amp; 1 \\
+ 2 &amp; 3-4 \\
+\end{array}
+\right) \left(
+\begin{array}{c}
+ x_1 \\
+ x_2 \\
+\end{array}
+\right)=\left(
+\begin{array}{c}
+ 0 \\
+ 0 \\
+\end{array}
+\right) \\
+\\
+\left(
+\begin{array}{cc}
+ -2 &amp; 1 \\
+ 2 &amp; -1 \\
+\end{array}
+\right) \left(
+\begin{array}{c}
+ x_1 \\
+ x_2 \\
+\end{array}
+\right)=\left(
+\begin{array}{c}
+ 0 \\
+ 0 \\
+\end{array}
+\right) </me>
+which reduces to the single equation <m>-2x_1+x_2=0</m>, so that <m>x_2= 2x_1</m>. The solution set of the equation is
+
+
+
+<me>E_2=\left\{\left.\left(
+\begin{array}{c}
+ c \\
+ 2c \\
+\end{array}
+\right)\right| c\in  \mathbb{R}\right\}</me>
+Therefore, all eigenvectors of <m>A</m> associated with the eigenvalue <m>\lambda_2 = 4</m> are of the form <m>\left(
+\begin{array}{c}
+ c \\
+ 2c  \\
+\end{array}
+\right)</m>, where <m>c</m> can be any nonzero number.
+</p></example>
+
+<p>The following theorems summarize the most important aspects of the previous example.</p>
+
+<theorem xml:id="theorem-evalue-det-theorem"><title>Characterization of Eigenvalues of a Square Matrix</title>
+<statement><p>Let <m>A</m> be any <m>n\times n</m> matrix over <m>\mathbb{R}</m>. Then <m>\lambda \in  \mathbb{R}</m> is an eigenvalue of <m>A</m> if and only if <m>\det (A - \lambda  I) = 0</m>.</p></statement>
+</theorem> 
+
+<p>The equation <m>\det (A - \lambda  I) = 0</m> is called the <term>characteristic equation</term>, and the left side of this equation is called the <term>
+characteristic polynomial</term> of <m>A</m>.</p>
+
+<theorem xml:id="theorem-evector-independence"><title>Linear Independence of Eigenvectors</title>
+<statement><p>Nonzero eigenvectors corresponding to distinct eigenvalues are linearly independent.</p></statement></theorem>
+
+<p>The solution space of <m>(A-\lambda  I)\vec{x}=\vec{0}</m> is called the eigenspace of <m>A</m> corresponding to <m>\lambda</m>. This terminology is justified by Exercise 2 of this section.</p>
+</subsection>
+<subsection><title>Diagonalization</title>
+
+<p>We now consider the main aim of this section. Given an <m>n\times n</m> (square) matrix <m>A</m>, we would like to transform <m>A</m> into a diagonal matrix <m>D</m>, perform our tasks with the simpler matrix <m>D</m>, and then describe the results in terms of the given matrix <m>A</m>.</p>
+<definition xml:id="def-diagonalizable-matrix">
+<title>Diagonalizable Matrix</title>
+<idx>Diagonalizable Matrix</idx>
+<statement><p>An <m>n\times n</m> matrix <m>A</m> is called diagonalizable if there exists an invertible <m>n\times n</m>
+matrix <m>P</m> such that <m>P^{-1} A P</m> is a diagonal matrix <m>D</m>. The matrix <m>P</m> is said to diagonalize the matrix <m>A</m>.</p></statement></definition>
+<example xml:id="ex-diagonalization-of-matrix">
+<title>Diagonalization of a Matrix</title>
+<p>We will now diagonalize the matrix <m>A</m> of <xref ref="ex-some-evalues" text="type-global" />.  We form the matrix <m>P</m> as follows: Let <m>P^{(1)}</m>
+be the first column of <m>P</m>.  Choose for <m>P^{(1)}</m> any eigenvector from <m>E_1</m>. We may as well choose a simple vector in <m>E_1</m> so <m>P^{(1)}=\left(
+\begin{array}{c}
+ 1 \\
+ -1 \\
+\end{array}
+\right)</m> is our candidate.</p>
+<p>Similarly, let <m>P^{(2)}</m>  be the second column of <m>P</m>, and choose for <m>P^{(2)}</m> any eigenvector from <m>E_2</m>. The vector <m>P^{(2)}=\left(
+\begin{array}{c}
+ 1 \\
+ 2 \\
+\end{array}
+\right)</m>  is a  reasonable choice, thus 
+<me>P= \left(
+\begin{array}{cc}
+ 1 &amp; 1 \\
+ -1 &amp; 2 \\
+\end{array}
+\right)    \textrm{ and }	  P^{-1}= \frac{1}{3}\left(
+\begin{array}{cc}
+ 2 &amp; -1 \\
+ 1 &amp; 1 \\
+\end{array}
+\right)=\left(
+\begin{array}{cc}
+ \frac{2}{3} &amp; -\frac{1}{3} \\
+ \frac{1}{3} &amp; \frac{1}{3} \\
+\end{array}
+\right)</me>
+so that   
+<me>P^{-1} A P = \frac{1}{3}\left(
+\begin{array}{cc}
+ 2 &amp; -1 \\
+ 1 &amp; 1 \\
+\end{array}
+\right)\left(
+\begin{array}{cc}
+ 2 &amp; 1 \\
+ 2 &amp; 3 \\
+\end{array}
+\right)\left(
+\begin{array}{cc}
+ 1 &amp; 1 \\
+ -1 &amp; 2 \\
+\end{array}
+\right) = \left(
+\begin{array}{cc}
+ 1 &amp; 0 \\
+ 0 &amp; 4 \\
+\end{array}
+\right)</me>
+
+
+
+Notice that the elements on the main diagonal of <m>D</m> are the eigenvalues of <m>A</m>, where <m>D_{i i}</m> is the eigenvalue corresponding
+to the eigenvector <m>P^{(i)}</m> .
+</p></example>
+<note><p><ol marker="(1)">
+<li><p> The first step in the diagonalization process is the determination of the eigenvalues. The ordering of the eigenvalues is purely arbitrary.
+If we designate <m>\lambda_1 = 4</m>  and <m>\lambda_2=1</m>, the columns of <m>P</m> would be interchanged and <m>D</m> would be <m>\left(
+\begin{array}{cc}
+ 4 &amp; 0 \\
+ 0 &amp; 1 \\
+\end{array}
+\right)</m> (see Exercise 3b of this section).  Nonetheless, the final outcome of the application to which we are applying the diagonalization process
+would be the same.</p></li>
+<li><p> If <m>A</m> is an <m>n\times n</m> matrix with distinct eigenvalues, then <m>P</m> is also an <m>n\times n</m> matrix whose columns <m>P^{(1)}</m>,
+<m>P^{(2)}, \ldots</m>, <m>P^{(n)}</m> are <m>n</m> linearly independent vectors.</p></li>
+</ol>
+</p>
+</note>
+
+<example xml:id="ex-another-diagonalization"><title>Diagonalization of a 3 by 3 matrix</title><p> Diagonalize the matrix
+<me>A= \left(
+\begin{array}{ccc}
+ 1 &amp; 12 &amp; -18 \\
+ 0 &amp; -11 &amp; 18 \\
+ 0 &amp; -6 &amp; 10 \\
+\end{array}
+\right)</me>.</p>
+<p>First, we find the eigenvalues of <m>A</m>. 
+<me>
+\begin{split}
+\det (A-\lambda  I) &amp;=\det \left(
+			\begin{array}{ccc}
+			 1-\lambda  &amp; 12 &amp; -18 \\
+			 0 &amp; -\lambda -11 &amp; 18 \\
+			 0 &amp; -6 &amp; 10-\lambda  \\
+			\end{array}
+			\right)\\
+	&amp;=(1-\lambda ) \det  \left(
+			\begin{array}{cc}
+			 -\lambda -11 &amp; 18 \\
+			 -6 &amp; 10-\lambda  \\
+			\end{array}
+			\right)\\
+	&amp;=(1-\lambda ) ((-\lambda -11)(10-\lambda )+108) = (1-\lambda ) \left(\lambda ^2+\lambda -2\right)
+\end{split}
+</me>
+Hence, the equation <m>\det (A-\lambda  I)</m> becomes
+<me>(1-\lambda ) \left(\lambda ^2+\lambda -2\right) =- (\lambda -1)^2(\lambda +2)</me>
+Therefore, our eigenvalues for <m>A</m> are <m>\lambda_1= -2</m> and <m>\lambda_2=1</m>. We note that we do not have three distinct eigenvalues, but
+we proceed as in the previous example.</p>
+<p>Case 1.  For <m>\lambda_1= -2</m> the equation <m>(A-\lambda  I)\vec{x}= \vec{0}</m>  becomes
+<me>\left(
+\begin{array}{ccc}
+ 3 &amp; 12 &amp; -18 \\
+ 0 &amp; -9 &amp; 18 \\
+ 0 &amp; -6 &amp; 12 \\
+\end{array}
+\right) \left(
+\begin{array}{c}
+ x_1 \\
+ x_2 \\
+ x_3 \\
+\end{array}
+\right)= \left(
+\begin{array}{c}
+ 0 \\
+ 0 \\
+ 0 \\
+\end{array}
+\right)</me>
+We can row reduce the matrix of coefficients to <m>\left(
+\begin{array}{ccc}
+ 1 &amp; 0 &amp; 2 \\
+ 0 &amp; 1 &amp; -2 \\
+ 0 &amp; 0 &amp; 0 \\
+\end{array}
+\right)</m>.</p>
+<p>The matrix equation is then equivalent to the equations <m>x_1 = -2x_3 \textrm{ and } x_2= 2x_3</m>.  Therefore, the solution set, or eigenspace, corresponding to <m>\lambda_1=-2</m> consists of vectors of the form 
+<me>\left(
+\begin{array}{c}
+ -2x_3 \\
+ 2x_3 \\
+ x_3 \\
+\end{array}
+\right)= x_3\left(
+\begin{array}{c}
+ -2 \\
+ 2 \\
+ 1 \\
+\end{array}
+\right)</me>
+</p>
+<p>Therefore <m>\left(
+\begin{array}{c}
+ -2 \\
+ 2 \\
+ 1 \\
+\end{array}
+\right)</m> is an eigenvector corresponding to the eigenvalue <m>\lambda_1=-2</m>, and can be used for our first column of <m>P</m>:
+<me>P= \left(
+\begin{array}{ccc}
+ -2 &amp; ? &amp; ? \\
+ 2 &amp; ? &amp; ? \\
+ 1 &amp; ? &amp; ? \\
+\end{array}
+\right)</me>
+</p>
+<p>Before we continue we make the observation: <m>E_1</m> is a subspace of <m>\mathbb{R}^3</m> with basis <m>\left\{P^{(1)}\right\}</m> and  <m>\dim  E_1 =
+1</m>.</p>
+<p>Case 2. If <m>\lambda_2= 1</m>, then the equation <m>(A-\lambda  I)\vec{x}= \vec{0}</m> becomes
+ <me>\left(
+\begin{array}{ccc}
+ 0 &amp; 12 &amp; -18 \\
+ 0 &amp; -12 &amp; 18 \\
+ 0 &amp; -6 &amp; 9 \\
+\end{array}
+\right) \left(
+\begin{array}{c}
+ x_1 \\
+ x_2 \\
+ x_3 \\
+\end{array}
+\right)= \left(
+\begin{array}{c}
+ 0 \\
+ 0 \\
+ 0 \\
+\end{array}
+\right)</me>
+</p>
+
+<p>Without the aid of any computer technology, it should be clear that all three equations that correspond to this matrix equation are equivalent to
+ <m>2 x_2-3x_3= 0</m>, or <m>x_2= \frac{3}{2}x_3</m>.    Notice that <m>x_1</m> can take on any value, so any vector of the form
+<me>\left(
+\begin{array}{c}
+ x_1 \\
+ \frac{3}{2}x_3 \\
+ x_3 \\
+\end{array}
+\right)=x_1\left(
+\begin{array}{c}
+ 1 \\
+ 0 \\
+ 0 \\
+\end{array}
+\right)+x_3\left(
+\begin{array}{c}
+ 0 \\
+ \frac{3}{2} \\
+ 1 \\
+\end{array}
+\right)</me>
+will solve the matrix equation.</p>
+
+<p>We note that the solution set contains two independent variables, <m>x_1</m> and <m>x_3</m>. Further, note that we cannot express the eigenspace <m>E_2</m> as a linear combination of a single vector as in Case 1.   However, it can be written as 
+<me>E_2= \left\{x_1\left(
+\begin{array}{c}
+ 1 \\
+ 0 \\
+ 0 \\
+\end{array}
+\right)+x_3\left(
+\begin{array}{c}
+ 0 \\
+ \frac{3}{2} \\
+ 1 \\
+\end{array}
+\right) \mid x_1,x_3\in  \mathbb{R}\right\}.</me>
+</p>
+
+<p>We can replace any vector in a basis is with a nonzero multiple of that vector.  Simply for aesthetic reasons, we will multiply the second vector
+that generates <m>E_2</m> by 2.  Therefore, the eigenspace <m>E_2</m> is a subspace of <m>\mathbb{R}^3</m> with basis <m>\left\{\left(
+\begin{array}{c}
+ 1 \\
+ 0 \\
+ 0 \\
+\end{array}
+\right),\left(
+\begin{array}{c}
+ 0 \\
+ 3 \\
+ 2 \\
+\end{array}
+\right)\right\}</m> and so  <m>\dim  E_2 = 2</m>.</p>
+
+
+<p>What this means with respect to the diagonalization process is that <m>\lambda_2= 1</m>  gives us both Column 2 and Column 3 the diagonalizing matrix.
+  The order is not important so we have 
+
+
+<me>P= \left(
+\begin{array}{ccc}
+ -2 &amp; 1 &amp; 0 \\
+ 2 &amp; 0 &amp; 3 \\
+ 1 &amp; 0 &amp; 2 \\
+\end{array}
+\right)</me></p>
+
+
+
+<p>The reader can verify (see Exercise 5 of this section) that
+
+
+
+ <m>P^{-1}= \left(
+\begin{array}{ccc}
+ 0 &amp; 2 &amp; -3 \\
+ 1 &amp; 4 &amp; -6 \\
+ 0 &amp; -1 &amp; 2 \\
+\end{array}
+\right)</m>   and   <m>P^{-1}A P = \left(
+\begin{array}{ccc}
+ -2 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 \\
+\end{array}
+\right)</m>
+</p></example>
+
+
+<p>In doing <xref ref="ex-another-diagonalization" text="type-global" />, the given <m>3\times 3</m> matrix <m>A</m> produced only two, not three, distinct eigenvalues, yet we were still able to
+diagonalize <m>A</m>. The reason we were able to do so was because we were able to find three linearly independent eigenvectors. Again, the main
+idea is to produce a matrix <m>P</m> that does the diagonalizing. If <m>A</m> is an <m>n \times  n</m> matrix, <m>P</m> will be an <m>n\times
+n</m> matrix, and its <m>n</m> columns must be linearly independent eigenvectors. The main question in the study of diagonalizability is <q>When
+can it be done?</q> This is summarized in the following theorem.</p>
+
+<theorem xml:id="theorem-diagon-condition"><title>A condition for diagonalizability</title><statement><p> Let <m>A</m> be an <m>n \times  n</m> matrix.   Then <m>A</m> is diagonalizable if and only if <m>A</m> has <m>n</m> linearly independent eigenvectors.</p></statement>
+<proof><p>Outline of a proof: (<m>\Longleftarrow</m>) Assume that <m>A</m> has linearly independent eigenvectors, <m>P^{(1)}, P^{(2)}, \ldots , P^{(n)}</m>, with corresponding eigenvalues <m>\lambda_1</m>, <m>\lambda_2, \ldots</m> , <m>\lambda _n</m>.   We want to prove that <m>A</m> is diagonalizable.
+Column <m>i</m> of the <m>n \times n</m> matrix <m>A P</m> is  <m>A P^{(i)}</m> (see Exercise 7 of this section). Then, since the <m>P^{(i)}</m> is an eigenvector
+of <m>A</m>  associated  with the eigenvalue <m>\lambda _i</m> we have <m>A P^{(i)}= \lambda _iP^{(i)}</m> for <m>i = 1, 2, \dots , n</m>. But this
+means that <m>A P = P D</m>, where <m>D</m> is the diagonal matrix with diagonal entries  <m>\lambda_1</m>, <m>\lambda_2,\ldots </m>, <m>\lambda_n</m>.   If we multiply both sides of the equation by <m>P^{-1}</m> we get the desired <m>P^{-1}A P = D</m>.</p>
+
+
+
+<p>(<m>\Longrightarrow </m>) The proof in this direction involves a concept that is not covered in this text (rank of a matrix); so we refer the interested
+reader to virtually any linear algebra text for a proof.  
+</p></proof></theorem>
+
+<p>We now give an example of a matrix that is not diagonalizable.</p>
+
+<example xml:id="ex-not-diagonalizable">
+<title>A Matrix that is Not Diagonalizable</title>
+<p> Let us attempt to diagonalize the matrix <m>A = \left(
+\begin{array}{ccc}
+ 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 2 &amp; 1 \\
+ 1 &amp; -1 &amp; 4 \\
+\end{array}
+\right)</m></p>
+
+
+<p>First, we determine the eigenvalues.
+
+<me>
+\begin{split}
+\det (A-\lambda  I) &amp;= \det  \left(
+			\begin{array}{ccc}
+			 1-\lambda  &amp; 0 &amp; 0 \\
+			 0 &amp; 2-\lambda  &amp; 1 \\
+			 1 &amp; -1 &amp; 4-\lambda  \\
+			\end{array}
+			\right)\\
+		&amp;= (1-\lambda) \det \left(
+			\begin{array}{cc}
+			 2-\lambda  &amp; 1 \\
+			 -1 &amp; 4-\lambda  \\
+			\end{array}
+			\right)\\
+	&amp; = (1-\lambda )((2-\lambda )(4-\lambda )+1)\\
+	&amp; = (1-\lambda )\left(\lambda ^2-6\lambda  +9\right)\\
+	&amp; = (1-\lambda)(\lambda -3)^2 
+\end{split}
+</me>
+
+Therefore there are two eigenvalues, <m>\lambda_1= 1</m> and <m>\lambda_2=3</m>.  Since <m>\lambda_1</m> is an eigenvalue of degree one, it will have an eigenspace
+of dimension 1.  Since <m>\lambda_2</m> is a double root of the characteristic equation, the dimension of its eigenspace must be 2 in order to be able to diagonalize.</p>
+
+
+
+<p>Case 1. For <m>\lambda_1= 1</m>,  the equation <m>(A-\lambda  I)\vec{x} = \vec{0}</m> becomes
+
+
+
+
+
+
+
+<me>\left(
+\begin{array}{ccc}
+ 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 1 \\
+ 1 &amp; -1 &amp; 3 \\
+\end{array}
+\right)\left(
+\begin{array}{c}
+ x_1 \\
+ x_2 \\
+ x_3 \\
+\end{array}
+\right)= \left(
+\begin{array}{c}
+ 0 \\
+ 0 \\
+ 0 \\
+\end{array}
+\right)</me>
+</p>
+
+<p>Row reduction of this system reveals one free variable and eigenspace 
+
+
+<me>\left(
+\begin{array}{c}
+ x_1 \\
+ x_2 \\
+ x_3 \\
+\end{array}
+\right)=\left(
+\begin{array}{c}
+ -4x_3 \\
+ -x_3 \\
+ x_3 \\
+\end{array}
+\right)= x_3\left(
+\begin{array}{c}
+ -4 \\
+ -1 \\
+ 1 \\
+\end{array}
+\right)</me>
+
+
+
+Hence,  <m>\left\{\left(
+\begin{array}{c}
+ -4 \\
+ -1 \\
+ 1 \\
+\end{array}
+\right)\right\}</m> is a basis for the eigenspace of <m>\lambda_1= 1</m>.  </p>
+
+
+
+<p>Case 2.  For <m>\lambda_2= 3</m>,  the equation <m>(A-\lambda  I)\vec{x} = \vec{0}</m> becomes
+
+
+
+  <me>\left(
+\begin{array}{ccc}
+ -2 &amp; 0 &amp; 0 \\
+ 0 &amp; -1 &amp; 1 \\
+ 1 &amp; -1 &amp; 1 \\
+\end{array}
+\right)\left(
+\begin{array}{c}
+ x_1 \\
+ x_2 \\
+ x_3 \\
+\end{array}
+\right)= \left(
+\begin{array}{c}
+ 0 \\
+ 0 \\
+ 0 \\
+\end{array}
+\right)</me>
+
+</p>
+
+
+<p>Once again there is only one free variable in the row reduction and so the dimension of the eigenspace will be one:
+
+
+
+ <me>\left(
+\begin{array}{c}
+ x_1 \\
+ x_2 \\
+ x_3 \\
+\end{array}
+\right)=\left(
+\begin{array}{c}
+ 0 \\
+ x_3 \\
+ x_3 \\
+\end{array}
+\right)= x_3\left(
+\begin{array}{c}
+ 0 \\
+ 1 \\
+ 1 \\
+\end{array}
+\right)</me>
+
+
+
+Hence,  <m>\left\{\left(
+\begin{array}{c}
+ 0 \\
+ 1 \\
+ 1 \\
+\end{array}
+\right)\right\}</m> is a basis for the eigenspace of <m>\lambda_2= 3</m>.  This means that <m>\lambda_2= 3</m> produces only one column for <m>P</m>. Since we began with only two eigenvalues, we had hoped that <m>\lambda_2= 3</m> would produce a vector space of dimension two, or, in matrix terms, two
+linearly independent columns for <m>P</m>. Since <m>A</m> does not have three linearly independent eigenvectors  <m>A</m> cannot be diagonalized.</p></example>
+</subsection>
+
+
+
+<subsection xml:id="sage-note-diag"><title>SageMath Note - Diagonalization</title>
+<idx><h>SageMath Note</h><h>Matrix Diagonalization</h></idx>
+<p>We demonstrate how diagonalization can be done in Sage. We start by defining the matrix to be diagonalized, and also declare <m>D</m> and <m>P</m> to be variables.</p>
+
+<sage>
+<input>
+var (' D, P')
+A = Matrix (QQ, [[4, 1, 0], [1, 5, 1], [0, 1, 4]]);A
+</input>
+<output>
+[4 1 0]
+[1 5 1]
+[0 1 4]
+</output>
+</sage>
+
+<p>We have been working with <q>right eigenvectors</q> since the <m>\vec{x}</m> in <m>A \vec{x} = \lambda  \vec{x}</m> is a column vector. It's not so common but still desirable in some situations to consider <q>left eigenvectors,</q> so SageMath allows either one. The <c>right_eigenmatrix</c> method returns a pair of matrices.  The diagonal matrix, <m>D</m>, with eigenvalues and the diagonalizing matrix, <m>P</m>, which is made up of columns that are eigenvectors corresponding to the eigenvectors of <m>D</m>.</p>
+
+<sage>
+<input>
+(D,P)=A.right_eigenmatrix();(D,P)
+</input>
+<output>
+([6 0 0]
+[0 4 0]
+[0 0 3], 
+[ 1  1  1]
+[ 2  0 -1]
+[ 1 -1  1])
+</output>
+</sage>
+
+
+<p>We should note here that <m>P</m> is not unique because even if an eigenspace has dimension one, any nonzero vector in that space will serve as an eigenvector.
+  For that reason, the <m>P</m> generated by Sage isn't necessarily the same as the one computed by any other computer algebra system such as Mathematica.  Here we verify
+the result for our Sage calculation.  Recall that an asterisk is used for matrix multiplication in Sage.</p>
+
+<sage>
+<input>
+P.inverse()*A*P
+</input>
+<output>
+[6 0 0]
+[0 4 0]
+[0 0 3]
+</output>
+</sage>
+
+
+<p>Here is a second matrix to diagonalize.</p>
+<sage>
+<input>
+A2=Matrix(QQ,[[8,1,0],[1,5,1],[0,1,7]]);A2
+</input>
+<output>
+[8 1 0]
+[1 5 1]
+[0 1 7]
+</output>
+</sage>
+
+
+<p>Here we've already specified that the underlying system is the rational numbers.  Since the eigenvalues are not rational, Sage will revert to approximate
+number by default. We'll just pull out the matrix of eigenvectors this time and display rounded entries.</p>
+<sage>
+<input>
+P=A2.right_eigenmatrix()[1]
+P.numerical_approx(digits=3)
+print('------------------')
+D=(P.inverse()*A2*P);D.numerical_approx(digits=3)
+</input>
+<output>
+[ 4.35 0.000 0.000]
+[0.000  7.27 0.000]
+[0.000 0.000  8.38]
+</output>
+</sage>
+
+<p>Finally, we examine how Sage reacts to the matrix from <xref ref="ex-not-diagonalizable" text="type-global" /> that couldn't be diagonalized.   Notice that the last column is a zero column, indicating the absence of one needed eigenvector.</p>
+<sage>
+<input>
+A3=Matrix(QQ,[[1, 0, 0],[0,2,1],[1,-1,4]])
+(D,P)=A3.right_eigenmatrix();(D,P)
+</input>
+<output>
+([1 0 0]
+[0 3 0]
+[0 0 3], 
+[   1    0    0]
+[ 1/4    1    0]
+[-1/4    1    0])
+</output>
+</sage>
+</subsection>
+<exercises xml:id="exercises-12-4">
+<title>Exercises</title>
+
+<exercise number="1"><statement><p><ol marker="(a)"><li><p>List three different eigenvectors of <m>A=\left(
+\begin{array}{cc}
+ 2 &amp; 1 \\
+ 2 &amp; 3 \\
+\end{array}
+\right)</m>, the matrix of <xref ref="ex-some-evalues" text="type-global" />, associated with each of the two eigenvalues 1 and 4.   Verify your results.</p></li>
+<li><p> Choose one of the three eigenvectors corresponding to 1 and one of the three eigenvectors corresponding to 4, and show that the two chosen
+vectors are linearly independent.</p></li>
+</ol></p>
+</statement>
+<answer><p>
+<ol marker="(a)">
+<li><p> Any nonzero multiple of <m>\left(
+\begin{array}{c}
+ 1 \\
+ -1 \\
+\end{array}
+\right)</m> is an eigenvector associated with <m>\lambda =1</m>.</p></li>
+<li><p>  Any nonzero multiple of <m>\left(
+\begin{array}{c}
+ 1 \\
+ 2 \\
+\end{array}
+\right)</m> is an eigenvector associated with <m>\lambda =4</m>.</p></li>
+<li><p>  Let <m>x_1=\left(
+\begin{array}{c}
+ a \\
+ -a \\
+\end{array}
+\right)</m> and <m>x_2=\left(
+\begin{array}{c}
+ b \\
+ 2b \\
+\end{array}
+\right)</m> .  You can verify that  <m>c_1x_1+ c_2x_2=\left(
+\begin{array}{c}
+ 0 \\
+ 0 \\
+\end{array}
+\right)</m>  if and only if <m>c_1= c_2= 0.</m>  Therefore, <m>\left\{x_1,x_2\right\}</m> is linearly independent.</p></li>
+</ol>
+</p></answer></exercise>
+<exercise number="2"><statement><p><ol marker="(a)"><li><p>Verify that <m>E_1</m> and <m>E_2</m> in <xref ref="ex-some-evalues" text="type-global"/> are vector spaces over <m>\mathbb{R}</m>.  Since they are also subsets of <m>\mathbb{R}^2</m>,
+they are called subvector-spaces, or subspaces for short, of <m>\mathbb{R}^2</m>. Since these are subspaces consisting of eigenvectors, they are called
+eigenspaces. </p></li>
+<li><p> Use the definition of dimension in the previous section to find <m>\dim E_1</m> and <m>\dim  E_2</m> . Note that <m>\dim E_1 + \dim E_2 = \dim \mathbb{R}^2</m>. This is not a coincidence.</p></li>
+</ol></p>
+</statement></exercise>
+<exercise number="3"><statement><p><ol marker="(a)"><li><p>Verify that <m>P^{-1} A P</m> is indeed equal to <m>\left(
+\begin{array}{cc}
+ 1 &amp; 0 \\
+ 0 &amp; 4 \\
+\end{array}
+\right)</m>,  as indicated in <xref ref="ex-diagonalization-of-matrix" text="type-global" />.</p></li>
+<li><p> Choose <m>P^{(1)}=\left(
+\begin{array}{c}
+ 1 \\
+ 2 \\
+\end{array}
+\right)</m> and <m>P^{(2)}=\left(
+\begin{array}{c}
+ 1 \\
+ -1 \\
+\end{array}
+\right)</m> and verify that the new value of <m>P</m> satisfies <m>P^{-1} A P=\left(
+\begin{array}{cc}
+ 4 &amp; 0 \\
+ 0 &amp; 1 \\
+\end{array}
+\right)</m>.</p></li>
+<li><p>  Take two different (from the previous part) linearly independent eigenvectors of the matrix <m>A</m> of <xref ref="ex-diagonalization-of-matrix" text="type-global" /> and verify that <m>P^{-1} A P</m> is a diagonal matrix.</p></li>
+</ol></p>
+</statement>
+<answer>
+<p>Part c: You should obtain <m>\left(
+\begin{array}{cc}
+ 4 &amp; 0 \\
+ 0 &amp; 1 \\
+\end{array}
+\right)</m> or <m>\left(
+\begin{array}{cc}
+ 1 &amp; 0 \\
+ 0 &amp; 4 \\
+\end{array}
+\right)</m>, depending on how you order the eigenvalues. 
+</p></answer></exercise>
+<exercise number="4"><statement><p><ol marker="(a)"><li><p>Let <m>A</m> be the matrix in <xref ref="ex-another-diagonalization" text="type-global" /> and <m>P=\left(
+\begin{array}{ccc}
+ 0 &amp; 1 &amp; 0 \\
+ 1 &amp; 0 &amp; 1 \\
+ 1 &amp; 0 &amp; 2 \\
+\end{array}
+\right)</m>.  Without doing any actual matrix multiplications, determine the value of <m>P^{-1} A P</m></p></li>
+<li><p>  If you choose the columns of <m>P</m> in the reverse order, what is <m>P^{-1} A P</m>?</p></li>
+</ol></p>
+</statement></exercise>
+<exercise number="5">
+<statement> <p> Diagonalize the following, if possible:
+<ol marker="(a)" cols="3">
+<li><p>    <m>\left(
+\begin{array}{cc}
+ 1 &amp; 2 \\
+ 3 &amp; 2 \\
+\end{array}
+\right)</m></p></li>
+<li><p> <m>\left(
+\begin{array}{cc}
+ -2 &amp; 1 \\
+ -7 &amp; 6 \\
+\end{array}
+\right)</m> </p></li>
+<li><p>  <m>\left(
+\begin{array}{cc}
+ 3 &amp; 0 \\
+ 0 &amp; 4 \\
+\end{array}
+\right)</m>
+</p></li>
+<li><p>    <m>\left(
+\begin{array}{ccc}
+ 1 &amp; -1 &amp; 4 \\
+ 3 &amp; 2 &amp; -1 \\
+ 2 &amp; 1 &amp; -1 \\
+\end{array}
+\right)</m></p></li>
+<li><p>  <m>\left(
+\begin{array}{ccc}
+ 6 &amp; 0 &amp; 0 \\
+ 0 &amp; 7 &amp; -4 \\
+ 9 &amp; 1 &amp; 3 \\
+\end{array}
+\right)</m></p></li>
+<li><p>  <m>\left(
+\begin{array}{ccc}
+ 1 &amp; -1 &amp; 0 \\
+ -1 &amp; 2 &amp; -1 \\
+ 0 &amp; -1 &amp; 1 \\
+\end{array}
+\right)</m></p></li>
+</ol></p>
+</statement>
+<answer><p>
+<ol marker="(a)" cols="2">
+<li><p>  If  <m>P=\left(
+\begin{array}{cc}
+ 2 &amp; 1 \\
+ 3 &amp; -1 \\
+\end{array}
+\right)</m>, then <m>P^{-1}A P=\left(
+\begin{array}{cc}
+ 4 &amp; 0 \\
+ 0 &amp; -1 \\
+\end{array}
+\right)</m>.</p></li>
+<li><p> If  <m>P=\left(
+\begin{array}{cc}
+ 1 &amp; 1 \\
+ 7 &amp; 1 \\
+\end{array}
+\right)</m>, then <m>P^{-1}A P=\left(
+\begin{array}{cc}
+ 5 &amp; 0 \\
+ 0 &amp; -1 \\
+\end{array}
+\right)</m>.</p></li>
+<li><p> If  <m>P=\left(
+\begin{array}{cc}
+ 1 &amp; 0 \\
+ 0 &amp; 1 \\
+\end{array}
+\right)</m>, then <m>P^{-1}A P=\left(
+\begin{array}{cc}
+ 3 &amp; 0 \\
+ 0 &amp; 4 \\
+\end{array}
+\right)</m>.</p></li>
+<li><p> If  <m>P=\left(
+\begin{array}{ccc}
+ 1 &amp; -1 &amp; 1 \\
+ -1 &amp; 4 &amp; 2 \\
+ -1 &amp; 1 &amp; 1 \\
+\end{array}
+\right)</m>, then <m>P^{-1}A P=\left(
+\begin{array}{ccc}
+ -2 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 \\
+\end{array}
+\right)</m>.</p></li>
+<li><p> <m>A</m> is not diagonalizable. Five is a double root of the characteristic equation, but has an eigenspace with dimension only 1.</p></li>
+<li><p>  If  <m>P=\left(
+\begin{array}{ccc}
+ 1 &amp; 1 &amp; 1 \\
+ -2 &amp; 0 &amp; 1 \\
+ 1 &amp; -1 &amp; 1 \\
+\end{array}
+\right)</m>, then <m>P^{-1}A P=\left(
+\begin{array}{ccc}
+ 3 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 \\
+\end{array}
+\right)</m>.</p></li>
+</ol>
+</p></answer>
+</exercise>
+<exercise number="6">
+<statement><p>Diagonalize the following, if possible:
+<ol marker="(a)" cols="3">
+<li><p>    <m>\left(
+\begin{array}{cc}
+ 0 &amp; 1 \\
+ 1 &amp; 1 \\
+\end{array}
+\right)</m></p></li>
+<li><p>  <m>\left(
+\begin{array}{cc}
+ 2 &amp; 1 \\
+ 4 &amp; 2 \\
+\end{array}
+\right)</m>   </p></li>
+<li><p>   <m>\left(
+\begin{array}{cc}
+ 2 &amp; -1 \\
+ 1 &amp; 0 \\
+\end{array}
+\right)</m></p></li>
+<li><p>  <m>\left(
+\begin{array}{ccc}
+ 1 &amp; 3 &amp; 6 \\
+ -3 &amp; -5 &amp; -6 \\
+ 3 &amp; 3 &amp; 6 \\
+\end{array}
+\right)</m> </p></li>
+<li><p>   <m>\left(
+\begin{array}{ccc}
+ 1 &amp; 1 &amp; 0 \\
+ 1 &amp; 0 &amp; 1 \\
+ 0 &amp; 1 &amp; 1 \\
+\end{array}
+\right)</m></p></li>
+<li><p>   <m>\left(
+\begin{array}{ccc}
+ 2 &amp; -1 &amp; 0 \\
+ -1 &amp; 2 &amp; -1 \\
+ 0 &amp; -1 &amp; 2 \\
+\end{array}
+\right)</m></p></li>
+</ol></p>
+</statement>
+</exercise>
+<exercise number="7"><statement> <p> Let <m>A</m> and <m>P</m> be as in <xref ref="ex-another-diagonalization" text="type-global" />. Show that the columns of the matrix <m>A P</m> can be found by computing <m>A P^{(1)}</m>,
+<m>A P^{(2)},\ldots,</m> <m>A P^{(n)}</m>. </p>
+</statement>
+<answer><p>This is a direct application of the definition of matrix multiplication. Let <m>A_{(i)}</m> be the <m>i^{\textrm{th}}</m> row of <m>A</m>,
+and let <m>P^{(j)}</m> be the <m>j^{\textrm{th}}</m> column of  <m>P</m>.  Then the <m>j^{\textrm{th}}</m> column of the product <m>A P</m> is
+<me>\left(
+\begin{array}{c}
+ A_{(1)}P^{(j)} \\
+ A_{(2)}P^{(j)} \\
+ \vdots  \\
+ A_{(n)}P^{(j)} \\
+\end{array}
+\right)</me>
+</p>
+<p>Hence, <m>(AP)^{(j)}= A\left(P^{(j)}\right)</m>  for <m>j =1,2,\ldots , n</m>. Thus, each column of <m>A P</m> depends on <m>A</m> and the <m>j^{\textrm{ th}}</m>
+column of <m>P</m>.</p></answer>
+</exercise>
+<exercise number="8"><statement><p>  Prove that if <m>P</m> is an <m>n\times n</m> matrix and <m>D</m> is a diagonal matrix with diagonal entries <m>d_1</m>, <m>d_2,\ldots,</m> <m>d_n</m>, then
+<m>P D</m> is the matrix obtained from <m>P</m>, by multiplying column <m>i</m> of <m>P</m> by <m>d_i</m>, <m>i = 1, 2, \ldots, n</m>.</p>
+</statement></exercise>
+</exercises>
+</section>

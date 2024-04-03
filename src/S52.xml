@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="s-special-matrices">
+<title>Special Types of Matrices</title>
+<subsection><title>Diagonal Matrices</title>
+<p>We have already investigated, in exercises in the previous section, one special type of matrix. That was the  zero matrix, and found that it behaves in matrix algebra 
+in an analogous fashion to the real number 0; that is, as the additive identity. We will now investigate the properties of a few other special matrices.</p>
+
+<definition xml:id="def-diagonal-matrix"><title>Diagonal Matrix</title><statement><p>A square matrix D is called a diagonal matrix if <m>d_{i j}</m> = 0 whenever <m>i \neq  j</m>.</p></statement></definition>
+
+<example xml:id="example-diagonal-matrices"><title>Some diagonal matrices</title><statement><p>   <m>A = \left(
+\begin{array}{ccc}
+ 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 2 &amp; 0 \\
+ 0 &amp; 0 &amp; 5 \\
+\end{array}
+\right)</m>, <m>B= \left(
+\begin{array}{ccc}
+ 3 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; -5 \\
+\end{array}
+\right)</m>, and <m>I = \left(
+\begin{array}{ccc}
+ 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 \\
+\end{array}
+\right)</m> are all diagonal matrices.
+</p></statement></example>
+</subsection>
+<subsection><title>The Identity Matrix and Matrix Inverses</title>
+<p>In the example above, the <m>3\times 3</m> diagonal matrix <m>I</m> whose diagonal entries are all 1's has the distinctive property that for any other <m>3\times 3</m> matrix <m>A</m> we have <m>A I = I A = A</m>. For example:</p>
+<example xml:id="ex-matrix-identity-product"><title>Multiplying by the Identity Matrix</title><statement><p>If <m>A = \left(
+\begin{array}{ccc}
+ 1 &amp; 2 &amp; 5 \\
+ 6 &amp; 7 &amp; -2 \\
+ 3 &amp; -3 &amp; 0 \\
+\end{array}
+\right)</m>, then
+
+<m>A I =\left(
+\begin{array}{ccc}
+ 1 &amp; 2 &amp; 5 \\
+ 6 &amp; 7 &amp; -2 \\
+ 3 &amp; -3 &amp; 0 \\
+\end{array}
+\right)</m> and
+
+<m>I A = \left(
+\begin{array}{ccc}
+ 1 &amp; 2 &amp; 5 \\
+ 6 &amp; 7 &amp; -2 \\
+ 3 &amp; -3 &amp; 0 \\
+\end{array}
+\right)</m>.
+</p></statement></example> 
+<p>In other words, the matrix <m>I</m> behaves in matrix algebra like the real number 1; that is, as a multiplicative identity. In matrix algebra, the matrix <m>I</m> is called simply the identity matrix. Convince yourself that if <m>A</m> is any <m>n\times n</m> matrix <m>A I = I A = A</m>.</p>
+
+<definition xml:id="def-identity-matrix"><title>Identity Matrix</title>
+<idx>Identity Matrix</idx>
+<notation><usage><m> I_{n}</m></usage><description>The <m>n \times n</m> identity matrix</description></notation>
+<statement><p>The <m>n\times n</m> diagonal matrix <m>I_n</m> whose 
+diagonal components are all 1's is called the identity matrix.  If the context is clear, we simply use <m>I</m>.</p></statement></definition>
+
+<p>In the set of real numbers we recall that, given a nonzero real number <m>x</m>, there exists a real number <m>y</m> such that <m>x y = y x
+=1</m>. We know that real numbers commute under multiplication so that the two equations can be summarized as <m>x y = 1</m>. Further we know that <m>y =x^{-1}= \frac{1}{x}</m>. Do we have an analogous situation in <m>M_{n\times n}(\mathbb{R})</m>? Can we define the multiplicative inverse of an <m>n\times n</m> matrix <m>A</m>? It seems natural to imitate the definition of multiplicative inverse in the real numbers.</p>
+
+<definition xml:id="def-matrix-inverse"><title>Matrix Inverse</title><idx><h>Inverse</h><h>Matrix</h></idx><notation><usage><m>A^{-1}</m></usage><description><m>A</m> inverse, the multiplicative inverse of <m>A</m></description></notation><statement><p>Let <m>A</m> be an <m>n\times n</m> matrix. If there exists 
+an <m>n\times n</m> matrix <m>B</m> such that <m>A B = B A =I</m>, then <m>B</m> is a multiplicative inverse of <m>A</m> (called simply an inverse of <m>A</m>) and is denoted by <m>A^{-1}</m></p></statement></definition>
+<p>When we are doing computations involving matrices, it would be helpful to know that when we find <m>A^{-1}</m>, the answer we 
+obtain is the only inverse of the given matrix.  This would let us refer to <em>the</em> inverse of a matrix.  We refrained from saying that in the definition, but the theorem below justifies it. </p>
+<p>Remark: Those unfamiliar with the laws of matrix algebra should return to the following proof after they have familiarized themselves with the Laws of Matrix Algebra in Section 5.5.</p>
+<theorem xml:id="theorem-unique-inverse"><title>Inverses are unique</title><statement><p>The inverse of an <m>n\times n</m> matrix A, when it exists, is unique.</p></statement><proof><p>Let <m>A</m> be an <m>n\times n</m> matrix. Assume to the contrary, that <m>A</m> has two (different) inverses, say <m>B</m> and <m>C</m>. Then
+<me>
+\begin{split}
+B &amp;= B I\quad \textrm{    Identity property of } I\\
+&amp; =B (A C)\quad  \textrm{    Assumption that } C \textrm{ is an inverse of } A\\
+&amp; = (B A) C \quad  \textrm{    Associativity of matrix multiplication}\\
+&amp; = I C\quad   \textrm{     Assumption that } B \textrm{ is an inverse of } A\\
+&amp; = C \quad  \textrm{     Identity property of } I
+\end{split}
+</me></p>
+</proof></theorem>
+
+<p>Let <m>A =\left(
+\begin{array}{cc}
+ 2 &amp; 0 \\
+ 0 &amp; 3  \\
+\end{array}
+\right)</m> .  What is <m>A^{-1}</m> ? Without too much difficulty, by trial and error, we determine that <m>A^{-1}= \left(
+\begin{array}{cc}
+ \frac{1}{2} &amp; 0 \\
+ 0 &amp; \frac{1}{3} \\
+\end{array}
+\right)</m> . This might lead us to guess that the inverse is found by taking the reciprocal of all nonzero entries of a matrix. Alas, it isn't
+that easy!</p>
+<p>If <m>A =\left(
+\begin{array}{cc}
+ 1 &amp; 2 \\
+ -3 &amp; 5 \\
+\end{array}
+\right)</m> , the <q>reciprocal rule</q> would tell us that the inverse of <m>A</m> is <m>B=\left(
+\begin{array}{cc}
+ 1 &amp; \frac{1}{2} \\
+ \frac{-1}{3} &amp; \frac{1}{5} \\
+\end{array}
+\right)</m>. Try computing <m>A B</m> and you will see that you don't get the identity matrix.  So, what <em>is</em> <m>A^{-1}</m>? In order to understand more completely the notion of the inverse of a matrix, it would be beneficial to have a formula that would enable us to compute the inverse of at least a <m>2\times 2</m> matrix. To do this, we introduce the definition of the determinant of a <m>2\times 2</m> matrix. <!-- Appendix A gives a more complete description of the determinant of a <m>2\times 2</m> and higher-order matrices. --></p>
+
+<definition xml:id="determinant-2by2"><title>Determinant of a 2 by 2 matrix</title>
+<notation><usage><m>\det A\textrm{ or }\lvert A \rvert</m></usage><description>The determinant of <m>A</m>, 2 by 2 case</description></notation>
+<statement><p> Let <m>A =\left(
+\begin{array}{cc}
+ a &amp; b \\
+ c &amp; d \\
+\end{array}
+\right)</m>. The determinant of <m>A</m> is the number <m>\det  A = a d - b c</m>.</p></statement>
+</definition>
+
+<p>In addition to <m>\det  A</m>, common notation for the determinant of matrix <m>A</m> is <m>\lvert A \rvert</m>.  This is particularly common when writing out the whole matrix, which case we would write <m>\left|
+\begin{array}{cc}
+ a &amp; b \\
+ c &amp; d \\
+\end{array}
+\right|</m> for the determinant of the general <m>2 \times 2</m> matrix.</p>
+<example xml:id="ex-some-determinants"><title>Some determinants of two by two matrices</title><statement><p>If <m>A =\left(
+\begin{array}{cc}
+ 1 &amp; 2 \\
+ -3 &amp; 5 \\
+\end{array}
+\right)</m>  then <m>\det  A = 1\cdot 5 -2\cdot  (-3)=11</m>. 
+
+If <m>B =\left(
+\begin{array}{cc}
+ 1 &amp; 2 \\
+ 2 &amp; 4 \\
+\end{array}
+\right)</m>  then <m>\det  B = 1\cdot 4 -2\cdot 2=0.</m>
+</p></statement></example> 
+<theorem xml:id="theorem-inverse-two-by-two"><title>Inverse of 2 by 2 matrix</title><statement><p> Let <m>A =\left(
+\begin{array}{cc}
+ a &amp; b \\
+ c &amp; d \\
+\end{array}
+\right)</m>.  If <m>\det  A\neq  0</m>, then <m>A^{-1} =\frac{1}{\det  A}\left(
+\begin{array}{cc}
+ d &amp; -b \\
+ -c &amp; a \\
+\end{array}
+\right)</m>.</p></statement><proof><p>See Exercise 4 at the end of this section.</p></proof></theorem>
+<example xml:id="ex-finding-inverses"><title>Finding Inverses</title><statement><p>Can we find the inverses of the matrices in <xref ref="ex-some-determinants" text="type-global" />? 
+
+If <m>A =\left(
+\begin{array}{cc}
+ 1 &amp; 2 \\
+ -3 &amp; 5 \\
+\end{array}
+\right)</m>  then 
+<me>A^{-1}= \frac{1}{11}\left(
+\begin{array}{cc}
+ 5 &amp; -2 \\
+ 3 &amp; 1 \\
+\end{array}
+\right)=\left(
+\begin{array}{cc}
+ \frac{5}{11} &amp; -\frac{2}{11} \\
+ \frac{3}{11} &amp; \frac{1}{11} \\
+\end{array}
+\right)</me>
+
+The reader should verify that <m>A A^{-1}=A^{-1}A = I</m>.</p>
+
+<p>The second matrix, <m>B</m>, has a determinant equal to zero. If we tried to apply the formula in <xref ref="theorem-inverse-two-by-two" text="type-global" />, we would be dividing by zero. For this reason, the formula can't be applied and in fact <m>B^{-1}</m> does not exist. 
+</p></statement></example>
+<p>Remarks:
+<ul>
+<li> In general, if <m>A</m> is a <m>2\times 2</m> matrix and if <m>\det  A = 0</m>, then <m>A^{-1}</m> does not exist.</li>
+<li> A formula for the inverse of <m>n\times n</m> matrices <m>n\geq  3</m> can be derived that also involves <m>\det  A</m>. Hence, in general, if the determinant of a matrix is zero, the matrix does not have an inverse. However the formula for even a <m>3 \times  3</m> matrix is very long and is not the most efficient way to compute the inverse of a matrix.</li>
+<li> In Chapter 12 we will develop a technique to compute the inverse of a higher-order matrix, if it exists.</li>
+<li> Matrix inversion comes first in the hierarchy of matrix operations; therefore, <m>A B^{-1}</m> is <m>A (B^{-1})</m>.</li>
+</ul></p>
+</subsection>
+<exercises xml:id="exercises-5-4"><title>Exercises</title>
+
+<exercise number="1"><statement><p> For the given matrices <m>A</m> find <m>A^{-1}</m> if it exists and verify that <m>A A^{-1}=A^{-1}A = I</m>.  If <m>A^{-1}</m> does not exist
+explain why.</p>
+<p><ol marker="(a)">
+<li>  <m>A = \left(
+\begin{array}{cc}
+ 1 &amp; 3 \\
+ 2 &amp; 1 \\
+\end{array}
+\right)</m> 
+</li>
+<li> <m>A=\left(
+\begin{array}{cc}
+ 6 &amp; -3 \\
+ 8 &amp; -4 \\
+\end{array}
+\right)</m>
+</li>
+<li> <m>A = \left(
+\begin{array}{cc}
+ 1 &amp; -3 \\
+ 0 &amp; 1 \\
+\end{array}
+\right)</m>
+</li>
+<li>  <m>A = \left(
+\begin{array}{cc}
+ 1 &amp; 0 \\
+ 0 &amp; 1 \\
+\end{array}
+\right)</m>
+</li>
+<li> Use the definition of the inverse of a matrix to find <m>A^{-1}</m>:
+ <m>A=\left(
+\begin{array}{ccc}
+ 3 &amp; 0 &amp; 0 \\
+ 0 &amp; \frac{1}{2} &amp; 0 \\
+ 0 &amp; 0 &amp; -5 \\
+\end{array}
+\right)</m>
+</li>
+</ol></p>
+</statement>
+<answer><p><ol marker="(a)" cols="2"><li> <m>\left(
+\begin{array}{cc}
+ -1/5 &amp; 3/5 \\
+ 2/5 &amp; -1/5 \\
+\end{array}
+\right)</m></li>
+<li><p>  No inverse exists.</p></li>
+<li> <m>\left(
+\begin{array}{cc}
+ 1 &amp; 3 \\
+ 0 &amp; 1 \\
+\end{array}
+\right)</m> </li>
+<li><p> <m>A^{-1}=A</m>   </p></li>
+<li><p> <m>\left(
+\begin{array}{ccc}
+ 1/3 &amp; 0 &amp; 0 \\
+ 0 &amp; 2 &amp; 0 \\
+ 0 &amp; 0 &amp; -1/5 \\
+\end{array}
+\right)</m>
+</p></li>
+</ol></p>
+</answer>
+</exercise>
+<exercise number="2"><statement><p> For the given matrices <m>A</m> find <m>A^{-1}</m> if it exists and verify that <m>A A^{-1}=A^{-1}A = I</m>. If <m>A^{-1}</m> does not exist
+explain why.</p>
+<p><ol marker="(a)">
+<li> <m>A =\left(
+\begin{array}{cc}
+ 2 &amp; -1 \\
+ -1 &amp; 2 \\
+\end{array}
+\right)</m>
+</li>
+<li> <m>A = \left(
+\begin{array}{cc}
+ 0 &amp; 1 \\
+ 0 &amp; 2 \\
+\end{array}
+\right)</m>
+</li>
+<li>  <m>A= \left(
+\begin{array}{cc}
+ 1 &amp; c \\
+ 0 &amp; 1 \\
+\end{array}
+\right)</m>
+</li>
+<li>  <m>A = \left(
+\begin{array}{cc}
+ a &amp; b \\
+ b &amp; a \\
+\end{array}
+\right)</m>, where <m>\lvert a \rvert \neq \lvert b \rvert</m>.
+</li></ol></p>
+</statement>
+
+</exercise>
+<exercise number="3" xml:id="prob-5-2-3"><statement>
+<p><ol marker="(a)">
+<li> Let <m>A = \left(
+\begin{array}{cc}
+ 2 &amp; 3 \\
+ 1 &amp; 4 \\
+\end{array}
+\right)</m> and <m>B =\left(
+\begin{array}{cc}
+ 3 &amp; -3 \\
+ 2 &amp; 1 \\
+\end{array}
+\right)</m>. Verify that <m>(A B)^{-1}= B^{-1}A^{-1}</m>. 
+</li>
+<li> Let <m>A</m> and <m>B</m> be <m>n\times n</m> invertible matrices. Prove that <m>(A B)^{-1}= B^{-1}A^{-1}</m>. Why is the right side of the above statement written <q>backwards</q>? Is this necessary? Hint: Use <xref ref="theorem-unique-inverse" text="type-global" /> </li>
+</ol></p>
+</statement>
+<answer><p> Let A and B be <m>n</m> by <m>n</m> invertible matrices.</p>
+
+<p>
+<me>
+\begin{split}
+\left(B^{-1}A^{-1}\right)(AB)&amp;=\left(B^{-1}\right)\left(A^{-1}(AB)\right)\\
+   &amp;= \left(B^{-1}\right) \left(\left(A^{-1} A\right) B\right)\\
+   &amp;=(\left(B^{-1}\right)I B )\\
+    &amp;=B^{-1}(B)\\
+    &amp;=I 
+\end{split}
+</me>
+</p>
+<p>Similarly, <m>(AB)\left(B^{-1}A^{-1}\right)=I</m>.</p>
+<p>By <xref ref="theorem-unique-inverse" text="type-global" />, <m>B^{-1}A^{-1}</m> is the only inverse of <m>AB</m>. If we tried to invert <m>AB</m> with <m>A^{-1}B^{-1}</m>, we would be unsuccessful since we cannot rearrange the order of the matrices. </p>
+</answer>
+
+</exercise>
+
+
+
+<exercise number="4"><statement><p> Let <m>A =\left(
+\begin{array}{cc}
+ a &amp; b \\
+ c &amp; d \\
+\end{array}
+\right)</m>. Derive the formula for <m>A^{-1}</m>.</p>
+</statement>
+
+</exercise>
+<exercise number="5" xml:id="prob-5-2-5"><title>Linearity of Determinants</title><statement> 
+<p><ol marker="(a)">
+<li>Let <m>A</m> and <m>B</m> be 2-by-2 matrices. Show that <m>\det (A B) =(\det  A)(\det  B)</m>.
+</li>
+<li> It can be shown that the statement in part (a) is true for all <m>n\times n</m> matrices. Let <m>A</m> be any invertible <m>n\times n</m> matrix. Prove that <m>\det \left(A^{-1}\right) =(\det  A)^{-1}</m>. Note: The determinant of the identity matrix <m>I_n</m> is 1 for all <m>n</m>.
+</li>
+<li> Verify that the equation in part (b) is true for the matrix in exercise 1(a) of this section.
+</li>
+</ol></p>
+</statement><answer><p> <m>1=\det  I=\det \left(AA^{-1}\right)=\det  A\text{  }\det  A^{-1}</m>. Now solve for <m>\det  A^{-1}</m>. 
+</p></answer>
+</exercise>
+<exercise number="6"><statement><p> Prove by induction that for <m>n \geq 1</m>, <m>\left(
+\begin{array}{cc}
+ a &amp; 0 \\
+ 0 &amp; b \\
+\end{array}
+\right)^n= \left(
+\begin{array}{cc}
+ a^n &amp; 0 \\
+ 0 &amp; b^n \\
+\end{array}
+\right)</m>.
+</p>
+</statement>
+
+</exercise>
+<exercise number="7"><statement><p> Use the assumptions in <xref ref="prob-5-2-5" text="type-global" /> to prove by induction that if <m>n \geq 1</m>, <m>\det \left(A^n\right) = (\det  A)^n</m>.</p>
+</statement>
+<answer> 
+<p>Basis: <m>(n=1): \det  A^1=\det  A =(\det  A )^1</m></p>
+
+  
+<p>Induction: Assume <m>\det  A^n=(\det  A)^n</m> for some <m>n\geq 1</m>.</p>
+<p>
+<me>
+\begin{split}
+ \det  A^{n+1} &amp; =\det \left(A^nA\right)\quad \textrm{ by the definition of exponents}\\
+   &amp;=\det \left(A^n\right)\det (A)\quad \textrm{ by exercise 5} \\
+   &amp;=(det  A)^n(\det  A)\quad \textrm{ by the induction hypothesis }\\
+  &amp;=(\det  A)^{n+1}
+\end{split}
+</me>
+</p>
+</answer>
+
+</exercise>
+<exercise number="8"><statement><p>Prove: If the determinant of a matrix <m>A</m> is zero, then <m>A</m> does not have an inverse. Hint: Use the indirect method of proof and exercise 5.</p>
+</statement>
+
+</exercise>
+
+<exercise number="9"><statement>
+<p><ol marker="(a)">
+<li> Let <m>A, B, \textrm{ and } D</m> be <m>n\times n</m> matrices. Assume that <m>B</m> is invertible. If <m>A = B D B^{-1}</m> , prove by induction
+that <m>A^m= B D^m B^{-1}</m> is true for <m>m \geq  1</m>.</li>
+<li>Given that <m>A = \left(
+\begin{array}{cc}
+ -8 &amp; 15 \\
+ -6 &amp; 11 \\
+\end{array}
+\right) = B \left(
+\begin{array}{cc}
+ 1 &amp; 0 \\
+ 0 &amp; 2 \\
+\end{array}
+\right) B^{-1}</m> where <m>B=\left(
+\begin{array}{cc}
+ 5 &amp; 3 \\
+ 3 &amp; 2 \\
+\end{array}
+\right)</m> what is <m>A^{10}</m>?</li>
+</ol></p></statement>
+<answer><p><ol marker="(a)"><li><p> Assume <m>A=B D B^{-1}</m></p>
+
+ 
+<p>Basis:  <m>(m=1</m>): <m>A^{1}=A=B D^1 B^{-1} </m> is given.</p>
+
+ 
+<p>Induction: Assume that for some positive integer <m>m</m>, <m>A^m=BD^mB^{-1}</m></p>
+<p><me>
+\begin{split}
+A^{m+1} &amp;=A^mA\\
+ &amp;=(B D^m B^{-1})(BDB^{-1})\quad \textrm{ by the induction hypothesis} \\
+ &amp;=(BD^m(B^{-1} B ) (DB^{-1}) \quad \textrm{ by associativity} \\
+ &amp;=B D^m  D B^{-1}  \quad \textrm{ by the definition of inverse}\\
+ &amp;=B D^{m+1} B^{-1} \quad \square
+\end{split}
+</me>
+</p></li>
+<li> <m>A^{10}=BD^{10}B^{-1}= \left(
+\begin{array}{cc}
+ -9206 &amp; 15345 \\
+ -6138 &amp; 10231 \\
+\end{array}
+\right)</m></li>
+</ol></p>
+</answer>
+</exercise>
+
+</exercises>
+</section>

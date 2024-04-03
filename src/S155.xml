@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="s-coding-theory-groups">
+<title>Coding Theory, Linear Codes</title>
+<idx>Coding Theory</idx>
+<idx><h>Codes</h><h>Linear</h></idx>
+<introduction><title>A Transmission Problem</title>
+<p>In this section, we will introduce the basic ideas involved in coding theory and consider solutions of a coding problem by means of linear codes.</p>
+<p>Imagine a situation in which information is being transmitted between two points. The information takes the form of high and low pulses (for example, radio waves or electric currents), which we will label 1 and 0, respectively.  As these pulses are sent and received, they are grouped together in blocks of fixed length.   The length determines how much information can be contained in one block.  If
+the length is <m>r</m>, there are <m>2^r</m> different values that a block can have. If the information being sent takes the form of text, each block might
+be a character. In that case, the length of a block may be seven, so that <m>2^7 = 128</m> block values can represent letters (both upper and lower
+case), digits, punctuation, and so on.  During the transmission of data, noise can alter the signal so that what is received differs from what is sent. <xref ref="fig-noise" text="type-global" /> illustrates the problem that can be encountered if information is transmitted between two points.</p>
+
+            <figure xml:id="fig-noise">
+                <caption>A noisy transmission
+                </caption>
+                <image width="60%" source="images/fig-noise.png">
+                    <description>A noisy transmission</description>
+                </image>
+            </figure>
+
+<p><term>Noise</term> is a fact of life for anyone who tries to transmit information.  Fortunately, in most situations we could expect a high percentage of the pulses that are sent to be received properly. However, when large numbers of pulses are transmitted, there are usually some errors due to noise. For the remainder of the discussion, we will make assumptions about the nature of the noise and the message that we want to
+send. Henceforth, we will refer to the pulses as bits.</p>
+
+  
+<p>We will assume that our information is being sent along a <term>binary symmetric channel</term>. By this, we mean that any single bit that is transmitted will be received improperly with a certain fixed probability, <m>p</m>, independent of the bit value.   The magnitude of <m>p</m> is usually quite small. To illustrate the process,
+we will assume that <m>p = 0.001</m>, which, in the real world, would be considered somewhat large. Since <m>1 - p = 0.999</m>, we can expect <m>99.9\%</m> of all bits to be properly received.</p>
+
+<p>In addition to assuming <m>p=0.001</m> throughout, we will also suppose that our message consists of 3,000 bits of information. Two factors will be considered in evaluating a method of transmission. The first is the probability that the message is received with no errors. The second is the number of bits that will be
+transmitted in order to send the message. This quantity is called the rate of transmission:
+<me>\textrm{ Rate}= \frac{\textrm{ Message length}}{\textrm{ Number of bits transmitted}}</me>
+As you might expect, as we devise methods to improve the probability of success, the rate will decrease.</p>
+
+
+<p>Suppose that we ignore the noise and transmit the message without any coding. The probability of success is <m>0.999^{3000}= 0.0497124</m>.  Therefore we only successfully receive the message in a totally correct form less than <m>5\%</m> of the time.  The rate of <m>\frac{3000}{3000} = 1</m> certainly doesn't
+offset this poor probability.</p>
+
+<p>Our strategy  for improving our chances of success will be to send an encoded message. The encoding will be done in such a way that small errors can be identified and corrected. This idea is illustrated in <xref ref="fig-coding-process" text="type-global" />.</p>
+
+        <figure xml:id="fig-coding-process">
+                <caption>The Coding Process
+                </caption>
+                <image width="80%" source="images/fig-coding-process.png">
+                    <description>The Coding Process</description>
+                </image>
+            </figure>
+
+
+
+<p>In all of our examples, the functions that will correspond to our encoding devices  will involve multiplication of messages by matrices using mod 2 arithmetic. First we will introduce some geometric ideas to  make the process more intuitive.</p>
+</introduction>
+
+<subsection xml:id="ss-coding-geometry"><title>Introduction</title>
+<p>Although we'll be using algebra to help improve communications, the basic solution can be imagined from a geometric point of view.  For any positive integer <m>n</m>, we define a distance function on the elements of the group <m>\mathbb{Z}_2{}^n</m>.  This distance is called the <term>Hamming Distance</term>.  </p>
+<definition xml:id="def-hammingdistance"><title>Hamming Distance</title>
+<idx>Hamming Distance</idx>
+<notation><usage><m>d_H(a,b)</m></usage><description>Hamming distance between <m>a</m> and <m>b</m></description></notation>
+<statement><p>Given two elements of <m>\mathbb{Z}_2{}^n</m>, <m>a</m> and <m>b</m>, the Hamming Distance, <m>d_H(a,b)</m> between them is the number of positions in which they differ.</p></statement>
+</definition>
+<p>For example,  <m>d_H((1,1,0,0),(1,1,0,1))=1</m> since these two elements of <m>\mathbb{Z}_2{}^4</m> differ in just the last position; and <m>d_H((1,1,0,0),(1,1,0,0))=0</m>.  Notice that we can compute the distance between two bit strings by adding them coordinatewise in the Cartesian product  and counting the number <m>1</m>'s that appear in the sum.  For example  <m>(1,1,0,0)+(1,0,0,1)=(0,1,0,1)</m>. The sum has two <m>1</m>'s, so the distance between <m>(1,1,0,0) \textrm{ and }(1,0,0,1)</m> is <m>2</m>. In addition, the location of the <m>1</m>'s in the sum tell us where the two bit strings differ. </p> 
+<p> When we look at groups like <m>\mathbb{Z}_2{}^4</m> from a point of view, we refer to these sets as <term>metric spaces</term> or simply <term>spaces</term>.  In the case of <m>\mathbb{Z}_2{}^4</m>, there are just <m>2^4=16</m> points in the space and the maximum distance between the points is <m>4</m>. More generally <m>\mathbb{Z}_2{}^n</m> has <m>2^n</m> points and the maximum distance between points in that space is <m>n</m>.  Looking at the group <m>\mathbb{Z}_2{}^n</m> from this geometric point of view is essentially the same as the <xref ref="def-n-cube"><m>n</m>-cube</xref> we considered in discussing Hamiltonian graphs.  In this section we will use <m>n</m>-tuples such as <m>(1,1,0,1)</m> interchangeably with strings of bits such as <m>1101</m>. </p>
+<p>For any distance <m>r</m> in a space, the ball of radius <m>r</m> centered at a point <m>a</m>, denoted <m>B_r(a)</m>, is the set of all points whose distance from <m>a</m> is <m>r</m> or less.   For example, in the space <m>\mathbb{Z}_2{}^4</m>, <me>B_1((1,1,0,0))=\{(1,1,0,0), (0,1,0,0), (1,0,0,0), (1,1,1,0), (1,1,0,1)\}.</me></p>
+<p>The ultimate goal of our encoding will be to take a set of possible messages, the <term>message space</term>, and distribute them in a larger space, the <term>code space</term>, in such a way that the encoded message, called a <term>code word</term> is at least a certain distance away from any other code word.  The minimum distance between the code words will determine whether we can correct errors or just detect them.  Now let's turn to some examples.</p>
+</subsection>
+<subsection xml:id="ss-error-detection"><title>Error Detection</title>
+<p>Suppose that each block of three bits <m>a = \left(a_1, a_2 , a_3 \right)</m> is encoded with the
+function <m>e: \mathbb{Z}_2{}^3\to \mathbb{Z}_2{}^4</m>, where
+<me>e(a) = \left(a _1, a _2 , a _3, a_1+_2a_2+_2a_3 \right)</me>
+The fourth bit of <m>e(a)</m> is called the parity-check bit. When the encoded block is received, the four bits will probably all be correct (they are correct approximately <m>99.6\%</m> of the time under our assumed parameters), but the added bit that is sent will make it possible to detect single bit errors in the block. Note that when <m>e(a)</m> is transmitted, the sum of its components is
+<m>a_1+_2 a_2 +_2 a_3+_2 \left( a_1+_2 a_2+_2 a_3\right)= 0</m>, since  <m>a_i+a_i=0</m> in <m>\mathbb{Z}_2</m>.</p>
+<p>If any single bit is garbled by noise, the sum of the received bits will be 1.  A <term>parity error</term> occurs if the sum of the received bits is 1. Since more than one error is unlikely when <m>p</m> is small, a high percentage of all errors can be detected.</p>
+<p>At the receiving end, the decoding function acts on the four-bit block <m>b = \left(b_1,b _2 ,b_3,b_4 \right)</m> with the function  <m>d: \mathbb{Z}_2{}^4\to \mathbb{Z}_2^4</m>, where
+<me>d(b) = \left(b_1,b _2 ,b_3,b_1+_2b _2 +_2b_3+_2b_4 \right)</me>
+Notice that the fourth bit of <m>d(b)</m> is an indicator of whether there is a parity error - 0 if no error, and 1 if an error. If no parity error occurs, the first three bits are recorded as part of the message. If a parity error occurs, we will assume that a retransmission of that block can be requested. This request can take the form of automatically having the parity-check bit of <m>d(b)</m> sent back to the source. If 1 is received, the previous block is retransmitted; if 0 is received, the next block is sent. This assumption of two-way communication is significant, but it is desirable to make this coding system useful. For our calculations, it is reasonable to expect that the probability of a transmission error in the opposite direction is also 0.001.  Without going into the details, we will report that the probability of success in sending 3000 bits is
+approximately 0.990 and the rate is approximately <m>3/5</m>. The rate includes the transmission of the parity-check bit to the source and is only approximate because the resent blocks will decrease the rate below <m>3/5</m> somewhat.
+</p>
+            <figure xml:id="fig-paritycube">
+                <caption>The <m>4</m>-cube with code words displayed as larger vertices
+                </caption>
+                <image width="60%" source="images/fig-paritycube.png">
+                    <description>The <m>4</m>-cube with code words displayed as larger vertices.</description>
+                </image>
+            </figure>
+
+<p>Let's consider the geometry of this code. If we examine the <m>4</m>-cube in <xref ref="fig-paritycube" text="type-global"/>, the code words are the strings of four bits with an even number of ones. These vertices are the larger ones.  Notice that the ball of radius 1 centered around any of the code words consists of that code word and the smaller vertices that are connected to the code word with an edge of the <m>4</m>-cube.  Since there are no other code-words in the ball, a single bit error produces a non-code word and so an error can be detected.</p>
+</subsection>
+<subsection xml:id="ss-error-correction"><title>Error Correction</title>
+<p>Next, we will consider coding functions that allow us to correct errors at the receiving end so that only one-way communication is needed. Before we begin, recall that every element of <m>\mathbb{Z}_2{}^n</m>, <m>n \geq  1</m>, is its own inverse; that is, <m>-b = b</m>. Therefore, <m>a - b = a + b</m>.</p>
+<example><title>The Triple Repetition Code</title>
+<idx>Triple Repetition Code</idx>
+<statement><p>Suppose we take each individual bit in our message and encode it by repeating it three times.  In other words, if <m>a</m> is a single bit, <m>e(a)=(a,a,a)</m>. The code words for this code are <m>(0,0,0)</m> and <m>(1,1,1)</m>.  Let's look at the geometry behind this code.  The message space has just two points, but the code space is <m>\mathbb{Z}_2{}^3</m>, which has 8 points, the vertices of the <m>3</m>-cube, which appears in <xref ref="fig-triplecube" text="type-global"/>.</p>
+
+            <figure xml:id="fig-triplecube">
+                <caption>The <m>3</m>-cube with code words displayed as circular vertices
+                </caption>
+                <image width="60%" source="images/fig-triplecube.png">
+                    <description>The <m>3</m>-cube with code words displayed as circular vertices.</description>
+                </image>
+            </figure>
+
+<p>In the figure for this code, the code words are circular vertices. If we identify the balls of radius 1 centered around the two code words, you might notice that the two balls do not intersect.  Each has a different vertex with triangular, square and pentagonal shapes.  From a geometric point of view, this is why we can correct a single bit error.  If any string of three bits in the code space is received it is in one of the two balls and the code word in that ball had to have been the one that was transmitted.</p>
+<p>Regarding the actual correction process, the shapes have a meaning, as outlined in the following list.
+<ul>
+<li>Circle:  No correction needed</li>
+<li>Pentagon: Correct the first bit</li>
+<li>Square: Correct the second bit</li>
+<li>Triangle: Correct the third bit</li>
+</ul>
+ </p>
+<p> Of course, once the correction is made, only the first bit is extracted from the code word since all bits will be equal. The simplicity of the final result masks an important property of all error correcting codes we consider. All of the possible points in the code space can be partitioned in such a way that each block in the partition corresponds with a specific correction that we can make to recover the correct code word.</p>
+ <p>If you have read about cosets, you will see that the partition we refer to is the set of left cosets of the set of code words.</p>  </statement>
+</example>
+<p><idx>Linear Code</idx>Triple repetition is effective, but not very efficient since its rate is quite low, <m>1/3</m>.  Next we consider a slightly more efficient error correcting code based on matrix multiplication. Any such code that is computed with a matrix multiplication is called a <term>linear code</term>. We should point out that both the parity check code and the triple repetition code are linear codes. 
+For the parity check code, the encoding function can be thought of as acting on a <m>1 \times 3</m> row vector <m>a=(a_1,a_2,a_3)</m> by multiplying times a <m>3 \times 4</m> matrix: 
+	<me>e(a) = (a_1,a_2,a_3) \left(
+\begin{array}{cccc}
+ 1 &amp; 0 &amp; 0 &amp; 1 \\
+ 0 &amp; 1 &amp; 0 &amp; 1 \\
+ 0 &amp; 0 &amp; 1 &amp; 1 \\
+\end{array}
+\right)=(a_1,a_2,a_3,a_1 +_2 a_2+_2 a_3) </me>
+
+For triple repetition, the encoding function can be thought of as acting on a <m>1 \times 1</m> matrix <m>a</m> by multiplying times a <m>1 \times 3</m> matrix: 
+	<me>e(a) = \left(a\right) \left(
+	\begin{array}{ccc}
+	 1 &amp; 1 &amp; 1 \\
+	\end{array}
+	\right)=
+	 \left(
+	\begin{array}{ccc}
+	 a &amp; a &amp; a \\
+	\end{array}
+	\right)</me>
+	
+</p>
+	
+	
+<example><title>A Somewhat More Efficient Linear Code</title>
+<statement>	
+<p>The encoding that we will consider here takes a block <m>a = \left(a_1, a_2, a_3 \right)</m> and produces a code word of length 6. As in the triple repetition code, each code word will differ from each other code word by at least three bits. As a result, any single error will not push a code word close enough to another code word to cause confusion. Now for the details.</p>
+
+<p> Let
+<me>G=\left(
+\begin{array}{cccccc}
+ 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 \\
+\end{array}
+\right).</me>  We call <m>G</m> the <term>generator matrix</term>  for the code, and let <m>a = \left(a_1, a_2, a_3 \right)</m> be our message. Define <m>e : \mathbb{Z}_2{}^3 \to \mathbb{Z}_2{}^6</m> by
+<me>e(a) = a G = \left(a_1, a_2, a_3,a_4, a_5, a_6\right)</me>
+where
+<me>
+\begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}}
+      a_4  &amp;= &amp; a_1 &amp;  {}+_2{}     &amp;  a_2  &amp;       &amp;        \\
+      a_5  &amp;= &amp; a_1 &amp;              &amp;       &amp;{}+_2{}  &amp; a_3  \\
+      a_6  &amp;= &amp;  &amp;              &amp;  a_2   &amp;{}+_2{}  &amp; a_3  \\
+\end{array}</me>
+</p>
+<!-- Here -->
+<p>Notice that since matrix multiplication is distributive over addition, we have
+<me>e(a + b)= (a+b)G = aG + bG = e(a)+e(b)</me> 
+for all <m>a, b \in \mathbb{Z}_2{}^3</m>. This equality, may look familiar from the definition of an isomorphism, but in this case the function <m>e</m> is not onto.  If you've read about homomorphisms, this is indeed an example of one. </p>
+<p>One way to see that any two distinct code words have a distance from one another of at least 3 is to consider the images of any two distinct messages.  If <m>a</m> and <m>b</m> are distinct elements of <m>\mathbb{Z}_2{}^3</m>, then <m>c = a + b</m> has at
+least one coordinate equal to 1. Now consider the difference between <m>e(a)</m> and <m>e(b)</m>:
+<me>
+\begin{split}
+e(a) + e(b) &amp;= e(a + b) \\
+	&amp; = e(c)\\
+\end{split}
+</me>
+Whether <m>c</m> has 1, 2, or 3 ones, <m>e(c)</m> must have at least three ones.  This can be seen by considering the three cases separately.  For example, if <m>c</m> has a single one, two of the parity bits are also 1.  Therefore, <m>e(a)</m> and <m>e(b)</m> differ in at least three bits. By the same logic as with triple repetition, a single bit error in any code word produces an element of the code space that is contained in on of the balls of radius 1 centered about a code word.</p>
+<p>Now consider the problem of decoding received transmissions. Imagine that a code word, <m>e(a)</m>, is transmitted, and <m>b= \left(b_1, b_2, b_3,b_4, b_5, b_6\right)</m>
+is received. At the receiving end, we know the formula for <m>e(a)</m>, and if no error has occurred in transmission,
+
+<me>\begin{array}{c}
+ b_1= a_1 \\
+ b_2=a_2 \\
+ b_3=a_3 \\
+ b_4=a_1+_2a_2 \\
+ b_5=a_1+_2a_3 \\
+ b_6=a_2+_2a_3 \\
+\end{array}
+ \Rightarrow 
+\begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}}
+b_1 &amp; +_2 &amp; b_2 &amp;      &amp;   &amp;+_2&amp; b_4&amp;    &amp;     &amp;    &amp;   &amp;=0\\
+b_1 &amp;     &amp;     &amp; +_2  &amp;b_3&amp;   &amp;    &amp; +_2&amp; b_5 &amp;    &amp;   &amp;=0\\
+    &amp;     &amp; b_2 &amp; +_2  &amp;b_3&amp;   &amp;    &amp;    &amp;     &amp;+_2 &amp;b_6&amp;=0\\
+\end{array}
+
+ </me>
+
+The three equations on the right are called parity-check equations. If any of them are not true, an error has occurred. This error checking can be described in matrix form.</p>
+<p>Let
+<me>H=\left(
+\begin{array}{ccc}
+ 1 &amp; 1 &amp; 0 \\
+ 1 &amp; 0 &amp; 1 \\
+ 0 &amp; 1 &amp; 1 \\
+ 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 \\
+\end{array}
+\right)</me>
+</p>
+
+<p><idx>Syndrome</idx>The matrix <m>H</m> is called the parity-check matrix for this code. Now define <m>p:\mathbb{Z}_2{}^6 \to \mathbb{Z}_2{}^3</m> by <m>p(b) = b H</m>.  We call
+<m>p(b)</m> the <term>syndrome</term> of the received block. For example,
+<m>p(0,1,0,1,0,1)=(0,0,0)</m>  and   <m>p(1,1,1,1,0,0)=(1,0,0)</m></p>
+
+<p>Note that <m>p</m> has a similar property as <m>e</m>, that <m>p(b_1+b_2)=p(b_1)+p(b_2)</m>. If the syndrome of a block is <m>(0, 0, 0)</m>, we can be almost certain that the message block is <m>\left(b_1, b_2, b_3\right)</m>. </p>
+<p>Next we turn to the method of correcting errors. Despite the fact that there are only eight code words, one for each three-bit block value, the set of possible received blocks is <m>\mathbb{Z}_2{}^6</m>, with 64 elements. Suppose that <m>b</m> is not a code word, but that it differs from a code word by exactly one bit. In other words, it is the result of a single error in transmission. Suppose that <m>w</m> is the code word that <m>b</m> is closest to and that they differ in the first bit. Then <m>b + w = (1, 0, 0, 0, 0, 0)</m> and
+
+<me>
+\begin{split}
+p(b) &amp; = p(b) + p(w)\quad \textrm{  since }p(w) = (0, 0, 0)\\
+	&amp;=b H + w H \\
+	&amp;=(b+w)H\quad \textrm{ by the distributive property}\\
+	&amp;=p(b+w)\\
+	&amp; =p(1,0,0,0,0,0)\\
+	&amp; =(1,1,0)\\
+\end{split}
+</me>
+This is the first row of <m>H</m>!
+</p>
+<p>Note that we haven't specified <m>b</m> or <m>w</m>, only that they differ in the first bit. Therefore, if <m>b</m> is received, there was probably an error in the first bit and <m>p(b)= (1, 1, 0)</m>, the transmitted code word was probably <m>b + (1, 0, 0, 0, 0, 0)</m> and the message block was <m>\left(b_1+_2 1, b_2, b_3\right)</m>. The same analysis can be done if <m>b</m> and <m>w</m> differ in any of the other five bits.</p>
+<p>In general, if the syndrome of a received string of bits is the <m>k</m>th row of the parity check matrix, the error has occurred in the <m>k</m>th bit.</p>
+<!-- 
+<p>This process can be described in terms of cosets. Let <m>W</m> be the set of code words; that is, <m>W = e\left(\mathbb{Z}_2{}^3 \right)</m>. Since <m>e</m> is a homomorphism, <m>W</m> is a subgroup of <m>\mathbb{Z}_2{}^6</m>. Consider the factor group <m>\left.\mathbb{Z}_2{}^6\right/W</m>:
+
+<me>
+\lvert \mathbb{Z}_2{}^6/W \rvert =\frac{\lvert \mathbb{Z}_2{}^6 \rvert }{\lvert W \rvert}=\frac{64}{8}=8
+</me>
+</p>
+<p>Suppose that <m>b_1</m> and <m>b_2</m> are representatives of the same coset. Then <m>b_1= b_2+w</m> for some <m>w</m> in <m>W</m>.  Therefore,
+
+<me>\begin{split}
+p\left(b _1\right) &amp;= p\left(b_1\right) + p(w)\quad \textrm{ since } p(w) = (0, 0, 0)\\
+ &amp;= p\left(b_1 + w\right)\\
+ &amp;= p\left(b_2 \right)\\
+\end{split}
+</me>
+and so <m>b_1</m> and <m>b_2</m> have the same syndrome.</p>
+<p>Finally, suppose that <m>d_1</m> and <m>d_2</m> are distinct and both have only a single coordinate equal to 1. Then <m>d_1+d_2</m> has exactly two ones.
+Note that the identity of <m>\mathbb{Z}_2{}^6</m>,  <m>(0, 0, 0, 0, 0, 0)</m>, must be in <m>W</m>. Since <m>d_1+d_2</m> differs from the identity by two
+bits, <m>d_1+d_2 \notin  W</m>.   Hence <m>d_1</m> and <m>d_2</m> belong to distinct cosets. The reasoning above serves as a proof of the following theorem.</p>
+
+<theorem xml:id="theorem-coset-reps-coding"><statement><p>There is a system of distinguished representatives of <m>\left.\mathbb{Z}_2{}^6\right/W</m> such that each of the six-bit blocks having a single 1 is a distinguished representative of its own coset.</p></statement></theorem> 
+<p>Now we can describe the error-correcting process. First match each of the blocks with a single 1 with its syndrome. In addition, match the identity of <m>W</m> with the syndrome <m>(0, 0, 0)</m> as in the table below. Since there are eight cosets of <m>W</m>, select any representative of the eighth coset to be distinguished.
+This is the coset with syndrome <m>(1, 1, 1)</m>.
+
+
+<me>\begin{array}{c|c}
+ 
+\begin{array}{c}
+ \textrm{ Syndrome} \\
+ \hline
+\begin{array}{ccc}
+ 0 &amp; 0 &amp; 0 \\
+ 1 &amp; 1 &amp; 0 \\
+ 1 &amp; 0 &amp; 1 \\
+ 0 &amp; 1 &amp; 1 \\
+ 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 \\
+ 1 &amp; 1 &amp; 1 \\
+\end{array}
+ \\
+\end{array}
+ &amp; 	  
+\begin{array}{c}
+ \textrm{ Error} \textrm{ Correction} \\
+ \hline
+ \begin{array}{cccccc}
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+ 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+\end{array}
+ \\
+\end{array}
+ \\
+\end{array}</me>
+</p>
+
+<p>When block <m>b</m> is received, you need only compute the syndrome, <m>p(b)</m>, and
+add to <m>b</m> the error correction that matches <m>p(b)</m>.</p>
+ -->
+</statement>
+</example>
+<p><term>Probability Epilog.</term> For the two error correction examples we've looked at, we can compare their probabilities of successfully receiving all 3000 bits correctly over a binary symmetric channel with <m>p=0.001.</m></p>
+<p>For the triple repetition code, the probability is <me>\left(0.999^3 + 3 \cdot 0.999^2 \cdot 0.001\right)^{3000}= 0.991,</me> and the rate of this code is <m>\frac{1}{3}</m> which means we need to transmit 9000 bits.</p>
+<p>For the second code, the probability of success is  <me>\left(0.999^6 + 6 \cdot 0.999^5 \cdot 0.001\right)^{1000}=0.985</me>, and rate for this code is <m>\frac{1}{2}</m>, which means we need to transmit 6000 bits.</p>
+<p>Clearly, there is a trade-off between accuracy and speed.
+</p>
+
+ <example xml:id="ex-another-linear-code"><title>Another Linear Code</title>
+<statement><p>Consider the linear code with generator matrix  
+<me>G = \left( \begin{array}{ccccc} 
+1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\
+  \end{array} \right).</me> 
+Since <m>G</m> is <m>3 \times 5</m>, this code encodes three bits into five bits.  The natural question to ask is what detection or correction does it afford? We can answer this question by constructing the parity check matrix.  We observe that if <m>\vec{a}=(a_1, a_2, a_3)</m> the encoding function is 
+<me>e(\vec{a}) = \vec{a}G = (a_1,a_1+a_2,a_2,a_1+a_3,a_3)</me>
+where addition is mod 2 addition. If we receive five bits <m>(c_1,c_2,c_3,c_4,c_5)</m> and no error has occurred, the following two equations would be true.
+<mdn><mrow>c_1+c_2+c_3 = 0</mrow>
+<mrow>c_1+c_4+c_5 = 0</mrow>
+</mdn>
+Notice that in general, the number of parity check equations is equal to the number of extra bits that are added by the encoding function.  These equations are equivalent to the single matrix equation <m>(c_1,c_2,c_3,c_4,c_5)H = \vec{0}</m>, where 
+
+<me>H = \left(\begin{array}{cc} 
+1 &amp; 1 \\
+1 &amp; 0 \\
+1 &amp; 0 \\
+0 &amp; 1 \\
+0 &amp; 1 \\
+  \end{array} \right)</me>
+  </p>
+  
+<p>At a glance, we can see that this code will not correct most single bit errors. Suppose an error <m>\vec{e}=(e_1,e_2,e_3,e_4,e_5)</m> is added in the transmission of the five bits. Specifically, suppose that 1 is added (mod 2) in position <m>j</m>, where <m>1 \leq j\leq 5</m> and the other coordinates of <m>\vec{e}</m> are  0.  Then when we compute the syndrome of our received transmission, we see that   
+<me>\vec{c}H = (\vec{a}G + \vec{e})H  = (\vec{a}G)H + \vec{e}H = \vec{e}H.</me> 
+But <m>\vec{e}H</m> is the <m>j^{th}</m> row of <m>H</m>.  If the syndrome is <m>(1,1)</m> we know that the error occurred in position 1 and we can correct it.  However, if the error is in any other position we can't pinpoint its location.  If the syndrome is <m>(1,0)</m>, then the error could have occurred in either position 2 or position 3.    This code does detect all single bit errors but only corrects one fifth of them.
+
+</p>
+</statement>
+</example> 
+ 
+</subsection>
+<exercises xml:id="exercises-15-5">
+<title>Exercises</title>
+<exercise number="1"><statement><p> If the error-detecting code is being used, how would you act on the following received blocks?
+<ol marker="(a)">
+<li><p> <m>(1, 0, 1, 1)</m></p></li>
+<li><p> <m>(1, 1, 1, 1)</m></p></li>
+<li><p> <m>(0, 0, 0, 0)</m></p></li>
+</ol>
+</p></statement>
+<answer><p>
+<ol marker="(a)">
+<li><p> Error detected, since an odd number of 1's was received; ask for retransmission.</p></li>
+<li><p> No error detected; accept this block.</p></li>
+<li><p> No error detected; accept this block.</p></li>
+</ol>
+</p></answer>
+</exercise>
+<exercise number="2"><statement><p>Determine the parity check matrix for the triple repetition code.
+</p></statement>
+</exercise>
+<exercise number="3"><statement><p>  If the error-correcting code from this section is being used, how would you decode the following blocks? Expect an error that cannot be fixed with one of these.
+<ol marker="(a)">
+<li><p> <m>(1,0,0,0,1,1)</m></p></li>
+<li><p> <m>(1,0,1,0,1,1)</m></p></li>
+<li><p> <m>(0,1,1,1,1,0)</m></p></li>
+<li><p>  <m>(0,0,0,1,1,0)</m></p></li>
+<li><p>  <m>(1,0,0,0,0,1)</m></p></li>
+<li><p>  <m>(1,0,0,1,0,0)</m></p></li>
+</ol>
+</p></statement>
+<answer><p>
+<ol marker="(a)">
+<li><p> Syndrome = <m>(1,0,1)</m>. Corrected coded message is <m>(1,1,0,0,1,1)</m> and original message was <m>(1, 1, 0)</m>.</p></li>
+<li><p> Syndrome = <m>(1,1,0)</m>. Corrected coded message is <m>(0,0,1,0,1,1)</m> and original message was <m>(0, 0, 1)</m>.</p></li>
+<li><p> Syndrome = <m>(0,0,0)</m>.  No error, coded message is <m>(0,1,1,1,1,0)</m> and original message was <m>(0, 1, 1)</m>.</p></li>
+<li><p> Syndrome = <m>(1, 1,0)</m>. Corrected coded message is <m>(1,0,0,1,1,0)</m> and original message was <m>(1, 0, 0)</m>.</p></li>
+<li><p> Syndrome = <m>(1,1,1)</m>. This syndrome occurs only if two bits have been switched. No reliable correction is possible.</p></li>
+<li><p> Syndrome = <m>(0,1,0)</m>. Corrected coded message is <m>(1,0,0,1,1,0)</m> and original message was <m>(1, 0, 0)</m>.</p></li>
+</ol>
+</p></answer>
+</exercise>
+<exercise number="4"><statement><p>Suppose that the code words of a coding function have the property that any two of them have a Hamming distance of at least 5.  How many bit errors could be corrected with such a code?
+</p></statement>
+</exercise>
+<exercise number="5"><statement><p>Consider the  linear code defined by the generator matrix
+<me>G=\left(
+\begin{array}{cccc}
+ 1 &amp; 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 1 &amp; 1 &amp; 1 \\
+\end{array}
+\right)</me></p>
+<p>
+<ol marker="(a)">
+<li><p>  What size blocks does this code encode and what is the length of the code words?</p></li>
+<li><p>  What are the code words for this code?</p></li>
+<li><p>  With this code, can you detect single bit errors?  Can you correct all, some, or no single bit errors?</p></li>
+</ol>  
+</p></statement>
+<answer><p><ol marker="(a)">
+<li><p> Blocks of two bits are encoded into code words of length 4.</p></li>
+<li><p>The code words are  0000, 1010, 0111 and 1101.</p></li>
+<li><p>Since the first two code words have a Hamming distance of 2, not all single bit errors can be corrected.  For example, if 0000 is transmitted and the first bit is switch, then 1000 is received and we can't tell for sure whether this came from 0000 or 1010.  To see what can be corrected, we note that <m>a_1 a_2</m> is encoded to <m>a_1 a_2 (a_1 +_2 a_2) a_2</m> and so if <m>b_1 b_2 b_3 b_4</m> is recieved and no error has occurred, 
+<md>
+  <mrow>b_1 +_2 b_2 +_2 b_3  =0</mrow>
+  <mrow> b_2  +_2 b_4 	=0</mrow>
+</md>
+</p>
+<p>We can extract the parity check matrix from this set of equations. It is 
+<me> \begin{pmatrix}
+1 &amp; 0 \\
+1  &amp; 1 \\
+1  &amp; 0 \\
+0  &amp; 1 
+\end{pmatrix}</me>
+The rows of this matrix correspond with the syndromes for errors in bits 1 through 4, which are all nonzero, so we can detect any single bit error.  Notice that the syndromes for bits 1 and 3 are identical. This reflects the fact that errors in these bits can't be corrected.  However, the syndromes for bits 2 and 4 are unique and so we can correct them. Therefore the second bit of the original message can be sent with more confidence than the first.
+</p></li>
+</ol>   </p>
+</answer>
+</exercise>
+<exercise number="6"><title>Rectangular codes</title>
+<idx>Rectangular codes</idx>
+<statement><p>To build a rectangular code, you partition your message into blocks of length <m>m</m> and then factor <m>m</m> into <m>k_1\cdot k_2</m>  and arrange the bits in a  <m>k_1 \times k_2</m> rectangular array as in the figure below.  Then you add parity bits along the right side and bottom of the rows and columns.   The code word is then read row by row.    
+
+  <me>\begin{array}{cccccc}
+ \blacksquare  &amp; \blacksquare  &amp; \blacksquare  &amp; \cdots  &amp; \blacksquare  &amp; \square  \\
+ \blacksquare  &amp; \blacksquare  &amp; \blacksquare  &amp; \cdots  &amp; \blacksquare  &amp; \square  \\
+ \vdots  &amp; \vdots  &amp; \vdots  &amp;   &amp; \vdots  &amp; \vdots  \\
+ \blacksquare  &amp; \blacksquare  &amp; \blacksquare  &amp; \cdots  &amp; \blacksquare  &amp; \square  \\
+ \square  &amp; \square  &amp; \square  &amp; \cdots  &amp; \square  &amp;   \\
+\end{array}  \quad \begin{array}{c}
+ \textrm{      }\blacksquare  = \textrm{ message} \textrm{ bit} \\
+ \square  =\textrm{ parity} \textrm{ bit} \\
+\end{array}</me>
+</p>
+<p>For example, if <m>m</m> is 4, then our only choice is a 2 by 2 array.  The message 1101 would be encoded as 
+<me>\begin{array}{cc|c}
+1 &amp; 1 &amp; 0\\
+0 &amp; 1 &amp; 1\\
+\hline
+1 &amp; 0 &amp;\\
+\end{array}</me>
+and the code word is the string 11001110.</p>
+<p>
+<ol marker="(a)">
+<li><p>Suppose that you were sent four bit messages using this code and you received the following strings.  What were the messages, assuming no more than one error in the transmission of coded data?
+			<ol marker="(i)" cols="3">
+			<li><p>11011000</p></li>
+			<li><p>01110010</p></li>
+			<li><p>10001111</p></li>
+			</ol></p></li>
+<li><p>If you encoded <m>n^2</m> bits in this manner, what would be the rate of the code?</p></li>
+<li><p>Rectangular codes are linear codes.  For the 2 by 2 rectangular code, what are the generator and parity check matrices?</p></li>
+</ol>
+</p></statement>
+</exercise>
+<exercise number="7"><statement><p> Suppose that the code in <xref ref="ex-another-linear-code" text="type-global"/> is expanded to add the column <me> \left(\begin{array}{c} 
+0 \\
+1 \\
+1 \\
+  \end{array} \right)</me> to the generator matrix <m>G</m>, can all single bit errors be corrected? Explain your answer. </p></statement>
+  <solution><p>Yes, you can correct all single bit errors because the parity check matrix for the expanded code is 
+<me>H = \left(\begin{array}{ccc} 
+1 &amp; 1 &amp; 0\\
+1 &amp; 0 &amp; 0\\
+1 &amp; 0 &amp; 1\\
+0 &amp; 1 &amp; 0\\
+0 &amp; 1 &amp; 1\\
+0 &amp; 0 &amp; 1\\
+  \end{array} \right).</me>
+  Since each possible syndrome of single bit errors is unique we can correct any error.</p>
+</solution></exercise>
+<exercise number="8"><statement><p> Suppose that a linear code has parity check matrix 
+<me>H=\left(
+\begin{array}{ccc}
+ 1 &amp; 1 &amp; 1 \\
+ 1 &amp; 1 &amp; 0 \\
+ 1 &amp; 0 &amp; 1 \\
+ 0 &amp; 1 &amp; 1 \\
+ 1 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 1 \\
+\end{array}
+\right)</me>
+Determine the generator matrix, <m>G</m>, and in so doing, identify the number of bits in each message block and the number of parity bits.</p></statement>
+<hint><p>There is a parity check equation for each parity bit.</p></hint><!-- 
+  <solution><p></p>
+</solution>
+ -->
+</exercise>
+<exercise number="9"><idx>Perfect Codes</idx><statement><p>A code with minimum distance <m>d</m> is called <em>perfect</em> if every string of bits is within Hamming distance <m>r=\frac{d-1}{2}</m> of some code word. For such a code, the spheres of radius <m>r</m> around the code words partition the set of all strings.  This is analogous to packing objects into a box with no wasted space.  Using just the number of bit strings of length <m>n</m> and the number of strings in a sphere of radius <m>1</m>, for what values of <m>n</m> is it possible to find a perfect code of distance <m>3</m>?  You don't have to actually find the codes.</p></statement>
+</exercise>
+
+
+</exercises>
+</section>

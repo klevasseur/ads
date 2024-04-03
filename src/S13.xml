@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="s-cartesian_Products_and_Power_Sets">
+<title>Cartesian Products and Power Sets</title>
+<subsection xml:id="Cartesian-products">
+<title>Cartesian Products</title>
+<definition  xml:id="cartesian-product">
+<title>Cartesian Product</title><idx>Cartesian Product</idx>
+<notation>
+				  <usage><m>A \times B</m></usage>
+				  <description>
+				 The cartesian product of <m>A</m> with <m>B</m>.    	
+				  </description>
+</notation>
+<statement><p> Let <m>A</m> and <m>B</m> be sets. The Cartesian product of <m>A</m> and <m>B</m>, denoted by <m>A\times B</m>, is defined as follows: <m>A\times B = \{(a, b) \mid a \in  A \quad\textrm{and}\quad b \in  B\}</m>, that is, <m>A\times B</m> is the set of all possible ordered pairs whose first component comes from <m>A</m> and whose second component comes from <m>B</m>.</p>
+</statement>
+ </definition>
+<example><title>Some Cartesian Products</title>
+<p> Notation in mathematics is often developed for good reason. In this case, a few examples will make clear why the symbol <m>\times</m> is used for Cartesian products.</p>
+<p><ul>
+<li><p>  Let <m>A = \{1, 2, 3\}</m> and <m>B = \{4, 5\}</m>. Then <m>A \times  B = \{(1, 4), (1, 5), (2, 4), (2, 5), (3, 4), (3, 5)\}</m>. Note that <m>|A \times B| = 6 = \lvert A \rvert  \times  \lvert B \rvert </m>. </p></li>
+<li><p>  <m>A \times  A = \{(1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3), (3, 1), (3, 2), (3, 3)\}</m>. Note that <m>|A \times  A| = 9 = {\lvert A \rvert}^2</m>.</p></li>
+</ul></p>  </example>
+<p>These two examples illustrate the general rule that if <m>A</m> and <m>B</m> are finite sets, then <m>\lvert A \times B \rvert = \lvert A \rvert  \times  \lvert B \rvert </m>.</p>
+<p>We can define the Cartesian product of three (or more) sets similarly. For example, <m>A \times  B \times  C = \{(a, b, c):a \in  A, b \in  B, c \in C\}</m>. </p>
+<p>It is common to use exponents if the sets in a Cartesian product are the same: 
+<me>A^2= A \times  A</me>
+<me>A^3=A \times A \times A</me>
+and in general, 
+<me>A^n =  \underset{n \textrm{ factors}}{\underline{A \times A \times \ldots \times A}}</me>.</p>
+</subsection>
+<subsection xml:id="power-sets">
+<title>Power Sets</title>
+<definition  xml:id="power-set">
+<title>Power Set </title><idx>Power Set </idx> <notation>
+				  <usage><m>\mathcal{P}(A)</m></usage>
+				  <description>
+				 The power set of <m>A</m>, the set of all subsets of <m>A</m>.    	
+				  </description>
+</notation>
+<statement><p>If <m> A</m> is any set, the power set of <m>A</m> is the set of all subsets of <m>A</m>, denoted <m>\mathcal{P}(A)</m>.</p></statement>
+
+</definition>
+<p>The two extreme cases, the empty set and all of <m>A</m>, are both included in <m>\mathcal{P}(A)</m>.</p>
+<example  xml:id="Some_Power_Sets">
+<title>Some Power Sets </title>
+<p><ul>
+<li><p><m>\mathcal{P}(\emptyset )=\{\emptyset \}</m> </p></li>
+<li><p> <m>\mathcal{P}(\{1\}) = \{\emptyset , \{1\}\}</m> </p></li>
+<li><p> <m>\mathcal{P}(\{1,2\}) = \{\emptyset , \{1\}, \{2\}, \{1, 2\}\}</m>. </p></li>
+</ul></p>
+<p>We will leave it to you to guess at a general formula for the number of elements in the power set of a finite set. In Chapter 2, we will discuss counting rules that will help us derive this formula.</p> 
+</example>
+</subsection>
+<subsection xml:id="Sage_Note_Sets-1-3">
+<title>SageMath Note: Cartesian Products and Power Sets</title><idx><h>SageMath Note</h><h>Cartesian Products and Power Sets</h></idx>
+<p>Here is a simple example of a cartesian product of two sets:</p>
+<sage>
+<input>
+A=Set([0,1,2])
+B=Set(['a','b'])
+P=cartesian_product([A,B]);P
+</input>
+<output>
+The Cartesian product of ({0, 1, 2}, {'a', 'b'})
+</output>
+</sage>
+<p>Here is the cardinality of the cartesian product.</p>
+<sage>
+<input>
+P.cardinality()
+</input>
+<output>
+6
+</output>
+</sage>
+<p>
+The power set of a set is an iterable, as you can see from the output of this next cell
+</p>
+<sage>
+<input>
+U=Set([0,1,2,3])
+subsets(U)
+</input>
+<output>
+&lt;generator object powerset at 0x7fec5ffd33c0>
+</output>
+</sage>
+<p>
+You can iterate over a powerset. Here is a trivial example.  
+</p>
+<sage>
+<input>
+for a in subsets(U):
+    print(str(a)+ " has " +str(len(a))+" elements.")
+</input>
+<output>
+[] has 0 elements.
+[0] has 1 elements.
+[1] has 1 elements.
+[0, 1] has 2 elements.
+[2] has 1 elements.
+[0, 2] has 2 elements.
+[1, 2] has 2 elements.
+[0, 1, 2] has 3 elements.
+[3] has 1 elements.
+[0, 3] has 2 elements.
+[1, 3] has 2 elements.
+[0, 1, 3] has 3 elements.
+[2, 3] has 2 elements.
+[0, 2, 3] has 3 elements.
+[1, 2, 3] has 3 elements.
+[0, 1, 2, 3] has 4 elements.
+</output>
+</sage>
+</subsection>
+   
+<exercises xml:id="exercises-1-3">
+<title>Exercises</title>
+<exercise number="1">
+<statement> <p> Let <m>A = \{0, 2, 3\}</m>, <m>B = \{2, 3\}</m>, <m>C = \{1, 4\}</m>, and let the universal set be <m>U = \{0, 1, 2, 3, 4\}</m>. List the elements of </p>
+<p><ol marker="(a)" cols="2">
+<li><p>  <m>A \times B</m> </p></li>
+<li><p>  <m>B \times  A</m> </p></li>
+<li><p>  <m>A \times B\times C</m> </p></li>
+<li><p>  <m>U \times \emptyset</m></p></li>
+ <li><p>  <m>A \times  A^c</m></p></li>
+ <li><p>  <m>B^2</m> </p></li>
+ <li><p>  <m>B^3</m></p></li>
+ <li><p>  <m>B\times \mathcal{P}(B)</m></p></li>
+ </ol></p>
+</statement>
+<answer>
+<p><ol marker="(a)">
+<li> <m>\{(0, 2), (0, 3), (2, 2), (2, 3), (3, 2), (3, 3)\}</m></li>
+<li><m>\{(2, 0), (2, 2), (2, 3), (3, 0), (3, 2), (3, 3)\}</m></li>
+<li> <m>\{(0, 2, 1), (0, 2, 4), (0, 3, 1), (0, 3, 4), (2, 2, 1), (2, 2, 4),\\ (2, 3, 1), (2, 3, 4), (3, 2, 1), (3, 2, 4), (3, 3, 1), (3, 3, 4)\}</m></li>
+<li><m>\emptyset</m></li>
+<li> <m>\{(0, 1), (0, 4), (2, 1), (2, 4), (3, 1), (3, 4)\}</m></li>
+<li><m>\{(2, 2), (2, 3), (3, 2), (3, 3)\}</m></li>
+<li> <m>\{(2, 2, 2), (2, 2, 3), (2, 3, 2), (2, 3, 3), (3, 2, 2), (3, 2, 3), (3, 3, 2), (3, 3, 3)\}</m></li>
+<li> <m>\{(2, \emptyset ), (2, \{2\}), (2, \{3\}), (2, \{2, 3\}), (3, \emptyset ), (3, \{2\}), (3, \{3\}), (3, \{2, 3\})\}</m></li>
+</ol></p>
+</answer>
+ </exercise>
+<exercise number="2"><statement><p> 
+Suppose that you are about to flip a coin and then roll a die. Let <m>A = \{HEADS, TAILS\}</m> and  <m>B = \{1, 2, 3, 4, 5, 6\}</m>. </p>
+<p><ol marker="(a)">
+<li><p>  What is <m>|A \times  B|</m>? </p></li>
+<li><p>  How could you interpret the set <m>A \times  B</m> ?   </p></li>
+</ol></p>
+</statement> </exercise>
+<exercise number="3"><statement><p> 
+List all two-element sets in <m>\mathcal{P}(\{a,b,c,d\})</m> </p>
+</statement><answer><p><m>\{a, b\}, \{a, c\}, \{a, d\}, \{b, c\}, \{b, d\} \textrm{ and } \{c, d\}</m></p></answer> </exercise>
+<exercise number="4"><statement> <p>
+List all three-element sets in <m>\mathcal{P}(\{a, b, c,d\})</m>.</p> 
+</statement> </exercise>
+<exercise number="5"><statement> 
+<p>How many singleton (one-element) sets are there in <m>\mathcal{P}(A)</m> if <m>\lvert A \rvert =n</m> ? </p>
+</statement><answer><p> There are <m>n</m> singleton subsets, one for each element.</p>
+</answer>
+ </exercise>
+<exercise number="6"><statement> 
+<p>A person has four coins in his pocket: a penny, a nickel, a dime, and a quarter. How many different sums of money can he take out if he removes 3 coins at a time? </p>
+</statement> </exercise>
+<exercise number="7"><statement> 
+<p>Let <m>A = \{+,-\}</m> and <m>B = \{00, 01, 10, 11\}</m>.</p>
+<p><ol marker="(a)">
+<li><p>  List the elements of <m>A \times  B</m> </p></li>
+<li><p>  How many elements do <m>A ^4</m> and <m>(A \times B)^3</m> have? </p></li>
+</ol></p>
+</statement><answer><p><ol marker="(a)">
+<li><p> <m>\{+00, +01, +10, +11, -00, -01, -10, -11\}</m></p></li>
+<li><p> <m>16 \textrm{ and } 512</m></p></li>
+</ol></p>
+</answer> </exercise>
+<exercise number="8"><statement> 
+<p>Let <m>A = \{\bullet,\square ,\otimes \}</m> and <m>B = \{\square ,\ominus ,\bullet\}</m>. </p>
+<p><ol marker="(a)">
+<li><p> List the elements of <m>A \times  B</m> and <m>B \times  A</m>. The parentheses and comma in an ordered pair are not necessary in cases such as this where the elements of each set are individual symbols. </p></li>
+<li><p>  Identify the intersection of <m>A \times  B</m> and <m>B \times  A</m> for the case above, and then guess at a general rule for the intersection of <m>A \times  B</m> and <m>B \times  A</m>, where <m> A</m> and <m> B</m> are any two sets. </p></li>
+</ol></p>
+</statement> </exercise>
+<exercise number="9"><statement> 
+<p>Let <m>A</m> and <m>B</m> be nonempty sets. When are <m>A \times  B</m> and <m>B \times  A</m> equal? </p>
+</statement> <answer><p> They are equal when <m>A=B</m>.</p>
+</answer></exercise>
+</exercises>
+</section>

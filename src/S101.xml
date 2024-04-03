@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="s-what-is-a-tree">
+<title>What Is a Tree? </title>
+<idx>What Is a Tree? </idx>
+<subsection><title>Definition</title>
+
+<p>What distinguishes trees from other types of connected graphs is the absence of certain paths called cycles. Recall that a path is a sequence of consecutive edges in a graph, and a circuit is a path that begins and ends at the same vertex.</p>
+
+<definition xml:id="def-cycle"><title>Cycle</title>
+<idx>Cycle</idx><notation><usage><m>C_n</m></usage><description>A cycle with <m>n</m> edges.</description></notation><statement><p> A cycle is a circuit whose edge list contains no duplicates.  It is customary to use <m>C_n</m> to denote a cycle with <m>n</m> edges.</p></statement></definition>
+
+
+<p>The simplest example of a cycle in an undirected graph is a pair of vertices with two edges connecting them. Since trees are cycle-free, we can rule out all multigraphs having at least one pair of vertices connected with two or more edges from consideration as trees.</p>
+
+
+
+<p>Trees can either be undirected or directed graphs. We will concentrate on the undirected variety in this chapter.</p>
+
+<definition xml:id="def-tree"><title>Tree</title>
+<idx>Tree</idx>
+<statement><p>An undirected graph is a tree if it is connected and contains no cycles.</p></statement></definition>
+
+ <example xml:id="ex-some-trees"><title>Some trees and non-trees</title>
+ <figure xml:id="fig-some-trees">
+		 <caption>Some trees and some non-trees
+		 </caption>
+		 <image width="100%" source="images/fig-some-trees.png">
+			  <description>Some trees and some non-trees</description>
+		 </image>
+   </figure>
+<p><ol marker="(a)">
+<li><p> Graphs i, ii and iii in <xref ref="fig-some-trees" text="type-global"/> are all trees, while graphs iv, v, and vi are not trees.</p>
+ 
+</li>
+<li><p> A <m>K_2</m> is a tree. However, if <m>n\geq  3</m>, a <m>K_n</m> is not a tree.</p></li>
+<li><p> In a loose sense, a botanical tree is a mathematical tree. There are usually no cycles in the branch structure of a botanical tree.</p></li>
+<li><p> The structures of some chemical compounds are modeled by a tree. For example, butane <xref ref="fig-butane" /> consists of four carbon atoms and ten hydrogen atoms, where an edge between two atoms represents a bond between them. A bond is a force that keeps two atoms together. The same set of atoms can be linked together in a different tree structure to give us the compound isobutane <xref ref="fig-isobutane" />. There are some compounds whose graphs are not trees. One example is benzene <xref ref="fig-benzene" />.</p>
+</li>
+</ol></p>
+<sidebyside>
+            <figure xml:id="fig-butane">
+                <caption>Butane
+                </caption>
+                <image width="100%" source="images/fig-butane.png">
+                    <description>Structure of Butane</description>
+                </image>
+            </figure>
+            <figure xml:id="fig-isobutane">
+                <caption>Isobutane
+                </caption>
+                <image width="100%" source="images/fig-isobutane.png">
+                    <description>Structure of Isobutane</description>
+                </image>
+            </figure> 
+            <figure xml:id="fig-benzene">
+                <caption>Benzene
+                </caption>
+                <image width="100%" source="images/fig-benzene.png">
+                    <description>Structure of Benzene</description>
+                </image>
+            </figure>
+</sidebyside>
+
+ </example>
+
+
+
+<p>One type of graph that is not a tree, but is closely related, is a forest.</p>
+
+<definition xml:id="def-forest"><title>Forest</title>
+<idx>Forest.</idx><statement><p> A forest is an undirected graph whose components are all trees.</p></statement></definition>
+
+
+
+<example xml:id="ex-a-forest"><title>A forest</title><p>The top half of <xref ref="fig-some-trees" text="type-global" /> can be viewed as a forest of three trees.  Graph (vi) in this figure is also a forest.</p></example> 
+
+</subsection>
+<subsection><title>Conditions for a Graph to be a Tree</title>
+
+
+<p>We will now examine several conditions that are equivalent to the one that defines a tree. The following theorem will be used as a tool in proving that the conditions are equivalent.</p>
+
+<lemma xml:id="lemma-two-paths">
+<statement><p>Let <m>G = (V, E)</m> be an undirected graph with no self-loops, and let <m>v_a, v_b\in V</m>. If two different simple paths exist
+between <m>v_a</m> and <m>v_b</m>, then there exists a cycle in <m>G</m>.</p></statement>
+<proof><p>Let <m>p_1= \left(e_1, e_2, \ldots , e_m \right)</m> and <m>p_2=\left(f_1,f_2,\ldots , f_n\right)</m> be two different simple paths from <m>v_a</m>
+to <m>v_b</m>. The first step we will take is to delete from <m>p_1</m> and <m>p_2</m> the initial edges that are identical. That is, if <m>e_1= f_1</m>,
+<m>e_2= f_2, \dots </m>, <m>e_{j}= f_j</m>, and <m>e_{j+1}\neq f_{j+1}</m> delete the first <m>j</m> edges of both paths. Once this is done, both paths
+start at the same vertex, call it <m>v_c</m>, and both still end at <m>v_b</m>. Now we construct a cycle by starting at <m>v_c</m> and following what is left of <m>p_1</m> until we first meet what is left of <m>p_2</m>. If this first meeting occurs at vertex <m>v_d</m>, then the remainder of the cycle is completed by following the portion of the reverse of <m>p_2</m> that starts at <m>v_d</m> and ends at <m>v_c</m>.</p> </proof>
+</lemma>  
+
+<theorem xml:id="theorem-tree-conditions"><title>Equivalent Conditions for a Graph to be a Tree</title>
+<statement><p>Let <m>G = (V, E)</m> be an undirected graph with no self-loops and <m>\lvert V \rvert =n</m>. The following are all equivalent:</p>
+<p><ol marker="(1)">
+<li><p> <m>G</m> is a tree.</p></li>
+<li><p> For each pair of distinct vertices in <m>V</m>, there exists a unique simple path between them.</p></li>
+<li><p> <m>G</m> is connected, and if <m>e\in E</m>, then <m>(V, E-\{e\})</m> is disconnected.</p></li>
+<li><p> <m>G</m> contains no cycles, but by adding one edge, you create a cycle.</p></li>
+<li><p> <m>G</m> is connected and <m>\lvert E \rvert =n-1 </m>.</p></li>
+</ol></p>
+</statement>
+<proof>
+<p>Proof Strategy. Most of this theorem can be proven by proving the following chain of implications: <m>(1) \Rightarrow  (2)</m>, <m>(2) \Rightarrow  (3)</m>, <m>(3)\Rightarrow (4)</m>, and <m>(4) \Rightarrow (1)</m>. Once these implications have been demonstrated, the transitive closure of <m>\Rightarrow</m> on <m>{1, 2, 3, 4}</m> establishes the equivalence of the first four conditions. The proof that Statement 5 is equivalent to the first four can be done by induction, which we will leave to the reader.</p>
+<p><m>(1) \Rightarrow  (2)</m> (Indirect). Assume that <m>G</m> is a tree and that there exists a pair of vertices between which there is
+either no path or there are at least two distinct paths. Both of these possibilities contradict the premise that <m>G</m> is a tree. If no path exists, <m>G</m> is disconnected, and if two paths exist, a cycle can be obtained by <xref ref="theorem-tree-conditions" text="type-global" />.</p>
+<p><m>(2) \Rightarrow  (3)</m>. We now use Statement 2 as a premise. Since each pair of vertices in <m>V</m> are connected by exactly one path, <m>G</m> is connected. Now if we select any edge <m>e</m> in <m>E</m>, it connects two vertices, <m>v_1</m> and <m>v_2</m>. By (2), there is no simple path connecting <m>v_1</m> to <m>v_2</m> other than <m>e</m>. Therefore, no path at all can exist between <m>v_1</m> and <m>v_2</m> in <m>(V, E - \{e\})</m>. Hence <m>(V, E - \{e\})</m> is disconnected.</p>
+<p><m>(3)\Rightarrow (4)</m>. Now we will assume that Statement 3 is true. We must show that <m>G</m> has no cycles and that adding an edge to <m>G</m> creates a cycle. We will use an indirect proof for this part. Since (4) is a conjunction, by DeMorgan's Law its negation is a disjunction and
+we must consider two cases. First, suppose that <m>G</m> has a cycle. Then the deletion of any edge in the cycle keeps the graph connected, which
+contradicts (3). The second case is that the addition of an edge to <m>G</m> does not create a cycle. Then there are two distinct paths between
+the vertices that the new edge connects. By <xref ref="lemma-two-paths" text="type-global" />, a cycle can then be created, which is a contradiction.</p>
+
+<p><m>(4) \Rightarrow (1)</m> Assume that <m>G</m> contains no cycles and that the addition of an edge creates a cycle. All that we need to prove to verify that <m>G</m> is a tree is that <m>G</m> is connected. If it is not connected, then select any two vertices that are not connected.
+If we add an edge to connect them, the fact that a cycle is created implies that a second path between the two vertices can be found which is in the original graph, which is a contradiction. </p>
+</proof>
+</theorem> 
+
+
+<p>The usual definition of a directed tree is based on whether the associated undirected graph, which is created by <q>erasing</q> its directional arrows, is a tree. In Section 10.3 we will introduce the rooted tree, which is a special type of directed tree.</p>
+
+</subsection>
+
+<exercises xml:id="exercises-10-1">
+<title>Exercises</title>
+
+<exercise number="1" xml:id="exercise-trees">
+<statement><p>Given the following vertex sets, draw all possible undirected trees that connect them.</p>
+<p><ol marker="(a)">
+<li><p> <m>V_a= \{\text{right},\text{left}\}</m> </p></li>
+<li><p> <m>V_b = \{+,-,0\}</m></p></li>
+<li><p> <m>V_c = \{\text{north}, \text{south}, \text{east}, \text{west}\}</m>.</p></li>
+</ol></p>
+</statement>
+<answer><p> The number of trees are: (a) 1, (b) 3, and (c) 16.  The trees that connect <m>V_c</m> are:</p>
+       <figure xml:id="fig-sol-10-1-1"><caption/>
+                <image width="100%" source="images/fig-sol-10-1-1.png">
+                    <description>Solution to exercise 10-1-1</description>
+                </image>
+            </figure>
+</answer></exercise>
+<exercise number="2"><statement><p> Are all trees planar? If they are, can you explain why? If they are not, you should be able to find a nonplanar tree.</p>
+</statement></exercise>
+<exercise number="3"><statement><p> Prove that if <m>G</m> is a simple undirected graph with no self-loops, then <m>G</m> is a tree if and only if <m>G</m> is connected and 
+<m>\lvert E \rvert = \lvert V \rvert - 1</m>.</p>
+</statement><hint><p> Use induction on <m>\lvert E\rvert </m>.
+</p></hint></exercise>
+<exercise number="4"><statement>
+<p><ol marker="(a)">
+<li><p>Prove that if <m>G = (V, E)</m> is a tree and <m>e \in E</m>, then <m>(V, E - \{e\})</m> is a forest of two trees.</p></li>
+<li><p> Prove that if <m>\left(V_1,E_1\right.</m>) and <m>\left(V_2,E_2\right)</m> are disjoint trees and <m>e</m> is an edge that connects a vertex in <m>V_1</m> to a vertex in <m>V_2</m>, then <m>\left(V_1\cup V_2, E_1\cup E_2\cup \{e\}\right)</m> is a tree.</p></li>
+</ol></p>
+</statement></exercise>
+<exercise number="5"><statement><p><ol marker="(a)">
+<li><p>Prove that any tree with at least two vertices has at least two vertices of degree 1.</p></li>
+<li><p> Prove that if a tree has <m>n</m> vertices,  <m>n \geq 4</m>, and is not a path graph, <m>P_n</m>, then it has at least three vertices of degree 1.</p></li>
+</ol></p>
+</statement>
+<answer><p><ol marker="(a)">
+<li><p>Assume that <m>(V,E)</m> is a tree with <m>\left| V\right| \geq 2</m>, and all but possibly one vertex in <m>V</m> has degree two or more. 
+<me>
+\begin{split}
+2\lvert E \rvert =\sum_{v \in V}{\deg(v)} \geq 2 \lvert V \rvert -1 &amp;\Rightarrow
+    \lvert E\vert  \geq \lvert V\rvert -\frac{1}{2}\\
+ &amp;\Rightarrow \lvert E\rvert \geq \lvert V\rvert\\
+ &amp; \Rightarrow (V,E) \textrm{ is not a tree.}
+\end{split}
+</me>
+</p></li>
+<li><p> The proof of this part is similar to part a in that we can infer <m>2\lvert E\rvert \geq 2 \lvert V\rvert -1</m>, using the fact that a non-chain tree has at least one vertex of degree three or more.</p></li>
+</ol></p>
+</answer>
+</exercise>
+
+</exercises>
+</section>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="s-permutations">
+<title>Permutations</title>
+<subsection>
+<title>Ordering Things</title>
+<p>
+ A number of applications of the rule of products are of a specific type, and because of their frequent appearance they are given their own designation, permutations. Consider the following examples.
+</p>
+<example xml:id="ordering_a_set"><title>Ordering the elements of a set</title><p>How many different ways can we order the three different elements of the set <m>A = \{a, b, c\}</m>? Since we have three choices for position one, two choices for position two, and one choice for the third position, we have, by the rule of products, <m>3 \cdot 2 \cdot 1 = 6</m> different ways of ordering the three letters. We illustrate through a tree diagram.</p>
+
+            <figure xml:id="tree-of-permutations">
+                <caption>A tree to enumerate permutations of a three element set.
+                </caption>
+                <image width="87%" source="images/tree-of-permutations.png">
+                    <description>A tree to enumerate permutations of a three element set.</description>
+                </image>
+            </figure>
+
+<p>
+ Each of the six orderings is called a permutation of the set <m>A</m>.
+</p>
+</example>
+<example xml:id="ordering_a_schedule"><title>Ordering a schedule</title><p>A student is taking five courses in the fall semester. How many different ways can the five courses be listed? There are <m>5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 = 120</m> different permutations of the set of courses.</p>
+</example>
+<p>In each of the above examples of the rule of products we observe that:</p>
+<p><ol marker="(a)">
+<li><p>We are asked to order or arrange elements from a single set.</p></li>
+<li><p>Each element is listed exactly once in each list (permutation). So if there are <m>n</m> choices for position one in a list, there are <m>n - 1</m> choices for position two, <m>n - 2</m> choices for position three, etc.</p></li>
+</ol></p>
+
+
+<example xml:id="some_orderings_of_a_baseball_team"><title>Some orderings of a baseball team</title><p>The alphabetical ordering of the players of a baseball team is one permutation of the set of players. Other orderings of the players' names might be done by batting average, age, or height. The information that determines the ordering is called the key. We would expect that each key would give a different permutation of the names. If there are twenty-five players on the team, there are <m>25 \cdot 24 \cdot 23 \cdot \cdots  \cdot 3 \cdot 2 \cdot 1</m> different permutations of the players.</p>
+<p>This number of permutations is huge. In fact it is 15511210043330985984000000, but writing it like this isn't all that instructive, while leaving it as a product as we originally had makes it easier to see where the number comes from.  We just need to find a more compact way of writing these products.</p>
+</example>
+<p>
+ We now develop notation that will be useful for permutation problems.
+</p>
+<definition xml:id="Definition-Factorial"><title>Factorial</title>
+<idx>Factorial</idx><notation><usage><m>n!</m></usage><description><m>n</m> factorial, the product of the first <m>n</m> positive integers</description></notation>
+<statement><p>If <m>n</m> is a positive integer then <m>n</m> factorial is the product of the first <m>n</m> positive integers and is denoted <m>n!</m>. Additionally, we define zero factorial, <m>0!</m>, to be 1.</p></statement>
+</definition>
+<p>The first few factorials are 
+<me>
+\begin{array}{ccccccccc}
+ n &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp;
+   7 \\
+  n! &amp; 1 &amp; 1 &amp; 2 &amp; 6 &amp; 24 &amp; 120 &amp;
+   720 &amp; 5040 \\
+\end{array}
+</me>.</p>
+<p>Note that <m>4!</m> is 4 times <m>3!</m>, or 24, and <m>5!</m> is 5 times <m>4!</m>, or 120. In addition, note that as <m>n</m> grows in size, <m>n!</m> grows extremely quickly. For example, <m>11! = 39916800</m>. If the answer to a problem happens to be <m>25!</m>, as in the previous example, you would never be expected to write that number out completely. However, a problem with an answer of <m>\frac{25!}{23!}</m> can be reduced to <m>25 \cdot 24</m>, or 600.</p>
+<p>
+ If <m>\lvert A \rvert = n </m>, there are <m>n!</m> ways of permuting all <m>n</m>  elements of <m>A</m> . We next consider the more general situation where we would like to permute <m>k</m> elements  out of a set of <m>n</m>  objects, where <m> k \leq n</m>.
+</p>
+<example xml:id="choosing-club-officers"><title>Choosing Club Officers</title><statement><p>A club of twenty-five members will hold an election for president, secretary, and treasurer in that order. Assume a person can hold only one position. How many ways are there of choosing these three officers? By the rule of products there are <m>25 \cdot 24 \cdot 23</m> ways of making a selection.</p></statement>
+</example>
+<definition xml:id="permutation"><title>Permutation</title><idx>Permutation</idx><statement><p> An ordered arrangement of <m>k</m> elements selected from a set of <m>n</m> elements, <m>0 \leq k \leq  n</m>, where no two elements of the arrangement are the same, is called a permutation of <m>n</m> objects taken <m>k</m> at a time. The total number of such permutations is denoted by <m>P(n, k)</m>.</p>
+</statement></definition>
+<theorem xml:id="permutations-counting-formula">
+ <title>Permutation Counting Formula</title><idx>Permutation Counting Formula</idx><statement><p> The number of possible permutations of <m>k</m>  elements taken from a set of <m>n</m>  elements is
+ <me>P(n,k)=n \cdot (n-1) \cdot (n-2) \cdot  \cdots  \cdot (n-k+1) = \prod_{j=0}^{k-1} (n-j) = \frac{n!}{(n-k)!} </me>.</p>
+ </statement>
+<proof>
+<p>  Case I: If <m>k = n</m> we have <m>P(n,n)=n!=\frac{n!}{(n-n)!}</m>. </p>
+<p> Case II: If <m>0 \leq  k &lt; n</m>,then we have <m>k</m>  positions to fill using <m>n</m> elements and</p>
+<p><ol marker="(a)">
+<li>
+ Position 1 can be filled by any one of <m>n-0=n</m>  elements
+</li>
+<li>
+ Position 2 can be filled by any one of <m>n-1</m>  elements
+</li>
+<li>
+ <m> \cdots </m>
+</li>
+<li>
+ Position k can be filled by any one of <m>n-(k-1)=n-k+1</m>  elements
+</li>
+</ol></p>
+<p>Hence, by the rule of products, <me>P(n,k) = n \cdot(n - 1) \cdot (n - 2) \cdot \cdots \cdot (n - k + 1) = \frac{n!}{(n-k)!}</me>. </p>
+</proof>
+</theorem>
+<p>
+ It is important to note that the derivation of the permutation formula given above was done solely through the rule of products. This serves to reiterate our introductory remarks in this section that permutation problems are really rule-of-products problems.  We close this section with several examples.
+</p>
+<example xml:id="more_club_officers"><title>Another example of choosing officers</title><statement>
+<p>A club has eight members eligible to serve as president, vice-president, and treasurer. How many ways are there of choosing these officers?
+</p>
+<p>
+ Solution 1: Using the rule of products. There are eight possible choices for the presidency, seven for the vice-presidency, and six for the office of treasurer. By the rule of products there are <m>8 \cdot 7\cdot 6 = 336</m> ways of choosing these officers.
+</p>
+<p>
+ Solution 2: Using the permutation formula. We want the total number of permutations of eight objects taken three at a time:
+ 	<me>P(8,3)=\frac{8!}{(8-3)!}=8 \cdot 7 \cdot 6 = 336</me>
+</p>
+</statement>
+</example>
+<example xml:id="course-ordering-revisited">
+<title>Course ordering, revisited</title>
+<statement><p>To count the number of ways to order five courses, we can use the permutation formula. We want the number of permutations of five courses taken five at a time:
+<me>P(5,5)= \frac{5!}{(5-5)!}= 5!= 120</me>.</p>
+</statement></example>
+<example xml:id="ordering-digits"><title>Ordering of digits under different conditions</title>
+<statement><p>Consider only the digits 1, 2, 3, 4, and 5.</p>
+<p><ol marker='a'>
+<li><p> How many three-digit numbers can be formed if no repetition of digits can occur?</p></li>
+<li><p> How many three-digit numbers can be formed if repetition of digits is allowed?</p></li>
+<li><p> How many three-digit numbers can be formed if only non-consecutive repetition of digits are allowed?</p></li>
+</ol></p>
+<p>
+ Solutions to (a): Solution 1: Using the rule of products. We have any one of five choices for digit one, any one of four choices for digit two, and three choices for digit three. Hence, <m>5 \cdot 4 \cdot 3 = 60</m> different three-digit numbers can be formed.
+</p>
+<p>Solution 2; Using the permutation formula. We want the total number of permutations of five digits taken three at a time:
+ <me>P(5,3)=\frac{5!}{(5-3)!}=5 \cdot 4 \cdot 3 = 60</me>.</p>
+<p>Solution to (b): The definition of permutation indicates <q> ...no two elements in each list are the same.</q> Hence the permutation formula cannot be used. However, the rule of products still applies. We have any one of five choices for the first digit, five choices for the second, and five for the third. So there are <m>5 \cdot 5\cdot 5 = 125</m> possible different three-digit numbers if repetition is allowed.</p>
+<p>Solution to (c): Again, the rule of products applies here. We have any one of five choices for the first digit, but then for the next two digits we have four choices since we are not allowed to repeat the previous digit  So there are <m>5 \cdot 4\cdot 4 = 80</m> possible different three-digit numbers if only non-consecutive repetitions are allowed.</p>
+</statement>
+</example>
+</subsection>
+<exercises>
+
+<exercise number="1"><statement><p> If a raffle has three different prizes and there are 1,000 raffle tickets sold, how many different ways can the prizes be distributed?</p></statement><answer><p> <m>P(1000,3)</m></p></answer>
+</exercise>
+<exercise number="2"><statement> 
+<p><ol marker="(a)">
+<li> How many three-digit numbers can be formed from the digits 1, 2, 3 if no repetition of digits is allowed? List the three-digit numbers.</li>
+<li>How many two-digit numbers can be formed if no repetition of digits is allowed? List them.</li>
+<li>How many two-digit numbers can be obtained if repetition is allowed?</li>
+</ol></p>
+</statement>
+</exercise>
+<exercise number="3"><statement><p> How many eight-letter words can be formed from the 26 letters in the alphabet? Even without concerning ourselves about whether the words make sense, there are two interpretations of this problem. Answer both.</p></statement>
+<answer> <p>With repetition: <m>26^8\approx  2.0883\times 10^{11}</m></p>
+<p>Without repetition: <m>P(26,8) \approx 6.2991\ 10^{10}</m> </p>
+</answer>
+</exercise>
+<exercise number="4"><statement><p> Let <m>A</m> be a set with <m>\lvert A \rvert = n </m>.
+Determine </p>
+<p><ol marker="(a)">
+<li><p><m> \lvert A^3 \rvert </m></p></li>
+<li><p><m> \lvert \{ (a, b, c) \mid a, b, c \in A \textrm{ and each coordinate is different}\} \rvert </m></p></li>
+</ol></p>
+</statement>
+</exercise>
+<exercise number="5"><statement><p> The state finals of a high school track meet involves fifteen schools. How many ways can these schools be listed in the program?</p></statement>
+<answer><p> <m>15!</m></p></answer>
+</exercise>
+<exercise number="6"><statement><p> Consider the three-digit numbers that can be formed from the digits 1, 2, 3, 4, and 5 with no repetition of digits allowed.</p>
+   <p>a. How many of these are even numbers?</p>
+   <p>b. How many are greater than 250?</p>
+</statement>
+</exercise>
+<exercise number="7"><statement> <p>All 15 players on the Tall U. basketball team are capable of playing any position.<ol marker="(a)">
+<li><p>How many ways can the coach at Tall U. fill the five starting positions in a game?</p></li>
+<li><p>What is the answer if the center must be one of two players?</p></li></ol></p></statement>
+<answer><p><ol marker="(a)"><li> <m>P(15,5)=360360</m></li>
+<li> <m>2\cdot 14\cdot 13\cdot 12\cdot 11=48048</m></li>
+</ol></p>
+</answer>
+</exercise>
+<exercise number="8"><statement><p><ol marker="(a)">
+<li><p>How many ways can a gardener plant five different species of shrubs in a circle?</p></li>
+<li><p>What is the answer if two of the shrubs are the same?</p></li>
+<li><p>What is the answer if all the shrubs are identical?</p></li>
+</ol></p>
+</statement>
+</exercise>
+<exercise number="9"><statement><p> The president of the Math and Computer Club would like to arrange a meeting with six attendees, the president included. There will be three computer science majors and three math majors at the meeting. How many ways can the six people be seated at a circular table if the president does not want people with the same majors to sit next to one other?</p></statement>
+<answer><p> <m>2\cdot P(3,3)=12</m></p>
+</answer>
+</exercise>
+
+
+<exercise number="10"><statement><p> Six people apply for three identical jobs and all are qualified for the positions. Two will work in New York and the other one will work in San Diego. How many ways can the positions be filled?</p></statement>
+</exercise>
+<exercise number="11"><statement>
+<p> Let <m>A = \{1, 2, 3, 4\} </m>. Determine the cardinality of</p>
+ <p><ol marker="(a)">
+<li><p><m>\{ (a_1,a_2) \mid a_1 \neq a_2 \}</m></p></li>
+<li><p>What is the answer to the previous part if <m>\lvert A \rvert = n</m></p></li>
+<li><p>If <m>\lvert A \rvert =n</m>, determine the number of <m>m</m>-tuples in <m>A</m>, <m>m \leq n</m>, where each coordinate is different from the other coordinates.</p></li>
+</ol></p>
+</statement>
+<answer><p><ol marker="(a)"><li><m>P(4,2)=12</m></li>
+<li><p> <m>P(n;2)=n(n-1)</m></p></li>
+<li><p> Case 1: <m>m>n</m>. Since the coordinates must be different, this case is impossible. </p>
+<p>Case 2: <m>m\leqslant n. P(n;m)</m>.</p></li>
+</ol></p>
+</answer></exercise>
+
+</exercises>
+</section>

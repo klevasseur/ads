@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="s-graphs-of-relations-on-a-set"><title>Graphs of Relations on a Set</title>
+<introduction>
+<p>In this section we introduce directed graphs as a way to visualize relations on a set. </p>
+</introduction>
+<subsection><title>Digraphs</title>
+<p>Let <m>A = \{0, 1,2,3\}</m>, and let  <me>r = \{(0, 0), (0, 3), (1, 2), (2, 1), (3, 2), (2, 0)\}</me>
+In representing this relation as a graph, elements of <m>A</m> are called the vertices of the graph. They are typically represented by labeled points or small circles. We connect vertex <m>a</m> to vertex <m>b</m> with an arrow, called an edge, going from vertex <m>a</m> to vertex <m>b</m> if and only if <m>a r b</m>.  This type of graph of a relation <m>r</m> is called a <term>directed graph</term> or <term>digraph</term>. <xref ref="fig-graph-6-2-1" text="type-global" /> is a digraph for <m>r</m>. Notice that since 0 is related to itself, we draw a <q>self-loop</q> at 0.<idx>Directed graph</idx><idx>Digraph</idx></p>
+<figure xml:id="fig-graph-6-2-1">
+   <caption>Digraph of a relation </caption>
+      <image width="60%" xml:id="graph-6-2-1">
+         <description>Digraph of the relation <m>r = \{(0, 0), (0, 3), (1, 2), (2, 1), (3, 2), (2, 0)\}</m> with four nodes, 0, 1, 2, and  3;  and edges between them corresponding to the pairs in the relation. One pair, <m>(0,0)</m> is displayed as a loop starting at ending at node 0.</description>
+					<sageplot>
+					g=DiGraph({0:[0,3],1:[2],2:[1,0],3:[2]})
+					f621=g.plot(layout='spring',loop_size=0.1)
+					f621
+					</sageplot>
+      </image>
+</figure>
+<p>The actual location of the vertices in a digraph is immaterial. The actual location of vertices we choose is called an <term>embedding of a graph</term><idx>Embedding of a graph</idx>. The main idea is to place the vertices in such a way that the graph is easy to read. After drawing a rough-draft graph of a relation, we may decide to relocate the vertices so that the final result will be neater. <xref ref="fig-graph-6-2-1" text="type-global" /> could also
+be presented as in <xref ref="fig-graph-6-2-2" text="type-global" />.</p>
+
+<figure xml:id="fig-graph-6-2-2">
+   <caption>Alternate embedding of the previous directed graph</caption>
+      <image width="60%" xml:id="graph-6-2-2">
+         <description>Digraph of the relation r, alternate embedding</description>
+					<sageplot>
+					g=DiGraph({0:[0,3],1:[2],2:[1,0],3:[2]})
+					f622=g.plot(pos={0:(0,0),1:(1,0),2:(1,1),3:(0,1)},loop_size=0.1)
+					f622
+					</sageplot>
+      </image>
+</figure>
+<p>A vertex of a graph is also called a node, point, or a junction. An edge of a graph is also referred to as an arc, a line, or a branch. Do not be concerned if two graphs of a given relation look different as long as the connections between vertices are the same in the two graphs.</p>
+<example xml:id="ex-another-simple-graph"><title>Another directed graph</title><p>Consider the relation <m>s</m> whose digraph is <xref ref="fig-graph-6-2-3" text="type-global" />. What information does this give us? The graph tells us that <m>s</m> is a relation on <m>A = \{1, 2, 3\}</m> and that <m>s = \{(1, 2), (2, 1), (1, 3), (3, 1), (2, 3), (3, 3)\}</m>.</p>
+      <figure xml:id="fig-graph-6-2-3">
+            <caption>Digraph of the relation <m>s</m></caption>
+            <image  width="60%" xml:id="graph-6-2-3">
+               <description>Digraph of the relation <m>s</m></description>
+						<sageplot>
+                  g=DiGraph({1:[2,3],2:[1,3],3:[1,3]})
+                  f623=g.plot(layout="circular",loop_size=0.1)
+                  f623
+                  </sageplot>
+            </image>
+      </figure>
+</example>
+<p>We will be building on the next example in the following section.</p>
+<example xml:id="ex-subsets-2-ordering"><title>Ordering subsets of a two element universe</title><p> Let <m>B = \{1,2\}</m>, and let <m>A = \mathcal{P}(B) = \{\emptyset, \{1\}, \{2\}, \{1,2\}\}</m>. Then <m>\subseteq</m> is a relation on <m>A</m> whose digraph is <xref ref="fig-graph-6-2-subsets-2" text="type-global" />.</p>
+<figure xml:id="fig-graph-6-2-subsets-2">
+   <caption>Graph for set containment on subsets of <m>\{1,2\}</m> </caption>
+   <image width="60%" source="images/graph-6-2-subsets-2.png">
+   <description>Graph for set containment on subsets  of <m>\{1,2\}</m></description>
+   </image>
+</figure>
+<p>We will see in the next section that since <m>\subseteq</m> has certain structural properties that describe <q>partial orderings.</q> We will be able to draw a much simpler type graph than this one, but for now the graph above serves our purposes.</p>
+</example>
+</subsection>
+<exercises xml:id="exercises-6-2"><title>Exercises</title>
+
+<exercise number="1"><statement><p> Let <m>A = \{1, 2, 3, 4\}</m>, and let <m>r</m> be the relation <m>\leq</m> on <m>A</m>. Draw a digraph for <m>r</m>.</p>
+</statement>
+<answer>
+<sidebyside>
+<figure xml:id="fig-sol-6-2-1"><caption/>
+			 <image width="50%" source="images/fig-sol-6-2-1.png">
+				  <description>Digraph for <m>\leq</m></description>
+			 </image>
+</figure>
+<figure xml:id="fig-sol-6-2-1_hasse"><caption/>
+			 <image width="20%" source="images/fig-sol-6-2-1_hasse.png">
+				  <description>Hasse diagram for <m>\leq</m></description>
+			 </image>
+</figure>
+
+</sidebyside>
+</answer>
+</exercise>
+<exercise number="2"><statement><p> Let <m>B = \{1,2, 3, 4, 6, 8, 12, 24\}</m>, and let <m>s</m> be the relation <q>divides</q> on <m>B</m>. Draw a digraph for <m>s</m>. </p>
+</statement>
+
+</exercise>
+<exercise number="3"><statement><p>  Let <m>A=\{1,2,3,4,5\}</m>. Define <m>t</m> on <m>A</m> by <m>a t b</m> if and only if <m>b - a</m> is even. Draw a digraph for <m>t</m>.</p>
+</statement>
+<answer><p> See <xref ref="fig-13-1-1" text="type-global"/></p>
+<figure xml:id="fig-13-1-1">
+	<caption>Digraph of the relation <m>t</m></caption>
+	<image  width="60%" source="images/fig-13-1-1.png" />
+</figure>	
+</answer>
+</exercise>
+<exercise number="4"><statement><p>Let <m>A</m> be the set of strings of 0's and 1's of length 3 or less.  This includes the empty string, <m>\lambda</m>, which is the only string of length zero.	
+<ol marker="(a)">
+<li> Define the relation of <m>d</m> on <m>A</m> by <m>x d y</m> if <m>x</m> is contained within <m>y</m>. For example, <m>01 d 101</m>. Draw a digraph for this relation. </li>
+<li> Do the same for the relation <m>p</m> defined by <m>x p y</m> if <m>x</m> is a prefix of <m>y</m>. For example, <m>10 p 101</m>, but <m>01 p 101</m> is false.</li>
+</ol></p>
+</statement>
+
+</exercise>
+
+
+<exercise number="5"><statement><p> Recall the relation in Exercise 5 of Section 6.1, <m>\rho</m> defined on the power set, <m>\mathcal{P}(S)</m>, of a set <m>S</m>. The definition
+was <m>(A,B) \in \rho</m> iff <m>A\cap  B = \emptyset</m>. Draw the digraph for <m>\rho</m> where <m>S = \{a, b\}</m>. </p>
+</statement>
+</exercise>
+<exercise number="6"><statement><p> Let <m>C= \{1,2, 3, 4, 6, 8, 12, 24\}</m> and define <m>t</m> on <m>C</m> by
+<m>a t b</m> if and only if <m>a</m> and <m>b</m> share a common divisor greater than 1.  Draw a digraph for <m>t</m>.</p>
+</statement>
+
+</exercise>
+
+</exercises>
+</section>

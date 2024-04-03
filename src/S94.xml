@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="s-traversals">
+<title>Traversals: Eulerian and Hamiltonian Graphs</title>
+<idx>Traversals of Graphs</idx>
+<introduction><p>The subject of graph traversals has a long history. In fact, the solution by Leonhard Euler (Switzerland, 1707-83) of the Koenigsberg Bridge
+Problem is considered by many to represent the birth of graph theory.</p>
+</introduction>
+<subsection xml:id="ss-eulerian"><title>Eulerian  Graphs</title>
+
+ <sidebyside valign="middle">
+		  <figure  xml:id="fig-konigsberg-map">
+				<caption>A  map of Koenigsberg, circa 1735 </caption>
+				<image source="images/fig-konigsberg-map.png">
+					 <description>A map of Koenigsberg</description>
+				</image>
+		  </figure>
+		  <figure  xml:id="fig-konigsberg-multigraph">
+				<caption>A multigraph for the bridges of Koenigsberg</caption>
+				<image source="images/fig-konigsberg-multigraph.png"/>
+		  </figure>
+</sidebyside>
+
+<p>A map of the Prussian city of Koenigsberg (circa 1735) in <xref ref="fig-konigsberg-map" text="type-local"/> shows that there were seven bridges connecting the four land masses that
+made up the city. The legend of this problem states that the citizens of Koenigsberg searched in vain for a walking tour that passed over each
+bridge exactly once. No one could design such a tour and the search was abruptly abandoned with the publication of Euler's Theorem.</p>
+
+<theorem xml:id="th-euler-theorem-koenigsberg-case"><title>Euler's Theorem: Koenigsberg Case</title><idx><h>Euler's Theorem</h><h>Koenigsberg Case</h></idx>
+<statement><p>No walking tour of Koenigsberg can be designed so that each bridge is used exactly
+once.</p></statement>
+<proof><p>The map of Koenigsberg can be represented as an undirected multigraph, as in <xref ref="fig-konigsberg-multigraph" text="type-global"/>. The four land masses are the vertices and each
+edge represents a bridge. </p>
+
+
+<p>The desired tour is then a path that uses each edge once and only once. Since the path can start and end at two different
+vertices, there are two remaining vertices that must be intermediate vertices in the path. If <m>x</m> is an intermediate vertex, then every time
+that you visit <m>x</m>, you must use two of its incident edges, one to enter and one to exit. Therefore, there must be an even number of edges
+connecting <m>x</m> to the other vertices. Since every vertex in the Koenigsberg graph has an odd number of edges, no tour of the type that
+is desired is possible. </p>
+</proof>
+</theorem>
+
+<p>As is typical of most mathematicians, Euler wasn't satisfied with solving only the Koenigsberg problem. His original theorem, which is paraphrased
+below, concerned the existence of paths and circuits like those sought in Koenigsberg. These paths and circuits have become associated with Euler's
+name.</p>
+
+<definition xml:id="def-eulerian-paths-circuits-graphs"><title>Eulerian Paths, Circuits, Graphs</title><idx>Eulerian Paths, Circuits, Graphs</idx><statement><p> An Eulerian path through a graph is a path whose edge list contains each edge of the graph exactly once. If the path is a circuit, then it is called an Eulerian circuit. An Eulerian graph is a graph that possesses an Eulerian circuit.</p></statement></definition>
+
+<p>Notice that if a graph has an Eulerian path that is not a circuit it is generally not considered an Eulerian graph, although some authors will call it such.  So in any reference you read, be sure to check that definition that is used!</p>
+
+<example xml:id="ex-an-eulerian-graph"><title>An Eulerian Graph</title><p>Without tracing any paths, we can be sure that the graph below has an Eulerian circuit because all vertices have an even
+degree. This follows from the following theorem.
+</p>
+            <figure xml:id="fig-eulerian-9-4">
+                <caption>An Eulerian graph
+                </caption>
+                <image width="100%" source="images/fig-eulerian-9-4.png">
+                    <description>An Eulerian graph</description>
+                </image>
+            </figure>
+</example>  
+
+<theorem xml:id="theorem-euler-theorem-general"><title>Euler's Theorem: General Case</title>
+<idx>Euler's Theorem</idx>
+<statement><p>An undirected graph has an Eulerian path  if and only if it is connected and has either zero or two vertices with an odd degree. If no vertex has an odd degree, then the graph is Eulerian.</p></statement>
+<proof><p>It can be proven by induction that the number of vertices in an undirected graph that have an odd degree must be even. We will leave
+the proof of this fact to the reader as an exercise. The necessity of having either zero or two vertices of odd degree is clear from the proof of
+the Koenigsberg case of this theorem. Therefore, we will concentrate on proving that this condition is sufficient to ensure that a graph has an Eulerian path.
+Let <m>k</m> be the number of vertices with odd degree.</p>
+
+<p> Phase 1. If <m>k = 0</m>, start at any vertex, <m>v_0</m>, and travel along any path, not using any edge twice. Since each vertex has an even
+degree, this path can always be continued past each vertex that you reach except <m>v_0</m>. The result is a circuit that includes <m>v_0</m>. If <m>k =2</m>, let <m>v_0</m> be either one of the vertices of odd degree. Trace any path starting at <m>v_0</m> using up edges until you can go no further, as in
+the <m>k = 0</m> case. This time, the path that you obtain must end at the other vertex of odd degree that we will call <m>v_1</m>.  At the end of Phase 1, we have an initial path that may or may not be Eulerian. If it is not Eulerian, Phase 2 can be repeated until all of the edges have been used.  Since the number of unused edges is decreased in any use of Phase 2, an Eulerian path must be obtained in a finite number of steps.</p>
+
+<p> Phase 2. As we enter this phase, we have constructed a path that uses a proper subset of the edges in our graph. We will refer to this
+path as the current path. Let <m>V</m> be the vertices of our graph, <m>E</m> the edges, and <m>E_u</m> the edges that have been used in the current
+path. Consider the graph <m>G' = \left(V, E - E_u\right)</m>.  Note that every vertex in <m>G'</m> has an even degree. Select any edge, <m>e</m>, from <m>G'.</m> Let <m>v_a</m> and <m>v_b</m> be the vertices that <m>e</m> connects. Trace a new path starting at <m>v_a</m> whose first edge is <m>e</m>. We can be sure that at least one vertex of the new path is also in the current path since <m>(V, E)</m> is connected. Starting at <m>v_a</m>, there
+exists a path in <m>(V, E)</m> to any vertex in the current path. At some point along this path, which we can consider the start of the new path, we
+will have intersected the current path. Since the degree of each vertex in <m>G'</m> is even, any path that we start at <m>v_a</m> can be continued until it
+is a circuit. Now, we simply augment the current path with this circuit. As we travel along the current path, the first time that we intersect the
+new path, we travel along it (see <xref ref="fig-path-augmentation" text="type-global" />). Once we complete the circuit that is the new path, we resume the traversal of the current path.</p>
+
+            <figure xml:id="fig-path-augmentation">
+                <caption>Path Augmentation Plan
+                </caption>
+                <image width="100%" source="images/fig-path-augmentation.png">
+                    <description>Path Augmentation Plan</description>
+                </image>
+            </figure>
+
+
+<p>If the result of this phase is an Eulerian path, then we are finished; otherwise, repeat this phase.</p> </proof></theorem>
+
+<example xml:id="ex-complete-eulerian"><title>Complete Eulerian Graphs</title><p>The complete undirected graphs  <m>K_{2n+1}</m>, <m>n = 1, 2, 3, \ldots</m>. .., are Eulerian. If <m>n \geq 1</m>, then <m>K_{2n}</m> is not Eulerian.
+</p></example>
+ 
+</subsection>
+<subsection xml:id="ss-hamiltonian-graphs"><title>Hamiltonian Graphs</title>
+
+
+
+<p>To search for a path that uses every vertex of a graph exactly once seems to be a natural next problem after you have considered Eulerian graphs.The Irish mathematician Sir William Rowan Hamilton (1805-65) is given credit for first defining such paths. He is also credited with discovering the quaternions, for which he was honored by the Irish government with a postage stamp in 2005.</p>
+
+            <figure xml:id="fig-hamilton-stamp">
+                <caption>Irish stamp honoring Sir William Rowan Hamilton
+                </caption>
+                <image width="100%" source="images/fig-hamilton-stamp.png">
+                    <description>Irish stamp honoring Sir William Rowan Hamilton</description>
+                </image>
+            </figure>
+
+<definition xml:id="def-hamiltonian-path-circuit-graph"><title>Hamiltonian Path, Circuit, and Graphs</title><idx>Hamiltonian Paths, Circuits, and Graphs</idx>
+<statement><p>A Hamiltonian path through a graph is a path whose vertex list contains each vertex of the graph exactly once, except if the path is a circuit, in which case the initial vertex appears a second time as the terminal vertex. If the path is a circuit, then it is called a Hamiltonian circuit. A Hamiltonian graph is a graph that possesses a Hamiltonian circuit.</p></statement></definition>
+
+
+<example xml:id="ex-dodec-graph"><title>The Original Hamiltonian Graph</title><p><xref ref="fig-dodec-graph" text="type-global"/> shows a graph that is Hamiltonian. In fact, it is the graph that Hamilton used as an example to pose the question of existence of Hamiltonian paths in 1859. In its original form, the puzzle that was posed to readers was called <q>Around the World.</q> The vertices were labeled with names of major cities of the world and the object was to complete a tour of these cities. The graph is also referred to as the
+dodecahedron graph, where vertices correspond with the corners of a dodecahedron and the edges are the edges of the solid that connect the corners.</p>
+
+ <sidebyside>
+			  <figure  xml:id="fig-dodec">
+					<caption>A Dodecahedron</caption>
+					<image source="images/fig-dodec.png">
+						 <description>A Dodecahedron</description>
+					</image>
+			  </figure>
+			  <figure  xml:id="fig-dodec-graph">
+					<caption>The Dodecahedron Graph</caption>
+					<image source="images/fig-dodec-graph.png">
+						<description>The Dodecahedron Graph</description>
+					</image>
+			  </figure>
+</sidebyside>
+</example>
+
+<problem><p>Unfortunately, a simple condition doesn't exist that characterizes a Hamiltonian graph. An obvious necessary condition is that the
+graph be connected; however, there is a connected undirected graph with four vertices that is not Hamiltonian. Can you draw such a graph? 
+</p></problem>
+
+<note><title>What Is Possible and What Is Impossible?</title><p>The search for a Hamiltonian path in a graph is typical of many simple-sounding problems
+in graph theory that have proven to be very difficult to solve. Although there are simple algorithms for conducting the search, they are impractical for large problems because they take such a long time to complete as graph size increases. Currently, every algorithm to search for a Hamiltonian
+path in a graph takes a time that grows at a rate that is greater than any polynomial as a function of the number of vertices.  Rates of this type are called <q><term>super-polynomial</term>.</q> That is, if <m>T(n)</m> is the time it takes to search a graph of <m>n</m> vertices, and <m>p(n)</m> is any polynomial, then <m>T(n) > p(n)</m> for all but possibly a finite number of positive values for <m>n</m>.</p>
+<p>It is an unproven but widely held belief that no faster algorithm exists to search for Hamiltonian paths in general graphs.  To sum up, the problem of determining whether
+a graph is Hamiltonian is theoretically possible; however, for large graphs we consider it a practical impossibility. Many of the problems we will discuss in the next section, particularly the Traveling Salesman Problem, are thought to be impossible in the same sense. 
+</p></note>
+<definition xml:id="def-n-cube"><title>The <m>n</m>-cube</title>
+<idx>N-cube</idx><notation><usage><m>Q_n</m></usage><description>the <m>n</m>-cube</description></notation><statement><p>Let <m>n \geq  1</m>, and let <m>B^n</m> be the set of strings of 0's and 1's with length <m>n</m>.  The <m>n</m>-cube is the undirected graph with a vertex for each string in <m>B^n</m> and an edge connecting each pair of strings that differ in exactly one position. The <m>n</m>-cube is normally denoted <m>Q_n</m>. </p></statement></definition>
+
+<p>The <m>n</m>-cube is among the graphs that are defined within the <c>graphs</c> package of SageMath and is created with the expression <c>graphs.CubeGraph(n)</c>. </p> 
+<sage>
+<input>
+graphs.CubeGraph(4).show(layout="spring")
+</input>
+</sage>
+<example xml:id="ex-intro-a-to-d"><title>Analog-to-digital Conversion and the Gray Code</title>
+<idx>Analog-to-digital Conversion</idx>
+<idx>Gray Code</idx>
+<p> A common problem encountered in engineering is that of analog-to-digital (a-d)
+conversion, where the reading on a dial, for example, must be converted to a numerical value. In order for this conversion to be done reliably and quickly, one must solve an interesting problem in graph theory. Before this problem is posed, we will make the connection between a-d conversion and the graph problem using a simple example. Suppose a dial  can be turned in any direction, and that the positions will be converted
+to one of the numbers zero through seven as depicted in <xref ref="fig-a-d-dial" text="type-global" />. The angles from 0 to 360 are divided into eight equal
+parts, and each part is assigned a number starting with 0 and increasing clockwise. If the dial points in any of these sectors the conversion is to the number of that sector. If the dial is on the boundary, then we will be satisfied with the conversion to either of the numbers in the bordering sectors. This conversion can be thought of as giving an approximate angle of the dial, for if the dial is in sector <m>k</m>, then the angle that the dial makes with east is approximately <m>{45k}^{\circ}</m>.</p>
+       <figure xml:id="fig-a-d-dial">
+                <caption>Analog-Digital Dial
+                </caption>
+                <image width="50%" source="images/fig-a-d-dial.png">
+                    <description>Analog-Digital Dial</description>
+                </image>
+            </figure>
+	
+<p>Now that the desired conversion has been identified, we will describe a <q>solution</q> that has one major error in it, and then identify how this problem can be rectified. All digital computers represent numbers in binary form, as a sequence of 0's and 1's called bits, short for binary digits.  The binary representations of numbers 0 through 7 are:
+
+<me>\begin{array}{c}
+0= {000}_{two} = 0 \cdot 4 + 0 \cdot 2 + 0 \cdot 1\\
+1= {001}_{two} = 0 \cdot 4 + 0 \cdot 2 + 1 \cdot 1\\
+2= {010}_{two} = 0 \cdot 4 + 1 \cdot 2 + 0 \cdot 1\\
+3= {011}_{two} = 0 \cdot 4 + 1 \cdot 2 + 1 \cdot 1\\
+4= {100}_{two} = 1 \cdot 4 + 0 \cdot 2 + 0 \cdot 1\\
+5= {101}_{two} = 1 \cdot 4 + 0 \cdot 2 + 1 \cdot 1\\
+6= {110}_{two} = 1 \cdot 4 + 1 \cdot 2 + 0 \cdot 1\\
+7= {111}_{two} = 1 \cdot 4 + 1 \cdot 2 + 1 \cdot 1\\
+\end{array}
+</me>
+</p>
+<p>The way that we could send those bits to a computer is by coating parts of the back of the
+dial with a metallic substance, as in <xref ref="fig-intro-dial-coating" text="type-global" />. For each of the three concentric circles on the dial there is a small magnet. If a magnet lies under a part of the dial that has been coated with metal, then it will turn a switch ON, whereas the switch stays OFF when no metal is detected above a magnet. Notice how every ON/OFF combination of the three switches is possible given the way the back of the dial is coated.</p>
+
+<p>If the dial is placed so that the magnets are in the middle of a sector, we expect this method to work well. There is a problem on certain boundaries, however. If the dial is turned so that the magnets are between sectors three and four, for example, then it is unclear what the result will be. This is due to the fact that each magnet will have only a fraction of the required metal above it to turn its switch ON. Due to expected irregularities in the coating of the dial, we can be safe in saying that for each switch either ON or OFF could be the result, and so if the dial is between sectors three and four, any number could be indicated. This problem does not occur between every sector. For example, between sectors 0 and 1, there is only one switch that cannot be predicted. No matter what the outcome is for the units switch in this case, the indicated sector must be either 0 or 1. This consistent with the original objective that a positioning of the dial on a boundary of two sectors should produce the number of either sector.</p>
+
+        <figure xml:id="fig-intro-dial-coating">
+                <caption>Coating scheme for the Analog-Digital Dial
+                </caption>
+                <image width="70%" source="images/fig-intro-dial-coating.png">
+                    <description>Analog-Digital Dial</description>
+                </image>
+            </figure>
+
+
+<p>Is there a way to coat the sectors on the back of the dial so that each of the eight patterns corresponding to the numbers 0 to 7 appears once, and so that between any two adjacent sectors there is only one switch that will have a questionable setting? What we are describing here is a Hamiltonian circuit of the <m>3</m>-cube (<xref ref="fig-intro-3-cube" text="type-global" />).  If one can draw a path along the edges in the 3-cube that starts at any vertex, passes through
+every other vertex once, and returns to the start, then that sequence of bit patterns can be used to coat the back of the dial so that between every sector there is only one questionable switch. Such a path is not difficult to find, as we will see below.</p>
+
+        <figure xml:id="fig-intro-3-cube">
+                <caption>The 3-cube
+                </caption>
+                <image width="64%" source="images/fig-intro-3-cube.png">
+                    <description>The 3-cube</description>
+                </image>
+            </figure>
+
+<p>Many A-D conversion problems require many more sectors and switches than this example, and the same kinds of problems can occur. The solution would be to find a path within a much larger yet similar graph. For example, there might be 1,024 sectors with 10 switches, resulting in a graph with 1,024 vertices. Fortunately, our solution will apply to the <m>n</m>-cube for any positive value of <m>n</m>.</p>
+
+<p> A Hamiltonian circuit of the <m>n</m>-cube can be described recursively. The circuit itself, called the Gray Code, is
+not the only Hamiltonian circuit of the <m>n</m>-cube, but it is the easiest to describe. The standard way to write the Gray Code is as a column of strings, where the last string is followed by the first string to complete the circuit.</p>
+
+
+
+<p>Basis for the Gray Code (<m>n = 1</m>): The Gray Code for the 1-cube is <m>G_1=\left(
+\begin{array}{c}
+ 0 \\
+ 1 \\
+\end{array}
+\right)</m>.  Note that the edge between 0 and 1 is used twice in this circuit. That doesn't violate any rules for Hamiltonian circuits, but
+can only happen if a graph has two vertices.</p>
+
+
+<p>Recursive definition of the Gray Code: Given the Gray Code for the <m>n</m>-cube, <m>n \geq 1</m>, then <m>G_{n+1}</m> is obtained by (1) listing <m>G_n</m> with each string prefixed
+with 0, and then (2) reversing the list of strings in <m>G_n</m> with each string prefixed with 1. Symbolically, the recursion can be expressed as follows, where <m>G_n^r</m> is the reverse of list <m>G_n</m>.
+
+
+
+<me>G_{n+1}=\left(
+\begin{array}{c}
+ 0 G_n \\
+ 1 G_n^r \\
+\end{array}
+\right)</me>
+</p>  
+<p>The Gray Codes for the 2-cube and 3-cube are
+
+<me>G_2= \left(
+\begin{array}{c}
+ 00 \\
+ 01 \\
+ 11 \\
+ 10 \\
+\end{array}
+\right) \textrm{  and   }G_3=\left(
+\begin{array}{c}
+ 000 \\
+ 001 \\
+ 011 \\
+ 010 \\
+ 110 \\
+ 111 \\
+ 101 \\
+ 100 \\
+\end{array}
+\right)</me>
+</p>
+<p>One question might come to mind at this point. If the coatings of the dial no longer in the sequence from 0 to 7, how would you interpret the patterns that are on the back of the dial as numbers from 0 to 7? In Chapter 14 we will see that if the Gray Code is used, this <q>decoding</q> is quite easy.</p>
+</example>
+
+<example><title>Applications of the Gray Code</title><p> One application of the Gray code was discussed in the Introduction to this book.  Another application is
+in statistics. In a statistical analysis, there is often a variable that depends on several factors, but exactly which factors are significant
+may not be obvious. For each subset of factors, there would be certain quantities to be calculated. One such quantity is the multiple correlation
+coefficient for a subset. If the correlation coefficient for a given subset, <m>A</m>, is known, then the value for any subset that is obtained
+by either deleting or adding an element to <m>A</m> can be obtained quickly. To calculate the correlation coefficient for each set, we simply
+travel along <m>G_n</m>, where <m>n</m> is the number of factors being studied. The first vertex will always be the string of 0's, which represents
+the empty set. For each vertex that you visit, the set that it corresponds to contains the <m>k^{\text{th}}</m> factor if the <m>k^{\text{th}}</m> character
+is a 1.</p>
+</example>
+
+
+<p>The 3-cube and its generalization, the <m>n</m>-cube, play a role in the design of a multiprocessor called a hypercube. A multiprocessor is a computer that consists of several independent processors that can operate simultaneously and are connected to one another by a network of connections. In a hypercube with <m>M=2^n</m> processors, the processors are numbered 0 to <m>M-1</m>. Two processors are connected if their binary representations
+differ in exactly one bit. The hypercube has proven to be the best possible network for certain problems requiring the use of a <q>supercomputer.</q></p>
+</subsection>
+<exercises xml:id="exercises-9-4">
+<title>Exercises</title>
+
+<exercise number="1"><statement><p> Locate a map of New York City and draw a graph that represents its land masses, bridges and tunnels. Is there an Eulerian path through New York? You can do the same with any other city that has at least two land masses.</p></statement>
+<answer><p> Using a recent road map, it appears that an Eulerian circuit exists in New York City, not including the small islands that belong to the city. Lowell, Massachusetts, is located at the confluence of the Merrimack and Concord rivers and has several canals flowing through it. No Eulerian path exists for Lowell.
+
+</p></answer></exercise>
+<exercise number="2"><statement><p> Which of the drawings in <xref ref="fig-drawings-9-4" text="type-global"/> can be drawn without removing your pencil from the paper and without drawing any line twice?</p>
+         <figure xml:id="fig-drawings-9-4"><caption/>
+                <image width="65%" source="images/fig-drawings-9-4.png">
+                    <description>Drawings for exercise 9-4-2</description>
+                </image>
+            </figure>
+</statement></exercise>
+<exercise number="3"><statement><p>Write out the Gray Code for the 4-cube.</p></statement><answer><p> Gray Code for the 4-cube:
+<me>G_4=\left(
+\begin{array}{c}
+ 0000 \\
+ 0001 \\
+ 0011 \\
+ 0010 \\
+ 0110 \\
+ 0111 \\
+ 0101 \\
+ 0100 \\
+ 1100 \\
+ 1101 \\
+ 1111 \\
+ 1110 \\
+ 1010 \\
+ 1011 \\
+ 1001 \\
+ 1000 \\
+\end{array}
+\right)</me>
+</p></answer></exercise>
+<exercise number="4"><statement><p> Find a Hamiltonian circuit for the dodecahedron graph in <xref ref="fig-dodec-graph" text="type-global"/>.</p></statement></exercise>
+<exercise number="5"><statement><p> The Euler Construction Company has been contracted to construct an extra bridge in Koenigsberg so that an Eulerian path through the town
+exists. Can this be done, and if so, where should the bridge be built?</p></statement><answer><p> Any bridge between two land masses will be sufficient. To get an Eulerian circuit, you must add a second bridge that connects the two land masses
+that were not connected by the first bridge.
+</p></answer></exercise>
+<exercise number="6"><statement><p>Consider the graphs in <xref ref="fig-exercise-9-4-6" text="type-global" />. Determine which of the graphs have an Eulerian path, and find an Eulerian path for the graphs that have one.</p>
+            <figure xml:id="fig-exercise-9-4-6">
+            	<caption>Graphs for exercise 6</caption>
+                <image width="100%" source="images/fig-exercise-9-4-6.png">
+                    <description>graphs for exercise 9-4-6</description>
+                </image>
+            </figure>
+</statement>
+</exercise>
+
+
+
+<exercise number="7"><statement><p> Formulate Euler's theorem for directed graphs.</p></statement>
+<answer>
+<p>Let  <m>G=(V,E)</m> be a directed graph. <m>G</m> has an Eulerian circuit if and only if <m>G</m> is connected and <m>indeg(v)= outdeg(v)</m> for all <m>v \in V</m>. There exists an Eulerian path from  <m>v_1 \textrm{ to } v_2</m>  if and only if <m>G</m> is connected, <m>indeg(v_1)=outdeg(v_1)-1</m>,
+ <m>indeg(v_2)= outdeg(v_2)+1</m>, and for all other vertices in <m>V</m> the indegree and outdegree are equal.</p>
+</answer></exercise>
+<exercise number="8"><statement><p> Prove that the number of vertices in an undirected graph with odd degree must be even.</p></statement>
+<hint><p> Prove by induction on the number of edges.</p></hint></exercise>
+<exercise number="9"><statement>
+<p><ol marker="(a)">
+<li><p>Under what conditions will a round-robin tournament graph be Eulerian?</p></li>
+<li><p>Prove that every round-robin tournament graph has a Hamiltonian path.</p></li>
+</ol></p>
+</statement>
+<answer><p> A round-robin tournament graph is rarely Eulerian. It will be Eulerian if it has an odd number of vertices and each vertex (team) wins exactly
+as many times as it loses. Every round-robin tournament graph has a Hamiltonian path. This can be proven by induction on the number of vertices.</p></answer></exercise>
+<exercise number="10"><statement><p> For what values of <m>n</m> is the <m>n</m>-cube Eulerian?</p>
+</statement></exercise>
+<exercise number="11"><statement><p>A particular set of dominoes has 21 tiles: <m>(1, 1), (1, 2), \dots (1, 6), (2, 2), (2,3), \dots ,(6,6)</m>. Is it possible to lay all 21 tiles in a line so that each adjacent pair of tile ends matches (that is, each 1 abuts a 1, and so on)?</p>
+</statement>
+<solution><p>No, such a line does not exist.  The dominoes with two different numbers correspond with edges in a <m>K_6</m>. See corresponding dominos and edges in <xref ref="fig-domino_path" />. Dominos with two equal numbers could be held back and inserted into the line created with the other dominoes if such a line exists.   For example, if <m>(2,5),(5,4)</m> were part of the line, <m>(5,5)</m> could be inserted between those two dominoes. The line we want exists if and only if there  exists an Eulerian path in a <m>K_6</m>.  Since all six vertices of a <m>K_6</m> have odd degree no such path exists.</p>
+      <figure xml:id="fig-domino_path">
+                <caption>Correspondence between a line of dominos and a path in a <m>K_6</m>
+                </caption>
+                <image width="80%" source="images/fig-domino_path.png">
+                    <description>Four dominos lay end-to-end with numbers on abutting ends matching.  They correspond with four connecting edges in a <m>K_6</m>. </description>
+                </image>
+            </figure>
+
+
+</solution>
+</exercise>
+<exercise>
+	<statement><p>Let <m>G</m> be the graph below. </p>
+	 <figure xml:id="fig-ex-non-euler">
+                <caption> 
+                </caption>
+                <image source="images/fig-ex-non-euler.png" width="50%">
+                    <description>An undirected graph 
+                    </description>
+                </image>
+            </figure>
+ 
+	<ol marker="(a)">
+	<li><p>Explain why it’s not possible to find an Eulerian circuit in <m>G</m>.</p></li>
+	<li><p>Remove two edges from <m>G</m> so the resulting graph <m>H</m> has an Eulerian circuit. Then list the vertices of an Eulerian circuit in <m>H</m> in the order in which they are visited by the circuit. </p></li>
+	</ol></statement>
+	</exercise>
+
+
+</exercises>
+</section>

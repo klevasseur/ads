@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="s-fields">
+<title>Fields</title>
+<p>Although the algebraic structures of rings and integral domains are widely used and play an important part in the applications of mathematics, we still cannot solve the simple equation <m>a x = b</m>, <m>a \neq  0</m> in all rings or  all integral domains, for that matter. Yet this is one of the first equations we learn to solve in elementary algebra and its solubility is basic to innumerable questions. If we wish to solve a wide range of problems in a system we need at least all of the laws true for rings and the cancellation laws together with the ability to solve the equation <m>a x = b</m>,
+<m>a \neq  0</m>. We summarize the above in a definition and list theorems  that will place this concept in the context of the previous section.</p>
+<definition xml:id="def-field"><title>Field</title><idx>Field</idx><statement><p>A field is a commutative ring with unity such that each nonzero element has a multiplicative inverse.</p></statement></definition>
+<p>In this chapter, we denote a field generically by the letter <m>F</m>.  The letters <m>k</m>, <m>K</m> and <m>L</m> are also conventionally used for fields.</p>
+<example xml:id="ex-common-fields"><title>Some common fields</title><p>The most common infinite fields are <m>[\mathbb{Q}; +, \cdot ]</m>, <m>[\mathbb{R}; +, \cdot ]</m>,  and <m>[\mathbb{C}; +, \cdot ]</m>.</p></example>
+<remark><p>Since every field is a ring, all facts and concepts that are true for rings are true for any field.</p></remark>
+<theorem xml:id="theorem-field-implies-integral-domain"><title>Field <m>\Rightarrow</m> Integral Domain</title>
+<statement><p>Every field is an integral domain.</p></statement>
+<proof><p>The proof is fairly easy and a good exercise, so we provide a hint.  Starting with the assumption that <m>a\cdot b= 0</m> if we assume that <m>a \neq 0</m> then the existence of <m>a^{-1}</m> makes it possible to infer that <m>b=0</m>.</p></proof></theorem>
+<p>Of course the converse of <xref ref="theorem-field-implies-integral-domain" text="type-global" /> is not true.  Consider <m>[\mathbb{Z}; +, \cdot ]</m>.  However, the next theorem proves the converse in finite fields.</p>
+<theorem xml:id="theorem-finite-id-is-field"><title>Finite Integral Domain <m>\Rightarrow</m> Field</title><statement><p>Every finite integral domain is a field.</p></statement><proof><p>We leave the details to the reader, but observe that if <m>D</m> is a finite integral domain, we can list all elements as <m>a_1,	a_2, \ldots, a_n</m>, where <m>a_1=1</m>.   Now, to show that any <m>a_i</m> has a multiplicative inverse, consider the <m>n</m> products <m>a_i \cdot a_1,	a_i \cdot a_2, \ldots, a_i \cdot a_n</m>.  What can you say about these products?</p></proof></theorem> 
+<p>If <m>p</m> is a prime, <m>p\mid (a\cdot b) \Rightarrow p\mid a \textrm{ or } p\mid b</m>.  An immediate implication of this fact is the following corollary.</p>
+<corollary xml:id="corollary-zp-is-field"><statement><p>If p is a prime, then <m>\mathbb{Z}_p</m> is a field.</p> 
+</statement></corollary> 
+<example xml:id="ex-field-of-order-4"><title>A field of order 4</title>
+<p><xref ref="corollary-zp-is-field"/> gives us a large number of finite fields, but we
+must be cautious. This  does not tell us that all finite fields are of the form <m>\mathbb{Z}_p</m> , <m>p</m> a prime. To see this, let's try to construct a field of order 4.</p>
+<p>First the field must contain the additive and multiplicative identities, 0 and 1, so, without loss
+of generality, we can assume that the field we are looking for is of the form <m>F = \{0, 1, a, b\}</m>.  Since there are only two nonisomorphic groups of order 4, we have only two choices for the group table for <m>[F; +]</m>.   If the additive group is isomorphic to <m>\mathbb{Z}_4</m> then two of
+the nonzero elements of <m>F</m> would not be their own additive inverse (as are 1 and 3 in <m>\mathbb{Z}_4</m>).   Let's assume <m>\beta \in F</m> is one of those elements and <m>\beta +\beta =\gamma \neq 0</m>.  An isomorphism between the additive groups <m>F</m> and  <m>\mathbb{Z}_4</m> would require that <m>\gamma</m> in <m>F</m>  correspond with 2 in  <m>\mathbb{Z}_4</m>.  We could continue our argument and infer that <m>\gamma \cdot \gamma =0</m>, producing a zero divisor, which we need to avoid if <m>F</m> is to be a field.   We leave the remainder of the argument to the reader.   We can thus complete the addition table so that <m>[F;+]</m> is isomorphic to <m>\mathbb{Z}_2{}^2</m>:
+
+ <me>\begin{array}{c|cccc}
++ &amp; 0 &amp; 1 &amp; a &amp; b \\
+  \hline
+ 0 &amp; 0 &amp; 1 &amp; a &amp; b \\
+ 1 &amp; 1 &amp; 0 &amp; b &amp; a \\
+a &amp; a &amp; b &amp; 0 &amp; 1 \\
+b &amp; b &amp; a &amp; 1 &amp; 0 \\
+\end{array}</me>
+</p>
+<p>Next, since 1 is the unity of <m>F</m>, the partial multiplication table must look like:
+<me>\begin{array}{c|cccc}
+\cdot &amp; 0 &amp; 1 &amp; a &amp; b \\
+\hline
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 1 &amp; 0 &amp; 1 &amp; a &amp; b \\
+a &amp; 0 &amp; a &amp; - &amp; - \\
+ b &amp; 0 &amp; b &amp; - &amp; - \\
+\end{array}
+</me></p>
+<p>Hence, to complete the table, we have only four entries to find, and, since <m>F</m> must be commutative, this reduces our task to filling in three entries. Next, each nonzero element of <m>F</m> must have a unique multiplicative inverse. The inverse of <m>a</m> must be either <m>a</m> itself or <m>b</m>. If <m>a^{-1} = a</m>, then <m>b^{-1}=b</m>. (Why?) But  <m>a^{-1} = a \Rightarrow  a \cdot  a = 1</m>. And if <m>a \cdot  a = 1</m>, then <m>a \cdot  b</m> is equal to <m>a</m> or <m>b</m>.  In either case, by the cancellation law, we obtain <m>a = 1</m> or <m>b = 1</m>, which is impossible. Therefore we are forced to conclude that <m>a^{-1} = b</m> and <m>b^{-1} = a</m>. To determine the final two products of the table, simply note that, <m>a \cdot  a \neq  a</m> because the equation <m>x^2=x</m> has only two solutions, 0 and 1 in any field. We also know that <m>a\cdot a</m> cannot be 1 because <m>a</m> doesn't invert itself and cannot be 0 because <m>a</m> can't be a zero divisor. This leaves us with one possible conclusion, that  <m>a \cdot  a = b</m> and similarly <m>b \cdot  b = a</m>.  Hence, our multiplication table for <m>F</m> is:
+<me>\begin{array}{c|cccc}
+\cdot &amp; 0 &amp; 1 &amp; a &amp; b \\
+\hline
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 1 &amp; 0 &amp; 1 &amp; a &amp; b \\
+a &amp; 0 &amp; a &amp; b &amp; 1 \\
+ b &amp; 0 &amp; b &amp; 1 &amp; a \\
+\end{array}
+</me></p>
+<p>We leave it to the reader to verify that <m>[F; +, \cdot ]</m>, as described above, is a field. Hence,
+we have produced a field of order 4. This construction would be difficult to repeat for larger fields.  In section 16.4 we will introduce a different approach to constructing fields that will be far more efficient.
+</p></example>   
+<p>Even though not all finite fields are isomorphic to <m>\mathbb{Z}_p</m> for some prime <m>p</m>, it can be shown that every field <m>F</m> must have either:
+<ul>
+<li><p> a subfield isomorphic to <m>\mathbb{Z}_p</m> for some prime <m>p</m>, or</p></li>
+<li><p> a subfield isomorphic to <m>\mathbb{Q}</m>.</p></li>
+</ul>
+</p>
+<p>One can think of all fields as being constructed from either <m>\mathbb{Z}_p</m> or <m>\mathbb{Q}</m>.</p>
+<example xml:id="ex-Q-in-R"><p> <m>[\mathbb{R}; +, \cdot]</m> is a field, and it contains a subfield isomorphic to <m>[\mathbb{Q}; +, \cdot]</m>, namely <m>\mathbb{Q}</m>
+itself.</p></example> 
+<example xml:id="ex-z2-in-f"><p>The field <m>F</m> that we constructed in <xref ref="ex-field-of-order-4" text="type-global" /> has a subfield isomorphic to <m>\mathbb{Z}_p</m> for some
+prime <m>p</m>.  From the tables, we note that the subset <m>\{0, 1\}</m> of <m>\{0, 1, a, b\}</m> under the given operations of <m>F</m> behaves exactly like <m>\left[\mathbb{Z}_2; +_2,\times _2\right]</m>.  Hence, <m>F</m> has a subfield isomorphic to <m>\mathbb{Z}_2</m>.</p></example>  
+<p>We close this section with a brief discussion of isomorphic fields. Again, since a field is a ring, the definition of isomorphism of fields is the
+same as that of rings. It can be shown that if <m>f</m> is a field isomorphism, then <m>f\left(a^{-1} \right) = f(a)^{-1}</m>; that is, inverses
+are mapped onto inverses under any field isomorphism. A major question to try to solve is: How many different non-isomorphic finite fields are there
+of any given order? If <m>p</m> is a prime, it seems clear from our discussions that all fields of order <m>p</m> are isomorphic to <m>\mathbb{Z}_p</m>.
+But how many nonisomorphic fields are there, if any, of order 4, 6, 8, 9, etc? The answer is given in the following theorem, whose proof is beyond the scope of this text.</p>
+<theorem xml:id="theorem-number-of-fields"><statement><p><ol marker="(1)">
+<li><p> Any finite field <m>F</m> has order <m>p^n</m> for a prime <m>p</m> and a positive integer <m>n</m>.</p></li>
+<li><p> For any prime <m>p</m> and any positive integer <m>n</m> there is a field of order <m>p^n</m> .</p></li>
+<li><p> Any two fields of order <m>p^n</m> are isomorphic.</p></li>
+</ol>
+</p></statement></theorem>
+<historical><title>Galois</title><p>The field of order <m>p^n</m> is frequently referred to as the Galois field of order <m>p^n</m> and it is denoted by  <m>GF(p^n)</m>.  Evariste Galois (1811-32) was a pioneer in the field of abstract algebra.</p></historical>
+<figure xml:id="fig-galois-stamp">
+                <caption>French stamp honoring Evariste Galois
+                </caption>
+                <image width="60%" source="images/fig-galois-stamp.png">
+                    <description>French stamp honoring Evariste Galois</description>
+                </image>
+            </figure>
+<p>This theorem tells us  that there is a field of order <m>2^2\textrm{ = 4}</m>, and there is only one such field up to isomorphism.   That is, all such fields of order 4 are isomorphic to <m>F</m>, which we constructed in the example above.</p>
+
+<exercises xml:id="exercises-16-2">
+<title>Exercises</title>
+<exercise number="1"><statement><p> Write out the addition, multiplication, and <q>inverse</q> tables for each of the following fields'.
+<ol marker="(a)">
+<li><p> <m>\left[\mathbb{Z}_2; +_2, \times _2\right]</m></p></li>
+<li><p> <m>\left[\mathbb{Z}_3; +_3, \times _3\right]</m></p></li>
+<li><p> <m>\left[\mathbb{Z}_5; +_5, \times _5\right]</m></p></li>
+</ol>
+</p></statement></exercise>
+<exercise number="2"><statement><p>  Show that the set of units of the fields in Exercise 1 form a group under the operation of the multiplication of the given field. Recall that
+a unit is an element which has a multiplicative inverse.
+</p></statement></exercise>
+<exercise number="3">
+<statement><p>Complete the proof of <xref ref="theorem-finite-id-is-field" text="type-global" /> that every finite integral domain is a field.</p></statement></exercise>
+<exercise number="4"><statement><p> Write out the operation tables for <m>\mathbb{Z}_2{}^2</m>.   Is <m>\mathbb{Z}_2{}^2</m> a ring? An integral domain? A field? Explain.
+</p></statement></exercise>
+<exercise number="5"><statement><p>  Determine all values <m>x</m> from the given field that satisfy the given equation: 
+<ol marker="(a)">
+<li><p> <m>x + 1 = -1</m>  in <m>\mathbb{Z}_2</m> , <m>\mathbb{Z}_3</m> and <m>\mathbb{Z}_5</m></p></li>
+<li><p> <m>2x + 1 = 2</m> in <m>\mathbb{Z}_3</m> and  <m>\mathbb{Z}_5</m></p></li>
+<li><p><m>3x + 1 = 2</m>  in <m>\mathbb{Z}_5</m></p></li>
+</ol>
+</p></statement><answer><p>
+<ol marker="(a)">
+<li><p>  0 in <m>\mathbb{Z}_2</m>,  1 in <m>\mathbb{Z}_3</m>,  3 in <m>\mathbb{Z}_5</m></p></li>
+<li><p> 2  in <m>\mathbb{Z}_3</m>,  3 in <m>\mathbb{Z}_5</m></p></li>
+<li><p> 2 in <m>\mathbb{Z}_5</m></p></li></ol>
+</p></answer></exercise>
+<exercise number="6"><statement><p><ol marker="(a)">
+<li><p>Prove that if <m>p</m> and <m>q</m> are prime, then <m>\mathbb{Z}_p \times  \mathbb{Z}_q</m> is never a field.</p></li>
+<li><p>Can <m>\mathbb{Z}_p{}^n</m> be a field for any prime <m>p</m> and any positive integer <m>n \geq  2</m>?</p></li>
+</ol>
+</p></statement></exercise>
+<exercise number="7"><statement><p>Determine all
+solutions to the following equations over <m>\mathbb{Z}_2</m>. That is, find all elements of <m>\mathbb{Z}_2</m> that satisfy the equations.
+<ol marker="(a)" cols="2">
+<li><p>  <m>x^2 + x = 0</m></p></li>
+<li><p>  <m>x^2 + 1 = 0</m></p></li>
+<li><p>  <m>x^3 + x^2 + x + 1 = 0</m></p></li>
+<li><p>  <m>x^3 + x + 1 = 0</m></p></li>
+</ol>
+</p></statement><answer><p>
+<ol marker="(a)" cols="4">
+<li><p>  0 and 1</p></li>
+<li><p>  1  </p></li>
+<li><p> 1 </p></li>
+<li><p>  none</p></li>
+</ol>
+</p></answer></exercise>
+<exercise number="8"><statement><p> Determine the number of different fields, if any, of all orders 2 through 15. Wherever possible, describe these fields via a known field.
+</p></statement></exercise>
+<exercise number="9"><statement><p>  Let <m>\mathbb{Q}\left(\sqrt{2}\right) = \left\{\left.a + b\sqrt{2}\right| a, b \in  \mathbb{Q}\right\}</m>. 
+<ol marker="(a)">
+<li><p> Prove that <m>\left[\mathbb{Q}\left(\sqrt{2}\right); +, \cdot \right]</m> is a field.</p></li>
+<li><p> Show that <m>\mathbb{Q}</m> is a subfield of <m>\mathbb{Q}\left(\sqrt{2}\right)</m>. For this reason, <m>\mathbb{Q}\left(\sqrt{2}\right)</m> is called an
+extension field of <m>\mathbb{Q}</m>.</p></li>
+<li><p>  Show that all the roots of the equation <m>x^2 - 4x+\frac{7}{2} = 0</m> lie in the extension field <m>\mathbb{Q}\left(\sqrt{2}\right)</m>.</p></li>
+<li><p>Do the roots of the equation <m>x^2 -4 x+ 3 = 0</m> lie in this field? Explain.</p></li>
+</ol>
+</p></statement></exercise>
+</exercises>
+</section>

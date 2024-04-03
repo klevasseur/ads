@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="s-boolean-algebras">
+<title>Boolean Algebras</title>
+<idx>Boolean Algebras</idx>
+
+<p>In order to define a Boolean algebra, we need the additional concept of complementation. A lattice must have both a greatest element and a least element in order for complementation to take place.  The following definition will save us some words in the rest of this section.</p>
+
+<definition xml:id="def-boundeded-lattice"><title>Bounded Lattice</title>
+<idx>Bounded Lattice</idx>
+<statement><p>A bounded lattice is a lattice that contains both a least element and a greatest element.</p></statement></definition>
+
+<p>We use the symbols <m>\pmb{0}</m> and  <m>\pmb{1}</m> for the least and greatest elements of a bounded lattice in the remainder of this section.</p>
+
+<definition xml:id="def-lattice-complement"><title>The Complement of a Lattice Element</title>
+<idx>Complement of a Lattice Element</idx>
+<statement><p>Let <m>[L; \lor ,\land ]</m> be a bounded lattice.  If <m>a \in L</m>, then <m>a</m> has a complement if there exists <m>b \in L</m> such that
+<me>
+\begin{array}{c}
+ a \lor b = \pmb{1}\\
+ \textrm{and}\\
+ a \land b =\pmb{0}\\
+\end{array}
+</me> 
+ </p></statement></definition>
+
+<p>Notice that by the commutative laws for lattices, if <m>b</m> complements <m>a</m>, then <m>a</m> complements <m>b</m>.</p>
+
+<definition xml:id="def-complemented-lattice"><title>Complemented Lattice</title>
+<idx>Complemented Lattice</idx>
+<statement><p>Let <m>\mathcal{L}=[L; \lor ,\land ]</m> be a bounded lattice.   <m>\mathcal{L}</m> is a complemented lattice if every element of <m>L</m> has a complement in <m>L</m>.</p></statement></definition>
+
+ 
+
+<example xml:id="ex-set-complement-is-complementation"><title>Set Complement is a Complement</title><p>In Chapter 1, we defined the complement of a subset of any universe.   This turns out to be a concrete example of the general concept we have just defined, but we will reason through why this is the case here.  Let <m>L = \mathcal{P}(A)</m>, where <m>A = \{a, b, c\}</m>. Then <m>[L; \cup  , \cap ]</m> is a bounded lattice with <m>0 = \emptyset</m>
+and <m>1 = A</m>. To find the complement, if it exists, of <m>B = \{a, b\} \in  L</m>, for example, we want <m>D</m> such that
+<me>
+\begin{array}{c}
+\{a,b\} \cap D = \emptyset\\ 
+and\\
+\{a,b\} \cup  D = A\\
+\end{array}
+</me> 
+
+It's not too difficult to see that  <m>D = \{c\}</m>, since we need to include <m>c</m> to make the first condition true and can't include <m>a</m> or <m>b</m> if the second condition is to be true.  Of course this is precisely how we defined <m>A^c</m> in Chapter 1.  Since it can be shown that each element of <m>L</m> has a complement (see Exercise 1), <m>[L; \cup  , \cap ]</m> is
+a complemented lattice. Note that if <m>A</m> is any set and <m>L = \mathcal{P}(A)</m>, then <m>[L; \cup  , \cap ]</m> is a complemented lattice where the complement of <m>B \in  L</m> is <m>B ^c = A - B</m>.</p></example> 
+
+<p>In <xref ref="ex-set-complement-is-complementation" text="type-global" />, we observed that the complement of each element of <m>L</m> is unique. Is this always true in a complemented lattice? The answer is no. Consider the following.</p>
+
+<example xml:id="ex-nonunique-complements"><title>A Lattice for which complements are not unique</title><p>Let <m>L = \{1, 2, 3, 5, 30\}</m> and consider the lattice <m>[L; \lor, \land ]</m> (under <q>divides</q>). The least element
+of <m>L</m> is 1 and the greatest element is 30. Let us compute the complement of the element <m>a = 2</m>. We want to determine <m>\bar{a}</m> such
+that <m>2 \land  \bar{a} = 1</m> and <m>2 \lor  \bar{a} = 30</m>. Certainly, <m>\bar{a} = 3</m> works, but so does <m>\bar{a} = 5</m>, so the complement of <m>a
+= 2</m> in this lattice is not unique. However, <m>[L; \lor  , \land ]</m> is still a complemented lattice since each element does have at least one complement.</p></example>   
+
+<definition xml:id="def-complement-operation">
+<title>Complementation as an operation</title>
+<idx><h>Complement of a Lattice Element</h><h>as an operation</h></idx>
+<notation><usage><m>\bar{a}</m></usage><description>The complement of lattice element <m>a</m></description></notation>
+<statement><p>If a complemented lattice  has the property that the complement of every element is unique, then we consider complementation to be a unary operation.  The usual notation for the complement of <m>a</m> is <m>\bar{a}</m>.</p>
+</statement>
+</definition>
+<p> The following theorem gives us an insight into when uniqueness of complements occurs.</p>
+
+<theorem xml:id="theorem-unique-complements">
+<title>One condition for unique complements</title>
+<statement><p>If <m>[L; \lor ,\land ]</m> is a complemented, distributive lattice, then the complement of each element <m>a \in L</m> is unique.
+</p></statement>
+<proof><p>Let <m>a \in  L</m> and assume to the contrary that <m>a</m> has two complements, namely <m>a_1</m> and <m>a_2</m>. Then by the definition of complement,
+<me>
+\begin{array}{c}
+a \land  a_1 = 0\textrm{ and }a \lor  a_1 = 1, \\ 
+and\\
+a \land  a_2 = 0\textrm{ and }a \lor  a_2 = 1, \\
+\end{array}
+</me>.</p>
+<p>Then 
+
+<me>
+\begin{split}
+ a_1 &amp; =a_1 \land \pmb{1} = a_1 \land  \left(a \lor  a_2\right)\\
+ 		&amp;=\left(a_1 \land  a\right) \lor  \left(a_1 \land  a_2\right)\\
+ 		&amp;=\pmb{0} \lor  \left(a_1 \land  a_2\right)\\
+ 		&amp;=a_1 \land  a_2\\
+ 		\\
+ \end{split}
+ </me>
+
+On the other hand,
+<me>
+\begin{split}
+a_2 &amp;= a_2 \land  \pmb{1} = a_2 \land  \left(a \lor  a_1\right)\\
+	&amp;= \left(a_2 \land  a\right) \lor  \left(a_2 \land  a_1\right)\\
+	&amp;=  \pmb{0} \lor  \left(a_2 \land  a_1\right)\\
+	&amp;= a_2 \land  a_1\\
+	&amp;= a_1 \land  a_2\\
+	\\
+\end{split}
+ </me>
+
+Hence <m>a_1 = a_2</m>, which contradicts the assumption that <m>a</m> has two different complements.</p></proof></theorem> 
+ 
+<definition xml:id="def-boolean-algebra"><title>Boolean Algebra</title>
+<idx>Boolean Algebra </idx>
+<notation><usage><m>[B;  \lor , \land, \bar{\hspace{5 mm}}]</m></usage><description>a boolean algebra with operations join, meet and complementation</description></notation>
+<statement><p>A Boolean algebra is a lattice that contains a least element and a greatest element and that is both complemented and distributive. The notation <m>[B;  \lor , \land, \bar{\hspace{5 mm}}]</m> is used to denote the boolean algebra with operations join, meet and complementation.</p></statement></definition>
+
+ <p> Since the complement of each element in a Boolean algebra is unique (by <xref ref="theorem-unique-complements" text="type-global" />), complementation is a valid unary operation over the set under discussion, which is why we will list it together with the other two operations to emphasize that we are discussing a set together with three operations.
+Also, to help emphasize the distinction between lattices and lattices that are Boolean algebras, we will use the letter <m>B</m> as the generic symbol for the set of a Boolean algebra; that is, <m>[B; \lor , \land, \bar{\hspace{5 mm}} ]</m> will stand for a general Boolean algebra.</p>
+
+<example xml:id="ex-set-boolean-algebra"><title>Boolean Algebra of Sets</title><p>Let <m>A</m> be any set, and let <m>B = \mathcal{P}(A)</m>. Then <m>[B; \cup, \cap, {}^c]</m> is a Boolean algebra. Here, <m>{}^c</m> stands for the complement of an element of <m>B</m> with respect to <m>A</m>, <m>A-B</m>.</p>
+<p>This is a key example for us since all finite Boolean algebras and many infinite Boolean algebras look like this example for some <m>A</m>.
+In fact, a glance at the basic Boolean algebra laws in <xref ref="table-boolean-laws" text="type-global" />, in comparison with the set laws of Chapter 4 and the basic laws of logic of
+Chapter 3, indicates that all three systems behave the same; that is, they are isomorphic.</p></example>
+
+<example xml:id="ex-boolean-algebra-d30"><title>Divisors of 30</title><p>A somewhat less standard example of a boolean algebra is derived from the lattice of divisors of 30 under the relation <q>divides</q>.  If you examine the ordering diagram for this lattice, you see that it is structurally the same as the boolean algebra of subsets of a three element set.  Therefore, the join, meet and complementation operations act the same as union, intersection and set complementation.   We might conjecture that the lattice of divisors of any integer will produce a boolean algebra, but it is only the case of certain integers.   Try out a few integers to see if you can identify what is necessary to produce a boolean algebra.</p></example>
+ 
+<table   xml:id="table-boolean-laws">
+<title>Basic Boolean Algebra Laws</title>
+   <tabular>
+		<row><cell>Commutative Laws</cell>
+		<cell><m> a\lor  b = b\lor  a</m></cell>
+		<cell><m>a \land  b = b \land  a </m></cell>
+		</row>
+
+
+
+		<row><cell>Associative Laws</cell>
+		<cell><m> a \lor  (b \lor  c) = (a \lor  b) \lor  c </m></cell>
+		<cell><m> a \land  (b \land  c) = (a \land  b) \land  c</m></cell>
+		</row>
+
+			<row><cell>Distributive Laws</cell>
+			<cell><m>  a \land  (b \lor  c) = (a \land  b) \lor  (a \land  c)</m></cell>
+			<cell><m> a \lor  (b \land  c) = (a \lor  b) \land  (a \lor  c)</m></cell>
+			</row>
+
+
+			<row><cell>Identity Laws</cell>
+			<cell><m> a \lor  0 = 0 \lor  a = a</m></cell>
+			 <cell><m>   a \land  1= 1 \land  a = a</m></cell>
+			</row>
+
+			<row><cell>Complement Laws</cell>
+			<cell><m>a \lor  \bar{a} = 1 </m></cell>
+			<cell><m> a \land  \bar{a}= 0</m></cell>
+			</row>
+
+
+			<row><cell>Idempotent Laws</cell>
+			<cell><m>a \lor  a = a</m></cell>
+			  <cell><m>   a \land  a = a</m></cell>
+				</row>
+
+
+			<row><cell>Null Laws</cell>
+			<cell><m> a \lor  1 = 1</m></cell>
+			 <cell><m>   a \land  0 = 0 </m></cell>
+			</row>
+
+
+			<row><cell>Absorption Laws</cell>
+			<cell><m> a \lor  (a \land  b) = a</m></cell>
+			<cell><m>   a \land  (a \lor  b) = a </m></cell>
+			</row>
+
+
+			<row><cell>DeMorgan's Laws</cell>
+			<cell><m> \overline{a \lor  b} = \bar{a} \land  \bar{b}</m></cell>
+			 <cell><m>   \overline{a \land  b} = \bar{a} \lor  \bar{b} </m></cell>
+			</row>
+
+				<row><cell>Involution Law </cell>
+				<cell><m> \overline{\bar{a}} = a</m></cell><cell><m>\quad</m></cell>
+		      </row>
+ </tabular>
+                    </table>
+
+<p>The <q>pairings</q> of the boolean algebra laws reminds us of the principle of duality, which we state for a Boolean algebra.</p>
+
+<definition xml:id="def-boolean-duality"><title>Principle of Duality for Boolean Algebras</title>
+<idx>Duality for Boolean Algebras</idx>
+<notation><usage><m></m></usage><description></description></notation>
+<statement><p>Let <m>\mathcal{B}=[B; \lor, \land, \hspace{1 mm}^c]</m> be a Boolean algebra under  <m>\preceq</m>, and let <m>S</m> be a true statement for  <m>\mathcal{B}</m>. If  <m>S^*</m> is obtained from <m>S</m> by replacing  <m>\preceq</m> with <m>\succeq</m> (this is equivalent to turning the graph upside down),  <m>\lor</m> with  <m>\land</m>, <m>\land</m>  with  <m>\lor</m>, <m>\pmb{0}</m> with <m>\pmb{1}</m>, and <m>\pmb{1}</m> with <m>\pmb{0}</m>, then <m>S^*</m> is also a true statement in  <m>\mathcal{B}</m>.</p></statement></definition> 
+
+<!-- 
+<p> We close this section with some comments on notation. The notation for operations in a Boolean algebra is derived from the algebra of logic. However, other notational systems are used. These are summarized in the following chart.</p>
+
+<table   xml:id="table-boolean-notation">
+<title>Contrasting Notational Systems for Boolean Algebra</title>
+<tabular top="major" halign="center">
+<row><cell>Generic</cell><cell>Set Theory</cell><cell>Logic Design</cell><cell>Verbal</cell></row>
+<row><cell><m>\lor</m></cell><cell><m>\cup</m></cell><cell><m>\oplus</m></cell><cell>Join</cell></row>
+<row><cell><m>\land</m></cell><cell><m>\cap</m></cell><cell><m>\otimes</m></cell><cell>Meet</cell></row>
+<row><cell><m>\bar{\hspace{5 mm}}</m></cell><cell><m>\hspace{1 mm}^c</m></cell><cell>-</cell><cell>Complement</cell></row>
+<row><cell><m>\preceq</m></cell><cell><m>\subseteq</m></cell><cell><m>\leq</m></cell><cell>partial ordering</cell></row>
+</tabular>
+</table>
+
+<p> Mathematicians most frequently use the notation of this text, and, on occasion, use set notation for Boolean algebras. Thinking in terms of sets may be easier for some people. Computer designers traditionally use the arithmetic notation.  In this latter notation, DeMorgan's Laws become:
+<me>
+\begin{array}{ccc}   \overline{a \oplus  b} = \bar{a} \otimes  \bar{b} &amp;
+\textrm{ and  }&amp;  \overline{a \otimes  b} = \bar{a} \oplus  \bar{b}\\
+\end{array}
+</me>
+</p>
+ -->
+<exercises xml:id="exercises-13-3"><title>Exercises</title>
+<exercise number="1"><statement>  <p>Determine the complement of each element <m>B \in  L</m> in <xref ref="ex-set-complement-is-complementation" text="type-global" />. Is this lattice a Boolean algebra? Why?</p>
+</statement><answer><p>
+<m>\begin{array}{cc}
+ B &amp; \textrm{ Complement of } B \\
+\hline 
+\begin{array}{c}
+ \emptyset  \\
+ \{a\} \\
+ \{b\} \\
+ \{c\} \\
+ \{a,b\} \\
+ \{a,c\} \\
+ \{b,c\} \\
+ A \\
+\end{array}
+ &amp; 
+\begin{array}{c}
+ A \\
+ \{b,c\} \\
+ \{a,c\} \\
+ \{a,b\} \\
+ \{c\} \\
+ \{b\} \\
+ \{a\} \\
+ \emptyset  \\
+\end{array}
+ \\
+\end{array}</m></p><p>This lattice is a Boolean algebra since it is a distributive complemented lattice.</p></answer></exercise>
+<exercise number="2"><statement> <p>
+<ol marker="(a)">
+<li><p>Determine the complement of each element of <m>D_6</m> in <m>\left[D_6; \lor , \land \right]</m>.</p></li>
+<li><p> Repeat part a using the lattice in <xref ref="ex-a-nondistributive-lattice" text="type-global" />.</p></li>
+<li><p> Repeat part a using the lattice in <xref ref="exercise-13-1-1" text="type-global" />.</p></li>
+<li><p> Are the lattices in parts a, b, and c Boolean algebras? Why?</p></li>
+</ol>
+</p>
+</statement></exercise>
+<exercise number="3"><statement><p> Determine which of the lattices of <xref ref="exercise-13-1-3" text="type-global" /> of Section 13.1 are Boolean algebras.</p>
+</statement>
+<answer><p>   a and g. </p></answer>
+</exercise>
+<exercise number="4"><statement><p>   Let <m>A = \{a, b\}</m> and <m>B = \mathcal{P}(A)</m>.
+<ol marker="(a)">
+<li><p>  Prove that <m>[B; \cup, \cap, \hspace{1 mm}^c ]</m> is a Boolean algebra.</p></li>
+<li><p>  Write out the operation tables for the Boolean algebra.</p></li></ol>
+</p>
+</statement></exercise>
+<exercise number="5"><statement><p>  It can be shown that the following statement, <m>S</m>, holds for any Boolean algebra <m>[B; \lor , \land, -]</m> : <m>(a \land  b) = a</m> if and only if
+<m>a \leq  b</m>.
+<ol marker="(a)">
+<li><p> Write the dual, <m>S^*</m>, of the statement <m>S</m>.</p></li>
+<li><p> Write the statement <m>S</m> and its dual, <m>S^*</m>, in the language of sets.</p></li>
+<li><p> Are the statements in part b true for all sets?</p></li>
+<li><p> Write the statement <m>S</m> and its dual, <m>S^*</m>, in the language of logic.</p></li>
+<li><p> Are the statements in part d true for all propositions?</p></li>
+</ol></p>
+</statement>
+<answer><p>
+<ol marker="(a)">
+<li><p> <m>S^*:a \lor  b= a \textrm{ if } a \geq  b</m></p></li>
+<li><p>The dual of  <m>S:A\cap B = A\textrm{ if }A \subseteq B</m> is 
+<m>S^*:A \cup B = A\textrm{ if } A \supseteq B</m></p></li>
+<li><p> Yes</p></li>
+<li><p>The dual of <m>S:p \land q\Leftrightarrow p\textrm{    }\textrm{ if } p\Rightarrow q</m> is
+<m>S^*:p \lor q\Leftrightarrow p \textrm{ if } q\Rightarrow p</m></p></li>
+<li><p> Yes</p></li>
+</ol>
+</p></answer>
+</exercise>
+<exercise number="6"><statement><p>State the dual of:
+<ol marker="(a)">
+<li><p>  <m>a \lor  (b \land  a) = a</m>.
+
+</p></li>
+<li><p>  <m>a \lor  \left(\overline{\left(\bar{b} \lor  a\right) \land  b}\right) = 1</m>.
+
+</p></li>
+<li><p>  <m>\left(\overline{a \land  \bar{b}}\right) \land  b = a\lor  b</m>.</p></li>
+</ol>
+</p>
+</statement></exercise>
+<exercise number="7"><statement><p>   Formulate a definition for isomorphic Boolean algebras.</p>
+</statement>
+<answer>
+ <p><m>[B; \land, \lor, -]</m> is isomorphic to <m>[B';\land, \lor, \tilde{}]</m> if
+and only if there exists a  function <m>T:B \to  B'</m> such that 
+
+<ol marker="(a)">
+<li><p> <m>T</m> is a bijection;</p></li>
+<li><p> <m>T(a\land b)=T(a)\land T(b)\quad \textrm{ for} \textrm{ all } a,b\in B</m></p></li>
+<li><p> <m>T(a\lor b)=T(a)\lor T(b)\quad \textrm{ for} \textrm{ all } a, b \in B</m></p></li>
+<li><p> <m>T(\bar{a})=\tilde{T(a)}\quad \textrm{ for all } a\in B</m>.</p></li>
+</ol>
+</p>
+</answer>
+</exercise>
+<exercise number="8"><statement><p>For what positive integers, <m>n</m>, does the lattice <m>[D_n,\mid]</m> produce a boolean algebra?</p>
+</statement>
+</exercise>
+</exercises>
+</section>
+

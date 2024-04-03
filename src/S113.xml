@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="s-general-properties-of-groups">
+<title>Some General Properties of Groups</title>
+<idx>Some General Properties of Groups</idx>
+<introduction><p>In this section, we will present some of the most basic theorems of group theory. Keep in mind that each of these theorems tells us something about every group. We will illustrate this point with concrete examples at the close of the section.</p>
+</introduction>
+<subsection><title>First Theorems</title>
+
+<theorem xml:id="theorem-11-3-1"><title>Identities are Unique</title><statement><p>The identity of a group is unique.</p></statement></theorem> 
+
+
+
+<p>One difficulty that students often encounter is how to get started in proving a theorem like this. The difficulty is certainly not in the theorem's complexity. It's too terse! Before actually starting the proof, we rephrase the theorem so that the implication it states is clear.</p>
+
+<theorem xml:id="theorem-11-3-1-a"><title>Identities are Unique - Rephrased</title>
+<statement><p>If <m>G= [G; *]</m> is a group and <m>e</m> is an identity of <m>G</m>, then no other element of <m>G</m> is an identity of <m>G</m>.</p></statement>
+<proof><p>(Indirect): Suppose that <m>f\in  G</m>, <m>f\neq e</m>, and <m>f</m> is an identity of <m>G</m>. We will show that <m>f = e</m>, which is a contradiction, completing the proof.
+<me>
+\begin{split}
+f  &amp;= f * e \quad \textrm{  Since }e\textrm{ is an identity}\\
+	&amp;= e  \quad \textrm{  Since }f\textrm{ is an identity}
+\end{split}
+</me>
+</p></proof></theorem>
+
+
+<p>Next we justify the phrase <q>... <em>the</em> inverse of an element of a group.</q></p>
+
+<theorem xml:id="theorem-11-3-2"><title>Inverses are Unique</title>
+<statement><p>The inverse of any element of a group is unique.</p></statement></theorem> 
+
+<p>The same problem is encountered here as in the previous theorem. We will leave it to the reader to rephrase this theorem. The proof is also left to the reader to write out in detail. Here is a hint: If <m>b</m> and <m>c</m> are both inverses of <m>a</m>, then you can prove that <m>b = c</m>.  If you have difficulty with this proof, note that we have already proven it in a concrete setting in Chapter 5.</p>
+
+
+
+<p>As mentioned above, the significance of <xref ref="theorem-11-3-2" text="type-global" /> is that we can refer to <em>the</em> inverse of an element without ambiguity. The notation for the inverse of <m>a</m> is usually <m>a^{-1}</m> (note the exception below).</p>
+
+<example xml:id="ex-some-inverses"><title>Some Inverses</title><p><ol marker="(a)">
+<li><p>  In any group, <m>e^{-1}</m> is the inverse of the identity <m>e</m>, which always is <m>e</m>.</p></li>
+<li><p>  <m>\left(a^{-1}\right)^{-1}</m> is the inverse of <m>a^{-1}</m> , which is always equal to <m>a</m> (see <xref ref="theorem-11-3-3" text="type-global" /> below).</p></li>
+<li><p>  <m>(x*y*z)^{-1}</m> is the inverse of <m>x * y * z</m>.</p></li>
+<li><p>  In a concrete group with an operation that is based on addition, the inverse of <m>a</m> is usually written <m>-a</m>. For example, the inverse
+of <m>k - 3</m> in the group <m>[\mathbb{Z}; +]</m> is written <m>-(k- 3)=3-k</m>. In the group of <m>2 \times 2 </m> matrices over the real numbers
+under matrix addition, the inverse of <m>\left(
+\begin{array}{cc}
+ 4 &amp; 1 \\
+ 1 &amp; -3  \\
+\end{array}
+\right)</m> is written <m>-\left(
+\begin{array}{cc}
+ 4 &amp; 1 \\
+ 1 &amp; -3  \\
+\end{array}
+\right)</m>, which equals <m>\left(
+\begin{array}{cc}
+ -4 &amp; -1 \\
+ -1 &amp; 3  \\
+\end{array}
+\right)</m>.</p></li>
+</ol>
+</p></example>
+
+
+
+<theorem xml:id="theorem-11-3-3"><title>Inverse of Inverse Theorem</title>
+<statement><p>If a is an element of group <m>G</m>, then <m>\left(a^{-1}\right)^{-1}=a</m>.</p></statement></theorem> 
+<p>Again, we rephrase the theorem to make it clear how to proceed.</p>
+<theorem xml:id="theorem-11-3-3-rephrased"><title>Inverse of Inverse Theorem (Rephrased)</title>
+<statement><p>If <m>a</m> has inverse <m>b</m> and <m>b</m> has inverse <m>c</m>, then <m>a = c</m>.</p></statement>
+<proof>
+<p>
+<me>\begin{split}
+a  &amp;=a*e \quad \quad e\textrm{ is the identity of }G\\
+	&amp;= a * (b * c) \quad\textrm{ because }c\textrm{ is the inverse of } b\\
+	&amp; = (a * b) * c \quad \textrm{  why?}\\
+	&amp; = e * c \quad \textrm{  why?}\\
+	&amp; = c \quad \textrm{ by the identity property}\\
+\end{split}</me>
+</p>
+</proof></theorem> 
+
+<p>The next theorem gives us a formula for the inverse of <m>a * b</m>. This formula should be familiar. In Chapter 5 we saw that if <m>A</m> and <m>B</m> are invertible matrices, then <m>(A B)^{-1}= B^{-1} A^{-1}</m>.</p>
+
+<theorem xml:id="theorem-11-3-4"><title>Inverse of a Product</title>
+<statement><p> If <m>a</m> and <m>b</m> are elements of group <m>G</m>, then <m>(a*b)^{-1}= b^{-1}*a^{-1}</m>.</p></statement>
+<proof><p> Let <m>x = b^{-1}*a^{-1}</m>. We will prove that <m>x</m> inverts <m>a * b</m>.  Since we know that the inverse is unique, we will have proved the theorem.
+
+<me>
+\begin{split}
+(a * b) * x &amp;= (a * b) * \left(b^{-1}*a^{-1}\right)\\
+		&amp;= a* \left(b*\left(b^{-1}*a^{-1}\right)\right)\\
+		&amp;= a*\left(\left(b*b^{-1}\right)*a^{-1}\right)\\
+		&amp;= a * \left(e * a^{-1}\right)\\
+		&amp;= a * a^{-1}\\
+		&amp;= e
+\end{split}
+</me>
+Similarly, <m>x * (a * b) = e</m>; therefore, <m>(a*b)^{-1}=x= b^{-1}*a^{-1}</m>
+</p>
+</proof></theorem>
+
+
+<theorem xml:id="theorem-11-3-cancellation"><title>Cancellation Laws</title>
+<idx>Cancellation in Groups </idx>
+<statement><p>If <m>a</m>, <m>b</m>, and <m>c</m> are elements of group <m>G</m>, then
+ <me>
+ \begin{array}{lc}
+ \textrm{left cancellation:}&amp; (a * b = a * c)  \Rightarrow b = c\\
+ \textrm{right cancellation:}&amp;  (b * a = c * a) \Rightarrow b = c\\
+ \end{array}
+ </me>
+</p></statement>
+<proof><p>We will prove the left cancellation law. The right law can be proved in exactly the same way. Starting with <m>a * b = a * c</m>, we can operate on both <m>a * b</m> and <m>a * c</m> on the left with <m>a^{-1}</m>:
+<me>a^{-1}* (a * b) = a^{-1} * (a * c)</me>
+Applying the associative property to both sides we get
+
+<me>
+\begin{split}
+(a^{-1} * a) * b = (a^{-1} * a) * c &amp;  \Rightarrow e * b = e * c\\
+		&amp; \Rightarrow  b = c
+\end{split}
+</me>
+</p>
+</proof></theorem>
+<theorem xml:id="theorem-11-3-linear-in-groups"><title>Linear Equations in a Group</title>
+<idx>Linear Equations in a Group</idx>
+<statement><p>If <m>G</m> is a group and <m>a, b \in  G</m>, the equation <m>a * x = b</m> has a unique solution, <m>x
+= a^{-1} * b</m>.  In addition, the equation <m>x * a = b</m> has a unique solution, <m>x = b * a^{-1}</m>.</p></statement>
+<proof><p>We prove the theorem only for <m>a * x = b</m>, since the second statement is proven identically.
+<me>
+\begin{split}
+a*x = b &amp; =e * b\\
+	&amp;= (a* a^{-1}) * b \\
+	&amp; = a * (a^{-1} * b)
+\end{split}
+</me>
+
+By the cancellation law, we can conclude that <m>x = a ^{-1} * b</m>. </p>
+
+<p>If <m>c</m> and <m>d</m> are two solutions of the equation <m>a * x = b</m>, then <m>a * c = b = a * d</m> and, by the cancellation law, <m>c = d</m>.  This verifies that <m>a ^{-1} * b</m> is the only solution of <m>a * x = b</m>.</p></proof>
+</theorem>  
+
+
+<note><p>Our proof of <xref ref="theorem-11-3-linear-in-groups" text="type-global" /> was analogous to solving the concrete equation <m>4x = 9</m> in the following way: 
+
+ <me>4 x=9=\left(4\cdot \frac{1}{4}\right)9=4\left(\frac{1}{4}9\right)</me>
+
+Therefore, by cancelling 4, 
+
+<me>x = \frac{1}{4}\cdot  9 = \frac{9}{4}</me></p></note>
+
+</subsection>
+<subsection><title>Exponents</title>
+
+<p>If <m>a</m> is an element of a group <m>G</m>, then we establish the notation that 
+<me>a * a = a^2\quad \quad
+	a*a*a=a^3\quad \quad
+	\textrm{etc.}</me>
+In addition, we allow negative exponents and define, for example, 
+<me>a^{-2}= \left(a^2\right)^{-1}</me>
+Although this should be clear, proving exponentiation properties requires a more precise recursive definition.</p>
+
+<definition xml:id="def-exponents-in-groups"><title>Exponentiation in Groups</title>
+<idx>Exponentiation in Groups</idx>
+<statement><p>For <m>n \geq  0</m>, define <m>a^n</m> recursively by <m>a ^0 = e</m> and if <m>n > 0, a^n= a^{n-1} *a</m>.
+ Also, if <m>n >1</m>, <m>a^{-n}= \left(a^n\right)^{-1}</m>.</p></statement></definition>
+
+<example xml:id="ex-concrete-exponents"><title>Some concrete exponentiations</title>
+<p><ol marker="(a)">
+<li><p> In the group of positive real numbers with multiplication, 
+
+    <me>5^3= 5^2\cdot 5 =\left(5^1\cdot 5\right)\cdot 5=\left(\left(5^0\cdot 5\right)\cdot 5\right)\cdot 5=((1\cdot 5)\cdot 5)\cdot 5=
+5 \cdot 5\cdot 5=125</me>
+and
+<me>5^{-3}= (125)^{-1}= \frac{1}{125}</me></p></li>
+<li><p> In a group with addition, we use a different form of notation, reflecting the fact that in addition repeated terms are multiples, not powers. For example, in <m>[\mathbb{Z}; +]</m>, <m>a + a</m> is written as <m>2a</m>, <m>a + a + a</m> is written as <m>3a</m>, etc. The inverse of a multiple of <m>a</m> such as <m>- (a + a + a + a + a) = -(5a)</m> is written as <m>(-5)a</m>.</p></li>
+</ol>
+</p></example>
+
+<p>Although we define, for example, <m>a^5=a^4* a</m>, we need to be able to extract the single factor on the left.  The following lemma justifies doing precisely that.</p>
+
+<lemma xml:id="lemma-11-3-1">
+<statement><p>Let <m>G</m> be a group.  If <m>b\in G</m> and <m>n\geq 0</m>, then  <m>b^{n+1}=b* b^n</m>, and hence  <m>b* b^n= b^n*b</m>. </p></statement>
+<proof><p> (By induction):  If  <m>n=0</m>, 
+<me>
+\begin{split}
+b^1 &amp;= b^0*b \textrm{          by the definition of exponentiation}\\
+	&amp; =e*b\textrm{    by the basis for exponentiation}\\
+	&amp;= b * e\textrm{       by the identity property}\\
+	&amp;= b * b^0\textrm{    by the basis for exponentiation}
+\end{split}
+</me>
+</p>
+<p>Now assume the formula of the lemma is true for some <m>n\geq 0</m>.
+<me>
+\begin{split}
+b^{(n+1)+1} &amp;= b^{(n+1)}* b\textrm{           by the definition of exponentiation}\\
+	&amp;= \left(b*b^n\right)*b\textrm{        by the induction hypothesis}\\
+	&amp; = b*\left(b^n*b\right)\textrm{       associativity}\\
+	&amp; = b*\left(b^{n+1}\right)\textrm{       definition of exponentiation}\\
+\end{split}
+</me>
+</p></proof>
+</lemma>
+
+
+
+<p>Based on the definitions for exponentiation above, there are several properties that can be proven. They are all identical to the exponentiation properties from elementary algebra.</p>
+
+<theorem xml:id="theorem-11-3-expo-properties"><title>Properties of Exponentiation</title>
+<statement><p>If a is an element of a group <m>G</m>, and <m>m</m> and <m>n</m> are integers,
+<ol marker="(1)">
+<li><p> <m>a^{-n}= \left(a^{-1}\right)^n</m>    and hence  <m>\left(a^n\right)^{-1}= \left(a^{-1}\right)^n</m></p></li>
+<li><p>  <m>a^{n+m}= a^n*a^m</m> </p></li>
+<li><p>  <m>\left(a^n\right)^m= a^{n m}</m></p></li>
+</ol></p></statement>
+<proof><p>We will leave the proofs of these properties to the reader.  All three parts can be done by induction.  For example the proof of the second part would start by defining the proposition  <m>p(m)</m> , <m>m\geq 0</m>, to be  <m>a^{n+m}=a^n*a^m \textrm{ for all } n</m>.   The basis is <m>p(0): a^{n+0}=a^n*a^0</m>.</p>
+</proof>
+</theorem> 
+
+<p>Our final theorem is the only one that contains a hypothesis about the group in question. The theorem only applies to finite groups.</p>
+
+<theorem xml:id="theorem-11-3-finite">
+<statement><p> If <m>G</m> is a finite group,  <m>\left| G\right| = n</m>, and <m>a</m> is an element of <m>G</m>, then there exists a positive integer <m>m</m> such
+that <m>a^m= e</m> and <m>m\leq n</m>.</p></statement>
+<proof><p>Consider the list <m>a, a^2,\ldots , a^{n+1}</m> . Since there are <m>n + 1</m> elements of <m>G</m> in this list, there must be some duplication.  Suppose that <m>a^p=a^q</m>, with <m>p &lt; q</m>. Let <m>m = q - p</m>.    Then
+
+ <me>
+ \begin{split}
+ a^m &amp; =a^{q-p}\\
+ 	&amp;= a^q*a^{-p}\\
+ 	&amp;= a^q*\left(a^p\right)^{-1}\\
+ 	&amp;= a^q *\left(a^q\right)^{-1}\\
+ 	&amp;= e\\
+ \end{split}
+ </me>
+Furthermore, since <m>1\leq p &lt; q \leq n+1</m>,   <m>m= q-p\leq n</m>.</p></proof></theorem> 
+
+<p>Consider the concrete group <m>[\mathbb{Z}; +]</m>. All of the theorems that we have stated in this section except for the last one say something about
+<m>\mathbb{Z}</m>. Among the facts that we conclude from the theorems about <m>\mathbb{Z}</m> are:
+<ul>
+<li><p>Since the inverse of 5 is <m>-5</m>, the inverse of <m>-5</m> is 5.</p></li>
+<li><p>The inverse of <m>-6 + 71</m> is  <m>-(71) + -(-6) = -71 + 6</m>.</p></li>
+<li><p>The solution of <m>12 + x = 22</m> is <m>x = -12 + 22</m>.</p></li>
+<li><p><m>-4(6) + 2(6) = (-4 + 2)(6) = -2(6) = -(2)(6)</m>.</p></li>
+<li><p><m>7(4(3)) = (7\cdot 4)(3) = 28(3)</m>  (twenty-eight 3s).</p></li>
+</ul>
+</p>
+
+</subsection>
+
+<exercises xml:id="exercises-11-3">
+<title>Exercises</title>
+<exercise number="1"><statement><p>  Let <m>[G; * ]</m> be a group and <m>a</m> be an element of <m>G</m>.  Define <m>f:G \to  G</m> by <m>f(x) = a * x</m>.
+<ol marker="(a)">
+<li><p> Prove that <m>f</m> is a bijection.</p></li>
+<li><p> On the basis of part a, describe a set of bijections on the set of integers.</p></li>
+</ol>
+</p>
+</statement>
+<answer>
+<p><ol marker="(a)"><li><p><m>f</m> is injective:
+<me>
+\begin{split}
+f(x) = f(y) &amp; \Rightarrow  a * x = a * y \\
+		&amp; \Rightarrow  x = y\textrm{       by left cancellation}\\
+\end{split}
+</me>.</p>
+<p><m>f</m> is surjective:  For all <m>b \in G</m>,   <m>f(x) = b</m> has the solution <m>a^{-1}*b</m>.</p></li>
+<li><p>Functions of the form <m>f(x) = a + x</m>, where <m>a</m> is any integer, are bijections</p></li>
+</ol>
+</p></answer></exercise>
+<exercise number="2"><statement><p>  Rephrase <xref ref="theorem-11-3-2" text="type-global" /> and write out a clear proof.</p></statement></exercise>
+<exercise number="3"><statement><p>Prove by induction on <m>n</m> that if <m>a_1</m>, <m>a_2,\ldots , a_n</m> are elements of a group <m>G</m>, <m>n\geq 2</m>, then
+<m>\left(a_1*a_2*\cdots *a_n\right)^{-1}= a_n^{-1}*\cdots *a_2^{-1}*a_1^{-1}</m>.
+Interpret this result in terms of <m>[\mathbb{Z}; +]</m> and <m>[\mathbb{R}^*;\cdot]</m>.</p>
+</statement>
+<answer><p>  Basis: (<m>n = 2</m>)   <m>\left(a_1*a_2\right)^{-1}= a_2^{-1}*a_1^{-1}</m> by <xref ref="theorem-11-3-4" text="type-global"/>.</p>
+<p>Induction: Assume that for some <m>n \geq  2</m>,
+
+<me>\left(a_1*a_2* \cdots *a_n\right)^{-1}=a_n^{-1}* \cdots * a_2^{-1}*a_1^{-1}</me>
+
+We must show that
+<me>\left(a_1*a_2* \cdots *a_n*a_{n+1}\right)^{-1}=a_{n+1}^{-1}*a_n^{-1}* \cdots * a_2^{-1}*a_1^{-1}</me></p>
+
+<p>This can be accomplished as follows:
+<me>
+\begin{split}
+\left(a_1*a_2*\cdots *a_n*a_{n+1}\right)^{-1} &amp;=\left(\left(a_1*a_2*\cdots *a_n\right)*a_{n+1}\right)^{-1}\textrm{  
+  by the associative law}\\
+  	&amp;=a_{n+1}^{-1}*\left(a_1*a_2*\cdots *a_n\right)^{-1}\textrm{      by the basis}\\
+	&amp;=a_{n+1}^{-1}*\left(a_n^{-1}*\cdots * a_2^{-1}*a_1^{-1}\right) \textrm{   by the induction hypothesis}\\
+	&amp;= a_{n+1}^{-1}*a_n^{-1}*\cdots * a_2^{-1}*a_1^{-1} \textrm{   by the associative law}\\
+\end{split}
+</me>
+</p></answer>
+</exercise>
+<exercise number="4">
+<statement><p>  True or false? If <m>a</m>, <m>b</m>, <m>c</m> are elements of a group <m>G</m>, and <m>a * b = c * a</m>, then <m>b = c</m>. Explain your answer. </p></statement></exercise>
+<exercise number="5"><statement><p>  Prove <xref ref="theorem-11-3-expo-properties" text="type-global" />. </p></statement>
+<answer><p>In this answer, we will refer to <xref ref="lemma-11-3-1" text="type-global"/> simply as <q>the lemma.</q></p>
+<p><ol marker="(a)">
+<li><p> Let <m>p(n)</m> be <m>a^{-n}= \left(a^{-1}\right)^n</m>, where <m>a</m> is any element of group <m>[G; *]</m>. First we will prove that <m>p(n)</m> is true for all <m>n \geq  0</m>.</p>
+
+<p>Basis: If <m>n = 0</m>, Using the definition of the zero exponent,  <m>\left(a^0\right)^{-1} = e^{-1} = e</m>,  while <m>\left(a^{-1}\right)^0= e</m>.
+Therefore, <m>p(0)</m> is true.</p>
+
+<p>Induction: Assume that for some <m>n \geq  0</m>, <m>p(n</m>) is true.
+<me>
+\begin{split}
+\left(a^{n+1}\right)^{-1} &amp;= \left(a^n*a\right)^{-1}\textrm{    by the definition of exponentiation}\\
+	&amp; =a^{-1}*\left(a^n\right)^{-1}\textrm{       by the lemma}\\
+	&amp; = a^{-1}*\left(a^{-1}\right)^n\textrm{      by the induction hypothesis}\\
+	&amp; = \left(a^{-1}\right)^{n+1} \textrm{   by the lemma}	
+\end{split}
+</me>
+</p>
+
+<p>If <m>n</m> is negative, then <m>-n</m> is positive and
+<me>
+\begin{split}
+a^{-n} &amp; = \left(\left(\left(a^{-1}\right)^{-1}\right)^{-n} \right)\\
+	&amp; =\left(a^{-1}\right)^{-(-n)}\textrm{    since the property is true for positive numbers}\\
+	&amp; =\left(a^{-1}\right)^n
+\end{split}
+</me>
+</p></li>
+<li><p> For <m>m > 1</m>, let <m>p(m)</m> be <m>a^{n+m}=a^n*a^m</m> for all <m>n\geq 1</m>. The basis for this proof follows directly from the basis for the definition of exponentiation.</p>
+
+<p>Induction: Assume that for some <m>m > 1</m>, <m>p(m)</m> is true. Then
+<me>
+\begin{split}
+a^{n+(m+1)}&amp;= a^{(n+m)+1}\textrm{      by the associativity of integer addition}\\
+	&amp;=a^{n+m}*a^1\textrm{    by the definition of exponentiation}\\
+	&amp;=\left(a^n*a^m\right)*a^1 \textrm{     by the induction hypothesis}\\
+	&amp;= a^n*\left(a^m*a^1\right)\textrm{     by associativity}\\
+	&amp;= a^n*a^{m+1}\textrm{    by the definition of exponentiation}
+\end{split}
+</me>
+To complete the proof, you need to consider the cases where <m>m</m> and/or <m>n</m> are negative.</p></li>
+<li><p> Let <m>p(m)</m>be <m>\left(a^n\right)^m= a^{n m}</m> for all integers <m>n</m>.</p>
+<p>Basis: <m>\left(a^m\right)^0= e</m> and <m>a^{m\cdot 0}=a^0= e</m> therefore, <m>p(0)</m> is true.</p>
+
+<p>Induction; Assume that <m>p(m)</m> is true for some <m>m ></m>0,
+<me>
+\begin{split}
+\left(a^n\right)^{m+1}&amp;=\left(a^n\right)^m*a^n \textrm{     by the definition of exponentiation}\\
+	&amp;=a^{n m}*a^n\textrm{      by the induction hypothesis}\\
+	&amp; =a^{n m + n}\textrm{      by part (b)  of this proof}\\
+	&amp; =a^{n(m+1)}
+\end{split}
+</me>
+Finally, if <m>m</m> is negative, we can verify that <m>\left(a^n\right)^m= a^{n m}</m> using many of the same steps as the positive case.</p>
+</li>
+</ol></p>
+</answer></exercise>
+<exercise number="6"><statement> <p> Each of the following facts can be derived by identifying a certain group and then applying one of the theorems of this section to it. For each fact, list the group and the theorem that are used.
+<ol marker="(a)">
+<li><p><m>\left(\frac{1}{3}\right)5</m> is the only solution of <m>3x = 5</m>.</p></li>
+<li><p> <m>-(-(-18)) = -18</m>.</p></li>
+<li><p> If <m>A, B, C</m> are <m>3\times 3</m> matrices over the real numbers, with <m>A + B = A + C</m>, then <m>B = C</m>.</p></li>
+<li><p> There is only one subset <m>K</m> of the natural numbers for which <m>K \oplus  A = A</m> for every subset <m>A</m> of the natural numbers.</p></li>
+</ol>
+</p>
+</statement></exercise>
+
+</exercises>
+</section>

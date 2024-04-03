@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="s-atoms-of-a-boolean-algebra">
+<title>Atoms of a Boolean Algebra</title>
+
+
+<p>In this section we will look more closely at something we've hinted at, which is that every finite Boolean algebra is isomorphic to an algebra of sets. We will show that every finite Boolean algebra has <m>2^n</m> elements for some <m>n</m> with precisely <m>n</m> generators, called atoms.</p>
+
+<p> Consider the Boolean algebra <m>[B;  \lor , \land, \bar{}{\hspace{3 pt}}]</m>, whose ordering diagram is depicted in <xref ref="fig-atoms" text="type-global"/></p>
+
+			<figure xml:id="fig-atoms">
+                <caption>Illustration of the atom concept
+                </caption>
+                <image width="50%" source="images/fig-atoms.png">
+                    <description>Illustration of the atom concept</description>
+                </image>
+            </figure>
+
+<p>We note that <m>1 = a_1 \lor  a_2 \lor  a_3</m>, <m>b_1 = a_1 \lor  a_2</m>, <m>b_2 = a_1 \lor  a_3</m>, and <m>b_3 = a_2 \lor  a_3</m>; that is, each of
+the elements above level one can be described completely and uniquely in terms of the elements on level one. The <m>a_i</m>'s have uniquely generated
+the non-least elements of <m>B</m> much like a basis in linear algebra generates the elements in a vector space. We also note that the <m>a_i</m>'s
+are the immediate successors of the minimum element, 0. In any Boolean algebra, the immediate successors of the minimum element are called <term>
+atoms</term>.  For example, let <m>A</m> be any nonempty set. In the Boolean algebra <m>[\mathcal{P}(A); \cup , \cap, \hspace{1 mm}^c]</m> (over <m>\subseteq</m>), the
+singleton sets are the generators, or atoms, of the algebraic structure since each element <m>\mathcal{P}(A)</m> can be described completely and uniquely as the join, or union, of singleton sets.</p>
+
+<definition xml:id="def-atom"><title>Atom</title>
+<idx>Atom of a Boolean Algebra</idx>
+<statement><p>A non-least element <m>a</m> in a Boolean algebra  <m>[B; \lor , \land, \bar{}\hspace{3 pt}]</m> is called an atom if for every <m>x \in  B</m>,  <m>x \land  a = a</m> or <m>x \land  a = 0</m>.</p></statement></definition>
+
+<p>The condition that <m>x \land  a = a</m> tells us that <m>x</m> is a successor of <m>a</m>; that is, <m>a \preceq  x</m>, as depicted in <xref ref="fig-atom-conditions" text="type-global"/>(a)</p>
+
+<p>The condition <m>x \land  a = 0</m> is true only when <m>x</m> and <m>a</m> are <q>not connected.</q> This occurs when <m>x</m> is another
+atom or if <m>x</m> is a successor of atoms different from <m>a</m>, as depicted in  <xref ref="fig-atom-conditions" text="type-global"/>(b).</p>
+
+
+            <figure xml:id="fig-atom-conditions">
+                <caption>Conditions for an atom
+                </caption>
+                <image width="70%" source="images/fig-atom-conditions.png">
+                    <description>Conditions for an atom</description>
+                </image>
+            </figure>
+
+<p>An alternate definition of an atom is based on the concept of <q>covering.</q></p>
+
+<definition xml:id="def-cover"><title>The Covering Relation</title>
+<idx>covering relation</idx>
+<statement><p>Given a Boolean algebra <m>[B; \lor , \land, \bar{}\hspace{3 pt}]</m>, let <m>x, z \in B</m>.  We say that  <m>z</m> <term>covers</term> <m>x</m> iff <m>x \prec z</m> and there does not exist <m>y \in B</m> with <m>x  \prec y  \prec z</m>.</p></statement></definition>
+
+<p>It can be proven that the atoms of Boolean algebra are precisely those elements that cover the zero element.</p>
+
+<p> The set of atoms of the Boolean algebra <m>\left[D_{30}; \lor , \land, \bar{\hspace{5 mm}}\right]</m> is <m>M = \{2, 3, 5\}</m>. To see that <m>a = 2</m> is an atom, let <m>x</m> be any non-least element of <m>D_{30}</m> and note that one of the two conditions <m>x \land  2 = 2</m> or <m>x \land
+ 2 = 1</m> holds. Of course, to apply the definition to this Boolean algebra, we must remind ourselves that in this case the 0-element is 1, the operation
+<m>\land</m> is greatest common divisor, and the poset relation is <q>divides.</q> So if <m>x = 10</m>, we have <m>10 \land  2 = 2</m> (or <m>2 \mid 10</m>), so Condition 1 holds. If <m>x = 15</m>, the first condition is not true. (Why?) However, Condition 2, <m>15 \land  2 = 1</m>, is true. The reader is encouraged to show that 3 and 5 also satisfy the definition of an atom. Next, if we should compute the join (the least common multiple in this case) of
+all possible combinations of the atoms 2, 3, and 5 to generate all nonzero (non-1 in this case) elements of <m>D_{30}</m>. For example, <m>2 \lor  3 \lor  5 = 30</m>
+and <m>2 \lor  5 = 10</m>. We state this concept formally in the following theorem, which we give without proof.</p>
+
+<theorem xml:id="theorem-atom-join">
+<statement><p>Let <m>\mathcal{B}=[B; \lor, \land, \hspace{1 mm}^{\bar{}}] </m> be any finite Boolean algebra. Let  <m>A = \left\{a_1, a_2, \dots ,a_n\right\}</m> be the set of all atoms of <m>\mathcal{B}</m>. Then every element in <m>B</m> can be expressed uniquely as the join of a subset of <m>A</m>.</p></statement></theorem> 
+
+<p>The least element in relation to this theorem bears noting.  If we consider the empty set of atoms, we would consider the join of elements in the empty set to be the least element. This makes the statement of the theorem above a bit more tidy since we don't need to qualify what elements can be generated from atoms.
+</p>
+<p> We now ask ourselves if we can be more definitive about the structure of different Boolean algebras of a given order. Certainly, the Boolean algebras <m>\left[D_{30}; \lor , \land, \land\bar{\hspace{5 mm}} \right]</m> and <m>[\mathcal{P}(A);  \cup , \cap, \hspace{1 mm}^c]</m> have the same graph (that of <xref ref="fig-atoms" text="type-global"/>), the same
+number of atoms, and, in all respects, look the same except for the names of the elements and the operations. In fact, when we apply corresponding
+operations to corresponding elements, we obtain corresponding results. We know from Chapter 11 that this means that the two structures are isomorphic
+as Boolean algebras. Furthermore, the graphs of these examples are exactly the same as that of <xref ref="fig-atoms" text="type-global"/>, which is an arbitrary Boolean algebra of order <m>8 = 2^3</m>.</p>
+
+<p>In these examples of a Boolean algebra of order 8, we note that each had 3 atoms and <m>2^3 = 8</m> number of elements, and all were isomorphic
+to <m>[\mathcal{P}(A ); \cup , \cap, \hspace{1 mm}^c]</m>, where <m>A = \{a, b, c\}</m>. This leads us to the following questions:
+
+<ul>
+<li><p>Are there any different (nonisomorphic) Boolean algebras of order 8?</p></li>
+<li><p>What is the relationship, if any, between finite Boolean algebras and their atoms?</p></li>
+<li><p>How many different (nonisomorphic) Boolean algebras are there of order 2? Order 3? Order 4? etc.</p></li>
+</ul>
+</p>
+
+<p>The answers to these questions are given in the following theorem and corollaries. </p>
+
+<theorem xml:id="theorem-boolean-set-isomorphism">
+<statement><p>Let <m>\mathcal{B}=[B; \lor, \land, -]</m> be any finite Boolean algebra, and let A be the set of all atoms of <m>\mathcal{B}</m>. Then <m>[\mathcal{P}(A); \cup, \cap, {}^c]</m>  is isomorphic to <m>[B; \lor, \land, -]</m> </p>
+</statement>
+<proof><p>An isomorphism that serves to prove this theorem is <m>T:\mathcal{P}(A) \to B </m> defined by 
+<m>T(S)= \bigvee_{a \in S}{a}</m>, where <m>T(\emptyset)</m> is interpreted as the zero of  <m>\mathcal{B}</m>.  We leave it to the reader to prove that this is indeed an isomorphism.</p></proof></theorem>
+
+<corollary xml:id="corollary-power-of-2">
+<statement><p>Every finite Boolean algebra <m>\mathcal{B}=[B; \lor, \land, \bar{\hspace{5 mm}}]</m> has <m>2^n</m>  elements for
+some positive integer <m>n</m>.</p></statement>
+<proof><p>Let <m>A</m> be the set of all atoms of <m>\mathcal{B}</m> and let <m>\left| A\right|  = n</m>. Then there are exactly <m>2^n</m> elements (subsets) in <m>\mathcal{P}(A)</m>,and by <xref ref="theorem-boolean-set-isomorphism" text="type-global" />, <m>[B; \lor, \land, \bar{\hspace{5 mm}} ]</m> is isomorphic to <m>[\mathcal{P}(A); \cup , \cap \hspace{1 mm}^c]</m> and must also have <m>2^n</m> elements.</p></proof></corollary>
+
+<corollary xml:id="corollary-one-power-2">
+<statement><p>All Boolean algebras of order <m>2^n</m> are isomorphic to one another.</p></statement>
+<proof>
+
+            <figure xml:id="fig-corollary-image">
+                <caption>Isomorphisms to be combined
+                </caption>
+                <image width="35%" source="images/fig-corollary-image.png">
+                    <description>Isomorphism to be combined</description>
+                </image>
+            </figure>
+<p>Every Boolean algebra of order <m>2^n</m> is isomorphic to <m>[\mathcal{P}(A); \cup , \cap, \hspace{1 mm}^c ]</m> when <m>\lvert A \rvert= n</m>. Hence, if <m>\mathcal{B}_1</m> and <m>\mathcal{B}_2</m> each have <m>2^n</m> elements, they each have <m>n</m> atoms.  Suppose their sets of atoms are <m>A_1</m> and <m>A_2</m>, respectively.  We know there are isomorphisms <m>T_1</m> and <m>T_2</m>, where <m>T_i:\mathcal{B}_i \to \mathcal{P}(A_i)</m>, <m>i=1,2</m>.  In addition we have an isomorphism, <m>N</m> from <m>\mathcal{P}(A_1)</m> into <m>\mathcal{P}(A_2)</m>, which we ask you to prove in <xref ref="exercise-set-boolean-isomorphism" text="type-global"/>.  We can combine these isomorphisms to produce the isomorphism   <m>T_{2}^{-1}\circ N \circ T_1:\mathcal{B}_1 \to \mathcal{B}_2</m>, which proves the corollary.</p></proof></corollary>
+
+
+<p>The above theorem and corollaries tell us that we can only have finite Boolean algebras of orders <m>2^1, 2^2, 2^3,. . , 2^n</m>, and that all
+finite Boolean algebras of any given order are isomorphic. These are powerful tools in determining the structure of finite Boolean algebras. In the
+next section, we will discuss one of the easiest ways of describing a Boolean algebra of any given order.</p>
+
+
+<exercises xml:id="exercises-13-4"><title>Exercises</title>
+<exercise number="1"><statement> <p><ol marker="(a)"><li><p>Show that <m>a = 2</m> is an atom of the Boolean algebra <m>\left[D_{30}; \lor , \land, - \right]</m>.</p></li>
+<li><p> Repeat part a for the elements 3 and 5 of <m>D_{30}</m>.</p></li>
+<li><p> Verify <xref ref="theorem-atom-join" text="type-global" /> for the Boolean algebra <m>\left[D_{30}; \lor , \land, - \right]</m>.</p></li>
+</ol>
+</p>
+</statement>
+<answer><p>
+<ol marker="(a)">
+<li><p> For <m>a = 3</m> we must show that for each <m>x \in  D_{30}</m>  one of the following is true: <m>x\land 3=3</m> or <m>x\land 3=1</m>.  We do this
+through the following table:
+<me>\begin{array}{cc}
+ x &amp; \textrm{ verification} \\
+\hline
+\begin{array}{c}
+ 1 \\
+ 2 \\
+ 3 \\
+ 5 \\
+ 6 \\
+ 10 \\
+ 15 \\
+ 30 \\
+\end{array}
+ &amp; 
+\begin{array}{c}
+ 1\land 3=1 \\
+ 2\land 3=1 \\
+ 3\land 3=3 \\
+ 5\land 3=1 \\
+ 6\land 3=3 \\
+ 20\land 3=1 \\
+ 15\land 3=3 \\
+ 30\land 3=3 \\
+\end{array}
+ \\
+\end{array}</me>
+For <m>a=5</m>, a similar verification can be performed.</p></li>
+<li><p><m>6 = 2 \lor  3</m>, <m>10 = 2 \lor  5</m>, <m>15 = 3 \lor  5</m>, and <m>30 = 2 \lor  3 \lor  5</m>.</p></li>
+</ol>
+</p></answer></exercise>
+<exercise number="2"><statement><p>Let <m>A = \{a, b, c\}</m>.
+<ol marker="(a)">
+<li><p> Rewrite the definition of atom for <m>[\mathcal{P}(A); \cup , \cap, c ]</m>. What does <m>a \leq  x</m> mean in this example?</p></li>
+<li><p> Find all atoms of <m>[\mathcal{P}(A); \cup , \cap, c ]</m>.</p></li>
+<li><p> Verify <xref ref="theorem-atom-join" text="type-global" /> for <m>[\mathcal{P}(A); c, \cup , \cap ]</m>.</p></li></ol>
+</p>
+</statement></exercise>
+<exercise number="3"><statement><p> Verify <xref ref="theorem-boolean-set-isomorphism" text="type-global" /> and its corollaries for the Boolean algebras in Exercises 1 and 2 of this section.</p>
+</statement>
+<answer><p> If <m>B = D_{30}\textrm{ }</m> 30 then <m>A = \{2, 3, 5\}</m> and <m>D_{30}</m> is isomorphic to <m>\mathcal{P}(A)</m>, where
+
+<m>\begin{array}{cc}
+ 1\leftrightarrow \emptyset \textrm{     } &amp; 5\leftrightarrow  \{5\} \\
+ 2\leftrightarrow  \{2\}\textrm{     } &amp; 10\leftrightarrow  \{2,5\} \\
+ 3\leftrightarrow  \{3\}\textrm{     } &amp; 15\leftrightarrow  \{3,5\} \\
+ 6\leftrightarrow  \{2,3\}\textrm{     } &amp; 30\leftrightarrow  \{2,3,5\} \\
+\end{array}</m>   and   <m>\begin{array}{c}
+ \textrm{ Join} \leftrightarrow  \textrm{ Union} \\
+ \textrm{ Meet}\leftrightarrow  \textrm{ Intersection} \\
+ \textrm{ Complement}\leftrightarrow  \textrm{ Set} \textrm{ Complement}  \\
+\end{array}</m>
+</p></answer></exercise>
+<exercise number="4"><statement><p>Give an example of a Boolean algebra of order 16 whose elements are certain subsets of the set <m>\{1, 2, 3, 4, 5, 6, 7\}</m></p>
+</statement></exercise>
+<exercise number="5"><statement> <p><xref ref="corollary-power-of-2" text="type-global" /> implies that there do not exist Boolean algebras of orders 3, 5, 6, 7, 9, etc. (orders different from <m>2^n</m>). Without this corollary, directly show that we cannot have a Boolean algebra of order 3.</p>
+</statement>
+<hint><p>Assume that <m>[B; \lor , \land, - ]</m> is a Boolean algebra of order 3 where <m>B = \{0,
+x, 1\}</m> and show that this cannot happen by investigating the possibilities for its operation tables.</p></hint>
+<answer><p> Assume that <m>x \neq  0 \textrm{ or } 1</m> is the third element of a Boolean algebra. Then there is only one possible set of tables for join
+and meet, all following from required properties of the Boolean algebra.
+<me>
+\begin{array}{lr}
+			\begin{array}{c|c}
+			 \lor  &amp; 
+			\begin{array}{ccc}
+			 0 &amp; x &amp; 1 \\
+			\end{array}
+			 \\
+			\hline
+ 
+			\begin{array}{c}
+			 0 \\
+			 x \\
+			 1 \\
+			\end{array}
+			 &amp; 
+			\begin{array}{ccc}
+			 0 &amp; x &amp; 1 \\
+			 x &amp; x &amp; 1 \\
+			 1 &amp; 1 &amp; 1 \\
+			\end{array}
+			 \\
+			\end{array}       
+	&amp; 
+			\begin{array}{c|c}
+			 \land  &amp; 
+			\begin{array}{ccc}
+			 0 &amp; x &amp; 1 \\
+			\end{array}
+			 \\
+			\hline
+
+			\begin{array}{c}
+			 0 \\
+			 x \\
+			 1 \\
+			\end{array}
+			 &amp; 
+			\begin{array}{ccc}
+			 0 &amp; 0 &amp; 0 \\
+			 0 &amp; x &amp; x \\
+			 0 &amp; x &amp; 1 \\
+			\end{array}
+			 \\
+			\end{array}
+\end{array}
+</me>
+Next, to find the complement of <m>x</m> we want <m>y</m> such that <m>x \land  y = 0</m> and <m>x \lor  y = 1</m>. No element satisfies both conditions;
+hence the lattice is not complemented and cannot be a Boolean algebra. The lack of a complement can also be seen from the ordering diagram from which <m>\land</m> and <m>\lor</m> must be derived. 
+</p></answer></exercise>
+<exercise number="6"><statement> <p><ol marker="(a)"><li><p>There are many different, yet isomorphic, Boolean algebras with two elements. Describe one such Boolean algebra that is derived from
+a power set, <m>\mathcal{P}(A)</m>, under <m>\subseteq</m>. Describe a second that is described from <m>D_n</m>, for some <m>n \in  P</m>, under <q>divides.</q></p></li>
+<li><p>  Since the elements of a two-element Boolean algebra must be the greatest and least elements, 1 and 0, the tables for the operations
+on <m>\{0, 1\}</m> are determined by the Boolean algebra laws. Write out the operation tables for <m>[\{0, 1\}; \lor , \land, -]</m>.</p></li>
+</ol>
+</p>
+</statement></exercise>
+
+<exercise number="7"><statement> <p>Find a Boolean algebra with a countably infinite number of elements.</p>
+</statement>
+<answer><p> Let <m>X</m> be any countably infinite set, such as the integers. A subset of <m>X</m> is <term>cofinite</term> if it is finite or its complement
+is finite. The set of all cofinite subsets of <m>X</m> is:
+<ol marker="(a)">
+<li><p> Countably infinite - this might not be obvious, but here is a hint.  Assume <m>X=\left\{x_0,x_1,x_2,\ldots \right\}</m>.  For each finite subset
+<m>A</m> of <m>X</m>,  map that set to the integer
+<m>\sum _{i=0}^{\infty } \chi _A \left(x_i\right)2^i</m>  
+You can do a similar thing to sets that have a finite complement, but map them to negative integers.  Only one minor adjustment needs to be made
+to accommodate both the empty set and <m>X</m>.</p></li>
+<li><p> Closed under union</p></li>
+<li><p> Closed under intersection, and</p></li>
+<li><p> Closed under complementation. </p></li>
+</ol>
+Therefore, if <m>B =\{A \subseteq  X : A \textrm{ is cofinite}\}</m>, then <m>B</m> is a countable Boolean algebra under the usual set operations.
+</p></answer></exercise>
+<exercise number="8"><statement><p>Prove that the direct product of two Boolean algebras is a Boolean algebra.</p>
+</statement>
+<hint><p><q>Copy</q> the corresponding proof for groups in Section 11.6.</p></hint></exercise>
+<exercise number="9" xml:id="exercise-set-boolean-isomorphism">
+<statement><p>Prove if two finite sets <m>A_1</m> and <m>A_2</m> both have <m>n</m> elements then <m>[\mathcal{P}(A_1);  \cup , \cap, \hspace{1 mm}^c]</m> is isomorphic to <m>[\mathcal{P}(A_2);  \cup , \cap, \hspace{1 mm}^c]</m></p></statement></exercise>
+<exercise number="10" xml:id="exercise-covering-definition">
+<statement><p>Prove an element of a Boolean algebra is an atom if and only if it covers the zero element.</p></statement></exercise>
+</exercises>
+</section>
