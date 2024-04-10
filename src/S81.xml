@@ -294,13 +294,20 @@ by induction that <m>L_k=7-2^{k+1}</m>.</p>
 </ol></p>
 </answer>
 </exercise>
-<exercise number="4"><statement><p> Suppose that a list of nine items, <m>(r(l), r(2), . . . , r(9))</m>, is sorted by key in decending order so that <m>r(3).\texttt{key} = 12</m> and <m>r(4).\texttt{key} = 10</m>. List the executions of the BinarySearch algorithms that would be needed to complete BinarySearch(1,9) when:
+<exercise number="4">
+<statement><p> Suppose that a list of nine items, <m>(r(l), r(2), . . . , r(9))</m>, is sorted by key in decending order so that <m>r(3).\texttt{key} = 12</m> and <m>r(4).\texttt{key} = 10</m>. List the executions of the BinarySearch algorithms that would be needed to complete BinarySearch(1,9) when:
 <ol marker="(a)" cols="2">
 <li><p>The search key is C = 12</p></li>
 <li><p>The search key is C = 11</p></li>
 </ol></p>
 <p>Assume that distinct items have distinct keys.</p>
-</statement></exercise>
+</statement>
+<answer component="im"><p> 
+<ol marker="(a)">
+<li><p>BinarySearch(1,9) probes <m>r(5).\texttt{key}</m>  and finds it to be less than 12 and then calls BinarySearch(1,4). BinarySearch(1,4) probes <m>r(2).\texttt{key}</m>  and finds it to be greater than 12 and then calls BinarySearch(3,4). BinarySearch(3,4) probes <m>r(3).\texttt{key}</m>  and finds 12.  </p></li>
+<li><p>BinarySearch(1,9) probes <m>r(5).\texttt{key}</m>  and finds it to be less than 11 and then calls BinarySearch(1,4). BinarySearch(1,4) probes <m>r(2).\texttt{key}</m>  and finds it to be greater than 11 and then calls BinarySearch(3,4). BinarySearch(3,4) probes <m>r(3).\texttt{key}</m>  and finds 12, which is greater than 11 and calls  BinarySearch(4,4). BinarySearch(4,4) examines <m>r(4).\texttt{key}</m> and since it is not equal to 11, the search ends unsuccessfully. </p></li>
+</ol></p>
+</answer></exercise>
 <exercise number="5"><statement><p> What is wrong with the following definition of <m>f:\mathbb{R}\to \mathbb{R}</m>? 
 <m>f(0) = 1</m> and <m>f(x) = f(x/2)/2</m> if <m>x\neq 0</m>.</p>
 </statement>
