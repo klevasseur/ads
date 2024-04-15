@@ -20,7 +20,7 @@
  Each of the six orderings is called a permutation of the set <m>A</m>.
 </p>
 </example>
-<example xml:id="ordering_a_schedule"><title>Ordering a schedule</title><p>A student is taking five courses in the fall semester. How many different ways can the five courses be listed? There are <m>5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 = 120</m> different permutations of the set of courses.</p>
+<example xml:id="ordering_a_schedule"><title>Preference Voting</title><p>In an election that uses preference voting, voters rank candidates <m>1^{st}, 2^{nd}, 3^{rd}</m> etc. in order of their preference instead of just selecting their first preference. How many different ways can a voter cast a ballot with five candidates?  Each way to vote is a  permutation of the five candidates.  There are <m>5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 = 120</m> different ways to vote.</p>
 </example>
 <p>In each of the above examples of the rule of products we observe that:</p>
 <p><ol marker="(a)">
@@ -96,8 +96,8 @@
 </statement>
 </example>
 <example xml:id="course-ordering-revisited">
-<title>Course ordering, revisited</title>
-<statement><p>To count the number of ways to order five courses, we can use the permutation formula. We want the number of permutations of five courses taken five at a time:
+<title>Preference Voting, revisited</title>
+<statement><p>To count the number of ways to vote for five candidates in a preference system, we can use the permutation formula. We want the number of permutations of five candidates taken five at a time:
 <me>P(5,5)= \frac{5!}{(5-5)!}= 5!= 120</me>.</p>
 </statement></example>
 <example xml:id="ordering-digits"><title>Ordering of digits under different conditions</title>
@@ -128,6 +128,13 @@
 <li>How many two-digit numbers can be obtained if repetition is allowed?</li>
 </ol></p>
 </statement>
+<answer component="im">
+<p><ol marker="(a)">
+<li><p><m>3!= 6</m>.   123, 213, 132, 312, 231, 321.</p></li>
+<li><p><m>P(3,2)=3\times 2=6</m>.  12, 21, 12, 31, 23, 32. Notice that this list is the previous one with the last digit removed from each number.</p></li>
+<li><p><m>3^2=9</m></p></li>
+</ol></p>
+</answer>
 </exercise>
 <exercise number="3"><statement><p> How many eight-letter words can be formed from the 26 letters in the alphabet? Even without concerning ourselves about whether the words make sense, there are two interpretations of this problem. Answer both.</p></statement>
 <answer> <p>With repetition: <m>26^8\approx  2.0883\times 10^{11}</m></p>
@@ -141,14 +148,28 @@ Determine </p>
 <li><p><m> \lvert \{ (a, b, c) \mid a, b, c \in A \textrm{ and each coordinate is different}\} \rvert </m></p></li>
 </ol></p>
 </statement>
+<answer component="im">
+<p><ol marker="(a)">
+<li><p><m>\lvert A \rvert^3=n^3</m></p></li>
+<li><p><m>P(n,3)=n \times (n-1) \times (n-2) </m></p></li>
+</ol></p></answer>
 </exercise>
 <exercise number="5"><statement><p> The state finals of a high school track meet involves fifteen schools. How many ways can these schools be listed in the program?</p></statement>
 <answer><p> <m>15!</m></p></answer>
 </exercise>
 <exercise number="6"><statement><p> Consider the three-digit numbers that can be formed from the digits 1, 2, 3, 4, and 5 with no repetition of digits allowed.</p>
-   <p>a. How many of these are even numbers?</p>
-   <p>b. How many are greater than 250?</p>
+<p><ol marker="(a)">
+<li><p>How many of these are even numbers?</p></li>
+<li><p>How many are greater than 250?</p></li>
+</ol></p>  
 </statement>
+<answer component="im">
+<p><ol marker="(a)">
+<li><p>To be even, the units digit would need to be either 2 or 4.  We can select the units digit two ways.  Then to select the two other digits, we put two of the remaining 4 digits in order, so there are <m>P(4,2)</m> ways to do that.  Therefore, there are <m>2\times P(4,2)=24</m> even numbers.</p></li>
+<li><p>To get the correct count here we anticipate the addition law that we will see in the next section.  For the number to be greater than 250, the hundredths digit can be 3, 4 or 5; or it could be <m>25x</m> where <m>x</m> is 1, 3 or 4.  There are <m>3\times P(4,2)</m> numbers that start with 3, 4, or 5.  To that we add the three other numbers that start with 25 to give us <m>3 \times P(4,2)+3 = 39</m> </p></li>
+</ol></p>
+</answer>
+
 </exercise>
 <exercise number="7"><statement> <p>All 15 players on the Tall U. basketball team are capable of playing any position.<ol marker="(a)">
 <li><p>How many ways can the coach at Tall U. fill the five starting positions in a game?</p></li>
@@ -158,20 +179,31 @@ Determine </p>
 </ol></p>
 </answer>
 </exercise>
-<exercise number="8"><statement><p><ol marker="(a)">
+<exercise number="8"><statement><p>With circular arrangements like the ones described in this problem it's common to assume that two arrangements are considered that same if one can be rotated to equal the other.  However, since you can't rotate planted shrubs so easily, you might want to also count the possibilities assuming there are five designated positions:  front, side right, side left, back right, back left. <ol marker="(a)">
 <li><p>How many ways can a gardener plant five different species of shrubs in a circle?</p></li>
 <li><p>What is the answer if two of the shrubs are the same?</p></li>
 <li><p>What is the answer if all the shrubs are identical?</p></li>
 </ol></p>
 </statement>
+<answer component="im">
+<p><ol marker="(a)">
+<li><p><m>4!=24</m> if rotations are the same, <m>5!=120</m> with no rotations.</p></li>
+<li><p>If you place one of the three distinct shrubs on the circle, there are <m>4\times 3= 12</m> ways to place the other two of the distinct shrubs.  That is the number of possibilities if we allow rotations since the other two identical shrubs will be filled into the remaining positions.  If rotations are not allowed, we place the three distinct shrubs <m>5 \ times 4 \times 3= 60</m> ways and the other two shrubs fill in the circle, so there are 60 possible arrangements.</p></li>
+<li><p>There is only one arrangement with either set of rules.</p></li>
+</ol></p>
+</answer>
 </exercise>
 <exercise number="9"><statement><p> The president of the Math and Computer Club would like to arrange a meeting with six attendees, the president included. There will be three computer science majors and three math majors at the meeting. How many ways can the six people be seated at a circular table if the president does not want people with the same majors to sit next to one other?</p></statement>
-<answer><p> <m>2\cdot P(3,3)=12</m></p>
+<answer><p>If the president is sitting at 12 o'clock on the table, then the two members from her major need to sit at 4 and 8 o'clock.  There are two ways to arrange them.  The other majors sit at 2, 6, and 10 o'clock and can be placed <m> P(3,3)=6</m> ways, so the final answer is <m>2 \times 6 = 12</m></p>
 </answer>
 </exercise>
 
 
 <exercise number="10"><statement><p> Six people apply for three identical jobs and all are qualified for the positions. Two will work in New York and the other one will work in San Diego. How many ways can the positions be filled?</p></statement>
+<answer component="im">
+<p>If we first fill the two positions in New York, we can select a first person and then a second person <m>6\times 5 = 30</m> ways, but since the jobs are identical, each pair of persons wold be counted twice, so there are 15 ways to fill the NY positions.   Then we can fill the SD position in one of 4 ways.  Therefore there are <m>15 \times 4 = 60</m> ways to fill the jobs.  Another way to get 60 is to think of filling three  different positions, <m>P(5,3)</m> ways to do that.  We then divide by 2 because the two NY positions are really identical.</p>
+</answer>
+
 </exercise>
 <exercise number="11"><statement>
 <p> Let <m>A = \{1, 2, 3, 4\} </m>. Determine the cardinality of</p>
