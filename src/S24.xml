@@ -125,12 +125,16 @@ binomial(52,13)*binomial(39,13)*binomial(26,13)
 <exercise number="2"><statement><p> Suppose that a single character is stored in a computer using eight bits.</p>
 <p>a. How many bit patterns have exactly three 1's?</p>
 <p>b. How many bit patterns have at least two 1's?</p>
-</statement><hint><p>Think of the set of positions that contain a 1 to turn this is into a question about sets.</p></hint><solution><p>(a) <m>\binom{8}{3}</m> (b) <m>2^8-(\binom{8}{0}+\binom{8}{1})</m></p></solution></exercise>
+</statement><hint><p>Think of the set of positions that contain a 1 to turn this is into a question about sets.</p></hint>
+<answer component="im"><p>(a) <m>\binom{8}{3}</m> (b) <m>2^8-(\binom{8}{0}+\binom{8}{1})</m></p></answer></exercise>
+
 <exercise number="3"><statement><p> How many subsets of <m>\{1, 2, 3, \dots , 10\}</m> contain at least seven elements?</p></statement>
 <answer><p> <m>\binom{10}{7} +\binom{10}{8} +\binom{10}{9} +\binom{10}{10}= 120+45+10+1=176 </m> </p>
 </answer></exercise>
+
 <exercise number="4"><statement><p> The congressional committees on mathematics and computer science are made up of five representatives each, and a congressional rule is that the two committees must be disjoint. If there are 385 members of congress, how many ways could the committees be selected?</p>
   </statement>
+  <answer component="im"><p>The number of possible committees is <m>\binom{385}{5} \binom{380}{5}</m>.  This number is approximately <m>4.2 \times 10^{21}</m>, so its exact value isn't very instructive.</p></answer>
 </exercise>
 <exercise number="5"><statement><p><idx><h>Lattice Paths</h></idx>The image below shows a 6 by 6 grid and an example of a <term>lattice path</term> that could be taken from <m>(0,0)</m>  to <m>(6,6)</m>, which is a path taken by traveling along grid lines going only to the right and up. How many different lattice paths are there of this type?  Generalize to the case of lattice paths from <m>(0,0)</m> to <m>(m,n)</m>  for any nonnegative integers <m>m</m> and <m>n</m>.</p>
 <figure xml:id="fig-lattice-path-6">
@@ -142,11 +146,26 @@ binomial(52,13)*binomial(39,13)*binomial(26,13)
 </statement>
 <hint><p>Think of each path as a sequence of instructions to go right (R) and up (U).</p></hint>
 <answer><p>
-Each path can be described as a sequence or R's and U's with exactly six of each.   The six positions in which R's could be placed can be selected from the twelve positions in the sequence <m>\binom{12}{6}</m> ways.  We can generalize this logic and see that there are <m>\binom{m+n}{m}</m> paths from <m>(0,0)</m> to <m>(m,n)</m>.
+Each path can be described as a sequence or R's and U's with exactly six of each.   The six positions in which R's could be placed can be selected from the twelve positions in the sequence <m>\binom{12}{6} =924</m> ways.  We can generalize this logic and see that there are <m>\binom{m+n}{m}</m> paths from <m>(0,0)</m> to <m>(m,n)</m>.
 </p></answer>
 </exercise>
-<exercise number="6"><statement><p>How many of the lattice paths from <m>(0,0)</m> to <m>(6,6)</m> pass through <m>(3,3)</m> as the one in <xref ref="fig-lattice-path-6" text="type-local" /> does?
-</p></statement>
+<exercise number="6">
+	<statement>
+		<p><ol marker="(a)">
+			<li><p>How many of the lattice paths from <m>(0,0)</m> to <m>(6,6)</m> pass through <m>(3,3)</m> as the one in <xref ref="fig-lattice-path-6" text="type-local" /> does?</p></li>
+			<li><p>How many the paths pass through <m>(2,3)</m> but not necessarily <m>(3,3)</m>?</p></li>
+			<li><p>How many the paths pass through <m>(2,3)</m> and avoid <m>(3,3)</m>?</p></li>
+		</ol></p>
+	</statement>
+<answer component="im">		
+		<p><ol marker="(a)">
+			<li><p><m>\binom{6}{3}^2 = 400</m></p></li>
+			<li><p><m>\binom{5}{2} \binom{7}{4} = 350</m></p></li>
+			<li><p><m>\binom{5}{2} \binom{7}{4} - \binom{5}{2} \binom{1}{1} \binom{6}{3} = 150</m></p></li>
+		</ol> 
+		In the answer to the last part, the factor <m>\binom{1}{1}</m> is the number of ways to go from <m>(2,3)</m> to <m>(3,3</m>).  Naturally, that is equal to 1, but we include it to recognize that we are subtracting the paths that pass through both of these points.</p>
+</answer>
+
 </exercise>
 <exercise number="7"><statement><p> A poker game is played with 52 cards.  At the start of a game, each player gets five of the cards.  The order in which cards are dealt doesn't matter.
 <ol marker="(a)">
@@ -159,11 +178,14 @@ Each path can be described as a sequence or R's and U's with exactly six of each
 </ol></p>
 </answer></exercise>
 <exercise number="8"><statement><p> A flush in a five-card poker hand is five cards of the same suit. The suits are spades, clubs, diamonds and hearts.  How many spade flushes are possible in a 52-card deck? How many flushes are possible in any suit?</p></statement>
+<answer component="im"><p>There are <m>\binom{13}{5}=1287</m> different spade flushes.  The number of flushes of any suit is four times this number.</p></answer>
 </exercise>
 <exercise number="9"><statement><p> How many five-card poker hands using 52 cards contain exactly two aces?</p></statement>
 <answer><p><m>\binom{4}{2} \cdot \binom{48}{3} = 6 \cdot 17296=103776</m></p>
 </answer></exercise>
 <exercise number="10"><statement><p>  In poker, a full house is three-of-a-kind and a pair in one hand; for example, three fives and two queens. How many full houses are possible from a 52-card deck?  You can use the sage cell in the <xref ref="sage-bridge-hands" text="title" /> to do this calculation, but also write your answer in terms of binomial coefficients. </p></statement>
+<answer component="im"><p>There are <m>13 \binom{4}{3}=52</m> different spade flushes.  The number of flushes of any suit is four times this number.</p></answer>
+
 </exercise>
 <exercise number="11"><statement><p> A class of twelve computer science students are to be divided into three groups of 3, 4, and 5 students to work on a project. How many ways can this be done if every student is to be in exactly one group?</p></statement>
 <answer><p><m>\binom{12}{3}\cdot\binom{9}{4}\cdot\binom{5}{5}</m></p>
@@ -172,9 +194,14 @@ Each path can be described as a sequence or R's and U's with exactly six of each
 <exercise number="12"><statement><p> Explain in words why the following equalities are true based on number of subsets,  and then verify the equalities using the formula for binomial coefficients.</p>
 <p><ol marker="(a)">
 <li><p><m>\binom{n}{1} = n</m> </p></li>
-<li><p><m>\binom{n}{k} = \binom{n}{n-k}</m>, <m> 0 \leq k \leq n</m></p></li>
+<li><p><m>\binom{n}{k} = \binom{n}{n-k}</m>, <m> 0 \leq k \leq n</m>.</p></li>
 </ol></p>
 </statement>
+<answer component="im"><p><ol marker="(a)">
+<li><p>There are <m>n</m> one element subsets of an <m>n</m> element set. </p></li>
+<li><p>For each <m>k</m> element subset of an <m>n</m> element set there is a companion set, its complement, with <m>n-k</m> elements.</p></li>
+</ol></p></answer>
+
 </exercise>
 <exercise number="13"><statement><p>  There are ten points, <m>P_1, P_2, \dots , P_{10}</m> on a plane, no three on the same line.</p>
 <p><ol marker="(a)">
@@ -197,6 +224,10 @@ Each path can be described as a sequence or R's and U's with exactly six of each
 \end{array}
 </me> </p>
 </statement>
+<answer component="im"><p>Let <m>n = 2m</m>. Then the number of ordered pairings is 
+    <me>\binom{2m}{2} \binom{2m-2}{2}\cdots \binom{4}{2} \binom{2}{2} =\frac{(2m)!}{2^m}</me>
+</p></answer>
+
 </exercise>
 <exercise number="15"><statement><p> Use the binomial theorem to prove that if <m>A</m> is a finite set, then 
 <m>\lvert P(A)\rvert =2^{\lvert A  \rvert}</m></p></statement>
@@ -208,6 +239,11 @@ Each path can be described as a sequence or R's and U's with exactly six of each
 <li><p>A state's lottery involves choosing six different numbers out of a possible 36. How many ways can a person choose six numbers?</p></li>
 <li><p>What is the probability of a person winning with one bet?</p></li>
 </ol></p></statement>
+<answer component="im"><p><ol marker="(a)">
+<li><p><m>\binom{36}{6}=1,947,792</m></p></li>
+<li><p>Since all of the combinations are equally likely, <m>\frac{1}{1947792} \approx 5.134 \times 10^{-7}</m></p></li>
+</ol></p>
+</answer>
 </exercise>
 <exercise number="17"><statement><p>Use the binomial theorem to calculate <m>9998^3</m>.</p></statement>
 <hint><p><m>9998 = 10000-2</m></p></hint>
@@ -215,7 +251,8 @@ Each path can be described as a sequence or R's and U's with exactly six of each
 </answer>
 </exercise>
 <exercise number="18"><statement><p> In the card game Blackjack, there are one or more players and a dealer.  Initially, each player is dealt two cards and the dealer is dealt one card down and one facing up.  As in bridge, the order of the hands, but not the order of the cards in the hands, matters.  Starting with a single 52 card deck, and three players, how many ways can the first two cards be dealt out?  You can use the sage cell in the <xref ref="sage-bridge-hands" text="title" /> to do this calculation. </p></statement>
+<answer component="im"><p>Since there is a difference between the up and down cards that the dealer gets the order does matter for the dealer. The number of possible hands for three players will be <m>\binom{52}{2} \cdot \binom{50}{2}\cdot \binom{48}{2}\cdot 46 \cdot 45</m> </p>
+</answer>
 </exercise>
-
 </exercises>
 </section>
