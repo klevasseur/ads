@@ -206,9 +206,29 @@ In words, this logical law states that if <m>P \Rightarrow  C</m>, then <m>P \la
 <exercise number="2"><statement><p> Prove with truth tables:</p>
 <p><ol marker="(a)">
 <li><p> <m>q, \neg q\Rightarrow  p</m></p></li>
-<li><p>  <m>p \rightarrow  q \Rightarrow  \neg p \lor  q</m></p></li>
+<li><p>  <m>p \rightarrow  q \Leftrightarrow  \neg p \lor  q</m></p></li>
 </ol>
 </p></statement>
+<answer component="im"><p><ol marker="(a)"><li><p>  
+<me>
+ \begin{array}{cccc}
+ p &amp; q &amp;  q \land \neg q &amp; (q \land \neg q)\rightarrow p \\
+ 0 &amp; 0 &amp; 0 &amp; 1 \\
+ 0 &amp; 1 &amp; 0 &amp; 1 \\
+ 1 &amp; 0 &amp; 0 &amp; 1 \\
+ 1 &amp; 1 &amp; 0 &amp; 1 \\
+\end{array}
+</me> Since <m>(q \land \neg q)\rightarrow p</m> is a tautology, the implication is true.</p></li>
+<li> <p> <me>\begin{array}{ccccc}
+ p &amp; q  &amp; p \rightarrow  q &amp;  \neg p \lor  q &amp;  (p \rightarrow  q) \leftrightarrow  (\neg p \lor  q )\\
+ 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 \\
+ 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+ 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+ 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+\end{array}</me>Since <m>(p \rightarrow  q) \leftrightarrow  (\neg p \lor  q )</m> is a tautology, the equivalence is true.</p></li>
+</ol></p>
+</answer>
+
 </exercise>
 
 <exercise number="3"><statement><p>Give direct and indirect proofs of:</p>
@@ -301,7 +321,7 @@ In words, this logical law states that if <m>P \Rightarrow  C</m>, then <m>P \la
 <p>Indirect proof:</p>
 		<p><ol marker="(1)">
 		<li><p> <m>\neg (s\to r)\quad </m>    Negated conclusion</p></li>
-		<li><p> <m>\neg (\neg s\lor r)\quad </m>  Conditional equivalence (I)</p></li>
+		<li><p> <m>\neg (\neg s\lor r)\quad </m>  Conditional equivalence (1)</p></li>
 		<li><p> <m>s\land \neg r\quad </m>   DeMorgan (2)</p></li>
 		<li><p> <m>s\quad</m> Conjunctive simplification (3)</p></li>
 		<li><p> <m>\neg s\lor p\quad </m>   Premise</p></li>
@@ -350,6 +370,43 @@ In words, this logical law states that if <m>P \Rightarrow  C</m>, then <m>P \la
 <li><p> <m>a \lor  b, c \land  d, a \rightarrow  \neg c \Rightarrow  b</m>.</p></li>
 </ol></p>
 </statement>
+<answer component="im">
+<p><ol marker="(a)">
+<li>
+		<p>Direct proof:<ol marker="(1)">
+		<li><p> <m>\neg r \rightarrow \neg q</m>   Premise</p></li>
+		<li><p> <m>\neg r </m>   Premise</p></li>
+		<li><p> <m>\neg q</m> Detachment (1),(2)</p></li>
+		<li><p> <m>p \rightarrow q</m>   Premise</p></li>
+		<li><p> <m>\neg p</m>   Indirect Reasoning (4),(5)</p></li>
+ 		</ol></p>
+</li>
+<li>
+		<p>Indirect proof:<ol marker="(1)">
+		<li><p> <m>\neg r</m>   Negated Conclusion</p></li>
+		<li><p> <m>\neg r \rightarrow q</m>   Premise</p></li>
+		<li><p> <m>q</m>   Detachment (1),(2)</p></li>
+		<li><p> <m>\neg(\neg q)</m>   Involution (3)</p></li>
+		<li><p> <m>p \rightarrow \neg q</m>   Premise</p></li>
+		<li><p> <m>\neg p</m>  Indirect Reasoning (4),(5)</p></li>
+		<li><p> <m>p</m>  Premise</p></li>
+		<li><p> <m>0</m>   Contradiction <m>\square</m></p></li>
+			</ol></p>
+</li>
+<li>
+		<p>Direct proof:<ol marker="(1)">
+		<li><p> <m>c \land  d</m>   Premise</p></li>
+		<li><p> <m>c </m>   Conjunctive Simplification (1)</p></li>
+		<li><p> <m>a \rightarrow \neg c</m>  Premise</p></li>
+		<li><p> <m>\neg(\neg c) </m>  Involution (2)</p></li>
+		<li><p> <m>\neg a</m>   Indirect Reasoning (4),(5)</p></li>
+		<li><p> <m>a \lor b</m>  Premise</p></li>
+		<li><p> <m>b</m>   Disjunctive Simplification (5),(6)<m>\square</m></p></li>
+ 		</ol></p>
+</li>
+
+</ol></p>
+</answer>
 </exercise>
 <exercise number="5"><statement><p>Are the following arguments valid? If they are valid, construct formal proofs; if they aren't valid, explain why not.</p>
 <p><ol marker="(a)">
@@ -388,9 +445,11 @@ In words, this logical law states that if <m>P \Rightarrow  C</m>, then <m>P \la
 </ol></p>
 </answer>
 </exercise>
-<exercise number="6"><statement><p>Determine the validity of the following argument: For students to do well in a discrete mathematics course, it is necessary that they study hard.
-Students who do well in courses do not skip classes. Students who study hard do well in courses. Therefore students who do well in a discrete mathematics
-course do not skip class.</p></statement>
+<exercise number="6"><statement><p>
+My salad contains beets and okra.  If my salad contains cottage cheese then it doesn't contain beets. My salad contains cottage cheese or hummus.  Therefore, my salad contains hummus.
+</p></statement>
+<answer component="im"><p>This logical argument is identical to 4(c), where a, b, c and d are that my salad contains cottage cheese, hummus, beets and okra, respectively. </p>
+</answer>
 </exercise>
 <exercise number="7"><statement><p>Describe how <m>p_1,p_1\to p_2,\ldots  ,p_{99}\to p_{100}\Rightarrow p_{100}</m> could be proved in 199 steps.
 </p></statement>
