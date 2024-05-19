@@ -280,7 +280,39 @@ explain why.</p>
 \right)</m>, where <m>\lvert a \rvert \neq \lvert b \rvert</m>.
 </li></ol></p>
 </statement>
-
+<answer component="im">
+<ol marker="(a)">
+<li> <m>\left(
+\begin{array}{cc}
+ \frac{2}{3} &amp; \frac{1}{3} \\
+ \frac{1}{3} &amp; \frac{2}{3} \\
+\end{array}
+\right)</m>
+</li>
+<li> <p><m> \left(
+\begin{array}{cc}
+ 0 &amp; 1 \\
+ 0 &amp; 2 \\
+\end{array}
+\right)</m> had no inverse.  Its determinant is 0.</p>
+</li>
+<li>  <m>\left(
+\begin{array}{cc}
+ 1 &amp; -c \\
+ 0 &amp; 1 \\
+\end{array}
+\right)</m>
+</li>
+<li>  <m> \left(
+\begin{array}{cc}
+ \frac{a}{a^2-b^2} &amp;
+   -\frac{b}{a^2-b^2} \\
+ -\frac{b}{a^2-b^2} &amp;
+   \frac{a}{a^2-b^2} \\
+\end{array}
+\right)</m>
+</li></ol>
+</answer>
 </exercise>
 <exercise number="3" xml:id="prob-5-2-3"><statement>
 <p><ol marker="(a)">
@@ -318,17 +350,48 @@ explain why.</p>
 
 </exercise>
 
-
-
-<exercise number="4"><statement><p> Let <m>A =\left(
+<exercise number="4">
+<statement><p> Let <m>A =\left(
 \begin{array}{cc}
  a &amp; b \\
  c &amp; d \\
 \end{array}
 \right)</m>. Derive the formula for <m>A^{-1}</m>.</p>
 </statement>
+<solution component="im">
+<p>If we multiply <m>A</m> by an two by two matrix of unknowns, <m>\left(
+\begin{array}{cc}
+ x &amp; y \\
+ z &amp; w \\
+\end{array}
+\right)</m> , and equate that product with the identity matrix, we get
+	<me>\left(
+\begin{array}{cc}
+ a x+b z &amp; a y+b w \\
+ c x+d z &amp; c y+d w 
+\end{array}
+\right)=\left(
+\begin{array}{cc}
+ 1 &amp; 0 \\
+ 0 &amp; 1 \\
+\end{array}
+\right)
+	</me></p>
+<p>If we equate these two matrices, there are two sets of similar pairs of equations that need to be solved. If we focus only on the first columns, the equations are 
+		<me>a x +b z= 1 \text{ and }c x +d z= 0 </me>
+
+</p>
+<p>If we assume that both <m>a</m> and <m>c</m> are both nozero and we multiply the two equation on the left by <m>c</m> and <m>a</m>, respectively we get <me>\begin{split}
+	a c x+b c z= c\\
+	a c x+a d z= 0 \\
+	\end{split}</me>
+	We can then subtract the second equation from the first, eliminating <m>x</m> to get <me>(b c - a d)z = c \Rightarrow z=\frac{-c}{ad-bc}</me>
+	We can then substitute this value of <m>z</m> into <m>c x+d z= 0</m> to get <m>x=\frac{d}{ad-bc}</m>. Notice that the algebra makes sense as long as <m>\det{A}=ad -bc \neq 0</m>. Also <m>a</m> and <m>c</m> can't both be zero.  If either is zero we can derive the same final result. The other set of equations for the second columns are solved in a similar way.</p>
+</solution>
+
 
 </exercise>
+
 <exercise number="5" xml:id="prob-5-2-5"><title>Linearity of Determinants</title><statement> 
 <p><ol marker="(a)">
 <li>Let <m>A</m> and <m>B</m> be 2-by-2 matrices. Show that <m>\det (A B) =(\det  A)(\det  B)</m>.
@@ -341,7 +404,9 @@ explain why.</p>
 </statement><answer><p> <m>1=\det  I=\det \left(AA^{-1}\right)=\det  A\text{  }\det  A^{-1}</m>. Now solve for <m>\det  A^{-1}</m>. 
 </p></answer>
 </exercise>
-<exercise number="6"><statement><p> Prove by induction that for <m>n \geq 1</m>, <m>\left(
+
+<exercise number="6">
+<statement><p> Prove by induction that for <m>n \geq 1</m>, <m>\left(
 \begin{array}{cc}
  a &amp; 0 \\
  0 &amp; b \\
@@ -354,7 +419,49 @@ explain why.</p>
 \right)</m>.
 </p>
 </statement>
-
+<solution component="im"><p>The basis follows by the definition of the first power of a matrix.  If, for any <m>n\geq 1</m>, the formula is true, then </p>
+	<p>	<me>
+	     \begin{split}
+			\left(
+			\begin{array}{cc}
+			 a &amp;0 \\
+			 0 &amp;b \\
+			\end{array}
+			\right)^{n+1}
+					&amp;=\left(
+						\begin{array}{cc}
+						 a &amp;0 \\
+					 	0 &amp;b \\
+						\end{array}
+						\right)^n 
+						\left(
+							\begin{array}{cc}
+							 a &amp;0 \\
+							 0 &amp;b \\
+							\end{array}
+								\right) \\
+		   &amp;=\left(
+					\begin{array}{cc}
+					 a^n &amp;0 \\
+					 0 &amp;b^n \\
+					\end{array}
+					\right)
+						\left(
+						\begin{array}{cc}
+						 a &amp;0 \\
+						 0 &amp;b \\
+						\end{array}
+						\right) \quad \textrm{by the induction hypothesis.}\\
+				&amp;=
+							\left(
+						\begin{array}{cc}
+						 a^{n+1} &amp;0 \\
+						 0 &amp;b^{n+1} \\
+						\end{array}
+						\right) \quad \blacksquare
+		\end{split}
+			</me> </p>
+</solution>
 </exercise>
 <exercise number="7"><statement><p> Use the assumptions in <xref ref="prob-5-2-5" text="type-global" /> to prove by induction that if <m>n \geq 1</m>, <m>\det \left(A^n\right) = (\det  A)^n</m>.</p>
 </statement>
@@ -362,7 +469,7 @@ explain why.</p>
 <p>Basis: <m>(n=1): \det  A^1=\det  A =(\det  A )^1</m></p>
 
   
-<p>Induction: Assume <m>\det  A^n=(\det  A)^n</m> for some <m>n\geq 1</m>.</p>
+<p>Induction: Assume <m>\det(A^n)=(\det  A)^n</m> for some <m>n\geq 1</m>.</p>
 <p>
 <me>
 \begin{split}
@@ -378,7 +485,16 @@ explain why.</p>
 </exercise>
 <exercise number="8"><statement><p>Prove: If the determinant of a matrix <m>A</m> is zero, then <m>A</m> does not have an inverse. Hint: Use the indirect method of proof and exercise 5.</p>
 </statement>
-
+		<solution component="im"> <p>(Indirect Proof)  Assume that <m>\det(A)=0</m> but <m>A^{-1}</m> exits.</p>
+<p>		<me>\begin{split}
+			1 &amp; =\det(I)\\
+				&amp; =\det(A A^{-1})\\
+				&amp; =\det(A)\cdot \det(A^{-1})\quad \text{by exercise 5.}\\
+				&amp; =0 \cdot \det(A^{-1})\\
+				&amp; =0  \quad \text{Contradiction}\blacksquare
+			\end{split}
+		</me></p>
+		</solution>
 </exercise>
 
 <exercise number="9"><statement>
