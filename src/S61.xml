@@ -99,17 +99,40 @@ to be in <m>rs</m>, it must be possible to travel along a path in <xref ref="gra
 </ol></p>
 </answer>
 </exercise>
-<exercise number="2"><statement><p> The following relations are on <m>\{1, 3, 5\}</m>. Let <m>r</m> be the relation <m>x r y</m> iff <m>y = x + 2</m> and <m>s</m> the
-relation <m>x s y</m> iff <m>x \leq  y</m>.</p>
+<exercise number="2"><idx>Nim</idx><statement><p> The following relations are on <m>P=\{0,1,2,\dots 8,9\}</m>. Let <me>A=\{(9,8),(9,7),(6,5),(6,4),(3,2),(3,1)\}</me> and
+<me>B=\{((8,6),(7,6),(5,3),(4,3),(2,0),(1,0)\}.</me> </p>
 <p><ol marker="(a)">
-<li><p> List all elements in  <m>rs</m>.</p></li>
-<li><p> List all elements in  <m>sr</m>.</p></li>
-<li><p> Illustrate <m>rs</m> and <m>sr</m> via a diagram.</p></li>
-<li><p> Is the relation <m>rs</m> equal to the relation <m>sr</m>?</p></li>
+<li><p> List all elements in  <m>AB</m>.</p></li>
+<li><p> List all elements in  <m>BA</m>.</p></li>
+<li><p> Illustrate <m>AB</m> and <m>BA</m> via a diagram.</p></li>
+<li><p>In one version of the game of <term>nim</term> players A and B take turns removing one or two stones from a pile.  The player who manages to remove the last stone wins.  Explain how these two relations describe the winning moves for B if A plays first with nine stones in the pile at the start of the game.</p></li>
 </ol></p>
 </statement>
-
+<answer component="im">
+<p><ol marker="(a)">
+<li><p><m>AB=\{(9,6),(6,3),(3,0)\}</m>.</p></li>
+<li><p> <m>BA=\{(8,5),(8,4),(7,5),(7,4),(5,2),(5,1),(4,2),(4,1)\}</m>.</p></li>
+<li><sidebyside>
+<image source="images/fig-sol-nim3-AB.png" width="45%">
+    <description>
+        <p>
+            Three columns, each with the numbers 0 through 9 lined up in order.  The left column and middle column are connected  with directed edges corresponding with the elements of <m>A</m> while the middle and right columns correspond with pairs in <m>B</m>.
+        </p>
+    </description>
+</image>
+<image source="images/fig-sol-nim3-BA.png" width="45%">
+    <description>
+        <p>
+            Three columns, each with the numbers 0 through 9 lined up in order.  The left column and middle column are connected  with directed edges corresponding with the elements of <m>B</m> while the middle and right columns correspond with pairs in <m>A</m>.
+        </p>
+    </description>
+</image>
+</sidebyside></li>
+<li><p>In this version of the game, the player who can leave their opponent with a multiple of 3 stones for their next move will always win. If A starts with 9 stones, whatever the first move is, B can counter by leaving A with 6 stones for their next turn.  In A's next move there will be 3 stones and then 0 stones, which means B loses and A wins.</p></li>
+</ol></p>
+</answer>
 </exercise>
+
 <exercise number="3"><statement><p> Let <m>A = \{1,2,3,4,5\}</m> and define <m>r</m> on <m>A</m> by <m>x r y</m> iff <m>x + 1 = y</m>. We
 define <m>r^2 = r r</m> and <m>r^3 = r^2 r</m>. Find:
 <ol marker="(a)">
@@ -128,6 +151,9 @@ define <m>r^2 = r r</m> and <m>r^3 = r^2 r</m>. Find:
 what are <m>st</m> and <m>ts</m>? Hint: Even when a relation involves infinite sets, you can often get insights into them by drawing
 partial graphs.</p>
 </statement>
+<answer component="im">
+<p><m>st=\{(1,1)\}</m> and <m>ts = \mathbb{Z} \times \mathbb{Z}</m>.</p>
+</answer>
 </exercise>
 <exercise number="5"><statement><p> Let <m>\rho</m> be the relation on the power set, <m>\mathcal{P}(S )</m>, of a finite set <m>S</m> of cardinality <m>n</m> defined <m>\rho</m> by <m>(A,B)
 \in \rho</m> iff <m>A\cap  B = \emptyset</m>.</p>
@@ -141,7 +167,11 @@ partial graphs.</p>
 </ol></p>
 </answer>
 </exercise>
-<exercise number="6"><statement><p>Consider the two relations on people: <m>M</m>, where <m>aMb</m> if <m>a</m>'s mother is <m>b</m>; and <m>S</m>, where  <m>aSb</m> if <m>a</m> and <m>b</m> are siblings.  Describe, in words, the two relations <m>MS</m> and <m>SM</m> in simple English terms.</p></statement></exercise>
+<exercise number="6"><statement><p>Consider the two relations on people: <m>M</m>, where <m>aMb</m> if <m>a</m>'s mother is <m>b</m>; and <m>S</m>, where  <m>aSb</m> if <m>a</m> and <m>b</m> are siblings.  Describe, in words, the two relations <m>MS</m> and <m>SM</m> in simple English terms.</p></statement>
+		<answer component="im">
+		<p><m>a MS b</m> if and only if <m>b</m> is <m>a</m>'s aunt or uncle.  <m>a SM b</m> if and only if <m>b</m> is <m>a</m>'s mother and <m>a</m> has sibling with the same mother.</p>
+		</answer>
+</exercise>
 <exercise number="7"><statement><p> Let <m>r_1</m>, <m>r_2</m>, and <m>r_3</m> be relations on any set <m>A</m>. Prove that if <m>r_1\subseteq r_2</m> then <m>r_1r_3\subseteq r_2r_3</m>.</p>
 </statement>
 <solution><p>Assume <m>(x,y)\in r_1r_3</m>.  This implies that there exist <m>z \in A</m>  such that <m>(x,z)\in r_1</m> and <m>(z,y)\in r_3</m>.  We are given that  <m>r_1\subseteq r_2</m>, which implies that <m>(x,z)\in r_2</m>. Combining this with <m>(z,y)\in r_3</m> implies that <m>(x,y)\in r_2r_3</m>, which proves that <m>r_1r_3\subseteq r_2r_3</m>.</p></solution>
