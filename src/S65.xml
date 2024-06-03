@@ -178,7 +178,9 @@ no more than <m>\lceil \log_2 25 \rceil = 5</m> matrix multiplications are neede
 </exercise>
 <exercise number="2"><statement><p>Let <m>A=\{1,2,3,4,6,12\}</m> and <m>t=\{(a,b)\mid b/a \textrm{ is a prime number}\}</m>. Determine <m>t^+</m> by any means.  Represent your answer as a matrix.</p>
 </statement>
-
+<answer component="im">
+<p><m>t^+ = \{(a,b):  a \leq b \text{ and }a\mid b\}</m></p>
+</answer>
 </exercise>
 <exercise number="3">
 <statement> 
@@ -219,9 +221,8 @@ path of any finite nonzero length.</li>
 </exercise>
 <exercise number="4"><statement><p> Let <m>r</m> be the relation represented by the following digraph.</p>
 <p><ol marker="(a)">
-<li><p> Find <m>r^+</m> using the definition based on order pairs.</p></li>
-<li><p> Determine the digraph of <m>r^+</m> directly from the digraph of <m>r</m>.</p></li>
-<li><p> Verify your result in part (b) by computing the digraph from your result in part (a).</p></li>
+<li><p>Determine <m>r^+</m> based on paths in the give graph.</p></li>
+<li><p>Verify your result in part (a) by using the <xref ref="alg-trans-closure"  text="title"/>.</p></li>
 </ol></p>
 	<figure>
 			 <caption>Digraph of <m>r</m> in exercise 4. 
@@ -231,7 +232,93 @@ path of any finite nonzero length.</li>
 			 </image>
 	</figure>
 </statement>
-
+<answer component="im">
+<ol marker="(a)">
+<li><p> <m>\begin{multline>r^+={(1.2),(1.3),(1.4),(1.5),(3.2),(3.3),(3.4),
+(3.5),(4.2),(4.3),(4.4),(4.5),(5.2),(5.3),(5.4),(5.5)}/end{multline}</m></p></li>
+<li>
+<tabular halign="center">
+    <row header="yes" bottom="minor" >
+      <cell>Step </cell>
+      <cell><m>S=T</m>?</cell>
+      <cell> <m>S</m></cell>
+      <cell><m>T</m> </cell>
+    </row>
+    <row>
+      <cell>1,2</cell>
+      <cell>-</cell>
+      <cell><m>\left(
+\begin{array}{ccccc}
+ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+\end{array}
+\right)</m></cell>
+      <cell><m>\left(
+\begin{array}{ccccc}
+ 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 \\
+ 0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 \\
+\end{array}
+\right)</m></cell>
+    </row>
+    <row>
+      <cell>3a</cell>
+      <cell>No</cell>
+      <cell><m>\left(
+\begin{array}{ccccc}
+ 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 \\
+ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 \\
+ 0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 \\
+\end{array}
+\right)</m></cell>
+      <cell><m>\left(
+\begin{array}{ccccc}
+ 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+ 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+ 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+\end{array}
+\right)</m></cell>
+    </row>
+    <row>
+      <cell>3b</cell>
+      <cell>No</cell>
+      <cell><m>\left(
+\begin{array}{ccccc}
+ 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+ 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+ 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+\end{array}
+\right)</m></cell>
+      <cell><m>\left(
+\begin{array}{ccccc}
+ 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+ 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+ 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+\end{array}
+\right)</m></cell>
+    </row>
+    <row>
+      <cell>3c</cell>
+      <cell>Yes</cell>
+      <cell><m>-</m></cell>
+      <cell><m>-</m></cell>
+    </row>
+  </tabular></li>
+</ol>
+</answer>
 </exercise>
 <exercise number="5"><statement> 
 <p><ol marker="(a)">
@@ -251,7 +338,13 @@ path of any finite nonzero length.</li>
 <li><p> <m>a S b</m> if and only if <m>a + 1 = b</m>.</p></li>
 <li><p> <m>a R b</m> if and only if <m>| a - b | = 2</m>.</p></li>
 </ol></p></statement>
-
+<answer component="im"><p>
+<ol marker="(a)">
+<li><p> <m>S^+</m> is the <q>less than</q> relation on the integers.</p></li>
+<li><p> <m>R^+</m> is congruence mod 2, <m>\equiv_2</m>.</p></li>
+</ol> 
+</p>
+</answer>
 </exercise>
 
 
@@ -269,6 +362,9 @@ path of any finite nonzero length.</li>
 </exercise>
  <exercise number="8"><statement> 
 <p>The definition of the <xref ref="def-transitive-closure" text="title"/> of <m>r</m> refers to the <q>smallest transitive relation that contains <m>r</m> as a subset.</q>  Show that the intersection of all transitive relations on <m>A</m> containing <m>r</m> is a transitive relation containing <m>r</m> and is precisely <m>r^+</m>.</p></statement>
+<answer component="im">
+<p>Let <m>\mathcal{T}</m> be the set of all transitive relations that contain <m>r</m>; and let <me>r^c=\bigcup_{s\in \mathcal{T}} s</me> </p>
+</answer>
 </exercise>
 
 </exercises>
