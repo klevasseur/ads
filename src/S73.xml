@@ -159,7 +159,7 @@ To do so, it is convenient for us to use the relation notation, where <m>f(s)=t<
 one-to-one, assume that <m>f(a)=f(b) = c</m>. Alternatively, that means <m>(a, c)</m> and <m>(b, c)</m> are elements of <m>f</m> . We must show
 that <m>a =b</m>. Since <m>(a, b), (c, b) \in \text{  }f</m>, <m>(c, a)</m> and <m>(c,b)</m> are in <m>f^{-1}</m>. By the fact that <m>f^{-1}</m> is a function and <m>c</m> cannot have two images, <m>a</m> and <m>b</m> must be equal, so <m>f</m> is one-to-one. </p>
 <p>Next, to prove that <m>f</m> is onto, observe that for <m>f^{-1}</m> to be a function, it must use all of its domain, namely A. Let <m>b</m>
-be any element of <m>A</m>. Then b has an image under <m>f^{-1}</m> , <m>f^{-1}(b)</m>. Another way of writing this is <m>\left(b,f^{-1}(b)\right)\in
+be any element of <m>A</m>. Then <m>b</m> has an image under <m>f^{-1}</m> , <m>f^{-1}(b)</m>. Another way of writing this is <m>\left(b,f^{-1}(b)\right)\in
 f^{-1}</m>, By the definition of the inverse, this is equivalent to <m>\left(f^{-1}(b), b\right) \in  f</m>. Hence, <m>b</m> is in the range of <m>f</m>. Since <m>b</m> was chosen arbitrarily, this shows that the range of <m> f </m> must be all of <m>A</m>.</p>
 
 <p>(<m>\Leftarrow</m> ) Assume <m>f</m> is one-to-one and onto and we are to prove <m>f^{-1}</m> exists. We leave this half of the proof to the reader.
@@ -362,7 +362,28 @@ and <m>h(n)=n^2</m>. Define:</p>
 \end{array}
 \right)</m>. How many permutations of <m>\pi</m> leave the determinant of <m>A</m> invariant, that is, <m>\det  A = \det  B</m>?</p>
 </statement>
-<answer component="im">
+<answer component="im"><p>Clearly, the identity function leaves the determinant invarient.  There are three other functions that do the same.  They are
+<me>
+<tabular>
+<row><cell>\left(
+\begin{array}{cccc}
+ a &amp; b &amp; c &amp; d \\
+ a &amp; c &amp; b &amp; d \\
+\end{array}
+\right)</cell><cell>\left(
+\begin{array}{cccc}
+ a &amp; b &amp; c &amp; d \\
+ d &amp; b &amp; c &amp; a \\
+\end{array}
+\right)</cell><cell>\left(
+\begin{array}{cccc}
+ a &amp; b &amp; c &amp; d \\
+ d &amp; c &amp; b &amp; a \\
+\end{array}
+\right)</cell></row>
+</tabular>
+</me>
+All of these functions exchange entries that are in the same diagonal.</p>
 </answer>
 </exercise>
 
@@ -385,9 +406,19 @@ and <m>h(n)=n^2</m>. Define:</p>
 </answer>
 </exercise>
 <exercise number="12" xml:id="exercise-composition-inverse-basis"><statement><p> Let <m>f</m> and <m>g</m> be functions whose inverses exist. Prove that <m>(f\circ g)^{-1}= g^{-1}\circ f^{-1}</m>.</p>
+
 </statement>
 <hint><p>See Exercise 3 of Section 5.4.</p></hint>
 <answer component="im">
+<p>We've proven that inverses are unique and so all we need to do is to demonstrate that <m>g^{-1}\circ f^{-1}</m> inverts <m>(f\circ g)</m> to be able to equate it with <m>(f\circ g)^{-1}</m>.
+		<me>\begin{split}
+		(f\circ g)\circ (g^{-1}\circ f^{-1})&amp;=((f\circ g)\circ g^{-1})\circ f^{-1}\\
+							&amp;=(f\circ (g\circ g^{-1}))\circ f^{-1}\\	
+							&amp;=(f\circ i)\circ f^{-1}\\	
+							&amp;=f\circ f^{-1}=i\\	
+		\end{split}
+		</me>
+We can verify that  <m>(g^{-1}\circ f^{-1}) \circ (f\circ g)</m> is also equal to <m>i</m> with similar logic.</p>
 </answer>
 </exercise>
 <exercise number="13"><statement><p> Prove <xref ref="theorem-composition-of-injections" text="type-global"/> and <xref ref="theorem-composition-of-surjections" text="type-global"/>.</p>
@@ -431,6 +462,9 @@ between the two sets. Why does it not matter whether the bijection is from <m>A<
 </ol></p>
 </statement>
 <answer component="im">
+<p>Every set has the same cardinality as itself because the identity function on that set is a bijection.</p>
+<p>If <m>A</m> has the same cardinality as <m>B</m>, then there exists a bijection <m>f</m> from <m>A</m> into <m>B</m>.  But since <m>f</m> is a bijection, it has an inverse <m>f^{-1}</m> from <m>B</m> into <m>A</m> that also is a bijection since <m>f</m> is its inverse.  Therefore, <m>B</m> has the same cardinality as <m>A</m>.  Hence, having the same cardinality is a symmetric relation.</p>
+<p>Finally, if <m>A</m> has the same cardinality as <m>B</m>, and <m>B</m> has the same cardinality as <m>C</m>, we know that there are two bijection:  <m>f:A \rightarrow B</m> and <m>g:B \rightarrow C</m>.  Since the composition of two bijections is a bijection, <m>g\circ f: A \rightarrow C</m> is a bijection that implies that <m>A</m> has the same cardinality as <m>C</m>.  This establishes the transitive property and we have an equivalence relation. </p>
 </answer>
 </exercise>
 <exercise number="17"><statement><p>Construct a table listing as many <q>Laws of Function Composition</q> as you can identify. Use previous lists of laws as a guide.</p>
@@ -439,6 +473,8 @@ between the two sets. Why does it not matter whether the bijection is from <m>A<
 <exercise number="18"><statement><p> Based on the definition of the identity function, show that for all functions <m>f:A\to A</m>, <m>f\circ i=i\circ f = f</m>.</p>
 </statement>
 <answer component="im">
+<p>If <m>a\in A</m>, <me>(f\circ i)(a)= f(i(a))=f(a) \Rightarrow \quad f\circ i=f.</me>
+Similarly <m>i\circ f = f</m>.
 </answer>
 </exercise>
 <!-- 
