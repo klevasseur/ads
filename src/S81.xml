@@ -280,6 +280,17 @@ hence the formula is true for <m>k+1</m></p>
 <exercise number="2"><statement><p> Define the sequence <m>L</m> by <m>L_0 = 5</m> and for <m>k\geq 1</m>, <m>L _k = 2L_{k-1}-7</m>.  Determine <m>L_4</m> and prove
 by induction that <m>L_k=7-2^{k+1}</m>.</p>
 </statement>
+<answer component="im">
+<p>Basis: Using the given formula, <m>L_0=7-2^{0+1}=5</m>, which agrees with the basis of the recursive definition.</p>
+<p>Induction:  Assume that for some <m>k \geq 0</m> the formula is correct.
+	<me>\begin{split}
+		L_{k+1}&amp;=2 L_{k}-7 &amp;by the recursive definition\\
+				&amp;=2 (7-2^{k+1})-7 &amp;by the induction hypothesis\\
+				&amp;=7-2^{(k+1)+1}&amp;\blacksquare \\
+		\end{split}
+	</me>
+</p>
+</answer>
 </exercise>
 <exercise number="3"><statement><p> Let <m>p(x) = x^5+ 3x^4 - 15x^3 + x - 10</m>.</p>
  <p><ol marker="(a)">
@@ -314,6 +325,10 @@ by induction that <m>L_k=7-2^{k+1}</m>.</p>
 <answer><p>The basis is not reached in a finite number of steps if you try to compute <m>f(x)</m> for a nonzero value of <m>x</m>.</p></answer>
 </exercise>
 <exercise number="6"><statement><p>Prove the two definitions of binomials coefficients, <xref ref="binomial-coefficient" text="type-global" /> and <xref ref="def-binomial-coefficient-recursive" text="type-global"/>, are equivalent.</p></statement>
+<answer component="im">
+<p>Basis: The basis for the definition of binomial coefficients states that <m>\binom{n}{0}=1</m>, which is the number of zero element subsets of any set; i. e., the empty set.  Also <m>\binom{n}{n}=1</m> is consistent with the fact that the only <m>n</m> element subset of an <m>n</m> element set is the whole set itself.</p>
+<p>Induction:  Now assume <m>0\lt k \lt n+1</m>.  We will partition the <m>k</m> element subsets of an <m>n+1</m> element set according to whether some arbitrary <q>last</q> element is in a subset or not.  If that last element isn't included in a subset, there are as many subsets as the the <m>k</m> element subsets of an <m>n</m> element set, <m>\binom{n}{k}</m>.  If the last element is included, then any subset will be made up with that element and an <m>k-1</m> element subset from the other <m>n</m> elements, so there are <m>\binom{n}{k-1}</m> such subsets.  The sum of the two alternative counts matches the recursive definition.<m>\blacksquare</m></p>
+ </answer>
 </exercise>
 <exercise number="7" xml:id="exercise-binomial-sum"><statement><p>Prove by induction that if <m>n \geq 0</m>,
 <m>\sum_{k=0}^n \binom{n}{k} = 2^n</m></p></statement>

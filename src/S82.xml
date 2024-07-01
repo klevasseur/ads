@@ -96,21 +96,23 @@ B(k+1) &amp;=B(k)+3\\
 </exercise>
 
 <exercise number="2"><statement>
-<p><ol marker="(a)">
+<p>The sequence of first differences of any sequence <m>S</m> is the sequence <m>S(k+1)-S(k)</m>.  The sequence of second differences is the sequence of first difference of the first differences:
+	<me>(S(k+2)-S(k+1))-(S(k+1)-S(k))=S(k+2)-2 S(k+1)+S(k).</me>
+<ol marker="(a)">
 <li><p>Consider sequence <m>Q</m> defined by <m>Q(k) = 2k + 9</m>, <m>k \geq  1</m>. Complete the table below and determine a recurrence relation
 that describes <m>Q</m>. 
 
 
 
 <m>\begin{array}{c|c|c}
- k &amp; Q(k)  &amp; Q(k)-Q(k-1) \\
+ k &amp; Q(k)  &amp; Q(k+1)-Q(k) \\
  \hline
+ 0 &amp; \quad\quad  &amp;   \\
+ 1 &amp;   &amp;   \\
  2 &amp;   &amp;   \\
  3 &amp;   &amp;   \\
- 4 &amp; \text{  } &amp;   \\
+ 4 &amp;   &amp;   \\
  5 &amp;   &amp;   \\
- 6 &amp;   &amp;   \\
- 7 &amp;   &amp;   \\
 \end{array}</m>
 </p></li>
 <li><p> Let <m>A(k) = k^2 - k</m>, <m>k \geq  0</m>. Complete the table below and determine a recurrence relation for <m>A</m>. 
@@ -118,16 +120,61 @@ that describes <m>Q</m>.
 
 
  <me>\begin{array}{c|c|c|c}
- k &amp; A(k) &amp; A(k)-A(k-1) &amp; A(k)-2A(k-1)+A(k-2) \\
+ k &amp; A(k) &amp; A(k+1)-A(k) &amp; A(k+2)-2A(k+1)+A(k) \\
  \hline
+ 0 &amp;   &amp;   &amp;   \\
+ 1 &amp;   &amp;   &amp;   \\
  2 &amp;   &amp;   &amp;   \\
- 3 &amp;   &amp;   &amp;   \\
+ 3 &amp; \quad\quad    &amp;   &amp;   \\
  4 &amp;   &amp;   &amp;   \\
  5 &amp;   &amp;   &amp;   \\
-\end{array}</me>
+ \end{array}</me>
 </p></li>
 </ol></p>
-</statement></exercise>
+</statement>
+<answer component="im">
+<p>
+<ol marker="(a)">
+<li><p>The table below indicates that the recurrence relation
+that describes <m>Q</m> is <m>Q(k+1)-Q(k)=2</m>, or rearranging the terms and changing the index, we get <m>Q(k)=Q(k-1)+2</m>, with the basis <m>Q(0)=9</m>. 
+
+
+
+<m>\begin{array}{c|c|c}
+ k &amp; Q(k)  &amp; Q(k+1)-Q(k) \\
+ \hline
+ 0 &amp; 9  &amp; 2  \\
+ 1 &amp; 11  &amp; 2  \\
+ 2 &amp; 13  &amp; 2 \\
+ 3 &amp; 15  &amp; 2  \\
+ 4 &amp; 17  &amp; 2  \\
+ 5 &amp; 19  &amp; 2  \\
+\end{array}</m>
+</p></li>
+<li><p>The table below suggests the recurrence relation for <m>A</m> is
+<md>
+<mrow>A(k+2)-2A(k+1)+A(k)=2</mrow>
+<mrow>\text{or}</mrow>
+<mrow>A(k)=2A(k-1)-A(k-2)+2</mrow>
+</md> 
+
+
+
+ <me>\begin{array}{c|c|c|c}
+ k &amp; A(k) &amp; A(k+1)-A(k) &amp; A(k+2)-2A(k+1)+A(k) \\
+ \hline
+ 0 &amp; 0   &amp; 0  &amp; 2  \\
+ 1 &amp; 0  &amp;  2 &amp;  2 \\
+ 2 &amp; 2  &amp; 4  &amp;  2 \\
+ 3 &amp; 6  &amp; 6  &amp;  2 \\
+ 4 &amp; 12  &amp; 8  &amp; 2  \\
+ 5 &amp; 20  &amp; 10  &amp; 2  \\
+ \end{array}</me>
+</p></li>
+</ol>
+</p>
+</answer>
+</exercise>
 
 <exercise number="3"><statement><p> Given <m>k</m> lines (<m>k\geq 0</m>) on a plane such that no two lines are parallel and no three lines meet at the same point, let <m>P(k)</m>
 be the number of regions into which the lines divide the plane (including the infinite ones (see <xref ref="exercise-8-2-3" text="type-global"/>). Describe how the recurrence
@@ -147,7 +194,11 @@ relation <m>P(k) = P(k - 1) + k</m> can be derived. Given that <m>P(0) = 1</m>, 
 
 <exercise number="4"><statement><p> A sample of a radioactive substance is expected to decay by 0.15 percent each hour. If <m>w_t,</m> <m>t \geq  0</m>, is the weight of the sample
 <m>t</m> hours into an experiment, write a recurrence relation for <m>w</m>.</p>
-</statement></exercise>
+</statement>
+<answer component="im">
+<p><m>w_t=w_{t-1}-0.15 w_{t-1}=0.85 w_{t-1}</m></p>
+</answer>
+</exercise>
 
 <exercise number="5"><statement><p> Let <m>M(n)</m> be the number of multiplications needed to evaluate an <m>n^{th}</m> degree polynomial. Use the recursive definition of a
 polynomial expression to define <m>M</m> recursively.</p>
@@ -162,10 +213,13 @@ polynomial expression to define <m>M</m> recursively.</p>
 <li><p> <m>(\forall M)_{\mathbb{N}}((\exists  N)_{\mathbb{N}}((\forall  n)_{\mathbb{N}}(n \geq N \rightarrow S(n)\geq M)))</m></p></li>
 </ol> </p>
 </statement>
-<!-- 
-<answer> <p></p>
+<answer component="im">
+<p><ol marker="(a)">
+<li><p> S is unbounded.  For any real number, no matter how large, there will be a term of the sequence that will exceed that number.</p></li>
+<li><p>S is unbounded and stays at an arbitrarily high level.  For any real number, S will exceed that number at some point and stay above that level.</p></li>
+</ol>
+The second condition is stronger than the first.  An example of a sequence for which the first condition is true but the second is not true is the sequence <m>S(k)=(-1)^k k^2</m>.</p>
 </answer>
- -->
 </exercise>
 
 </exercises>
