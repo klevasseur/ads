@@ -391,7 +391,17 @@ list(map(lambda k:[k,D(k),(D(k)/factorial(k)).n(digits=8)],range(1,16)))
 
 <exercise number="2"><statement> <p>Prove that if <m>n \geq 0</m>, <m>\lfloor n/2\rfloor +\lceil n/2\rceil = n</m>. (Hint: Consider the cases of <m>n</m> odd and <m>n</m> even separately.)
 </p>
-</statement></exercise>
+</statement>
+		<answer component="im">
+		<p>There are two cases, <m>n</m> is either even or odd.</p>
+		<p>If <m>n=2k</m>, then 
+		<me>\lfloor n/2\rfloor +\lceil n/2\rceil =\lfloor k\rfloor +\lceil k\rceil= 2k =n</me>
+		</p>
+		<p>Alternatively, <m>n=2k+1</m> and 
+		<me>\lfloor n/2\rfloor +\lceil n/2\rceil =\lfloor k+1/2\rfloor +\lceil k+1/2\rceil= k + (k+1) =n</me>
+		</p>
+		</answer>
+</exercise>
 
 
 
@@ -408,7 +418,19 @@ list(map(lambda k:[k,D(k),(D(k)/factorial(k)).n(digits=8)],range(1,16)))
 
 <exercise number="4"><statement><p> Prove by induction that if <m>T(n)= 1 + T (\lfloor n/2 \rfloor )</m>, <m>T(0) = 0</m>, and <m>2^{r-1}\leq n &lt; 2^r</m> , <m>r \geq  1</m>, then <m>T(n) = r</m>.
 </p>
-</statement><hint><p>Prove by induction on <m>r</m>.</p></hint></exercise>
+</statement><hint><p>Prove by induction on <m>r</m>.</p></hint>
+<answer component="im">
+<p>If <m>r=1</m>, <m>2^0 =1 \leq n &lt; 2^1 = 2</m>, then <m>n=1</m> and <m>T(1)=1=r</m>, as desired.</p>
+<p>Assume the equality is true for some <m>r \geq 1</m> and that <m>2^r \leq n &lt; 2^{r+1}</m>, which implies that <m>2^{r-1} \leq \lfloor n/2 \rfloor &lt; 2^r</m>,.  Then
+		<me>
+		\begin{split}
+		T(n)&amp;= 1 + T (\lfloor n/2 \rfloor )\\
+			&amp;= 1 + r
+		\end{split}
+		</me>
+</p>
+</answer>
+</exercise>
 
 <exercise number="5"><statement><p> Use the substitution <m>S(n) = T(n+1)/T(n)</m>  to solve <m>T(n)T(n-2)=T(n-1)^2</m> for <m>n \geq  2</m>, with <m>T(0) = 1</m>, <m>T(1) = 6</m>, and <m>T(n) \geq  0</m>.</p>
 </statement>
