@@ -130,7 +130,7 @@ for the problems that we are considering.</p>
 <figure xml:id="fig-log-2-plot">
 		 <caption>Plot of the logarithm, bases 2, function</caption>
 		 <image width="100%" source="images/fig-log-2-plot.png">
-		 <description>Plot of the logarithm, bases 2, function</description>
+		 <description><p>Plot of the logarithm, bases 2, function</p></description>
 		 </image>
 </figure>
 
@@ -437,9 +437,14 @@ list(map(lambda k:[k,D(k),(D(k)/factorial(k)).n(digits=8)],range(1,16)))
 <answer><p> The indicated substitution yields <m>S(n)=S(n+1)</m>. Since <m>S(0)=T(1)/T(0)=6</m>, <m>S(n)=6</m> for all <m>n</m>. Therefore <m>T(n+1)=6T(n)\Rightarrow T(n)=6^n</m>.</p></answer>
 </exercise>
 
-<exercise number="6"><statement><p> Use the substitution <m>G(n) =T(n)^2</m> to solve
-<m>T(n)^2-T(n-1)^2=1</m> for <m>n \geq  1</m>, with <m>T(0) = 10</m>.</p>
-</statement></exercise>
+<exercise number="6"><statement><p> 
+Consider the sequence <m>S</m> defined by  <m>T(n)^2-T(n-1)^2=1</m> for <m>n \geq  1</m>, with the conditions  <m>T(0) = 10</m> and <m>T(n)\geq 0</m> for all <m>n</m>. Use the substitution <m>G(n) =T(n)^2</m> to solve for <m>S</m>.</p>
+</statement>
+<answer component="im">
+<p>The with the suggested substitution, we have <m>G(n)-G(n-1)=1</m> with <m>G(0)=100</m>.  A closed form equation for <m>G</m> is <m>G(n)=100+n</m> and so <m>T(n)=\sqrt{100+n}</m>.
+</p>
+</answer>
+</exercise>
 
 <exercise number="7"><statement><p>Solve as completely as possible:</p>
  <p><ol marker="(a)">
@@ -470,7 +475,22 @@ list(map(lambda k:[k,D(k),(D(k)/factorial(k)).n(digits=8)],range(1,16)))
 <li><p>Assuming the solution for powers of 2 is a good estimate for all <m>n</m>, compare your result to the solution in the text. As gets large, is there
 really much difference?</p></li>
 </ol></p>
-</statement></exercise>
+</statement>
+<answer component="im">
+<p>
+<ol marker="(a)">
+<li><p>An argument can be made that the merging a pair of list with a total of  <m>n</m> items takes only <m>n-1</m> comparisons, so we propose that recurrence <me>T(n)=0.1+(n-1)+T(\lfloor n/2 \rfloor)+T(\lceil n/2\rceil)</me>, which is consistent with the initial condition that <m>T(1)=0</m></p></li>
+<li><p>If we apply the recurrence to the the first few values of <m>T(2^r)</m> we observe the pattern  
+a<me>T\left(2^r\right)= 1.1(2^r-1)+r 2^r.</me>
+</p></li>
+<li><p>The result for powers of 2 suggests that in general would have 
+<me>T(n)=1.1(n-1)+n \log_2{n}</me>
+and so the added time to split the lists is not significant.
+</p></li>
+</ol>
+</p>
+</answer>
+</exercise>
 
 </exercises>
 </section>
