@@ -129,6 +129,7 @@ integer field <m>V_k.\text{from}</m>. The sets <m>D_1</m>, <m>D_2, \dots</m>, ca
 <p><ol marker="(1)">
 <li><p>Set the value <m>V_k.\text{found}</m> equal to False, <m>k = 1, 2, \dots , n</m></p></li>
 <li><p><m>r = 0</m></p></li>
+<li><p><m>V_i.\text{found}=True</m></p></li>
 <li><p> <m>D_0= \{i\}</m></p></li>
 <li><p> while <m>(\neg V_j.\text{found}</m>) and <m>\left(D_r\right.\neq \emptyset )</m></p>
 		<p><ul><li><p><m>D_{r+1}=\emptyset</m></p></li>
@@ -157,6 +158,7 @@ integer field <m>V_k.\text{from}</m>. The sets <m>D_1</m>, <m>D_2, \dots</m>, ca
 
 <list><title>Notes on Breadth-first Search</title>
 <ul>
+<li><p>If <m>v_i</m> is the starting vertex and we initialize <m>v_i.found=False</m>, then the algorithm will find the shortest circuit containing <m>v_i</m>.  If that is of interest, we would also not initialize the depth of <m>V_i</m> to <m>\{i\}</m></p></li>
 <li><p> This algorithm will produce one path from vertex <m>i</m> to vertex <m>j</m>, if one exists, and that path will be as short as possible.  If more than one path of this length exists, then the one that is produced depends on the order in which the edges are examined and the order in which the elements of <m>D_r</m> are examined in Step 4.</p></li>
 <li><p> The condition <m>D_{r }\neq \emptyset</m> is analogous to the condition that no mail is sent in a given stage of the process, in which case MSU cannot be connected to ESU.</p></li>
 <li><p> This algorithm can be easily revised to find paths to all vertices that can be reached from vertex <m>i</m>. Step 5 would be put off until a specific path to a vertex is needed since the information in <m>V</m> contains an efficient list of all paths. The algorithm can also be extended further to find paths between any two vertices.</p></li>
@@ -347,7 +349,21 @@ in edge lists and elements of the depth sets are put into ascending order, as we
 \end{array}</m> <m>\text{(*} = \text{undefined})</m>
 </p></answer></exercise>
 <exercise number="2"><statement><p> Apply <xref ref="alg-breadth-first" text="type-global"/> to find a path from <m>d</m> to <m>c</m>  in the road graph in <xref ref="ex-undirected-1" text="type-global"/> using the edge list in that example. Assume that the elements
-of the depth sets are put into ascending order.</p></statement></exercise>
+of the depth sets are put into ascending order.</p></statement>
+<answer component="im">
+<p><me>\begin{table}[]
+\begin{tabular}{llllll}
+\textbackslash{}text\{k\}          &amp;amp; 1 &amp;amp; 2 &amp;amp; 3 &amp;amp; 4 &amp;amp; 5 \\
+v\_k.\textbackslash{}text\{name\}  &amp;amp; a &amp;amp; b &amp;amp; c &amp;amp; d &amp;amp; e \\
+v\_k.\textbackslash{}text\{found\} &amp;amp; T &amp;amp; T &amp;amp; T &amp;amp; T &amp;amp; T \\
+v\_k.\textbackslash{}text\{from\}  &amp;amp; d &amp;amp; d &amp;amp; b &amp;amp; - &amp;amp; b \\
+\textbackslash{}text\{Depth\}      &amp;amp; 1 &amp;amp; 1 &amp;amp; 2 &amp;amp; 0 &amp; 2
+\end{tabular}
+\end{table}
+</me>
+</p>
+</answer>
+</exercise>
 <exercise number="3"><statement><p> In a simple undirected graph with no self-loops, what is the maximum number of edges you can have, keeping the graph unconnected? What is the
 minimum number of edges that will assure that the graph is connected?</p></statement>
 <answer><p>If the number of vertices is <m>n</m>, there can be <m>\frac{(n-1)(n-2)}{2}</m> vertices with one vertex not connected to any of the others. One more edge and connectivity is assured.</p></answer></exercise>
@@ -361,6 +377,12 @@ and the stack that is created.</p>
 	 </image>
 </figure>
 </statement>
+<answer component="im">
+<p><ol marker="(a)"><li><p><m>D_0=\{a\}</m>, <m>D_1=\{b\}</m>, <m>D_2=\{c, f\}</m>, <m>D_3=\{d, g\}</m>, <m>D_4=\{e, h, i\}</m> and <m>D_5=\emptyset</m>.  We can construct a path from <m>a</m> to <m>i</m> using the data <m>i.from=g</m>, <m>g.from=c</m>, <m>c.from=b</m> and <m>b.from=a</m> to get the path <m>a, b, c, g, i</m>.
+</p></li>
+<li><p><m>D_0=\{a\}</m>, <m>D_1=\{b\}</m>, <m>D_2=\{d\}</m>, <m>D_3=\{e,h\}</m>, <m>D_4=\{c,i\}</m> and <m>D_5=\emptyset</m>.  We can construct a path from <m>a</m> to <m>i</m> using the data <m>i.from=e</m>, <m>e.from=d</m>, <m>d.from=b</m> and <m>b.from=a</m> to get the path <m>a, b, d, e, i</m>.</p></li>
+</ol></p>
+</answer>
 </exercise>
 <exercise number="5"><statement> <p>For each of the following graphs, determine the eccentricities of each vertex, and the diameter, radius, and center of the graph.</p>
 <sidebyside>
@@ -395,7 +417,15 @@ and the stack that is created.</p>
 		<li><p>The terms diameter, radius and center are familiar ones in the context of circles.  Compare their usage in circles and graphs.  How are they similar and how are they different?</p></li>
 		<li><p><q>Eccentricity</q> might be less familiar.  How is is used in geometry, and does it have a compatible use in graph theory?</p></li>
 	</ol>	
-</p></statement></exercise>
+</p></statement>
+<answer component="im">
+<p><ol marker="(a)">
+		<li><p>Whereas <m>d=2r</m> for any circle, the relationship between radius and diameter in a graph is as exact.  The best we can say is that <m>r \leq d \leq 2r</m> in a graph.</p></li>
+		<li><p>The term eccentricity as it applies to ellipses is a measurement of the whole ellipse, while in a graph the eccentricity is defined for individual vertices. </p></li>
+	</ol>
+</p>
+</answer>
+</exercise>
 <exercise number="7"><statement><p> Prove (by induction on <m>k</m>) that if the relation <m>r</m> on vertices of a graph is defined by <m>v r w</m> if there is an edge connecting
 <m>v</m> to <m>w</m>, then <m>r^k</m>, <m>k \geq  1</m>, is defined by <m>v r^kw</m> if there is a path of length <m>k</m> from <m>v</m> to
 <m>w</m>.</p>
@@ -441,6 +471,14 @@ hypothesis, there is a path of length <m>k</m> from <m>v \textrm{ to } y</m>. An
 \end{array}
 \right)</m></p></li>
 	</ol>	
-</p></statement></exercise>
+</p></statement>
+<answer component="im">
+<p><ol marker="(a)">
+		<li><p><m>d=3</m>, <m>r=3</m> and the center is <m>\{3,8,10\}</m>.</p></li>
+		<li><p><m>d=4</m>, <m>r=3</m> and the center is <m>\{1,2,3,4,6,7,9,11\}</m>.</p></li>
+	</ol>
+</p>
+</answer>
+</exercise>
 </exercises>
 </section>
