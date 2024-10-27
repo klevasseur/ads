@@ -333,10 +333,10 @@ that were not connected by the first bridge.
 </statement>
 <answer component="im"><p>
 <ol marker="(a)">
-<li><p>No Eulerian path since four vertices (2, 4, 12 and 14) have odd degree.</p></li>
-<li><p></p></li>
-<li><p></p></li>
-<li><p></p></li>
+<li><p>No Eulerian path since more than vertices two have odd degree.</p></li>
+<li><p>There is an Eulerian circuit since the graph is connected and all vertices have even degree.</p></li>
+<li><p>There is an Eulerian path between vertices 4 and 7 since the graph is connected and those two vertices are the only ones with odd degree.</p></li>
+<li><p>This graph is not connected since no even numbered vertex is connected to an odd numbered vertex. Therefore, although all vertices have degree four it is not Eulerian </p></li>
 </ol>
 </p></answer>
 </exercise>
@@ -349,7 +349,12 @@ that were not connected by the first bridge.
  <m>indeg(v_2)= outdeg(v_2)+1</m>, and for all other vertices in <m>V</m> the indegree and outdegree are equal.</p>
 </answer></exercise>
 <exercise number="8"><statement><p> Prove that the number of vertices in an undirected graph with odd degree must be even.</p></statement>
-<hint><p> Prove by induction on the number of edges.</p></hint></exercise>
+<hint><p> You could prove this by induction on the number of edges, but an easier way would be to consider the degree sequence and use something you know about the sum of the entries.</p></hint>
+	<answer component="im">
+		<p>We know that since each edge contributes to the sum of the degrees of vertices in any graph, the sum of entries in its degree sequence must be even.  In order for the sum of integers to be even there has to be an even number odd numbers in the sequence, which is what we wanted to prove.</p><p> An induction proof is a little longer.  We would start with the basis, which is to observe that if there are zero edges, there are zero vertices of odd degree.  Then we assume that for some <m>n\geq 0</m>, all undirected graphs with <m>n</m> edges have and even number of vertices of odd degree.   Imagine that we now have an undirected graph with <m>n+1</m> edges. Temporarily remove any edge and that gives us an undirected graph with <m>n</m> edges which, by the induction hypothesis has an even number of vertices of odd degree. Now reintroduce the edge we removed.  Depending on the degrees of the two vertices it connects in the reduced graph, we end up turning two odd vertices into even ones, turning two even vertices into odd ones, or turning and odd and even vertex inot an even and odd vertex.  In any case the number of odd vertices changes by on even number, which completes the proof. </p>
+	</answer>
+
+</exercise>
 <exercise number="9"><statement>
 <p><ol marker="(a)">
 <li><p>Under what conditions will a round-robin tournament graph be Eulerian?</p></li>
@@ -359,7 +364,11 @@ that were not connected by the first bridge.
 <answer><p> A round-robin tournament graph is rarely Eulerian. It will be Eulerian if it has an odd number of vertices and each vertex (team) wins exactly
 as many times as it loses. Every round-robin tournament graph has a Hamiltonian path. This can be proven by induction on the number of vertices.</p></answer></exercise>
 <exercise number="10"><statement><p> For what values of <m>n</m> is the <m>n</m>-cube Eulerian?</p>
-</statement></exercise>
+</statement>
+	<answer component="im">
+		<p>Since every vertex on an <m>n</m>-cube has degree <m>n</m>, the <m>n</m>-cubes for which <m>n</m> is even are Eulerian.</p>
+	</answer>
+</exercise>
 <exercise number="11"><statement><p>A particular set of dominoes has 21 tiles: <m>(1, 1), (1, 2), \dots (1, 6), (2, 2), (2,3), \dots ,(6,6)</m>. Is it possible to lay all 21 tiles in a line so that each adjacent pair of tile ends matches (that is, each 1 abuts a 1, and so on)?</p>
 </statement>
 <solution><p>No, such a line does not exist.  The dominoes with two different numbers correspond with edges in a <m>K_6</m>. See corresponding dominos and edges in <xref ref="fig-domino_path" />. Dominos with two equal numbers could be held back and inserted into the line created with the other dominoes if such a line exists.   For example, if <m>(2,5),(5,4)</m> were part of the line, <m>(5,5)</m> could be inserted between those two dominoes. The line we want exists if and only if there  exists an Eulerian path in a <m>K_6</m>.  Since all six vertices of a <m>K_6</m> have odd degree no such path exists.</p>
@@ -374,7 +383,7 @@ as many times as it loses. Every round-robin tournament graph has a Hamiltonian 
 
 </solution>
 </exercise>
-<exercise>
+<exercise number="12">
 	<statement><p>Let <m>G</m> be the graph below. </p>
 	 <figure xml:id="fig-ex-non-euler">
                 <caption> 
