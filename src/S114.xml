@@ -191,21 +191,27 @@ to compute <m>s</m> and <m>t</m> values quickly.</p>
 
 </subsection>
 <subsection xml:id="ss-modular-arithmetic"><title>Modular Arithmetic</title><idx>Modular Arithmetic</idx>
-<p>We remind you of the relation on the integers that we call <xref ref="def-congruence-mod-n" text="title" />.
-If two integers, <m>a</m> and <m>b</m>, differ by a multiple of <m>n</m>, we say that they are congruent modulo <m>n</m>, denoted <m>a \equiv  b\pmod{n}</m>. For example, <m>13 \equiv  38\pmod{5}</m> because <m>13-38 = -25</m>, which is a multiple of 5.</p>
+<p>We remind you of the relation on the integers that we call <xref ref="def-congruence-mod-n" text="title" />.  If two integers, <m>a</m> and <m>b</m>, differ by a multiple of <m>n</m>, we say that they are congruent modulo <m>n</m>, denoted <m>a \equiv  b\pmod{n}</m>. For example, <m>13 \equiv  38\pmod{5}</m> because <m>13-38 = -25</m>, which is a multiple of 5.</p>
+
+<definition xml:id="def-integers-modulo-n"><title>The Integers Modulo <m>n</m></title>
+<idx>The Integers Modulo <m>n</m></idx>
+<notation><usage><m>\mathbb{Z}_n</m></usage><description>the integers modulo <m>n</m></description></notation>
+<statement><p>If <m>n</m> is a positive integer greater than one, we define the integers modulo <m>n</m> to be the set<m>\{0, 1, 2,. . ., n-1\}</m>. </p>
+</statement></definition>
+
 
 <definition xml:id="def-def-modular-addition"><title>Modular Addition</title>
 <idx>Modular Addition</idx>
 <notation><usage><m>a +_n b</m></usage><description>the mod <m>n</m> sum of <m>a</m> and <m>b</m></description></notation>
 <statement><p>If <m>n</m> is a positive integer, we define addition modulo <m>n</m> <m>\left(+_n\right.</m>)
- as follows. If <m>a, b \in  \mathbb{Z}</m>,
+ as follows. If <m>a, b \in  \mathbb{Z}_n</m>,
 <me>a +_n b = \textrm{ the remainder after } a + b \textrm{ is divided by } n</me></p>
 </statement></definition>
 
 <definition xml:id="def-def-modular-multiplication"><title>Modular Multiplication</title>
 <idx>Modular Multiplication</idx>
 <notation><usage><m>a \times_n b</m></usage><description>the mod <m>n</m> product of <m>a</m> and <m>b</m></description></notation>
-<statement><p>If <m>n</m> is a positive integer, we define  multiplication modulo <m>n</m> <m>\left(\times_n\right.</m>) as follows. If <m>a, b \in  \mathbb{Z}</m>,
+<statement><p>If <m>n</m> is a positive integer, we define  multiplication modulo <m>n</m> <m>\left(\times_n\right.</m>) as follows. If <m>a, b \in  \mathbb{Z}_n</m>,
 <me>a \times_n b = \textrm{ the remainder after } a \cdot b \textrm{ is divided by } n</me></p>
 </statement></definition>
 
@@ -215,7 +221,7 @@ If two integers, <m>a</m> and <m>b</m>, differ by a multiple of <m>n</m>, we say
 <m>4 +_7 5 = 2 \equiv  9 \pmod{7}</m> and  
 
 <m>4 \times_7  5 =  6 \equiv  20 \pmod{7}</m>.</p></li>
-<li><p>  We will use the notation <m>\mathbb{Z}_n</m> to denote the set <m>\{0, 1, 2,. . ., n-1\}</m>. One interpretation of this set is that each element is a <em>representative</em> of its equivalence class with respect to congruence modulo <m>n</m>.  For example, if <m>n=7</m>, the number <m>1</m> in <m>\mathbb{Z}_7</m> really represents all numbers in <m>[1]={1+7k : k\in \mathbb{Z}}</m>.  In doing modular arithmetic, we can temporarily replace elements of <m>\mathbb{Z}_n</m> with other elements in their equivalence class modulo <m>n</m>. </p></li>
+<li><p>One interpretation of <m>\mathbb{Z}_n</m> is that each element is a <em>representative</em> of its equivalence class with respect to congruence modulo <m>n</m>.  For example, if <m>n=7</m>, the number <m>1</m> in <m>\mathbb{Z}_7</m> really represents all numbers in <m>[1]={1+7k : k\in \mathbb{Z}}</m>.  In doing modular arithmetic, we can temporarily replace elements of <m>\mathbb{Z}_n</m> with other elements in their equivalence class modulo <m>n</m>. </p></li>
 </ol>
 </p>
 </note>
@@ -584,8 +590,11 @@ U_table(18)
 <li><p><m>m(4) = r(4)</m>, where <m>m = 11 q + r</m>, <m>0 \leq  r &lt; 11</m></p></li>
 </ol>
 </p></answer></exercise>
-<exercise number="6"><statement><p>Prove that <m>\{1, 2, 3, 4\}</m> is a group under the operation <m>\times_5 </m>.
-</p></statement></exercise>
+<exercise number="6"><statement><p>When defining  notice that we could define this operation on all integers, but we restricted the set to <m>\mathbb{Z}_n</m> to satisfy the properties of a group.  Can you explain what goes wrong if we define  <m>+_n</m> on all of the integers?
+</p></statement>
+<answer component="im">
+<p>The first thing that goes wrong is that <m>0</m> will not be an identity for addition modulo <m>n</m> on the whole set of integers.  Notice that <m>0+_n n=0 \neq n</m>.</p>
+</answer></exercise>
 <exercise number="7"><statement><p>A student is asked to solve the following equations under the requirement that all arithmetic should be done in <m>\mathbb{Z}_2</m>. List all solutions.
 <ol marker="(a)">
 <li><p>  <m>x^2 + 1 = 0</m>.</p></li>
