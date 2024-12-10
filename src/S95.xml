@@ -481,7 +481,17 @@ can be augmented by 2 units with <m>s,a,g,k</m>.
                 </image>
             </figure>
 
-</statement></exercise>
+</statement>
+<solution component="im">
+<p>One possible solution is to augment the flow with two paths:
+<ul>
+<li>Source, <m>A</m>, <m>B</m>, Sink with an flow increase of 1  and</li>
+<li>Source,<m>C</m>, <m>A</m>, <m>B</m>, Sink with an flow increase of 1 </li>
+</ul>
+In the second path, the edge <m>(C,A)</m> is against the network's flow, but there is positive flow that can be decreased from 4 to 3.  The final maximum flow in the network is 12.
+</p>
+</solution>
+</exercise>
 <exercise number="7"><statement><p> Find maximal flows for the following networks.</p>
    <sidebyside>
       <figure xml:id="fig-exercise-9-5-7a"><caption/>
@@ -520,13 +530,51 @@ can be augmented by 2 units with <m>s,a,g,k</m>.
 </answer>
 </exercise>
 
-<exercise number="8"><statement>
-<p><ol marker="(a)">
-<li><p>Find two maximal flows for the network in <xref ref="fig-flow-example-before" text="type-global" /> other than the one found in the text.</p></li>
-<li><p>Describe the set of all maximal flows for the same network.</p></li>
-<li><p>Prove that if a network has two maximal flows, then it has an infinite number of maximal flows.</p></li>
-</ol></p>
-</statement></exercise>
+<exercise number="8">
+<statement>
+<p component="im"> Note to instructors: This problem was flawed in all version up until 2025.  There was only one maximal flow, which was identified in the text of this section.  The revision is to increase the capacity of the edge <m>(v_1,\text{Sink})</m> by 1 to 5.</p>
+<p>Suppose that the network in <xref ref="fig-flow-example-before" text="type-global" /> is updated so that the capacity of <m>(v_1,\text{Sink})</m> increased by 1 to 5.
+<ol marker="(a)">
+	<li><p>Find two maximal flows for the updated network</p></li>
+	<li><p>Describe the set of all maximal flows for the same network.</p></li>
+	<li><p>Prove that if a network has two maximal flows, then it has an infinite number of maximal flows.</p></li>
+</ol>
+</p>
+</statement>
+<solution component="im">
+<p>One flow augmenting path that produces a maximal flow function is the same as the text,
+		<me>\text{Source},v_2,v_1,v_3,\text{Sink}.</me>
+We will call the resulting flow function <m>f_1</m>
+but there is a second more obvious flow augmenting path:
+	   <me>\text{Source},v_2,v_1,\text{Sink}.</me>
+Let's call that new flow function <m>f_2</m>
+We highlight the edges where the flow differs in the two functions.  In the final row, we see that the two different flow functions can be combined in what his called a <em>convex combination</em> using any real number <m>\lambda</m> between 0 and 1.</p>
+<p>
+<tabular top="major" halign="center">
+<row><cell>Function</cell>
+		<cell><m>(v_1,\text{Sink})</cell>
+						<cell><m>(v_3,v_1)</m></cell>
+							<cell><m>(v_3,\text{Sink})</m></cell></row>
+<row><cell><m>f_1</m></cell>
+		<cell>4</cell>
+			<cell>1</cell>
+				<cell>0</cell>
+					<cell>4</cell></row>
+<row><cell><m>f_2</m></cell>
+		<cell>5</cell>
+				<cell>1</cell>
+					<cell>3</cell></row>
+<row><cell><m>\lambda f_1 + (1-\lambda)f_2</m></cell>
+		<cell>4 \lambda+5((1-\lambda))</cell>
+				<cell>(1-\lambda)</cell>
+					<cell>4 \lambda+3((1-\lambda))</cell></row>
+</tabular>
+</p>
+<p> In any network, if there are two different maximal flow functions, <m>f_1</m> and <m>f_2</m>, we can take a convex combination of them, <m>\lambda f_1 + (1-\lambda)f_2, 0 \le \lambda \le 1</m>, to get an infinite family of maximal flows.</p>
+</solution>
+</exercise>
+
+
 <exercise number="9"><statement> <p>Discuss reasons that the closest neighbor algorithm is not used in the unit square version of the Traveling Salesman Problem.</p></statement>
 <hint><p>Count the number of comparisons of distances that must be done.</p></hint>
 <answer><p> To locate the closest neighbor among the list of <m>k</m> other points on the unit square requires a time proportional to <m>k</m>. Therefore
@@ -536,7 +584,9 @@ to <m>n^2</m>. Since the strip algorithm takes a time proportional to <m>n(\log 
 </exercise>
 
 
-<exercise number="10"><statement><p> Explore the possibility of solving the Traveling Salesman Problem in the <q>unit box</q>: <m>[0,1]^3</m>.</p></statement></exercise>
+<exercise number="10"><statement><p> Explore the possibility of solving the Traveling Salesman Problem in the <q>unit box</q>: <m>[0,1]^3</m>.</p></statement>
+<solution component="im">
+<p>One approach may be to build on the strip algorithm by slicing the cube into thin slices perpendicular to one of the axes, say the <m>z</m> axis, and within each slice, apply the strip algorithm, ignoring the <m>z</m> coordinate.  Whether this is better than the nearest neighbor algorithm is unknown.</p></solution></exercise>
 <exercise number="11"><statement><p> Devise a <q>closest neighbor</q> algorithm for matching points in the unit square.
 </p></statement>
 </exercise>
