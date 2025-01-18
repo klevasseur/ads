@@ -138,23 +138,31 @@ If we add an edge to connect them, the fact that a cycle is created implies that
             </figure>
 </answer></exercise>
 <exercise number="2"><statement><p> Are all trees planar? If they are, can you explain why? If they are not, you should be able to find a nonplanar tree.</p>
-</statement></exercise>
+</statement>
+<solution component="im"><p>If we imagine drawing the edges of tree sequentially, the absence of a cycle at any stange makes impossible to be in a situation where we cannot draw an edge betwen any two vertices.   Hence, every tree is planar. This informal proof presumes the <em>Jordan Curve Theorem</em></p>
+</solution>
+</exercise>
 <exercise number="3"><statement><p> Prove that if <m>G</m> is a simple undirected graph with no self-loops, then <m>G</m> is a tree if and only if <m>G</m> is connected and 
 <m>\lvert E \rvert = \lvert V \rvert - 1</m>.</p>
 </statement><hint><p> Use induction on <m>\lvert E\rvert </m>.
 </p></hint></exercise>
 <exercise number="4"><statement>
-<p><ol marker="(a)">
-<li><p>Prove that if <m>G = (V, E)</m> is a tree and <m>e \in E</m>, then <m>(V, E - \{e\})</m> is a forest of two trees.</p></li>
-<li><p> Prove that if <m>\left(V_1,E_1\right.</m>) and <m>\left(V_2,E_2\right)</m> are disjoint trees and <m>e</m> is an edge that connects a vertex in <m>V_1</m> to a vertex in <m>V_2</m>, then <m>\left(V_1\cup V_2, E_1\cup E_2\cup \{e\}\right)</m> is a tree.</p></li>
-</ol></p>
-</statement></exercise>
+<p>Suppose a forest consists of <m>m</m> trees and <m>v</m> vertices. What are the possible values of <m>m</m> and how many edges does the forest have?</p>
+<!-- 
+<li><p>Suppose that <m>G=\left(V,E\right)</m> is a tree and <m>e \in E</m>. Prove that <m>\left(V,E-\{e\}\right)</m> is a forest of two trees.</p></li>
+<li><p> Prove that if <m>\left(V_1,E_1\right.</m>) and <m>\left(V_2,E_2\right)</m> are disjoint trees and <m>e</m> is an edge that connects a vertex in <m>V_1</m> to a vertex in <m>V_2</m>, then <m>\left(V_1\cup V_2, E_1\cup E_2\cup \{e\}\right)</m> is a tree.</p></li></ol></p>
+ -->
+</statement>
+<solution component="im">
+<p>The possible values of <m>m</m> ranges from 1 to <m>v</m>. If <m>m=1</m>, then we know that there are <m>v-1</m> edges.  If we remove an edge we increase the value of <m>m</m> by one.  This pattern continues and the number of edges will be <m>v-m</m>.</p>
+</solution>
+</exercise>
 <exercise number="5"><statement><p><ol marker="(a)">
 <li><p>Prove that any tree with at least two vertices has at least two vertices of degree 1.</p></li>
 <li><p> Prove that if a tree has <m>n</m> vertices,  <m>n \geq 4</m>, and is not a path graph, <m>P_n</m>, then it has at least three vertices of degree 1.</p></li>
 </ol></p>
 </statement>
-<answer><p><ol marker="(a)">
+<solution><p><ol marker="(a)">
 <li><p>Assume that <m>(V,E)</m> is a tree with <m>\left| V\right| \geq 2</m>, and all but possibly one vertex in <m>V</m> has degree two or more. 
 <me>
 \begin{split}
@@ -165,10 +173,28 @@ If we add an edge to connect them, the fact that a cycle is created implies that
 \end{split}
 </me>
 </p></li>
-<li><p> The proof of this part is similar to part a in that we can infer <m>2\lvert E\rvert \geq 2 \lvert V\rvert -1</m>, using the fact that a non-chain tree has at least one vertex of degree three or more.</p></li>
+<li><p> The proof of this part is similar to part (a). If we assume that there are less than three vertices of degree three, we can still infer <m>2\lvert E\rvert \geq 2 \lvert V\rvert -1</m> using the fact that a non-chain tree has at least one vertex of degree three or more.</p></li>
 </ol></p>
-</answer>
+</solution>
 </exercise>
-
+<exercise number="6"><statement>
+<p>Prove that the center of any tree can have no more than two vertices.</p>
+</statement>
+<solution component="im">
+<p>If we can prove that any two vertices in the center of a tree must be adjacent, then having three or more vertices in the center would violate the acyclic property of a tree.  </p>
+<p>Suppose <m>v_1</m> and <m>v_2</m> belong to the center a tree. Furthermore assume they have eccentricity <m>k</m> and that they are not adjacent; so there is a vertex <m>w</m> l in the path between them.  (Recall that paths between vertices in a tree are unique.) Since the eccentricity of <m>v_1</m> is <m>k</m> there must be a vertex <m>u</m> whose (edge) distance from <m>v_1</m> is <m>k</m>.  The path between them must pass through <m>v_2</m>l for otherwise, the distance from <m>u</m> to <m>v_2</m> would be greater than <m>k</m> which is a contradiction.  This means that the distance from <m>w</m> to <m>u</m> is less than <m>k</m>.  We can apply this logic to any vertex whose disance from either <m>v_i</m> is equal to <m>k</m> and conclude that the eccentricity of <m>w</m> is less than the radius of the tree, which is a contradiction.</p>
+</solution>
+</exercise>
+<exercise number="7"><statement>
+<p>Let <m>(d_1,d_2,\dots,d_j,d_{j+1},\dots,d_n)</m> be the degree sequence of a tree with <m>d_j \geq 3</m> and <m>d_{j+1} \lt 3</m>.  Prove that the number of edges in the tree is 
+<md>
+	<mrow  xml:id="equation-local-star" tag="star">2+\sum_{k=1}^j (d_k-2).</mrow>
+</md> 
+</p>
+</statement>
+<solution>
+<p>We can prove this by induction for trees with <m>n</m> vertices, <m>n \geq 2</m>.  The basis is clearly true since the only tree with two vertices is a <m>K_2</m>. Now assume that <xref ref="equation-local-star"/> is true for some <m>n</m> greater than or equal to two and consider a tree <m>T</m> with <m>n+1</m> vertices.  We proceed by removing a leaf from <m>T</m>. If there exists a leaf connected to a vertex of degree two, we select one such leaf. The resulting tree satisfies <xref ref="equation-local-star"/> for the number of leaves; and adding the removed leaf neither changes the number of leaves nor the value of <xref ref="equation-local-star"/>.  If all interior vertices have degree three or more remove any leaf from <m>T</m>. Again, the number of leaves in the resulting tree is <xref ref="equation-local-star"/>, but this time when we put the removed leaf back on the tree the number of leaves will increase by one, but the value of <xref ref="equation-local-star"/> will increase by one to match it </p>
+</solution>
+</exercise>
 </exercises>
 </section>
