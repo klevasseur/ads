@@ -151,7 +151,10 @@ is not a group with union or intersection.</p></li>
 <answer><p> The terms <q>generic</q> and <q>trade</q> for prescription drugs are analogous to <q>generic</q> and <q>concrete</q> algebraic systems. Generic aspirin, for example, has no name, whereas Bayer, Tylenol, Bufferin, and Anacin are all trade or specific types of aspirins. The same can be said of a generic group <m>[G; *]</m> where <m>G</m> is a nonempty set and <m>*</m> is a binary operation on <m>G</m>, When examples of typical domain elements can be given along with descriptions of how operations act on them, such as <m>\mathbb{Q}</m>* or <m>M_{2\times 2}(\mathbb{R})</m>, then the system is concrete (has a specific name, as with the aspirin). Generic is a way to describe a general algebraic system, whereas a concrete system has a
 name or symbols making it distinguishable from other systems.
 </p></answer></exercise>
-<exercise number="2"><statement><p>  Discuss the connection between groups and monoids. Is every monoid a group? Is every group a monoid?</p></statement></exercise>
+<exercise number="2"><statement><p>  Discuss the connection between groups and monoids. Is every monoid a group? Is every group a monoid?</p></statement>
+<answer component="im"><p>Every group is a monoid, but not every monoid is a group.</p>
+</answer>
+</exercise>
 <exercise number="3"><statement><p>  Which of the following are groups?
 <ol marker="(a)">
 <li><p>  <m>B^*</m> with concatenation (see <xref ref="ss-monoids" text="type-global" />).</p></li>
@@ -165,7 +168,34 @@ name or symbols making it distinguishable from other systems.
 </statement>
 <answer><p> The systems in parts  b, d, e, and f are groups.</p></answer>
 </exercise>
-<exercise number="4"><statement><p> Prove that, <m>\oplus</m>, defined by <m>A \oplus  B = (A \cup  B) - (A \cap  B)</m> is an associative operation on <m>\mathcal{P}(U)</m>. </p></statement></exercise>
+<exercise number="4"><statement><p> Prove that, <m>\oplus</m>, defined by <m>A \oplus  B = (A \cup  B) - (A \cap  B)</m> is an associative operation on <m>\mathcal{P}(U)</m>. </p></statement>
+<solution component="im"><p>This one is a bit messy.  We will use two different identities for the symmetric difference:
+<mdn> <mrow xml:id="sd-2">X\oplus Y = (X\cap Y^c)\cup(X^c \cap Y).</mrow></mdn>
+and 
+<mdn> <mrow xml:id="sd-1">X\oplus Y = (X\cup Y)\cap(X^c \cup Y^c)</mrow></mdn>
+These are easy to verify with membership tables or Venn diagrams.
+</p>
+<p>In the steps that follow we use the first identity for symmetric difference in the first step, and both identities in the second step.  After that we use DeMorgan's Laws and the distributive properties.
+<me>
+	\begin{split}
+	(A\oplus B)\oplus C 
+		&amp;= ((A\oplus B)\cap C^c)\cup((A\oplus B)^c\cap C)\\
+		&amp;= ((A\cap B^c)\cup(A^c\cap B))\cap C^c \cup
+					(((A\cup B)\cap(A^c\cup B^c))^c  \cap C)\\
+		&amp;= ((A\cap B^c)\cup(A^c\cap B))\cap C^c \cup
+					(((A\cup B)^c\cup(A^c\cup B^c)^c)  \cap C)\\
+		&amp;= ((A\cap B^c)\cup(A^c\cap B))\cap C^c \cup
+					(((A^c\cap B^c)\cup(A\cap B))  \cap C)\\
+		&amp;= ((A\cap B^c\cap C^c)\cup(A^c\cap B \cap C^c))\cup
+					(((A^c\cap B^c\cap C)\cup(A\cap B\cap C))\\ 
+		&amp;= (A\cap B^c\cap C^c)\cup(A^c\cap B \cap C^c)\cup
+					((A^c\cap B^c\cap C)\cup(A\cap B\cap C)
+	\end{split}
+</me>
+The final expression is a union of four minsets that represent the elements that belong to an odd number of the three sets.  It's apparent that this final result does not depend on the grouping of the expression <m>A\oplus B\oplus C </m>, and so <m>\oplus</m> is associative.
+</p>
+</solution>
+</exercise>
 <exercise number="5" xml:id="ex-rook-matrices"><statement><p>The following problem supplies an example of a non-abelian group. A rook matrix is a matrix that has only 0's and 1's as entries such that each row has exactly one 1 and each column has exactly one 1. The term rook matrix is derived from the fact that each rook matrix represents the
 placement of <m>n</m> rooks on an <m>n\times n</m> chessboard such that none of the rooks can attack one another. A rook in chess can move only vertically or horizontally, but not diagonally. Let <m>R_n</m> be the set of <m>n\times n</m> rook matrices. There are six <m>3\times 3</m> rook matrices:
 
@@ -291,32 +321,54 @@ group.)</p></answer>
  We can operate on any two of these expressions using function composition.  For example,
  <me>(y_3 \circ y_4)(x) = y_3(y_4(x))=y_3(\frac{1}{x})=\frac{1}{1-\frac{1}{x}}=\frac{x}{x-1}=y_6(x)</me>
  Therefore, <m>y_3 \circ y_4 = y_6</m>.  Complete the following operation table for function composition on <m>\mathcal{H}</m>.</p>
- 
- <figure xml:id="fig-compositon_group_6"><caption>Partially completed operation table for <m>\mathcal{H}</m></caption>
-		 <image  width="70%" source="images/fig-compositon_group_6.png">
-			  <description><p>Partially completed operation table for the composition of function x, 1/x,...</p></description>
-		 </image>
-		 </figure>
-		 
+ <p>		
+<table xml:id="table-partial-functiongroup">
+<title>Partial Operation Table for <m>[\mathcal{H},\circ]</m> </title>
+<tabular  halign="center">
+<row header="yes" bottom="minor">
+<cell right="minor"><m>\circ </m></cell><cell><m> y_1 </m></cell><cell><m> y_2 </m></cell><cell><m> y_3 </m></cell><cell><m> y_4 </m></cell><cell><m> y_5 </m></cell><cell><m> y_6 </m></cell></row>
+<row><cell right="minor"><m> 
+y_1   </m></cell><cell><m> y_1 </m></cell><cell><m> y_2 </m></cell><cell><m> y_3 </m></cell><cell><m> y_4 </m></cell><cell><m> y_5 </m></cell><cell><m> y_6 </m></cell></row>
+<row><cell right="minor"><m> 
+y_2   </m></cell><cell><m> y_2 </m></cell><cell><m> y_1 </m></cell><cell><m> y_6 </m></cell><cell><m> y_5 </m></cell><cell><m> y_4  </m></cell><cell><m> \quad  </m></cell></row>
+<row><cell right="minor"><m> 
+y_3   </m></cell><cell><m> y_3 </m></cell><cell><m> y_4 </m></cell><cell><m> \quad </m></cell><cell><m> y_6 </m></cell><cell><m> \quad </m></cell><cell><m> \quad </m></cell></row>
+<row><cell right="minor"><m> 
+y_4   </m></cell><cell><m>\quad</m></cell><cell><m>  y_3 </m></cell><cell><m> y_2  </m></cell><cell><m> \quad  </m></cell><cell><m> \quad  </m></cell><cell><m> \quad </m></cell></row>
+<row><cell right="minor"><m>
+y_5   </m></cell><cell><m>\quad  </m></cell><cell><m> \quad  </m></cell><cell><m> \quad  </m></cell><cell><m> \quad  </m></cell><cell><m> \quad  </m></cell><cell><m> \quad  </m></cell></row>
+<row><cell right="minor"><m>
+y_6   </m></cell><cell><m>\quad  </m></cell><cell><m> \quad  </m></cell><cell><m> \quad  </m></cell><cell><m> \quad  </m></cell><cell><m> \quad  </m></cell><cell><m> \quad  </m></cell></row> 
+</tabular>
+</table>
+</p>
 
-<!-- 
-<me> \begin{table}[ht]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|}
-\hline
-$\circ$ &amp; $y_1$ &amp; $y_2$ &amp; $y_3$ &amp; $y_4$ &amp; $y_5$ &amp; $y_6$ \\ \hline
-$y_1$   &amp; $y_1$ &amp; $y_2$ &amp; $y_3$ &amp; $y_4$ &amp; $y_5$ &amp; $y_6$ \\ \hline
-$y_2$   &amp; $y_2$ &amp; $y_1$ &amp; $y_6$ &amp; $y_5$ &amp; $y_4$  &amp; $\hfill$  \\ \hline
-$y_3$   &amp; $y_3$ &amp; $y_4$ &amp; $\hfill$ &amp; $y_6$ &amp; $\hfill$ &amp; $\hfill$ \\ \hline
-$y_4$   &amp; $\hfill$   &amp;  $y_3$ &amp; $y_2$  &amp; $\hfill$  &amp; $\hfill$  &amp; $\hfill$  \\ \hline
-$y_5$   &amp; $\hfill$     &amp; $\hfill$  &amp; $\hfill$  &amp; $\hfill$  &amp; $\hfill$  &amp; $\hfill$  \\ \hline
-$y_6$   &amp; $\hfill$     &amp; $\hfill$  &amp; $\hfill$  &amp; $\hfill$  &amp; $\hfill$  &amp; $\hfill$  \\ \hline
-\end{tabular}
-\end{table}
-</me>
- -->
 <p>	 Is <m>[\mathcal{H},\circ]</m> a monoid? Is it a group?</p>
-  			</statement><solution><p>Yes, this is a group.  You might see some similarities with the group of three by three rook matrices.</p></solution></exercise>
+  </statement>
+  			
+<solution component="im"><p>Yes, this is a group.  You might see some similarities with the group of three by three rook matrices.</p>
+  	<p>		
+<table xml:id="table-functiongroup">
+<title>Completed Operation Table for <m>[\mathcal{H},\circ]</m> </title>
+<tabular  halign="center">
+<row header="yes" bottom="minor">
+<cell right="minor"><m>\circ </m></cell><cell><m> y_1 </m></cell><cell><m> y_2 </m></cell><cell><m> y_3 </m></cell><cell><m> y_4 </m></cell><cell><m> y_5 </m></cell><cell><m> y_6 </m></cell></row>
+<row><cell right="minor"><m> 
+y_1   </m></cell><cell><m> y_1 </m></cell><cell><m> y_2 </m></cell><cell><m> y_3 </m></cell><cell><m> y_4 </m></cell><cell><m> y_5 </m></cell><cell><m> y_6 </m></cell></row>
+<row><cell right="minor"><m> 
+y_2   </m></cell><cell><m> y_2 </m></cell><cell><m> y_1 </m></cell><cell><m> y_6 </m></cell><cell><m> y_5 </m></cell><cell><m> y_4  </m></cell><cell><m> y_3 </m></cell></row>
+<row><cell right="minor"><m> 
+y_3   </m></cell><cell><m> y_3 </m></cell><cell><m> y_4 </m></cell><cell><m> y_5 </m></cell><cell><m> y_6 </m></cell><cell><m> y_1 </m></cell><cell><m> y_2 </m></cell></row>
+<row><cell right="minor"><m> 
+y_4   </m></cell><cell><m>y_4</m></cell><cell><m>  y_3 </m></cell><cell><m> y_2  </m></cell><cell><m> y_1  </m></cell><cell><m> y_6  </m></cell><cell><m> y_5 </m></cell></row>
+<row><cell right="minor"><m>
+y_5   </m></cell><cell><m>y_5   </m></cell><cell><m> y_6  </m></cell><cell><m> y_1  </m></cell><cell><m> y_2 </m></cell><cell><m> y_3  </m></cell><cell><m> y_4  </m></cell></row>
+<row><cell right="minor"><m>
+y_6   </m></cell><cell><m>y_6 </m></cell><cell><m>y_5   </m></cell><cell><m> y_4  </m></cell><cell><m>y_3  </m></cell><cell><m> y_2  </m></cell><cell><m> y_1  </m></cell></row> 
+</tabular>
+</table>
+</p>
+</solution></exercise>
 
 </exercises>
 </section>
