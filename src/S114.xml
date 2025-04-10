@@ -681,10 +681,11 @@ Proceeding as suggested by the hint, we start with the basis, <m>p(0)</m>, which
 This give us
 	<me>m =n\cdot (q+1) + r\textrm{ with }0\leq r\lt n</me>
 which means that <m>p(m)</m> is true.</p>
+<p>We haven't considered the case where <m>m</m> is negative, but the proof in that case is nearly identical. </p>	
 <p>We still need to prove that the quotient and remainder are unique.  If we have two ways to divide <m>n</m> into <m>m</m>, then 
 <me> m = n q + r \quad \textrm{and }\quad  m=n q' + r'</me>
-We equate the two expressions for <m>m</m> and get <m>m(q-q')=r'-r</m>. Observe that since <m>\mid r'-r\mid \lt m</m> it must be that <m>q-q'=0</m>, which leads to a conclusion that <m>q=q'</m> and <m>r=r'</m> and so the quotient and remainder are unique.</p>
-<p>We haven't considered the case where <m>m</m> is negative, but the proof in that case is nearly identical. <m>\square</m></p>	
+We equate the two expressions for <m>m</m> and get <m>m(q-q')=r'-r</m>. Observe that since <m>\mid r'-r\mid \lt m</m> it must be that <m>q-q'=0</m>, which leads to a conclusion that <m>q=q'</m> and <m>r=r'</m> and so the quotient and remainder are unique.<m>\square</m></p>
+
 </solution></exercise>
 
 <exercise number="11"><statement><p>Suppose <m>f:\mathbb{Z}_{17}\to \mathbb{Z}_{17}</m> such <m>f(i)=a \times_{17} i +_{17} b </m> where <m>a</m> and <m>b</m> are integer constants. Furthermore,  assume that <m>f(1)=11</m> and <m>f(2)=4</m>. Find a formula for <m>f(i)</m> and also find a formula for the inverse of <m>f</m>.
@@ -713,7 +714,7 @@ Therefore  <m>f^{-1}(i) = 12\times_{17}( i +_{17} 16) = 12\times_{17} i +_{17} 5
 			<solution component="im"><p>This system is a monoid with identity 6 (surprise!).  However it is not a group since 0 has no inverse.  If we remove 0, we do get a group.</p></solution>
 </exercise>
 
-<exercise  number="13">
+<exercise  number="13" xml:id="exercise-xgcd">
 			<statement><p>Given that <m>1 = 2021\cdot(-169) +450 \cdot 759</m>, explain why <m>450</m> is an element of the group <m>\mathbb{U}_{2021}</m> and determine its inverse in that group.</p>
 			</statement>
 			<solution><p>By <xref ref="theorem-11-4-1" text="title"/>, <m>450</m> is an element of  <m>\mathbb{U}_{2021}</m>.  It's inverse in the group is <m>759</m> because 
@@ -723,16 +724,26 @@ Therefore  <m>f^{-1}(i) = 12\times_{17}( i +_{17} 16) = 12\times_{17} i +_{17} 5
 <exercise  number="14">
 			<statement><p>Let <m>n=2021</m>.  Solve <m>450 \times_{n} x = 321</m> for <m>x</m> in the group  <m>\mathbb{U}_{n}</m></p>
 			</statement>
-<solution component="im"><p></p></solution>
+<solution component="im"><p>Since we know that the inverse of <m>450</m> is <m>759</m> from <xref ref="exercise-xgcd" text="type-local"/>,  we need only multiply both sides of the equation by <m>759</m>.
+<me>x=759 \times_{n}321=1119.</me></p></solution>
 </exercise>
 <exercise  number="15">
 			<statement><p>Let <m>p</m> be an odd prime.  
 			Find all solutions to the equation <m>x^2 =x \times_n x =1</m> in the group <m>\mathbb{U}_{p}</m>.</p>
 			</statement>
-<!-- 
 			<solution><p>
+			There will always to two solutions, <m>1</m> and <m>n-1</m>.  We can prove this as follows:
+			<me>\begin{split}
+			x^2=1 &amp;\Leftrightarrow x^1-1 \equiv_{p} 0\\
+				&amp; \Leftrightarrow p \mid (x^2-1)\\
+				&amp; \Leftrightarrow p \mid (x-1)(x+1)\\
+				&amp; \Leftrightarrow p \mid (x-1) \textrm{  or }p \mid  (x+1)\\
+				&amp; \Leftrightarrow x \equiv_{p} 1 \textrm{  or }x \equiv_p -1\\
+				&amp; \Leftrightarrow x=1 \textrm{  or }x=p-1
+			\end{split}
+			</me>
+			The fourth step applies a theorem that follows from <xref ref="theorem-11-4-1" text="title"/> that states that if a prime divides evenly into a product, then it must divide into one of the factors.
 			</p></solution>
- -->
 </exercise>
 
 <exercise  number="16">
