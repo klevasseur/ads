@@ -151,16 +151,21 @@ no more than <m>\lceil \log_2 25 \rceil = 5</m> matrix multiplications are neede
 
 <algorithm xml:id="alg-warshall"><title>Warshall's Algorithm</title><statement>
 
-<p>Let <m>R</m> be an <m>n \times n</m> relation matrix and let <m>R^+</m> be its transitive closure matrix, which is to be computed as matrix <m>T</m> using Boolean arithmetic</p>
-<p>
-<code>
-1.0 T = R
-2.0 for k = 1 to n:
-     for i = 1 to n:
-      for j = 1 to n:
-        T[i,j]= T[i,j] + T[i,k] * T[k,j]
-3.0 Return T
-</code>
+<p>Let <m>R</m> be an <m>n \times n</m> relation matrix and let <m>R^+</m> be its transitive closure matrix, which is to be computed as matrix <m>T</m> using Boolean arithmetic
+
+<ol>
+<li>T = R</li>
+<li>for k = 1 to n:
+	<ol marker="1.">
+		<li>for i = 1 to n:
+      		<ol marker="1.">
+      			<li>for j = 1 to n:
+        <ol marker="1."><li>T[i,j]= T[i,j] + T[i,k] * T[k,j]</li>
+        </ol></li>
+        </ol></li>
+        </ol></li>
+	<li>Return T</li>
+</ol>
 </p>
 </statement>
 </algorithm>
