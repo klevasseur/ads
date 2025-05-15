@@ -2,7 +2,7 @@
 <section xml:id="s-matrices-of-relations"><title>Matrices of Relations</title>
 <introduction><p>We have discussed two of the many possible ways of representing a relation, namely as a digraph or as a set of ordered pairs. In this section we will discuss the representation of relations by matrices.</p></introduction>
 <subsection><title>Representing a Relation with a Matrix</title>
-<definition xml:id="def-adjacency-matrix"><title>Adjacency Matrix</title><idx>Adjacency Matrix</idx><statement><p>Let <m>A = \{a_1,a_2,\ldots , a_m\}</m> and <m>B= \{b_1,b_2,\ldots , b_n\}</m> be finite sets of cardinality <m>m</m> and <m>n</m>, respectively. Let <m>r</m> be a relation from <m>A</m> into <m>B</m>. Then <m>r</m> can be represented by the <m>m\times n</m> matrix <m>R</m> defined by
+<definition xml:id="def-adjacency-matrix"><title>Relation Matrix</title><idx>relation matrix</idx><statement><p>Let <m>A = \{a_1,a_2,\ldots , a_m\}</m> and <m>B= \{b_1,b_2,\ldots , b_n\}</m> be finite sets of cardinality <m>m</m> and <m>n</m>, respectively. Let <m>r</m> be a relation from <m>A</m> into <m>B</m>. Then <m>r</m> can be represented by the <m>m\times n</m> matrix <m>R</m> defined by
 
 <me>R_{ij}= \left\{
 		\begin{array}{cc}
@@ -10,8 +10,15 @@
 		 0 &amp; \textrm{   otherwise}     \\
 		\end{array}\right.
 </me>
- <m>R</m> is called the <term>adjacency matrix</term> (or the relation matrix) of <m>r</m>.</p>
+ <m>R</m> is called the <term>relation matrix</term> (or simply the matrix) of <m>r</m>.</p>
  </statement></definition> 
+ <note><title>Alternate Terminology</title>
+ <idx><h>logical matrix</h><see>relation matrix</see></idx>
+  <idx><h>binary matrix</h><see>relation matrix</see></idx>
+  <idx><h>Boolean matrix</h><see>relation matrix</see></idx>
+  <idx><h><m>(0, 1)</m>-matrix</h><see>relation matrix</see></idx>
+  <idx>adjacency matrix</idx>
+ <p>There are a wide variety of terms that also used to refer to the matrix of a relation. They include logical matrix, binary matrix, Boolean matrix, and <m>(0, 1)</m>-matrix.  For relations on a set, the relation matrix is also referred to as an <term>adjacency matrix</term>, a term we will use in our future study of graphs.</p></note>
 
 <example xml:id="ex-first-6-4"><title>A simple example</title>
 <p>Let <m>A = \{2, 5, 6\}</m> and let <m>r</m> be the relation <m>\{(2, 2), (2, 5), (5, 6), (6, 6)\}</m> on <m>A</m>. Since <m>r</m> is a relation from <m>A</m> into the same set <m>A</m> (the <m>B</m> of the definition), we have <m>a_1= 2</m>, <m>a_2=5</m>, and <m>a_3=6</m>, while <m>b_1= 2</m>, <m>b_2=5</m>, and <m>b_3=6</m>. Next, since</p>
@@ -37,7 +44,7 @@
 
 <me>r^2 = \{(2, 2), (2, 5), (2, 6), (5, 6), (6, 6)\}</me>
 
-The adjacency matrix of <m>r^2</m> is
+The matrix of <m>r^2</m> is
 
 <me>R^2 =\left(
 \begin{array}{ccc}
@@ -97,11 +104,11 @@ Then using Boolean arithmetic, <m>R S =\left(
 <theorem xml:id="theorem-composition-is-multiplication"><title>Composition is Matrix Multiplication</title><statement><p>Let <m>A_1</m>, 
 <m>A_2</m>, and <m>A_3</m> be finite sets where <m>r_1</m> is a relation from <m>A_1</m> into <m>A_2</m> and <m>r_2</m>
 is a relation from <m>A_2</m> into <m>A_3</m>. If <m>R_1</m> and <m>R_2</m> are the adjacency matrices of <m>r_1</m> and <m>r_2</m>, respectively, then the product
-<m>R_1R_2</m> using Boolean arithmetic is the adjacency matrix of the composition <m>r_1r_2</m>.</p></statement></theorem> 
+<m>R_1R_2</m> using Boolean arithmetic is the relation matrix of the composition <m>r_1r_2</m>.</p></statement></theorem> 
 
 	
 
-<p>Remark: A convenient help in constructing the adjacency matrix of a relation from a set <m>A</m> into a set <m>B</m> is to write the elements from <m>A</m> in a column preceding the first column of the adjacency matrix, and the elements of <m>B</m> in a row above the first row. Initially, <m>R</m> in <xref ref="ex-first-6-4" text="type-local"/> would be
+<p>Remark: A convenient help in constructing the matrix of a relation from a set <m>A</m> into a set <m>B</m> is to write the elements from <m>A</m> in a column preceding the first column of the  matrix, and the elements of <m>B</m> in a row above the first row. Initially, <m>R</m> in <xref ref="ex-first-6-4" text="type-local"/> would be
 
 <me>
 \begin{array}{cc}
@@ -291,7 +298,7 @@ This matrix tells us at a glance which software will run on the computers listed
 </exercise>
 <exercise number="2"><statement> 
 <p><ol marker="(a)">
-<li><p> Determine the adjacency matrix of each relation given by the following digraphs.</p>
+<li><p> Determine the matrix of each relation given by the following digraphs.</p>
 <sidebyside widths="40% 40%">
 		<image  source="images/fig-ex-6-4-2a.png">
 			  <description><p>Directed graph of the relation <m>r_1</m> on <m>\{1,2,3\}</m> with edges <m>(1,2),(1,3),(3,1)</m>.</p></description>
@@ -446,7 +453,7 @@ S =
 <hint><p>Consider the possible matrices.</p></hint>
 <answer><p>The graph of a relation on three elements has nine entries.  The three entries in the diagonal must be 1 in order for the relation to be reflexive. In addition, to make the relation symmetric, the off-diaginal entries can be paired up so that they are equal. For example if the entry in row 1 column 2 is equal to 1, the entry in row 2 column 1 must also be 1.  This means that three entries, the ones above the diagonal determine the whole matrix, so there are <m>2^3=8</m> different reflexive, symmetric relations on a three element set. </p></answer>
 </exercise>
-<exercise number="6"><statement><p>Let <m>A = \{a, b, c, d\}</m>.  Let <m>r</m> be the relation on <m>A</m> with adjacency matrix
+<exercise number="6"><statement><p>Let <m>A = \{a, b, c, d\}</m>.  Let <m>r</m> be the relation on <m>A</m> with relation matrix
 
 <m>R=\begin{array}{cc}
    &amp; 
