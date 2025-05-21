@@ -144,7 +144,7 @@ in <m>L</m> and then, if further ties exist, by the vertex in <m>R</m>. The firs
 
 
 <definition xml:id="def-min-diameter-spanning-tree"><title>Minimum Diameter Spanning Tree</title><idx>Minimum Diameter Spanning Tree</idx> 
-<statement><p>Given a connected undirected graph <m>G = (V, E)</m>, find a spanning tree <m>T = (V, E')</m> of <m>G</m> such that the longest path in <m>T</m> is as short as possible.</p></statement></definition>
+<statement><p>Given a connected undirected graph <m>G = (V, E)</m>, find a spanning tree <m>T = (V, E')</m> of <m>G</m> such that the longest path in <m>T</m> is as short as possible. A solution to this problem is relatively easy to obtain by combining the idea the center of a graph with the breadth first search.</p></statement></definition>
 
 
 <example xml:id="ex-min-diameter-k5"><title>The Case for Complete Graphs</title><p> The Minimum Diameter Spanning Tree Problem is trivial to solve in a <m>K_n</m>. Select any vertex <m>v_0</m> and construct the spanning
@@ -199,19 +199,8 @@ always be made most economical with respect to Objective 2 if the old system wer
 	</sage>
 </solution>
 </exercise>
-<exercise number="3"><statement><p> Show that the answer to the question posed in <xref ref="ex-some-bridges" text="type-global" /> is <q>no.</q></p>
-</statement>
-<answer><p> In the figure below, <m>\{1,2\}</m> is not a minimal bridge between <m>L=\{1,4\} \textrm{ and } R=\{2,3\}</m>, but it is part of the minimal spanning tree
-for this graph.</p>
-     <figure xml:id="fig-sol-e-10-2-3"><caption/>
-                <image width="80%" source="images/fig-sol-e-10-2-3.png">
-                    <description><p>Solution to exercise 10-2-3</p></description>
-                </image>
-            </figure>
-</answer>
-</exercise>
 
-<exercise number="4"><statement><p> Find a minimal spanning tree for the following graphs.</p>
+<exercise number="3"><statement><p> Find a minimal spanning tree for the following graphs.</p>
             <figure xml:id="fig-exercise-10-2-4a"><caption/>
                 <image width="80%" source="images/fig-exercise-10-2-4a.png">
                     <description><p>Figure for exercise-10-2-4a</p></description>
@@ -228,8 +217,65 @@ for this graph.</p>
                 </image>
             </figure>
 
-</statement></exercise>
-<exercise number="5"><statement><p> Find a minimum diameter spanning tree for the following graphs.</p>
+</statement>
+<solution>
+	<p>
+		<ol marker="(a)">
+		<li><p>There are three minimal spanning tree, with edges
+			 <m>\{0,5\},\{0,3\},\{4,5\}</m> and any two of the following edges <m>\{0,1\},\{0,2\},\{1,2\}.</m> </p></li>
+		<li><p>There is only one minimal spanning tree.  If we start with BOS as the <q>right set</q>, the edges in the following set are ordered according to how they are added in Prim's Algorithm:  <me>\{\{BOS,NY\},\{NY,PHI\},\{PHI,DC\},\{DC,ATL\},\{PHI,KC\},\{KC,CHI\},\{KC,LA\},\{LA,SF\}\}.</me></p></li>
+<li><p>There is only one minimal spanning tree, which has edges
+			 <m>\{\{1,8\},\{2,8\},\{2,7\},\{3,7\},\{3,6\},\{4,6\},\{4,5\}\}</m></p></li>
+				</ol>
+	</p>
+</ol>
+</solution>
+</exercise>
+<exercise number="4"><statement><p>Find a minimal spanning tree for the following graph using Prim's algorithm starting at vertex 1.  Your tree will not be unique.  How many different minimal spanning trees are there?</p>
+    <figure xml:id="fig-10-2-4-new"><caption/>
+                <image width="80%" source="images/fig-10-2-4-new.png">
+                    <description><p>A graph with several different minimal spanning trees.</p></description>
+                </image>
+            </figure>
+
+</statement>
+<solution component="im"><p>One example of a minimal spanning tree for this graph is 
+<m>\{\{1,2\},\{2,3\},\{3,6\},\{6,4\},\{4,5\}\}</m>.  This is one of <m>27</m> different minimal spanning trees for this graph.	</p>
+ </solution>
+</exercise>
+
+
+
+
+<exercise number="5"><statement><p> In each of the following parts justify your answer with either a proof or a counterexample.</p>
+<p><ol marker="(a)">
+<li><p> Suppose a weighted undirected graph had distinct edge weights. Is it possible that no minimal spanning tree includes the edge of minimal weight?</p></li>
+<li><p> Suppose a weighted undirected graph had distinct edge weights. Is it possible that every minimal spanning tree includes the edge of maximal
+weight? If true, under what conditions would it happen?</p></li>
+</ol></p>
+</statement>
+<solution><p>
+<ol marker="(a)">
+<li><p> No, every minimal spanning tree will include the edge of minimal weight?  At some point, the edge of minimal weight will be part of a bridge between two sets and will be included in the spanning tree.</p></li>
+<li><p>Yes, this will happen if the edge of maximal weight is the only bridge between two sets.</p></li>
+</ol>
+</p>
+</solution>
+</exercise>
+
+<exercise number="6"><statement><p> Show that the answer to the question posed in <xref ref="ex-some-bridges" text="type-global" /> is <q>no.</q></p>
+</statement>
+<answer component="im"><p> In the figure below, <m>\{1,2\}</m> is not a minimal bridge between <m>L=\{1,4\} \textrm{ and } R=\{2,3\}</m>, but it is part of the minimal spanning tree
+for this graph.</p>
+     <figure xml:id="fig-sol-e-10-2-3"><caption/>
+                <image width="80%" source="images/fig-sol-e-10-2-3.png">
+                    <description><p>Solution to exercise 10-2-3</p></description>
+                </image>
+            </figure>
+</answer>
+</exercise>
+
+<exercise number="7"><statement><p>Find a minimum diameter spanning tree for the following graphs.</p>
             <figure xml:id="fig-exercise-10-2-5a"><caption/>
                 <image width="80%" source="images/fig-exercise-10-2-5a.png">
                     <description><p>Figure for exercise-10-2-5a</p></description>
@@ -241,28 +287,13 @@ for this graph.</p>
                 </image>
             </figure>
 </statement>
-<answer><p><ol marker="(a)"><li><p>Edges in one solution are: <m>\{8,7\},\{8,9\},\{8,13\},\{7,6\},\{9,4\},\{13,12\},\{13,14\},\{6,11\},\{6,1\},\{1,2\},\{4,3\},\{4,5\},\{14,15\},
+<solution>
+<p><ol marker="(a)"><li><p>Edges in one solution are: <m>\{8,7\},\{8,9\},\{8,13\},\{7,6\},\{9,4\},\{13,12\},\{13,14\},\{6,11\},\{6,1\},\{1,2\},\{4,3\},\{4,5\},\{14,15\},
 \textrm{ and } \{5,10\}</m></p></li>
 <li><p> Vertices 8 and 9 are centers of the graph. Starting from vertex 8, a minimum diameter spanning tree is <m>\{\{8, 3\}, \{8, 7\}, \{8, 13\},
 \{8, 14\}, \{8, 9\}, \{3, 2\}, \{3, 4\}, \{7, 6\}, \{13, 12\}, \{13, 19\}, \{14, 15\}, \{9, 16\}, \{9, 10\}, \{6, 1\}, \{12, 18\}, \{16, 20\}, \{16,
 17\}, \{10, 11\}, \{20, 21\}, \{11, 5\}\}.</m>    The diameter of the tree is 7.
-</p></li></ol></p></answer>
+</p></li></ol></p></solution>
 </exercise>
-<exercise number="6"><statement><p> In each of the following parts justify your answer with either a proof or a counterexample.</p>
-<p><ol marker="(a)">
-<li><p> Suppose a weighted undirected graph had distinct edge weights. Is it possible that no minimal spanning tree includes the edge of minimal weight?</p></li>
-<li><p> Suppose a weighted undirected graph had distinct edge weights. Is it possible that every minimal spanning tree includes the edge of maximal
-weight? If true, under what conditions would it happen?</p></li>
-</ol></p>
-</statement>
-<solution component="im"><p>
-<ol marker="(a)">
-<li><p> No, every minimal spanning tree will include the edge of minimal weight?  At some point, the edge of minimal weight will be part of a bridge between two sets and will be included in the spanning tree.</p></li>
-<li><p>Yes, this will happen if the edge of maximal weight is the only bridge between two sets.</p></li>
-</ol>
-</p>
-</solution>
-</exercise>
-
 </exercises>
 </section>
