@@ -129,15 +129,83 @@ changed somewhat.</p></li>
 </note>
 
 <example xml:id="ex-an-example"><title>A Small Example</title><p>Consider the graph in <xref ref="fig-weighted-graph-10" text="type-global" />. If we apply <xref ref="alg-prim" text="title" /> starting at <m>a</m>, we obtain the following edge list
-in the order given: <m>\{a, f\}, \{f, e\}, \{e, c\}, \{c, d\}, \{f, b\}, \{b, g\}</m>. The total of the weights of these edges is 20. The method that
-we have used (in Step 2.1) to select a bridge when more than one minimally weighted bridge exists is to order all bridges alphabetically by the vertex
-in <m>L</m> and then, if further ties exist, by the vertex in <m>R</m>. The first vertex in that order is selected in Step 2.1 of the algorithm.</p>
+in the order given: <m>\{a, f\}, \{f, e\}, \{e, c\}, \{c, d\}, \{f, b\}, \{b, g\}</m>. The total of the weights of these edges is 20.</p>
        <figure xml:id="fig-weighted-graph-10">
        			<caption>A small weighted graph</caption>
                <image width="80%" source="images/fig-weighted-graph-10.png">
                     <description><p>A weighted graph</p></description>
                 </image>
       </figure>
+<p>For small examples, the following table is a suggested way to demonstrate an understanding of how Prim's algorithm plays out.  The first line, step 0, is the initialization of the two sets, <m>L</m> and <m>R</m>. In completing Step 3, there are two bridges of minimal weight, <m>\{e,c\}</m> and <m>\{e,d\}</m>.  We selected the former.  If we had selected the latter, the resulting spanning tree would be different, but would have the same total weight.</p>
+<table>
+  <title>Prim's Algorithm Steps</title>
+  <tabular>
+    <row header="yes" bottom="major">
+      <cell>Step</cell>
+      <cell>Added Bridge</cell>
+      <cell><m>L</m></cell>
+      <cell><m>R</m></cell>
+      <cell>Added Weight</cell>
+    </row>
+    <row>
+      <cell>0</cell>
+      <cell>-</cell>
+      <cell><m>\{b,c,d,e,f,g\}</m></cell>
+      <cell><m>\{a\}</m></cell>
+      <cell>-</cell>
+   </row>
+    <row>
+      <cell>1</cell>
+      <cell><m>\{a,f\}</m></cell>
+     <cell><m>\{b,c,d,e,g\}</m></cell>
+      <cell><m>\{a,f\}</m></cell>
+       <cell><m>3</m></cell>
+   </row>
+    <row>
+      <cell>2</cell>
+      <cell><m>\{e,f\}</m></cell>
+     <cell><m>\{b,c,d,g\}</m></cell>
+      <cell><m>\{a,e,f\}</m></cell>
+       <cell><m>4</m></cell>
+   </row>
+    <row>
+      <cell>3</cell>
+      <cell><m>\{e,c\}</m></cell>
+     <cell><m>\{b,d\}</m></cell>
+      <cell><m>\{a,c,e,f\}</m></cell>
+       <cell><m>3</m></cell>
+   </row>
+    <row>
+      <cell>4</cell>
+      <cell><m>\{c,d\}</m></cell>
+     <cell><m>\{b,g\}</m></cell>
+      <cell><m>\{a,c,d,e,f\}</m></cell>
+       <cell><m>2</m></cell>
+   </row>
+    <row>
+      <cell>5</cell>
+      <cell><m>\{f,b\}</m></cell>
+     <cell><m>\{g\}</m></cell>
+      <cell><m>\{a,b,c,d,e,f\}</m></cell>
+       <cell><m>5</m></cell>
+   </row>
+    <row  bottom="minor">
+      <cell>6</cell>
+      <cell><m>\{b,g\}</m></cell>
+     <cell><m>\{\}</m></cell>
+      <cell><m>\{a,b,c,d,e,f,g\}</m></cell>
+       <cell><m>3</m></cell>
+   </row>
+    <row>
+      <cell></cell>
+      <cell></cell>
+     <cell></cell>
+      <cell>Total weight</cell>
+       <cell><m>20</m></cell>
+   </row>
+  </tabular>
+</table>
+
 </example>
 
 
@@ -218,18 +286,18 @@ always be made most economical with respect to Objective 2 if the old system wer
             </figure>
 
 </statement>
-<solution>
-	<p>
-		<ol marker="(a)">
-		<li><p>There are three minimal spanning tree, with edges
-			 <m>\{0,5\},\{0,3\},\{4,5\}</m> and any two of the following edges <m>\{0,1\},\{0,2\},\{1,2\}.</m> </p></li>
-		<li><p>There is only one minimal spanning tree.  If we start with BOS as the <q>right set</q>, the edges in the following set are ordered according to how they are added in Prim's Algorithm:  <me>\{\{BOS,NY\},\{NY,PHI\},\{PHI,DC\},\{DC,ATL\},\{PHI,KC\},\{KC,CHI\},\{KC,LA\},\{LA,SF\}\}.</me></p></li>
-<li><p>There is only one minimal spanning tree, which has edges
-			 <m>\{\{1,8\},\{2,8\},\{2,7\},\{3,7\},\{3,6\},\{4,6\},\{4,5\}\}</m></p></li>
-				</ol>
-	</p>
-</ol>
-</solution>
+	<solution>
+		<p>
+			<ol marker="(a)">
+			<li><p>There are three minimal spanning tree, with edges
+				 <m>\{0,5\},\{0,3\},\{4,5\}</m> and any two of the following edges <m>\{0,1\},\{0,2\},\{1,2\}.</m> </p></li>
+			<li><p>There is only one minimal spanning tree.  If we start with BOS as the <q>right set</q>, the edges in the following set are ordered according to how they are added in Prim's Algorithm:	<m>\{\{BOS,NY\},\{NY,PHI\},\{PHI,DC\},\{DC,ATL\},\\ \{PHI,KC\},\{KC,CHI\},\{KC,LA\},\{LA,SF\}\}.</m>
+		</p></li>
+			<li><p>There is only one minimal spanning tree, which has edges
+				 <m>\{\{1,8\},\{2,8\},\{2,7\},\{3,7\},\{3,6\},\{4,6\},\{4,5\}\}</m></p></li>
+					</ol>
+		</p>
+	</solution>
 </exercise>
 <exercise number="4"><statement><p>Find a minimal spanning tree for the following graph using Prim's algorithm starting at vertex 1.  Your tree will not be unique.  How many different minimal spanning trees are there?</p>
     <figure xml:id="fig-10-2-4-new"><caption/>
@@ -288,12 +356,14 @@ for this graph.</p>
             </figure>
 </statement>
 <solution>
-<p><ol marker="(a)"><li><p>Edges in one solution are: <m>\{8,7\},\{8,9\},\{8,13\},\{7,6\},\{9,4\},\{13,12\},\{13,14\},\{6,11\},\{6,1\},\{1,2\},\{4,3\},\{4,5\},\{14,15\},
+<p><ol marker="(a)"><li><p>Edges in one solution are: <m>\{8,7\},\{8,9\},\{8,13\},\{7,6\},\{9,4\},\{13,12\},\\ \{13,14\},\{6,11\},\{6,1\},\{1,2\},\{4,3\},\{4,5\},\{14,15\},
 \textrm{ and } \{5,10\}</m></p></li>
-<li><p> Vertices 8 and 9 are centers of the graph. Starting from vertex 8, a minimum diameter spanning tree is <m>\{\{8, 3\}, \{8, 7\}, \{8, 13\},
-\{8, 14\}, \{8, 9\}, \{3, 2\}, \{3, 4\}, \{7, 6\}, \{13, 12\}, \{13, 19\}, \{14, 15\}, \{9, 16\}, \{9, 10\}, \{6, 1\}, \{12, 18\}, \{16, 20\}, \{16,
-17\}, \{10, 11\}, \{20, 21\}, \{11, 5\}\}.</m>    The diameter of the tree is 7.
-</p></li></ol></p></solution>
+<li><p>Vertices 8 and 9 are centers of the graph. Starting from vertex 8, a minimum diameter spanning tree is</p><p>
+<m>\{\{8, 3\}, \{8, 7\}, \{8, 13\}, \{8, 14\}, \{8, 9\}, \{3, 2\}, \{3, 4\}, \{7, 6\},\\
+      \{13, 12\}, \{13, 19\}, \{14, 15\}, \{9, 16\}, \{9, 10\}, \{6, 1\}, \{12, 18\},\\
+        \{16, 20\}, \{16, 17\}, \{10, 11\}, \{20, 21\}, \{11, 5\}\}.</m></p>
+   <p> The diameter of the tree is 7.</p>
+</li></ol></p></solution>
 </exercise>
 </exercises>
 </section>
