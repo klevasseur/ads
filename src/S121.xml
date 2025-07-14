@@ -589,9 +589,9 @@ C = Matrix(QQ,[[5,1,2,1,2],[3,1,-2,0,5],[1,1,3,-1,-1]])
 C.echelon_form()
 </input>
 <output>
-[1 	0 	0 	1/2 	1/2]
-[0 	1 	0	-3/2 	3/2]
-[0 	0 	1 	  0	-1]
+[   1    0    0  1/2  1/2]
+[   0    1    0 -3/2  3/2]
+[   0    0    1    0   -1]
 </output>
 </sage>
 
@@ -677,9 +677,10 @@ of round-off but we could just set it to zero.</p>
 </ol>
 </p></answer>
 </exercise>
-<exercise number="2"><statement><p>Solve the following systems by describing the solution sets completely:
+<exercise number="2">
+<statement><p>Solve the following systems by describing the solution sets completely:
 <ol marker="(a)"  cols="2">
-<li><p>   <m>\begin{array}{l}
+<li><p> <m>\begin{array}{l}
  2 x_1+2 x_2+4 x_3=2 \\
  2 x_1+x_2+4 x_3=0 \\
  3 x_1+5 x_2+x_3=0 \\
@@ -706,7 +707,63 @@ of round-off but we could just set it to zero.</p>
 \end{array}</m></p></li>
 </ol>
 </p>
-</statement></exercise>
+</statement>
+<solution component="im"><p>
+<ol marker="(a)">
+<li><p> The augmented matrix for this system row reduces to 
+<me>\left(
+\begin{array}{ccc|c}
+ 1 &amp; 0 &amp; 0 &amp; -\frac{19}{5} \\
+ 0 &amp; 1 &amp; 0 &amp; 2 \\
+ 0 &amp; 0 &amp; 1 &amp; \frac{7}{5} \\
+\end{array}
+\right)</me>
+and the unique solution is <m>(x_1,x_2,x_3)=(-(19/5),2,7/5)</m>.
+</p></li>
+<li><p>  The augmented matrix for this system row reduces to
+<me>\left(
+\begin{array}{ccc|c}
+ 1 &amp; 0 &amp; -\frac{1}{2} &amp; 0 \\
+ 0 &amp; 1 &amp; 4 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 1 \\
+\end{array}
+\right)</me>
+and since the last row translates to the equation <m>0=1</m> there is no solution.</p></li>
+<li><p> The augmented matrix for this system row reduces to 
+<me>\left(
+\begin{array}{cccc|c}
+ 1 &amp; 0 &amp; \frac{5}{2} &amp; 0 &amp; \frac{1}{2} \\
+ 0 &amp; 1 &amp; -\frac{1}{2} &amp; 1 &amp; \frac{5}{2} \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+\end{array}
+\right)</me>  There are an infinite number of solutions with free variables <m>x_3</m> and <m>x_4</m>.
+The solution set is <me>\{(\frac{1}{2}-\frac{5}{2}x_3,\frac{5}{2}+\frac{1}{2}x_3-x_4,x_3,x_4) : x_3,x_4 \in \mathbb{R}\}.</me></p></li>
+<li><p> The augmented matrix for this system row reduces to 
+<me>\left(
+\begin{array}{ccc|c}
+ 1 &amp; 0 &amp; 0 &amp; 4 \\
+ 0 &amp; 1 &amp; 0 &amp; 5 \\
+ 0 &amp; 0 &amp; 1 &amp; -28 \\
+\end{array}
+\right)</me>
+and the unique solution is <m>(x_1,x_2,x_3)=(4,5,-28)</m>.
+</p></li>
+<li><p> The augmented matrix for this system row reduces to 
+<me>
+\left(
+\begin{array}{cccc|c}
+ 1 &amp; 0 &amp; 0 &amp; 4 &amp; 7 \\
+ 0 &amp; 1 &amp; 0 &amp; -\frac{9}{5} &amp; -4 \\
+ 0 &amp; 0 &amp; 1 &amp; \frac{1}{5} &amp; 2 \\
+\end{array}
+\right)
+</me>  
+
+There are an infinite number of solutions with free variable <m>x_4</m>.
+The solution set is <me>\{(7-4 x_4,-4+\frac{9}{5}x_4,2-\frac{1}{5}x_4,x_4) : x_4 \in \mathbb{R}\}.</me></p></li>
+</ol>
+</p></solution>
+</exercise>
 <exercise number="3"><statement><p>Given the final augmented matrices below from the Gauss-Jordan Algorithm, identify the solutions sets. Identify the basic and free variables, and describe the solution set of the original system. 
 
 <ol marker="(a)" cols="2">
@@ -751,6 +808,19 @@ of round-off but we could just set it to zero.</p>
 </ol> 
 </p></answer>
 </exercise>
+
+<exercise number="4"><statement><p>Given a system of <m>n</m> linear equations in <m>n</m> unknowns in matrix form <m>A X = b</m>, prove that if <m>b</m> is a matrix of all
+zeros, then the solution set of <m>A X = b</m> is a subgroup of <m>\mathbb{R}^n</m>.</p></statement>
+<answer component="im"><p> Proof: Since <m>b</m> is the <m>n\times 1</m> matrix of 0{'}s, let's call it <m>\pmb{0}</m>.  Let S be the set of solutions to <m>A X = \pmb{0}</m>. If <m>X_1</m>
+and <m>X_2</m>  be in <m>S</m>.  Then
+<me>A\left(X_1 + X_2 \right) = A X_1 + A X_2 = \pmb{0} + \pmb{0} = \pmb{0}</me>
+so <m>X_1+ X_2 \in  S</m>; or in other words, <m>S</m> is closed under addition in <m>\mathbb{R}^n</m>.</p>
+<p>The identity of <m>\mathbb{R}^n</m> is <m>\pmb{0}</m>, which is in <m>S</m>.  Finally, let <m>X</m> be in<m>S</m>. Then
+<me>A(-X) = -(A X) = - \pmb{0} = \pmb{0}</me>
+and so <m>-X</m> is also in <m>S</m>.</p>
+</answer>
+</exercise>
+<!-- Old retired #4
 <exercise number="4"><statement><p><ol marker="(a)">
 <li><p>  Write out the details of <xref ref="ex-system-no-solution" text="type-global" />.</p></li>
 <li><p>Write out the details of <xref ref="ex-system-infinite-solutions" text="type-global" />.</p></li>
@@ -758,6 +828,7 @@ of round-off but we could just set it to zero.</p>
 </ol>
 </p>
 </statement></exercise>
+ -->
 <exercise number="5"><statement><p>Solve the following systems using only mod 5 arithmetic. Your solutions should be <m>n-\textrm{tuples}</m> from <m>\mathbb{Z}_5</m>.
 <ol marker="(a)">
 <li><p>  <m>\begin{array}{l}
@@ -788,17 +859,7 @@ can be described by the set <m>A</m> in the same example.</p></li>
 </statement>
 </exercise>
 
-<exercise number="7"><statement><p>Given a system of <m>n</m> linear equations in <m>n</m> unknowns in matrix form <m>A X = b</m>, prove that if <m>b</m> is a matrix of all
-zeros, then the solution set of <m>A X = b</m> is a subgroup of <m>\mathbb{R}^n</m>.</p></statement>
-<answer><p> Proof: Since <m>b</m> is the <m>n\times 1</m> matrix of 0{'}s, let's call it <m>\pmb{0}</m>.  Let S be the set of solutions to <m>A X = \pmb{0}</m>. If <m>X_1</m>
-and <m>X_2</m>  be in <m>S</m>.  Then
-<me>A\left(X_1 + X_2 \right) = A X_1 + A X_2 = \pmb{0} + \pmb{0} = \pmb{0}</me>
-so <m>X_1+ X_2 \in  S</m>; or in other words, <m>S</m> is closed under addition in <m>\mathbb{R}^n</m>.</p>
-<p>The identity of <m>\mathbb{R}^n</m> is <m>\pmb{0}</m>, which is in <m>S</m>.  Finally, let <m>X</m> be in<m>S</m>. Then
-<me>A(-X) = -(A X) = - \pmb{0} = \pmb{0}</me>
-and so <m>-X</m> is also in <m>S</m>.</p>
-</answer>
-</exercise>
+
 
 </exercises>
  </section>
