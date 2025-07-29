@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="s-probablity-basics">
+<title>Basic Notions of Probability</title>
+<idx>Sample Space</idx>
+<subsection>
+<p>We start this introduction by laying out how we will view randomness and the idea of an experiment. Assume we are about to observe some process, which we call an experiment, and which will have an outcome that can be any one of a set of possible result. In this chapter will will assume that the set of possible results, which we call the sample space, is finite. The simplest example of this is the toss of a coin, where the sample space is <m>\{heads, tails\}</m>.</p>
+<definition xml:id="prob-sample-space"><title>Sample Space for a Random Experiment</title>
+<idx><h>sample space</h></idx>
+<statement>
+<p>The sample space for a random experiment is the set of all possible outcomes of the experiment such that when the outcome is determined, exactly one of the elements of the sample space will have occured.</p>
+</statement>
+</definition>
+<p>Once the experiment takes place, we assume that there is no uncertainty as to the outcome, but before the experiment we assume that the outcome is uncertain. We assume that every element of the sample space is a possible outcome even though some seem more likely than others. Furthermore we assume that exactly one of the elements of the sample space will be the outcome. We may not know exactly which elements sample space are more likely than others, but we often make assumptions that seem reasonable. In the case of flipping a coin it is reasonable to assume that the two outcomes are equally likely. Of course there are “unfair” coins that are weighted so that one of the two outcomes is more likely. It may also occur to you that the coin could land on its edge, but this would tend to be so unlikely as to simply ignore it as a possible outcome, which is why we didn’t include it in the sample space.</p>
+
+<p>Assuming a fair coin, we assign a probability to the two outcomes to reflect an assumption that before flipping the coin they equally likely. We assign a probability of <m>1/2</m> to both outcomes. In general, the probability of an outcome is a measurement of the the likelihood of that outcome occurring in an experiment.</p>
+
+<definition><title> Probability Distribution</title>
+<statement><p> Give an experiment with sample space <m>S</m>, a probability distribution on <m>S</m> is a function <m>Pr:S\rightarrow R</m> such that
+	<ul>
+		<li>
+			<p>
+				<m>Pr(s) \geq 0 \quad \forall s \in S</m>
+			</p>
+		</li>
+
+		<li>
+			<p>
+				<m>\sum_{s \in S} Pr(s)=1</m></p>
+		</li>
+		</ul></p>
+</statement>
+</definition>
+				
+	<p>You might notice that we do allow for the possibility of an outcome to have zero probability, which would reflect a situation where that outcome is impossible. We might leave that outcome in the sample space, for example, we are considering different experiments where the same outcomes are possible.</p>
+
+<p>In the case of a coin flip the probability distribution <m>Pr(heads)=Pr(tails)=\frac{1}{2}</m> is reasonable. However, in real life probabilities are often unknown, and we need to make estimates. For experiments that involve the playing a game between two teams we might assign probabilities of each team winning, we can never know the true likelihood of the outcome. These probabilities are subjective - everyone has a different sense of what the outcome of a game is going to be. Nevertheless, subjective probabilities can be a tool in assessing whether an individual should place a wager on the outcome of game.</p>
+
+<p>Example(s)</p>
+
+<p>A random variable is a function that associates a real number to each outcome in a sample space of a random experiment.</p>
+
+<p>A simple example might be a wager on a game - we use a US football game here as our model. Suppose a game between the Jets and Patriots is to take place and we are going to wager on the final outcome of the game. The sample space consisting of <m>\{\textrm{Jets win},\textrm{Patriots win}, \textrm{tie}\}</m>. An individual might assign a probability to each of the outcomes. Under current rules in the National Football League, ties are quite rare and so if the Patriots are assessed as being a somewhat better teams the following probability distribution might be assumed by that individual.
+			</p>
+
+	<p><me>Pr(\textrm{Jets win})=0.44</me>
+		<me>Pr(\textrm{Patriots win})=0.55</me>
+		<me>Pr(\textrm{tie})=0.01</me></p>
+
+<p>It’s important to emphasize that unlike the flip of a coin, there is no physical basis on which these probabilities can be justified and each individual will have their own distribution.</p>
+
+<p>To a fan of the teams the outcome is important, but to someone who is wagering on the outcome there is another thing to consider, which is the amount that is won or lost based on the outcome of the game. This is an example of a random variable that we will call <m>Gain</m>. An example of how a wager could be structured if one if to wager <m>\$100</m> on the Patriots in the game is
+	<ul>
+		<li>
+			<p>
+				<m>Gain(\textrm{Patriots win})= \$88</m>
+			</p>
+		</li>
+
+		<li>
+			<p>
+				<m>Gain(\textrm{tie})= -\$100</m>
+			</p>
+		</li>
+
+		<li>
+			<p>
+				<m>Gain(\textrm{Jets win})= -\$100</m>
+			</p>
+		</li>
+	</ul></p>
+
+<aside><title>Types of Bets</title><p> This type of bet is called a moneyline bet, although these types of bets are usually structured a little bit differently, the basic idea is the same. The other common type of bet is a point spread bet. The hypothetical game we use here might have a points spread of 6 points in favor of the Jets listed either as “Jets +6” or “Patriots -6.” If any amount is bet on the Patriots you would win if the Patriots won by more than 6 points. The payoff would be exactly what you bet.</p>
+</aside>
+
+<p>Notice that the gain of <m>\$88</m> if the Patriots win is less than the loss of <m>\$100</m> if the Jets win or there is tie. This reflects the fact that the individual’s probability assessment is likely to to be similar to that of individual who structures the bet. How does one decide whether to actually make this bet? The answer is the expected value of <m>Gain</m>. In this case the <em>assessed</em> expectation of <m>Gain</m> is
+
+<me>E(Gain)=\$88 * 0.55 + (-\$100)*0.44 + (-\$100)*0.01=\$3.40 </me>
+
+Our hypothetical individual with their assessment of the probabilities for this game would expect to win <m>\$3.40</m>, on average, when placing a bet like this. So they probably would do so. A different person who assesses the probability that the Patriots would win to be only <m>0.51</m> with the probability for the Jets being <m>0.48</m> and the same probability for a tie would have an expected gain of
+
+<me>\$88 * 0.51 + (-\$100)*0.48 + (-\$100)*0.01=-\$4.12</me>
+
+This negative expected gain should dissuade them from making the bet.</p>
+
+<p>In general, here is the formula for the expected values of a random variable.</p>
+
+<definition xml:id="def-expected-value"><title>Expected Value of a Random Variable</title>
+<idx>Expected Value of a Random Variable</idx>
+	<notation>
+		<usage><m>E(X)</m></usage>
+		<description>Expected Value of a Random Variable</description>
+	</notation>
+<statement><p>Given an experiment with sample space <m>S</m> having probability distribution <m>Pr:S\rightarrow \mathbb{R}</m>, let <m>X</m> be a random variable: <m>X: S\rightarrow \mathbb{R}</m>. The expected value of <m>X</m>, denoted <m>E(X)</m> is
+
+<me>E(X)=\sum_{s \in S} X(s) Pr(s)</me></p>
+</statement>
+</definition>
+
+<p>For some wagering the expected value is subjective, but in other situations it’s not. Take the case of the classic casino game roulette. Normally, the sample space in in a game of roulette has 38 elements, the numbers from 1 to 36 together with two special outcomes 0 and 00. Each possible outcome has a pocket on the edge of a spinning wheel. The outcome of any experiment is determined by a ball that lands in one of the pockets to determine the outcome. For a fair roulette wheel, the probability of each of the 38 elements of the sample space is 1/38. Half of the numbers 1 to 36 are colored red and the other half are black. The 0 and 00 are green. There are many different ways to place a bet but one is to bet that the outcome is a red number. Whatever amount a person bets, they win that amount if the outcome is red and lose the same amount otherwise. For example if we bet <m>\$50</m> on red, the probability of winning the bet and the expected value of the outcome of the bet are
+
+<me>Pr(\textrm{red})=18*(1/38)=9/19=0.47 </me>
+
+<me>X(\textrm{red}) =18*(1/38)* (\$50) + 20*(1/38)( -\$50) =-\$2.63 </me>
+
+Unlike the case of betting on a football game, this roulette wager is repeatable with the probabilities being reasonably certain. This is an example of a Bernoulli trial, which we will consider in detail later.</p>
+
+<aside><title>A High Stakes Red Bet</title>
+<p>In 2004, Ashley Revell of London sold all of his possessions, clothing included, and placed his entire net worth of <m>\$135,300</m> on red at the Plaza Hotel in Las Vegas. The ball landed on "Red 7" and Revell walked away with <m>\$270,600</m>. <url href="http://news.bbc.co.uk/2/hi/uk_news/3618883.stm"/> </p>
+</aside>
+
+</subsection>
+<subsection>
+<title>The Uniform Distribution</title>
+<p>The roulette example illustrates one of the most basic types of experiments in probability theory where all of the elements of a sample space have equal probability. Here is a general description of how probabilities and expected values of random variables can be computed in this situation.</p>
+
+<p>Let S be a finite sample space with cardinality n so that the <m>Pr(s)=1/n</m> for all <m>s \in S</m>. Let <m>q(s)</m> be a proposition on <m>S</m> and let <m>Pr(q(s))</m> be the probability that the outcome of the experiment makes <m>q(s)</m> true. If <m>T_{q(s)}v</m> is the truth set of <m>q(s)</m>, then <m>P(q(s)) =\frac{\lvert T_{q(s)}\rvert}{n}</m>.</p>
+
+<p>To clarify this general rule, consider the wager in roulette that the outcome is a prime number. We have already established that the sample space has 38 equally likely outcomes. The proposition <m>q(s)</m> equal to “<m>s</m> is prime” has truth set <m>\{2,3,5,7,11,13,17, 19,23,29,31\}</m> which has cardinality 11. Therefore the probability <m>Pr(\textrm{s is prime}) = \frac{11}{38}</m>. Although there are many standard bets in roulettes, this one isn’t likely to be one. If it were, let’s consider what the payoff would need to be on a wager of <m>\$100</m> in order for the bet to be a fair one, where the expected value is zero. Let’s assume the payoff for winning is <m>\$x</m> with the payoff for losing being <m>-\$100</m>. The expected value of the payoff is then
+
+<me>\$x(11/38) + (-\$100)(27/38) </me>
+
+If we set this quantity to zero and solve for <m>\$x</m> we find the value <m>\$245.45</m>. Casinos are in the business of extracting money from their customers and so if this wager were to real, the payoff for winning might be something like <m>\$200</m>, or double a bet of <m>\$100</m>.</p>
+
+<theorem><title>Probability Formulae For Uniform Distribution</title>
+<statement>
+
+<p>Based on formulas for the truth sets of compound propositions over a universe <m>S</m> with cardinality <m>n</m>, we can derive the following. If <m>p(s)</m> and <m>q(s)</m> are propositions over a sample space,
+
+<me>Pr(\neg p(s))= 1-Pr(p(s))</me>
+
+<me>Pr(p(s) \land q(s)) = \frac{\lvert T_{p(s}) \cap T_{q(s)} \rvert}{n}</me>
+
+<me>Pr(p(s) \lor q(s)) = \frac{\lvert T_{p(s}) \cup T_{q(s)} \rvert}{n}</me>
+</p>
+</statement>
+</theorem>
+
+</subsection>
+<title>Exercises</title>
+			
+<exercises>
+		<exercise>
+		<statement><p>
+						Three fair coins are tossed up in the air, one at a time. What is the sample space for this experiment? What is the probability that two of them will land heads up and one will land tails up?</p></statement>
+					<solution><p>The sample space consists of eight ordered triples, the elements of the set <m>\{heads, tails\}^3</m>. The probability distribution here is uniform and so we need only count the number of triples that make the proposition “Exactly two of the coordinates of <m>(f_1,f_2,f_3)</m> are heads.” There are three such triples and so the probability is 3/8.
+					</p></solution>
+		</exercise>
+		<exercise>
+		<statement><p>What this the expected value of wagering that the outcome in roulette is prime if you get a payoff of <m>\$200</m> for a <m>\$100</m> bet.</p></statement>
+		<solution><p></p></solution>
+		</exercise>
+		
+		<exercise>
+		<statement><p>What is the probability that if you examine 8 random bits in your computer’s memory that there are exactly three ones and five zeros?
+		</p></statement>
+		<solution><p>If we assume the bits are truly random then there are <m>2^8=256</m> bit sequences that could be observed and each possible sequence would have equal probability. Since the number of sequence with exactly three 1’s is <m>\binom{8}{3}</m>, the probability would be <m>56/256 =0.219</m>.</p></solution>
+		</exercise>
+		
+		<exercise>
+		<statement><p>An experiment consists of rolling a standard six sided die with sides numbered 1 through 6. What is the expected value of the random variable <m>X(k)=k^2-10</m>?</p></statement>
+		<solution><p></p></solution>
+		</exercise>
+		
+		<exercise>
+		<statement><p>There are 8 blue marbles numbered 1 through 8, 3 red marbles numbered 1 through 3, and 6 yellow marbles numbered 1 through 6 in a bag. What is the probability that if one ball is drawn at random, it is red or even?</p></statement>
+		<solution><p></p></solution>
+		</exercise>
+		
+		<exercise>
+		<statement><p>Your team is a favorite to win the big game and if you bet <m>\$100</m> on them and they win, you will get <m>\$65</m>. How high must the the probability that your team will win, in your assessment, in order for this bet to have a positive expected value?</p></statement>
+		<solution><p></p></solution>
+		</exercise>
+		
+		<exercise>
+		<statement><p>In the aside describing moneyline and point spread bets, gambling companies decide on a point spread and it’s not directly related to the probability of a team winning or losing. The spread is selected with the objective of luring as many betters to bet on one team as the other, balancing the bets so that there is no way to lose money. There is a fee that gambling companies charge, called vigorish, that results in a profit no matter how the game ends. How is the possibility of setting a balanced point spread related to the Intermediate Value Theorem in calculus?
+		</p></statement>
+		<solution><p></p></solution>
+		</exercise>
+		<exercise>
+		<statement><p>A twelve sided die is rolled once. What is the probability that the number that comes up is even or a prime?</p></statement>
+		<solution><p></p></solution>
+		</exercise>
+		<exercise>
+		<statement><p>Two six-sided dice are rolled. What is the probability that the sum of the numbers that come up is even or a prime?</p></statement>
+		<solution><p></p></solution>
+		</exercise>
+		
+	</exercises>
+ </section>
