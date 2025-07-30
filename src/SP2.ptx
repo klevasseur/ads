@@ -5,23 +5,26 @@
 <p>
 In this section we will concentrate of random processes that will involve one or more identical random experiments with two possible outcomes. The simplest such example would be one or more flips of a coin. Let's jump into the formal definitions and then we'll look at a few examples.</p>
 </introduction>
-<subsection><title></title>
+<subsection><title>Definitions</title>
 
 <definition xml:id="def-binomial-trial"><title>Binomial Trial</title>
 <idx>Binomial Trial</idx>
 <statement>
-<p></p>
+<p>A binomial trial is an experiment with a sample space having two elements <m>\{\textrm{success},\textrm{failure}\} with probability distribution <m>Pr(\textrm{success})=p</m> and <m>Pr(\textrm{failure}))=1-p</m> for some real number <m>p</m>, <m>0 \lt p \lt 1</m>.</p>
 </statement></definition>
-<p>We can think of either possible outcome of a binomial trial as success or failure. The important thing is to have a sample space with exactly two elements.</p>
-<p>A fair coin flip is a binomial trial with <m>p=1/2</m>. If we roll a six sided die and interpret success as whether a six is rolled, this is a binomial trial with <m>p=1/6</m>. </p>
-<p>A basketball player shooting a free throw, with success being whether they make the free thow, is probably not a binomial trial because the probability of success is not likely to be constant. Factors such as fatigue and game pressure are likely to change the probablity of success. However, we can free throw shooting as a binomial process as long as we understand that it is an approximation of reality.</p>
 
-<p>In reality, each free throw can have some effect on the next free throw. We say that each free throw is not necessarily independent of previous ones. Independence is an important assumption when we define a binomial process. Intuitively, two experiments are independent if the outcome of one does not affect the other. The formal definition that follows and gives a precise condition.</p>
+<p>It is customary to use \{\textrm{success},\textrm{failure}\} as the generic sample space for a binomial trial, but in practice the sample space can be any set of cardinality two. </p>
+
+<p>A fair coin flip is a binomial trial with <m>p=1/2</m>. If we roll a six sided die and interpret success as whether a six is rolled, this is a binomial trial with <m>p=1/6</m>. </p>
+
+<p>A basketball player shooting a free throw, with success being whether they make the free thow, is probably not a binomial trial because the probability of success is not likely to be constant. Factors such as fatigue and game pressure are likely to change the probablity of success. However, we can think of free throw shooting as a binomial process as long as we understand that it is an approximation of reality.</p>
+
+<p>In reality, each free throw can have some effect on the next free throw. We say that each free throw is not necessarily independent of previous ones. Independence is an important assumption when we define a binomial process. Intuitively, conditions associated with an experiment are independent if the likelihood of one does not affect the likelihood of the other. The formal definition follows and gives a precise condition.</p>
 
 <definition xml:id="def-independence">
 <idx>Independence</idx>
 <statement>
-<p>Two events, <m>A</m> and <m>B</m>, are independent if
+<p>Two logical conditions associated with a random experiment, <m>A</m> and <m>B</m>, are independent if
 <me>Pr(A \land B) = Pr(A) \cdot Pr(B)</me>
 </p>
 </statement></definition>
@@ -32,11 +35,11 @@ In this section we will concentrate of random processes that will involve one or
 <idx>Binomial Process</idx>
 <notation><usage>B(n,p)</usage><description></description></notation>
 <statement>
-<p>A finite <em>binomial process</em> is a sequence of identical independent Bernoulli trials <m><em>X_</em>1</m>, <m><em>X_2</em></m>, <m> <em>X_</em>3</m>, <m>\dots</m>, <m>X_n</m> such that for each <em>i</em>, X_i the probability of success is a constant <m>p</m>. We use the notation <m>B(n,p)</m> for an <m>n</m> step binomial process with probability of success <m>p</m>.
+<p>A finite <em>binomial process</em> is a sequence of identical independent Bernoulli trials <m>X_1</m>, <m>X_2</m>, <m>X_3</m>, <m>\dots</m>, <m>X_n</m> with probability of success <m>p</m>. We use the notation <m>B(n,p)</m> for an <m>n</m> step binomial process with probability of success <m>p</m>.
 </p>
 </statement></definition>
 
-<p>The probability of any number of successes in a finite binomial process is fairly easy to describe. Instead of a general proof, we will derive one specific probability for a <m>B(6,p)</m> and the correctness of the general formula should be clear from our logic. Let's look at the probability of exactly four successes. If we were to record the outcome of six independent trials, writing S for success and F for failure, there as several ways in which we could observe four successes. On such case would be SFFSSS, and another is FSSSFS. The first these two occurred with probability <m>p\cdot (1-p)\cdot (1-p)\cdot p\cdot p\cdot p</m> while the second had probability
+<p>The probability of any number of successes in a finite binomial process is fairly easy to derive. Instead of a general proof, we will derive one specific probability for a <m>B(6,p)</m> and the correctness of the general formula should be clear from our logic. Let's look at the probability of exactly four successes. If we were to record the outcome of six independent trials, writing S for success and F for failure, there as several ways in which we could observe four successes. On such case would be SFFSSS, and another is FSSSFS. The first these two occurred with probability <m>p\cdot (1-p)\cdot (1-p)\cdot p\cdot p\cdot p</m> while the second had probability
 <m>(1-p)\cdot p\cdot p\cdot p\cdot (1-p) \cdot p</m>. But both of these products reduce to <m>p^4 \cdot (1-p)^2</m>, as do all of the other ways in which we can have four successes. The number of different orderings of four successes and two failures is <m>\binom{6}{4}</m> - think of how you have to select four positions in the sequence of six to get success. Therefore the probability of having four successes is
 <me>\binom{6}{4}p^4 \cdot (1-p)^2</me>.</p>
 <p>We can generalize this result to give us a formula for 
@@ -58,13 +61,11 @@ In this section we will concentrate of random processes that will involve one or
 <me>\binom{1024}{k} (0.002)^k \cdot (0.998)^{1024-k}</me>
 is then the probability of exactly <m>k</m> transmission errors.</p>
 <p> Here is a plot of these probabilities for <m>k \leq 5</m></p>
-<!-- 
-<image source="images/fig-bsc-example.png" width="80%"/>
- -->
-<p>Notice that the probability that there is no error among all bits is approximately <m>0.13</m> and it is more likely that there are 1, 2 or 3 errors in the data that is received. </p>
+<image source="images/fig-bsc-example.png" width="60%"/>
+<p>Notice that the probability that there is no error among all bits is approximately <m>0.13</m> and it is more likely that there are 1, 2 or 3 errors in the data that is received. These error could be costly and motivate the topic of <em>coding theory</em>.</p>
 </example>
 </subsection>
 <exercises>
-<exercise><statement>Question</statement></exercise>
+<exercise><statement>What is the probablity of less than two errors in transmitting eight bits on a binary symmetric channel with error probability <m>p</m>?</statement></exercise>
 </exercises>
 </section>
