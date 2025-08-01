@@ -13,6 +13,8 @@ In this section we will concentrate of random processes that will involve one or
 <p>A binomial trial is an experiment with a sample space having two elements <m>\{\textrm{success},\textrm{failure}\}</m> with probability distribution <m>Pr(\textrm{success})=p</m> and <m>Pr(\textrm{failure}))=1-p</m> for some real number <m>p</m>, <m>0 \lt p \lt 1</m>.</p>
 </statement></definition>
 
+<aside><p>Binomial trials and binomial processes are also referred to as Bernoulli trials and Bernoulli processes, after the Swiss mathematician Jacob Bernoulli (1655-1705)</p></aside>
+
 <p>It is customary to use <m>\{\textrm{success},\textrm{failure}\}</m> as the generic sample space for a binomial trial, but in practice the sample space can be any set of cardinality two. </p>
 
 <p>A fair coin flip is a binomial trial with <m>p=1/2</m>. If we roll a six sided die and interpret success as whether a six is rolled, this is a binomial trial with <m>p=1/6</m>. </p>
@@ -56,7 +58,7 @@ In this section we will concentrate of random processes that will involve one or
 <me> \sum_{k=0}^n \binom{n}{k}p^k \cdot (1-p)^{n-k}= (p + (1-p))^n = 1^n=1</me>
 </p>
 <example xml:id="series-of-red-bets"><title>A Series of Red Bets</title>
-<p>In the previous section, we've seen that a bet on Red in roulette is a binomial trial with probability of success <m>\frac{9}{19}</m>.  Suppose we plan to bet on Red  nine consecutive times.  What is the probability that we win at least five times?  This is a <m>B(9,\frac{9}{19})</m> and so we can use the formula directly, adding the probabilities for five through nine wins.</p>
+<p>In the previous section, we've seen that a bet on Red in roulette is a binomial trial with probability of success <m>\frac{9}{19}</m>.  Suppose we plan to bet on Red nine consecutive times, each time for the same amount.  What is the probability that we win at least five times?  This is a <m>B(9,\frac{9}{19})</m> and so we can use the formula directly, adding the probabilities for five through nine wins.</p>
 <sage>
 	<input>
 var('k')
@@ -75,7 +77,7 @@ sum(binomial(9,k)*(9./19)^k*(10/19)^(9-k),k,5,9)
 <p>Suppose that 1024 bits are to be transmitted across a binary symmetric channel with <m>p=0.002</m>. For any single bit, the likelihood of an error is quite small, but we can compute the probability of having any number of errors in the full transmission. If there are to be <m>k</m> errors, then the number positions of those errors among all of the bits is <m>\binom{1024}{k}</m>. The probability of any single error pattern is <m>(0.002)^k \cdot (0.998)^{1024-k}</m>. The product
 <me>\binom{1024}{k} (0.002)^k \cdot (0.998)^{1024-k}</me>
 is then the probability of exactly <m>k</m> transmission errors.</p>
-<p> Here is a plot of these probabilities for <m>k \leq 5</m></p>
+<p> Here is a plot of these probabilities for <m>k \leq 6</m></p>
 <image source="images/fig-bsc-example.png" width="60%"/>
 <p>Notice that the probability that there is no error among all bits is approximately <m>0.13</m> and it is more likely that there are 1, 2 or 3 errors in the data that is received. These error could be costly and motivate the topic of <em>coding theory</em>.</p>
 </example>
@@ -93,7 +95,7 @@ is then the probability of exactly <m>k</m> transmission errors.</p>
 
 <exercise><statement><p>A bridge hand consists of 13 randomly dealt cards from a standard deck that contains four aces.   What is the probability that a bridge player does not get dealt an ace in four consecutive hands?</p></statement>
 <answer><p>If we consider being dealt a hand with no aces as a success, its probability is 
-	<me>\frac{binom{48}{13}}{\binom{52}{13}}\approx 0.3038.</me>
+	<me>\frac{\binom{48}{13}}{\binom{52}{13}}\approx 0.3038.</me>
 The probabilty of getting no aces in four consecutive hands is <m>0.3038^4 \approx 0.0085</m>.  This would be a fairly uncommon event.
 </p></answer>
 </exercise>
