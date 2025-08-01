@@ -40,7 +40,7 @@ In this section we will concentrate of random processes that will involve one or
 </statement></definition>
 
 <p>The probability of any number of successes in a finite binomial process is fairly easy to derive. Instead of a general proof, we will derive one specific probability for a <m>B(6,p)</m> and the correctness of the general formula should be clear from our logic. Let's look at the probability of exactly four successes. If we were to record the outcome of six independent trials, writing S for success and F for failure, there as several ways in which we could observe four successes. On such case would be SFFSSS, and another is FSSSFS. The first these two occurred with probability <m>p\cdot (1-p)\cdot (1-p)\cdot p\cdot p\cdot p</m> while the second had probability
-<m>(1-p)\cdot p\cdot p\cdot p\cdot (1-p) \cdot p</m>. But both of these products reduce to <m>p^4 \cdot (1-p)^2</m>, as do all of the other ways in which we can have four successes. The number of different orderings of four successes and two failures is <m>\binom{6}{4}</m> - think of how you have to select four positions in the sequence of six to get success. Therefore the probability of having four successes is
+<m>(1-p)\cdot p\cdot p\cdot p\cdot (1-p) \cdot p</m>. But both of these products reduce to <m>p^4 \cdot (1-p)^2</m>, as do all of the other ways in which we can have four successes. The number of different orderings of four successes and two failures is <m>\binom{6}{4}</m>; think of how you have to select four positions in the sequence of six to get success. Therefore the probability of having four successes is
 <me>\binom{6}{4}p^4 \cdot (1-p)^2</me>.</p>
 <p>We can generalize this result to give us a formula for 
 <m>k</m> successes in a <m>B(n,p)</m>.</p>
@@ -71,7 +71,7 @@ sum(binomial(9,k)*(9./19)^k*(10/19)^(9-k),k,5,9)
 </subsection>
 <subsection><title>A Model for Noise</title>
 <example><title>The Distribution of transmission errors</title>
-<p>A binary symmetric channel is an approximation of a form of noise that is often observed in a communication channel. As individual bits are transmitted, we assume that there is some fixed, usually very small, probability <m>p</m> that the value of the bit will switch. If <m>N</m> bits are to be transmitted, this is a <m>B(N,p)</m> binomial process. </p>
+<p>A binary symmetric channel is an approximation of a form of noise that is often observed in a communication channel. As individual bits are transmitted, we assume that there is some fixed, usually very small, probability <m>p</m> that the value of the bit will switch, creating an error. If <m>N</m> bits are to be transmitted, this is a <m>B(N,p)</m> binomial process. </p>
 <p>Suppose that 1024 bits are to be transmitted across a binary symmetric channel with <m>p=0.002</m>. For any single bit, the likelihood of an error is quite small, but we can compute the probability of having any number of errors in the full transmission. If there are to be <m>k</m> errors, then the number positions of those errors among all of the bits is <m>\binom{1024}{k}</m>. The probability of any single error pattern is <m>(0.002)^k \cdot (0.998)^{1024-k}</m>. The product
 <me>\binom{1024}{k} (0.002)^k \cdot (0.998)^{1024-k}</me>
 is then the probability of exactly <m>k</m> transmission errors.</p>
@@ -88,7 +88,7 @@ is then the probability of exactly <m>k</m> transmission errors.</p>
 
 <exercise><statement><p>How long does a sequence of random digits need to be so that the probability that a 6 had appeared is at least 2/3?</p></statement>
 <hint><p>It's easier to answer a related question about absence of a 6.</p></hint>
-<answer><p>The probability that no 6 has appeared after <m>k</m> digits is <m>()\frac{9}{10})^k</m>.  If we compute these powers the smallest value of <m>k</m> for which the result is less than 1/3 is when <m>k=11</m> in which case the probability of at least one 6 is greater than 2/3.</p></answer>
+<answer><p>The probability that no 6 has appeared after <m>k</m> digits is <m>(\frac{9}{10})^k</m>.  If we compute these powers the smallest value of <m>k</m> for which the result is less than 1/3 is when <m>k=11</m> in which case the probability of at least one 6 is greater than 2/3.</p></answer>
 </exercise>
 
 <exercise><statement><p>A bridge hand consists of 13 randomly dealt cards from a standard deck that contains four aces.   What is the probability that a bridge player does not get dealt an ace in four consecutive hands?</p></statement>
