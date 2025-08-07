@@ -151,7 +151,12 @@ Posets.DivisorLattice(12).show()
 </answer>
 </exercise>
 <exercise number="2"><statement> <p> List the elements of the sets <m>D_8</m>, <m>D_{50}</m>, and <m>D_{1001}</m>. For each set, draw the Hasse diagram for <q>divides.</q></p>
-</statement></exercise>
+</statement>
+<solution component="im">
+<p><m>D_8=\{1,2,4,8\}</m>, <m>D_{50}=\{1,2,5,10,25,50\}</m> and <m>D_{1001}=\{1,7,11,13,77,91,143,1001\}</m>.
+</p>
+</solution>
+</exercise>
 <exercise number="3" xml:id="exercise-13-1-3"><statement><p><xref ref="fig-exercise-13-1-3" text="type-global" /> contains Hasse diagrams of posets.
 <ol marker="(a)">
 <li><p>  Determine the least upper bound  and greatest lower bound  of all pairs of elements when they exist. Indicate those pairs that do not have
@@ -204,7 +209,13 @@ a least upper bound  (or a greatest lower bound ).    </p></li>
 			</p></li>
 </ul></p>
 </answer></exercise>
-<exercise number="4"><statement> <p> For the poset <m>(\mathbb{N},\leq )</m>, what are the greatest lower bound and least upper bound of two elements <m>a</m> and <m>b</m>? Are there least and/or greatest elements?</p></statement></exercise>
+<exercise number="4"><statement> <p> For the poset <m>(\mathbb{N},\leq )</m>, what are the greatest lower bound and least upper bound of two elements <m>a</m> and <m>b</m>? Are there least and/or greatest elements?</p></statement>
+<solution component="im">
+<p><me>glb(a,b)=min(a,b) \textrm{  and }lub(a,b)=max(a,b)</me>
+The least element is 0 and there is no greatest element.
+</p>
+</solution>
+</exercise>
 <exercise number="5"><statement><p><ol marker="(a)">
 <li><p> Prove the second part of <xref ref="theorem-unique-lub-glb" text="type-global" />, the least upper bound of two elements in a poset is unique, if one exists. </p></li>
 <li><p> Prove that if a poset <m>L</m> has a least element, then that element is unique.</p></li>
@@ -228,7 +239,51 @@ a least upper bound  (or a greatest lower bound ).    </p></li>
 <li><p>In general, how does one determine the least upper bound  and greatest lower bound of two elements of <m>A_m \times  A_n</m>, <m>(a, b)</m> and <m>(a',b')</m>?</p></li>
 <li><p>Are there least and/or greatest elements in <m>A_m \times  A_n</m>?</p></li>
 </ol></p>
-</statement></exercise>
+</statement>
+<solution component="im">
+<p>
+<ol marker="(a)">
+	<li><p> First, <m>\preceq</m> is reflexive. If <m>(a,b) \in A_m \times  A_n</m>,
+ 	<me>a \leq a \textrm{ and }b \leq b \quad \Rightarrow \quad (a,b) \preceq (a,b)</me></p>
+ 	<p>Next, if <m>(a,b) \preceq (c,d)</m> and <m>(c,d) \preceq (a,b)</m>.  These assumptions imply that both <m>a \leq c</m> and <m>c \leq a</m> which implies that <m>a=c</m>. Similarly the assumption implies <m>b=d</m> and so <m>(a,b)= (c,d)</m> and we have antisymmetry.</p>
+ 	<p>Finally, we can show that <m>\preceq</m> is transitive.  Assume <m>(a,b) \preceq (c,d)</m>  and <m>(c,d) \preceq (e,f)</m>.  Concentrating on what is implied for the first coordinates we have that <m>a \leq c</m> and <m>c \leq e</m> which implies <m>a \leq e</m>.  Similarly, the second coordinates lead us to <m>b \leq f</m> and so <m>(a,b) \preceq (e,f)</m> </p>
+ 	</li>
+<li>
+<figure xml:id="fig-sol-13-1-6-b">
+  <caption>Grid Lattice Figures</caption>
+  <sidebyside widths="30% 30% 30%">
+    <figure xml:id="fig-gg22">
+      <caption><m>A_2 \times  A_2</m></caption>
+      <image source="images/gg22.png">
+        <shortdescription>Diamond-shaped grid with four nodes.</shortdescription>
+      </image>
+    </figure>
+    <figure xml:id="fig-gg23">
+      <caption><m>A_2 \times  A_3</m></caption>
+      <image source="images/gg23.png">
+        <shortdescription>Diamond-shaped grid with six nodes.</shortdescription>
+      </image>
+    </figure>
+    <figure xml:id="fig-gg33">
+      <caption><m>A_3 \times  A_3</m></caption>
+      <image source="images/gg33.png">
+        <shortdescription>Diamond-shaped grid with nine nodes.</shortdescription>
+      </image>
+    </figure>
+  </sidebyside>
+</figure>
+</li>
+<li><p>
+	<me>glb((a,b),(c,d))=(min(a,c),min(b,d))</me>
+	<me>lub((a,b),(c,d))=(max(a,c),max(b,d))</me>
+</p></li>
+<li><p>The least element is <m>(1,1)</m> and the greatest element is <m>(m,n)</m>.</p></li>
+</ol>
+</p>
+</solution>
+</exercise>
+
+
 <exercise><statement><p>Let <m>\mathcal{P}_0</m> be the set of all subsets <m>T</m> of <m>S = \{ 1, 2, \ldots, 9 \}</m> such that the sum of the elements in <m>T</m> is even. (Note that the empty set <m>\emptyset</m> will be included as an element of <m>\mathcal{P}_0</m>.) 
 For instance, <m>\{ 2, 3, 6, 7 \}</m> is in <m>\mathcal{P}_0</m> because <m>2+3+6+7</m> is even, but <m>\{1, 3, 5, 6\}</m> is not  in <m>\mathcal{P}_0</m> because <m>1+3+5+6</m> is odd.  Consider the poset <m>(\mathcal{P}_0, \subseteq)</m>. Let <m>A = \{ 1, 2, 3, 6 \}</m> and <m>B = \{ 2, 3, 6, 7 \}</m> be elements of <m>\mathcal{P}_0</m>.  
 <ol marker="(a)">
