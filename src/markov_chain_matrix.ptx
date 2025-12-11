@@ -1,47 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <subsection xml:id="ss-markov_chain_matrix"><title>Matrix Analysis of Markov Chains</title>
 
-<p>In <xref ref=""ex-markov_chain" text="title"> we introduced the idea of a Markov Chain. The movement in such a process can be visualized with a transition graph,   Computation of probabilities related to such a process is often done using matrix algebra.  The basic component in the computations is the transition matrix for the process.</p>
+<p>In <xref ref="ex-markov_chain" text="title" /> 
+we introduced the idea of a Markov Chain. The movement in such a process can be visualized with a transition graph,   Computation of probabilities related to such a process is often done using matrix algebra.  The basic component in the computations is the transition matrix for the process.</p>
 
-<definition xml:ido="def-transition-matrix"><title>Transition Matrix</title>
-<idx>Transition Matrix</idx>
-<statement>
-<p>Given a Markov Chain with states <m>s_1, s_2, \dots, s_n</m>, the transition matrix for the process is the <m>n \times n</m> matrix <m>T</m> where <me>T_{i,j} is the probability that if te process is in state <m>s_i</m>, its next state is <m>s_j</m>.
-</statement>
+<definition xml:id="def-transition-matrix">
+	<title>Transition Matrix</title>
+	<idx>Transition Matrix</idx>
+	<statement>
+		<p>Given a Markov Chain with states <m>s_1, s_2, \dots, s_n</m>, the transition matrix for the process is the <m>n \times n</m> matrix <m>T</m> where <m>T_{i,j}</m> is the probability that if the process is in state <m>s_i</m>, its next state is <m>s_j</m>.</p>
+	</statement>
 </definition>
-<p>The ordering of states can be arbitrary, but is most convenient to list the absorbins states of the process, the ones that are permanently entered, last.  The Transition matrix for the tennis game process introduced in <xref ref="" text="title"> with states ordered  Ad-In, Deuce, Ad-Out, Hold, Break is
-	<me>
+
+<p>
+The ordering of states can be arbitrary, but is most convenient to list the absorbins states of the process, the ones that are permanently entered, last. The transition matrix for the tennis game process with states ordered  Ad-In, Deuce, Ad-Out, Hold, Break is</p>
+<p>	<me>
 			T=\left(
 			\begin{array}{ccccc}
-			 0 \amp; 0.4 \amp; 0 \amp; 0.6 \amp; 0 \\
-			 0.6 \amp; 0 \amp; 0.4 \amp; 0 \amp; 0 \\
-			 0 \amp; 0.6 \amp; 0 \amp; 0 \amp; 0.4 \\
-			 0 \amp; 0 \amp; 0 \amp; 1 \amp; 0 \\
-			 0 \amp; 0 \amp; 0 \amp; 0 \amp; 1 \\
+			 0 &amp; 0.4 &amp; 0 &amp; 0.6 &amp; 0 \\
+			 0.6 &amp; 0 &amp; 0.4 &amp; 0 &amp; 0 \\
+			 0 &amp; 0.6 &amp; 0 &amp; 0 &amp; 0.4 \\
+			 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+			 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
 			\end{array}
 			\right).
-	<me>
-Representing a Markov chain by its transition matrix makes it easy to compute probabilities associated with it.  For example, we might want to know the probability that if the game is in Deuce that after two points have been played it is back in Deuce.  We can reason that to return to Deuce the process can go from Deuce to Ad-In and back to Deuce.  This happens with probability
-<me>T_{2,1}\cdot T_{1,2} =0.6 \cdot 0.4 = 0.24.</me>
-The other way to return to Deuce is to go to Ad-Out and then back to Deuce. This happens with probability
-<me>T_{2,3}\cdot T_{3,2} =0.4 \cdot 0.6 = 0.24.</me>
-Since these probabilities are mutually exclusive (they can't both happen), the probability of being in Deuce after two points is the sum 0.48.  The two products we added here are the nonzero terms of the innner product of the second row of <m>T</m> with the second column of <m>T</m>.  If we compute the <m>T^2</m>, we get this result in the second row, second column.  But the whole matrix gives us the transition probabilities between any pair of states after two points.  Here is the whole matrix:
+	</me></p>
+<p>	Representing a Markov chain by its transition matrix makes it easy to compute probabilities associated with it.  For example, we might want to know the probability that if the game is in Deuce that after two points have been played it is back in Deuce.  We can reason that to return to Deuce the process can go from Deuce to Ad-In and back to Deuce.  This happens with probability
+		</p>
+<p>
+	<me>T_{2,1}\cdot T_{1,2} =0.6 \cdot 0.4 = 0.24.</me>
+</p>
+
+<p>The other way to return to Deuce is to go to Ad-Out and then back to Deuce. This happens with probability
+	<me>T_{2,3}\cdot T_{3,2} =0.4 \cdot 0.6 = 0.24.</me>
+Since these paths in the graph are mutually exclusive (they can't both happen), the probability of being in Deuce after two points is the sum 0.48.  The two products we added here are the nonzero terms of the innner product of the second row of <m>T</m> with the second column of <m>T</m>.  If we compute the <m>T^2</m>, we get this result in the second row, second column.  But the whole matrix gives us the transition probabilities between any pair of states after two points have been played.  Here is the whole matrix:
 	<me>
 			T^2=\left(
 				\begin{array}{ccccc}
-				 0.24 \amp; 0. \amp; 0.16 \amp; 0.6 \amp; 0. \\
-				 0. \amp; 0.48 \amp; 0. \amp; 0.36 \amp; 0.16 \\
-				 0.36 \amp; 0. \amp; 0.24 \amp; 0. \amp; 0.4 \\
-				 0. \amp; 0. \amp; 0. \amp; 1. \amp; 0. \\
-				 0. \amp; 0. \amp; 0. \amp; 0. \amp; 1. \\
+				 0.24 &amp; 0. &amp; 0.16 &amp; 0.6 &amp; 0. \\
+				 0. &amp; 0.48 &amp; 0. &amp; 0.36 &amp; 0.16 \\
+				 0.36 &amp; 0. &amp; 0.24 &amp; 0. &amp; 0.4 \\
+				 0. &amp; 0. &amp; 0. &amp; 1. &amp; 0. \\
+				 0. &amp; 0. &amp; 0. &amp; 0. &amp; 1. \\
 				\end{array}
 				\right).
-	<me>
+	</me>
+</p>
+<p>
+In general, the <m>k^{th}<m> power of <m>T</m> will give us the probabilities after <m>k</m> points have been played. For example, starting at Deuce the probabiity that the server will have held serve is <m>0.674667</m> while a service break would have taken place with probability <m>0.299852</m>,  The likelihood that the game would still be undecided is <m>0.0254804</m>.
 </p>
 <sage>
 <input>
-t=[[0,0.4,0,0.6,0],[0.6,0,0.4,0,0],[0,0.6,0,0,0.4],[0,0,0,1,0],[0,0,0,0,1]]
-t^2
+t=[[0,0.4,0,0.6,0],
+	[0.6,0,0.4,0,0],
+	[0,0.6,0,0,0.4],
+	[0,0,0,1,0],
+	[0,0,0,0,1]]
+t^10
 </input>
+<output>
+	[[0.0127402, 0., 0.00849347, 0.862223, 0.116543],
+	[0., 0.0254804, 0., 0.674667, 0.299852],
+	[0.0191103, 0., 0.0127402, 0.393334, 0.574815],
+	[0., 0., 0., 1., 0.],
+	[0., 0., 0., 0., 1.]]
+</output>
 </sage>
 <p>
 If we compute a higher power of <m>T</m> ... 
