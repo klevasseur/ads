@@ -47,27 +47,116 @@ Since these paths in the graph are mutually exclusive (they can't both happen), 
 	</me>
 </p>
 <p>
-In general, the <m>k^{th}<m> power of <m>T</m> will give us the probabilities after <m>k</m> points have been played. For example, starting at Deuce the probabiity that the server will have held serve is <m>0.674667</m> while a service break would have taken place with probability <m>0.299852</m>,  The likelihood that the game would still be undecided is <m>0.0254804</m>.
+In general, the <m>n^{th}</m> power of <m>T</m> will give us the probabilities after <m>n</m> points have been played. For example, starting at Deuce the probabiity that the server will have held serve is <m>0.674667</m> while a service break would have taken place with probability <m>0.299852</m>,  The likelihood that the game would still be undecided is <m>0.0254804</m>.
 </p>
 <sage>
 <input>
-t=[[0,0.4,0,0.6,0],
+t=matrix(RR,[[0,0.4,0,0.6,0],
 	[0.6,0,0.4,0,0],
 	[0,0.6,0,0,0.4],
 	[0,0,0,1,0],
-	[0,0,0,0,1]]
+	[0,0,0,0,1]])
 t^10
 </input>
 <output>
-	[[0.0127402, 0., 0.00849347, 0.862223, 0.116543],
-	[0., 0.0254804, 0., 0.674667, 0.299852],
-	[0.0191103, 0., 0.0127402, 0.393334, 0.574815],
-	[0., 0., 0., 1., 0.],
-	[0., 0., 0., 0., 1.]]
+[ 0.01274019840   0.0000 0.008493465600   0.8622228480   0.116543488]
+[  0.0000  0.02548039680   0.0000   0.6746674176   0.299852185600000]
+[ 0.01911029760   0.0000  0.01274019840   0.3933342720   0.574815232]
+[  0.0000   0.0000   0.0000    1.000   0.000]
+[  0.0000   0.0000   0.0000   0.0000    1.00]</output>
+</sage>
+<p>To summarize, </p>
+<theorem>
+<statement>
+<p>If <m>T</m> is the transition matrix of a Markov chain, then <m>T^n_{i,j}</m> is the probability that starting in state <m>i</m>, the process will be in state <m>j</m> after <m>n</m> steps.</p>
+</statement>
+<proof><p>(Proof by induction)  Assume there are <m>m</m> states in a Markov chain.  Let <m>p(i,j,n)</m> be the probability that starting in state <m>i</m>, the process will be in state <m>j</m> after <m>n</m> steps.  By the definition of <m>T</m>, <m>T_{i,j} = p(i,j,1)</m> and so the basis is trivial. </p>
+<p>Assume the theorem is true for some <m>n \geq 1</m>.   We observe that in the process is to end in state <m>j</m> after <m>n+1</m> steps, it could enter it from any of the <m>n</m> states and so
+<me>
+\begin{split}
+	p(i,j,n+1)&amp;=\sum_{k=1}^m p(i,k,n)\cdot p(k,j,1)\\
+		&amp;=\sum_{k=1}^m T^n_{i,k}\cdot T_{k,j}\\
+		&amp;=T^{n+1}_{i,j}
+\end{split}
+</me>
+</p>
+</proof>
+</theorem>
+<example><title>A Bike Share Program</title> 
+<p>(suggested by Kaily Burke)
+Consider a citywide bike share program with three stations A, B, and C.
+Bikes borrowed from one station may be returned to any station by the end
+of each night. Assuming all bikes borrowed on a certain day are returned
+at night, we observe from past data the following probabilities of each bike’s
+subsequent state:
+<ul> 
+<li><p>From Station A: <m>30\%</m> of bikes return to Station A, <m>50\%</m> return to station B, <m>20\%</m> return to Station C.</p></li>
+<li><p>From Station B: <m>10\%</m> return to station A, <m>60\%</m> to station B, <m>30\%</m> to station C.</p></li>
+<li><p>From Station C: <m>10\%</m> return to station A, <m>10\%</m> to station B, <m>80\%</m> to station C.</p></li>
+</ul>
+</p>
+<p>Unlike the tennis example, this process every state can be reached from every other state.  These are called transition states. The natural question to ask here is whether the distribution of bikes tend toward a steady state.  This, in fact, is true.  No matter where a bike starts, the probability that it is in any of the three stations will be largely independent of the starting state.</p>
+<p>The transition matrix for this Markov chain with the ordering of states A, B, C is  
+<me>
+B=\left(
+\begin{array}{ccc}
+ 0.3 &amp; 0.5 &amp; 0.2 \\
+ 0.1 &amp; 0.6 &amp; 0.3 \\
+ 0.1 &amp; 0.1 &amp; 0.8 \\
+\end{array}
+\right)
+</me>
+If we compute the seventh power of this matrix, we get the probabilities after a week. For example, the first row give the probabilities of being in states A, B and C after a week if the initial state is A.   Notice that these probabilities are not very different if the initial state is B or C.
+</p>
+<sage>
+<input>
+b=matrix(QQ,[[3/10,1/2,1/5],
+            [1/10,3/5,3/10],
+            [1/10,1/10,4/5]])
+b^7.n()
+</input>
+<output>
+[0.125011200 0.306755900 0.568232900]
+[0.124998400 0.304168800 0.570832800]
+[0.124998400 0.296356300 0.578645300]
 </output>
 </sage>
-<p>
-If we compute a higher power of <m>T</m> ... 
-</p>
+<p>We don't need to perform these calculations to get exact steady-state probabilities. We need only look to the one of the left eigenvectors of the transition matrix, as indicated in the following theorem, which we state here without proof. </p>
+		<theorem xml:id="th-transition-evalue"><statement>Given a square matrix <m>T</m> with
+		 nonnegative entries with the property that the row sums all equal to one, then one of
+		its left  eigenvalues will be <m>1</m> and there exists an left eigenvector with
+		 nonnegative entries.</statement>
+		</theorem>
+<p>We first examine the left eigenvectors of our matrix and see that 1 is first eigenvalue and it has an eigenspace of dimension one and a basis vector having positive entries.</p>
+<sage>
+<input>
+b.eigenvectors_left()
+</input>
+<output>
+[(1, [(1, 12/5, 23/5)], 1), (1/2, [(0, 1, -1)], 1), (1/5, [(1, -4/3, 1/3)], 1)]
+</output>
+</sage>
+<p>We extract the first eigenvector and divide by the sum of its entries to get a probability vector.  Recall that SageMath objects are indexed starting a 0.</p>
+<sage>
+<input>
+q=b.eigenvectors_left()[0][1][0]
+p=q/sum(q)
+p
+</input>
+<output>
+(1/8, 3/10, 23/40)
+</output>
+</sage>
+<p>We can verify that if the probabilities are in equilibrium - they stay the same if we apply them to the transition matrix.</p>
+<sage>
+<input>
+p*b
+</input>
+<output>
+(1/8, 3/10, 23/40)
+</output>
+</sage>
+</example>
+
 
 </subsection>
