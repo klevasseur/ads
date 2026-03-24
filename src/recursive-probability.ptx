@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<subsection xml:id="ss-recursive-probability"><title>Recursion in Probability</title>
+
+<p>Recursion can frequently be used to simplify computations relating to random variables. We illustrate this with an example.</p>
+
+<example><title>Waiting for a Six</title> 
+<p>Consider a simple game in which the outcome involves rolling a standard, fair six-side die until a 6 is rolled. For any positive integer <m>k</m> isn't too difficult to compute the probability that exactly <m>k</m> rolls are needed to see a 6.  Rolls of a die are independent and each roll is a <xref ref="def-binomial-trial" text="title"/>.  If we view rolling a 6 as success the probability that we have <m>k-1</m> failures followed by a success is <m>p(k)=\frac{5}{6}^{k-1}\cdot \frac{1}{6}</m>. If we define the random variable <m>K</m> to be the number rolls need to get a 6, then the expected values of <m>K</m> is 
+<me> E(K)=\sum{k=1}^{\infny} k p(k)= \sum{k=1}^{\infty} k \frac{5}{6}^{k-1}\cdot \frac{1}{6}</me>
+This expression for <m>E(K)</m> can be simplified in several ways, but probably the simplest is to observe that whatever the expected value of <m>K</m> is, if you roll the die and don't get a 6 the expected additional rolls to get a 6 is still <m>E(K)</m>.  In other words, the die doesn't remember what it rolls.  We can write this observation in an equation:
+<me> E(K) = \frac{1}{6} + \frac{5}{6} (1+E(K)).</me>
+The first term of the right side of this equation recognizes that exactly one roll is needed with probability <m>\frac{1}{6}</m>.  We can easily solve this equation for our unknown <m>E(K)=6</m>.
+</example>
+<exercise>
+<statement><p>Consider a game for which you pay some entry fee that is to be determined.  The game consists of flipping a fair coin until Tails occurs.  Based on the number of Heads, <m>n</m>, that are observed in this process, you are paid <m>1.5^n</m> dollars. If <m>P</m> is the payoff you receive in this game, use recursion to determine the expected payoff, <m>E(P)</m>.</p>
+</statement>
+<solution component="im">
+<p>The recursive formula for the expected payoff is 
+<me>E(P)= \frac{1}{2} \cdot 1.5^0 + \frac{1}{2} 1.5 E(P).</me>  
+The first term corresponds with the fact that if the first flip is Tails, the payoff is $1.  The second term recognizes that if the first flip is Heads, you can view that game as having started over, but  with all payoffs being multiplied by 1.5.  We can solve the equation to get <m>E(P)=2</m>.  Therefore, if we pay $2 to play this game it is a fair game.  </p>
+</solution>
+</exercise>
+
+</subsection>
